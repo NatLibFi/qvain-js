@@ -1,0 +1,10 @@
+Miika
+13:27
+
+2-letter
+but, if slang etc. is required then IETF language tags
+it defines way to describe new subtags
+and its compatible with 2-letter ISO codes
+you could also use some cldr library for javascript, https://www.npmjs.com/package/cldr-tools or https://www.npmjs.com/package/cldrjs ... or any.
+CLDR (unicode.org/cldr) localizes IETF language tags, so you can build UI component that shows language names in given language
+... among other things such as timezones, weekdays etc. etc.

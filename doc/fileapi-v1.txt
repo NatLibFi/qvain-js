@@ -1,0 +1,46 @@
+Hannu Kämäräinen <hannu.kamarainen@csc.fi>
+Thu 2017-12-07, 12:54van Hemel, Wouter J M;Juha-Matti Lehtinen <juha-matti.lehtinen@csc.fi>
+Inbox
+Hi,
+
+First, a general note about the APIs: /directories/pid/files (and all the other APIs) works using either the database pk as the id, or the 'identifier' field (some kind of uuid), as the id. The support for db pk is simply useful to have, especially during development.
+
+> Right now, the current and parent directory information is in directories/2; and the sub-directories and files are in directories/2/files. Would it be possible to have the directories/2/files endpoint also return the current directory? In other words, to combine directories/2 and directories/2/files?
+
+The thinking here was, that before one could start browsing for files using /directories/pid/files, the requestor would already have:
+1) requested the root directory using /directories/root?project=project_x, which gave them the sub directory details of the directories themselves (the idea being, that one would never initially start the browsing from an arbitrary location)
+2) or, the requestor already possesses information it wants to display about the directory, such as when starting to browse from Etsin (and Etsin doesn't know the path initially anyway)
+
+However, if you don't see that as sufficient for case 1), I don't oppose to including the details of the directory itself, in addition to its sub dirs and files.
+
+> Second question: I wonder if it would be nice to have a way to point to a path by actually providing a path, for instance through PATH_INFO CGI variable:
+> https://metax-test.csc.fi/rest/project/project_x/project_x_FROZEN/Experiment_X/Phase_1
+
+Something like that was the original idea, but due to the Metax backend framework of choice (Django) interpreting urls the way it does (basically every path split by '/' would need to have some kind of handler created for it), "unlimited dynamic nested urls" would have been a lot of work (the plugins available off the self don't cater for the "unlimited dynamic" part. Not saying it isn't doable, but there is an easier way). It has crossed my mind though that searching by actual file path could be useful to have, but the closest we'd get would be something like /project/project_x?path=/some/path/here, as then Django wouldn't get its dirty hands in-between, and we could actually use the path as it is.
+
+Although for the API path itself, I would probably opt for something like: /directories/files?project=project_x&path=/some/path/here, which would then be more consistent with:
+/directories/pid/files
+/directories/root?project=project_x
+/directories/files?project=project_x&path=/some/path/here
+or
+/files?project=project_x&path=/some/path/here
+
+The additional API to search by path like that would be very simple to add. It would be extremely useful to have already for development purposes, let alone if one wishes to use it in production (not an impossible idea, for general search etc), so I think we'll definitely add it.
+
+> Third question: it might be that the recursive option isn't so useful for all files, but it might be handy for directories only. Maybe having an API call to get all the directories would be nice. We could show a navigation tree with all directories up-front, like in desktop file browsers
+
+TPAS wants only the files themselves as a flat list, so in its current form it is useful for them (the parameter was added for their needs, in fact).
+
+I could add an option to the current /directories/pid/files?recursive, to have ?recursive=directories, or recursive=files, default being files (if providing only ?recursive). ?recursive=directories would then return a nested structure of only directories. An additional parameter ?depth=x would probably be useful as well (with lets say, 3 being default value, and * for all).
+
+Do you think it would be useful to have a similar option to return the files in the nested structure as well? I.e. return sub dirs in a nested structure, while also containing all the files those dirs have. But this then starts to close in on the area of 'who knows how many files I'm about to receive now'.
+
+So as a recap, new APIs or parameters:
+- /directories/files ?project=project_x &path=/some/path/here [?recursive=(directories|files) [&depth=(int|*)]]
+- /directories/pid/files [?recursive=(directories|files) [&depth=(int|*)]]
+
+And
+- should /directories/pid/files return the details of the directory itself, in addition to its sub dirs and files?
+- option to recursively return both sub dirs, and their files, in a nested structure (of requested depth)?
+
+-Hannu

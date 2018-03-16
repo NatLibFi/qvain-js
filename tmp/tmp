@@ -1,0 +1,770 @@
+ref at /allOf/0
+ref at /definitions/CatalogRecord/properties/dataset_json
+ref at /definitions/ResearchDataset/properties/title/items
+ref at /definitions/ResearchDataset/properties/description/items
+ref at /definitions/ResearchDataset/properties/other_identifier/items
+ref at /definitions/StructuredIdentifier/properties/creator
+ref at /definitions/ResearchAgent/properties/homepage
+ref at /definitions/Document/properties/title/items
+ref at /definitions/Document/properties/description/items
+ref at /definitions/ResearchAgent/properties/isPartOf
+ref at /definitions/StructuredIdentifier/properties/type
+ref at /definitions/Concept/properties/pref_label/items
+ref at /definitions/Concept/properties/definition/items
+ref at /definitions/Concept/properties/in_scheme/items
+ref at /definitions/ConceptScheme/properties/pref_label/items
+ref at /definitions/ResearchDataset/properties/publisher
+ref at /definitions/ResearchDataset/properties/creator/items
+ref at /definitions/ResearchDataset/properties/contributor/items
+ref at /definitions/ResearchDataset/properties/is_output_of/items
+ref at /definitions/Project/properties/name
+ref at /definitions/Project/properties/homepage
+ref at /definitions/Project/properties/has_funding_agency/items
+ref at /definitions/Project/properties/source_organization/items
+ref at /definitions/ResearchDataset/properties/rights_holder
+ref at /definitions/ResearchDataset/properties/theme/items
+ref at /definitions/ResearchDataset/properties/language/items
+ref at /definitions/ResearchDataset/properties/spatial/items
+ref at /definitions/ResearchDataset/properties/temporal/items
+ref at /definitions/ResearchDataset/properties/related_entity/items
+ref at /definitions/RelatedEntity/properties/title/items
+ref at /definitions/RelatedEntity/properties/description/items
+ref at /definitions/RelatedEntity/properties/type
+ref at /definitions/ResearchDataset/properties/relation/items
+ref at /definitions/ResearchDataset/properties/discipline/items
+ref at /definitions/ResearchDataset/properties/remote_resources/items
+ref at /definitions/WebResource/properties/access_url
+ref at /definitions/WebResource/properties/download_url
+ref at /definitions/WebResource/properties/checksum
+ref at /definitions/WebResource/properties/license/items
+ref at /definitions/ResearchDataLicenseDocument/properties/title/items
+ref at /definitions/ResearchDataLicenseDocument/properties/description/items
+ref at /definitions/WebResource/properties/type
+ref at /definitions/WebResource/properties/has_object_characteristics
+ref at /definitions/ResearchDataset/properties/access_rights
+ref at /definitions/RightsStatement/properties/description/items
+ref at /definitions/RightsStatement/properties/type/items
+ref at /definitions/RightsStatement/properties/has_right_related_agent/items
+ref at /definitions/RightsStatement/properties/license/items
+ref at /definitions/ResearchDataset/properties/provenance/items
+ref at /definitions/Activity/properties/title
+ref at /definitions/Activity/properties/description
+ref at /definitions/Activity/properties/temporal
+ref at /definitions/Activity/properties/spatial
+ref at /definitions/Activity/properties/type
+ref at /definitions/Activity/properties/used_entity/items
+ref at /definitions/Activity/properties/was_associated_with/items
+ref at /definitions/Activity/properties/variable/items
+ref at /definitions/Variable/properties/prefLabel/items
+ref at /definitions/Variable/properties/description/items
+ref at /definitions/Variable/properties/concept
+ref at /definitions/Variable/properties/universe
+ref at /definitions/Variable/properties/representation
+ref at /definitions/ResearchDataset/properties/files/items
+ref at /definitions/File/properties/access_url
+ref at /definitions/File/properties/type
+ref at /definitions/ResearchDataset/properties/curator/items
+-wvh- { title: 'Research Dataset',
+  '@id': 'http://www.w3.org/ns/dcat#Dataset',
+  description: 'A collection of data, published or curated by a single source, and available for access or download in one or more formats',
+  properties: 
+   { urn_identifier: 
+      { title: 'Dataset URN identifier',
+        description: 'Dataset identifier',
+        '@id': 'http://iow.csc.fi/ns/mrd#datasetidentifier',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string' },
+     preferred_identifier: 
+      { title: 'Preferred identifier',
+        description: 'Unique identifier for the dataset. URN or URI.',
+        '@id': 'http://purl.org/dc/terms/identifier',
+        '@type': '@id',
+        minItems: 1,
+        maxItems: 1 },
+     modified: 
+      { title: 'Dataset modification date',
+        description: 'Last date when a dataset was produced having the identifiers expressed in this metadata record. An automatic transformation process e.g. between file types is not considered an update of the content.',
+        '@id': 'http://purl.org/dc/terms/modified',
+        '@type': 'http://www.w3.org/2001/XMLSchema#dateTime',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string',
+        format: 'date-time' },
+     version_info: 
+      { title: 'Version',
+        description: 'This property contains a version number or other version designation of the Dataset.',
+        '@id': 'http://www.w3.org/2002/07/owl#versionInfo',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        maxItems: 1,
+        type: 'string' },
+     version_notes: 
+      { title: 'Version notes',
+        description: 'This property contains a description of the differences between this version and a previous version of the Dataset. This property can be repeated for parallel language versions of the version notes.',
+        '@id': 'http://www.w3.org/ns/adms#versionNotes',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     issued: 
+      { title: 'Release date',
+        description: 'Date of formal issuance (e.g., publication) of the resource.',
+        '@id': 'http://purl.org/dc/terms/issued',
+        '@type': 'http://www.w3.org/2001/XMLSchema#date',
+        maxItems: 1,
+        type: 'string' },
+     title: 
+      { title: 'Title',
+        description: 'Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.',
+        '@id': 'http://purl.org/dc/terms/title',
+        '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     keyword: 
+      { title: 'Keyword',
+        description: 'A keyword or tag describing the dataset. It is recommended to use a controlled vocabulary, ontology or classification when choosing keywords.',
+        '@id': 'http://www.w3.org/ns/dcat#keyword',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        type: 'array',
+        items: [Object] },
+     description: 
+      { title: 'Description',
+        description: 'Free-form description of the dataset',
+        '@id': 'http://purl.org/dc/terms/description',
+        '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     bibliographic_citation: 
+      { title: 'Preferred Bibliographic Citation',
+        description: 'Preferred bibliographic reference for the resource.',
+        '@id': 'http://purl.org/dc/terms/bibliographicCitation',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        maxItems: 1,
+        type: 'string' },
+     other_identifier: 
+      { title: 'Other identifier',
+        description: '',
+        '@id': 'http://www.w3.org/ns/adms#identifier',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     publisher: 
+      { title: 'Agent',
+        description: 'An agent (eg. person, group, software or physical artifact).',
+        '@id': 'http://xmlns.com/foaf/0.1/Agent',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/ResearchAgent',
+        properties: [Object],
+        required: [Object] },
+     creator: 
+      { title: 'Creator',
+        description: 'A person or organisation who originally produced the dataset, the original rights holder',
+        '@id': 'http://purl.org/dc/terms/creator',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     contributor: 
+      { title: 'Contributor',
+        description: 'A person or organisation that has contributed significantly in the creation of the dataset',
+        '@id': 'http://purl.org/dc/terms/contributor',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     is_output_of: 
+      { title: 'Producer project',
+        description: 'A project that has caused the dataset to be created',
+        '@id': 'http://purl.org/cerif/frapo/isOutputOf',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     rights_holder: 
+      { title: 'Agent',
+        description: 'An agent (eg. person, group, software or physical artifact).',
+        '@id': 'http://xmlns.com/foaf/0.1/Agent',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/ResearchAgent',
+        properties: [Object],
+        required: [Object] },
+     theme: 
+      { title: 'Theme',
+        description: 'The main category of the dataset. A dataset can have multiple themes. Themes are concepts which relate to the content of the dataset, describe the dataset or express its topic or meaning.',
+        '@id': 'http://www.w3.org/ns/dcat#theme',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     language: 
+      { title: 'Language',
+        description: 'Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]. A language of the resource.',
+        '@id': 'http://purl.org/dc/terms/language',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     spatial: 
+      { title: 'Spatial Coverage',
+        description: 'Spatial characteristics of the resource.',
+        '@id': 'http://purl.org/dc/terms/spatial',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     temporal: 
+      { title: 'Temporal Coverage',
+        description: 'Temporal characteristics of the resource.',
+        '@id': 'http://purl.org/dc/terms/temporal',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     related_entity: 
+      { title: 'Related entity',
+        description: 'A related entity. It is recommended to use one of the subproperties.',
+        '@id': 'http://purl.org/dc/terms/relation',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     relation: 
+      { title: 'Related dataset',
+        description: 'Related dataset. It is recommended to use some of the subproperties of related.',
+        '@id': 'http://purl.org/dc/terms/relation',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     discipline: 
+      { title: 'Field of science',
+        description: 'Scientific discipline whose data collection has produced the dataset',
+        '@id': 'http://iow.csc.fi/ns/att#discipline',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     remote_resources: 
+      { title: 'Remote resources',
+        description: 'A concrete storage or expression format for the data in the dataset, for example a file, a database or a query interface to the data.',
+        '@id': 'http://www.w3.org/ns/dcat#distribution',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     access_rights: 
+      { title: 'Rights Statement',
+        '@id': 'http://purl.org/dc/terms/RightsStatement',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/RightsStatement',
+        description: 'A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights.',
+        properties: [Object],
+        required: [Object] },
+     provenance: 
+      { title: 'Provenance',
+        description: 'A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation.',
+        '@id': 'http://purl.org/dc/terms/provenance',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     total_byte_size: 
+      { title: 'Total byte size',
+        description: 'Sum of all distribution byte size',
+        '@id': 'http://iow.csc.fi/ns/mrd#totalbytesize',
+        '@type': 'http://www.w3.org/2001/XMLSchema#decimal',
+        minItems: 1,
+        maxItems: 1,
+        type: 'number' },
+     value: 
+      { title: 'Metadata quality value',
+        description: 'Metadata quality value calculated in some manner.',
+        '@id': 'http://www.w3.org/ns/dqv#value',
+        '@type': 'http://www.w3.org/2001/XMLSchema#decimal',
+        type: 'array',
+        items: [Object] },
+     files: 
+      { title: 'List of files',
+        description: 'Connects a dataset to one or more of files in IDA',
+        '@id': 'http://www.w3.org/ns/dcat#distribution',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     ready_status: 
+      { title: 'Dataset status',
+        description: 'Status of the catalog record',
+        '@id': 'http://iow.csc.fi/ns/mrd#readystatus',
+        enum: [Object],
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string' },
+     curator: 
+      { title: 'Curator',
+        description: 'Curator of the dataset',
+        '@id': 'http://iow.csc.fi/ns/mrd#curator',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] } },
+  required: 
+   [ 'urn_identifier',
+     'preferred_identifier',
+     'modified',
+     'version_notes',
+     'title',
+     'description',
+     'creator',
+     'language',
+     'total_byte_size',
+     'ready_status',
+     'curator' ] }
+ref at /definitions/Activity/properties/title
+ref at /definitions/Activity/properties/description
+ref at /definitions/Activity/properties/temporal
+ref at /definitions/Activity/properties/spatial
+ref at /definitions/Activity/properties/type
+ref at /definitions/Activity/properties/used_entity/items
+ref at /definitions/Activity/properties/was_associated_with/items
+ref at /definitions/Activity/properties/variable/items
+ref at /definitions/CatalogRecord/properties/dataset_json
+-wvh- { title: 'Research Dataset',
+  '@id': 'http://www.w3.org/ns/dcat#Dataset',
+  description: 'A collection of data, published or curated by a single source, and available for access or download in one or more formats',
+  properties: 
+   { urn_identifier: 
+      { title: 'Dataset URN identifier',
+        description: 'Dataset identifier',
+        '@id': 'http://iow.csc.fi/ns/mrd#datasetidentifier',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string' },
+     preferred_identifier: 
+      { title: 'Preferred identifier',
+        description: 'Unique identifier for the dataset. URN or URI.',
+        '@id': 'http://purl.org/dc/terms/identifier',
+        '@type': '@id',
+        minItems: 1,
+        maxItems: 1 },
+     modified: 
+      { title: 'Dataset modification date',
+        description: 'Last date when a dataset was produced having the identifiers expressed in this metadata record. An automatic transformation process e.g. between file types is not considered an update of the content.',
+        '@id': 'http://purl.org/dc/terms/modified',
+        '@type': 'http://www.w3.org/2001/XMLSchema#dateTime',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string',
+        format: 'date-time' },
+     version_info: 
+      { title: 'Version',
+        description: 'This property contains a version number or other version designation of the Dataset.',
+        '@id': 'http://www.w3.org/2002/07/owl#versionInfo',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        maxItems: 1,
+        type: 'string' },
+     version_notes: 
+      { title: 'Version notes',
+        description: 'This property contains a description of the differences between this version and a previous version of the Dataset. This property can be repeated for parallel language versions of the version notes.',
+        '@id': 'http://www.w3.org/ns/adms#versionNotes',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     issued: 
+      { title: 'Release date',
+        description: 'Date of formal issuance (e.g., publication) of the resource.',
+        '@id': 'http://purl.org/dc/terms/issued',
+        '@type': 'http://www.w3.org/2001/XMLSchema#date',
+        maxItems: 1,
+        type: 'string' },
+     title: 
+      { title: 'Title',
+        description: 'Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.',
+        '@id': 'http://purl.org/dc/terms/title',
+        '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     keyword: 
+      { title: 'Keyword',
+        description: 'A keyword or tag describing the dataset. It is recommended to use a controlled vocabulary, ontology or classification when choosing keywords.',
+        '@id': 'http://www.w3.org/ns/dcat#keyword',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        type: 'array',
+        items: [Object] },
+     description: 
+      { title: 'Description',
+        description: 'Free-form description of the dataset',
+        '@id': 'http://purl.org/dc/terms/description',
+        '@type': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#langString',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     bibliographic_citation: 
+      { title: 'Preferred Bibliographic Citation',
+        description: 'Preferred bibliographic reference for the resource.',
+        '@id': 'http://purl.org/dc/terms/bibliographicCitation',
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        maxItems: 1,
+        type: 'string' },
+     other_identifier: 
+      { title: 'Other identifier',
+        description: '',
+        '@id': 'http://www.w3.org/ns/adms#identifier',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     publisher: 
+      { title: 'Agent',
+        description: 'An agent (eg. person, group, software or physical artifact).',
+        '@id': 'http://xmlns.com/foaf/0.1/Agent',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/ResearchAgent',
+        properties: [Object],
+        required: [Object] },
+     creator: 
+      { title: 'Creator',
+        description: 'A person or organisation who originally produced the dataset, the original rights holder',
+        '@id': 'http://purl.org/dc/terms/creator',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     contributor: 
+      { title: 'Contributor',
+        description: 'A person or organisation that has contributed significantly in the creation of the dataset',
+        '@id': 'http://purl.org/dc/terms/contributor',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     is_output_of: 
+      { title: 'Producer project',
+        description: 'A project that has caused the dataset to be created',
+        '@id': 'http://purl.org/cerif/frapo/isOutputOf',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     rights_holder: 
+      { title: 'Agent',
+        description: 'An agent (eg. person, group, software or physical artifact).',
+        '@id': 'http://xmlns.com/foaf/0.1/Agent',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/ResearchAgent',
+        properties: [Object],
+        required: [Object] },
+     theme: 
+      { title: 'Theme',
+        description: 'The main category of the dataset. A dataset can have multiple themes. Themes are concepts which relate to the content of the dataset, describe the dataset or express its topic or meaning.',
+        '@id': 'http://www.w3.org/ns/dcat#theme',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     language: 
+      { title: 'Language',
+        description: 'Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]. A language of the resource.',
+        '@id': 'http://purl.org/dc/terms/language',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] },
+     spatial: 
+      { title: 'Spatial Coverage',
+        description: 'Spatial characteristics of the resource.',
+        '@id': 'http://purl.org/dc/terms/spatial',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     temporal: 
+      { title: 'Temporal Coverage',
+        description: 'Temporal characteristics of the resource.',
+        '@id': 'http://purl.org/dc/terms/temporal',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     related_entity: 
+      { title: 'Related entity',
+        description: 'A related entity. It is recommended to use one of the subproperties.',
+        '@id': 'http://purl.org/dc/terms/relation',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     relation: 
+      { title: 'Related dataset',
+        description: 'Related dataset. It is recommended to use some of the subproperties of related.',
+        '@id': 'http://purl.org/dc/terms/relation',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     discipline: 
+      { title: 'Field of science',
+        description: 'Scientific discipline whose data collection has produced the dataset',
+        '@id': 'http://iow.csc.fi/ns/att#discipline',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     remote_resources: 
+      { title: 'Remote resources',
+        description: 'A concrete storage or expression format for the data in the dataset, for example a file, a database or a query interface to the data.',
+        '@id': 'http://www.w3.org/ns/dcat#distribution',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     access_rights: 
+      { title: 'Rights Statement',
+        '@id': 'http://purl.org/dc/terms/RightsStatement',
+        '@type': '@id',
+        type: 'object',
+        '$deref': '#/definitions/RightsStatement',
+        description: 'A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights.',
+        properties: [Object],
+        required: [Object] },
+     provenance: 
+      { title: 'Provenance',
+        description: 'A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation.',
+        '@id': 'http://purl.org/dc/terms/provenance',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     total_byte_size: 
+      { title: 'Total byte size',
+        description: 'Sum of all distribution byte size',
+        '@id': 'http://iow.csc.fi/ns/mrd#totalbytesize',
+        '@type': 'http://www.w3.org/2001/XMLSchema#decimal',
+        minItems: 1,
+        maxItems: 1,
+        type: 'number' },
+     value: 
+      { title: 'Metadata quality value',
+        description: 'Metadata quality value calculated in some manner.',
+        '@id': 'http://www.w3.org/ns/dqv#value',
+        '@type': 'http://www.w3.org/2001/XMLSchema#decimal',
+        type: 'array',
+        items: [Object] },
+     files: 
+      { title: 'List of files',
+        description: 'Connects a dataset to one or more of files in IDA',
+        '@id': 'http://www.w3.org/ns/dcat#distribution',
+        '@type': '@id',
+        type: 'array',
+        items: [Object] },
+     ready_status: 
+      { title: 'Dataset status',
+        description: 'Status of the catalog record',
+        '@id': 'http://iow.csc.fi/ns/mrd#readystatus',
+        enum: [Object],
+        '@type': 'http://www.w3.org/2001/XMLSchema#string',
+        minItems: 1,
+        maxItems: 1,
+        type: 'string' },
+     curator: 
+      { title: 'Curator',
+        description: 'Curator of the dataset',
+        '@id': 'http://iow.csc.fi/ns/mrd#curator',
+        '@type': '@id',
+        minItems: 1,
+        type: 'array',
+        items: [Object] } },
+  required: 
+   [ 'urn_identifier',
+     'preferred_identifier',
+     'modified',
+     'version_notes',
+     'title',
+     'description',
+     'creator',
+     'language',
+     'total_byte_size',
+     'ready_status',
+     'curator' ] }
+ref at /definitions/Concept/properties/pref_label/items
+ref at /definitions/Concept/properties/definition/items
+ref at /definitions/Concept/properties/in_scheme/items
+ref at /definitions/ConceptScheme/properties/pref_label/items
+ref at /definitions/Document/properties/title/items
+ref at /definitions/Document/properties/description/items
+ref at /definitions/File/properties/access_url
+ref at /definitions/File/properties/type
+ref at /definitions/Project/properties/name
+ref at /definitions/Project/properties/homepage
+ref at /definitions/Project/properties/has_funding_agency/items
+ref at /definitions/Project/properties/source_organization/items
+ref at /definitions/RelatedEntity/properties/title/items
+ref at /definitions/RelatedEntity/properties/description/items
+ref at /definitions/RelatedEntity/properties/type
+ref at /definitions/ResearchAgent/properties/homepage
+ref at /definitions/ResearchAgent/properties/isPartOf
+ref at /definitions/ResearchDataLicenseDocument/properties/title/items
+ref at /definitions/ResearchDataLicenseDocument/properties/description/items
+ref at /definitions/ResearchDataset/properties/title/items
+ref at /definitions/ResearchDataset/properties/description/items
+ref at /definitions/ResearchDataset/properties/other_identifier/items
+ref at /definitions/ResearchDataset/properties/publisher
+ref at /definitions/ResearchDataset/properties/creator/items
+ref at /definitions/ResearchDataset/properties/contributor/items
+ref at /definitions/ResearchDataset/properties/is_output_of/items
+ref at /definitions/ResearchDataset/properties/rights_holder
+ref at /definitions/ResearchDataset/properties/theme/items
+ref at /definitions/ResearchDataset/properties/language/items
+ref at /definitions/ResearchDataset/properties/spatial/items
+ref at /definitions/ResearchDataset/properties/temporal/items
+ref at /definitions/ResearchDataset/properties/related_entity/items
+ref at /definitions/ResearchDataset/properties/relation/items
+ref at /definitions/ResearchDataset/properties/discipline/items
+ref at /definitions/ResearchDataset/properties/remote_resources/items
+ref at /definitions/ResearchDataset/properties/access_rights
+ref at /definitions/ResearchDataset/properties/provenance/items
+ref at /definitions/ResearchDataset/properties/files/items
+ref at /definitions/ResearchDataset/properties/curator/items
+ref at /definitions/RightsStatement/properties/description/items
+ref at /definitions/RightsStatement/properties/type/items
+ref at /definitions/RightsStatement/properties/has_right_related_agent/items
+ref at /definitions/RightsStatement/properties/license/items
+ref at /definitions/StructuredIdentifier/properties/creator
+ref at /definitions/StructuredIdentifier/properties/type
+ref at /definitions/Variable/properties/prefLabel/items
+ref at /definitions/Variable/properties/description/items
+ref at /definitions/Variable/properties/concept
+ref at /definitions/Variable/properties/universe
+ref at /definitions/Variable/properties/representation
+ref at /definitions/WebResource/properties/access_url
+ref at /definitions/WebResource/properties/download_url
+ref at /definitions/WebResource/properties/checksum
+ref at /definitions/WebResource/properties/license/items
+ref at /definitions/WebResource/properties/type
+ref at /definitions/WebResource/properties/has_object_characteristics
+{ '@id': 'http://iow.csc.fi/ns/mrd#',
+  title: 'Metax Research Datasets',
+  modified: 'Tue, 13 Jun 2017 16:09:27 EEST',
+  '$schema': 'http://json-schema.org/draft-04/schema#',
+  type: 'object',
+  allOf: 
+   [ { '$deref': '#/definitions/CatalogRecord',
+       title: 'Catalog Record',
+       '@id': 'http://www.w3.org/ns/dcat#CatalogRecord',
+       description: 'A record in a data catalog, describing a single dataset.',
+       properties: [Object],
+       required: [Object] } ],
+  definitions: 
+   { Activity: 
+      { title: 'Activity',
+        '@id': 'http://www.w3.org/ns/prov#Activity',
+        description: 'An activity is something that occurs over a period of time and acts upon or with entities; it may include consuming, processing, transforming, modifying, relocating, using, or generating entities.',
+        properties: [Object] },
+     CatalogRecord: 
+      { title: 'Catalog Record',
+        '@id': 'http://www.w3.org/ns/dcat#CatalogRecord',
+        description: 'A record in a data catalog, describing a single dataset.',
+        properties: [Object],
+        required: [Object] },
+     Checksum: 
+      { title: 'Checksum',
+        '@id': 'http://spdx.org/rdf/terms#Checksum',
+        description: '',
+        properties: [Object],
+        required: [Object] },
+     Concept: 
+      { title: 'Concept',
+        '@id': 'http://www.w3.org/2004/02/skos/core#Concept',
+        description: 'An idea or notion; a unit of thought.',
+        properties: [Object],
+        required: [Object] },
+     ConceptScheme: 
+      { title: 'Concept Scheme',
+        '@id': 'http://www.w3.org/2004/02/skos/core#ConceptScheme',
+        description: 'A set of concepts, optionally including statements about semantic relationships between those concepts.',
+        properties: [Object],
+        required: [Object] },
+     DistributionCharacteristics: 
+      { title: 'File characteristics',
+        '@id': 'http://www.loc.gov/premis/rdf/v1#ObjectCharasteristics',
+        description: 'Technical properties of files',
+        properties: [Object],
+        required: [Object] },
+     Document: 
+      { title: 'Documented link',
+        '@id': 'http://xmlns.com/foaf/0.1/Document',
+        description: 'A documented link to a document in the Web.',
+        properties: [Object],
+        required: [Object] },
+     File: 
+      { title: 'File in IDA',
+        '@id': 'http://www.w3.org/ns/dcat#Distribution',
+        description: 'File in IDA',
+        properties: [Object],
+        required: [Object] },
+     LinguisticSystem: 
+      { title: 'Linguistic System',
+        '@id': 'http://purl.org/dc/terms/LinguisticSystem',
+        description: 'Examples include written, spoken, sign, and computer languages.\n\nA system of signs, symbols, sounds, gestures, or rules used in communication.',
+        properties: [Object],
+        required: [Object] },
+     Location: 
+      { title: 'Location',
+        '@id': 'http://purl.org/dc/terms/Location',
+        description: 'A spatial region or named place.',
+        properties: [Object] },
+     PeriodOfTime: 
+      { title: 'Period of Time',
+        '@id': 'http://purl.org/dc/terms/PeriodOfTime',
+        description: 'An interval of time that is named or defined by its start and end dates.',
+        properties: [Object] },
+     Project: 
+      { title: 'Project',
+        '@id': 'http://xmlns.com/foaf/0.1/Project',
+        description: 'A project (a collective endeavour of some kind).',
+        properties: [Object],
+        required: [Object] },
+     RelatedEntity: 
+      { title: 'Related Entity',
+        '@id': 'http://www.w3.org/ns/prov#Entity',
+        description: 'Related entity',
+        properties: [Object],
+        required: [Object] },
+     ResearchAgent: 
+      { title: 'Agent',
+        '@id': 'http://xmlns.com/foaf/0.1/Agent',
+        description: 'An agent (eg. person, group, software or physical artifact).',
+        properties: [Object],
+        required: [Object] },
+     ResearchDataLicenseDocument: 
+      { title: 'License Document',
+        '@id': 'http://purl.org/dc/terms/LicenseDocument',
+        description: 'A legal document giving official permission to do something with a Resource.',
+        properties: [Object],
+        required: [Object] },
+     ResearchDataset: 
+      { title: 'Research Dataset',
+        '@id': 'http://www.w3.org/ns/dcat#Dataset',
+        description: 'A collection of data, published or curated by a single source, and available for access or download in one or more formats',
+        properties: [Object],
+        required: [Object] },
+     RightsStatement: 
+      { title: 'Rights Statement',
+        '@id': 'http://purl.org/dc/terms/RightsStatement',
+        description: 'A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights.',
+        properties: [Object],
+        required: [Object] },
+     StructuredIdentifier: 
+      { title: 'Identifier',
+        '@id': 'http://www.w3.org/ns/adms#Identifier',
+        description: 'Structured identifier',
+        properties: [Object],
+        required: [Object] },
+     Variable: 
+      { title: 'Variable',
+        '@id': 'http://rdf-vocabulary.ddialliance.org/discovery#Variable',
+        description: '',
+        properties: [Object],
+        required: [Object] },
+     WebResource: 
+      { title: 'Remote Web Resource',
+        '@id': 'http://www.w3.org/ns/dcat#Distribution',
+        description: 'Represents single available resource in the web.',
+        properties: [Object],
+        required: [Object] },
+     langString: 
+      { type: 'object',
+        title: 'Multilingual string',
+        description: 'Object type for localized strings',
+        additionalProperties: [Object] } } }
+131
+The file was saved!

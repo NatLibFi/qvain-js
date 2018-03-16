@@ -1,0 +1,8 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.3/lodash.min.js"></script>
+
+<div id="app">
+  <json-input v-for="(v, k) in obj" label="k" v-model="obj[k]"></json-input>
+  <hr>Data: {{ obj }}
+  <button type="button" @click="set()">set</button>
+</div>

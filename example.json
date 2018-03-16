@@ -1,0 +1,74 @@
+{
+    "identifier": "urn:uuid:e41535e7-2d5b-42d1-bd33-4555fc791089",
+    "modified": "2017-01-17T09:29:54Z",
+    "conformsTo":{"identifier":"http://iowdev.csc.fi/ns/mrd.jschema"},
+    "primaryTopic": {
+    "identifier": "http://urn.fi/urn:nbn:fi:csc-kata20160308103219249760",
+        "title": [{
+            "en": "Helsinki Kumpula SMEAR III meteorology - Air temperature - 2002"
+        }],
+        "description": [{
+            "en": "Title: Air temperature\n\nDescription: Air temperature, Physicum roof, (degC)\n\nVariable: t\n\nUnit: °C\n\nSource: saa\n\nCategory: Meteorology"
+        }],
+        "keyword": ["ilma - lämpötila"],
+        "theme": [{
+            "identifier": "http://www.yso.fi/onto/yso/p5394",
+            "prefLabel": [{
+                "fi": "meteorologia"
+            }, {
+                "en": "meteorology"
+            }]
+        }, {
+            "identifier": "http://www.yso.fi/onto/yso/p19483",
+            "prefLabel": [{
+                "fi": "ilma -- lämpötila"
+            }, {
+                "en": "air temperature"
+            }]
+        }],
+        "discipline": [{
+            "identifier": "http://www.yso.fi/onto/okm-tieteenala/ta114",
+            "prefLabel": [{
+                "fi": "fysiikka"
+            }, {
+                "en": "Physical sciences"
+            }]
+        }],
+        "modified": "2014 - 01 - 17 T08: 19: 58 Z",
+          "creator":[{
+            "name": "Teppo Testaaja"
+          }],
+        "owner": {
+            "name": "University of Helsinki, Department of Physics, Division of Atmospheric Sciences"
+        },
+        "distributor": {
+            "email": "atm-helsinki@helsinki.fi"
+        },
+        "bibliographicCitation": "Helsinki Kumpula SMEAR III meteorology - Air temperature - 2002, 2014-01-17, Pasi Aalto (tekijä), atm-data@helsinki.fi (jakelija), Etsin tutkimuksen tietoaineistojen hakupalvelu, 2017. https://etsin.avointiede.fi/fi/dataset/urn-nbn-fi-csc-ida2014011909129s",
+        "accessRights": {
+            "license": [{
+                "identifier": "https://creativecommons.org/licenses/by/4.0/",
+                "title": [{"en":"Creative Commons Attribution 4.0"}]
+            }]
+        },
+        "temporal": [{
+            "startDate": "2002-01-01T00:00:00Z",
+            "endDate": "2002-12-31T23:59:59Z"
+        }],
+        "location": [{
+            "geographicName": "Kumpula",
+            "lat": "60.202887",
+            "long": "24.961227",
+            "elevation": "45"
+        }],
+        "files": [{
+            "identifier": "urn:nbn:fi:csc-ida2014012042298s",
+            "title": {
+              "fi":"Aineisto vuodelta 2012"
+            },
+            "description": {
+              "fi":"..."
+            }
+        }]
+    }
+}

@@ -1,0 +1,34 @@
+/*
+export * from './v-schema-selector.vue'
+export * from './v-schema-string.vue'
+export * from './v-schema-number.vue'
+export * from './v-schema-object.vue'
+export * from './v-schema-array.vue'
+*/
+
+/*
+import vSchemaSelector from './v-schema-selector.vue'
+import vSchemaString from './v-schema-string.vue'
+import vSchemaNumber from './v-schema-number.vue'
+import vSchemaObject from './v-schema-object.vue'
+import vSchemaArray from './v-schema-array.vue'
+*/
+
+export {default as vSchemaSelector} from './v-schema-selector.vue'
+export {default as vSchemaTabSelector} from './v-schema-tab-selector.vue'
+export {default as vSchemaString} from './v-schema-string.vue'
+export {default as vSchemaNumber} from './v-schema-number.vue'
+export {default as vSchemaObject} from './v-schema-object.vue'
+export {default as vSchemaArray} from './v-schema-array.vue'
+
+
+
+//export default {
+	/*
+	'schema-selector': './v-schema-selector.vue',
+	'schema-string': './v-schema-string.vue',
+	'schema-number': './v-schema-number.vue',
+	'schema-object': './v-schema-object.vue',
+	'schema-array': './v-schema-array.vue',
+	*/
+//}

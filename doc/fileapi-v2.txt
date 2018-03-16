@@ -1,0 +1,28 @@
+ metax-admin-request@listat.csc.fi
+on behalf of Hannu Kämäräinen <hannu.kamarainen@csc.fi>
+Wed 01-24, 17:11metax-admin <metax-admin@listat.csc.fi>
+Inbox
+1) Browse files by project and file path
+
+In addition to browsing files by directory identifier like:
+
+/directories/pid/files
+
+it is now possible to browse by a known project identifier and file path, such as:
+
+/directories/files?project=myproject&path=/some/path/here
+
+2) More optional query parameters to file browsing:
+
+depth=(int|*), control depth when combined with the parameter "recursive"
+
+dirs_only=bool, omit files entirely from the result set. Combine with recursive=true, to get a directory tree.
+
+include_parent=bool, includes the 'parent directory' of the contents being fetched in the results also. Example:
+GET /directories/3/files?include_parent=true also includes data about directory id: 3 in the results.
+otherwise, one would query for its data separately by GET /directories/3.
+
+3) Optional parameter atomic=bool for bulk create/update operations. Specifying the flag will cause all changes to get rolled back if even one operation failed.
+
+
+-Hannu

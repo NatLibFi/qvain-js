@@ -1,0 +1,14 @@
+[
+	{
+		"name": "qvain",
+		"description": "Local database",
+		"display": "in progress",
+		"url": "http://example.com/api/",
+	},
+	"metax": {
+		"name": "metax",
+		"description": "MetaX database",
+		"display": "published",
+		"url": "http://metax.example.com/api/",
+	},
+]

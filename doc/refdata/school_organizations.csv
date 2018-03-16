@@ -1,0 +1,2428 @@
+year,org_name,org_code,unit_main_code,unit_sub_code,unit_name
+2016,Aalto yliopisto,10076,,A800,"School services, ARTS "
+2016,Aalto yliopisto,10076,,A801,"Department of Film, Television and Scenography"
+2016,Aalto yliopisto,10076,,A802,Department of Media
+2016,Aalto yliopisto,10076,,A803,Department of Design
+2016,Aalto yliopisto,10076,,A805,Department of Art
+2016,Aalto yliopisto,10076,,A850,Aalto Future Media Center
+2016,Aalto yliopisto,10076,,A899,School Common ARTS
+2016,Aalto yliopisto,10076,,E700,"School Services, BIZ"
+2016,Aalto yliopisto,10076,,E701,Department of Accounting
+2016,Aalto yliopisto,10076,,E702,Department of Marketing
+2016,Aalto yliopisto,10076,,E703,Department of Economics
+2016,Aalto yliopisto,10076,,E704,Department of Information and Service Economy
+2016,Aalto yliopisto,10076,,E706,Department of Management Studies
+2016,Aalto yliopisto,10076,,E707,Department of Finance
+2016,Aalto yliopisto,10076,,E710,Center for Markets in Transition (CEMAT)
+2016,Aalto yliopisto,10076,,E720,Center for Knowledge and Innovation Research (CKIR)
+2016,Aalto yliopisto,10076,,E790,"School Common, BIZ"
+2016,Aalto yliopisto,10076,,T100,"School services, CHEM"
+2016,Aalto yliopisto,10076,,T101,Department of Biotechnology and Chemical Technology
+2016,Aalto yliopisto,10076,,T102,Department of Chemistry
+2016,Aalto yliopisto,10076,,T103,Department of Materials Science and Engineering
+2016,Aalto yliopisto,10076,,T104,Department of Forest Products Technology
+2016,Aalto yliopisto,10076,,T105,Department of Chemistry and Materials Science
+2016,Aalto yliopisto,10076,,T106,Department of Chemical and Metallurgical Engineering
+2016,Aalto yliopisto,10076,,T107,Department of Bioproducts and Biosystems
+2016,Aalto yliopisto,10076,,T199,"Shool common, CHEM"
+2016,Aalto yliopisto,10076,,T200,"School cervices, ENG"
+2016,Aalto yliopisto,10076,,T201,Department of Architecture
+2016,Aalto yliopisto,10076,,T210,Design Factory
+2016,Aalto yliopisto,10076,,T211,"School common, ENG"
+2016,Aalto yliopisto,10076,,T212,Department of Mechanical Engineering
+2016,Aalto yliopisto,10076,,T213,Department of Built Environment
+2016,Aalto yliopisto,10076,,T214,Department of Civil Engineering
+2016,Aalto yliopisto,10076,,T300,School services SCI
+2016,Aalto yliopisto,10076,,T302,Department of Mathematics and Systems Analysis
+2016,Aalto yliopisto,10076,,T304,Department of Applied Physics
+2016,Aalto yliopisto,10076,,T307,Department of Industrial Engineering and Management
+2016,Aalto yliopisto,10076,,T310,EIT Digital Helsinki
+2016,Aalto yliopisto,10076,,T313,Department of Computer Science
+2016,Aalto yliopisto,10076,,T314,Department of Neuroscience and Biomedical Engineering
+2016,Aalto yliopisto,10076,,T320,"School common, SCI"
+2016,Aalto yliopisto,10076,,T400,School services ELEC
+2016,Aalto yliopisto,10076,,T403,Deptartment of  Micro & Nanoscience
+2016,Aalto yliopisto,10076,,T404,Department of Radio Science & Engineering
+2016,Aalto yliopisto,10076,,T405,Department of Signal Processing & Acoustics
+2016,Aalto yliopisto,10076,,T407,Department of  Communications & Networking
+2016,Aalto yliopisto,10076,,T408,Metsähovi Radio Observatory
+2016,Aalto yliopisto,10076,,T409,Aalto Nanofab
+2016,Aalto yliopisto,10076,,T410,Department of Electrical Engineering & Automation
+2016,Aalto yliopisto,10076,,T411,Department of Electronics & Nanoengineering
+2016,Aalto yliopisto,10076,,T499,"School common, ELEC"
+2016,Aalto yliopisto,10076,,U100,University level
+2016,Aalto yliopisto,10076,,U900,"Leadership and LS Support Serv, Joint Units"
+2016,Aalto yliopisto,10076,,U901,Research and Innovation Serv
+2016,Aalto yliopisto,10076,,U902,Learning Services
+2016,Aalto yliopisto,10076,,U905,Finance Services
+2016,Aalto yliopisto,10076,,U906,HR Services
+2016,Aalto yliopisto,10076,,U908,Communications Services
+2016,Aalto yliopisto,10076,,U909,IT Services
+2016,Aalto yliopisto,10076,,U912,Campus Services
+2016,Aalto yliopisto,10076,,U915,Secretarial Services
+2016,Aalto yliopisto,10076,,U917,Fundraising
+2016,Aalto yliopisto,10076,,U918,Endowment
+2016,Aalto yliopisto,10076,,U920,Aalto Common Items
+2016,Centria-ammattikorkeakoulu,02536,,Liiktal,Liiketalouden koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Kemtek,Kemiantekniikan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Tiettek,Tietotekniikan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Sähtek,Sähkö- ja automaatiotekniikan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Terva,Terveysalan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Sosia,Sosiaalialan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Musa,Musiikin koulutus
+2016,Centria-ammattikorkeakoulu,02536,,Huma,Humanistisen ja kasvatusalan koulutus
+2016,Centria-ammattikorkeakoulu,02536,,YAMK,Ylemmät AMK-tutkinnot
+2016,Centria-ammattikorkeakoulu,02536,,Korkpal,Korkeakoulupalvelut
+2016,Centria-ammattikorkeakoulu,02536,,TKIpal,TKI-palvelut
+2016,Centria-ammattikorkeakoulu,02536,,Tuotal,Tuotantotalouden koulutus
+2016,Diakonia-ammattikorkeakoulu,02623,,11,11 Yleinen ryhmä
+2016,Diakonia-ammattikorkeakoulu,02623,,12,"12 Communication, Communities and Languages"
+2016,Diakonia-ammattikorkeakoulu,02623,,13,13 Opiskelijoiden ohjaus ja kasvu
+2016,Diakonia-ammattikorkeakoulu,02623,,14,14 Pedagogical and community development
+2016,Diakonia-ammattikorkeakoulu,02623,,21,21 Yleinen ryhmä
+2016,Diakonia-ammattikorkeakoulu,02623,,22,22 Aikuis- ja työikäisen väestön kanssa tehtävä työ
+2016,Diakonia-ammattikorkeakoulu,02623,, ,Alusta DIGI-USER
+2016,Diakonia-ammattikorkeakoulu,02623,,24,24 Hoitotyön ja terveyden edistäminen
+2016,Diakonia-ammattikorkeakoulu,02623,,26,"26 Lapsi-, nuoriso- ja perhetyö"
+2016,Diakonia-ammattikorkeakoulu,02623,,31,31 Yleinen ryhmä
+2016,Diakonia-ammattikorkeakoulu,02623,,32,32 Diakonia ja kristillinen kasvatus
+2016,Diakonia-ammattikorkeakoulu,02623,,34,34 Tulkkaus ja moninaisuustyö
+2016,Diakonia-ammattikorkeakoulu,02623,,41,41 Yleinen ryhmä
+2016,Diakonia-ammattikorkeakoulu,02623,,42,42 TKI-opinnot ja -toiminta
+2016,Diakonia-ammattikorkeakoulu,02623,,43,"43 Ylemmät tutkinnot, työkäytännöt ja johtamistoiminta"
+2016,Diakonia-ammattikorkeakoulu,02623,,51,51 Yleinen ryhmä
+2016,Diakonia-ammattikorkeakoulu,02623,,61,61 Rehtoraatti
+2016,Diakonia-ammattikorkeakoulu,02623,,62,"62 Viestintä, tiedotus ja markkinointi"
+2016,Diakonia-ammattikorkeakoulu,02623,,63,63 Henkilöstöpalvelut
+2016,Diakonia-ammattikorkeakoulu,02623,,64,64 Talouspalvelut
+2016,Diakonia-ammattikorkeakoulu,02623,,65,65 Tietohallintopalvelut
+2016,Diakonia-ammattikorkeakoulu,02623,,66,66 Kirjasto ja tietopalvelut
+2016,Diakonia-ammattikorkeakoulu,02623,,68,68 Tilapalvelut
+2016,Diakonia-ammattikorkeakoulu,02623,,74,"74 Opintotoimistopalvelut, hakutoimisto"
+2016,Diakonia-ammattikorkeakoulu,02623,,75,75 Kansainvälisyyspalvelut
+2016,Haaga-Helia ammattikorkeakoulu,10056,,AOKK,Ammatillinen opettajankoulutus
+2016,Haaga-Helia ammattikorkeakoulu,10056,,JOURA,Journalismin ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,ASSI,Johdon assistenttityön ja kielten ko.
+2016,Haaga-Helia ammattikorkeakoulu,10056,,FINA,Finanssi- ja talousasiantuntijan koulutusohjelma
+2016,Haaga-Helia ammattikorkeakoulu,10056,,GLOBBA,DP in International Business
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HELI,Liiketalouden ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,LIIPO,Liiketalouden ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,MUBBA,DP for Multilingual Management Assistants
+2016,Haaga-Helia ammattikorkeakoulu,10056,,MYYNTI,Myyntityön ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,POBBA,DP in International Business
+2016,Haaga-Helia ammattikorkeakoulu,10056,,SAMPO,DP in International Sales and Marketing
+2016,Haaga-Helia ammattikorkeakoulu,10056,,VIMA,Myyntityön ja visuaalisen markkinoinnin ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,ABBA,DP in Aviation Business
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HETI,Tietojenkäsittelyn ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,BITE,DP in Business Information Technology
+2016,Haaga-Helia ammattikorkeakoulu,10056,,LOT,Liikunnan ja vapaa-ajan ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,SPORT,DP in Sports and Leisure Management
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HOTRA,Hotelli- ja ravintola-alan liikkeenjohdon ko.
+2016,Haaga-Helia ammattikorkeakoulu,10056,,RUOKA,Hotelli- ja ravintola-alan ko.
+2016,Haaga-Helia ammattikorkeakoulu,10056,,RUOKAT,Ruokatuotannon johtamisen ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,MATKA,Matkailun liikkeenjohdon ko.
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HOSBA,"DP in Hotel, Restaurant and Tourism Management"
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HOTEM,"DP in Hospitality, Tourism and Experience Management"
+2016,Haaga-Helia ammattikorkeakoulu,10056,,TOBBA,DP in Tourism
+2016,Haaga-Helia ammattikorkeakoulu,10056,,POMO,Matkailun ko
+2016,Haaga-Helia ammattikorkeakoulu,10056,,HTP,Hallinto- ja tukipalvelut
+2016,Helsingin yliopisto,01901,,H01,Yliopistopalvelut
+2016,Helsingin yliopisto,01901,,H10,Teologinen tiedekunta
+2016,Helsingin yliopisto,01901,,H20,Oikeustieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H30,Lääketieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H40,Humanistinen tiedekunta
+2016,Helsingin yliopisto,01901,,H50,Matemaattis- luonnontieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H55,Farmasian tiedekunta
+2016,Helsingin yliopisto,01901,,H57,Bio- ja ympäristötieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H60,Käyttäytymistieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H70,Valtiotieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H74,Svenska social- och kommunalhögskolan
+2016,Helsingin yliopisto,01901,,H80,Maatalous- metsätieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H90,Eläinlääketieteellinen tiedekunta
+2016,Helsingin yliopisto,01901,,H903,Tila- ja kiinteistökeskus
+2016,Helsingin yliopisto,01901,,H906,Kielikeskus
+2016,Helsingin yliopisto,01901,,H907,Tietotekniikkakeskus
+2016,Helsingin yliopisto,01901,,H909,UniSport
+2016,Helsingin yliopisto,01901,,H916,Neurotieteen tutkimuskeskus
+2016,Helsingin yliopisto,01901,,H918,Tutkijakollegium
+2016,Helsingin yliopisto,01901,,H919,Biotekniikan instituutti
+2016,Helsingin yliopisto,01901,,H92,Helsingin yliopiston tutkijakoulut
+2016,Helsingin yliopisto,01901,,H930,Avoin yliopisto
+2016,Helsingin yliopisto,01901,,H945,Suomen molekyylilääketieteen instituutti
+2016,Helsingin yliopisto,01901,,H955,Helsingin yliopiston koe-eläinkeskus
+2016,Helsingin yliopisto,01901,,H960,Helsingin yliopiston koulutus- ja kehittämispalvelut
+2016,Helsingin yliopisto,01901,,H97,Helsinki Institute of Life Science
+2016,Helsingin yliopisto,01901,,H978,Luonnontieteellinen keskusmuseo
+2016,Helsingin yliopisto,01901,,H981,Kansalliskirjasto
+2016,Helsingin yliopisto,01901,,H985,Helsingin yliopiston kirjasto
+2016,Humanistinen ammattikorkeakoulu,02631,,10,Taiteet ja kulttuurialat
+2016,Humanistinen ammattikorkeakoulu,02631,,20,Terveys- ja hyvinvointialat
+2016,Humanistinen ammattikorkeakoulu,02631,,30,Humanistiset alat
+2016,Humanistinen ammattikorkeakoulu,02631,,50,Yhteiset
+2016,Hämeen ammattikorkeakoulu,02467,,1,Yhteiset palvelut
+2016,Hämeen ammattikorkeakoulu,02467,,11,Yrittäjyys ja liiketoimintaosaaminen
+2016,Hämeen ammattikorkeakoulu,02467,,4,Ammatillinen opettajakorkeakoulu
+2016,Hämeen ammattikorkeakoulu,02467,,6,Hyvinvointiosaaminen
+2016,Hämeen ammattikorkeakoulu,02467,,7,Teknologiaosaaminen
+2016,Hämeen ammattikorkeakoulu,02467,,8,Biotalous
+2016,Itä-Suomen yliopisto,10088,200000,202010,Kasvatustieteiden ja psykologian osasto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,100000,100000,"Yliopiston johto, yhteiset ja yliopistopalvelut"
+2016,Itä-Suomen yliopisto,10088,200000,200010,Filosofisen tiedekunnan hallinto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,200000,201010,Humanistinen osasto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,200000,201020,Humanistinen osasto / Suomen kieli ja kulttuuritieteet
+2016,Itä-Suomen yliopisto,10088,200000,201030,Humanistinen osasto / Vieraat kielet ja käännöstiede
+2016,Itä-Suomen yliopisto,10088,200000,202020,Kasvatustieteiden ja psykologian osasto / Erityispedagogiikka
+2016,Itä-Suomen yliopisto,10088,200000,202030,"Kasvatustieteiden ja psykologian osasto / Kasvatustiede, aikuiskasvatus ja ohjaus"
+2016,Itä-Suomen yliopisto,10088,200000,202040,Kasvatustieteiden ja psykologian osasto / Psykologia
+2016,Itä-Suomen yliopisto,10088,200000,203010,Soveltavan kasvatustieteen ja opettajankoulutuksen osasto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,200000,203020,Soveltavan kasvatustieteen ja opettajankoulutuksen osasto / Joensuu
+2016,Itä-Suomen yliopisto,10088,200000,203030,Soveltavan kasvatustieteen ja opettajankoulutuksen osasto / Savonlinna
+2016,Itä-Suomen yliopisto,10088,200000,204010,Teologian osasto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,200000,204020,Teologian osasto / Läntinen teologia
+2016,Itä-Suomen yliopisto,10088,200000,204030,Teologian osasto / Ortodoksinen teologia
+2016,Itä-Suomen yliopisto,10088,200000,205010,Harjoittelukoulut / Joensuu
+2016,Itä-Suomen yliopisto,10088,200000,205020,Harjoittelukoulut / Savonlinna
+2016,Itä-Suomen yliopisto,10088,300000,300010,Luonnontieteiden ja metsätieteiden tiedekunnan hallinto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,300000,303010,Fysiikan ja matematiikan laitos
+2016,Itä-Suomen yliopisto,10088,300000,303510,Sovelletun fysiikan laitos
+2016,Itä-Suomen yliopisto,10088,300000,304010,Kemian laitos
+2016,Itä-Suomen yliopisto,10088,300000,305010,Metsätieteiden osasto
+2016,Itä-Suomen yliopisto,10088,300000,306020,Tietojenkäsittelytieteen laitos
+2016,Itä-Suomen yliopisto,10088,300000,307010,Ympäristö- ja biotieteiden laitos
+2016,Itä-Suomen yliopisto,10088,300000,308010,SIB-labs -infrastruktuuriyksikkö
+2016,Itä-Suomen yliopisto,10088,300000,309010,Mekrijärven tutkimusasema
+2016,Itä-Suomen yliopisto,10088,400000,400010,Terveystieteiden tiedekunnan hallinto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,400000,401010,A.I. Virtanen -instituutti / Yhteiset
+2016,Itä-Suomen yliopisto,10088,400000,401020,A.I. Virtanen -instituutti / Bioteknologia ja molekulaarinen lääketiede
+2016,Itä-Suomen yliopisto,10088,400000,401030,A.I. Virtanen -instituutti / Neurobiologia
+2016,Itä-Suomen yliopisto,10088,400000,402010,Farmasian laitos
+2016,Itä-Suomen yliopisto,10088,400000,403010,Hoitotieteen laitos
+2016,Itä-Suomen yliopisto,10088,400000,404010,Lääketieteen laitos / Yhteiset
+2016,Itä-Suomen yliopisto,10088,400000,404020,Lääketieteen laitos / Biolääketiede
+2016,Itä-Suomen yliopisto,10088,400000,404030,Lääketieteen laitos / Kansanterveystiede ja kliininen ravitsemustiede
+2016,Itä-Suomen yliopisto,10088,400000,404040,Lääketieteen laitos / Kliininen lääketiede
+2016,Itä-Suomen yliopisto,10088,400000,404050,Lääketieteen laitos / Hammaslääketiede
+2016,Itä-Suomen yliopisto,10088,400000,405010,Koe-eläinkeskus
+2016,Itä-Suomen yliopisto,10088,500000,500010,Yhteiskuntatieteiden ja kauppatieteiden tiedekunnan hallinto / Yhteiset
+2016,Itä-Suomen yliopisto,10088,500000,501010,Historia- ja maantieteiden laitos
+2016,Itä-Suomen yliopisto,10088,500000,502010,Kauppatieteiden laitos
+2016,Itä-Suomen yliopisto,10088,500000,503010,Oikeustieteiden laitos
+2016,Itä-Suomen yliopisto,10088,500000,504010,Sosiaali- ja terveysjohtamisen laitos
+2016,Itä-Suomen yliopisto,10088,500000,505010,Yhteiskuntatieteiden laitos
+2016,Itä-Suomen yliopisto,10088,500000,506010,Karjalan tutkimuslaitos
+2016,Itä-Suomen yliopisto,10088,500000,507010,Matkailualan opetus- ja tutkimuslaitos
+2016,Itä-Suomen yliopisto,10088,600000,600000,Itä-Suomen yliopiston apteekki
+2016,Itä-Suomen yliopisto,10088,700000,700000,Koulutus- ja kehittämispalvelu Aducate
+2016,Itä-Suomen yliopisto,10088,800000,800010,Kielikeskus
+2016,Itä-Suomen yliopisto,10088,800000,800020,Kirjasto
+2016,Jyväskylän ammattikorkeakoulu,02504,,1,Ammatillinen opettajakorkeakoulu
+2016,Jyväskylän ammattikorkeakoulu,02504,,2,Hyvinvointiyksikkö
+2016,Jyväskylän ammattikorkeakoulu,02504,,3,Liiketoimintayksikkö
+2016,Jyväskylän ammattikorkeakoulu,02504,,4,Teknologiayksikkö
+2016,Jyväskylän ammattikorkeakoulu,02504,,5,Hallintoyksikkö
+2016,Jyväskylän yliopisto,01906,,219100,Agora Center
+2016,Jyväskylän yliopisto,01906,,219110,Avoin yliopisto
+2016,Jyväskylän yliopisto,01906,,219200,Kirjasto
+2016,Jyväskylän yliopisto,01906,,219120,Kokkolan yliopistokeskus Chydenius
+2016,Jyväskylän yliopisto,01906,,219140,Koulutuksen tutkimuslaitos
+2016,Jyväskylän yliopisto,01906,,219230,Tiedemuseo
+2016,Jyväskylän yliopisto,01906,,219220,Yliopiston kielikeskus
+2016,Jyväskylän yliopisto,01906,,219700,Johto ja yliopiston yhteiset
+2016,Jyväskylän yliopisto,01906,,219500,Yliopistopalvelut
+2016,Jyväskylän yliopisto,01906,,213000,Humanistinen tiedekunta
+2016,Jyväskylän yliopisto,01906,213000,213050,Historian ja etnologian laitos
+2016,Jyväskylän yliopisto,01906,213000,213040,Kielten laitos
+2016,Jyväskylän yliopisto,01906,213000,213010,Musiikin laitos
+2016,Jyväskylän yliopisto,01906,213000,213060,Soveltavan kielentutkimuksen keskus
+2016,Jyväskylän yliopisto,01906,213000,213030,Taiteiden ja kulttuurin tutkimuksen laitos
+2016,Jyväskylän yliopisto,01906,213000,213020,Viestintätieteiden laitos
+2016,Jyväskylän yliopisto,01906,,217000,Informaatioteknologian tiedekunta
+2016,Jyväskylän yliopisto,01906,217000,217010 ,Tietojenkäsittelytieteiden laitos
+2016,Jyväskylän yliopisto,01906,217000,217020 ,Tietotekniikan laitos
+2016,Jyväskylän yliopisto,01906,,216000,Kauppakorkeakoulu
+2016,Jyväskylän yliopisto,01906,216000,216010,Avance Johtamiskoulutus
+2016,Jyväskylän yliopisto,01906,,211000,Kasvatustieteiden tiedekunta
+2016,Jyväskylän yliopisto,01906,211000,211010 ,Opettajankoulutuslaitos
+2016,Jyväskylän yliopisto,01906,211000,211020,Kasvatustieteiden laitos
+2016,Jyväskylän yliopisto,01906,,215000,Liikuntatieteellinen tiedekunta
+2016,Jyväskylän yliopisto,01906,215000,215020,Liikuntabiologian laitos
+2016,Jyväskylän yliopisto,01906,215000,215030,Liikuntakasvatuksen laitos
+2016,Jyväskylän yliopisto,01906,215000,215010,Terveystieteiden laitos
+2016,Jyväskylän yliopisto,01906,,214000,Matemaattis-luonnontieteellinen tiedekunta
+2016,Jyväskylän yliopisto,01906,214000,214020,Fysiikan laitos
+2016,Jyväskylän yliopisto,01906,214000,214030,Kemian laitos
+2016,Jyväskylän yliopisto,01906,214000,214010,Bio- ja ympäristötieteiden laitos
+2016,Jyväskylän yliopisto,01906,214000,214040,Matematiikan ja tilastotieteen laitos
+2016,Jyväskylän yliopisto,01906,,210100,Normaalikoulu
+2016,Jyväskylän yliopisto,01906,,212000,Yhteiskuntatieteellinen tiedekunta
+2016,Jyväskylän yliopisto,01906,212000,212020,Psykologian laitos
+2016,Jyväskylän yliopisto,01906,212000,212010,Yhteiskuntatieteiden ja filosofian laitos
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,10000,10000,Talous ja kulttuuri yhteiset
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,10000,11000,"Liiketalouden koulutusyksikkö, Kouvola"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,10000,12000,"Liiketalouden koulutusyksikkö, Mikkeli"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,10000,13000,Kulttuurin koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,20000,Tekniikka yhteiset
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,21000,Rakennus-  ja energiatekniikan koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,22000,Informaatioteknologian koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,23000,"Sähkö-, talo- ja materiaalitekniikan koulutusyksikkö"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,24000,Metsätalouden ja ympäristöteknologian koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,20000,25000,Logistiikan ja merenkulun koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,30000,Hyvinvointi yhteiset
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,31000,Kuntoutus- ja terveysalan koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,32000,Terveysalan ja ensihoidon koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,33000,Sosiaali- ja terveysalan koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,34000,Sosiaalialan ja toimintakyvyn edistämisen koulutusyksikkö
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,30000,35000,"Matkailu-,ravitsemis- ja nuorisoalan koulutusyksikkö"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,,40000,Opetuksen hallinto
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,,51000,Opetuksen palvelut
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,,70000,"Talous, henkilöstö- ja hallintopalvelut"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,60000,TKI ja palvelut
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,61000,TKI-palvelut
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,62100,Digitaalinen talous
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,62200,"Metsä, ympäristö ja energia"
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,62300,Logistiikka ja merenkulku
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,62400,Kestävä hyvinvointi
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,62500,Luovat alat
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66000,Kuitulaboratorio
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66600,Kymilabs
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66100,3K-tehdas
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66200,Nuorisoalan tutkimus- ja kehittämiskeskus Juvenia
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66300,Mikpolis
+2017,Kaakkois-Suomen ammattikorkeakoulu,10118,60000,66900,Pienyrityskeskus
+2016,Kajaanin ammattikorkeakoulu,02473,,10,Liiketoiminta ja innovaatiot
+2016,Kajaanin ammattikorkeakoulu,02473,,11,Kone- ja kaivostekniikka
+2016,Kajaanin ammattikorkeakoulu,02473,,12,Tietojärjestelmät
+2016,Kajaanin ammattikorkeakoulu,02473,,13,Sairaan- ja terveydenhoito
+2016,Kajaanin ammattikorkeakoulu,02473,,14,Aktiviteettimatkailu
+2016,Kajaanin ammattikorkeakoulu,02473,,15,Aikuis- ja täydennyskoulutuspalvelut AIKOPA
+2016,Kajaanin ammattikorkeakoulu,02473,,16,Koulutuspalvelut
+2016,Kajaanin ammattikorkeakoulu,02473,,17,TKI-palvelut
+2016,Kajaanin ammattikorkeakoulu,02473,,18,Kampuspalvelut
+2016,Karelia,02469,,1054,1054 Rehtorin toimisto
+2016,Karelia,02469,,1055,1055 Opintoasiainpalvelut
+2016,Karelia,02469,,1057,1057 Laskentapalvelut
+2016,Karelia,02469,,1060,1060 Henkilöstöpalvelut
+2016,Karelia,02469,,1063,1063 Tiedotus- ja markkinointi
+2016,Karelia,02469,,1066,1066 Tietohallinto
+2016,Karelia,02469,,1069,1069 Kirjasto
+2016,Karelia,02469,,1072,1072 Kansainvälistymispalvelut
+2016,Karelia,02469,,1970,1970 Projektitoiminta/YPA
+2016,Karelia,02469,,2051,2051 TKI- ja palveluliiketoiminta
+2016,Karelia,02469,,3051,3051 Metsätalous
+2016,Karelia,02469,,3054,3054 Maaseutuelinkeinot
+2016,Karelia,02469,,3101,3101 Energia- ja ympäristötekniikka
+2016,Karelia,02469,,5000,5000 Koulutuksen hallinto/Wärtsilä
+2016,Karelia,02469,,5011,5011 TKI/Projektit/Tekniikan alat
+2016,Karelia,02469,,5031,5031 Tietojenkäsittely
+2016,Karelia,02469,,5051,5051 Konetekniikka
+2016,Karelia,02469,,5054,5054 Rakennustekniikka
+2016,Karelia,02469,,5057,5057 Tieto- ja viestintätekniikka
+2016,Karelia,02469,,5061,5061 Talotekniikka
+2016,Karelia,02469,,5064,5064 Sähkötekniikka
+2016,Karelia,02469,,5067,5067 YAMK Teknologiaosaamisen johtaminen
+2016,Karelia,02469,,5101,5101 Liiketalous
+2016,Karelia,02469,,5104,5104 International business
+2016,Karelia,02469,,5110,5110 YAMK Johtamisen ja liiketoimintaosaamisen koulutus
+2016,Karelia,02469,,5999,5999 Elinkeinotoiminta/tekniikka
+2016,Karelia,02469,,6051,6051 Medianomikoulutus
+2016,Karelia,02469,,6054,6054 Musiikkipedagogikoulutus
+2016,Karelia,02469,,6057,6057 Muotoilu
+2016,Karelia,02469,,6151,6151 Restonomi
+2016,Karelia,02469,,7000,7000 Koulutuksen hallinto/Tikkarinne
+2016,Karelia,02469,,7051,7051 Sosionomi
+2016,Karelia,02469,,7054,7054 Sairaanhoitaja
+2016,Karelia,02469,,7057,7057 Fysioterapeutti
+2016,Karelia,02469,,7061,7061 Terveydenhoitaja
+2016,Karelia,02469,,7063,7063 YAMK Sosiaali- ja terveysalan kehittäminen ja johtaminen
+2016,Karelia,02469,,7064,7064 YAMK Ikäosaaminen
+2016,Karelia,02469,,8067,8067 Maakuntakorkeakoulu
+2016,Kymenlaakson ammattikorkeakoulu,02608,01000,01000,Talous ja kulttuuri yhteiset
+2016,Kymenlaakson ammattikorkeakoulu,02608,01000,1100,"Liiketalouden koulutusyksikkö, Kouvola"
+2016,Kymenlaakson ammattikorkeakoulu,02608,01000,1200,"Liiketalouden koulutusyksikkö, Mikkeli"
+2016,Kymenlaakson ammattikorkeakoulu,02608,01000,1300,Kulttuurin koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02000,Tekniikka yhteiset
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02100,Rakennus- ja energiatekniikan koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02200,Informaatioteknologian koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02300,"Sähkö-, talo- ja materiaalitekniikan koulutusyksikkö"
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02400,Metsätalouden ja ympäristöteknologian koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,02000,02500,Logistiikan ja merenkulun koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03000,Hyvinvointi yhteiset
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03100,Kuntoutus- ja terveysalan koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03200,Terveysalan ja ensihoidon koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03300,Sosiaali- ja terveysalan koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03400,Sosiaalialan ja toimintakyvyn edistämisen koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,03000,03500,Matkailu- ravitsemis- ja nuorisoalan koulutusyksikkö
+2016,Kymenlaakson ammattikorkeakoulu,02608,,04000,Opetuksen hallinto
+2016,Kymenlaakson ammattikorkeakoulu,02608,,05100,Opetuksen palvelut
+2016,Kymenlaakson ammattikorkeakoulu,02608,,07000,"Talous, henkilöstö- ja hallintopalvelut"
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08100,Ympäristöystävällinen energiantuotanto ja sen hyödyntäminen
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08200,Kilpailukykyinen logistiikka ja merenkulku sekä niiden turvallisuus
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08300,Kaupalliset laboratoriopalvelut
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08400,Käyttäjälähtöiset hyvinvointi- ja suunnittelupalvelut
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08500,Muut koulutus- ja kehittämishankkeet
+2016,Kymenlaakson ammattikorkeakoulu,02608,,08600,TKI-hallinto
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Kymenlaakson ammattikorkeakoulu,02608,,,
+2016,Lahden ammattikorkeakoul,02470,,LI,Liiketalous ja matkailu
+2016,Lahden ammattikorkeakoul,02470,,LP,LAMK Palvelut
+2016,Lahden ammattikorkeakoul,02470,,MD,Musiikki- ja draamainstituutti
+2016,Lahden ammattikorkeakoul,02470,,MI,Muotoiluinstituutti
+2016,Lahden ammattikorkeakoul,02470,,ST,Sosiaali- ja terveys
+2016,Lahden ammattikorkeakoul,02470,,TE,Tekniikka ja ympäristö
+2016,Lapin ammattikorkeakoulu,10108,,120,Hyvinvointipalvelut
+2016,Lapin ammattikorkeakoulu,10108,,130,Kauppa ja kulttuuri
+2016,Lapin ammattikorkeakoulu,10108,,140,Matkailupalvelut
+2016,Lapin ammattikorkeakoulu,10108,,150,Teollisuus ja luonnonvarat
+2016,Lapin ammattikorkeakoulu,10108,,160,YAMK
+2016,Lapin ammattikorkeakoulu,10108,,110,Yhteiset toiminnot
+2016,Lapin ammattikorkeakoulu,10108,,111,Korkeakoulupalvelut
+2016,Lapin yliopisto,01918,,221200,Harjoittelukoulu
+2016,Lapin yliopisto,01918,,222000,Oikeustieteiden tiedekunta
+2016,Lapin yliopisto,01918,,225000,Arktinen keskus
+2016,Lapin yliopisto,01918,225000,2250600,Arktisen antropologian tutkimusryhmä
+2016,Lapin yliopisto,01918,,226100,Avoin yliopisto
+2016,Lapin yliopisto,01918,226300,2263000,Kirjaston hallinto
+2016,Lapin yliopisto,01918,226300,2263050,Konsernin kirjasto
+2016,Lapin yliopisto,01918,226300,2263200,Taidekirjasto
+2016,Lapin yliopisto,01918,226300,2263400,AK kirjasto
+2016,Lapin yliopisto,01918,,226350,Lapin yliopistokustannus
+2016,Lapin yliopisto,01918,,226400,Kielikeskus
+2016,Lapin yliopisto,01918,229000,2293300,Lapin korkeakoulukonserni
+2016,Lapin yliopisto,01918,,229800,Yliopistotason tulot ja menot
+2016,Lapin yliopisto,01918,,221000,Kasvatustieteiden tiedekunta
+2016,Lapin yliopisto,01918,,223000,Taiteiden tiedekunta
+2016,Lapin yliopisto,01918,221000,2210000,KTK hallinto
+2016,Lapin yliopisto,01918,221000,2211100,KTK perustoiminta
+2016,Lapin yliopisto,01918,221000,2211200,Opetus- ja kasvatusalan koulutuspalvelut
+2016,Lapin yliopisto,01918,221200,2212000,Harjoittelukoulun hallinto
+2016,Lapin yliopisto,01918,221200,2212100,Harjoittelukoulu perustoiminta
+2016,Lapin yliopisto,01918,222000,2220000,OTK hallinto
+2016,Lapin yliopisto,01918,222000,2220100,OTK perustoiminta
+2016,Lapin yliopisto,01918,223000,2230000,TTK hallinto
+2016,Lapin yliopisto,01918,223000,2230100,TTK perustoiminta
+2016,Lapin yliopisto,01918,223000,2230110,TTK elinkeinotoiminta
+2016,Lapin yliopisto,01918,223000,2230120,TTK täydentävä rahoitus
+2016,Lapin yliopisto,01918,,224000,Yhteiskuntatieteiden tiedekunta
+2016,Lapin yliopisto,01918,224000,2240000,YTK hallinto
+2016,Lapin yliopisto,01918,224000,2240100,YTK perustoiminta
+2016,Lapin yliopisto,01918,,224100,Pohjoisen yhteiskunnan tutkimusinstituutti
+2016,Lapin yliopisto,01918,224100,2241100,Pohjoisen yhteiskunnan tutkimusinstituutti
+2016,Lapin yliopisto,01918,,224500,Matkailun tutkimus- ja koulutusinstituutti
+2016,Lapin yliopisto,01918,224500,2245000,MTI hallinto
+2016,Lapin yliopisto,01918,224500,2245100,Matkailun tutkimus- ja koulutusinstituutti
+2016,Lapin yliopisto,01918,224500,2245200,MTI täydentävä rahoitus
+2016,Lapin yliopisto,01918,225000,2250000,Arktinen hallinta ja hallinto
+2016,Lapin yliopisto,01918,225000,2250100,Tiedekeskusnäyttely
+2016,Lapin yliopisto,01918,225000,2250200,Tiedeviestintä
+2016,Lapin yliopisto,01918,225000,2250300,Pohjoisen ympäristö- ja vähemmistöoikeuden instituutti
+2016,Lapin yliopisto,01918,225000,2250400,Arktisen kestävän kehityksen tutkimusryhmä
+2016,Lapin yliopisto,01918,225000,2250500,Arktisen globaalimuutoksen tutkimusryhmä
+2016,Lapin yliopisto,01918,226100,2261100,Avoin yliopisto
+2016,Lapin yliopisto,01918,,226200,Koulutus- ja kehittämispalvelut
+2016,Lapin yliopisto,01918,226200,2262100,Koulutus- ja kehittämispalvelut
+2016,Lapin yliopisto,01918,,226300,Pääkirjasto
+2016,Lapin yliopisto,01918,226300,2263100,Pääkirjasto
+2016,Lapin yliopisto,01918,226350,2263500,Lapin yliopistokustannus
+2016,Lapin yliopisto,01918,226400,2264000,Kielikeskuksen hallinto
+2016,Lapin yliopisto,01918,226400,2264100,Kielikeskus
+2016,Lapin yliopisto,01918,226400,2264200,Käännöspalvelut
+2016,Lapin yliopisto,01918,226400,2264300,Konsernin kielikeskus
+2016,Lapin yliopisto,01918,,229000,Hallintoyksikkö
+2016,Lapin yliopisto,01918,229000,2290100,Rehtori
+2016,Lapin yliopisto,01918,229000,2290200,Yleishallinto
+2016,Lapin yliopisto,01918,229000,2290300,Suunnittelupalvelut
+2016,Lapin yliopisto,01918,229000,2290310,Taloushallintopalvelut
+2016,Lapin yliopisto,01918,229000,2290500,Viestintä- ja suhdetoiminta
+2016,Lapin yliopisto,01918,229000,2290600,Täydentävän rahoituksen palvelupiste
+2016,Lapin yliopisto,01918,229000,2290700,Tekniset erityispalvelut
+2016,Lapin yliopisto,01918,229000,2290800,Laadunhallintapalvelut
+2016,Lapin yliopisto,01918,229000,2291100,Vararehtori
+2016,Lapin yliopisto,01918,229000,2291200,Henkilöstöasiat
+2016,Lapin yliopisto,01918,229000,2291300,Tietohallinto
+2016,Lapin yliopisto,01918,229000,2291400,IT-palvelut
+2016,Lapin yliopisto,01918,229000,2291500,Tilahallinto
+2016,Lapin yliopisto,01918,229000,2291600,Hankintatoimi
+2016,Lapin yliopisto,01918,229000,2291700,Yliopistopaino
+2016,Lapin yliopisto,01918,229000,2291800,Tutkimuspalvelut
+2016,Lapin yliopisto,01918,229000,2292100,Opetusvararehtori
+2016,Lapin yliopisto,01918,229000,2292200,Opiskelijapalvelut
+2016,Lapin yliopisto,01918,229000,2293100,Tiedevararehtori
+2016,Lapin yliopisto,01918,,2294100,Kongressipalvelut
+2016,Lapin yliopisto,01918,,2295100,University of Arctic -rahasto
+2016,Lapin yliopisto,01918,,2296100,Lapin yliopistorahasto
+2016,Lapin yliopisto,01918,,2297100,Kansainväliset asiat
+2016,Lapin yliopisto,01918,,2297500,Uarctic-verkosto
+2016,Lapin yliopisto,01918,229800,2298400,Henkilöstöasiat
+2016,Lapin yliopisto,01918,229800,2298801,Kulttuurilähtöinen palvelumuotoilu -tohtoriohjelma
+2016,Lapin yliopisto,01918,229800,2298802,Pohjoiset kulttuurit ja kestävä luonnonvarapolitiikka
+2016,Lapin yliopisto,01918,229800,2298803,Yhteisöt ja muuttuva työ
+2016,Lapin yliopisto,01918,229800,2298804,Tieteenfilosofia ja tutkijantaidot
+2016,Lapin yliopisto,01918,,2299010,Kasvatustieteiden opetuksen ja tutkimuksen rahasto
+2016,Lapin yliopisto,01918,,2299020,Oikeustieteiden opetuksen ja tutkimuksen rahasto
+2016,Lapin yliopisto,01918,,2299030,Taiteiden opetuksen ja tutkimuksen rahasto
+2016,Lapin yliopisto,01918,,2299040,Yhteiskuntatieteiden opetuksen ja tutkimuksen rahasto
+2016,Lapin yliopisto,01918,,2299050,Arktisen opetuksen ja tutkimuksen rahasto
+2016,Lapin yliopisto,01918,,2299100,Lapin yliopiston profilointirahasto
+2016,Lappeenrannan tekn. yliopisto,01914,,23A100A,PÄÄT Tiedekunnan yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23A110A,PÄÄT Kanslia
+2016,Lappeenrannan tekn. yliopisto,01914,,23A120A,PÄÄT Tiedekunnan opintopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23A130A,PÄÄT KTK-yleisopinnot
+2016,Lappeenrannan tekn. yliopisto,01914,,23A200A,PÄÄT Talouden ja yritysjuridiikan laitos
+2016,Lappeenrannan tekn. yliopisto,01914,,23A210A,PÄÄT Laskentatoimi
+2016,Lappeenrannan tekn. yliopisto,01914,,23A220A,PÄÄT Rahoitus
+2016,Lappeenrannan tekn. yliopisto,01914,,23A230A,PÄÄT Strategiatutkimus
+2016,Lappeenrannan tekn. yliopisto,01914,,23A240A,PÄÄT Yritysjuridiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23A250A,PÄÄT Talousjohtaminen (KTK)
+2016,Lappeenrannan tekn. yliopisto,01914,,23A300A,PÄÄT Johtamisen ja kv-liiketoiminnan lai
+2016,Lappeenrannan tekn. yliopisto,01914,,23A310A,PÄÄT Hankintojen johtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23A320A,PÄÄT Johtaminen ja organisaatiot
+2016,Lappeenrannan tekn. yliopisto,01914,,23A330A,PÄÄT Kansainvälinen markkinointi
+2016,Lappeenrannan tekn. yliopisto,01914,,23A340A,PÄÄT Tietojohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23A350A,PÄÄT MSIS
+2016,Lappeenrannan tekn. yliopisto,01914,,23A360E,PÄÄTLahden yksikkö
+2016,Lappeenrannan tekn. yliopisto,01914,,23A365A,PÄÄT Tietojohtaminen ja johtajuus (KTM)
+2016,Lappeenrannan tekn. yliopisto,01914,,23A370A,PÄÄT Johtaminen (KTK)
+2016,Lappeenrannan tekn. yliopisto,01914,,23A380A,PÄÄT Kv-liiketoiminta (KTK)
+2016,Lappeenrannan tekn. yliopisto,01914,,23A390A,PÄÄT Strateginen johtaminen (KTM)
+2016,Lappeenrannan tekn. yliopisto,01914,,23A410A,PÄÄT Nordi / KATI
+2016,Lappeenrannan tekn. yliopisto,01914,,23A500A,PÄÄT TBRC/KATI
+2016,Lappeenrannan tekn. yliopisto,01914,,23B100A,Teknillisen tiedekunnan yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B101A,PÄÄT Hybridilaboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B102A,"Yk-lisät,Tekn.tdk yhteiset"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B110A,Toimistopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B111A,PÄÄT Toimistopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B120A,Opintopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B130A,PÄÄT Tekniset palvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B131A,PÄÄT Elektroniikan suunnittelukeskus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B132A,PÄÄT Mekaniikkapaja
+2016,Lappeenrannan tekn. yliopisto,01914,,23B133A,PÄÄT TEPA Energia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B134A,PÄÄT TEPA Kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B135A,PÄÄT TEPA Metalli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B140A,Kielikeskus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B141A,PÄÄT Kielikeskus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B150A,PÄÄT CST
+2016,Lappeenrannan tekn. yliopisto,01914,,23B170A,PÄÄT LUT voima
+2016,Lappeenrannan tekn. yliopisto,01914,,23B200A,LUT School of Energy Systems yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B201A,"Yk-lisät, LES"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B210A,Energiatekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B211A,Lämpö- ja virtaustekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B212A,Teknillinen termodynamiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B213A,Virtaustekniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B214A,Uusiutuvien energiajärjestelmien laborat
+2016,Lappeenrannan tekn. yliopisto,01914,,23B215A,PÄÄT Ydinvoimatekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B216A,PÄÄT Ydinturvallisuuden tutkimusyksikkö
+2016,Lappeenrannan tekn. yliopisto,01914,,23B217A,Ydintekniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B220G,Bioenergian laboratorio/Mikkeli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B221J,PÄÄT Energia/Varkaus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B230A,Sähkötekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B231A,Sähkömarkkinalaboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B232A,Sähkönkäyttötekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B233A,CDMC-laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B234A,Säätö- ja digitaalitekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B235A,Sovelletun elektroniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B236A,PÄÄT Sähkömekaaniset järjestelmät
+2016,Lappeenrannan tekn. yliopisto,01914,,23B237A,Aurinkotalousprofessuuri
+2016,Lappeenrannan tekn. yliopisto,01914,,23B240A,"Kestävyystutkimus, Lappeenranta"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B241E,"Kestävyystutkimus, Lahti"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B241G,PÄÄT Vihreä kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B250A,LUT Kone yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B250G,PÄÄT Materiaalitekniikka/Mikkeli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B251A,Hitsaustekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B252N,Koneteknologia/Turku
+2016,Lappeenrannan tekn. yliopisto,01914,,23B253A,Lasertyöstö
+2016,Lappeenrannan tekn. yliopisto,01914,,23B254A,Tuotantotekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B255A,Koneensuunnittelun laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B256A,Teräsrakenteiden laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B257C,Kuitukomposiittilaboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B258A,Konedynamiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B259A,Älykkäiden koneiden laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B260G,PÄÄT LUT Savo
+2016,Lappeenrannan tekn. yliopisto,01914,,23B290A,LUT Voima
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2AAA,Alusta LES Reflex
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2ABA,Alusta LES SIM
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2ACA,Alusta LES RE-SOURSE
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2ADA,Alusta LES DIGI-USER
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2AEA,Alusta LES SAWE
+2016,Lappeenrannan tekn. yliopisto,01914,,23B2AFA,Alusta LES RED
+2016,Lappeenrannan tekn. yliopisto,01914,,23B300A,LUT Kemia yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B301A,CST
+2016,Lappeenrannan tekn. yliopisto,01914,,23B302A,Analyysipalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B303A,LENS tekniset palvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23B304A,Matematiikan ja fysiikan laitoksen yht
+2016,Lappeenrannan tekn. yliopisto,01914,,23B305A,"Opetus, laskennallinen tekniikka"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B306A,"Opetus, kemian tekniikka"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B308A,"Yk-lisät, LENS"
+2016,Lappeenrannan tekn. yliopisto,01914,,23B309A,School of Engineering Science yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B310A,PÄÄT Kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B311A,PÄÄT Teknillinen kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B312A,PÄÄT Membraanitekniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B320A,PÄÄT Yksikköoperaatiot
+2016,Lappeenrannan tekn. yliopisto,01914,,23B321A,PÄÄT Tuote- ja prosessikehitys
+2016,Lappeenrannan tekn. yliopisto,01914,,23B322A,PÄÄT Systeemitekniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B323A,PÄÄT Fysikaalinen kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B324A,PÄÄT Kiinteä/neste-erotus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B325A,PÄÄT Virtausprosessi
+2016,Lappeenrannan tekn. yliopisto,01914,,23B326A,PÄÄT Erotustekniikka ja prosessi-integro
+2016,Lappeenrannan tekn. yliopisto,01914,,23B330A,PÄÄT Kuitu- ja paperitekniikan laborator
+2016,Lappeenrannan tekn. yliopisto,01914,,23B331A,PÄÄT Paperinjalostus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B340H,PÄÄT Fiber Tech -tutkimusyksikkö/Savonli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B351A,Kemialliset erotustekniikat
+2016,Lappeenrannan tekn. yliopisto,01914,,23B352A,Membraanitekniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B353A,Termiset yksikköoperaatiot
+2016,Lappeenrannan tekn. yliopisto,01914,,23B354A,Kiinteä/neste-erotus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B361A,Prosessikehitys
+2016,Lappeenrannan tekn. yliopisto,01914,,23B362A,Virtausprosessit
+2016,Lappeenrannan tekn. yliopisto,01914,,23B363A,Erotuskonseptit
+2016,Lappeenrannan tekn. yliopisto,01914,,23B364A,PÄÄT Biomateriaalit
+2016,Lappeenrannan tekn. yliopisto,01914,,23B365A,Kemiallinen metrologia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B371G,Vihreä kemia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B380A,Inversio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B381A,Laskennallinen materiaalitiede
+2016,Lappeenrannan tekn. yliopisto,01914,,23B382A,Kiinteän aineen fysiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B383H,Materiaalifysiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B385A,Optoelektroniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B386A,Konenäkö ja hahmontunnistus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B387D,PÄÄT Konenäkö ja hahmotunnistus Kouvola
+2016,Lappeenrannan tekn. yliopisto,01914,,23B388A,PÄÄT Kemiallinen metrologia
+2016,Lappeenrannan tekn. yliopisto,01914,,23B390A,CEID-keskus yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B391J,Varkaus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3AAA,Alusta LENS Reflex
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3ABA,Alusta LENS SIM
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3ACA,Alusta LENS RE-SOURSE
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3ADA,Alusta LENS DIGI-USER
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3AEA,Alusta LENS SAWE
+2016,Lappeenrannan tekn. yliopisto,01914,,23B3AFA,Alusta LENS RED
+2016,Lappeenrannan tekn. yliopisto,01914,,23B400A,PÄÄT LUT Kone yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B410A,PÄÄT Hitsaustekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B411N,PÄÄT Koneteknologia/Turku
+2016,Lappeenrannan tekn. yliopisto,01914,,23B412A,PÄÄT Lasertyöstö
+2016,Lappeenrannan tekn. yliopisto,01914,,23B413G,PÄÄT Materiaalitekniikka/Mikkeli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B420A,PÄÄT Konepajan ja levytyötekniikan labor
+2016,Lappeenrannan tekn. yliopisto,01914,,23B430A,PÄÄT Koneensuunnittelun laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B440A,PÄÄT Teräsrakenteiden laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B450C,PÄÄT Kuitukomposiittilaboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B460A,PÄÄT Konedynamiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B470A,PÄÄT Älykkäiden koneiden laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B500A,PÄÄT Matematiikan ja fysiikan laitokset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B505A,PÄÄT Mafy yhteiset opetus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B510A,PÄÄT Inversio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B511G,PÄÄT Materiaalitekniikka/Mikkeli
+2016,Lappeenrannan tekn. yliopisto,01914,,23B515A,PÄÄT Laskennallinen materiaalitiede
+2016,Lappeenrannan tekn. yliopisto,01914,,23B520A,PÄÄT Materiaalifysiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B525A,PÄÄT Optoelektroniikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23B530A,PÄÄT Konenäkö ja hahmotunnistus
+2016,Lappeenrannan tekn. yliopisto,01914,,23B531D,PÄÄT Konenäkö ja hahmontunnistus Kouvola
+2016,Lappeenrannan tekn. yliopisto,01914,,23B600A,PÄÄT CEID-keskus yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23B610A,PÄÄT Älykkäiden koneiden laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23B620J,PÄÄT Varkaus
+2016,Lappeenrannan tekn. yliopisto,01914,,23C100A,PÄÄT Tiedekunnan hallintopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23C110A,PÄÄT Tiedekunnan opintopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23C120A,PÄÄT Tiedekunnan yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23C200A,PÄÄT Tuotantotalouden osaston yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23C210A,PÄÄT Teollisen markkinoinnin ja kansainv
+2016,Lappeenrannan tekn. yliopisto,01914,,23C211A,PÄÄT Kansainväliset toiminnot
+2016,Lappeenrannan tekn. yliopisto,01914,,23C212A,PÄÄT Teollinen markkinointi
+2016,Lappeenrannan tekn. yliopisto,01914,,23C220A,PÄÄT Toimitusketjun johtamisen laborator
+2016,Lappeenrannan tekn. yliopisto,01914,,23C221A,PÄÄT Toimitusketjun johtaminen/TBRC
+2016,Lappeenrannan tekn. yliopisto,01914,,23C230A,PÄÄT Teollisuustalouden laboratorio yhte
+2016,Lappeenrannan tekn. yliopisto,01914,,23C231A,PÄÄT Teollisuustalous
+2016,Lappeenrannan tekn. yliopisto,01914,,23C232A,PÄÄT Päätöksenteontukisysteemit
+2016,Lappeenrannan tekn. yliopisto,01914,,23C233A,PÄÄT Kustannusjohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C234A,PÄÄT Teknologiayrittäjyys
+2016,Lappeenrannan tekn. yliopisto,01914,,23C235A,PÄÄT Tietojohtaminen/tuotantotalous
+2016,Lappeenrannan tekn. yliopisto,01914,,23C236A,PÄÄT Innovaatio- ja teknologiajohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C240A,PÄÄT Ryhmäpäätöksenteon ja teknologian j
+2016,Lappeenrannan tekn. yliopisto,01914,,23C241M,PÄÄT Tuotantotalous/Lapua
+2016,Lappeenrannan tekn. yliopisto,01914,,23C250E,PÄÄT Lahti/School of Innovation
+2016,Lappeenrannan tekn. yliopisto,01914,,23C260D,PÄÄT Tuotantotalous/Kouvola yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23C261D,PÄÄT Tuotantotalous/Kouvola
+2016,Lappeenrannan tekn. yliopisto,01914,,23C262D,PÄÄT Rautatielogistiikka/Kouvola
+2016,Lappeenrannan tekn. yliopisto,01914,,23C270A,PÄÄT Innovaatio- ja teknologiajohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C271A,PÄÄT Innovaatio- ja teknologiajohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C272A,PÄÄT Innovaatio- ja teknolog./TBRC
+2016,Lappeenrannan tekn. yliopisto,01914,,23C281A,PÄÄT Tieto- ja kustannusjohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C283A,PÄÄT Tieto- ja kustannusjohtaminen/TBRC
+2016,Lappeenrannan tekn. yliopisto,01914,,23C300A,PÄÄT Ohjelmistotuotanto ja tiedonhallint
+2016,Lappeenrannan tekn. yliopisto,01914,,23C310A,PÄÄT Tietoliikenneohjelmistojen laborato
+2016,Lappeenrannan tekn. yliopisto,01914,,23C320A,PÄÄT Konenäön ja hahmontunnistuksen labo
+2016,Lappeenrannan tekn. yliopisto,01914,,23C321D,PÄÄT Tietoyhteiskunnan teknologiat/Kouvo
+2016,Lappeenrannan tekn. yliopisto,01914,,23C330A,PÄÄT Ohjelmistotekniikan laboratorio
+2016,Lappeenrannan tekn. yliopisto,01914,,23C340A,PÄÄT Tietojohtaminen/tuta
+2016,Lappeenrannan tekn. yliopisto,01914,,23C400A,PÄÄT Innovaatiojohtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C500A,PÄÄT Arvoverkostojen johtaminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23C600D,PÄÄT Kouvolan yksikkö
+2016,Lappeenrannan tekn. yliopisto,01914,,23C700E,PÄÄT Lahti School of Innovation
+2016,Lappeenrannan tekn. yliopisto,01914,,23C800A,PÄÄT Ohjelmistotutanto ja tiedonhallinta
+2016,Lappeenrannan tekn. yliopisto,01914,,23E100A,Kanslia
+2016,Lappeenrannan tekn. yliopisto,01914,,23E101A,Opintopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23E102A,Schoolin yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23E103A,"Yk-lisät, LBM"
+2016,Lappeenrannan tekn. yliopisto,01914,,23E110A,"Strategy,management and accounting"
+2016,Lappeenrannan tekn. yliopisto,01914,,23E120A,"International business,marketing,entrepr"
+2016,Lappeenrannan tekn. yliopisto,01914,,23E121G,IBME/Mikkeli
+2016,Lappeenrannan tekn. yliopisto,01914,,23E130A,Innovation and software
+2016,Lappeenrannan tekn. yliopisto,01914,,23E140A,Operations management and systems engine
+2016,Lappeenrannan tekn. yliopisto,01914,,23E150E,"Internat business,marketing,entrep/LAHTI"
+2016,Lappeenrannan tekn. yliopisto,01914,,23E151E,Innovation and software/LAHTI
+2016,Lappeenrannan tekn. yliopisto,01914,,23E152E,Operations management and systems/LAHTI
+2016,Lappeenrannan tekn. yliopisto,01914,,23E153E,Lahti/common
+2016,Lappeenrannan tekn. yliopisto,01914,,23E160D,Innovation and software/KOUVOLA
+2016,Lappeenrannan tekn. yliopisto,01914,,23E161D,Operations management and system/KOUVOLA
+2016,Lappeenrannan tekn. yliopisto,01914,,23E162D,Kouvola/common
+2016,Lappeenrannan tekn. yliopisto,01914,,23E163D,Kouvola
+2016,Lappeenrannan tekn. yliopisto,01914,,23E170A,Etelä-Karjala-instituutti
+2016,Lappeenrannan tekn. yliopisto,01914,,23E180A,IEM Yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23E181A,Software Engineering
+2016,Lappeenrannan tekn. yliopisto,01914,,23E182A,Innovation Management
+2016,Lappeenrannan tekn. yliopisto,01914,,23E183A,Cost Management
+2016,Lappeenrannan tekn. yliopisto,01914,,23E184A,Systems Engineering
+2016,Lappeenrannan tekn. yliopisto,01914,,23E185A,Supply Chain Management
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1AAA,Alusta LBM Reflex
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1ABA,Alusta LBM SIM
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1ACA,Alusta LBM RE-SOURSE
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1ADA,Alusta LBM DIGI-USER
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1AEA,Alusta LBM SAWE
+2016,Lappeenrannan tekn. yliopisto,01914,,23E1AFA,Alusta LBM RED
+2016,Lappeenrannan tekn. yliopisto,01914,,23F100A,Koke yhteiset
+2016,Lappeenrannan tekn. yliopisto,01914,,23F101A,"Yk-lisät, Koulutus- ja kehittämiskeskus"
+2016,Lappeenrannan tekn. yliopisto,01914,,23F110A,Täydennyskoulutus
+2016,Lappeenrannan tekn. yliopisto,01914,,23F120A,Tutkintotavoitteinen koulutus
+2016,Lappeenrannan tekn. yliopisto,01914,,23F130A,Avoin yliopisto
+2016,Lappeenrannan tekn. yliopisto,01914,,23F140A,Tutkimus- ja kehittämistoiminta
+2016,Lappeenrannan tekn. yliopisto,01914,,23F150A,Asiakkuudet
+2016,Lappeenrannan tekn. yliopisto,01914,,23F200A,Kirjasto
+2016,Lappeenrannan tekn. yliopisto,01914,,23F201A,"Yk-lisät, Kirjasto"
+2016,Lappeenrannan tekn. yliopisto,01914,,23F210A,Yhteinen tiedekirjasto
+2016,Lappeenrannan tekn. yliopisto,01914,,23F220A,Imatran toimipiste
+2016,Lappeenrannan tekn. yliopisto,01914,,23F230A,Saimia Kirjasto
+2016,Lappeenrannan tekn. yliopisto,01914,,23F300A,PÄÄT Etelä-Karjala-instituutti
+2016,Lappeenrannan tekn. yliopisto,01914,,23F400A,PÄÄT Nordi
+2016,Lappeenrannan tekn. yliopisto,01914,,23G300A,PÄÄT TBRC
+2016,Lappeenrannan tekn. yliopisto,01914,,23J100A,Yliopiston johto
+2016,Lappeenrannan tekn. yliopisto,01914,,23J110A,Toiminta
+2016,Lappeenrannan tekn. yliopisto,01914,,23J120A,PÄÄT Strategia ja yhteiskuntasuhteet
+2016,Lappeenrannan tekn. yliopisto,01914,,23J130A,Lakiasiat
+2016,Lappeenrannan tekn. yliopisto,01914,,23J200A,Toiminnan ohjaus ja laadunhallinta
+2016,Lappeenrannan tekn. yliopisto,01914,,23J210A,Toiminnan suunnittelu
+2016,Lappeenrannan tekn. yliopisto,01914,,23J300A,Erityishankkeet
+2016,Lappeenrannan tekn. yliopisto,01914,,23J310A,LUMA
+2016,Lappeenrannan tekn. yliopisto,01914,,23J400A,LUT Investointiohjelma
+2016,Lappeenrannan tekn. yliopisto,01914,,23J410A,IPR ja patentit
+2016,Lappeenrannan tekn. yliopisto,01914,,23J500A,Alusta REFLEX
+2016,Lappeenrannan tekn. yliopisto,01914,,23J501A,Alusta SIM
+2016,Lappeenrannan tekn. yliopisto,01914,,23J502A,Aloittavat tutkimusalustat
+2016,Lappeenrannan tekn. yliopisto,01914,,23J503A,Alusta RE-SOURSE
+2016,Lappeenrannan tekn. yliopisto,01914,,23J504A,Alusta DIGI-USER
+2016,Lappeenrannan tekn. yliopisto,01914,,23J505A,Alusta SAWE
+2016,Lappeenrannan tekn. yliopisto,01914,,23J506A,Alusta RED
+2016,Lappeenrannan tekn. yliopisto,01914,,23K100A,Opintotoimisto
+2016,Lappeenrannan tekn. yliopisto,01914,,23K110A,Hakupalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K120A,Opintoasioiden kehittäminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23K200A,Talouspalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K210A,Kirjanpito
+2016,Lappeenrannan tekn. yliopisto,01914,,23K220A,Sisäinen laskenta
+2016,Lappeenrannan tekn. yliopisto,01914,,23K300A,Tutkimus- ja innovaatiopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K301A,Nordi
+2016,Lappeenrannan tekn. yliopisto,01914,,23K302A,TBRC
+2016,Lappeenrannan tekn. yliopisto,01914,,23K310A,Kansallinen rahoitus
+2016,Lappeenrannan tekn. yliopisto,01914,,23K320A,EU-rahoitus
+2016,Lappeenrannan tekn. yliopisto,01914,,23K330A,Kumppanuudet ja Venäjätoiminnot
+2016,Lappeenrannan tekn. yliopisto,01914,,23K340A,Tutkimuspolitiikka
+2016,Lappeenrannan tekn. yliopisto,01914,,23K400A,IS&T
+2016,Lappeenrannan tekn. yliopisto,01914,,23K410A,PÄÄT Käyttötuki
+2016,Lappeenrannan tekn. yliopisto,01914,,23K420A,PÄÄT Project Office
+2016,Lappeenrannan tekn. yliopisto,01914,,23K430A,PÄÄT Palvelutuotanto
+2016,Lappeenrannan tekn. yliopisto,01914,,23K440A,PÄÄT AV-palvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K450A,Palvelukehitys
+2016,Lappeenrannan tekn. yliopisto,01914,,23K460A,Perusresurssipalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K461A,Tulostus- ja kopiointipalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K462A,AV-palvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K470A,Käyttötukipalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K471A,Hankintapalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K472A,Mikroluokkapalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K473A,Puhelinpalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K480A,Opetusteknologia
+2016,Lappeenrannan tekn. yliopisto,01914,,23K490A,PÄÄT Digipaino
+2016,Lappeenrannan tekn. yliopisto,01914,,23K500A,HR
+2016,Lappeenrannan tekn. yliopisto,01914,,23K600A,Tilapalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K610A,Talouspalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K620A,Kirjanpito
+2016,Lappeenrannan tekn. yliopisto,01914,,23K630A,Sisäinen laskenta
+2016,Lappeenrannan tekn. yliopisto,01914,,23K640A,Rahoitus ja tarkastustoiminta
+2016,Lappeenrannan tekn. yliopisto,01914,,23K680A,Tilapalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K690A,Tilakustannukset
+2016,Lappeenrannan tekn. yliopisto,01914,,23K700A,Viestintäpalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K800A,Kansainvälisyys
+2016,Lappeenrannan tekn. yliopisto,01914,,23K810A,"Apurahajärjestelmä, LUT"
+2016,Lappeenrannan tekn. yliopisto,01914,,23K820A,Opiskelijapalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K830A,Koulutuspalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23K840A,Tietojärjestelmien kehittäminen
+2016,Lappeenrannan tekn. yliopisto,01914,,23K850A,Apurahat
+2016,Lappeenrannan tekn. yliopisto,01914,,23K860A,Kielikeskus
+2016,Lappeenrannan tekn. yliopisto,01914,,23K870A,Opetusteknologia
+2016,Lappeenrannan tekn. yliopisto,01914,,23K900A,Yliopistopaino
+2016,Lappeenrannan tekn. yliopisto,01914,,23KA00A,LUT tohtorikoulu
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB10A,Toiminnan ohjaus ja laadun hallinta
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB11A,Toiminnan suunnittelu
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB20A,IS&T + Project office
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB21A,Front Office
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB22A,Back Office
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB23A,Yliopistopaino
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB40A,Lähipalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB50A,Yhteiskirjasto
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB51A,LUTin kirjastopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB52A,Saimian kirjastopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB53A,Imatran toimipiste
+2016,Lappeenrannan tekn. yliopisto,01914,,23KB54A,"Yk-lisät, Kirjasto"
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC10A,"Innovaatiot ja yrittäjyys, yhteiset"
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC11A,"Innovaatiot ja yrittäjyys, yk-laskenta"
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC20A,Yrittäjyys
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC30A,Innovaatiopalvelut
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC40A,Täydennyskoulutus
+2016,Lappeenrannan tekn. yliopisto,01914,,23KC50A,Urapalvelut
+2016,Laurea-ammattikorkeakoulu,02629,,HL,Liiketalous
+2016,Laurea-ammattikorkeakoulu,02629,,HS,Turvallisuusala
+2016,Laurea-ammattikorkeakoulu,02629,,LAU,Laurea
+2016,Laurea-ammattikorkeakoulu,02629,,MP,Matkailu- ja palveluliiketoiminta
+2016,Laurea-ammattikorkeakoulu,02629,,NT,Tietojenkäsittely
+2016,Laurea-ammattikorkeakoulu,02629,,SF,Fysioterapia
+2016,Laurea-ammattikorkeakoulu,02629,,SH,Terveysala
+2016,Laurea-ammattikorkeakoulu,02629,,SK,Kauneudenhoitoala
+2016,Laurea-ammattikorkeakoulu,02629,,SS,Sosiaaliala
+2016,Laurea-ammattikorkeakoulu,02629,,ST,Sosiaali- ja terveysala
+2016,Maanpuolustuskorkeakoulu,02358,,,
+2016,Metropolia ammattikorkeakoulu,10065,,180,Rehtori
+2016,Metropolia ammattikorkeakoulu,10065,,189,Talous- ja hallintopalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,190,Henkilöstöpalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,191,Tietohallintopalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,207,Kirjasto- ja tietopalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,208,Kv-tukipalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,209,Opintoasiainpalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,219,Järjestelmäylläpito
+2016,Metropolia ammattikorkeakoulu,10065,,220,Käyttäjätuki
+2016,Metropolia ammattikorkeakoulu,10065,,221,Tiedonhallinta- ja järjestelmäpalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,267,Electria
+2016,Metropolia ammattikorkeakoulu,10065,,293,Taloussuunnittelu- ja seurantapalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,294,Kirjanpito- ja maksuliikennepalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,315,Kiinteistöpalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,319,Koulutuksen kehittämispalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,329,Hakijapalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,333,Opintotoimistot
+2016,Metropolia ammattikorkeakoulu,10065,,340,Viestintäyksikkö
+2016,Metropolia ammattikorkeakoulu,10065,,341,"Kirjasto- ja tietopalvelut, TeKu-tiimi"
+2016,Metropolia ammattikorkeakoulu,10065,,343,"Kirjasto- ja tietopalvelut, Sote-tiimi"
+2016,Metropolia ammattikorkeakoulu,10065,,344,"Kirjasto- ja tietopalvelut, Lite-tiimi"
+2016,Metropolia ammattikorkeakoulu,10065,,357,Opiskeluhyvinvointitoiminta
+2016,Metropolia ammattikorkeakoulu,10065,,358,Korkeakoulupalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,400,Liiketoimintapalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,402,Strategia- ja kehityspalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,403,Oppimistoiminta
+2016,Metropolia ammattikorkeakoulu,10065,,404,TKI-toiminta
+2016,Metropolia ammattikorkeakoulu,10065,,405,Liiketoiminta
+2016,Metropolia ammattikorkeakoulu,10065,,406,Tuotantotalous
+2016,Metropolia ammattikorkeakoulu,10065,,407,Rakentaminen ja arkkitehtuuri
+2016,Metropolia ammattikorkeakoulu,10065,,408,Puhtaat teknologiat
+2016,Metropolia ammattikorkeakoulu,10065,,409,Liikkuminen ja toimintakyky
+2016,Metropolia ammattikorkeakoulu,10065,,410,Kiinteistö- ja talotekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,411,Kliinisen hoitotyön ja ensihoidon palvelut
+2016,Metropolia ammattikorkeakoulu,10065,,412,Osallistuminen ja toimintakyky
+2016,Metropolia ammattikorkeakoulu,10065,,413,Terveyden edistämisen palvelut
+2016,Metropolia ammattikorkeakoulu,10065,,414,Musiikki
+2016,Metropolia ammattikorkeakoulu,10065,,415,Tieto- ja viestintätekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,416,Kulttuuripalvelut
+2016,Metropolia ammattikorkeakoulu,10065,,417,Sähkö- ja automaatiotekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,418,Kansainvälinen liiketoiminta
+2016,Metropolia ammattikorkeakoulu,10065,,419,Media
+2016,Metropolia ammattikorkeakoulu,10065,,420,Terveysalan tutkimuspalvelut ja palvelujohtaminen
+2016,Metropolia ammattikorkeakoulu,10065,,421,Ajoneuvo- ja konetekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,422,Sosiaalinen hyvinvointi
+2016,Metropolia ammattikorkeakoulu,10065,,423,Esittävä taide
+2016,Metropolia ammattikorkeakoulu,10065,,424,Konservointi
+2016,Metropolia ammattikorkeakoulu,10065,,425,Kulttuurituotanto
+2016,Metropolia ammattikorkeakoulu,10065,,426,Muotoilu
+2016,Metropolia ammattikorkeakoulu,10065,,427,Vaatetus
+2016,Metropolia ammattikorkeakoulu,10065,,428,"Kv-liiketoiminta, hallinto"
+2016,Metropolia ammattikorkeakoulu,10065,,429,"Kv-liiketoiminta, YAMK ja TKI"
+2016,Metropolia ammattikorkeakoulu,10065,,430,Sähkövoimatekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,431,Automaatiotekniikka
+2016,Metropolia ammattikorkeakoulu,10065,,432,"Sähkö- ja automaatiotekniikka, TKi"
+2016,Metropolia ammattikorkeakoulu,10065,,433,Elektroniikka
+2016,Metropolia ammattikorkeakoulu,10065,,434,Tietoverkkotekniikan tiimi
+2016,Metropolia ammattikorkeakoulu,10065,,435,Mediatekniikan tiimi
+2016,Metropolia ammattikorkeakoulu,10065,,436,"Informaatiotekniikka ja pelisovellukset, tiimi"
+2016,Metropolia ammattikorkeakoulu,10065,,437,Kehitysjohtajan yksikkö
+2016,Metropolia ammattikorkeakoulu,10065,,438,Näyttökeskus
+2016,Mikkelin ammattikorkeakoulu,02506,10000,10000,Talous ja kulttuuri yhteiset
+2016,Mikkelin ammattikorkeakoulu,02506,10000,11000,"Liiketalouden koulutusyksikkö, Kouvola"
+2016,Mikkelin ammattikorkeakoulu,02506,10000,12000,"Liiketalouden koulutusyksikkö, Mikkeli"
+2016,Mikkelin ammattikorkeakoulu,02506,10000,13000,Kulttuurin koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,20000,20000,Tekniikka yhteiset
+2016,Mikkelin ammattikorkeakoulu,02506,20000,21000,Rakennus-  ja energiatekniikan koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,20000,22000,Informaatioteknologian koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,20000,23000,"Sähkö-, talo- ja materiaalitekniikan koulutusyksikkö"
+2016,Mikkelin ammattikorkeakoulu,02506,20000,24000,Metsätalouden ja ympäristöteknologian koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,20000,25000,Logistiikan ja merenkulun koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,30000,30000,Hyvinvointi yhteiset
+2016,Mikkelin ammattikorkeakoulu,02506,30000,31000,Kuntoutus- ja terveysalan koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,30000,32000,Terveysalan ja ensihoidon koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,30000,33000,Sosiaali- ja terveysalan koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,30000,34000,Sosiaalialan ja toimintakyvyn edistämisen koulutusyksikkö
+2016,Mikkelin ammattikorkeakoulu,02506,30000,35000,"Matkailu-,ravitsemis- ja nuorisoalan koulutusyksikkö"
+2016,Mikkelin ammattikorkeakoulu,02506,,40000,Opetuksen hallinto
+2016,Mikkelin ammattikorkeakoulu,02506,,51000,Opetuksen palvelut
+2016,Mikkelin ammattikorkeakoulu,02506,,70000,"Talous, henkilöstö- ja hallintopalvelut"
+2016,Mikkelin ammattikorkeakoulu,02506,,60000,Kehitystoiminta
+2016,Mikkelin ammattikorkeakoulu,02506,,66000,Kuitulaboratorio
+2016,Mikkelin ammattikorkeakoulu,02506,,66100,3K-tehdas
+2016,Mikkelin ammattikorkeakoulu,02506,,66200,Nuorisoalan tutkimus- ja kehittämiskeskus Juvenia
+2016,Mikkelin ammattikorkeakoulu,02506,,66300,Mikpolis
+2016,Mikkelin ammattikorkeakoulu,02506,,66900,Pienyrityskeskus
+2016,Mikkelin ammattikorkeakoulu,02506,,,
+2016,Mikkelin ammattikorkeakoulu,02506,,,
+2016,Mikkelin ammattikorkeakoulu,02506,,,
+2016,Mikkelin ammattikorkeakoulu,02506,,,
+2016,Oulun seudun ammattikorkeakoulu,02471,,10200,Hallintoyksikkö
+2016,Oulun seudun ammattikorkeakoulu,02471,,10210,Kehittäminen
+2016,Oulun seudun ammattikorkeakoulu,02471,,10211,Viestintä
+2016,Oulun seudun ammattikorkeakoulu,02471,,10212,Hallintopalvelut
+2016,Oulun seudun ammattikorkeakoulu,02471,,10220,Ammatillinen opettajakoulutus
+2016,Oulun seudun ammattikorkeakoulu,02471,,10230,Hoitoalat (Oulu ja Oulainen)
+2016,Oulun seudun ammattikorkeakoulu,02471,,10235,Terveydenhuollon erityisalat
+2016,Oulun seudun ammattikorkeakoulu,02471,,10240,Sosiaaliala ja kuntoutus
+2016,Oulun seudun ammattikorkeakoulu,02471,,10250,Liiketalous
+2016,Oulun seudun ammattikorkeakoulu,02471,,10260,Energia ja automaatio
+2016,Oulun seudun ammattikorkeakoulu,02471,,10265,Rakentamistekniikka
+2016,Oulun seudun ammattikorkeakoulu,02471,,10270,Konetekniikka
+2016,Oulun seudun ammattikorkeakoulu,02471,,10275,Informaatioteknologia
+2016,Oulun seudun ammattikorkeakoulu,02471,,10280,Luonnonvara-ala
+2016,Oulun seudun ammattikorkeakoulu,02471,,10290,Kulttuuri
+2016,Oulun yliopisto,01904,02410,24000,HUMANISTINEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24000,240000,Humanistinen tiedekunta
+2016,Oulun yliopisto,01904,240000,2400000,Humanistinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240000,2400001,HuTK koulutus
+2016,Oulun yliopisto,01904,24000,240030,Aate- ja oppihistoria
+2016,Oulun yliopisto,01904,240030,2400300,Aate- ja oppihistoria
+2016,Oulun yliopisto,01904,24000,240031,Englantilainen filologia
+2016,Oulun yliopisto,01904,240031,2400310,Englantilainen filologia
+2016,Oulun yliopisto,01904,24000,240032,Germaaninen filologia
+2016,Oulun yliopisto,01904,240032,2400320,Germaaninen filologia
+2016,Oulun yliopisto,01904,24000,240033,Historia
+2016,Oulun yliopisto,01904,240033,2400330,Historia
+2016,Oulun yliopisto,01904,24000,240034,Informaatiotutkimus ja viestintä
+2016,Oulun yliopisto,01904,240034,2400340,Informaatiotutkimus ja viestintä
+2016,Oulun yliopisto,01904,240034,2400341,Tiedeviestinnän maisteriohjelma
+2016,Oulun yliopisto,01904,24000,240035,Kirjallisuus ja elokuvatutkimus
+2016,Oulun yliopisto,01904,240035,2400350,Kirjallisuus ja elokuvatutkimus
+2016,Oulun yliopisto,01904,24000,240036,Kulttuuriantropologia
+2016,Oulun yliopisto,01904,240036,2400360,Kulttuuriantropologia
+2016,Oulun yliopisto,01904,24000,240037,Logopedia
+2016,Oulun yliopisto,01904,240037,2400370,Logopedia
+2016,Oulun yliopisto,01904,24000,240038,Pohjoismainen filologia
+2016,Oulun yliopisto,01904,240038,2400380,Pohjoismainen filologia
+2016,Oulun yliopisto,01904,24000,240039,Suomen kieli
+2016,Oulun yliopisto,01904,240039,2400390,Suomen kieli
+2016,Oulun yliopisto,01904,24000,240041,Arkeologia
+2016,Oulun yliopisto,01904,240041,2400410,Arkeologia
+2016,Oulun yliopisto,01904,24000,240020,Giellagas-instituutti
+2016,Oulun yliopisto,01904,240020,2400200,Giellagas-instituutti
+2016,Oulun yliopisto,01904,02410,24010,KASVATUSTIETEIDEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24010,24011,KASVATUSTIETEIDEN TIEDEKUNTA ilman harjoittelukouluja
+2016,Oulun yliopisto,01904,24011,240100,Kasvatustieteiden tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240100,2401000,Kasvatustieteiden tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240100,2401001,KTK koulutus
+2016,Oulun yliopisto,01904,24011,240103,Oppiminen ja oppimisprosessit
+2016,Oulun yliopisto,01904,240103,2401030,Oppiminen ja oppimisprosessit
+2016,Oulun yliopisto,01904,24011,240104,"Opettajat, opettaminen ja kasvatusyhteisöt"
+2016,Oulun yliopisto,01904,240104,2401040,"Opettajat, opettaminen ja kasvatusyhteisöt"
+2016,Oulun yliopisto,01904,24011,240105,"Kasvatuksen arvot, aatteet ja yhteiskunnalliset kontekstit"
+2016,Oulun yliopisto,01904,240105,2401050,"Kasvatuksen arvot, aatteet ja yhteiskunnalliset kontekstit"
+2016,Oulun yliopisto,01904,24010,24015,Oulun yliopiston harjoittelukoulut
+2016,Oulun yliopisto,01904,24015,240150,Oulun yliopiston harjoittelukoulu
+2016,Oulun yliopisto,01904,240150,2401500,Oulun yliopiston harj.koulu yhteiset
+2016,Oulun yliopisto,01904,24015,240151,"Oulun normaalikoulu, Linnanmaa (0-6)"
+2016,Oulun yliopisto,01904,240151,2401510,"Oulun normaalikoulu, Linnanmaa (0-6)"
+2016,Oulun yliopisto,01904,24015,240152,"Oulun normaalikoulu, Linnanmaa (7-9)"
+2016,Oulun yliopisto,01904,240152,2401520,"Oulun normaalikoulu, Linnanmaa (7-9)"
+2016,Oulun yliopisto,01904,24015,240153,"Oulun normaalikoulu, Koskela 1-6"
+2016,Oulun yliopisto,01904,240153,2401530,"Oulun normaalikoulu, Koskela 1-6"
+2016,Oulun yliopisto,01904,24015,240155,"Oulun normaalikoulu, lukio"
+2016,Oulun yliopisto,01904,240155,2401550,"Oulun normaalikoulu, lukio"
+2016,Oulun yliopisto,01904,02410,24020,LUONNONTIETEELLINEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24020,240200,Luonnontieteellinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240200,2402000,Luonnontieteellinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,24020,240211,Kemikaalipalvelut
+2016,Oulun yliopisto,01904,240211,2402110,Kemikaalipalvelut
+2016,Oulun yliopisto,01904,24020,240206,Maantiede
+2016,Oulun yliopisto,01904,240206,2402060,Maantiede
+2016,Oulun yliopisto,01904,24020,240213,Ekologia
+2016,Oulun yliopisto,01904,240213,2402130,Ekologia
+2016,Oulun yliopisto,01904,24020,240214,Genetiikka ja fysiologia
+2016,Oulun yliopisto,01904,240214,2402140,Genetiikka ja fysiologia
+2016,Oulun yliopisto,01904,24020,240215,Avaruusilmasto
+2016,Oulun yliopisto,01904,240215,2402150,Avaruusilmasto
+2016,Oulun yliopisto,01904,24020,240216,Epäorgaaninen kemia
+2016,Oulun yliopisto,01904,240216,2402160,Epäorgaaninen kemia
+2016,Oulun yliopisto,01904,24020,240217,Kestävä kemia
+2016,Oulun yliopisto,01904,240217,2402170,Kestävä kemia
+2016,Oulun yliopisto,01904,24020,240207,Matematiikka
+2016,Oulun yliopisto,01904,240207,2402070,Matematiikka
+2016,Oulun yliopisto,01904,24020,240218,Sovellettu ja laskennallinen matematiikka 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240218,2402180,Sovellettu ja laskennallinen matematiikka 31.7.2016 saakka
+2016,Oulun yliopisto,01904,24020,240219,Sovellettu matematiikka ja tilastotiede
+2016,Oulun yliopisto,01904,240219,2402190,Sovellettu matematiikka ja tilastotiede
+2016,Oulun yliopisto,01904,24020,240220,Neurobiofysiikka
+2016,Oulun yliopisto,01904,240220,2402200,Neurobiofysiikka
+2016,Oulun yliopisto,01904,24020,240221,Molekylaariset järjestelmät
+2016,Oulun yliopisto,01904,240221,2402210,Molekylaariset järjestelmät
+2016,Oulun yliopisto,01904,24020,240222,NMR Spectroskopia
+2016,Oulun yliopisto,01904,240222,2402220,NMR Spectroskopia
+2016,Oulun yliopisto,01904,24020,240223,Teoreettinen fysiikka
+2016,Oulun yliopisto,01904,240223,2402230,Teoreettinen fysiikka
+2016,Oulun yliopisto,01904,24020,240224,Tähtitiede
+2016,Oulun yliopisto,01904,240224,2402240,Tähtitiede
+2016,Oulun yliopisto,01904,24020,240225,Ionosfäärifysiikka
+2016,Oulun yliopisto,01904,240225,2402250,Ionosfäärifysiikka
+2016,Oulun yliopisto,01904,24020,240230,Biologian ala
+2016,Oulun yliopisto,01904,240230,2402300,Biologian ala
+2016,Oulun yliopisto,01904,24020,240231,Fysiikan ala
+2016,Oulun yliopisto,01904,240231,2402310,Fysiikan ala
+2016,Oulun yliopisto,01904,24020,240232,Kemian ala
+2016,Oulun yliopisto,01904,240232,2402320,Kemian ala
+2016,Oulun yliopisto,01904,24020,240233,Maantieteen ala
+2016,Oulun yliopisto,01904,240233,2402330,Maantieteen ala
+2016,Oulun yliopisto,01904,24020,240234,Matematiikan ala
+2016,Oulun yliopisto,01904,240234,2402340,Matematiikan ala
+2016,Oulun yliopisto,01904,240234,2402341,OuLUMA
+2016,Oulun yliopisto,01904,02410,24025,KAIVANNAISALAN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24025,240250,Geotieteen tutkimusryhmä
+2016,Oulun yliopisto,01904,240250,2402500,Geotieteen tutkimusryhmä
+2016,Oulun yliopisto,01904,240250,2402501,KaTK koulutus
+2016,Oulun yliopisto,01904,24025,240251,Kaivos- ja rikastustekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,240251,2402510,Kaivos- ja rikastustekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,02410,24030,LÄÄKETIETEELLINEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24030,240300,Lääketieteellinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240300,2403000,Lääketieteellinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240300,2403002,Lääketieteen ala
+2016,Oulun yliopisto,01904,240300,2403003,Hammaslääketieteen ala
+2016,Oulun yliopisto,01904,240300,2403004,Terveystieteiden ala
+2016,Oulun yliopisto,01904,24030,240305,Suun terveyden tutkimusyksikkö
+2016,Oulun yliopisto,01904,240305,2403050,Suun terveyden tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240309,CERH
+2016,Oulun yliopisto,01904,240309,2403090,CERH
+2016,Oulun yliopisto,01904,24030,240331,Medical Research Center (MRC)
+2016,Oulun yliopisto,01904,240331,2403310,Medical Research Center (MRC)
+2016,Oulun yliopisto,01904,24030,240332,Pohjois-Suomen syntymäkohortti
+2016,Oulun yliopisto,01904,240332,2403320,Pohjois-Suomen syntymäkohortti
+2016,Oulun yliopisto,01904,24030,240333,Sisätautien tutkimusyksikkö
+2016,Oulun yliopisto,01904,240333,2403330,Sisätautien tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240334,ELITE
+2016,Oulun yliopisto,01904,240334,2403340,ELITE
+2016,Oulun yliopisto,01904,24030,240335,KNK- ja silmätautien tutkimusyksikkö 31.1.2016 saakka
+2016,Oulun yliopisto,01904,240335,2403350,KNK- ja silmätautien tutkimusyksikkö 31.1.2016 saakka
+2016,Oulun yliopisto,01904,24030,240336,Neurotieteen tutkimusyksikkö
+2016,Oulun yliopisto,01904,240336,2403360,Neurotieteen tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240337,PEDEGO-tutkimusyksikkö
+2016,Oulun yliopisto,01904,240337,2403370,PEDEGO-tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240338,"Kirurgian, anestesiologian ja tehohoidon tutkimusyksikkö"
+2016,Oulun yliopisto,01904,240338,2403380,"Kirurgian, anestesiologian ja tehohoidon tutkimusyksikkö"
+2016,Oulun yliopisto,01904,24030,240339,Hoitotieteen ja terveyshallintotieteen tutkimusyksikkö
+2016,Oulun yliopisto,01904,240339,2403390,Hoitotieteen ja terveyshallintotieteen tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240340,"Lääketieteellisen kuvantamisen, fysiikan ja tekniikan tutkimusyksikkö"
+2016,Oulun yliopisto,01904,240340,2403400,"Lääketieteellisen kuvantamisen, fysiikan ja tekniikan tutkimusyksikkö"
+2016,Oulun yliopisto,01904,24030,240341,Syövän ja translationaalisen lääketieteen tutkimyksikkö
+2016,Oulun yliopisto,01904,240341,2403410,Syövän ja translationaalisen lääketieteen tutkimyksikkö
+2016,Oulun yliopisto,01904,24030,240342,Biolääketieteellinen tutkimusyksikkö
+2016,Oulun yliopisto,01904,240342,2403420,Biolääketieteellinen tutkimusyksikkö
+2016,Oulun yliopisto,01904,24030,240343,Biopankki Borealis
+2016,Oulun yliopisto,01904,240343,2403430,Biopankki Borealis
+2016,Oulun yliopisto,01904,02410,24040,OULUN YLIOPISTON KAUPPAKORKEAKOULU
+2016,Oulun yliopisto,01904,24040,240400,Oulun yliopiston kauppakorkeakoulu
+2016,Oulun yliopisto,01904,240400,2404000,Oulun yliopiston kauppakorkeakoulu yhteiset
+2016,Oulun yliopisto,01904,24040,240402,Johtamisen ja kansainvälisen liiketoiminnan yksikkö
+2016,Oulun yliopisto,01904,240402,2404020,Johtamisen ja kansainvälisen liiketoiminnan yksikkö
+2016,Oulun yliopisto,01904,24040,240403,Taloustieteen yksikkö
+2016,Oulun yliopisto,01904,240403,2404030,Taloustieteen yksikkö
+2016,Oulun yliopisto,01904,24040,240404,Laskentatoimen yksikkö
+2016,Oulun yliopisto,01904,240404,2404040,Laskentatoimen yksikkö
+2016,Oulun yliopisto,01904,24040,240405,Markkinoinnin yksikkö
+2016,Oulun yliopisto,01904,240405,2404050,Markkinoinnin yksikkö
+2016,Oulun yliopisto,01904,24040,240406,Rahoituksen yksikkö
+2016,Oulun yliopisto,01904,240406,2404060,Rahoituksen yksikkö
+2016,Oulun yliopisto,01904,24040,240407,Martti Ahtisaari instituutti
+2016,Oulun yliopisto,01904,240407,2404070,Martti Ahtisaari Instituutti
+2016,Oulun yliopisto,01904,24040,240408,Executive Education
+2016,Oulun yliopisto,01904,240408,2404080,Executive Education
+2016,Oulun yliopisto,01904,02410,24050,TEKNILLINEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24050,240500,Teknillinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,240500,2405000,Teknillinen tiedekunta yhteiset
+2016,Oulun yliopisto,01904,24050,240541,Tiedekuntalaboratorio
+2016,Oulun yliopisto,01904,240541,2405410,Tiedekuntalaboratorio
+2016,Oulun yliopisto,01904,24050,240542,FabLab TTK
+2016,Oulun yliopisto,01904,240542,2405420,FabLab TTK
+2016,Oulun yliopisto,01904,24050,240543,Konetekniikan ala
+2016,Oulun yliopisto,01904,240543,2405430,Konetekniikan ala
+2016,Oulun yliopisto,01904,24050,240544,Prosessi- ja ympäristötekniikan ala
+2016,Oulun yliopisto,01904,240544,2405440,Prosessi- ja ympäristötekniikan ala
+2016,Oulun yliopisto,01904,24050,240545,Tuotantotalouden ala
+2016,Oulun yliopisto,01904,240545,2405450,Tuotantotalouden ala
+2016,Oulun yliopisto,01904,24050,240546,Tohtorikoulutettavat
+2016,Oulun yliopisto,01904,240546,2405460,Tohtorikoulutettavat
+2016,Oulun yliopisto,01904,24050,240547,Opetustilat
+2016,Oulun yliopisto,01904,240547,2405470,Opetustilat
+2016,Oulun yliopisto,01904,24050,240548,Energia- ja ympäristötekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,240548,2405480,Energia- ja ympäristötekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,24050,240538,Työpaja
+2016,Oulun yliopisto,01904,240538,2405380,Työpaja
+2016,Oulun yliopisto,01904,24050,240550,Prosessi- ja ympäristötekniikan osasto (ei käytössä)
+2016,Oulun yliopisto,01904,240550,2405500,Prosessi- ja ympäristötekniikan os. yht. (ei käytössä)
+2016,Oulun yliopisto,01904,240550,2405610,Minipilot-rikastamo (ei käytössä)
+2016,Oulun yliopisto,01904,24050,240532,Mekatroniikka ja konediagnostiikka
+2016,Oulun yliopisto,01904,240532,2405320,Mekatroniikka ja konediagnostiikka
+2016,Oulun yliopisto,01904,24050,240533,Koneensuunnittelu
+2016,Oulun yliopisto,01904,240533,2405330,Koneensuunnittelu
+2016,Oulun yliopisto,01904,24050,240534,Materiaali- ja tuotantotekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,240534,2405340,Materiaali- ja tuotantotekniikan tutkimusryhmä
+2016,Oulun yliopisto,01904,24050,240536,Rakenteet ja rakentamisteknologia
+2016,Oulun yliopisto,01904,240536,2405360,Rakennesuunnittelun ja rakentamisteknologian tutkimusryhmä
+2016,Oulun yliopisto,01904,24050,240552,Vesi- ja ympäristötekniikka
+2016,Oulun yliopisto,01904,240552,2405520,Vesi- ja ympäristötekniikka
+2016,Oulun yliopisto,01904,24050,240554,Kemiallinen prosessitekniikka
+2016,Oulun yliopisto,01904,240554,2405540,Kemiallinen prosessitekniikka
+2016,Oulun yliopisto,01904,24050,240555,Ympäristö- ja kemiantekniikka
+2016,Oulun yliopisto,01904,240555,2405550,Ympäristö- ja kemiantekniikka
+2016,Oulun yliopisto,01904,24050,240557,Kuitu- ja partikkelitekniikka
+2016,Oulun yliopisto,01904,240557,2405570,Kuitu- ja partikkelitekniikka
+2016,Oulun yliopisto,01904,24050,240558,Säätötekniikka
+2016,Oulun yliopisto,01904,240558,2405580,Säätötekniikka
+2016,Oulun yliopisto,01904,24050,240559,Systeemitekniikka
+2016,Oulun yliopisto,01904,240559,2405590,Systeemitekniikka
+2016,Oulun yliopisto,01904,24050,240560,Prosessimetallurgia
+2016,Oulun yliopisto,01904,240560,2405600,Prosessimetallurgia
+2016,Oulun yliopisto,01904,24050,240570,Tuotantotalous
+2016,Oulun yliopisto,01904,240570,2405700,Tuotantotalous
+2016,Oulun yliopisto,01904,24050,240579,Konepaja- ja metalliosaamisen innovaatiokeskus
+2016,Oulun yliopisto,01904,240579,2405790,Konepaja- ja metalliosaamisen innovaatiokeskus
+2016,Oulun yliopisto,01904,02410,24031,BIOKEMIAN JA MOLEKYYLILÄÄKETIETEEN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24031,240201,Biokemian ja molekyylilääketieteen tiedekunta
+2016,Oulun yliopisto,01904,240201,2402010,Biokemian ja molekyylilääketieteen tiedekunta
+2016,Oulun yliopisto,01904,24031,240260,Eklund research group
+2016,Oulun yliopisto,01904,240260,2402600,Eklund research group
+2016,Oulun yliopisto,01904,24031,240261,Hiltunen research group
+2016,Oulun yliopisto,01904,240261,2402610,Hiltunen research group
+2016,Oulun yliopisto,01904,24031,240262,Juffer and Ohlmeier research group
+2016,Oulun yliopisto,01904,240262,2402620,Juffer and Ohlmeier research group
+2016,Oulun yliopisto,01904,24031,240263,Karppinen research group
+2016,Oulun yliopisto,01904,240263,2402630,Karppinen research group
+2016,Oulun yliopisto,01904,24031,240264,Kastaniotis research group
+2016,Oulun yliopisto,01904,240264,2402640,Kastaniotis research group
+2016,Oulun yliopisto,01904,24031,240265,Kellokumpu and Glumoff research group
+2016,Oulun yliopisto,01904,240265,2402650,Kellokumpu and Glumoff research group
+2016,Oulun yliopisto,01904,24031,240266,Kietzmann research group
+2016,Oulun yliopisto,01904,240266,2402660,Kietzmann research group
+2016,Oulun yliopisto,01904,24031,240267,Kursula research group
+2016,Oulun yliopisto,01904,240267,2402670,Kursula research group
+2016,Oulun yliopisto,01904,24031,240268,Lehtiö research group
+2016,Oulun yliopisto,01904,240268,2402680,Lehtiö research group
+2016,Oulun yliopisto,01904,24031,240269,Manninen research group
+2016,Oulun yliopisto,01904,240269,2402690,Manninen research group
+2016,Oulun yliopisto,01904,24031,240270,Myllyharju research group
+2016,Oulun yliopisto,01904,240270,2402700,Myllyharju research group
+2016,Oulun yliopisto,01904,24031,240271,Pihlajaniemi and Heljasvaara research group
+2016,Oulun yliopisto,01904,240271,2402710,Pihlajaniemi and Heljasvaara research group
+2016,Oulun yliopisto,01904,24031,240272,Ruddock research group
+2016,Oulun yliopisto,01904,240272,2402720,Ruddock research group
+2016,Oulun yliopisto,01904,24031,240273,Vainio research group
+2016,Oulun yliopisto,01904,240273,2402730,Vainio research group
+2016,Oulun yliopisto,01904,24031,240274,Wei research group
+2016,Oulun yliopisto,01904,240274,2402740,Wei research group
+2016,Oulun yliopisto,01904,24031,240275,Wierenga and Venkatesan research group
+2016,Oulun yliopisto,01904,240275,2402750,Wierenga and Venkatesan research group
+2016,Oulun yliopisto,01904,02410,24051,ARKKITEHTUURIN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24051,240510,Arkkitehtuurin tiedekunta
+2016,Oulun yliopisto,01904,240510,2405100,Arkkitehtuurin tiedekunta
+2016,Oulun yliopisto,01904,02410,24062,TIETO- JA SÄHKÖTEKNIIKAN TIEDEKUNTA
+2016,Oulun yliopisto,01904,24062,240593,Tieto- ja sähkötekniikan tiedekunnan yhteiset
+2016,Oulun yliopisto,01904,240593,2405930,Tieto- ja sähkötekniikan tiedekunnan yhteiset
+2016,Oulun yliopisto,01904,240593,2405932,TST Tietohallinto
+2016,Oulun yliopisto,01904,240593,2405933,TST Strateginen rahoitus
+2016,Oulun yliopisto,01904,240593,2405941,TST Työpaja
+2016,Oulun yliopisto,01904,240593,2405942,TST Fablab
+2016,Oulun yliopisto,01904,24062,240594,TST Tiedekuntainfra
+2016,Oulun yliopisto,01904,240594,2405940,TST Tiedekuntainfra
+2016,Oulun yliopisto,01904,240594,2405943,Fablab Infrastruktuuri
+2016,Oulun yliopisto,01904,24062,240595,TST Koulutus
+2016,Oulun yliopisto,01904,240595,2405950,TST Koulutus
+2016,Oulun yliopisto,01904,240595,2405951,Tietotekniikan ala
+2016,Oulun yliopisto,01904,240595,2405952,Sähkötekniikan ala
+2016,Oulun yliopisto,01904,240595,2405953,Tietojenkäsittelytietieteiden ala
+2016,Oulun yliopisto,01904,24062,240589,Sovellettu ja laskennallinen matematiikka
+2016,Oulun yliopisto,01904,240589,2405890,Sovellettu ja laskennallinen matematiikka
+2016,Oulun yliopisto,01904,24062,240208,"Empiirinen ohjelmistotuotanto ohjelmistoissa, järjestelmissä ja palveluissa"
+2016,Oulun yliopisto,01904,240208,2402080,"Empiirinen ohjelmistotuotanto ohjelmistoissa, järjestelmissä ja palveluissa"
+2016,Oulun yliopisto,01904,24062,240596,Vakuuttavat verkko- ja mobiilipalvelut
+2016,Oulun yliopisto,01904,240596,2405960,Vakuuttavat verkko- ja mobiilipalvelut
+2016,Oulun yliopisto,01904,24062,240597,Käyttöliittymät ja ihmiskeskeinen digitalisaatio
+2016,Oulun yliopisto,01904,240597,2405970,Käyttöliittymät ja ihmiskeskeinen digitalisaatio
+2016,Oulun yliopisto,01904,24062,240582,Optoelektroniikka ja mittaustekniikka
+2016,Oulun yliopisto,01904,240582,2405820,Optoelektroniikka ja mittaustekniikka
+2016,Oulun yliopisto,01904,24062,240583,Elektroniikan piirit ja järjestelmät
+2016,Oulun yliopisto,01904,240583,2405830,Elektroniikan piirit ja järjestelmät
+2016,Oulun yliopisto,01904,24062,240586,Mikroelektroniikka
+2016,Oulun yliopisto,01904,240586,2405860,Mikroelektroniikka
+2016,Oulun yliopisto,01904,24062,240584,Konenäkö ja signaalianalyysi
+2016,Oulun yliopisto,01904,240584,2405840,Konenäkö ja signaalianalyysi
+2016,Oulun yliopisto,01904,24062,240585,Biosignaalien analyysi
+2016,Oulun yliopisto,01904,240585,2405850,Biosignaalien analyysi
+2016,Oulun yliopisto,01904,24062,240599,Biomimetiikka ja älykkäät järjestelmät
+2016,Oulun yliopisto,01904,240599,2405990,Biomimetiikka ja älykkäät järjestelmät
+2016,Oulun yliopisto,01904,24062,240611,Jokapaikan tietotekniikka
+2016,Oulun yliopisto,01904,240611,2406110,Jokapaikan tietotekniikka
+2016,Oulun yliopisto,01904,24062,240587,CWC - Radioteknologiat
+2016,Oulun yliopisto,01904,240587,2405870,CWC - Radioteknologiat
+2016,Oulun yliopisto,01904,24062,240612,CWC - Verkot ja järjestelmät
+2016,Oulun yliopisto,01904,240612,2406120,CWC - Verkot ja järjestelmät
+2016,Oulun yliopisto,01904,00024,2420,Painoalat
+2016,Oulun yliopisto,01904,02420,24064,Eudaimonia
+2016,Oulun yliopisto,01904,24064,240640,Eudaimonia
+2016,Oulun yliopisto,01904,240640,2406400,Eudaimonia
+2016,Oulun yliopisto,01904,02420,24066,Biocenter
+2016,Oulun yliopisto,01904,24066,240681,Biocenter
+2016,Oulun yliopisto,01904,240681,2406810,Biocenter
+2016,Oulun yliopisto,01904,02420,24068,Infotech
+2016,Oulun yliopisto,01904,24068,240680,Infotech
+2016,Oulun yliopisto,01904,240680,2406800,Infotech
+2016,Oulun yliopisto,01904,02420,24077,Thule-instituutti
+2016,Oulun yliopisto,01904,24077,240770,Thule-instituutti
+2016,Oulun yliopisto,01904,240770,2407700,Thule-instituutti
+2016,Oulun yliopisto,01904,240770,2407701,Arktinen lääketiede
+2016,Oulun yliopisto,01904,240770,2407702,Uarctic toimisto
+2016,Oulun yliopisto,01904,00024,2430,Alueyksiköt
+2016,Oulun yliopisto,01904,02430,24073,Kerttu Saalasti instituutti
+2016,Oulun yliopisto,01904,24073,240730,Kerttu Saalasti instituutti
+2016,Oulun yliopisto,01904,240730,2407300,Kerttu Saalasti instituutti
+2016,Oulun yliopisto,01904,24073,240731,KSI Aluekehittäminen
+2016,Oulun yliopisto,01904,240731,2407310,KSI Aluekehittäminen
+2016,Oulun yliopisto,01904,24073,240732,KSI Tulevaisuuden tuotantoteknologiat (FMT)
+2016,Oulun yliopisto,01904,240732,2407320,KSI Tulevaisuuden tuotantoteknologiat (FMT)
+2016,Oulun yliopisto,01904,24073,240733,KSI Mikroyrittäjyys (MikroY)
+2016,Oulun yliopisto,01904,240733,2407330,KSI Mikroyrittäjyys (MikroY)
+2016,Oulun yliopisto,01904,24073,240734,KSI Maanalainen fysiikka (CUPP)
+2016,Oulun yliopisto,01904,240734,2407340,KSI Maanalainen fysiikka (CUPP)
+2016,Oulun yliopisto,01904,24073,240736,KSI Raahe
+2016,Oulun yliopisto,01904,240736,2407360,KSI Raahe
+2016,Oulun yliopisto,01904,02430,24076,Sodankylän geofysiikan observatorio
+2016,Oulun yliopisto,01904,24076,240760,Sodankylän geofysiikan observatorio
+2016,Oulun yliopisto,01904,240760,2407600,Sodankylän geofysiikan observatorio
+2016,Oulun yliopisto,01904,24076,240762,SGO Tutkimus- ja kehitystoiminta
+2016,Oulun yliopisto,01904,240762,2407620,SGO Tutkimus- ja kehitystoiminta
+2016,Oulun yliopisto,01904,02430,24080,Kajaanin yliopistokeskus
+2016,Oulun yliopisto,01904,24080,240800,Kajaanin yliopistokeskus
+2016,Oulun yliopisto,01904,240800,2408000,Kajaanin yliopistokeskus yhteiset
+2016,Oulun yliopisto,01904,24080,240806,CEMIS-Oulu
+2016,Oulun yliopisto,01904,240806,2408060,CEMIS-Oulu
+2016,Oulun yliopisto,01904,240806,2408061,Analyyttinen kemia/bioanalytiikka
+2016,Oulun yliopisto,01904,240806,2408062,Kuvantavat mittaukset
+2016,Oulun yliopisto,01904,240806,2408063,Optinen spektroskopia
+2016,Oulun yliopisto,01904,24080,240807,AIKOPA
+2016,Oulun yliopisto,01904,240807,2408071,AIKOPA
+2016,Oulun yliopisto,01904,00024,2440,Erillisyksiköt
+2016,Oulun yliopisto,01904,02440,24065,UniOGS
+2016,Oulun yliopisto,01904,24065,240650,University of Oulu Graduate School
+2016,Oulun yliopisto,01904,240650,2406500,University of Oulu Graduate School
+2016,Oulun yliopisto,01904,02440,24081,Kirjasto
+2016,Oulun yliopisto,01904,24081,240810,Kirjasto
+2016,Oulun yliopisto,01904,240810,2408100,Kirjasto yhteiset
+2016,Oulun yliopisto,01904,240810,2408101,Hankintapalvelu
+2016,Oulun yliopisto,01904,240810,2408102,Tietoaineistopalvelut
+2016,Oulun yliopisto,01904,240810,2408103,Lainaus- ja neuvontapalvelut
+2016,Oulun yliopisto,01904,240810,2408104,Koulutus- ja tietopalvelut
+2016,Oulun yliopisto,01904,240810,2408150,Kirjaston hallintopalvelut
+2016,Oulun yliopisto,01904,02440,24086,Täydentävien opintojen keskus
+2016,Oulun yliopisto,01904,24086,240820,Kieli- ja viestintäkoulutus
+2016,Oulun yliopisto,01904,240820,2408200,Kieli- ja viestintäkoulutus
+2016,Oulun yliopisto,01904,24086,240840,Aikuiskoulutus
+2016,Oulun yliopisto,01904,240840,2408400,Aikuiskoulutus
+2016,Oulun yliopisto,01904,240840,2408406,Avoin yliopisto
+2016,Oulun yliopisto,01904,00024,2445,Infrastruktuuri
+2016,Oulun yliopisto,01904,02445,24067,Biocenter Core
+2016,Oulun yliopisto,01904,24067,240670,Biocenter Core
+2016,Oulun yliopisto,01904,240670,2406700,Biocenter Core
+2016,Oulun yliopisto,01904,02445,24079,Mikroskopian ja nanoteknologian keskus
+2016,Oulun yliopisto,01904,24079,240790,Mikroskopian ja nanoteknologian keskus
+2016,Oulun yliopisto,01904,240790,2407900,Mikroskopian ja nanoteknologian keskus
+2016,Oulun yliopisto,01904,02445,24083,Koe-eläinkeskus
+2016,Oulun yliopisto,01904,24083,240830,Koe-eläinkeskus
+2016,Oulun yliopisto,01904,240830,2408300,Koe-eläinkeskus
+2016,Oulun yliopisto,01904,02445,24085,Oulangan tutkimusasema
+2016,Oulun yliopisto,01904,24085,240771,Oulangan tutkimusasema
+2016,Oulun yliopisto,01904,240771,2407710,Oulangan tutkimusasema
+2016,Oulun yliopisto,01904,02445,24088,LEAF
+2016,Oulun yliopisto,01904,24088,240778,LEAF
+2016,Oulun yliopisto,01904,240778,2407780,LEAF
+2016,Oulun yliopisto,01904,02445,24089,Biodiversiteettiyksikkö
+2016,Oulun yliopisto,01904,24089,240212,Biodiversiteettiyksikkö
+2016,Oulun yliopisto,01904,240212,2402120,Biodiversiteettiyksikkö
+2016,Oulun yliopisto,01904,00024,2450,Yhteiset
+2016,Oulun yliopisto,01904,02450,24091,Yliopiston yhteiset
+2016,Oulun yliopisto,01904,24091,240910,Yliopiston yhteiset
+2016,Oulun yliopisto,01904,240910,2409100,Yliopiston yhteiset
+2016,Oulun yliopisto,01904,24091,240911,Kiinteistöt
+2016,Oulun yliopisto,01904,240911,2409110,Kiinteistöt
+2016,Oulun yliopisto,01904,240911,2409115,Tilanvaraustilat
+2016,Oulun yliopisto,01904,240911,2409125,Autopaikat
+2016,Oulun yliopisto,01904,240911,2409130,Rakentaminen ja kunnossapito
+2016,Oulun yliopisto,01904,240911,2409135,Turvallisuus ja ympäristö
+2016,Oulun yliopisto,01904,240911,2409140,Aulapalvelut
+2016,Oulun yliopisto,01904,240911,2409150,Postipalvelut
+2016,Oulun yliopisto,01904,240911,2409155,Kalusteasentajat
+2016,Oulun yliopisto,01904,240911,2409160,Hankintapalvelut
+2016,Oulun yliopisto,01904,24091,240917,Strategiarahat
+2016,Oulun yliopisto,01904,240917,2409170,Strategiarahat
+2016,Oulun yliopisto,01904,24091,240918,YO Tietohallinto
+2016,Oulun yliopisto,01904,240918,2409180,YO Lisenssit
+2016,Oulun yliopisto,01904,240918,2409181,YO Infrastruktuuri
+2016,Oulun yliopisto,01904,240918,2409182,YO Tietojärjestelmät
+2016,Oulun yliopisto,01904,24091,240901,YO Koulutuspalvelut
+2016,Oulun yliopisto,01904,240901,2409010,YO Koulutuspalvelut
+2016,Oulun yliopisto,01904,00024,2460,Johto ja palvelut
+2016,Oulun yliopisto,01904,02460,24092,Johto ja palvelut
+2016,Oulun yliopisto,01904,24092,240920,YK-hyvitykset
+2016,Oulun yliopisto,01904,240920,2409200,YK-hyvitykset
+2016,Oulun yliopisto,01904,24092,240900,Rehtoraatin yksikkö
+2016,Oulun yliopisto,01904,240900,2409000,Rehtoraatin yksikkö
+2016,Oulun yliopisto,01904,24092,240921,Johto ja palvelut - yhteiset
+2016,Oulun yliopisto,01904,240921,2409210,Johto ja palvelut - yhteiset
+2016,Oulun yliopisto,01904,24092,240922,Henkilöstöpalvelut
+2016,Oulun yliopisto,01904,240922,2409220,Henkilöstöpalvelut
+2016,Oulun yliopisto,01904,24092,240923,Koulutuspalvelut
+2016,Oulun yliopisto,01904,240923,2409230,Resurssipooli
+2016,Oulun yliopisto,01904,240923,2409232,Opintotuki (entinen työelämäpalvelut) 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240923,2409236,Opetuksen tuki
+2016,Oulun yliopisto,01904,240923,2409237,Opiskelijavalinta
+2016,Oulun yliopisto,01904,240923,2409238,Opiskeluoikeuden ylläpito
+2016,Oulun yliopisto,01904,240923,2409239,Opiskelun tuki
+2016,Oulun yliopisto,01904,24092,240924,Talouspalvelut
+2016,Oulun yliopisto,01904,240924,2409240,Talouspalvelut
+2016,Oulun yliopisto,01904,24092,240925,Tila- ja turvallisuuspalvelut
+2016,Oulun yliopisto,01904,240925,2409250,Tila- ja turvallisuuspalvelut
+2016,Oulun yliopisto,01904,240925,2409251,Virastomestaripalvelut
+2016,Oulun yliopisto,01904,24092,240927,"Viestintä, markkinointi ja yhteiskuntasuhteet"
+2016,Oulun yliopisto,01904,240927,2409270,"Viestintä, markkinointi ja yhteiskuntasuhteet"
+2016,Oulun yliopisto,01904,24092,240928,Tutkimuksen strategiset palvelut
+2016,Oulun yliopisto,01904,240928,2409280,Tutkimuksen strategiset palvelut
+2016,Oulun yliopisto,01904,24092,240930,Tietohallintopalvelut
+2016,Oulun yliopisto,01904,240930,2409300,Tietohallintopalvelut yhteiset
+2016,Oulun yliopisto,01904,240930,2409305,Asiakirjapalvelut
+2016,Oulun yliopisto,01904,240930,2409360,Tietojärjestelmäpalvelut
+2016,Oulun yliopisto,01904,240930,2409380,Infrapalvelut
+2016,Oulun yliopisto,01904,240930,2409385,Opetuksen ja tutkimuksen IT-tukipalvelut
+2016,Oulun yliopisto,01904,240930,2409390,Asiakaspalvelu
+2016,Oulun yliopisto,01904,24092,240941,Palvelupisteet henkilöstöhallinto
+2016,Oulun yliopisto,01904,240941,2409471,Henkilöstöhallinto keskitetyt palvelut (KEPA)
+2016,Oulun yliopisto,01904,24092,240942,Palvelupisteet koulutuspalvelut 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240942,2409412,Koulutuspalvelut HKT 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240942,2409422,Koulutuspalvelut LUTK 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240942,2409432,Koulutuspalvelut Kontinkangas 31.7.2016 saakka
+2016,Oulun yliopisto,01904,240942,2409442,Koulutuspalvelut TTK 31.7.2016 saakka
+2016,Oulun yliopisto,01904,24092,240943,Palvelupisteet talouspalvelut
+2016,Oulun yliopisto,01904,240943,2409433,Taloushallinto Kontinkangas
+2016,Oulun yliopisto,01904,240943,2409473,Taloushallinto keskitetyt talouspalvelut palvelupiste
+2016,Oulun yliopisto,01904,24092,240948,Tutkimuksen tukipalvelut
+2016,Oulun yliopisto,01904,240948,2409480,Tutkimuksen tukipalvelut
+2016,Oulun yliopisto,01904,24092,240949,Innovaatio- ja yrittäjyyspalvelut
+2016,Oulun yliopisto,01904,240949,2409245,Innovaatio- ja yrittäjyyspalvelut
+2016,Oulun yliopisto,01904,24092,240720,Center for Health and Technology
+2016,Oulun yliopisto,01904,240720,2407200,Center for Health and Technology
+2016,Oulun yliopisto,01904,24092,240775,CEE Innovaatiokeskittymä
+2016,Oulun yliopisto,01904,240775,2407750,CEE Innovaatiokeskittymä
+2016,Oulun yliopisto,01904,24050,240531,Tuotantotekniikka 31.12.2015 saakka
+2016,Oulun yliopisto,01904,24050,240773,NorTech 31.12.2015 saakka
+2016,Oulun yliopisto,01904,24062,240700,CIE 31.12.2015 saakka
+2016,Poliisiammattikorkeakoulu,02557,,,
+2016,Saimaan ammattikorkeakoulu,02609,,2017,Opiskelijapalvelut ja opetuksen yhteiset
+2016,Saimaan ammattikorkeakoulu,02609,,2040,TKI- ja palvelutoiminta
+2016,Saimaan ammattikorkeakoulu,02609,,2099,AMK yhteiset palvelut
+2016,Saimaan ammattikorkeakoulu,02609,,2100,Kulttuuri
+2016,Saimaan ammattikorkeakoulu,02609,,2200,Liiketalous
+2016,Saimaan ammattikorkeakoulu,02609,,2310,Hotelli- ja ravintola-ala
+2016,Saimaan ammattikorkeakoulu,02609,,2500,Tekniikka
+2016,Saimaan ammattikorkeakoulu,02609,,2400,Sosiaali- ja terveysala
+2016,Saimaan ammattikorkeakoulu,02609,,2900,Kielikeskus
+2016,Satakunnan ammattikorkeakoulu,02507,,TECH,Teknologia
+2016,Satakunnan ammattikorkeakoulu,02507,,HYVO,Hyvinvointi
+2016,Satakunnan ammattikorkeakoulu,02507,,LOME,Logistiikka ja meriteknologia
+2016,Satakunnan ammattikorkeakoulu,02507,,OPET,Opetuspalvelut
+2016,Satakunnan ammattikorkeakoulu,02507,,PATA,Palveluliiketoiminta
+2016,Satakunnan ammattikorkeakoulu,02507,,RETO,Rehtorin toimisto
+2016,Satakunnan ammattikorkeakoulu,02507,,TAHA,Talous ja hallinto
+2016,Satakunnan ammattikorkeakoulu,02507,,TKI,TKI-palvelut
+2016,Savonia,02537,,100,LiTe vastuualueen yhteiset
+2016,Savonia,02537,,110,Teknologia ja ympäristöala
+2016,Savonia,02537,,300,Liiketalousala
+2016,Savonia,02537,,350,Matkailu- ja ravitsemisala
+2016,Savonia,02537,,400,Hyvin vastuualueen yhteiset
+2016,Savonia,02537,,410,Sosiaali- ja terveysala
+2016,Savonia,02537,,500,Kulttuuriala
+2016,Savonia,02537,,600,Luonnonvara-ala
+2016,Savonia,02537,,800,Savonia liiketoiminta
+2016,Savonia,02537,,900,Hallinto- ja korkeakoulupalvelut
+2016,Seinäjoen ammattikorkeakoulu,02472,ElMa,ElMa,SeAMK Elintarvike ja maatalous
+2016,Seinäjoen ammattikorkeakoulu,02472,ElMa,MaMe,Luonnonvara (maa- & metsätalousalat)
+2016,Seinäjoen ammattikorkeakoulu,02472,ElMa,BiEli,Bio- ja elintarviketekniikka (tekniikka)
+2016,Seinäjoen ammattikorkeakoulu,02472,ElMa,Resto,Ravitsemisala (palveluala)
+2016,Seinäjoen ammattikorkeakoulu,02472,LiKu,LiKu,SeAMK Liiketoiminta ja kulttuuri
+2016,Seinäjoen ammattikorkeakoulu,02472,LiKu,Liike,"Liiketalous (kauppa, hallinto & oikeus)"
+2016,Seinäjoen ammattikorkeakoulu,02472,LiKu,Kult,Kulttuuri (taiteet ja kulttuuri)
+2016,Seinäjoen ammattikorkeakoulu,02472,LiKu,KiTi,Kirjasto ja tietopalvelu (yhteiskunnalliset alat)
+2016,Seinäjoen ammattikorkeakoulu,02472,SosTer,SosTer,SeAMK Sosiaali- ja terveysala (terveys & hyvinvointi)
+2016,Seinäjoen ammattikorkeakoulu,02472,Tekn,Tekn,SeAMK Tekniikka
+2016,Seinäjoen ammattikorkeakoulu,02472,Tekn,Tite,Tietotekniikka (tietojenkäsittely & tietoliikenne)
+2016,Seinäjoen ammattikorkeakoulu,02472,Tsto,Tsto,SeAMK Toimisto
+2016,Svenska handelshögskolan,01910  ,,1,Förvaltningsämbetet
+2016,Svenska handelshögskolan,01910  ,,2,Institutionen för finansiell ekonomi
+2016,Svenska handelshögskolan,01910  ,,3,Institutionen för företagsledning och organisation
+2016,Svenska handelshögskolan,01910  ,,4,Institutionen för redovisning och handelsrätt
+2016,Svenska handelshögskolan,01910  ,,5,Institutionen för marknadsföring
+2016,Svenska handelshögskolan,01910  ,,6,Institutionen för nationalekonomi
+2016,Svenska handelshögskolan,01910  ,,7,Biblioteket
+2016,Svenska handelshögskolan,01910  ,,8,Centret för forskning och internationella ärenden
+2016,Svenska handelshögskolan,01910  ,,9,Datacentralen
+2016,Svenska handelshögskolan,01910  ,,10,Hanken Fortbildning
+2016,Svenska handelshögskolan,01910  ,,11,Centret för språk och affärskommunikation
+2016,Svenska handelshögskolan,01910  ,,19,Samfinansierade enheter
+2016,Svenska handelshögskolan,01910  ,,20,Fristående institutioner
+2016,Svenska handelshögskolan,01910  ,00007,3211,Biblioteket - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00020,3212,Tritonia
+2016,Svenska handelshögskolan,01910  ,00008,3311,Centret för forskning och internationella ärenden
+2016,Svenska handelshögskolan,01910  ,00008,3331,Forskningsservice
+2016,Svenska handelshögskolan,01910  ,00009,3411,Datacentralen - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00009,3412,Datacentralen - Vasa
+2016,Svenska handelshögskolan,01910  ,00002,4111,Finansiell ekonomi - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00002,4112,Finansiell ekonomi - Vasa
+2016,Svenska handelshögskolan,01910  ,00002,4121,Statistik - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00002,4122,Statistik - Vasa
+2016,Svenska handelshögskolan,01910  ,00003,4211,Företagsledning och organisation - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00003,4212,Företagsledning och organisation - Vasa
+2016,Svenska handelshögskolan,01910  ,00003,4221,Entreprenörskap och företagsledning - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00003,4222,Entreprenörskap och företagsledning - Vasa
+2016,Svenska handelshögskolan,01910  ,00003,4231,Informationsbehandling - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00003,4232,Informationsbehandling - Vasa
+2016,Svenska handelshögskolan,01910  ,00004,4311,Handelsrätt - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00004,4312,Handelsrätt - Vasa
+2016,Svenska handelshögskolan,01910  ,00004,4321,Redovisning - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00004,4322,Redovisning - Vasa
+2016,Svenska handelshögskolan,01910  ,00005,4411,Marknadsföring - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00005,4412,Marknadsföring - Vasa
+2016,Svenska handelshögskolan,01910  ,00005,4421,Logistik och samhällsansvar
+2016,Svenska handelshögskolan,01910  ,00006,4511,Nationalekonomi - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00006,4512,Nationalekonomi - Vasa
+2016,Svenska handelshögskolan,01910  ,00011,4705,Centret för språk
+2016,Svenska handelshögskolan,01910  ,00011,4711,Svenska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4712,Svenska -Vasa
+2016,Svenska handelshögskolan,01910  ,00011,4721,Finska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4722,Finska - Vasa
+2016,Svenska handelshögskolan,01910  ,00011,4731,Engelska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4732,Engelska - Vasa
+2016,Svenska handelshögskolan,01910  ,00011,4741,Tyska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4742,Tyska - Vasa
+2016,Svenska handelshögskolan,01910  ,00011,4751,Franska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4761,Spanska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00011,4771,Ryska - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7311,Öppna universitetet - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7312,Öppna universitetet - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7411,Rektorsämbetet - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7421,Allmän adm. och personalärenden - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7422,Allmän adm. och personalärenden - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7431,Studiebyrån - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7432,Studiebyrån - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7451,Marknadsföring och information - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7452,Marknadsföring och information - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7453,Karriärtjänster - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7455,Karriärtjänster - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7456,Alumni - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7458,Partnerskap
+2016,Svenska handelshögskolan,01910  ,00001,7459,Fundraising
+2016,Svenska handelshögskolan,01910  ,00001,7461,Ekonomiavdelningen
+2016,Svenska handelshögskolan,01910  ,00001,7472,Näringslivskoordinator - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7491,Fastighetspersonal och infra - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7492,Fastighetspersonal och infra - Vasa
+2016,Svenska handelshögskolan,01910  ,00001,7511,Fastigheter och servicepersonal - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00001,7721,Helsingforsalliansen
+2016,Svenska handelshögskolan,01910  ,00010,8316,"MBA, Modulkostnader"
+2016,Svenska handelshögskolan,01910  ,00010,8317,MBA
+2016,Svenska handelshögskolan,01910  ,00008,8331,Centret för forskn.o.int.är./projekt
+2016,Svenska handelshögskolan,01910  ,00019,8351,KATAJA
+2016,Svenska handelshögskolan,01910  ,00002,8411,Finansiell ekonomi / projekt
+2016,Svenska handelshögskolan,01910  ,00006,8412,Statistik / projekt
+2016,Svenska handelshögskolan,01910  ,00003,8421,Företagsledning och organisation / projekt
+2016,Svenska handelshögskolan,01910  ,00003,8422,Entreprenörskap och företagsledning / projekt
+2016,Svenska handelshögskolan,01910  ,00003,8423,Informationsbehandling / projekt
+2016,Svenska handelshögskolan,01910  ,00004,8431,Handelsrätt / projekt
+2016,Svenska handelshögskolan,01910  ,00004,8432,Redovisning / projekt
+2016,Svenska handelshögskolan,01910  ,00005,8441,Marknadsföring / projekt
+2016,Svenska handelshögskolan,01910  ,00005,8442,Logistik och samhällsansvar /projekt
+2016,Svenska handelshögskolan,01910  ,00006,8451,Nationalekonomi / projekt
+2016,Svenska handelshögskolan,01910  ,00011,8471,Samtliga språk / projekt
+2016,Svenska handelshögskolan,01910  ,00010,8511,Hanken fortbildning Vasa
+2016,Svenska handelshögskolan,01910  ,00004,8521,IPR University Center
+2016,Svenska handelshögskolan,01910  ,00005,8531,CERS - Helsingfors
+2016,Svenska handelshögskolan,01910  ,00005,8535,HUMLOG Institute
+2016,Svenska handelshögskolan,01910  ,00004,8565,Hanken Centre for Corporate Governance
+2016,Svenska handelshögskolan,01910  ,00001,8742,Allmän adm. och personalärenden / projekt
+2016,Svenska handelshögskolan,01910  ,00001,8743,Studiebyrån / projekt
+2016,Svenska handelshögskolan,01910  ,00001,7321,Samlad service
+2016,Svenska handelshögskolan,01910  ,00001,8745,Marknadsföring och information / projekt
+2016,Taideyliopisto,10103,,1260,KuvA/Johdon tuki
+2016,Taideyliopisto,10103,,1270,KuvA/Näyttelytoiminnan tuki
+2016,Taideyliopisto,10103,,1380,KuvA/Kv-avaukset
+2016,Taideyliopisto,10103,,1590,KuvA/Kirjasto
+2016,Taideyliopisto,10103,,2201,TeaK/Ohjauksen koulutusohjelma
+2016,Taideyliopisto,10103,,2231,TeaK/Tanssin koulutusohjelma BA
+2016,Taideyliopisto,10103,,2822,TeaK/Opetuksen suunnitt ja keh
+2016,Taideyliopisto,10103,,2832,TeaK/Näyttämö ja tarpeisto
+2016,Taideyliopisto,10103,3111,31160,SibA/Musiikkikasvatuksen aineryhmä
+2016,Taideyliopisto,10103,3740,37410,Konserttivahtimestarit
+2016,Taideyliopisto,10103,,3750,SibA/Esitystekniikkapalvelut
+2016,Taideyliopisto,10103,,3801,SibA/Varadekaani I
+2016,Taideyliopisto,10103,,3830,SibA/Primo ohjelmapalvelut
+2016,Taideyliopisto,10103,,7100,Viestintäpalvelut
+2016,Taideyliopisto,10103,,7400,Opintopalvelut
+2016,Taideyliopisto,10103,,8420,Avoin yliopisto
+2016,Taideyliopisto,10103,,1100,KuvA/Johto
+2016,Taideyliopisto,10103,,1130,KuvA/Viestintä
+2016,Taideyliopisto,10103,,1210,KuvA/Opintopalvelut
+2016,Taideyliopisto,10103,,1220,KuvA/Tekniset palvelut
+2016,Taideyliopisto,10103,,1250,KuvA/Henkilöstöpalvelut
+2016,Taideyliopisto,10103,,1300,KuvA/Opiskelun tuki
+2016,Taideyliopisto,10103,,1310,KuvA/Taidegrafiikka
+2016,Taideyliopisto,10103,,1320,KuvA/Kuvanveisto
+2016,Taideyliopisto,10103,,1330,KuvA/Tila-aikataide
+2016,Taideyliopisto,10103,,1340,KuvA/Maalaustaide
+2016,Taideyliopisto,10103,,1360,KuvA/Yhteisen opetuksen opetusalue
+2016,Taideyliopisto,10103,,1390,KuvA/Esittämiskäytännöt ja tilallisuus
+2016,Taideyliopisto,10103,,1410,KuvA/Tohtorikoulutusohjelma
+2016,Taideyliopisto,10103,,1430,KuvA/Taiteellinen tutkimus
+2016,Taideyliopisto,10103,,1500,KuvA/Nykytaiteen laboratorio
+2016,Taideyliopisto,10103,,1510,KuvA/Näyttelytoiminta
+2016,Taideyliopisto,10103,,2101,TeaK/Dekaani
+2016,Taideyliopisto,10103,,2200,TeaK/Näyttelijätyön koulutusoh
+2016,Taideyliopisto,10103,,2202,TeaK/Dramaturgian koulutusohj
+2016,Taideyliopisto,10103,,2203,TeaK/Live Art and Performance S
+2016,Taideyliopisto,10103,,2210,TeaK/MA in Ecology and Contemporary Performance
+2016,Taideyliopisto,10103,,2220,TeaK/Utbildingsprog. för skådespelarkonst
+2016,Taideyliopisto,10103,,2232,TeaK/Tanssijan maisteriohjelma
+2016,Taideyliopisto,10103,,2233,TeaK/Koreografin maisteriohj
+2016,Taideyliopisto,10103,,2241,TeaK/Valosuunnittelun koulutus
+2016,Taideyliopisto,10103,,2242,TeaK/Äänisuunnittelun koulutus
+2016,Taideyliopisto,10103,,2251,TeaK/Tanssiopettajan koulutus
+2016,Taideyliopisto,10103,,2252,TeaK/Teatteriopettajan koulutus
+2016,Taideyliopisto,10103,,2260,TeaK/Esittävien Taiteiden Tutk
+2016,Taideyliopisto,10103,,2270,TeaK/Yhteisen opetuksen keskus
+2016,Taideyliopisto,10103,,2811,TeaK/Hallintopalvelut
+2016,Taideyliopisto,10103,,2812,TeaK/Viestintä
+2016,Taideyliopisto,10103,,2821,TeaK/Opintohallinto
+2016,Taideyliopisto,10103,,2823,TeaK/Kirjasto
+2016,Taideyliopisto,10103,,2830,TeaK/Opetusteatteri
+2016,Taideyliopisto,10103,,2831,TeaK/Esitystuotanto
+2016,Taideyliopisto,10103,,2833,TeaK/Puvusto
+2016,Taideyliopisto,10103,,2834,TeaK/Valo ja ääni
+2016,Taideyliopisto,10103,3111,3111,"SibA/Musiikkikasvatuksen, jazzin ja kansanmusiikin osasto "
+2016,Taideyliopisto,10103,3111,31120,SibA/Jazzin aineryhmä
+2016,Taideyliopisto,10103,3111,31130,SibA/Kansanmusiikin aineryhmä
+2016,Taideyliopisto,10103,3111,31165,SibA/Taidehallinnon aineryhmä
+2016,Taideyliopisto,10103,3111,31190,SibA/Musiikkiteknologian aineryhmä
+2016,Taideyliopisto,10103,3111,31270,SibA/MuTri-tohtorikoulu
+2016,Taideyliopisto,10103,3222,32140,"SibA/Kirkkomusiikin ja urkujen aineryhmä, Hki"
+2016,Taideyliopisto,10103,3222,32150,"SibA/Kirkkomusiikin ja urkujen aineryhmä, Kuopio"
+2016,Taideyliopisto,10103,3222,32170,SibA/Laulun ja korrepetition aineryhmä
+2016,Taideyliopisto,10103,3222,32180,SibA/Sävellyksen ja musiikinteorian aineryhmä
+2016,Taideyliopisto,10103,3222,32210,SibA/Pianon aineryhmä (piano+kantele+kitara+harmonikka)
+2016,Taideyliopisto,10103,3222,3222,SibA/Klassisen musiikin osasto
+2016,Taideyliopisto,10103,3222,32230,"SibA/Orkesteri-, kamarimusiikki- ja kapellimestarikoulutuksen aineryhmä"
+2016,Taideyliopisto,10103,3222,32240,SibA/Jousten aineryhmä
+2016,Taideyliopisto,10103,3222,32240,SibA/Jousten aineryhmä
+2016,Taideyliopisto,10103,3222,32250,SibA/Puhaltimien aineryhmä (lyömäsoittimet+harppu)
+2016,Taideyliopisto,10103,3222,32260,SibA/Vanhan musiikin aineryhmä
+2016,Taideyliopisto,10103,3222,32270,SibA/DocMus-tohtorikoulu
+2016,Taideyliopisto,10103,3222,3251,SibA/Kuopion hallinto
+2016,Taideyliopisto,10103,3222,3252,SibA/Kuopion kirjasto
+2016,Taideyliopisto,10103,3111,3400,SibA/Seinäjoen toimipaikka
+2016,Taideyliopisto,10103,,3600,SibA/Kirjasto
+2016,Taideyliopisto,10103,,3705,SibA/Henkilöstö- ja johdon tukipalvelut
+2016,Taideyliopisto,10103,,3710,SibA/Viestintäpalvelut
+2016,Taideyliopisto,10103,,3730,SibA/Soitinten huolto ja hankinnat
+2016,Taideyliopisto,10103,3740,3740,SibA/Tuotantopalvelut
+2016,Taideyliopisto,10103,,3780,SibA/Keskitetyt opintopalvelut
+2016,Taideyliopisto,10103,3111,37810,"Musiikkikasvatuksen, jazzin ja kansanmusiikin opintopalvelut"
+2016,Taideyliopisto,10103,3222,37820,Klassisen musiikin opintopalvelut
+2016,Taideyliopisto,10103,3222,37830,Orkesterikoulutuksen opintopalvelut
+2016,Taideyliopisto,10103,,3800,SibA/Dekaani
+2016,Taideyliopisto,10103,,3802,SibA/Varadekaani II
+2016,Taideyliopisto,10103,,3811,SibA/Kehittämiskeskus
+2016,Taideyliopisto,10103,,3814,SibA/Tohtoriohjelma
+2016,Taideyliopisto,10103,,3817,SibA/Kansainväliset asiat
+2016,Taideyliopisto,10103,,3825,SibA/Yritysyhteistyö
+2016,Taideyliopisto,10103,,7000,Henkilöstö- ja johdon tukipalvelut
+2016,Taideyliopisto,10103,,7110,Varainhankinta
+2016,Taideyliopisto,10103,,7200,Talouspalvelut
+2016,Taideyliopisto,10103,,7300,IT/Tietohallinto
+2016,Taideyliopisto,10103,,7310,IT/Sovellus- ja infrapalvelut
+2016,Taideyliopisto,10103,,7330,IT/Tukipalvelut
+2016,Taideyliopisto,10103,,7600,Toimitilapalvelut
+2016,Taideyliopisto,10103,,7610,Kallio-Kuninkala
+2016,Taideyliopisto,10103,,7690,N-talohanke
+2016,Taideyliopisto,10103,,7800,Kirjasto
+2016,Taideyliopisto,10103,,8000,Rehtoraatti
+2016,Taideyliopisto,10103,,8200,Opetus
+2016,Taideyliopisto,10103,,8210,Kielten opetus
+2016,Taideyliopisto,10103,,8300,Jatkokoulutus ja tutkimus
+2016,Taideyliopisto,10103,,8400,Avoin kampus
+2016,Taideyliopisto,10103,,8410,Täydennyskoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H51,311257,Media-alan koulutus
+2016,Tampereen ammattikorkeakoulu,02630,H2,311003,Henkilöstöpalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311004,Talous- ja projektipalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H2,311007,Matkapalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H6,311013,Laadunhallinta ja toiminnanohjaus
+2016,Tampereen ammattikorkeakoulu,02630,H6,311014,Floworks
+2016,Tampereen ammattikorkeakoulu,02630,H6,311017,Kehittämisyksikkö
+2016,Tampereen ammattikorkeakoulu,02630,H4,311021,Hallintopalvelut (ja tapahtumapalvelut)
+2016,Tampereen ammattikorkeakoulu,02630,H4,311022,Liikuntapalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311030,Hankintapalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H4,311031,Viestintäpalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311040,Kiinteistöpalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311041,Tilapalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H4,311050,Kirjasto- ja tietopalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311060,Tietohallinto
+2016,Tampereen ammattikorkeakoulu,02630,H4,311080,Opintopalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H4,311090,Kansainväliset palvelut
+2016,Tampereen ammattikorkeakoulu,02630,H3,311110,Avoin amk
+2016,Tampereen ammattikorkeakoulu,02630,H52,311112,Kielipalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H51,311250,"Musiikin ko, Musiikkipedagogi"
+2016,Tampereen ammattikorkeakoulu,02630,H51,311250,"Musiikin ko, muusikko"
+2016,Tampereen ammattikorkeakoulu,02630,H51,311252,Kuvataiteen ko
+2016,Tampereen ammattikorkeakoulu,02630,H51,311255,Degree Programme in Media and Arts
+2016,Tampereen ammattikorkeakoulu,02630,H51,311256,Mediatuottamisen ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H51,311259,MDP in Screenwriting YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H51,311260,"Musiikin ko, Musiikkipedagogi YAMK"
+2016,Tampereen ammattikorkeakoulu,02630,H52,311300,Liiketalouden ko
+2016,Tampereen ammattikorkeakoulu,02630,H52,311301,Degree Programme in International Business
+2016,Tampereen ammattikorkeakoulu,02630,H52,311302,Yrittäjyyden ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H52,311309,Yrittäjyyden ja tiimijohtamisen ko / Proakatemia
+2016,Tampereen ammattikorkeakoulu,02630,H51,311350,Tietojenkäsittelyn ko
+2016,Tampereen ammattikorkeakoulu,02630,H51,311351,Tietojärjestelmäosaamisen ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H54,311401,Konetekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H54,311402,Ajoneuvotekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H53,311403,Rakennus- ja yhdyskuntatekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H54,311404,Sähkö- ja automaatiotekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H54,311405,Tieto- ja viestintätekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H53,311406,"Talotekniikan ko , LVI-tekniikka"
+2016,Tampereen ammattikorkeakoulu,02630,H53,311406,"Talotekniikan ko , sähköinen talotekniikka"
+2016,Tampereen ammattikorkeakoulu,02630,H53,311407,Rakennusalan työnjohdon ko
+2016,Tampereen ammattikorkeakoulu,02630,H53,311408,Biotuote- ja prosessitekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H53,311409,Laboratoriotekniikan ko
+2016,Tampereen ammattikorkeakoulu,02630,H53,311410,Degree Programme in Energy and Environmental Engineering
+2016,Tampereen ammattikorkeakoulu,02630,H53,311411,Rakentamisen ja talotekniikan ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H54,311413,Teknologiaosaamisen johtamisen ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H54,311414,Automaatioteknologia YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H53,311423,Rakennusarkkitehti
+2016,Tampereen ammattikorkeakoulu,02630,H53,311444,Matematiikka
+2016,Tampereen ammattikorkeakoulu,02630,H54,311445,Fysiikka
+2016,Tampereen ammattikorkeakoulu,02630,H54,311450,Metsätalouden ko
+2016,Tampereen ammattikorkeakoulu,02630,H54,311456,Master's Degree Programme in Management and Economy in the International Forest Sector
+2016,Tampereen ammattikorkeakoulu,02630,H55,311502,Sairaanhoitajakoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H55,311503,Sosionomikoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H55,311504,Ensihoitajakoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H55,311505,Bioanalytiikan ko / Bioanalyytikko
+2016,Tampereen ammattikorkeakoulu,02630,H55,311507,Fysioterapian ko / Fysioterapeutti
+2016,Tampereen ammattikorkeakoulu,02630,H55,311510,Röntgenhoitajakoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H55,311514,Hyvinvointiteknologian ko / YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H55,311516,Sosiaali- ja terveysalan johtamisen koulutus (YAMK)
+2016,Tampereen ammattikorkeakoulu,02630,H55,311517,Sosionomin koulutus YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H55,311518,Terveyden edistämisen koulutus YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H55,311524,Terveydenhoitajakoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H55,311529,Kliinisen asiantuntijan koulutus YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H52,311551,Palveluliiketoiminnan ko
+2016,Tampereen ammattikorkeakoulu,02630,H52,311558,Degree Programme in International Project Management
+2016,Tampereen ammattikorkeakoulu,02630,H52,311558,Palvelu- ja projektiliiketoiminnan ko YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H52,311559,Palveluliiketoiminnan johtamisen koulutus YAMK
+2016,Tampereen ammattikorkeakoulu,02630,H55,311599,Kätilökoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H6,311600,TAMK Ammatillinen opettajankoulutus
+2016,Tampereen ammattikorkeakoulu,02630,H6,311831,Ammattipedagoginen TKI
+2016,Tampereen ammattikorkeakoulu,02630,H54,311921,Master´s Degree in Information Technology
+2016,Tampereen ammattikorkeakoulu,02630,H4,311925,Työelämäpalvelut
+2016,Tampereen ammattikorkeakoulu,02630,,H1,Rehtorin toimisto
+2016,Tampereen ammattikorkeakoulu,02630,H1,H2,Henkilöstöhallinto
+2016,Tampereen ammattikorkeakoulu,02630,H1,H3,Liiketoiminta
+2016,Tampereen ammattikorkeakoulu,02630,H1,H4,Korkeakoulupalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H1,H5,Koulutus ja TKI-toiminta
+2016,Tampereen ammattikorkeakoulu,02630,H5,H55,Terveys- ja sosiaalipalvelut
+2016,Tampereen ammattikorkeakoulu,02630,H5,H51,"Taide, musiikki ja media"
+2016,Tampereen ammattikorkeakoulu,02630,H5,H52,Liiketoiminta ja palvelut
+2016,Tampereen ammattikorkeakoulu,02630,H5,H53,Rakentaminen ja ympäristöteknologia
+2016,Tampereen ammattikorkeakoulu,02630,H5,H54,Teollisuusteknologia
+2016,Tampereen ammattikorkeakoulu,02630,H1,H6,Kehittäminen
+2016,Tampereen tekn. yliopisto,01915,22,220,Yleispalvelujen yhteiset
+2016,Tampereen tekn. yliopisto,01915,22,221,Strateginen johtaminen
+2016,Tampereen tekn. yliopisto,01915,22,223,Viestintä
+2016,Tampereen tekn. yliopisto,01915,22,224,Kumppanuudet
+2016,Tampereen tekn. yliopisto,01915,22,225,Talous ja toiminnan ohjaus
+2016,Tampereen tekn. yliopisto,01915,22,226,Henkilöstöpalvelut
+2016,Tampereen tekn. yliopisto,01915,22,227,Tietohallinto
+2016,Tampereen tekn. yliopisto,01915,22,228,Tilapalvelut
+2016,Tampereen tekn. yliopisto,01915,23,231,Oppimisen tuki
+2016,Tampereen tekn. yliopisto,01915,23,232,Tutkintopalvelut
+2016,Tampereen tekn. yliopisto,01915,23,233,Opintopalvelut
+2016,Tampereen tekn. yliopisto,01915,24,241,Tutkimuksen kehittämispalvelut
+2016,Tampereen tekn. yliopisto,01915,24,242,Tutkimuspalvelut
+2016,Tampereen tekn. yliopisto,01915,24,243,Innovaatiopalvelut
+2016,Tampereen tekn. yliopisto,01915,24,244,Kirjasto
+2016,Tampereen tekn. yliopisto,01915,25,251,Tampere3
+2016,Tampereen tekn. yliopisto,01915,61,610,Luonnontieteiden tiedekunta
+2016,Tampereen tekn. yliopisto,01915,61,611,Fysiikan laitos
+2016,Tampereen tekn. yliopisto,01915,61,612,Kemian ja biotekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,61,613,Matematiikan laitos
+2016,Tampereen tekn. yliopisto,01915,61,614,Optoelektroniikan tutkimuslaitos
+2016,Tampereen tekn. yliopisto,01915,71,710,Teknisten tieteiden tiedekunta
+2016,Tampereen tekn. yliopisto,01915,71,711,Hydrauliikan ja automatiikan laitos
+2016,Tampereen tekn. yliopisto,01915,71,712,Materiaaliopin laitos
+2016,Tampereen tekn. yliopisto,01915,71,713,Systeemitekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,71,715,Kone- ja tuotantotekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,81,810,Tieto- ja sähkötekniikan tiedekunta
+2016,Tampereen tekn. yliopisto,01915,81,811,Elektroniikan ja tietoliikennetekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,81,812,Signaalinkäsittelyn laitos
+2016,Tampereen tekn. yliopisto,01915,81,813,Sähkötekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,81,814,Tietotekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,91,910,Talouden ja rakentamisen tiedekunta
+2016,Tampereen tekn. yliopisto,01915,91,911,Arkkitehtuurin laitos
+2016,Tampereen tekn. yliopisto,01915,91,912,Rakennustekniikan laitos
+2016,Tampereen tekn. yliopisto,01915,91,913,Kielikeskus
+2016,Tampereen tekn. yliopisto,01915,91,914,Porin laitos
+2016,Tampereen tekn. yliopisto,01915,91,915,Teollisuustalouden laitos
+2016,Tampereen tekn. yliopisto,01915,91,916,Tiedonhallinnan ja logistiikan laitos
+2016,Tampereen tekn. yliopisto,01915,91,918,Täydennyskoulutuskeskus Edutech
+2016,Tampereen yliopisto,01905,,2501,BioMediTech
+2016,Tampereen yliopisto,01905,,2502,Informaatiotieteiden yksikkö
+2016,Tampereen yliopisto,01905,,2503,Johtamiskorkeakoulu
+2016,Tampereen yliopisto,01905,,2504,Kasvatustieteiden yksikkö
+2016,Tampereen yliopisto,01905,,2505,"Kieli-, käännös- ja kirjallisuustieteiden yksikkö"
+2016,Tampereen yliopisto,01905,,2506,Lääketieteen yksikkö
+2016,Tampereen yliopisto,01905,,2507,"Viestinnän, median ja teatterin yksikkö"
+2016,Tampereen yliopisto,01905,,2508,Terveystieteiden yksikkö
+2016,Tampereen yliopisto,01905,,2509,Yhteiskunta- ja kulttuuritieteiden yksikkö
+2016,Tampereen yliopisto,01905,,2580,Laboratoriopalvelut
+2016,Tampereen yliopisto,01905,,2571,Yhteiskuntatieteellinen tietoarkisto
+2016,Tampereen yliopisto,01905,,2572,Kielikeskus
+2016,Tampereen yliopisto,01905,,2573,Kirjasto
+2016,Tampereen yliopisto,01905,,2592,Yliopistopalvelut
+2016,Turun ammattikorkeakoulu,02509,09611,961111,Yhteiset palvelut
+2016,Turun ammattikorkeakoulu,02509,09620,962011,"Liiketalous, ICT ja kemiantekniikka, yht."
+2016,Turun ammattikorkeakoulu,02509,09620,962012,Liiketalous
+2016,Turun ammattikorkeakoulu,02509,09620,962013,ICT
+2016,Turun ammattikorkeakoulu,02509,09620,962014,Kemiantekniikka
+2016,Turun ammattikorkeakoulu,02509,09620,962015,LIKe monimuotokoulutukset ja YAMK
+2016,Turun ammattikorkeakoulu,02509,09630,963011,"Taideakatemia, yht."
+2016,Turun ammattikorkeakoulu,02509,09630,963012,"Taideakatemia, projektit"
+2016,Turun ammattikorkeakoulu,02509,09630,963013,Esittävät taiteet
+2016,Turun ammattikorkeakoulu,02509,09630,963014,Kuvataide
+2016,Turun ammattikorkeakoulu,02509,09630,963015,Media-ala
+2016,Turun ammattikorkeakoulu,02509,09630,963016,Taideakatemia monimuotokoulutukset ja YAMK
+2016,Turun ammattikorkeakoulu,02509,09640,964011,"Tekniikka, ympäristö ja talous, yht."
+2016,Turun ammattikorkeakoulu,02509,09640,964012,"Konetekniikka, meritekniikka ja muotoilu"
+2016,Turun ammattikorkeakoulu,02509,09640,964013,"Rakentaminen, ympäristö ja energia"
+2016,Turun ammattikorkeakoulu,02509,09640,964014,"Hankinnat, myynti ja logistiikka"
+2016,Turun ammattikorkeakoulu,02509,09640,964015,TYT monimuotokoulutukset ja YAMK
+2016,Turun ammattikorkeakoulu,02509,09650,965011,"Terveys ja hyvinvointi, yht."
+2016,Turun ammattikorkeakoulu,02509,09650,965012,Terveysala
+2016,Turun ammattikorkeakoulu,02509,09650,965013,Kuntoutus ja terveysalan erityisalueet
+2016,Turun ammattikorkeakoulu,02509,09650,965014,Sosiaaliala
+2016,Turun ammattikorkeakoulu,02509,09650,965015,Terhy monimuotokoulutukset ja YAMK
+2016,Turun yliopisto,10089,,2601000,Johto ja yliopiston yhteiset
+2016,Turun yliopisto,10089,,2601004,Muutostuki
+2016,Turun yliopisto,10089,,2601011,Kiinanmylly
+2016,Turun yliopisto,10089,,2601012,Seili
+2016,Turun yliopisto,10089,,2601100,Talouspalvelut
+2016,Turun yliopisto,10089,,2601105,Reskontrapalvelut
+2016,Turun yliopisto,10089,,2601106,Matkapalvelut
+2016,Turun yliopisto,10089,,2601107,Projektipalvelut
+2016,Turun yliopisto,10089,,2601200,UTUGS
+2016,Turun yliopisto,10089,,2601201,Tutkijatohtoriohjelma
+2016,Turun yliopisto,10089,,2601210,LLK:n yhteiset
+2016,Turun yliopisto,10089,,2601211,LLK Matematiikan ja tilastotieteen lts
+2016,Turun yliopisto,10089,,2601212,LLK Biokemian laitos
+2016,Turun yliopisto,10089,,2601213,LLK Kemian lts
+2016,Turun yliopisto,10089,,2601214,LLK Biologian lts
+2016,Turun yliopisto,10089,,2601215,LLK Fysiikan ja tähtitieteen lts
+2016,Turun yliopisto,10089,,2601216,LLK Informaatioteknologian lts
+2016,Turun yliopisto,10089,,2601217,LLK Maantieteen ja geologian lts
+2016,Turun yliopisto,10089,,2601218,LLK Biolääketieteen lts
+2016,Turun yliopisto,10089,,2601219,LLK Kliininen laitos
+2016,Turun yliopisto,10089,,2601220,LLK Hoitotieteen lts
+2016,Turun yliopisto,10089,,2601221,LLK Hammaslääketieteen lts
+2016,Turun yliopisto,10089,,2601230,TIAS-tutkijakollegiumin yhteiset
+2016,Turun yliopisto,10089,,2601231,TIAS Humanistinen tdk
+2016,Turun yliopisto,10089,,2601232,TIAS Yhteiskuntatieteellinen tdk
+2016,Turun yliopisto,10089,,2601233,TIAS Kasvatustieteiden tdk
+2016,Turun yliopisto,10089,,2601234,TIAS Oikeustieteellinen tdk
+2016,Turun yliopisto,10089,,2601235,TIAS Kauppakorkeakoulu
+2016,Turun yliopisto,10089,,2601240,Tutkimuksen toimialan yhteiset
+2016,Turun yliopisto,10089,,2601241,Tutkimuksen kehittäminen
+2016,Turun yliopisto,10089,,2601242,Tutkimuspalvelut
+2016,Turun yliopisto,10089,,2601250,SKY yhteiset
+2016,Turun yliopisto,10089,,2601251,Innovaatiopalvelut ja koulutusvienti
+2016,Turun yliopisto,10089,,2601252,Kehittäminen ja suunnittelu
+2016,Turun yliopisto,10089,,2601260,TCSI yhteiset
+2016,Turun yliopisto,10089,,2601261,TCSI International
+2016,Turun yliopisto,10089,,2601300,Viestintä
+2016,Turun yliopisto,10089,,2601400,Henkilöstöpalvelut
+2016,Turun yliopisto,10089,,2601401,IT-palvelut
+2016,Turun yliopisto,10089,,2601405,Yleispalvelut
+2016,Turun yliopisto,10089,,2601406,Palvelujohtajan yhteiset
+2016,Turun yliopisto,10089,,2601410,Koulutuksen toimialan yhteiset
+2016,Turun yliopisto,10089,,2601411,Kansainväliset palvelut
+2016,Turun yliopisto,10089,,2601412,Ohjauksen ja koulutuksen tukipalvelut
+2016,Turun yliopisto,10089,,2601413,Opiskelija- ja hakijapalvelut
+2016,Turun yliopisto,10089,,2601414,Liikuntapalvelut
+2016,Turun yliopisto,10089,,2601415,Koulutuksen toimiala tiedekunnissa
+2016,Turun yliopisto,10089,,2601416,Avoin yliopisto 1.8. alkaen
+2016,Turun yliopisto,10089,,2601420,Kirjaston yhteiset palvelut
+2016,Turun yliopisto,10089,,2601421,Oppimisen palvelut
+2016,Turun yliopisto,10089,,2601422,Tutkimuksen palvelut
+2016,Turun yliopisto,10089,,2601423,Tietoaineistojen saatavuuspalvelut
+2016,Turun yliopisto,10089,,2601424,Hankintapalvelut
+2016,Turun yliopisto,10089,,2601430,Toimitilapalvelujen yhteiset
+2016,Turun yliopisto,10089,,2601431,Tilasuunnittelu
+2016,Turun yliopisto,10089,,2601432,Tila- ja kuljetuspalvelut
+2016,Turun yliopisto,10089,,2601433,Majoituspalvelut
+2016,Turun yliopisto,10089,,2601434,Protopaja
+2016,Turun yliopisto,10089,,2601435,Yliopiston yhteiset tilat
+2016,Turun yliopisto,10089,,2601436,Turvallisuus
+2016,Turun yliopisto,10089,,2601510,Vyörytettävät kustannukset
+2016,Turun yliopisto,10089,,2601611,Drug Development and Diagnostics
+2016,Turun yliopisto,10089,,2601621,Learning and Education
+2016,Turun yliopisto,10089,,2601631,Bioimaging
+2016,Turun yliopisto,10089,,2601641,Digital Futures
+2016,Turun yliopisto,10089,,2601651,New Bioresources
+2016,Turun yliopisto,10089,,2601900,Rahastot
+2016,Turun yliopisto,10089,,2601930,Tiedekuntien stipendirahasto
+2016,Turun yliopisto,10089,,2602000,Humanistisen tiedekunnan yhteiset
+2016,Turun yliopisto,10089,,2602001,Humanistisen tiedekunnan hallintopalvelu
+2016,Turun yliopisto,10089,,2602002,Baltic Sea Regions Studies
+2016,Turun yliopisto,10089,,2602100,Kieli- ja käännöstieteiden laitoksen yht
+2016,Turun yliopisto,10089,,2602101,Englannin kieli
+2016,Turun yliopisto,10089,,2602102,Espanja
+2016,Turun yliopisto,10089,,2602103,Fonetiikka
+2016,Turun yliopisto,10089,,2602104,Italia
+2016,Turun yliopisto,10089,,2602105,Klassiset kielet ja antiikin kulttuuri
+2016,Turun yliopisto,10089,,2602106,Pohjoismaiset kielet
+2016,Turun yliopisto,10089,,2602107,Ranska
+2016,Turun yliopisto,10089,,2602108,Saksan kieli
+2016,Turun yliopisto,10089,,2602109,Volgalaiskielten tutkimusyksikkö
+2016,Turun yliopisto,10089,,2602110,Suomen kieli ja suom-ugrilainen kielent
+2016,Turun yliopisto,10089,,2602111,Venäjän kieli
+2016,Turun yliopisto,10089,,2602114,Lauseopin arkisto
+2016,Turun yliopisto,10089,,2602200,"Historian, kultt ja tait tutk lts:n yht"
+2016,Turun yliopisto,10089,,2602201,Arkeologia
+2016,Turun yliopisto,10089,,2602202,Folkloristiikka
+2016,Turun yliopisto,10089,,2602203,Kansatiede
+2016,Turun yliopisto,10089,,2602204,Kotimainen kirjallisuus
+2016,Turun yliopisto,10089,,2602205,Kulttuurihistoria
+2016,Turun yliopisto,10089,,2602206,Mediatutkimus
+2016,Turun yliopisto,10089,,2602207,Musiikkitiede
+2016,Turun yliopisto,10089,,2602208,Sukupuolentutkimus
+2016,Turun yliopisto,10089,,2602209,Suomen historia
+2016,Turun yliopisto,10089,,2602210,Taidehistoria
+2016,Turun yliopisto,10089,,2602211,Uskontotiede
+2016,Turun yliopisto,10089,,2602212,Yleinen historia
+2016,Turun yliopisto,10089,,2602213,Yleinen kirjallisuustiede
+2016,Turun yliopisto,10089,,2602214,Kulttuurituotannon ja maisemantutkim ko
+2016,Turun yliopisto,10089,,2602215,Kulttuurientutkimuksen arkisto
+2016,Turun yliopisto,10089,,2602216,Kalevala instituutti
+2016,Turun yliopisto,10089,,2602217,Luova kirjoittaminen
+2016,Turun yliopisto,10089,,2602218,Museologia
+2016,Turun yliopisto,10089,,2603000,Yhteisk tdk yhteiset
+2016,Turun yliopisto,10089,,2603001,Yhteisk tdk hallintopalvelut
+2016,Turun yliopisto,10089,,2603100,Psykologian ja logopedian laitoksen yht
+2016,Turun yliopisto,10089,,2603101,Filosofia
+2016,Turun yliopisto,10089,,2603102,Logopedia
+2016,Turun yliopisto,10089,,2603103,Psykologia
+2016,Turun yliopisto,10089,,2603104,PSYKONET -verkosto
+2016,Turun yliopisto,10089,,2603105,Kognitiivisen neurotieteen tutk yks (KNT
+2016,Turun yliopisto,10089,,2603106,Oppimistutkimuksen keskus (OTUK)
+2016,Turun yliopisto,10089,,2603107,KiVa Koulu
+2016,Turun yliopisto,10089,,2603111,KiVa Koulu elinkeinotoiminta
+2016,Turun yliopisto,10089,,2603200,"Filosofian, poliittisen historian ja valtio-opin lts yht"
+2016,Turun yliopisto,10089,,2603201,Poliittinen historia
+2016,Turun yliopisto,10089,,2603202,Valtio-oppi
+2016,Turun yliopisto,10089,,2603203,Eduskuntatutkimuksen keskus
+2016,Turun yliopisto,10089,,2603204,Itä-Aasian tutkimus- ja koulutusk (CEAS)
+2016,Turun yliopisto,10089,,2603205,Yliopistojen Aasia-verkosto
+2016,Turun yliopisto,10089,,2603206,The Public Choice Research Centre (PCRC)
+2016,Turun yliopisto,10089,,2603207,John Morton -keskus
+2016,Turun yliopisto,10089,,2603208,Filosofia
+2016,Turun yliopisto,10089,,2603300,Sosiaalitieteiden laitoksen yhteiset
+2016,Turun yliopisto,10089,,2603301,Sosiaalipolitiikka
+2016,Turun yliopisto,10089,,2603302,Sosiaalityö
+2016,Turun yliopisto,10089,,2603303,Sosiologia
+2016,Turun yliopisto,10089,,2603304,Taloussosiologia
+2016,Turun yliopisto,10089,,2603305,Sosiaalivak huippuas jatkok ohj (TOPSOS)
+2016,Turun yliopisto,10089,,2603306,SOSNET-verkosto (sosiaalityö)
+2016,Turun yliopisto,10089,,2604000,Kasv tdk yhteiset
+2016,Turun yliopisto,10089,,2604001,Kasv tdk tiedekuntapalvelut
+2016,Turun yliopisto,10089,,2604002,Oppimistutkimuksen keskus
+2016,Turun yliopisto,10089,,2604021,Et Koulutusvienti
+2016,Turun yliopisto,10089,,2604100,Kasvatustieteiden laitos
+2016,Turun yliopisto,10089,,2604200,Opettajankoulutuslaitoksen yhteiset
+2016,Turun yliopisto,10089,,2604201,OKL Turku
+2016,Turun yliopisto,10089,,2604202,OKL Rauma
+2016,Turun yliopisto,10089,,2604300,Turun normaalikoulun yhteiset
+2016,Turun yliopisto,10089,,2604301,Lukiokoulutus
+2016,Turun yliopisto,10089,,2604302,Perusopetus
+2016,Turun yliopisto,10089,,2604303,Opettajankoulutus ja kehitystehtävät
+2016,Turun yliopisto,10089,,2604400,Rauman normaalikoulun yhteiset
+2016,Turun yliopisto,10089,,2604401,Perusopetus
+2016,Turun yliopisto,10089,,2604402,Opettajankoulutus ja kehitystehtävät
+2016,Turun yliopisto,10089,,2605000,Oikeustiede
+2016,Turun yliopisto,10089,,2605100,Oikeustieteellisen liiketoiminta
+2016,Turun yliopisto,10089,,2606000,Mat luonn tdk yhteiset
+2016,Turun yliopisto,10089,,2606001,Mat luonn tdk hallintopalvelut
+2016,Turun yliopisto,10089,,2606010,TYYK:n yhteiset
+2016,Turun yliopisto,10089,,2606011,Lapin tutkimuslaitos Kevo
+2016,Turun yliopisto,10089,,2606012,Saaristomeren tutkimuslaitos
+2016,Turun yliopisto,10089,,2606013,Aerobiologian yksikkö
+2016,Turun yliopisto,10089,,2606100,Matematiikan ja tilastotieteen lait yht
+2016,Turun yliopisto,10089,,2606101,Matematiikka
+2016,Turun yliopisto,10089,,2606102,Sovellettu matematiikka
+2016,Turun yliopisto,10089,,2606103,Tilastotiede
+2016,Turun yliopisto,10089,,2606200,Biokemian laitoksen yhteiset
+2016,Turun yliopisto,10089,,2606201,Biokemia
+2016,Turun yliopisto,10089,,2606202,Biotekniikka / FM
+2016,Turun yliopisto,10089,,2606203,Biotekniikka / DI
+2016,Turun yliopisto,10089,,2606204,Elintarvikekemia
+2016,Turun yliopisto,10089,,2606205,Molekulaarinen kasvibiologia
+2016,Turun yliopisto,10089,,2606206,IFDRC
+2016,Turun yliopisto,10089,,2606300,Kemian laitoksen yhteiset
+2016,Turun yliopisto,10089,,2606301,Kemian perusopetus
+2016,Turun yliopisto,10089,,2606302,Materiaalikemia ja kemiallinen analyysi
+2016,Turun yliopisto,10089,,2606303,Orgaaninen kemia ja kemiallinen biologia
+2016,Turun yliopisto,10089,,2606304,Laitekeskus
+2016,Turun yliopisto,10089,,2606305,JBL-laboratorio
+2016,Turun yliopisto,10089,,2606400,Biologian laitoksen yhteiset
+2016,Turun yliopisto,10089,,2606401,Biodiversiteettitutkimus
+2016,Turun yliopisto,10089,,2606402,Ekologia
+2016,Turun yliopisto,10089,,2606403,Ympäristötiede
+2016,Turun yliopisto,10089,,2606404,Genetiikka
+2016,Turun yliopisto,10089,,2606405,Eläinfysiologia
+2016,Turun yliopisto,10089,,2606406,Eläinmuseo
+2016,Turun yliopisto,10089,,2606407,Kasvimuseo
+2016,Turun yliopisto,10089,,2606408,Kasvitieteellinen puutarha
+2016,Turun yliopisto,10089,,2606409,Evoluutiobiologian sovelluskeskus
+2016,Turun yliopisto,10089,,2606700,Fysiikan ja tähtitieteen laitoksen yhtei
+2016,Turun yliopisto,10089,,2606701,Wihurin fysiikantutkimuslaboratorio
+2016,Turun yliopisto,10089,,2606702,Avaruustutkimuslaboratorio
+2016,Turun yliopisto,10089,,2606703,Teoreettinen fysiikka
+2016,Turun yliopisto,10089,,2606704,Teollisuusfysiikka
+2016,Turun yliopisto,10089,,2606705,Tuorlan observatorio
+2016,Turun yliopisto,10089,,2606706,Materiaalitutkimuksen laboratorio
+2016,Turun yliopisto,10089,,2606707,Kvanttioptiikan laboratorio
+2016,Turun yliopisto,10089,,2606800,Informaatioteknologian laitoksen yhteise
+2016,Turun yliopisto,10089,,2606801,Tietoliikennetekniikka
+2016,Turun yliopisto,10089,,2606802,Sulautettu elektroniikka
+2016,Turun yliopisto,10089,,2606803,Tietojenkäsittelytiede
+2016,Turun yliopisto,10089,,2606804,Ohjelmistotekniikka
+2016,Turun yliopisto,10089,,2606805,Bioinformatiikka
+2016,Turun yliopisto,10089,,2606806,Vuorovaikutussuunnittelu
+2016,Turun yliopisto,10089,,2606900,Maantieteen ja geologian laitoksen yht.
+2016,Turun yliopisto,10089,,2606901,Maantiede
+2016,Turun yliopisto,10089,,2606902,Geologia
+2016,Turun yliopisto,10089,,2607000,Lääket tdk yhteiset
+2016,Turun yliopisto,10089,,2607001,Lääket tdk hallintopalvelut
+2016,Turun yliopisto,10089,,2607002,Lääket tdk täydennyskoulutus
+2016,Turun yliopisto,10089,,2607003,MediCity
+2016,Turun yliopisto,10089,,2607004,Sydäntutkimuskeskus
+2016,Turun yliopisto,10089,,2607005,Biopankki
+2016,Turun yliopisto,10089,,2607010,Turun lapsi- ja nuorisotutkimuskeskus
+2016,Turun yliopisto,10089,,2607020,Funktionaalisten elint. kehittämiskeskus
+2016,Turun yliopisto,10089,,2607030,Koe-eläinkeskus
+2016,Turun yliopisto,10089,,2607040,Et Aistila
+2016,Turun yliopisto,10089,,2607100,Biolääketieteen laitoksen yhteiset
+2016,Turun yliopisto,10089,,2607101,Solubiologia ja anatomia
+2016,Turun yliopisto,10089,,2607102,"Farmakologia, lääkekehitys ja lääkehoito"
+2016,Turun yliopisto,10089,,2607103,Fysiologia
+2016,Turun yliopisto,10089,,2607104,Lääketieteellinen biokemia ja genetiikka
+2016,Turun yliopisto,10089,,2607105,Lääketietee mikrobiologia ja immunologia
+2016,Turun yliopisto,10089,,2607107,Patologia ja oikeuslääketiede
+2016,Turun yliopisto,10089,,2607108,Virusoppi
+2016,Turun yliopisto,10089,,2607160,Oikeuslääketieteen maksupalveluyksikkö
+2016,Turun yliopisto,10089,,2607300,Kliinisen laitoksen yhteiset
+2016,Turun yliopisto,10089,,2607301,Anestesiologia
+2016,Turun yliopisto,10089,,2607302,Biostatistiikka
+2016,Turun yliopisto,10089,,2607303,Diagnostinen radiologia
+2016,Turun yliopisto,10089,,2607304,Geriatria
+2016,Turun yliopisto,10089,,2607305,Iho- ja sukupuolitautioppi
+2016,Turun yliopisto,10089,,2607306,Infektiotautioppi
+2016,Turun yliopisto,10089,,2607307,Kansanterveystiede
+2016,Turun yliopisto,10089,,2607308,Keuhkosairausoppi ja kliin. allergologia
+2016,Turun yliopisto,10089,,2607309,Kirurgia
+2016,Turun yliopisto,10089,,2607310,Ortopedia ja traumatologia
+2016,Turun yliopisto,10089,,2607311,Kliininen kemia
+2016,Turun yliopisto,10089,,2607312,"Korva-, nenä-, ja kurkkutautioppi"
+2016,Turun yliopisto,10089,,2607313,Lastentautioppi
+2016,Turun yliopisto,10089,,2607314,Neurologia
+2016,Turun yliopisto,10089,,2607315,Kliininen syöpätautioppi
+2016,Turun yliopisto,10089,,2607316,Psykiatria
+2016,Turun yliopisto,10089,,2607317,Silmätautioppi
+2016,Turun yliopisto,10089,,2607318,Sisätautioppi
+2016,Turun yliopisto,10089,,2607319,Synnytys- ja naistentautien oppi
+2016,Turun yliopisto,10089,,2607320,Fysiatria
+2016,Turun yliopisto,10089,,2607321,Kliininen neurofysiologia
+2016,Turun yliopisto,10089,,2607322,Kliininen fysiologia
+2016,Turun yliopisto,10089,,2607323,Lääketieteen etiikka
+2016,Turun yliopisto,10089,,2607324,Palliatiivinen lääketiede
+2016,Turun yliopisto,10089,,2607325,Lastenneurologia
+2016,Turun yliopisto,10089,,2607326,Lastenpsykiatria
+2016,Turun yliopisto,10089,,2607327,Työterveyshuolto
+2016,Turun yliopisto,10089,,2607328,Yleislääketiede
+2016,Turun yliopisto,10089,,2607330,Turun lapsi- ja nuorisotutkimuskeskus
+2016,Turun yliopisto,10089,,2607400,Hoitotieteen laitos
+2016,Turun yliopisto,10089,,2607500,Hammaslääketieteen laitos yhteiset
+2016,Turun yliopisto,10089,,2607511,TCBC
+2016,Turun yliopisto,10089,,2608000,TuKKK:n yhteiset
+2016,Turun yliopisto,10089,,2608001,TuKKK:n hallintopalvelut
+2016,Turun yliopisto,10089,,2608002,TuKKK:n viestintä
+2016,Turun yliopisto,10089,,2608100,Laskentatoimen ja rahoituksen laitos yht
+2016,Turun yliopisto,10089,,2608101,Laskentatoimi ja rahoitus
+2016,Turun yliopisto,10089,,2608102,Yritysjuridiikka
+2016,Turun yliopisto,10089,,2608103,Taloustieteen kvantitatiiviset menetelmä
+2016,Turun yliopisto,10089,,2608200,Markk ja kv liiketoim laitos yhteiset
+2016,Turun yliopisto,10089,,2608201,Markkinointi
+2016,Turun yliopisto,10089,,2608202,Kv. liiketoiminta
+2016,Turun yliopisto,10089,,2608203,Toimitusketjujen johtaminen
+2016,Turun yliopisto,10089,,2608204,Talousmaantiede
+2016,Turun yliopisto,10089,,2608210,Pan-Eurooppa Instituutti
+2016,Turun yliopisto,10089,,2608220,Kielten ja liikeviestinnän yksikkö
+2016,Turun yliopisto,10089,,2608300,Johtamisen ja yrittäjyyden laitos yhteis
+2016,Turun yliopisto,10089,,2608301,Johtaminen ja organisointi
+2016,Turun yliopisto,10089,,2608303,Tietojärjestelmätiede
+2016,Turun yliopisto,10089,,2608310,Entren yhteiset
+2016,Turun yliopisto,10089,,2608311,Entre
+2016,Turun yliopisto,10089,,2608312,Yrittäjyys
+2016,Turun yliopisto,10089,,2608320,"Turun työtieteiden keskus, TCLS"
+2016,Turun yliopisto,10089,,2608400,Taloustiede
+2016,Turun yliopisto,10089,,2608610,TSE Exe
+2016,Turun yliopisto,10089,,2608710,Centre for Collaborative Research (CCR)
+2016,Turun yliopisto,10089,,2608800,Porin tutkintokoulutus
+2016,Turun yliopisto,10089,,2608802,Porin hankerahoitus
+2016,Turun yliopisto,10089,,2608804,Porin yksikön yhteiset
+2016,Turun yliopisto,10089,,2608805,Porin täydennyskoulutus
+2016,Turun yliopisto,10089,,2608900,Tulevaisuuden tutkimuskeskus
+2016,Turun yliopisto,10089,,2609000,Brahea-keskuksen yhteiset
+2016,Turun yliopisto,10089,,2609001,Sisäiset palvelut
+2016,Turun yliopisto,10089,,2609010,Avoimen yliopiston yhteiset
+2016,Turun yliopisto,10089,,2609011,AVO Humanistisen tdk opinnot
+2016,Turun yliopisto,10089,,2609012,AVO Kasvatustieteiden tdk opinnot
+2016,Turun yliopisto,10089,,2609013,AVO Matemaattis-luonnon tdk opinnot
+2016,Turun yliopisto,10089,,2609014,AVO Yhteiskuntatieteellisen tdk opinnot
+2016,Turun yliopisto,10089,,2609015,AVO Lääketieteellisen tdk opinnot
+2016,Turun yliopisto,10089,,2609016,AVO Oikeustieteellisen tdk opinnot
+2016,Turun yliopisto,10089,,2609017,AVO Kauppakorkeakoulun opinnot
+2016,Turun yliopisto,10089,,2609018,AVO Muut koulutukset ja hankkeet
+2016,Turun yliopisto,10089,,2609020,Brahea kehittämispalvelujen yhteiset
+2016,Turun yliopisto,10089,,2609021,Asiantuntijakehitys
+2016,Turun yliopisto,10089,,2609022,Aluekehitys
+2016,Turun yliopisto,10089,,2609023,Yliopistokehitys
+2016,Turun yliopisto,10089,,2609024,Kongressitoimisto
+2016,Turun yliopisto,10089,,2609025,Innovaatio- ja yrityskehitys
+2016,Turun yliopisto,10089,,2609030,Brahea kehittämispalvelujen elinkein yht
+2016,Turun yliopisto,10089,,2609031,Et Avoin yliopisto
+2016,Turun yliopisto,10089,,2609032,Et Asiantuntijakehitys
+2016,Turun yliopisto,10089,,2609033,Et Aluekehitys
+2016,Turun yliopisto,10089,,2609034,Et Yliopistokehitys
+2016,Turun yliopisto,10089,,2609035,Et Kongressitoimisto
+2016,Turun yliopisto,10089,,2609036,Et innovaatio- ja yrityskehitys
+2016,Turun yliopisto,10089,,2609040,Mkk yhteiset
+2016,Turun yliopisto,10089,,2609041,Mkk koulutustoiminta
+2016,Turun yliopisto,10089,,2609042,Mkk Yhteisrahoitteiset T&K-hankkeet
+2016,Turun yliopisto,10089,,2609043,Mkk Kotka
+2016,Turun yliopisto,10089,,2609044,Mkk Meriklusteriohjelma
+2016,Turun yliopisto,10089,,2609045,Mkk Merifoorumi
+2016,Turun yliopisto,10089,,2609050,Et Mkk yhteiset
+2016,Turun yliopisto,10089,,2609051,Et Mkk koulutukset
+2016,Turun yliopisto,10089,,2609052,Et Mkk T&K-hankkeet
+2016,Turun yliopisto,10089,,2609053,Et Mkk Kotka
+2016,Turun yliopisto,10089,,2609054,Et Mkk Meriklusteriohjelma
+2016,Turun yliopisto,10089,,2609055,Et Mkk Merifoorumi
+2016,Turun yliopisto,10089,,2609060,TRC yhteiset
+2016,Turun yliopisto,10089,,2609061,Microelectronics
+2016,Turun yliopisto,10089,,2609062,Embedded and Mixed-Reality Systems
+2016,Turun yliopisto,10089,,2609063,Biomedical and Environmental ICT
+2016,Turun yliopisto,10089,,2609200,Biotekniikan keskuksen yhteiset
+2016,Turun yliopisto,10089,,2609201,Biotekniikan keskus
+2016,Turun yliopisto,10089,,2609210,Mikrosirukeskus
+2016,Turun yliopisto,10089,,2609211,FMSC Bioinformatiikka
+2016,Turun yliopisto,10089,,2609240,Proteomics
+2016,Turun yliopisto,10089,,2609250,Cell Imaging
+2016,Turun yliopisto,10089,,2609260,BioCity Turku
+2016,Turun yliopisto,10089,,2609400,Kielikeskus
+2016,Turun yliopisto,10089,,2609500,Turun tietotekniikan tutkimuskeskus TUCS
+2016,Turun yliopisto,10089,,2609700,Suomen ESO-keskus
+2016,Turun yliopisto,10089,,2609810,PET Perustoiminta
+2016,Turun yliopisto,10089,,2609820,PET Tutkimus
+2016,Turun yliopisto,10089,,2609830,COE huippuyksikkö
+2016,Turun yliopisto,10089,,2609900,Koulutussosiologian tutkimuskeskus
+2016,Turun yliopisto,10089,,2609901,Rosa-laboratorio
+2016,Vaasan ammattikorkeakoulu,02627,,10,Tekniikan yksikkö
+2016,Vaasan ammattikorkeakoulu,02627,,20,Liiketalouden yksikkö
+2016,Vaasan ammattikorkeakoulu,02627,,30,Sosiaali- ja terveysalan yksikkö
+2016,Vaasan ammattikorkeakoulu,02627,,40,MUOVA
+2016,Vaasan ammattikorkeakoulu,02627,,50,Hallinto ja tukipalvelut
+2016,Vaasan ammattikorkeakoulu,02627,,60,TKI-yksikkö
+2016,Vaasan yliopisto,01913,,2710050,Nykysuomi ja kääntäminen
+2016,Vaasan yliopisto,01913,,2710100,Pohjoismaiset kielet
+2016,Vaasan yliopisto,01913,,2710150,Englannin kieli
+2016,Vaasan yliopisto,01913,,2710200,Ranskan kieli
+2016,Vaasan yliopisto,01913,,2710250,Venäjän kieli
+2016,Vaasan yliopisto,01913,,2710300,Saksan kieli ja kirjallisuus
+2016,Vaasan yliopisto,01913,,2710350,Viestintätieteet
+2016,Vaasan yliopisto,01913,,2710400,Aluetiede
+2016,Vaasan yliopisto,01913,,2710450,Sosiologia
+2016,Vaasan yliopisto,01913,,2710500,Hallintotiede/julkisjohtaminen
+2016,Vaasan yliopisto,01913,,2710550,Filosofia
+2016,Vaasan yliopisto,01913,,2710600,Julkisoikeus
+2016,Vaasan yliopisto,01913,,2710650,Sosiaali- ja terveyshallintotiede
+2016,Vaasan yliopisto,01913,,2710700,Kielipalvelut
+2016,Vaasan yliopisto,01913,,2710900,Filosofinen tdk yht.
+2016,Vaasan yliopisto,01913,,2720050,Johtaminen ja organisaatiot
+2016,Vaasan yliopisto,01913,,2720100,Laskentatoimi ja rahoitus
+2016,Vaasan yliopisto,01913,,2720150,Markkinointi
+2016,Vaasan yliopisto,01913,,2720200,Taloustiede
+2016,Vaasan yliopisto,01913,,2720250,Talousoikeus
+2016,Vaasan yliopisto,01913,,2720900,Kauppatieteell. tdk yht.
+2016,Vaasan yliopisto,01913,,2730050,Automaatiotekniikka
+2016,Vaasan yliopisto,01913,,2730100,Energiatekniikka
+2016,Vaasan yliopisto,01913,,2730150,Fysiikka
+2016,Vaasan yliopisto,01913,,2730200,Sähkötekniikka
+2016,Vaasan yliopisto,01913,,2730250,Matematiikka
+2016,Vaasan yliopisto,01913,,2730300,Talousmatematiikka
+2016,Vaasan yliopisto,01913,,2730350,Tilastotiede
+2016,Vaasan yliopisto,01913,,2730400,Tietoliikennetekniikka
+2016,Vaasan yliopisto,01913,,2730450,Tietotekniikka kauppat.
+2016,Vaasan yliopisto,01913,,2730500,Tietotekniikka tekn.
+2016,Vaasan yliopisto,01913,,2730600,Tuotantotalous
+2016,Vaasan yliopisto,01913,,2730660,Tuotantotalous tekn
+2016,Vaasan yliopisto,01913,,2730700,TB Laboratoriot
+2016,Vaasan yliopisto,01913,,2730900,Teknillinen tdk. yhteiset
+2016,Vaasan yliopisto,01913,,2735050,SC-Research
+2016,Vaasan yliopisto,01913,,2739050,Vebic omarahoitus
+2016,Vaasan yliopisto,01913,,2739100,Vebic taloudellinen toiminta
+2016,Vaasan yliopisto,01913,,2739150,Vebic julkinen rahoitus
+2016,Vaasan yliopisto,01913,,2740050,Avoin yliopisto
+2016,Vaasan yliopisto,01913,,2740100,Johtaminen ja organisaatioiden kehittäminen
+2016,Vaasan yliopisto,01913,,2740150,Energia ja ympäristö
+2016,Vaasan yliopisto,01913,,2740900,Levón-instituutin yhteiset
+2016,Vaasan yliopisto,01913,,2750050,Tritonia
+2016,Vaasan yliopisto,01913,,2760050,Hallitus
+2016,Vaasan yliopisto,01913,,2760100,Rehtori
+2016,Vaasan yliopisto,01913,,2760150,Johdon asiantuntijatuki
+2016,Vaasan yliopisto,01913,,2760200,Tutkimuksen palvelut ja tutkijakoulu
+2016,Vaasan yliopisto,01913,,2760250,Viestintä ja kumppanuudet
+2016,Vaasan yliopisto,01913,,2760300,Henkilöstön palvelut ja ylimmän johdon palvelut
+2016,Vaasan yliopisto,01913,,2760350,Talouden ja hankehallinnon palvelut
+2016,Vaasan yliopisto,01913,,2760400,Toiminta- taloussuunnittelu
+2016,Vaasan yliopisto,01913,,2760450,Opiskelun ja opetuksen palvelut
+2016,Vaasan yliopisto,01913,,2760500,Kansainväliset asiat
+2016,Vaasan yliopisto,01913,,2760550,"Aulapalvelut, tilat ja turvallisuus"
+2016,Vaasan yliopisto,01913,,2760650,Tietohallintopalvelut
+2016,Vaasan yliopisto,01913,,2760700,Tietotekniikkapalvelut
+2016,Vaasan yliopisto,01913,,2760750,"Lähipalvelut ja johdon palvelut, Fabriikki"
+2016,Vaasan yliopisto,01913,,2760800,"Lähipalvelut ja johdon palvelut, Tervahovi"
+2016,Vaasan yliopisto,01913,,2780000,Vaasan yo sijoitustoiminta
+2016,Vaasan yliopisto,01913,,2780050,Viljo Syreniuksen rahasto
+2016,Vaasan yliopisto,01913,,2790050,Yliopiston yhteiset
+2016,Vaasan yliopisto,01913,,2790100,Vaasan korkeakoulukonsortio
+2016,Yrkeshögskolan Arcada,02535,,11,"HV, Pedagogik"
+2016,Yrkeshögskolan Arcada,02535,,111,"HV, Hälsa och välfärd (utom idrott)"
+2016,Yrkeshögskolan Arcada,02535,,112,"HV, Idrott"
+2016,Yrkeshögskolan Arcada,02535,,212,"EA, Turism"
+2016,Yrkeshögskolan Arcada,02535,,25,"EA, Tradenom"
+2016,Yrkeshögskolan Arcada,02535,,27,"EA, IT"
+2016,Yrkeshögskolan Arcada,02535,,38,"EM, Teknik"
+2016,Yrkeshögskolan Arcada,02535,,42,"KK, Media och kultur"
+2016,Yrkeshögskolan Arcada,02535,,51,"Övriga, Pedagogik"
+2016,Yrkeshögskolan Arcada,02535,,511,"Övriga, HV (utom idrott)"
+2016,Yrkeshögskolan Arcada,02535,,512,"Övriga, Service och tjänster"
+2016,Yrkeshögskolan Arcada,02535,,52,"Övriga, Konst- och kultur"
+2016,Yrkeshögskolan Arcada,02535,,53,"Övriga, Humaniora"
+2016,Yrkeshögskolan Arcada,02535,,55,"Övriga, Ekonomi, administration och juridik"
+2016,Yrkeshögskolan Arcada,02535,,57,"Övriga, IT"
+2016,Yrkeshögskolan Arcada,02535,,58,"Övriga, Teknik"
+2016,Yrkeshögskolan Novia,10066,,FoU,Forskning och utveckling
+2016,Yrkeshögskolan Novia,10066,,TS,Turism och Samhälle
+2016,Yrkeshögskolan Novia,10066,,AD,Administration
+2016,Yrkeshögskolan Novia,10066,,FE,Företagsekonomi
+2016,Yrkeshögskolan Novia,10066,,KU,Kultur
+2016,Yrkeshögskolan Novia,10066,,NB,Naturbruk
+2016,Yrkeshögskolan Novia,10066,,NV,Naturvetenskap
+2016,Yrkeshögskolan Novia,10066,,SF,Sjöfart
+2016,Yrkeshögskolan Novia,10066,,TE,Teknik
+2016,Yrkeshögskolan Novia,10066,,VS,Vård och sociala
+2016,Åbo Akademi,01903,,2801000,FHPT gemensamma kostnader
+2016,Åbo Akademi,01903,,2801010,FHPT universitetsservice
+2016,Åbo Akademi,01903,,2801100,"Kultur, historia och filosofi"
+2016,Åbo Akademi,01903,,2801110,Språk
+2016,Åbo Akademi,01903,,2801111,Logopedi
+2016,Åbo Akademi,01903,,2801120,Teologi
+2016,Åbo Akademi,01903,,2801130,Psykologi
+2016,Åbo Akademi,01903,,2801140,Doktorandnätverk Art History
+2016,Åbo Akademi,01903,,2801141,Doktorandnätverk Old Testament Studies
+2016,Åbo Akademi,01903,,2801142,Doktorandnätverk AAPL (Abo Akademi Psychology and Logopedics)
+2016,Åbo Akademi,01903,,2801143,"Gamla forskarskolan, FHPT"
+2016,Åbo Akademi,01903,,2801144,Doktorandnätverket Minority Research
+2016,Åbo Akademi,01903,,2801145,Doktorandnätverket The Age of Sweden
+2016,Åbo Akademi,01903,,2801150,FHPT utbildning
+2016,Åbo Akademi,01903,,2802000,FPV gemensamma kostnader
+2016,Åbo Akademi,01903,,2802010,FPV universitetsservice
+2016,Åbo Akademi,01903,,2802100,Pedagogik
+2016,Åbo Akademi,01903,,2802110,Hälsovetenskaper
+2016,Åbo Akademi,01903,,2802120,Socialvetenskaper
+2016,Åbo Akademi,01903,,2802130,MediaCity
+2016,Åbo Akademi,01903,,2802140,"Gamla forskarskolan, FPV"
+2016,Åbo Akademi,01903,,2802150,FPV utbildning
+2016,Åbo Akademi,01903,,2802200,"Vasa övningsskola, gemensamma kostnader"
+2016,Åbo Akademi,01903,,2802210,"Vasa övningsskola, grundutbildning"
+2016,Åbo Akademi,01903,,2802220,"Vasa övningsskola, gymnasiet"
+2016,Åbo Akademi,01903,,2803000,FSE gemensamma kostnader
+2016,Åbo Akademi,01903,,2803010,FSE universitetsservice
+2016,Åbo Akademi,01903,,2803100,Företagsekonomi
+2016,Åbo Akademi,01903,,2803110,Nationalekonomi
+2016,Åbo Akademi,01903,,2803111,Informationsvetenskap
+2016,Åbo Akademi,01903,,2803112,Informationssystem
+2016,Åbo Akademi,01903,,2803113,IAMSR
+2016,Åbo Akademi,01903,,2803120,Samhällsvetenskaper
+2016,Åbo Akademi,01903,,2803121,Rättsvetenskap
+2016,Åbo Akademi,01903,,2803122,Institutet för samhällsforskning
+2016,Åbo Akademi,01903,,2803123,Institutet för mänskliga rättigheter
+2016,Åbo Akademi,01903,,2803140,Doktorandnätverk Realizing Human Rights
+2016,Åbo Akademi,01903,,2803141,Doktorandnätverk School of Business and Economics
+2016,Åbo Akademi,01903,,2803142,"Gamla forskarskolan, FSE"
+2016,Åbo Akademi,01903,,2803143,Doktorandnätverk Citizens and Demogracy
+2016,Åbo Akademi,01903,,2803150,FSE utbildning
+2016,Åbo Akademi,01903,,2804000,FNT gemensamma kostnader
+2016,Åbo Akademi,01903,,2804010,FNT universitetsservice
+2016,Åbo Akademi,01903,,2804050,Tekniska serviceenheten
+2016,Åbo Akademi,01903,,2804100,Naturvetenskaper
+2016,Åbo Akademi,01903,,2804110,Kemi (teknisktvetenskapliga)
+2016,Åbo Akademi,01903,,2804111,Kemi (naturvetenskapliga)
+2016,Åbo Akademi,01903,,2804120,Process- och systemteknik
+2016,Åbo Akademi,01903,,2804121,Energi- och miljöteknik
+2016,Åbo Akademi,01903,,2804130,Naturmaterialteknik
+2016,Åbo Akademi,01903,,2804140,Doktorandnätverk Material Research
+2016,Åbo Akademi,01903,,2804141,Doktorandnätverk Chemical Engineering
+2016,Åbo Akademi,01903,,2804142,"Gamla forskarskolan, NatVet & teknik"
+2016,Åbo Akademi,01903,,2804150,"Utbildning, naturvetenskaper och teknik"
+2016,Åbo Akademi,01903,,2804160,Naturvetenskap och teknik gemensamma
+2016,Åbo Akademi,01903,,2804200,Nationalla PET-centret
+2016,Åbo Akademi,01903,,2804300,Biokemi
+2016,Åbo Akademi,01903,,2804310,Farmaci
+2016,Åbo Akademi,01903,,2804311,Cellbiologi
+2016,Åbo Akademi,01903,,2804312,Husö biologiska station
+2016,Åbo Akademi,01903,,2804313,Miljö- och marinbiologi
+2016,Åbo Akademi,01903,,2804340,Doktorandnätverk Informational and Structural Biology
+2016,Åbo Akademi,01903,,2804341,Doktorandnätverk Molecular Biosciences
+2016,Åbo Akademi,01903,,2804342,"Gamla forskarskolan, BioVet"
+2016,Åbo Akademi,01903,,2804343,Doktorandnätverket Functional Marine Biodiversity
+2016,Åbo Akademi,01903,,2804350,"Utbildning, biovetenskaper"
+2016,Åbo Akademi,01903,,2804360,Biovetenskap gemensamma
+2016,Åbo Akademi,01903,,2804400,Bioteknikcentrum
+2016,Åbo Akademi,01903,,2804410,"Gamla forskarskolan, BTC"
+2016,Åbo Akademi,01903,,2804500,Datateknik
+2016,Åbo Akademi,01903,,2804510,Datavetenskap
+2016,Åbo Akademi,01903,,2804540,Doktorandnätverk Information Technologies and Mathematics
+2016,Åbo Akademi,01903,,2804541,"Gamla forskarskolan, IT"
+2016,Åbo Akademi,01903,,2804550,"Utbildning, informationsteknologi"
+2016,Åbo Akademi,01903,,2804560,IT gemensamma
+2016,Åbo Akademi,01903,,2804600,Turku Centre for Computer Science
+2016,Åbo Akademi,01903,,2804610,"Gamla forskarskolan, TUCS"
+2016,Åbo Akademi,01903,,2805000,Centret för livslångt lärande
+2016,Åbo Akademi,01903,,2805010,Centret för språk och kommunikation
+2016,Åbo Akademi,01903,,2806000,Åbo Akademis bibliotek
+2016,Åbo Akademi,01903,,2806010,Tritonia
+2016,Åbo Akademi,01903,,2806020,Sibeliusmuseum
+2016,Åbo Akademi,01903,,2806030,Sjöhistoriska institutet
+2016,Åbo Akademi,01903,,2806100,"Allmän universitetsservice, central"
+2016,Åbo Akademi,01903,,2806101,"Allmän universitetsservice, FHPT"
+2016,Åbo Akademi,01903,,2806102,"Allmän universitetsservice, FPV"
+2016,Åbo Akademi,01903,,2806103,"Allmän universitetsservice, FSE"
+2016,Åbo Akademi,01903,,2806104,"Allmän universitetsservice, FNT"
+2016,Åbo Akademi,01903,,2806110,Ledning
+2016,Åbo Akademi,01903,,2806111,Kommunikation
+2016,Åbo Akademi,01903,,2806120,Forskningsservice
+2016,Åbo Akademi,01903,,2806121,"Utbildningsservice, central"
+2016,Åbo Akademi,01903,,2806122,"Utbildningsservice, FHPT"
+2016,Åbo Akademi,01903,,2806123,"Utbildningsservice, FPV"
+2016,Åbo Akademi,01903,,2806124,"Utbildningsservice, FSE"
+2016,Åbo Akademi,01903,,2806125,"Utbildningsservice, FNT"
+2016,Åbo Akademi,01903,,2806130,"Ekonomiservice, central"
+2016,Åbo Akademi,01903,,2806131,"Ekonomiservice, FHPT"
+2016,Åbo Akademi,01903,,2806132,"Ekonomiservice, FPV"
+2016,Åbo Akademi,01903,,2806133,"Ekonomiservice, FSE"
+2016,Åbo Akademi,01903,,2806134,"Ekonomiservice, FNT"
+2016,Åbo Akademi,01903,,2806140,Personalservice
+2016,Åbo Akademi,01903,,2806150,Fastighetsservice och upphandling
+2016,Åbo Akademi,01903,,2806151,Planering
+2016,Åbo Akademi,01903,,2806152,Fastigheter och hyror
+2016,Åbo Akademi,01903,,2806160,ICT-service
+2016,Åbo Akademi,01903,,,Humanistiska fakulteten
+2016,Åbo Akademi,01903,,,Humanistiska fakulteten gemensamma
+2016,Åbo Akademi,01903,,,Engelska
+2016,Åbo Akademi,01903,,,Finska
+2016,Åbo Akademi,01903,,,Franska
+2016,Åbo Akademi,01903,,,Ryska
+2016,Åbo Akademi,01903,,,Svenska
+2016,Åbo Akademi,01903,,,Tyska
+2016,Åbo Akademi,01903,,,Filosofi
+2016,Åbo Akademi,01903,,,Etnologi
+2016,Åbo Akademi,01903,,,Folkloristik
+2016,Åbo Akademi,01903,,,Historia
+2016,Åbo Akademi,01903,,,Religionsvetenskap
+2016,Åbo Akademi,01903,,,Konstvetenskap
+2016,Åbo Akademi,01903,,,Litteraturvetenskap
+2016,Åbo Akademi,01903,,,Musikvetenskap
+2016,Åbo Akademi,01903,,,Sibeliusmuseum
+2016,Åbo Akademi,01903,,,Sjöhistoriska institutet
+2016,Åbo Akademi,01903,,,Dnätverk Art History
+2016,Åbo Akademi,01903,,,Pedagogiska fakulteten
+2016,Åbo Akademi,01903,,,Pedagogik gemensamma
+2016,Åbo Akademi,01903,,,Allmän pedagogik
+2016,Åbo Akademi,01903,,,Barnpedagogik
+2016,Åbo Akademi,01903,,,Specialpedagogik
+2016,Åbo Akademi,01903,,,Vuxenpedagogik
+2016,Åbo Akademi,01903,,,De matematisk-naturvetenskapliga ämnenas och idrottens didaktik
+2016,Åbo Akademi,01903,,,"Pedagogik, tillämpad pedagogik och yrkesundervisningens didaktik"
+2016,Åbo Akademi,01903,,,Slöjdpedagogik och husliga ekonomins didaktik
+2016,Åbo Akademi,01903,,,Språk- och kulturvetenskapernas didaktik
+2016,Åbo Akademi,01903,,,Vasa övningsskola
+2016,Åbo Akademi,01903,,,VÖS gemensamma
+2016,Åbo Akademi,01903,,,"VÖS, åk 1-6"
+2016,Åbo Akademi,01903,,,"VÖS, åk 7-9"
+2016,Åbo Akademi,01903,,,"VÖS, gymnasiet"
+2016,Åbo Akademi,01903,,,Teologiska fakulteten
+2016,Åbo Akademi,01903,,,Teologiska fakulteten gemensamma
+2016,Åbo Akademi,01903,,,Gammaltestamentlig exegetik
+2016,Åbo Akademi,01903,,,Kyrkohistoria
+2016,Åbo Akademi,01903,,,Teologisk etik och religionsfilosofi
+2016,Åbo Akademi,01903,,,Praktisk teologi
+2016,Åbo Akademi,01903,,,Nytestamentlig exegetik
+2016,Åbo Akademi,01903,,,Dogmatik
+2016,Åbo Akademi,01903,,,Dnätverk Old Testament studies
+2016,Åbo Akademi,01903,,,Institutionen för psykologi och logopedi
+2016,Åbo Akademi,01903,,,Psykologi och logopedi gemensamma
+2016,Åbo Akademi,01903,,,Psykologi
+2016,Åbo Akademi,01903,,,Logopedi
+2016,Åbo Akademi,01903,,,Dnätverk Psychology and Logopedics
+2016,Åbo Akademi,01903,,,Handelshögskolan
+2016,Åbo Akademi,01903,,,Handelshögskolan gemensamma
+2016,Åbo Akademi,01903,,,Företagsekonomiska ämnena
+2016,Åbo Akademi,01903,,,Redovisning
+2016,Åbo Akademi,01903,,,Internationell marknadsföring
+2016,Åbo Akademi,01903,,,Företagets organisation och ledning
+2016,Åbo Akademi,01903,,,Informationsförvaltining
+2016,Åbo Akademi,01903,,,Nationalekonomi
+2016,Åbo Akademi,01903,,,Dnätverk School of Business and Economics
+2016,Åbo Akademi,01903,,,Socialvetenskapliga institutionen
+2016,Åbo Akademi,01903,,,Socialvetenskapliga institutionen gemensamma
+2016,Åbo Akademi,01903,,,Sociologi
+2016,Åbo Akademi,01903,,,Kvinnovetenskap
+2016,Åbo Akademi,01903,,,Vårdvetenskap
+2016,Åbo Akademi,01903,,,Socialpolitik
+2016,Åbo Akademi,01903,,,Utvecklingspsykologi
+2016,Åbo Akademi,01903,,,Demografi och landsbygdsforskning
+2016,Åbo Akademi,01903,,,Rättsvetenskapliga institutionen
+2016,Åbo Akademi,01903,,,Rättvetenskaper gemensamma
+2016,Åbo Akademi,01903,,,Rättvetenskaper
+2016,Åbo Akademi,01903,,,Institutet för mänskliga rättiheter
+2016,Åbo Akademi,01903,,,Dnätverk Realizing Human Rights
+2016,Åbo Akademi,01903,,,Statsvetenskapliga institutionen
+2016,Åbo Akademi,01903,,,Statsvetenskapliga institutionen gemensamma
+2016,Åbo Akademi,01903,,,Statskunskap
+2016,Åbo Akademi,01903,,,Offentlig förvaltning
+2016,Åbo Akademi,01903,,,Samforsk
+2016,Åbo Akademi,01903,,,Institutionen för naturvetenskap gemensamma
+2016,Åbo Akademi,01903,,,Naturvetenskapliga institutionen
+2016,Åbo Akademi,01903,,,Matematik
+2016,Åbo Akademi,01903,,,Verkstaden
+2016,Åbo Akademi,01903,,,Statistik
+2016,Åbo Akademi,01903,,,Fysik
+2016,Åbo Akademi,01903,,,Organisk kemi
+2016,Åbo Akademi,01903,,,Fysikalisk kemi
+2016,Åbo Akademi,01903,,,Geologi
+2016,Åbo Akademi,01903,,,Dnätverk Material Research
+2016,Åbo Akademi,01903,,,Nationella PET centret
+2016,Åbo Akademi,01903,,,Nationella PET-Centret
+2016,Åbo Akademi,01903,,,Institutionen för biovetenskaper
+2016,Åbo Akademi,01903,,,Institutionen för biovetenskaper gemensamma
+2016,Åbo Akademi,01903,,,Biokemi
+2016,Åbo Akademi,01903,,,Farmaci
+2016,Åbo Akademi,01903,,,Cellbiologi
+2016,Åbo Akademi,01903,,,Husö biologiska station
+2016,Åbo Akademi,01903,,,Miljö- och marinbiologi
+2016,Åbo Akademi,01903,,,Biovetenskap
+2016,Åbo Akademi,01903,,,Dnätverk Informational and Structural Biology
+2016,Åbo Akademi,01903,,,Dnätverk Molecular Biosciences
+2016,Åbo Akademi,01903,,,Bioteknikcentrum
+2016,Åbo Akademi,01903,,,Bioteknikcentrum
+2016,Åbo Akademi,01903,,,Institutionen för informationsteknologi
+2016,Åbo Akademi,01903,,,Instit. för informationsteknologi gemensamma
+2016,Åbo Akademi,01903,,,Datateknik
+2016,Åbo Akademi,01903,,,Datavetenskap
+2016,Åbo Akademi,01903,,,Informationssystem
+2016,Åbo Akademi,01903,,,Institute for Advanced Management System Research (IAMSR)
+2016,Åbo Akademi,01903,,,Dnätverk IT and Mathematics
+2016,Åbo Akademi,01903,,,TUCS
+2016,Åbo Akademi,01903,,,Åbo datatekniska forsknings- och utbildningscentrum (TUCS)
+2016,Åbo Akademi,01903,,,Institutionen för kemiteknik
+2016,Åbo Akademi,01903,,,Insitutionen för kemiteknik gemensamma
+2016,Åbo Akademi,01903,,,Analytisk kemi
+2016,Åbo Akademi,01903,,,Oorganisk kemi
+2016,Åbo Akademi,01903,,,Teknisk polymerkemi
+2016,Åbo Akademi,01903,,,Teknisk kemi och reaktionsteknik
+2016,Åbo Akademi,01903,,,Trä- och papperskemi
+2016,Åbo Akademi,01903,,,Fiber- och cellulosateknologi
+2016,Åbo Akademi,01903,,,Pappersförädling
+2016,Åbo Akademi,01903,,,Anläggningsteknik
+2016,Åbo Akademi,01903,,,Reglerteknik
+2016,Åbo Akademi,01903,,,Värmeteknik
+2016,Åbo Akademi,01903,,,Energiteknik Vasa
+2016,Åbo Akademi,01903,,,Industriell ekonomi
+2016,Åbo Akademi,01903,,,Dnätverk Chemical Engineering
+2016,Åbo Akademi,01903,,,Centret för livslångt lärande
+2016,Åbo Akademi,01903,,,Centret för livslångt lärande (CLL)
+2016,Åbo Akademi,01903,,,Mediacity
+2016,Åbo Akademi,01903,,,Mediacity
+2016,Åbo Akademi,01903,,,Centret för språk och kommunikation
+2016,Åbo Akademi,01903,,,Centret för språk och kommunikation (CSK)
+2016,Åbo Akademi,01903,,,Datacentralen
+2016,Åbo Akademi,01903,,,Datacentralen
+2016,Åbo Akademi,01903,,,Åbo Akademis bibliotek
+2016,Åbo Akademi,01903,,,ÅAB
+2016,Åbo Akademi,01903,,,Tritonia
+2016,Åbo Akademi,01903,,,Tritonia 2011
+2016,Åbo Akademi,01903,,,ÅA gemensamma
+2016,Åbo Akademi,01903,,,ÅA gemensamma
+2016,Åbo Akademi,01903,,,Fastigheter
+2016,Åbo Akademi,01903,,,Rektor
+2016,Åbo Akademi,01903,,,Kansler
+2016,Åbo Akademi,01903,,,Förvaltningen gemensamma
+2016,Åbo Akademi,01903,,,Ekonomi
+2016,Åbo Akademi,01903,,,Forskning och utbildning
+2016,Åbo Akademi,01903,,,Kommunikation
+2016,Åbo Akademi,01903,,,Personal
+2016,Åbo Akademi,01903,,,Teknisk service
+2016,Åbo Akademi,01903,,,Reform 2015

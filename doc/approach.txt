@@ -1,0 +1,40 @@
+
+Vue is a minimal Javascript interface library with one-way binding.
+
+It passes data by means of _props_ into child components. The child can then modify data and return it by means of _events_.
+
+If you pass data to a child by value instead of by reference – a string or a number instead of an object – then you can't modify that value and have that modification reflected in the parent.
+
+Javascript doesn't have references or pointers. Obviously, if you get passed a string, and you assign a new string to that variable, the memory location changes and the original string is not updated.
+
+Vue child components therefor return an event to the parent component, which can then update its value.
+
+If all data would be contained in a Javascript object, then you could pass the object (or child objects) around; because objects are passed by reference, you could update the data in a child and the changes would show all the way up to the root.
+
+Vue makes data "reactive" by doing some magic with getters and setters (and proxies?). Changes to this data then trigger updates in dependents.
+
+Communication beyond child-parent relationships in Vue, at this point, is difficult. There are $refs, you can address $root, but passing data and events to specific components goes somewhat against idiomatic use or philosophy of the framework.
+
+You could use a stand-alone Vue instance as a sort of make-shift communication bus. It probably gets quite complex if you'd have to import this bus everywhere in source files that might be mangled by web packaging software.
+
+There's Vuex, a reactive datastore that integrates with Vue a bit better than loose Vue (or other) instances. It looks a bit like a stand-alone Vue instance with just data methods. Maybe it's overkill and a performance killer. But data can be kept somewhat separate from the actual components, which might make sense if that data really stands on its own apart from Vue and UI interface.
+
+We have data that should create a user interface, more so than a user interface that should create data. Creating the interface and widgets and retroactively filling in data might not work as well as putting the data front and center.
+
+There are not many examples of handling hierarchical or nested data like JSON (object) trees in Vue. The main site has a filesystem tree example which shows how to pass recursive data, but doesn't really offer solutions on doing modifications along the tree.
+
+
+
+Validation
+
+Normally validation happens in the respective child components. Even in a nested component tree, this approach would work fine from a user interface perspective. But you lose the ability to validate the data without the interface.
+
+If the validation happens in individual UI widgets, it becomes impossible to validate a schema as a backend function or through an API.
+
+Vue is an interface library. We use Vue because we want an interactive interface that shows live data and validation.
+
+Hence, it would make sense to find a way to handle data parsing and validation in "pure" Javascript, but somehow tie the values and validation to interface components.
+
+This way one could create nested widgets with a live view on data and its validation: the widgets would help the user to enter data and relay validation status for their specific data type; but the data backend would do the actual validation and final decision.
+
+You could ask to validate data with a given schema, and get a conclusion and (possibly) individual errors without any interface.
