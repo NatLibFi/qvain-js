@@ -11,16 +11,15 @@ import vSchemaViewer from './viewer/v-schema-viewer.vue'
 import testAutoComplete from './autocomplete/example.vue'
 import vTabUi from './v-tabui.vue'
 import vFileBrowser from './filebrowser/filebrowser.vue'
+import Token from './auth/token.vue'
 
 Vue.use(VueRouter)
 
-// route components
-//const vEditor = { template: '<div>editor</div>' }
-//const vLister = { template: '<div>lister</div>' }
 
 // routes
 const routes = [
 	{ path: '/', component: vWelcome, props: false },
+	{ path: '/token', component: Token, props: false },
 	{ path: '/edit/:id?', component: vEditor, props: true },
 	{ path: '/list', component: vLister, props: false },
 	{ path: '/records', component: vRecordLister, props: false },
@@ -35,5 +34,5 @@ const routes = [
 ]
 
 export default new VueRouter({
-	routes // short for routes: routes
+	routes
 })
