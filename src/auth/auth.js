@@ -1,64 +1,64 @@
-// https://github.com/auth0/jwt-decode
+import parseJwt from './jwt.js'
 
-// http://stackoverflow.com/a/38552302
-function parseJwt(token) {
-	var base64Url = token.split('.')[1];
-	var base64 = base64Url.replace('-', '+').replace('_', '/');
-	return JSON.parse(window.atob(base64));
-};
+function User() {
+	this.id = ""
+	this.name = ""
+	this.email = ""
+	this._jwt = null
+}
+User.prototype.constructor = User
 
-
-var UserType = {
-	uid: "",
-	name: "",
-	isAdmin: false,
-	isSet: false,
-	//url: "",
-	
-	get url() {
-		return "//example.com/user/" + this.uid
-	},
-	
-	getUid: function() {
-		return this.uid
-	},
-	getName: function() {
-		return this.name
-	},
-	isAuthenticated: function() {
-		// if the server returns a UUID, the user is considered authenticated
-		return this.uid.length > 0 ? true : false
-	},
+User.prototype.getId = function() {
+	this._id.length > 0 ? this._id : null
 }
 
 
-// UserFromToken parses a JWT and returns a user object or null in case of error.
 function UserFromToken(token) {
-	// empty user object
-	var user = UserType
-	
-	// try to parse token
-	try {
-		var jwt = parseJwt(token)
-	} catch(e) {
-		console.log("error parsing jwt:", e)
-		// ...can't parse token, return empty user
-		return null
+	var jwt = parseJwt(token)
+
+	if (jwt && jwt['sub']) {
+		let user = new User()
+		user.id = jwt['sub']
+		user.name = jwt['name'] || ""
+		user.email = jwt['email'] || ""
+		user._jwt = jwt
+		return user
 	}
-	
-	// invalid: no subject field (uid), return empty user
-	if (!('sub' in jwt)) {
-		return null
-	}
-	
-	// valid, set user object fields
-	user.uid = jwt.sub
-	user.name = jwt.name || ""
-	user.isAdmin = jwt.admin ? true : false
-	user.isSet = true
-	
-	return user
+	return null
 }
 
 
-export { UserFromToken }
+function Auth(url) {
+	this.url = url
+	this._user = null
+
+	Object.defineProperty(Auth.prototype, "loggedIn", {
+		get: function() {
+			return this._user !== null
+		}
+	})
+	Object.defineProperty(Auth.prototype, "user", {
+		get: function() {
+			return this._user
+		}
+	})
+}
+Auth.prototype.constructor = Auth
+
+Auth.prototype.login = function(token) {
+	this._user = UserFromToken(token)
+
+	if (this._user !== null) {
+		localStorage.setItem('jwt', token)
+		return true
+	}
+	localStorage.removeItem('jwt')
+	return false
+}
+
+Auth.prototype.logout = function() {
+	this._user = null
+	localStorage.removeItem('jwt')
+}
+
+export default Auth

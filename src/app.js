@@ -2,7 +2,6 @@ import Vue from 'vue'
 //import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
-//import VueResource from 'vue-resource'
 
 import login from './login.vue'
 
@@ -10,7 +9,7 @@ import router from './router.js'
 import store from './store.js'
 import AuthStore from './vuex/auth.js'
 import FilesStore from './vuex/files.js'
-import {UserFromToken} from './auth/auth.js'
+import AuthPlugin from './auth/plugin.js'
 
 import vWelcome from './v-welcome.vue'
 import vEditor from './v-editor.vue'
@@ -22,6 +21,8 @@ import refdataWidgets from './widgets/plugin-ui-refdata.js'
 Vue.use(BootstrapVue)
 
 Vue.use(refdataWidgets)
+
+Vue.use(AuthPlugin)
 
 //console.log("magical number:", magicalnumber, "service url:", SERVICE_URL)
 //console.log("APP_DEBUG:", APP_DEBUG)
@@ -36,10 +37,6 @@ const testJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MW
 const app = new Vue({
 	router,
 	store,
-	created: function() {
-		this.user = UserFromToken(testJwt);
-		//this.$store.
-	},
 	data: {
 		"user": null,
 		"DEBUG": APP_DEBUG,
@@ -55,5 +52,7 @@ const app = new Vue({
 		login,
 		vEditor,
 		vLister,
+	},
+	created: function() {
 	},
 }).$mount('#app')
