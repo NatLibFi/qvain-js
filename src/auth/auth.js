@@ -1,5 +1,7 @@
 import parseJwt from './jwt.js'
 
+const TokenName = "jwt"
+
 function User() {
 	this.id = ""
 	this.name = ""
@@ -49,16 +51,20 @@ Auth.prototype.login = function(token) {
 	this._user = UserFromToken(token)
 
 	if (this._user !== null) {
-		localStorage.setItem('jwt', token)
+		localStorage.setItem(TokenName, token)
 		return true
 	}
-	localStorage.removeItem('jwt')
+	localStorage.removeItem(TokenName)
 	return false
 }
 
 Auth.prototype.logout = function() {
 	this._user = null
-	localStorage.removeItem('jwt')
+	localStorage.removeItem(TokenName)
+}
+
+Auth.prototype.localLogin = function() {
+	this.login(localStorage.getItem(TokenName))
 }
 
 export default Auth
