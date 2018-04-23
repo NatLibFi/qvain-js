@@ -27,7 +27,7 @@
  * @requires URI.Path
  * @return void
  */
-(URI = function( value ) {
+var URI = (function( value ) {
 	this.value = value;
 	this.length = value.length;
 	String.call( this , value );
