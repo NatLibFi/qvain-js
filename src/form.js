@@ -21,9 +21,11 @@ var Dynamic = {
 			]
 		)
 	},
-	data: function() ({
-		"creator": "wouter"
-	}),
+	data: function() {
+		return {
+			"creator": "wouter"
+		}
+	},
 	props: [ "mytype", "message" ]
 }
 

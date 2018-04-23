@@ -10,9 +10,8 @@
 #         npm show bootstrap versions
 #
 
-[ -d "vendor/bootstrap-vue" ] || mkdir -p "vendor/bootstrap-vue"
-[ -d "vendor/bootstrap" ] || mkdir -p "vendor/bootstrap"
+[ -d "public/vendor/bootstrap-vue" ] || mkdir -p "public/vendor/bootstrap-vue"
+[ -d "public/vendor/bootstrap" ] || mkdir -p "public/vendor/bootstrap"
 
-cp -v node_modules/bootstrap-vue/dist/bootstrap-vue.css* vendor/bootstrap-vue/
-#cp -v node_modules/bootstrap/dist/css/bootstrap.css* vendor/bootstrap/
-cp -v node_modules/bootstrap/dist/css/bootstrap*.css* vendor/bootstrap/
+cp -v node_modules/bootstrap-vue/dist/bootstrap-vue.css* public/vendor/bootstrap-vue/
+cp -v node_modules/bootstrap/dist/css/bootstrap*.css* public/vendor/bootstrap/
