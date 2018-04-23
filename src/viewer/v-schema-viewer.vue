@@ -29,7 +29,7 @@
 		<hr/>
 		<h2>schema root</h2>
 		<ul class="treeview">
-			<schema-tree :schema="schema" path="" name="" tab="" :pref="this" :edit="edit" tab="0"></schema-tree>
+			<schema-tree :schema="schema" path="" name="" :pref="this" :edit="edit" tab="0"></schema-tree>
 		</ul>
 		
 	</div>
