@@ -49,7 +49,7 @@
 							<b-dropdown-item>Project B-tree</b-dropdown-item>
 							<b-dropdown-item>Project Celsius</b-dropdown-item>
 							<b-dropdown-divider></b-dropdown-divider>
-							<b-dropdown-item>myself ({{ $root.user.name }})</b-dropdown-item>
+							<b-dropdown-item>myself ({{ $auth.user ? $auth.user.name : "" }})</b-dropdown-item>
 						</b-dropdown>
 					</div>
 					
