@@ -1,31 +1,7 @@
 "use strict";
 
-var schema = {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	
-	"definitions": {
-		"address": {
-			"type": "object",
-			"properties": {
-				"street_address": { "type": "string" },
-				"city":           { "type": "string" },
-				"state":          { "type": "string" }
-			},
-			"required": ["street_address", "city", "state"]
-		}
-	},
-	
-	"type": "object",
-	
-	"properties": {
-		"billing_address": { "$ref": "#/definitions/address" },
-		"shipping_address": { "$ref": "#/definitions/address" }
-	}
-}
-
-
+// location to latest schema
 var schema = require("../schema/schema.json")
-
 
 
 function parsePath(path) {
@@ -77,31 +53,35 @@ function deepCopy(src) {
 function SchemaDereferencer(schema) {
 	this.baseSchema = deepCopy(schema)
 	this.resolvedSchema = deepCopy(schema)
-	//this.newSchema = deepCopy(schema)
 	this.refCount = 0
+	this.refTargets = {}
+	this.derefDefs = false
 	//this._copyRefs(schema, "")
 }
-//SchemaDereferencer.prototype.constructor = SchemaDereferencer
+SchemaDereferencer.prototype.constructor = SchemaDereferencer
 
 SchemaDereferencer.prototype._copyRefs = function(schema, path) {
 	if (typeof schema !== 'object') throw new Error("schema is not an object", path || "/")
 
-		
+	//if (!this.derefDefs && path.startsWith("/definitions/")) return
+
 	for (let key in schema) {
 		if (typeof schema[key] === 'object' && schema[key] !== null) this._copyRefs(schema[key], path + "/" + key)
 	}
-		
+
 	if ('$ref' in schema) {
 		this.refCount++
-		let ptr = schema['$ref'].substring(schema['$ref'].lastIndexOf("#") + 1);
-		//console.log("ref at", path) // /definitions/CatalogRecord/properties/dataset_json
-		
+		let ptr = schema['$ref'].substring(schema['$ref'].lastIndexOf("#") + 1)
+		//console.log("ref at", path)
+
+		this.refTargets[ptr] = (this.refTargets[ptr] || 0) + 1
+
 		schema['$deref'] = schema['$ref']
 		delete schema['$ref']
 
-		let ref = getPath(this.baseSchema, ptr)
+		//let ref = getPath(this.baseSchema, ptr)
+		let ref = getPath(this.resolvedSchema, ptr)
 		this._copyRefs(ref, ptr)
-		//if (path === "/definitions/CatalogRecord/properties/dataset_json") console.log("-wvh-", copy)
 		
 		let clone = deepCopy(ref)
 		for (let key in clone) {
@@ -112,7 +92,7 @@ SchemaDereferencer.prototype._copyRefs = function(schema, path) {
 			delete schema['$ref']
 		}
 	}
-	if ('definitions' in schema) delete schema['definitions']
+	//if ('definitions' in schema) delete schema['definitions']
 	if ('@id' in schema) delete schema['@id']
 	if ('@type' in schema) delete schema['@type']
 	
@@ -120,28 +100,69 @@ SchemaDereferencer.prototype._copyRefs = function(schema, path) {
 
 SchemaDereferencer.prototype.deref = function() {
 	this._copyRefs(this.resolvedSchema, "")
+	if (!this.derefDefs) {
+		console.log("dont want no derefed defs")
+	}
+	if ('definitions' in this.baseSchema) {
+		console.log("yeah baseSchema has definitions")
+	}
+
+	if (!this.derefDefs && 'definitions' in this.baseSchema) {
+		console.log("deleting ref'ed defs")
+		delete this.resolvedSchema['definitions']
+		console.log(Object.keys(this.resolvedSchema))
+		this.resolvedSchema.definitions = deepCopy(this.baseSchema.definitions)
+		console.log(Object.keys(this.resolvedSchema))
+	}
+}
+
+SchemaDereferencer.prototype.listTargets = function() {
+	var targets = Object.keys(this.refTargets)
+
+	if (targets.length < 1) return;
+
+	targets.sort()
+
+	for (let i = 0; i < targets.length; i++) {
+		let k = targets[i]
+		console.log(k + ': ' + this.refTargets[k])
+	}
 }
 
 
-var dereferencer = new SchemaDereferencer(schema)
-dereferencer.deref()
-/*
-getPath(dereferencer.baseSchema, "/properties/shipping_address/properties/city")['blah'] = "test"
-console.log(dereferencer.baseSchema.properties.billing_address)
-*/
-
-console.log(dereferencer.resolvedSchema)
-console.log(dereferencer.refCount)
-
-function saveSchema(schema) {
-	var fs = require('fs');
-	fs.writeFile("deref-nodefs-noxml.json", JSON.stringify(schema), function(err) {
-		if(err) {
-			return console.log(err);
-		}
-		
-		console.log("The file was saved!");
-	});
+SchemaDereferencer.prototype.addTargetCount = function() {
+	for (let ptr in this.refTargets) {
+		let obj = getPath(this.resolvedSchema, ptr)
+		obj['$count'] = this.refTargets[ptr]
+	}
 }
 
-saveSchema(dereferencer.resolvedSchema)
+
+function doit() {
+	var dereferencer = new SchemaDereferencer(schema)
+	dereferencer.deref()
+
+	dereferencer.addTargetCount()
+
+	//console.log(dereferencer.resolvedSchema)
+	console.log("references:", dereferencer.refCount)
+	console.log("reference target count:")
+	dereferencer.listTargets()
+
+	const fn = "deref.json"
+
+	function saveSchema(schema) {
+		var fs = require('fs')
+		fs.writeFile(fn, JSON.stringify(schema, null, "\t"), function(err) {
+			if(err) {
+				return console.log(err)
+			}
+
+			console.log("schema successfully saved to", fn)
+		})
+	}
+
+	saveSchema(dereferencer.resolvedSchema)
+}
+
+doit()

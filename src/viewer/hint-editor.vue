@@ -21,7 +21,7 @@
 				<b-col cols="3">widget options</b-col>
 				<b-col>
 					<b-list-group v-if="false">
-						<b-list-group-item v-for="(val, option) in listWidgetOptions" class="d-flex justify-content-between align-items-center">
+						<b-list-group-item v-for="(val, option) in listWidgetOptions" :key="option" class="d-flex justify-content-between align-items-center">
 						{{ option }}
 						<b-badge variant="primary" pill>default</b-badge>
 						<b-badge variant="primary" pill>default</b-badge>

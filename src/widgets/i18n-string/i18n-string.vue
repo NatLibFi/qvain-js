@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- i18n-string -->
-		<b-form-group id="i18n-string" horizontal :label-cols="4" breakpoint="md" :description="ui['description']" :label="ui['label']">
+		<b-form-group id="i18n-string" horizontal :label-cols="4" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-card no-body> <!-- :header="'<h5>' + ui['label'] + '</h5>'" -->
 				<b-list-group flush>
 					<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">
@@ -16,7 +16,7 @@
 					<b-container>
 					<b-row>
 					<b-col cols="9" class="mr-3 p-0">
-						<b-form-input id="i18n-string-newvalue" type="text" name="i18n-string-newvalue" :placeholder="ui['placeholder']" v-model="newString" :state="stringState" @input="resetState()"></b-form-input>
+						<b-form-input id="i18n-string-newvalue" type="text" name="i18n-string-newvalue" :placeholder="uiPlaceholder" v-model="newString" :state="stringState" @input="resetState()"></b-form-input>
 					</b-col>
 					<b-col class="mr-3 p-0">
 						<b-form-input size="3" maxlength="3" id="i18n-string-newlang" type="text" name="i18n-string-newlang" placeholder="language" v-model="newLanguage" :state="langState" @input="resetState()" v-if="freeform"></b-form-input>

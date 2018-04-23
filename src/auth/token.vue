@@ -28,6 +28,10 @@ export default {
 			// strip fragment hash
 			return this.$route.hash.charAt(0) == '#' ? this.$route.hash.substr(1) : this.$route.hash
 		},
+		redirTo() {
+			// TODO: read query for redirect-to location
+			//return this.$route
+		},
 	},
 	created: function() {
 		if (this.token && this.$auth.login(this.token)) {

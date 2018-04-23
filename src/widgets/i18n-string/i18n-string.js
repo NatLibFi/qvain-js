@@ -34,12 +34,15 @@ export default {
 	methods: {
 		addPair: function() {
 			console.log(this.newString, this.newLanguage)
+			// validate language
 			if (!this.newLanguage || (this.freeform && (this.newLanguage.length < 2 || this.newLanguage.length > 3)) || (!this.freeform && !(this.newLanguage in this.languages))) {
 				this.langState = false
 			}
+			// validate string
 			if (!this.newString) {
 				this.stringState = false
 			}
+			// if invalid, quit
 			if (this.stringState === false || this.langState === false) {
 				return
 			}
@@ -100,16 +103,10 @@ export default {
 		},
 	},
 	created() {
-		//console.log("v-schema-string:", this, this.$data)
-		console.log("!!! i18n-string:", this, this.path, this.$props, this.$data, this.value, typeof this.value)
-		//console.log("VALUE1:", this.value)
-		/*
-		this.value = {}
-		this.updateValue()
-		*/
-		this.value['xx'] = "Language string test value"
-		this.updateValue()
-		console.log("VALUE:", this.value, this.parent)
+		//console.log("!!! i18n-string:", this, this.path, this.$props, this.$data, this.value, typeof this.value)
+		//this.value['xx'] = "Language string test value"
+		//this.updateValue()
+		//console.log("VALUE:", this.value, this.parent)
 	},
 }
 

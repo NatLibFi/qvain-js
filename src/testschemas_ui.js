@@ -46,10 +46,23 @@ var _testFunderWidget = {
 }
 
 
+var _schemaFairDataUI = {
+	'': { 'tab': 1 },
+	'#/definitions/langString': {
+		'widget': 'i18n-string',
+		'placeholder': "text",
+		//'label': "multilingual string",
+		//'description': "multilingual string",
+		'help': "An item possibly defined in multiple languages.",
+	},
+}
+
+
 var testSchemaUis = {
 	'tabs': _testTabSchema,
 	'tabs2': _testTabSchema2,
 	'funder': _testFunderWidget,
+	'fairdata-ui': _schemaFairDataUI,
 }
 
 export default testSchemaUis

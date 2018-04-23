@@ -37,6 +37,10 @@ export default {
 			return this.path.length > 0 ? this.path : "root"
 		},
 		ui: function() {
+			// if there was a $ref, use that ref's ui as default and load this path's on top of it
+			if (this.schema['$deref']) {
+				return Object.assign({}, this.$store.state.hints[this.schema['$deref']], this.$store.getters.uiForPath(this.path))
+			}
 			return this.$store.getters.uiForPath(this.path)
 		},
 		uiTab: function() {
@@ -51,6 +55,9 @@ export default {
 		},
 		uiDescription: function() {
 			return this.ui['description'] || this.schema['description']
+		},
+		uiLabel: function() {
+			return this.ui['label'] || this.schema['title']
 		},
 		uiHelp: function() {
 			return this.ui['help']

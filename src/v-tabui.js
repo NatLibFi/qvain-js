@@ -1,5 +1,7 @@
 import testSchemas from './testschemas.js'
 import testSchemaUis from './testschemas_ui.js'
+import testSchemasData from './testschemas_data.js'
+
 import vSchemaTabSelector from './widgets/v-schema-tab-selector.vue'
 
 import { schemaToTabs } from './schema_to_tabs.js'
@@ -102,8 +104,11 @@ export default {
 				this.startTab = 1
 			}
 		},
-		loadData: function() {
+		loadData: function(schemaName) {
 			//this.$store.commit('loadData', {})
+			if (schemaName in testSchemasData) {
+				this.testdata = JSON.stringify(testSchemasData[schemaName], null, 2)
+			}
 			this.$store.commit('loadData', undefined)
 			console.log("reset store data")
 		},
@@ -132,7 +137,7 @@ export default {
 			//this.$store.commit('loadSchema', this.schemaJson)
 		},
 		getJson: function() {
-			this.testdata = JSON.stringify(this.$store.state.record || "")
+			this.testdata = JSON.stringify(this.$store.state.record || "", null, 2)
 		},
 	},
 	computed: {},
@@ -148,7 +153,7 @@ export default {
 			this.loadSchema(this.selectedSchema)
 			this.loadUi(this.selectedSchema)
 			//this.subscribeValidator()
-			this.loadData()
+			this.loadData(this.selectedSchema)
 			this.subscribeValidator()
 			this.$store.watch(() => this.$store.state.record, value => {
 				console.log("store watcher: record changed")

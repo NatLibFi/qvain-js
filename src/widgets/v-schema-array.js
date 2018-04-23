@@ -21,8 +21,9 @@ export default {
 			if (this.children.length > this.minimum) this.children.pop()
 		},
 		doPlus: function() {
-			if (this.maximum === undefined || this.children.length < this.maximum) this.children.push('')
-			console.log("didPLus")
+			//if (this.maximum === undefined || this.children.length < this.maximum) this.children.push('')
+			if (this.maximum === undefined || this.value.length < this.maximum) this.value.push('')
+			console.log("didPlus, length now:", this.value.length)
 		},
 		deleteElement: function(index) {
 			console.log("schema-array: request to delete element with index", index, "value:", this.children[index])

@@ -18,7 +18,7 @@
 			<p>this schema has multiple possible types; please choose one</p>
 			<select v-model="dataType">
 				<option disabled value="">Please select one</option>
-				<option v-for="type in schema.type">
+				<option v-for="type in possibleTypes">
 					{{ type }}
 				</option>
 			</select>

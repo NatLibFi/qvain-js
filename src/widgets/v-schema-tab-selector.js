@@ -29,7 +29,7 @@ export default {
 			dataType: null,
 			verbose: false,
 			showWidgets: false,
-			customWidget: undefined,
+			customWidget: null,
 		}
 	},
 	methods: {
@@ -145,17 +145,40 @@ export default {
 			return undefined
 		},
 		showTypeSelector: function() {
-			// type can be array or string
-			return typeof this.schema['type'] === 'object'
+			// schema type can be array or string (or undefined)
+			//return this.schema['type'] === undefined || typeof this.schema['type'] === 'object'
+			return typeof this.schema['type'] !== 'string'
+		},
+		possibleTypes: function() {
+			if (this.schema['type'] === 'object') {
+				return this.schema['type']
+			}
+			return ["string", "number", "integer", "object", "array", "boolean", "null"]
 		},
 		widget: function() {
 			//return this.dataType ? "schema-" + this.dataType : ""
 			//return this.defaultWidget(this.dataType)
-			//console.log("WIDGET ERRROR?", this.customWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType))
-			return this.customWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType)
+			//console.log("WIDGET ERRROR?", this.selectedWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType))
+			//return this.selectedWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType)
+
+			//return this.selectedWidget || this.ui['widget'] || this.defaultWidget(this.dataType)
+			console.log("error will follow")
+			console.log("widget chain:", this.selectedWidget, this.uiForDef['widget'], this.uiForSchema['widget'], this.defaultWidget(this.dataType))
+			return this.selectedWidget || this.uiForDef['widget'] || this.uiForSchema['widget'] || this.defaultWidget(this.dataType)
 		},
-		uiHint: function() {
+		ui: function() {
+			return Object.assign({}, this.uiForDef, this.uiForSchema)
+		},
+		uiForSchema: function() {
+			//return this.$store.state.hints[this.path] || this.uiDefHint || {}
 			return this.$store.state.hints[this.path] || {}
+		},
+		uiForDef: function() {
+			if ('$deref' in this.schema) {
+				console.log("$deref:", this.schema['$deref'], this.$store.state.hints[this.schema['$deref']])
+			}
+			return '$deref' in this.schema && this.$store.state.hints[this.schema['$deref']] || {}
+			//return '$deref' in this.schema ? this.$store.state.hints[this.schema['$deref']] : {}
 		},
 		uiTab: function() {
 			return this.$store.state.hints[this.path] && this.$store.state.hints[this.path]['tab']
@@ -180,7 +203,7 @@ export default {
                 let hints = this.$store.state.hints[this.path]
                 if (hints['widget'] !== undefined) {
                     console.log("widget requested:", hints['widget'])
-                    this.customWidget = hints['widget']
+                    this.selectedWidget = hints['widget']
                 }
             }
             */

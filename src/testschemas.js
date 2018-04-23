@@ -1,5 +1,7 @@
 //import schemaIow from '../schema/schema.json'
 //import schemaIowDeref from '../schema/deref.json'
+import schemaFairDataDeref from '../schema/qvain-fairdata-deref.json'
+import schemaFairDataUI from '../schema/qvain-fairdata-ui.json'
 
 // https://tools.ietf.org/html/draft-wright-json-schema-validation-00
 // https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-00
@@ -323,7 +325,8 @@ var testSchemas = {
 	'funder':           _testFunderWidget,
 //	'iow':              schemaIow,
 //	'iow_deref':        schemaIowDeref,
-	
+	'fairdata-deref':   schemaFairDataDeref,
+	'fairdata-ui':      schemaFairDataUI,
 }
 
 export default testSchemas

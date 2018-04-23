@@ -2,25 +2,26 @@
 
 import Widgets from '../widgets/mapping.js'
 
+
 var genericWidgetOption = {
 	'value': null,
 	'text': "none (generic widget)"
 }
 
 function isEmpty(obj) {
-	for(var key in obj) {
-		if(obj.hasOwnProperty(key))
-			return false;
+	for (var key in obj) {
+		if (obj.hasOwnProperty(key))
+			return false
 	}
-	return true;
+	return true
 }
 
-function filterKeys(all, only) {
-	return Object.keys(all)
-		.filter(key => key in only)
-		.reduce((obj, key) => {
-			obj[key] = all[key]
-			return obj
+function filterKeys(obj, valid) {
+	return Object.keys(obj)
+		.filter(key => key in valid)
+		.reduce((newobj, key) => {
+			newobj[key] = obj[key]
+			return newobj
 	}, {})
 }
 
@@ -64,6 +65,8 @@ export default {
 		},
 		open: function() {
 			let hints = this.$store.state.hints[this.path] || {}
+			//this.ui = this.$store.state.hints[this.path] || {}
+
 			this.customWidget = hints['widget'] || null
 			this.customWidgetOptions = hints['options'] || {}
 			this.help = hints['help'] || ""

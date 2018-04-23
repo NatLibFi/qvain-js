@@ -17,6 +17,14 @@ export default new Vuex.Store({
 		record: undefined,
 		schema: "not loaded",
 		hints: {},
+		UI_VALID_KEYWORDS: [
+			'widget',
+			'option',
+			'label',
+			'help',
+			'placeholder',
+			'tab'
+		],
         tabui: {},
 		validation: {},
 		stats: {
@@ -76,6 +84,13 @@ export default new Vuex.Store({
 	getters: {
 		uiForPath: (state) => (path) => {
 			return state.hints[path] || {}
+		},
+		uiValidKeywordsList: (state) => {
+			//Object.keys(state.UI_VALID_KEYWORDS)
+			return state.UI_VALID_KEYWORDS
+		},
+		uiValidKeywordsSet: (state) => {
+			return new Set(state.UI_VALID_KEYWORDS)
 		},
 	},
 })

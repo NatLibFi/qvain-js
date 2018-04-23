@@ -40,6 +40,26 @@ export default {
 		liveState: function() {
 			return '.q' in this.schema ? this.schema['.q']['v'] : null
 		},
+		inputType: function() {
+			if (!('format' in this.schema)) return "text"
+			switch(this.schema['format']) {
+				case "uri":
+					return "url"
+					break
+				case "time":
+					return "time"
+					break
+				case "date":
+					return "date"
+					break
+				case "date-time":
+					return "date"
+					break
+				default:
+					return "text"
+			}
+			return "text"
+		},
 	},
 	created() {
 		//console.log("v-schema-string:", this, this.$data)
