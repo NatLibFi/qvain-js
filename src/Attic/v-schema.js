@@ -1,6 +1,6 @@
 //require('core-js/fn/set');
 import SchemaParser from './schemaparser.js'
-import testSchemas from './testschemas.js'
+import testSchemas from '../testschemas.js'
 
 var _schemaLog = "<no schema>"
 
@@ -22,35 +22,6 @@ function initialCheck(schema) {
 	if (!isObject(schema)) {
 		throw "not an object"
 	}
-}
-
-
-function parseTopLevel(schema) {
-	var lvl = {}
-	var depth = 0
-	
-	/*
-	if (schema['type'] !== "object" && schema['type'] !== undefined) {
-		throw "top level not an object"
-	}
-	*/
-	if (!isObject(schema)) {
-		throw "top level not an object"
-	}
-	
-	var getMetadata = (obj, props) => props.reduce((a, e) => (a[e] = obj[e], a), {})
-	var meta = getMetadata(schema, ['title', 'modified'])
-	//console.log("schema metadata:", meta)
-
-	/*
-	for (let key in schema) {
-		console.log(key);
-		
-	}
-	*/
-	//walk('/', schema)
-	parseSchema(schema)
-	
 }
 
 
@@ -100,7 +71,6 @@ export default {
 			this.schemaOutput = _schemaLog
 			
 			try {
-				//parseTopLevel(this.schemaSource)
 				var jsparser = new SchemaParser(this.schemaSource, schemaLog)
 				jsparser.parseDoc()
 			}

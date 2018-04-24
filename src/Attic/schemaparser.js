@@ -1,10 +1,11 @@
 //import set from 'core-js/es6/set'
 //import url from 'url'
-import objectAssign from 'object-assign' // Object.assign "ponyfill"
+//import objectAssign from 'object-assign' // Object.assign "ponyfill"
 //import URL from 'url' // node core URL module because WHATWG API is probably not implemented in browsers yet
 //import URL from 'url-parse'
 
-import URI from './uris/uris.js'
+//import URI from './uris/uris.js'
+var URI = require('../../vendor/uris/uris.js')
 
 // URN:
 //   https://github.com/goulash1971/urn-parser
@@ -181,13 +182,13 @@ var isNumber = function(val) {
 }
 
 var isFinite = Number.isFinite || function(val) {
-	return typeof val === 'number' && isFinite(val);
+	return typeof val === 'number' && isFinite(val)
 }
 
 var isInteger = Number.isInteger || function(val) {
 	return typeof val === "number" &&
 	isFinite(val) &&
-	Math.floor(val) === val;
+	Math.floor(val) === val
 }
 
 var isString = function(val) {
@@ -224,7 +225,7 @@ function valueToType(val) {
 
 // not <=IE8
 function member(arr, item) {
-	return (arr.indexOf(item) != -1);
+	return (arr.indexOf(item) != -1)
 }
 
 
@@ -234,13 +235,13 @@ function member(arr, item) {
 
 // implement custom errors, so we can separate our own from Javascript's in try/catch handling
 function SchemaError(message, path) {
-	this.name = 'SchemaError';
-	this.message = message || "unspecified error";
-	this.path = path || '';
-	this.stack = (new Error()).stack;
+	this.name = 'SchemaError'
+	this.message = message || "unspecified error"
+	this.path = path || ''
+	this.stack = (new Error()).stack
 }
-SchemaError.prototype = Object.create(Error.prototype);
-SchemaError.prototype.constructor = SchemaError;
+SchemaError.prototype = Object.create(Error.prototype)
+SchemaError.prototype.constructor = SchemaError
 
 
 
@@ -375,7 +376,7 @@ SchemaParser.prototype.parse = function(path, schema, isFirstPass) {
 				continue
 			}
 			log(newpath + " found toplevel keyword: " + key)
-			if ('parser' in _DocKeywords[key]) {}
+			if ('parser' in _DocKeywords[key]) { /* empty */ }
 			//if (key === "definitions") { this.parseDefinitions(newpath, schema['definitions']) }
 		} else if (key in _Combiners) {
 			log(newpath + " skipping combiner: " + key)
@@ -418,9 +419,9 @@ SchemaParser.prototype.parseRequired = function(path, reqs) {
 	
 	let reqSet = {}
 	reqs.forEach((req, i) => {
-		if (!isString(req)) { throw new SchemaError("parseRequired(): array contains non-string value at " + path + '/' + i) };
-		log(path + '/' + i + " <`" + req + "`>");
-		reqSet[req] = true;
+		if (!isString(req)) { throw new SchemaError("parseRequired(): array contains non-string value at " + path + '/' + i) }
+		log(path + '/' + i + " <`" + req + "`>")
+		reqSet[req] = true
 	})
 		
 	
@@ -503,7 +504,7 @@ SchemaParser.prototype.parseEnum = function(path, arr, type) {
 		}
 	})
 	
-	//log(path + " " + enumWithType)
+	log(path + " " + enumWithType)
 
 	/*
 	arr.reduce(function(res, item) {
@@ -534,6 +535,7 @@ SchemaParser.prototype.parseRef = function(path, ref) {
 
 
 
+/*
 SchemaParser.prototype.Dereference = function(schema) {
 	RefParser.dereference(schema, {
 		parse: {
@@ -549,15 +551,16 @@ SchemaParser.prototype.Dereference = function(schema) {
 		dereference: {
 			circular: false
 		}
-	});
+	})
 	
 }
-
+*/
 
 /* -wvh- beyond this line, not implemented yet */
 
 
 SchemaParser.prototype.parseId = function(context, id) {
+	console.log(context, id)
 }
 
 
@@ -583,7 +586,7 @@ SchemaParser.prototype.walkSchema = function(schema, func, p) {
 		if (schema[i] !== null && typeof(schema[i]) == "object") {
 			//this.path += '/' + (this.path ? i : '')
 			//this.path = (this.path || '') + '/' + i
-			this.walkSchema(schema[i], func, np);
+			this.walkSchema(schema[i], func, np)
 		}
 	}
 }
@@ -609,7 +612,7 @@ SchemaParser.prototype._ctxWalk = function(schema, func, ctx) {
 		
 		if (schema[i] !== null && typeof schema[i] == "object") {
 			//this._ctxWalk(schema[i], func, objectAssign(ctx, {p: np}));
-			this._ctxWalk(schema[i], func, ctx.withP(np));
+			this._ctxWalk(schema[i], func, ctx.withP(np))
 			//this._ctxWalk(schema[i], func, {p: np, id: ctx.id});
 		}
 	}
@@ -618,7 +621,7 @@ SchemaParser.prototype._ctxWalk = function(schema, func, ctx) {
 
 // http://json-schema.org/latest/json-schema-core.html#id-keyword
 SchemaParser.prototype._addId = function(id, ctx) {
-	parent = ctx.p || "/"
+	var parent = ctx.p || "/"
 	if (typeof id !== 'string') { throw new SchemaError("_addId(): $id is not a string", parent) }
 	if (id === "" || id === "#") { throw new SchemaError("_addId(): $id can't be empty or hash", parent) }
 
@@ -633,7 +636,7 @@ SchemaParser.prototype._addId = function(id, ctx) {
 	// otherwise, resolve against base
 	var uri = new URI(id)
 	
-	if (uri.scheme() === 'urn:') {}
+	if (uri.scheme() === 'urn:') { /* empty */ }
 	
 	if (parent === "/") {
 		// TODO: check if no or zero-length fragment
@@ -653,7 +656,9 @@ SchemaParser.prototype._addId = function(id, ctx) {
 
 
 // refs
-SchemaParser.prototype._addRef = function(id, ctx) {}
+SchemaParser.prototype._addRef = function(id, ctx) {
+	console.log(id, ctx)
+}
 
 
 
@@ -663,7 +668,7 @@ SchemaParser.prototype.refWalk = function(context, schema) {
 	}
 	
 	// $ref, $id
-	if ('$id' in schema) {}
+	if ('$id' in schema) { /* empty */ }
 }
 
 
