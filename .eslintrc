@@ -8,6 +8,9 @@
     'browser': true,
     'node': true
   },
+  "globals": {
+    "APP_DEBUG": true
+  },
   rules: {
     'indent': [1, 'tab'],
     'no-tabs': 0,
@@ -15,6 +18,7 @@
     'semi-spacing': [1, { before: false, after: true }],
     'space-before-blocks': [1, 'always'],
     'space-in-parens': [1, 'never'],
+    'no-unused-vars': [1],
     'no-console': 0
   }
 }
