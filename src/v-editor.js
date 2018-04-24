@@ -1,4 +1,4 @@
-import parseDate from 'date-fns/parse'
+//import parseDate from 'date-fns/parse'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 export default {
@@ -15,22 +15,22 @@ export default {
 	},
 	methods: {
 		addNewKeyword: function() {
-			console.log("keywords-pre:", this.keywords, this);
+			console.log("keywords-pre:", this.keywords, this)
 			if (this.newKeyword.length > 0) {
 				this.keywords.push(this.newKeyword)
 				this.newKeyword = ''
 			}
-			console.log("keywords-post:", this.keywords, this);
+			console.log("keywords-post:", this.keywords, this)
 		},
 		formatRelDate: function(iso) {
 			//Date.parse(iso);
 			//return distanceInWordsToNow(parseDate(iso));
-			var d = new Date(iso);
+			var d = new Date(iso)
 			// invalid date, NaN !== NaN; see http://stackoverflow.com/a/12372720
 			if (d.getTime() !== d.getTime()) {
-				return "on " + iso;
+				return "on " + iso
 			}
-			return distanceInWordsToNow(d) + " ago";
+			return distanceInWordsToNow(d) + " ago"
 		},
 	}
 }

@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 
 // check if path `p` is below one of the paths in array `arr`
+// eslint-disable-next-line no-unused-vars
 function prefixmatchArray(p, arr) {
 	if (!p) return false
 	
@@ -13,7 +14,7 @@ function prefixmatchArray(p, arr) {
 		if (arr.includes(p.slice(0, last))) return true
 		last--
 	}
-	while ( (last = p.lastIndexOf('/', last)) > 0);
+	while ((last = p.lastIndexOf('/', last)) > 0)
 	
 	return false
 }
@@ -30,7 +31,7 @@ function prefixmatchSet(p, set) {
 		if (p.slice(0, last) in set) return true
 		last--
 	}
-	while ((last = p.lastIndexOf('/', last)) >= 0);
+	while ((last = p.lastIndexOf('/', last)) >= 0)
 	
 	return false
 }

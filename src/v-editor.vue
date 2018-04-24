@@ -43,7 +43,7 @@
 
 					<label for="owner-select" class="col-sm-2 col-form-label">owner</label>
 					<div class="col-sm-10">
-						  <b-dropdown text="select owner" class="m-md-2">
+						<b-dropdown text="select owner" class="m-md-2">
 							<b-dropdown-header>Choose group</b-dropdown-header>
 							<b-dropdown-item>Project Ada</b-dropdown-item>
 							<b-dropdown-item>Project B-tree</b-dropdown-item>

@@ -104,20 +104,20 @@ var _testArrayTuple = {
 var _testArrayTupleAdd = {
 	"type": "array",
 	"items": [
-	{
-		"type": "number"
-	},
-	{
-		"type": "string"
-	},
-	{
-		"type": "string",
-		"enum": ["Street", "Avenue", "Boulevard"]
-	},
-	{
-		"type": "string",
-		"enum": ["NW", "NE", "SW", "SE"]
-	}
+		{
+			"type": "number"
+		},
+		{
+			"type": "string"
+		},
+		{
+			"type": "string",
+			"enum": ["Street", "Avenue", "Boulevard"]
+		},
+		{
+			"type": "string",
+			"enum": ["NW", "NE", "SW", "SE"]
+		}
 	],
 	"additionalItems": false
 }
@@ -158,8 +158,8 @@ var _testAllOfSchema = {
 
 var _testOneOfSchema = {
 	"oneOf": [
-	{ "type": "number", "multipleOf": 5 },
-	{ "type": "number", "multipleOf": 3 }
+		{ "type": "number", "multipleOf": 5 },
+		{ "type": "number", "multipleOf": 3 }
 	]
 }
 
@@ -222,13 +222,13 @@ var _testIdSchema = {
 
 
 var _testTabSchema = {
-    "title": "tab test",
-    "description": "a tab test with data for 2 tabs",
-    "type": "object",
-    "properties": {
-        "user": deepcopy(_testAgeSchema),
-        "location": deepcopy(_testCoordinateSchema),
-    }
+	"title": "tab test",
+	"description": "a tab test with data for 2 tabs",
+	"type": "object",
+	"properties": {
+		"user": deepcopy(_testAgeSchema),
+		"location": deepcopy(_testCoordinateSchema),
+	}
 }
 
 
@@ -260,33 +260,23 @@ var _testTabSchema2 = {
 }
 
 
-var _langString = {
-	"type":"object",
-	"title":"Multilingual string",
-	"description":"Object type for localized strings",
-	"additionalProperties":{
-		"type":"string"
-	}
-}
-	
-
 var _testFunderWidget = {
-    "title": "funder test",
-    "description": "funder widget refdata test",
-    "type": "object",
-    "properties": {
-        "title": { "title": "title of publication", "type": "object" },
-        "funder_type": {
-        	"title": "funder type",
-        	"description": "Project funder type from reference data",
-        	"type": "object",
+	"title": "funder test",
+	"description": "funder widget refdata test",
+	"type": "object",
+	"properties": {
+		"title": { "title": "title of publication", "type": "object" },
+		"funder_type": {
+			"title": "funder type",
+			"description": "Project funder type from reference data",
+			"type": "object",
 			//"additionalProperties": false,
-					"additionalProperties": {
-						"type":"string"
-					},
-        	"properties": {
-        		"identifier": { "title": "Identifier", "type": "string" },
-        		"pref_label": {
+			"additionalProperties": {
+				"type":"string"
+			},
+			"properties": {
+				"identifier": { "title": "Identifier", "type": "string" },
+				"pref_label": {
 					"title": "Preferred label",
 					"type": "object",
 					"additionalProperties": {
@@ -294,10 +284,10 @@ var _testFunderWidget = {
 					},
 					//additionalProperties: false,
 				},
-        		//"definition": { "title": "Definition", "type": "array" },
+				//"definition": { "title": "Definition", "type": "array" },
 			},
-        },
-    }
+		},
+	}
 }
 
 
@@ -320,11 +310,11 @@ var testSchemas = {
 	'definitions':      _testDefinitionsSchema,
 	'refs':             _testRefSchema,
 	'ids':              _testIdSchema,
-    'tabs':             _testTabSchema,
+	'tabs':             _testTabSchema,
 	'tabs2':            _testTabSchema2,
 	'funder':           _testFunderWidget,
-//	'iow':              schemaIow,
-//	'iow_deref':        schemaIowDeref,
+	//	'iow':              schemaIow,
+	//	'iow_deref':        schemaIowDeref,
 	'fairdata-deref':   schemaFairDataDeref,
 	'fairdata-ui':      schemaFairDataUI,
 }

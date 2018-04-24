@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 
 /*
 const SUBSCHEMA_KEYWORDS = {
@@ -63,7 +63,7 @@ function valueAtSchema(schema, func) {
 	_walkAndSet(schema, "", func, "0")
 }
 
-
+// eslint-disable-next-line no-unused-vars
 const DEPTH_KWS = {
 	'properties': {},
 	'definitions': {},
@@ -73,6 +73,7 @@ const DEPTH_KWS = {
 	'oneOf': {},
 }
 
+// eslint-disable-next-line no-unused-vars
 const SINGLE_KWS = {
 	'additionalProperties': {},
 	'not': {},

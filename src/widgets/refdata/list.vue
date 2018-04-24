@@ -6,7 +6,7 @@
 			<b-input-group>
 				<b-form-select v-model="selected"> <!-- class="mb-1" -->
 					<option :value="null" disabled>{{ placeholder }}</option>
-					<option v-for="(item, index) in items" :key="item.id" :value="item">{{ item.label["en"] }} [{{ item.code }}]</option>
+					<option v-for="item in items" :key="item.id" :value="item">{{ item.label["en"] }} [{{ item.code }}]</option>
 				</b-form-select>
 				<b-input-group-append>
 					<b-btn variant="secondary" v-b-popover.hover="ui['help']" title="help"><span class="fas fa-question-circle"></span></b-btn>

@@ -33,7 +33,7 @@ export default {
 		},
 		changeType: function () {
 			if (!this.isFolder) {
-				Vue.set(this.schema, 'children', [])
+				this.$set(this.schema, 'children', [])
 				this.addChild()
 				this.open = true
 			}

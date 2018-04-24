@@ -1,4 +1,3 @@
-//import {SchemaTypes} from './schemaparser.js'
 import vSchemaBase from './v-schema-base.vue'
 
 // from Vue code

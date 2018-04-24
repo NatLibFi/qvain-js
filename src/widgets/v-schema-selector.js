@@ -36,28 +36,28 @@ export default {
 		},
 		defaultWidget: function(schemaType) {
 			switch(schemaType) {
-				case 'string':
-					return 'schema-string'
-				case 'number':
-					return 'schema-number'
-				case 'integer':
-					return 'schema-number'
-				case 'object':
-					return 'schema-object'
-				case 'array':
-					return 'schema-array'
-				case 'boolean':
-					console.log("schema-selector: boolean not implemented yet")
-					return ""
-				case 'null':
-					console.log("schema-selector: null not implemented yet")
-					return ""
-				case undefined:
-					console.log("schema-selector: `any` not implemented yet")
-					return ""
-				default:
-					console.log("schema-selector: unknown schemaType")
-					return ""
+			case 'string':
+				return 'schema-string'
+			case 'number':
+				return 'schema-number'
+			case 'integer':
+				return 'schema-number'
+			case 'object':
+				return 'schema-object'
+			case 'array':
+				return 'schema-array'
+			case 'boolean':
+				console.log("schema-selector: boolean not implemented yet")
+				return ""
+			case 'null':
+				console.log("schema-selector: null not implemented yet")
+				return ""
+			case undefined:
+				console.log("schema-selector: `any` not implemented yet")
+				return ""
+			default:
+				console.log("schema-selector: unknown schemaType")
+				return ""
 			}
 		},
 		vivicate: function() {

@@ -18,5 +18,4 @@ export default {
 	'schema-object': './v-schema-object.vue',
 	'schema-array': './v-schema-array.vue',
 	*/
-														  
 }

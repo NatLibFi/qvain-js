@@ -5,7 +5,7 @@
 			<i :class="['fa', isOpen ? 'fa-angle-up' : 'fa-angle-down']" @click="onArrowClick"></i>
 		</p>
 		<ul v-show="isOpen" class="options-list">
-			<li v-for="(option, index) in fOptions" :class="{'highlighted': index === highlightedPosition}" @mouseenter="highlightedPosition = index" @mousedown="select">
+			<li v-for="(option, index) in fOptions" :key="option" :class="{'highlighted': index === highlightedPosition}" @mouseenter="highlightedPosition = index" @mousedown="select">
 				<slot name="item" :title="option.title" :description="option.description" :thumbnail="option.thumbnail"></slot>
 			</li>
 		</ul>

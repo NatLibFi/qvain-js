@@ -5,7 +5,7 @@
 		file list for <b>{{ project }}</b> path <b>{{ cwd }}</b> deep: {{ isSelectedDeep }}
 		
 		<ul v-if="directories.length">
-			<li v-for="dir in directories">
+			<li v-for="dir in directories" :key="dir">
 				<a @click="openDir(dir.directory_path)">{{ dir.directory_name }}</a> ({{ dir.id }} {{ dir.identifier }})
 			</li>
 		</ul>

@@ -2,10 +2,10 @@ import vSchemaBase from './v-schema-base.vue'
 import axios from 'axios'
 
 function parseApiResults(json) {
-	if (json['status'] !== "OK") return;
-	if (typeof json['results'] !== 'object') return;
-	if (typeof json['results'].length < 1) return;
-	if (typeof json['results'][0]['geometry']['location'] !== 'object') return;
+	if (json['status'] !== "OK") return
+	if (typeof json['results'] !== 'object') return
+	if (typeof json['results'].length < 1) return
+	if (typeof json['results'][0]['geometry']['location'] !== 'object') return
 	let coords = json.results[0].geometry.location
 	return {
 		latitude: coords['lat'],
@@ -43,24 +43,24 @@ export default {
 				timeout: 3000,
 				responseType: 'json',
 			})
-			.then(response => {
+				.then(response => {
 				//this.sources = response.data.sources;
-				this.addressState = 'valid'
-				this.addressError = ""
-				let coords = parseApiResults(response.data)
-				console.log("coords:", coords)
-				if (coords) {
+					this.addressState = 'valid'
+					this.addressError = ""
+					let coords = parseApiResults(response.data)
+					console.log("coords:", coords)
+					if (coords) {
 					//this.coordinates.latitude = coords.latitude
 					//this.coordinates.longitude = coords.longitude
 					//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.coordinates })
-					this.coordinates = coords
-				}
-			})
-			.catch(error => {
-				this.addressState = 'invalid'
-				this.addressError = error
-				console.log(error)
-			})
+						this.coordinates = coords
+					}
+				})
+				.catch(error => {
+					this.addressState = 'invalid'
+					this.addressError = error
+					console.log(error)
+				})
 		}
 	},
 	computed: {

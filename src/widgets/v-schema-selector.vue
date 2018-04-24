@@ -10,14 +10,14 @@
 		<div v-if="showWidgets">
 			<p>ui widgets</p>
 			<select v-model="customWidget">
-				<option v-for="(constructor, name) in this.$options.components">{{ name }}</option>
+				<option v-for="(constructor, name) in this.$options.components" :key="constructor">{{ name }}</option>
 			</select>
 		</div>
 		<div v-if="showTypeSelector">
 			<p>this schema has multiple possible types; please choose one</p>
 			<select v-model="valType">
 				<option disabled value="">Please select one</option>
-				<option v-for="type in schema.type">
+				<option v-for="type in schema.type" :key="type">
 					{{ type }}
 				</option>
 			</select>
@@ -25,7 +25,7 @@
 		<b-card v-if="verbose" header="" class="mb-2" title="" sub-title="">
 			<p>
 			path: <code>{{ path || 'root' }}</code><br/>
-			type: <code><span v-if="schema.type">{{ schema.type }}</span><span class="meta-info missing" v-else>unknown</span></code></br>
+			type: <code><span v-if="schema.type">{{ schema.type }}</span><span class="meta-info missing" v-else>unknown</span></code><br/>
 			validationType: <code>{{ valType }}</code><br/>
 			is: <code>{{ widget }}</code><br/>
 			value: <code>{{ value }}</code><br/>

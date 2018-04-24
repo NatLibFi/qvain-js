@@ -7,10 +7,6 @@ Vue.use(Vuex)
 //import { SchemaValidator } from '../tmp/json-schema-live/src/validate.js'
 
 
-var buildTree = function(schema) {
-}
-
-
 export default new Vuex.Store({
 	state: {
 		//record: "not loaded",
@@ -25,7 +21,7 @@ export default new Vuex.Store({
 			'placeholder',
 			'tab'
 		],
-        tabui: {},
+		tabui: {},
 		validation: {},
 		stats: {
 			total: 0,
@@ -59,13 +55,9 @@ export default new Vuex.Store({
 		delHints(state, payload) {
 			Vue.delete(state.hints[payload.path])
 		},
-        addTab(state, payload) {
-            Vue.set(state.tabui, payload.tab, payload.schema)
-        },
-		init(state) {
-			state.validation = buildTree(state.schema)
+		addTab(state, payload) {
+			Vue.set(state.tabui, payload.tab, payload.schema)
 		},
-		//updateValue(state, {par, prop, value}) {
 		updateValue(state, payload) {
 			console.log("store update for", payload.p, "payload:", payload)
 			//payload.p[payload.prop] = payload.val

@@ -1,5 +1,3 @@
-import vSchemaSchema from './v-schema-schema.vue'
-
 export default {
 	name: 'schema',
 	/*

@@ -3,11 +3,11 @@ import axios from 'axios'
 
 function filterKeys(full, wanted) {
 	return Object.keys(full)
-	.filter(key => wanted.includes(key))
-	.reduce((obj, key) => {
-		obj[key] = full[key]
-		return obj
-	}, {})
+		.filter(key => wanted.includes(key))
+		.reduce((obj, key) => {
+			obj[key] = full[key]
+			return obj
+		}, {})
 }
 
 export default {
@@ -41,9 +41,9 @@ export default {
 			var vm = this
 			axios.get(
 				'https://metax-test.csc.fi/es/' + index + '/' + doctype + '/_search?size=10000&pretty=1&filter_path=hits.hits._source', {
-				timeout: 5000,
-				responseType: 'json',
-				mode: 'no-cors',
+					timeout: 5000,
+					responseType: 'json',
+					mode: 'no-cors',
 				//crossdomain: true,
 				//headers: {'X-Requested-With': 'XMLHttpRequest', 'origin': '*'},
 				/*
@@ -53,21 +53,21 @@ export default {
 					password: 'pass'
 				},
 				*/
-			})
-			.then(response => {
-				if (response.data && response.data.hits && response.data.hits.hits) {
-					let items = response.data.hits.hits
-					//vm.items = response.data.hits.hits.map(item => item['_source'])
-					vm.items = vm.filterApiFields ? items.map(item => filterKeys(item['_source'], vm.apiFields) ) : items.map(item => item['_source'])
-					vm.error = null
-				} else {
-					vm.items = []
-					vm.error = "empty data"
-				}
-			})
-			.catch(error => {
-				console.log(error)
-			})
+				})
+				.then(response => {
+					if (response.data && response.data.hits && response.data.hits.hits) {
+						let items = response.data.hits.hits
+						//vm.items = response.data.hits.hits.map(item => item['_source'])
+						vm.items = vm.filterApiFields ? items.map(item => filterKeys(item['_source'], vm.apiFields)) : items.map(item => item['_source'])
+						vm.error = null
+					} else {
+						vm.items = []
+						vm.error = "empty data"
+					}
+				})
+				.catch(error => {
+					console.log(error)
+				})
 		},
 		indexOf: function(id) {
 			if (!this.items) {

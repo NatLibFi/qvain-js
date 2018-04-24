@@ -2,12 +2,13 @@
 
 import Widgets from '../widgets/mapping.js'
 
-
+// eslint-disable-next-line no-unused-vars
 var genericWidgetOption = {
 	'value': null,
 	'text': "none (generic widget)"
 }
 
+// eslint-disable-next-line no-unused-vars
 function isEmpty(obj) {
 	for (var key in obj) {
 		if (obj.hasOwnProperty(key))
@@ -22,7 +23,7 @@ function filterKeys(obj, valid) {
 		.reduce((newobj, key) => {
 			newobj[key] = obj[key]
 			return newobj
-	}, {})
+		}, {})
 }
 
 function ObjectOrNull(obj) {
@@ -58,7 +59,7 @@ export default {
 				return result
 			}, [])
 		},
-		edit: function(path, schema) {
+		edit: function(path) {
 			console.log("editor called with path:", path)
 			this.path = path
 			this.$refs['edit-modal'].show()
@@ -90,7 +91,7 @@ export default {
 	computed: {
 		listWidgetOptions: function() {
 			if (!this.customWidget) return null
-			if (!(this.customWidget) in Widgets) return null
+			if (!(this.customWidget in Widgets)) return null
 			//if (!Widgets[this.customWidget]['props']) return null
 				
 			return Widgets[this.customWidget]['props']

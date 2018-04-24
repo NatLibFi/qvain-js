@@ -6,7 +6,7 @@
 		deep: {{ isSelectedDeep }}
 		
 		<ul v-if="directories.length">
-			<li v-for="dir in directories">
+			<li v-for="dir in directories" :key="dir">
 				<a @click="setCurDirectory(dir)">{{ dir.directory_name }}</a> ({{ dir.id }} {{ dir.identifier }})
 			</li>
 		</ul>
@@ -106,26 +106,26 @@ export default {
 			axios.get(API_PROJECT_ROOT_URL, {
 				params: { project: project }
 			})
-			.then(function (response) {
-				console.log("status:", response.status)
-				v.processRoot(response.data, v.$data)
-			})
-			.catch(function (error) {
-				console.log(error)
-			})
+				.then(function (response) {
+					console.log("status:", response.status)
+					v.processRoot(response.data, v.$data)
+				})
+				.catch(function (error) {
+					console.log(error)
+				})
 		},
-		getDirInfo: function(id) {
+		getDirInfo: function() {
 			// NOTE: remove this when the api changes
 			var v = this
 			
 			axios.get(API_DIR_URL + v.curId)
-			.then(function (response) {
-				v.curDirInfo = response.data
-			})
-			.catch(function (error) {
-				v.curDirInfo = null
-				console.log(error)
-			})
+				.then(function (response) {
+					v.curDirInfo = response.data
+				})
+				.catch(function (error) {
+					v.curDirInfo = null
+					console.log(error)
+				})
 		},
 		//https://metax-test.csc.fi/rest/directories/4
 		getFilesFor: function(directory) {
@@ -133,13 +133,13 @@ export default {
 			
 			console.log("getting files for directory id", directory)
 			axios.get(API_DIR_URL + v.curId + "/files")
-			.then(function (response) {
-				console.log("status:", response.status)
-				v.processResponse(response.data, v.$data)
-			})
-			.catch(function (error) {
-				console.log(error)
-			})
+				.then(function (response) {
+					console.log("status:", response.status)
+					v.processResponse(response.data, v.$data)
+				})
+				.catch(function (error) {
+					console.log(error)
+				})
 		},
 		processRoot: function(response, data) {
 			if (!('id' in response)) data.error = "empty"

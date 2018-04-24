@@ -25,13 +25,13 @@ export default {
 			axios.get(API_PROJECT_ROOT_URL, {
 				params: { project: project }
 			})
-			.then(function (response) {
-				console.log("status:", response.status)
-				v.processRoot(response.data, v.$data)
-			})
-			.catch(function (error) {
-				console.log(error)
-			})
+				.then(function (response) {
+					console.log("status:", response.status)
+					v.processRoot(response.data, v.$data)
+				})
+				.catch(function (error) {
+					console.log(error)
+				})
 		},
 		processRoot: function(response, data) {
 			if (!('id' in response)) data.error = "empty"

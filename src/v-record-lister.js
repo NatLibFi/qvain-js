@@ -1,7 +1,5 @@
-import axios from 'axios'
+//import axios from 'axios'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
-
-const API_URL = "https://metax-test.csc.fi/rest/v1/datasets/"
 
 const fields = [
 	{ label: "id",      key: "id",      sortable: true },
@@ -101,10 +99,10 @@ export default {
 			myGroups.forEach(
 				grp => {
 					this.myGroupsOptions.push({
-					text: grp.name,
-					value: grp.id,
+						text: grp.name,
+						value: grp.id,
+					})
 				})
-			})
 		},
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)

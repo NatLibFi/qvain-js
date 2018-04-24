@@ -8,8 +8,6 @@
 		<b-alert variant="success" :show="apiResponse !== null">Success Alert</b-alert>
 		<b-alert variant="danger" :show="apiError !== null">{{ apiError }}</b-alert>
 		<b-form-textarea id="modal-textarea" v-model="apiResponse" placeholder="api response" :rows="6" :max-rows="24" :state="apiState" readonly></b-form-textarea>
-    </b-form-textarea>
-
 	</b-modal>
 </template>
 
@@ -45,12 +43,12 @@ export default {
 				transformResponse: (req) => { return JSON.stringify(req, null, 2) },
 				responseType: 'json'
 			})
-			.then(function (response) {
-				console.log("status:", response.status)
-				vm.apiResponse = response.data
-				vm.apiError = null
-			})
-			.catch(function (error) {
+				.then(function (response) {
+					console.log("status:", response.status)
+					vm.apiResponse = response.data
+					vm.apiError = null
+				})
+				.catch(function (error) {
 				/*
 				if (error.response) {
 					// The request was made and the server responded with a status code
@@ -68,10 +66,10 @@ export default {
 					console.log('Error', error.message);
 				}
 				*/
-				console.log(error)
-				vm.apiResponse = error.response || null
-				vm.apiError = error.message
-			})
+					console.log(error)
+					vm.apiResponse = error.response || null
+					vm.apiError = error.message
+				})
 		},
 		save: function() {
 		},

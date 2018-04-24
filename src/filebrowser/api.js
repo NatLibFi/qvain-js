@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-const API_BASE = "https://metax-test.csc.fi/rest/"
 //const API_PROJECT_ROOT_URL = "https://metax-test.csc.fi/rest/directories/root"
 
 var fileapi = axios.create({
@@ -17,4 +16,4 @@ fileapi.get('/directories/files', {
 		project: 'project_x',
 		path: '/'
 	}
-)
+})

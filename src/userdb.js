@@ -5,15 +5,15 @@ var dummyUsers = {
 }
 
 var dummyGroups = [
-{ 'gid': "001", 'name': "nasty project", 'members': ["069", "666"] },
-{ 'gid': "002", 'name': "shitty project", 'members': ["001", "069", "666"] },
+	{ 'gid': "001", 'name': "nasty project", 'members': ["069", "666"] },
+	{ 'gid': "002", 'name': "shitty project", 'members': ["001", "069", "666"] },
 ]
 
 var userdb = {
 	users: dummyUsers,
 	groups: dummyGroups,
 	getUser: function(user) {
-		return users[user];
+		return this.users[user]
 	},
 	getGroupsFor: function(uid) {
 		return this.groups.filter(this.groupHasMember(uid))
@@ -25,4 +25,4 @@ var userdb = {
 	}
 }
 
-export default userdb;
+export default userdb

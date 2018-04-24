@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import vSchemaNumber from './v-schema-number.vue'
 import vSchemaString from './v-schema-string.vue'
 import vSchemaObject from './v-schema-object.vue'
@@ -61,30 +59,30 @@ export default {
 		defaultWidget: function(schemaType) {
 			//console.log("schemaType:", schemaType)
 			switch(schemaType) {
-				case 'string':
-					return 'schema-string'
-				case 'number':
-					return 'schema-number'
-				case 'integer':
-					return 'schema-number'
-				case 'object':
-					return 'schema-object'
-				case 'array':
-					return 'schema-array'
-				case 'boolean':
-					console.log("schema-selector: boolean not implemented yet")
-					return ""
-				case 'null':
-					console.log("schema-selector: null not implemented yet")
-					return ""
-				case undefined:
-					console.log("schemaType: checking for combiners...", this.handleCombiners())
-					return this.handleCombiners() || ""
-					console.log("schema-selector: `any` not implemented yet")
-					return ""
-				default:
-					console.log("schema-selector: unknown schemaType")
-					return ""
+			case 'string':
+				return 'schema-string'
+			case 'number':
+				return 'schema-number'
+			case 'integer':
+				return 'schema-number'
+			case 'object':
+				return 'schema-object'
+			case 'array':
+				return 'schema-array'
+			case 'boolean':
+				console.log("schema-selector: boolean not implemented yet")
+				return ""
+			case 'null':
+				console.log("schema-selector: null not implemented yet")
+				return ""
+			case undefined:
+				console.log("schemaType: checking for combiners...", this.handleCombiners())
+				return this.handleCombiners() || ""
+				//console.log("schema-selector: `any` not implemented yet")
+				//return ""
+			default:
+				console.log("schema-selector: unknown schemaType")
+				return ""
 			}
 		},
 		vivicate: function() {
@@ -94,7 +92,8 @@ export default {
 			}
 			
 			console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
-			var target, key
+
+			var target, key // eslint-disable-line no-unused-vars
 
 			// the parent of the root path is the store
 			if (this.parent === undefined || this.parent === "") {
@@ -111,12 +110,10 @@ export default {
 			/*
 			if (this.schema['type'] === 'object' || this.schema['properties']) {
 				this.value = {}
-				//Vue.set(target, key, {})
 				this.$store.commit('updateValue', { p: target, prop: this.property, val: {} })
 				console.log("set value to empty object", this.$store.state.record.title, this.value)
 			} else if (this.schema['type'] === 'array') {
 				//this.value = []
-				//Vue.set(target, key, [])
 				this.$store.commit('updateValue', { p: target, prop: this.property, val: [] })
 				console.log("set value to empty array")
 			}
@@ -125,7 +122,7 @@ export default {
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.emptyValue })
 			/*
 			else {
-				Vue.set(target, key, "abc")
+				this.$set(target, key, "abc")
 			}
 			*/
 		},
@@ -133,14 +130,13 @@ export default {
 	computed: {
 		emptyValue: function() {
 			switch (this.dataType) {
-				case 'object':
-					return {}
-				case 'array':
-					return []
-				case 'null':
-					return null
-				default:
-					return undefined
+			case 'object':
+				return {}
+			case 'array':
+				return []
+			case 'null':
+				return null
+			default:
 			}
 			return undefined
 		},
@@ -188,38 +184,36 @@ export default {
 		},
 	},
 	watch: {
+		/*
 		schema: function() {
-			return
 			console.log("schema-tab-selector(", this.path, "): calling setDataType (watch) with", this.schema['type'])
 			this.setDataType(this.schema['type'])
 			
 			console.log("calling vivicate() from watcher")
 			this.vivicate()
 			
-			/*
-			if (this.path in this.$store.state.hints) {
-                console.log("found hint for path!")
+			//if (this.path in this.$store.state.hints) {
+            //    console.log("found hint for path!")
                 
-                let hints = this.$store.state.hints[this.path]
-                if (hints['widget'] !== undefined) {
-                    console.log("widget requested:", hints['widget'])
-                    this.selectedWidget = hints['widget']
-                }
-            }
-            */
+            //    let hints = this.$store.state.hints[this.path]
+            //    if (hints['widget'] !== undefined) {
+            //        console.log("widget requested:", hints['widget'])
+            //        this.selectedWidget = hints['widget']
+            //   }
+            //}
             
 			//this.$store.commit("addTab", this.schema)
 			
-			/*
-			console.log("destroying children", this.$children)
-			this.$children.forEach(child => child.$destroy())
-			console.log("destroyed children", this.$children)
-			this.$forceUpdate()
-			*/
+			//console.log("destroying children", this.$children)
+			//this.$children.forEach(child => child.$destroy())
+			//console.log("destroyed children", this.$children)
+			//this.$forceUpdate()
+			
 			//this.$children.forEach(child => console.log("child:", child))
 			//this.$children = []
 			//console.log("set children to empty list", this.$children)
 		},
+		*/
 	},
 	components: {
 		//'schema': vSchemaSchema,

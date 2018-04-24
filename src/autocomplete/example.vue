@@ -49,7 +49,7 @@ export default {
 				thumbnail: 'http://lorempicsum.com/nemo/200/200/4'
 			}]
 		}
-    },
+	},
 	methods: {
 		onOptionSelect(option) {
 			console.log('Selected option:', option)

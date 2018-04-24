@@ -1,4 +1,3 @@
-//import {SchemaTypes} from './schemaparser.js'
 import vSchemaBase from './v-schema-base.vue'
 
 export default {
@@ -43,20 +42,16 @@ export default {
 		inputType: function() {
 			if (!('format' in this.schema)) return "text"
 			switch(this.schema['format']) {
-				case "uri":
-					return "url"
-					break
-				case "time":
-					return "time"
-					break
-				case "date":
-					return "date"
-					break
-				case "date-time":
-					return "date"
-					break
-				default:
-					return "text"
+			case "uri":
+				return "url"
+			case "time":
+				return "time"
+			case "date":
+				return "date"
+			case "date-time":
+				return "date"
+			default:
+				//return "text"
 			}
 			return "text"
 		},

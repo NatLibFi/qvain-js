@@ -25,7 +25,7 @@
 				<hr/>
 			</div>
 		</form>
-		<div v-for="record in records" style="display: none;">
+		<div v-for="record in records" :key="record" style="display: none;">
 		{{ record.id }} – {{ record.title }} – {{ record.owner }} <button type="button" class="toggle-more" v-bind:id="'toggle-' + record.id">…</button>
 		<span v-bind:id="'toggle-' + record.id + '-text'" class="expandable">created: <time :datetime="record.created">{{ record.created | formatDate }}</time></span>
 		</div>
@@ -34,14 +34,14 @@
 		<table v-if="filteredRecords.length" class="table" id="record-list">
 			<thead>
 				<tr>
-					<th v-for="column in tableColumns">
+					<th v-for="column in tableColumns" :key="column">
 						<a v-on:click="sortByField = column.field; sortRecords()" style="color: #002233;">{{ column.header }} <i class="fa fa-sort" style="color: #004466;"></i></a>
 					</th>
 				</tr>
 			</thead>
 			<tbody is="transition-group" name="record-list">
 				<tr v-for="record in records" :key="record.id" v-on:click.capture="$router.push({ name: 'editor', params: { id: record.id}})">
-					<td v-for="column in tableColumns">
+					<td v-for="column in tableColumns" :key="column">
 						<!-- <xrouter-link :to="{ name: 'editor', params: { id: record.id }}">{{ record.id }}</xrouter-link> -->
 						{{ record[column.field] }}
 					</td>

@@ -6,14 +6,14 @@ var currentUid = "069"
 var ALLPERMS = ['usr', 'grp', 'org']
 
 var makeToggles = function() {
-	var toggles = document.getElementsByClassName("toggle-more");
+	var toggles = document.getElementsByClassName("toggle-more")
 	Array.prototype.forEach.call(toggles, function(el) {
 		el.addEventListener('click', function() {
 			//document.getElementById(el.id + '-text').classList.toggle("expanded");
-			el.nextElementSibling.classList.toggle("expanded");
-		});
-	});
-};
+			el.nextElementSibling.classList.toggle("expanded")
+		})
+	})
+}
 
 //module.exports = {
 export default {
@@ -23,10 +23,10 @@ export default {
 			myUid: "",
 			myGroups: [],
 			tableColumns: [
-			{ header: "id", field: "id" },
-			{ header: "title", field: "title" },
-			{ header: "owner", field: "owner" },
-			{ header: "created", field: "created" },
+				{ header: "id", field: "id" },
+				{ header: "title", field: "title" },
+				{ header: "owner", field: "owner" },
+				{ header: "created", field: "created" },
 			],
 			records: [],
 			checkedOwnership: ['usr', 'grp'],
@@ -38,16 +38,16 @@ export default {
 	
 	created: function () {
 		//this.fetchData()
-		this.fakeData();
+		this.fakeData()
 		//this.records = this.filteredRecords;
 		//this.filteredRecords();
-		this.myUid = currentUid;
-		this.myGroups = userdb.getGroupsFor(currentUid).map(function(v) {return v.gid});
-		this.fetchByOwnertype();
+		this.myUid = currentUid
+		this.myGroups = userdb.getGroupsFor(currentUid).map(function(v) {return v.gid})
+		this.fetchByOwnertype()
 	},
 	
 	mounted: function() {
-		this.makeToggles();
+		this.makeToggles()
 	},
 	
 	filters: {
@@ -63,7 +63,7 @@ export default {
 	
 	methods: {
 		alert: function (msg) { 
-			return window.alert(msg);
+			return window.alert(msg)
 		},
 		fetchData: function () {
 			var xhr = new XMLHttpRequest()
@@ -75,11 +75,11 @@ export default {
 			}
 			xhr.send()
 		},
-		fakeData: function () {
+		fakeData: function() {
 			//this.records = dummyRecords;
-			this.records = recorddb.getAllForUser(currentUid);
+			this.records = recorddb.getAllForUser(currentUid)
 		},
-		toggleAllPerms: function (event) {
+		toggleAllPerms: function() {
 			//console.log("toggle?", event.target);
 			/*
 			 *			if (this.checkedOwnership.length > 0) {
@@ -98,36 +98,36 @@ export default {
 		}
 		*/
 			//this.checkedOwnership = this.checkedOwnership.length === ALLPERMS.length ? [] : ALLPERMS;
-			this.checkedOwnership = this.allChecked ? [] : ALLPERMS;
+			this.checkedOwnership = this.allChecked ? [] : ALLPERMS
 		},
 		sortByDate: function() {
 			this.records.sort(function(a, b) {
 				return a.created > b.created
-			});
+			})
 		},
 		sortRecords: function() {
-			if (!this.sortByField) { return };
-			console.log(this.sortByField, typeof(this));
+			if (!this.sortByField) { return }
+			console.log(this.sortByField, typeof(this))
 			//console.log("before:", this.records.map(function(v) {return v.id}));
-			var vm = this;
+			var vm = this
 			this.records.sort(function(a, b) {
-				var aval = a[vm.sortByField];
-				var bval = b[vm.sortByField];
+				var aval = a[vm.sortByField]
+				var bval = b[vm.sortByField]
 				//console.log(vm.sortByField, typeof(vm));
 				if (aval < bval) {
-					return -1;
+					return -1
 				}
 				if (aval > bval) {
-					return 1;
+					return 1
 				}
 				
-				return 0;
-			});
+				return 0
+			})
 			//console.log("after:", this.records.map(function(v) {return v.id}));
 		},
 		fetchByOwnertype: function() {
 			//this.records = recorddb.getAllForUser(currentUid, true, true);
-			this.records = recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1);
+			this.records = recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1)
 		},
 		makeToggles: makeToggles,
 	},
@@ -137,7 +137,7 @@ export default {
 			return this.checkedOwnership.length === ALLPERMS.length
 		},
 		filteredRecords: function() {
-			return recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1);
+			return recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1)
 		},
 		/*
 		 *		filterByOwnertype: function() {
@@ -151,12 +151,12 @@ export default {
 	*/
 		reFetchByOwnertype: function() {
 			//this.records = recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1);
-			return recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1);
+			return recorddb.getAllForUser(currentUid, this.checkedOwnership.indexOf("grp") > -1, this.checkedOwnership.indexOf("org") > -1)
 		},
 	},
 	watch: {
 		checkedOwnership: function() {
-			return this.autoFetch ? this.fetchByOwnertype() : false;
+			return this.autoFetch ? this.fetchByOwnertype() : false
 		},
 	},
 }

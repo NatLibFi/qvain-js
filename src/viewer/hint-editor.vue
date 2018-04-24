@@ -29,7 +29,7 @@
 					</b-list-group>
 					
 					<ul v-if="listWidgetOptions">
-						<li v-for="(val, option) in listWidgetOptions" class="mt-1">
+						<li v-for="(val, option) in listWidgetOptions" :key="val" class="mt-1">
 						<b>{{ option }}</b>
 						value:
 							<span v-if="option in customWidgetOptions">{{ customWidgetOptions[option] }}</span>
@@ -75,7 +75,7 @@
 				<b-col cols="3">tab</b-col>
 				<b-col>
 					<!-- <b-button class="p-0 m-0" size="sm" variant="link" v-for="c in 6"> -->
-						<span class="fa-stack" v-for="c in 6" @click="myTab = c">
+						<span class="fa-stack" v-for="c in 6" :key="c" @click="myTab = c">
 							<span class="fa fa-stack-2x" :class="[ myTab === c ? 'fa-square' : 'fa-square-o' ]"></span><strong class="fa-stack-1x" :class="{ 'text-light': myTab === c }">{{ c }}</strong>
 							<i class="fas fa-headphones" data-fa-transform="shrink-6" data-fa-mask="fas fa-square">{{c}}</i>
 						</span>
@@ -86,7 +86,7 @@
 			<b-row class="mb-2">
 				<b-col cols="3">tab</b-col>
 				<b-col class="p-3">
-					<span class="fa-layers fa-fw" v-for="c in 6" @click="myTab = c">
+					<span class="fa-layers fa-fw" v-for="c in 6" :key="c" @click="myTab = c">
 						<i class="fas fa-square"></i>
 						<span class="fa-layers-text fa-inverse" data-fa-transform="shrink-2" style="font-weight:900">{{c}}</span> <!-- data-fa-transform="shrink-8" -->
 					</span>

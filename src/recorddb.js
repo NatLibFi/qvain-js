@@ -8,7 +8,7 @@ var dummyRecords = [
 	{ 'id': "026", 'creator': "069", 'owner': "002", 'ownertype': "gid", 'created': "2016-10-20T19:58:12+03:00", 'modified': "", 'title': "Great Puppet Percentage of Governments in the 20th Century" },
 	{ 'id': "036", 'creator': "069", 'owner': "096", 'ownertype': "oid", 'created': "2016-10-19T19:42:12+03:00", 'modified': "", 'title': "Corporate Responsibility and the Shmoo" },
 	{ 'id': "027", 'creator': "666", 'owner': "666", 'ownertype': "uid", 'created': "2016-10-21T11:13:24+03:00", 'modified': "", 'title': "Income distribution in relation to gender and age" },
-];
+]
 
 var recorddb = {
 	records: dummyRecords,
@@ -20,7 +20,7 @@ var recorddb = {
 	},
 	getAllForUser: function(id, wantGrp, wantOrg) {
 		//console.log("group, org?", wantGrp, wantOrg);
-		var myRecs = this.getForUser(id);
+		var myRecs = this.getForUser(id)
 		
 		if (wantGrp) {
 			var myGroups = userdb.getGroupsFor(id).map(function(v) {return v.gid})
@@ -28,15 +28,16 @@ var recorddb = {
 			//myGroups.forEach(function(grp) { console.log("grp:", grp, this.getForGroup(grp)); myGrpRecs.push.apply(myGrpRecs, this.getForGroup(grp)) }, this);
 			myGroups.forEach(function(grp) {
 				this.getForGroup(grp).forEach(function(rec) { myGrpRecs.push(rec) })
-			}, this);
+			}, this)
 			//console.log("myGrpRecs:", myGrpRecs);
-			myRecs = myRecs.concat(myGrpRecs);
+			myRecs = myRecs.concat(myGrpRecs)
 		}
 		
 		if (wantOrg) {
+			/* empty */
 		}
 		
-		return myRecs;
+		return myRecs
 	},
 	recordHasOwner: function(id, type) {
 		return function(record) {
@@ -46,4 +47,4 @@ var recorddb = {
 	}
 }
 
-export default recorddb;
+export default recorddb

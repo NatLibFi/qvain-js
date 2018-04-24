@@ -1,5 +1,5 @@
 import { foreachSchema } from './lib/foreach_schema.js'
-import jsonpointer from 'json-pointer'
+//import jsonpointer from 'json-pointer'
 
 function schemaToTabs(schema, ui, tabs) {
 	var curTab = "0"
@@ -23,4 +23,4 @@ function schemaToTabs2(schema, ui, tabs) {
 	}
 }
 
-export { schemaToTabs }
+export { schemaToTabs, schemaToTabs2 }

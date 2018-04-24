@@ -1,10 +1,5 @@
 // dummy functional component
 
-var EmptyList = "div"
-var TableList = "div"
-var OrderedList = "div"
-var UnorderedList = "div"
-
 export default {
 	name: "skip",
 	functional: true,

@@ -5,7 +5,7 @@ import vWelcome from './v-welcome.vue'
 import vEditor from './v-editor.vue'
 import vLister from './v-lister.vue'
 import vRecordLister from './v-record-lister.vue'
-import vSchema from './v-schema.vue'
+import vSchema from './Attic/v-schema.vue'
 import vSchemaForm from './v-schema-form.vue'
 import vSchemaViewer from './viewer/v-schema-viewer.vue'
 import testAutoComplete from './autocomplete/example.vue'
@@ -28,7 +28,7 @@ const routes = [
 	{ path: '/viewschema', component: vSchemaViewer, props: false },
 	{ path: '/form', component: vSchemaForm, props: false },
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
-    { path: '/tabui', component: vTabUi, props: false },
+	{ path: '/tabui', component: vTabUi, props: false },
 	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
 	//{ path: '/files', component: vFileBrowser, props: true },
 ]

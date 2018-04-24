@@ -4,13 +4,13 @@ import testSchemasData from './testschemas_data.js'
 
 import vSchemaTabSelector from './widgets/v-schema-tab-selector.vue'
 
-import { schemaToTabs } from './schema_to_tabs.js'
+//import { schemaToTabs } from './schema_to_tabs.js'
 
 import { SchemaValidator, Validator } from '../tmp/json-schema-live/src/validate.js'
 
 
 export default {
-    name: "tabui",
+	name: "tabui",
 	data: function() {
 		return {
 			selectedSchema: '',
@@ -23,7 +23,6 @@ export default {
 			testdata: '{"latitude": 60.1830097, "longitude": 24.9595227}',
 			testdataValid: null,
 			dataParseError: "",
-			validator: null,
 			doLive: true,
 			unsubscribeFunc: null,
 			startTab: 0,
@@ -63,7 +62,8 @@ export default {
 			this.validator = new Validator(this.$store.state.schema, this.$store.state.record)
 			var vm = this
 			console.log("VALIDATOR:", typeof validator, typeof this.validator.validate)
-			this.unsubscribeFunc = this.$store.subscribe((mutation, state) => {
+			// store subscribe arguments: mutation, state
+			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
 				//console.log(mutation.type)
 				//if (mutation.type == "updateValue" || mutation.type == "loadData") {
 				if (mutation.type == "updateValue") {
@@ -178,7 +178,7 @@ export default {
 		},
 	},
 	components: {
-        'schema-tab-selector': vSchemaTabSelector,
+		'schema-tab-selector': vSchemaTabSelector,
 	},
 	created() {
 		//console.log("v-schema-schema:", this, this.$data)

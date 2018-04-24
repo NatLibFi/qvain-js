@@ -5,8 +5,6 @@ import axios from 'axios'
 import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
 
-const API_BASE = "https://metax-test.csc.fi/rest/"
-
 var fileapi = axios.create({
 	baseURL: 'https://metax-test.csc.fi/rest/',
 	timeout: 1000,
@@ -35,8 +33,8 @@ function getResStatus(err) {
 }
 
 // https://metax-test.csc.fi/rest/directories/root?project=project_x
-const API_PROJECT_ROOT_URL = "https://metax-test.csc.fi/rest/directories/root"
-const API_DIR_URL = "https://metax-test.csc.fi/rest/directories/"
+//const API_PROJECT_ROOT_URL = "https://metax-test.csc.fi/rest/directories/root"
+//const API_DIR_URL = "https://metax-test.csc.fi/rest/directories/"
 
 export default {
 	name: "filelist",
@@ -46,7 +44,6 @@ export default {
 			error: null,
 			directories: [],
 			files: [],
-			error: null,
 			rootId: null,
 			cwd: '/',
 			curId: null,
@@ -92,29 +89,29 @@ export default {
 					path: dir
 				}
 			})
-			.then(function (response) {
-				console.log("status:", response.status)
-				vm.error = null
-				vm.cwd = dir
-				//vm.$router.push({ name: "files", params: { project: vm.project, relpath: vm.cwd.length > 1 ? vm.cwd.split('/') : undefined }})
-				//vm.$router.push({ name: "files", params: { project: vm.project, relpath: dir.split('/').filter(x => x) }})
-				vm.processResponse(response.data, vm.$data)
-			})
-			.catch(function (error) {
+				.then(function (response) {
+					console.log("status:", response.status)
+					vm.error = null
+					vm.cwd = dir
+					//vm.$router.push({ name: "files", params: { project: vm.project, relpath: vm.cwd.length > 1 ? vm.cwd.split('/') : undefined }})
+					//vm.$router.push({ name: "files", params: { project: vm.project, relpath: dir.split('/').filter(x => x) }})
+					vm.processResponse(response.data, vm.$data)
+				})
+				.catch(function (error) {
 				// NOTE: if we have a CORS error, there is no response body and hence no status code :(
 				//vm.$router.push({ name: "files", params: { project: vm.project, relpath: dir.split('/').filter(x => x) }})
-				console.log("error:", error)
-				for (let x in error) {
-					console.log("key:", x)
-				}
-				console.log("response:", error.response.status)
-				let reqPath = getReqParams(error) && error.config.params.path || null
-				let resStatus = getResStatus(error) || null
-				vm.error = "error: can't list files in " + (reqPath ? reqPath : "this path") + (resStatus ? "(status code " + resStatus + ")" : "")
-			})
-			.finally(function () {
-				vm.$router.push({ name: "files", params: { project: vm.project, relpath: dir.split('/').filter(x => x) }})
-			})
+					console.log("error:", error)
+					for (let x in error) {
+						console.log("key:", x)
+					}
+					console.log("response:", error.response.status)
+					let reqPath = getReqParams(error) && error.config.params.path || null
+					let resStatus = getResStatus(error) || null
+					vm.error = "error: can't list files in " + (reqPath ? reqPath : "this path") + (resStatus ? "(status code " + resStatus + ")" : "")
+				})
+				.finally(function () {
+					vm.$router.push({ name: "files", params: { project: vm.project, relpath: dir.split('/').filter(x => x) }})
+				})
 		},
 		processResponse: function(response, data) {
 			if (typeof response['directories'] === 'object' && response.directories.length > 0) {
@@ -156,16 +153,16 @@ export default {
 	},
 	computed: {
 		breadcrumbs: function() {
-				//if (!this.cwd) { return '/' }
-				return this.cwd.split('/').map(p => ({ text: p, disabled: true, active: false, event: null }))
+			//if (!this.cwd) { return '/' }
+			return this.cwd.split('/').map(p => ({ text: p, disabled: true, active: false, event: null }))
 		},
 		curParentId: function() {
 			if (!this.curDirInfo || !this.curDirInfo['parent_directory']) return null
-				return this.curDirInfo['parent_directory']['id'] || null
+			return this.curDirInfo['parent_directory']['id'] || null
 		},
 		currentPath: function() {
 			if (!this.curDirInfo) return null
-				return this.curDirInfo['directory_path'] || null
+			return this.curDirInfo['directory_path'] || null
 		},
 		isSelectedDeep: function() {
 			return this.$store.getters['files/prefixMatcher'](this.project, this.cwd)

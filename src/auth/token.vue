@@ -2,7 +2,7 @@
 	<div>
 		<i class="fas fa-circle-notch fa-spin fa-w-16"></i>
 		<p>message: {{ message }}</p>
-		<p>user:
+		<p>user:</p>
 			<dl v-if="$auth.loggedIn">
 				<dt>loggedIn</dt><dd>{{ $auth.loggedIn }}</dd>
 				<dt>id</dt><dd>{{ $auth.user.id }}</dd>
@@ -10,7 +10,6 @@
 				<dt>email</dt><dd>{{ $auth.user.email }}</dd>
 			</dl>
 			<p v-else>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
-		</p>
 	</div>
 </template>
 
@@ -31,6 +30,7 @@ export default {
 		redirTo() {
 			// TODO: read query for redirect-to location
 			//return this.$route
+			return "/"
 		},
 	},
 	created: function() {

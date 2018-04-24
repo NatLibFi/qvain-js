@@ -13,7 +13,7 @@
 		</div>
 		<div style="display: none">
 		<label>{{ schema['title'] || String(property) || "number" }}:
-		<input type="number" name="abc" placeholder="" :step="schema['multipleOf']" :value="parent[property]" @input="updateValue"></input>
+		<input type="number" name="abc" placeholder="" :step="schema['multipleOf']" :value="parent[property]" @input="updateValue">
 		<!-- <span v-if="inArray">{{ '#' + (property + 1) }}</span><span v-else>{{ property }}</span> -->
 		<button v-if="typeof property === 'number'" type="button" @click="deleteMe">x</button></label>
 		<p v-if="schema['description']">{{ schema['description'] }}</p>

@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<span v-for="(parent, i) in parents" style="color: #aaaaaa;" :style="{'margin-left': 18*i}">
+		<span v-for="(parent, i) in parents" :key="parent" style="color: #aaaaaa;" :style="{'margin-left': 18*i}">
 			<i class="far fa-caret-square-down" aria-hidden="true"></i> <a href="#" style="color: #333333; underline: none;" :style="{'font-weight': i + 1 === parents.length ? 'bold' : 'normal'}" @click="$emit('opendir', parent)">{{ parent }}</a><br/>
 		</span>
 		
 		<span v-if="children.length" :style="{'padding-left': 18*parents.length}">
-		<span v-for="child in children">
+		<span v-for="child in children" :key="child">
 			<i class="fa fa-caret-square-right" aria-hidden="true"></i> <a href="#" @click="$emit('opendir', child.directory_path)">{{ child.directory_name }}</a>
 		</span>
 		</span>

@@ -33,7 +33,7 @@
 		
 		<b-tabs v-if="selectedSchema">
 			<b-tab :title="`Tab ${i}`" v-for="i in [1, 2, 3, 4, 5, 6]" :key="i">
-				<component is="schema-tab-selector" :schema="schemaJson" path="" name="/" :parent="$store.state" property="record" :value="$store.state.record" :tab="startTab" :activeTab="i" @typeChanged=""></component>
+				<component :is="schema-tab-selector" :schema="schemaJson" path="" name="/" :parent="$store.state" property="record" :value="$store.state.record" :tab="startTab" :activeTab="i"></component>
 
 				<!--
 				<p class="text-secondary">Tab Contents {{i}}</p>

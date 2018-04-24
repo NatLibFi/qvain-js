@@ -13,7 +13,7 @@
 
 		<!-- <b-badge :variant="schema['.q'].v ? 'success' : 'danger'" v-b-popover.hover="schema['.q'].errors" title="errors">validity</b-badge> -->
 		<!-- q: {{ schema['.q'] }} v: {{ schema['.q'] && schema['.q']['v'] }} state: {{ String(liveState) }} -->
-		<b-form-group id="" horizontal :label-cols="4" :description="ui['description'] || schema['description']" :label="makeLabel" :horizontal="true" :feedback="feedback" :state="liveState">
+		<b-form-group id="" :label-cols="4" :description="ui['description'] || schema['description']" :label="makeLabel" :horizontal="true" :feedback="feedback" :state="liveState">
 			<b-input-group>
 				<b-form-input id="" :type="inputType" name="" placeholder="" :value="value" :state="liveState" @input.native="updateValue"></b-form-input>
 				<b-input-group-button v-if="inArray">

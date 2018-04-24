@@ -42,7 +42,7 @@ walkjson.prototype.handleValue = function(path, val) {
 	}
 	
 	if (typeof val === 'boolean') {
-		let newpath = path + '=' + thing
+		let newpath = path + '=' + val
 		//console.log(newpath)
 		log(newpath)
 		return
@@ -92,7 +92,7 @@ walkjson.prototype.walk = function(path, thing) {
 		for (let i=0; i < thing.length; i++) {
 			let newpath = path + '/[' + i + ']'
 			//if (printContainers) { log(newpath + " <array>") }
-			walk(newpath, thing[i])
+			walkjson.walk(newpath, thing[i])
 		}
 		if (thing.length < 1) {
 			let newpath = path + '/()'
@@ -110,7 +110,7 @@ walkjson.prototype.walk = function(path, thing) {
 			//let newpath = path + '/{' + key + '}'
 			let newpath = path + '/' + key
 			//if (printContainers) { log(newpath + " <object>") }
-			walk(newpath, thing[key])
+			walkjson.walk(newpath, thing[key])
 		}
 		if (Object.keys(thing).length < 1) {
 			let newpath = path + '/{}'
@@ -122,7 +122,7 @@ walkjson.prototype.walk = function(path, thing) {
 	
 	// values
 	//console.log(path, "(probably value)")
-	handleValue(path, thing)
+	walkjson.handleValue(path, thing)
 	return
 }
 
