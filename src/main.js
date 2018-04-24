@@ -49,6 +49,7 @@ const app = new Vue({
 		},
 	},
 	created: function() {
+		console.log("MODE:", process.env.VUE_APP_MODE)
 		console.log("METAX_API_URL:", process.env.VUE_APP_METAX_API_URL)
 		console.log("APP_DEBUG:", typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined)
 	},
