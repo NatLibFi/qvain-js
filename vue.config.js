@@ -1,6 +1,9 @@
+const path = require('path')
+
 module.exports = {
 	lintOnSave: false,
 	chainWebpack: config => {
+		// set global vars
 		config
 			.plugin('define')
 				.tap(args => {
@@ -9,6 +12,14 @@ module.exports = {
 					})
 					return args
 				})
+
+		// ignore old code in src/Attic/
+		config
+			.module
+			.rule('attic')
+			.exclude
+				.add(path.resolve(__dirname, 'src', 'Attic'))
+				.end()
 
 		// vue-cli minifies html by default for production; don't
 		if (process.env.NODE_ENV === 'production') {
