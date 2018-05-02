@@ -126,7 +126,7 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 		//if (! (kw in schema)) continue
 		//console.log("DEBUG: found combiner:", kw)
 		//if (!(_Combiners[kw].validator.bind(this))(schema, data, path, parent, prop, this.validateSchema.bind(this))) {
-		if (!_Combiners[kw].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this)) {
+		if (!_Combiners[kw].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this))) {
 			//console.log("DEBUG: combiner failed:", kw)
 			combinersValid = false
 			//addError("combiner" + kw + "failed")
