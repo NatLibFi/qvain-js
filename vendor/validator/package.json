@@ -1,0 +1,12 @@
+{
+  "name": "qvain-validator",
+  "version": "0.3.0",
+  "description": "A json-schema validator for the Qvain metadata tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wouter Van Hemel",
+  "license": "ISC",
+  "private": true
+}
