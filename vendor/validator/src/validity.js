@@ -35,6 +35,13 @@ function addError(schema, error) {
 }
 
 
+function resetErrors(schema) {
+	if (config.sentinel in schema && 'e' in schema[config.sentinel]) {
+		schema[config.sentinel].e.splice(0, schema[config.sentinel].e.length)
+	}
+}
+
+
 function setValid(schema, valid) {
 	if (!(config.sentinel in schema)) createValid(schema)
 	if (schema[config.sentinel].v !== valid) {
@@ -56,4 +63,4 @@ function checkValid(schema) {
 }
 
 
-export { checkValid, addError, setValid }
+export { checkValid, addError, resetErrors, setValid }

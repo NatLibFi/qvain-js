@@ -7,14 +7,14 @@ function validateAnyOf(schema, data, path, parent, prop, recurse) {
 	
 	//recurse()
 	if (! schema.anyOf.some((sub, i) => recurse(sub, data, path + "/anyOf/" + i, schema, i, recurse))) this.addError(schema, "anyOf-combiner failed")
-	
+
 	return this.checkValid(schema)
 }
 
 
 function validateAllOf(schema, data, path, parent, prop, recurse) {
 	if (! (schema['allOf'] instanceof Array)) throw new SchemaError("allOf is not an array", path || "/")
-		
+
 	if (! schema.allOf.every((sub, i) => recurse(sub, data, path + "/allOf/" + i, schema, i, recurse))) this.addError(schema, "allOf-combiner failed")
 		
 	return this.checkValid(schema)

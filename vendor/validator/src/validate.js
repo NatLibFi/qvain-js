@@ -3,7 +3,7 @@ import { isObject, isFinite, isInteger } from './is.js'
 import { _Types, _Combiners } from './keywords.js'
 import SchemaError from './error.js'
 import { getDataType, doesTypeValidate } from './data_validators.js'
-import { checkValid, addError, setValid } from './validity.js'
+import { checkValid, addError, resetErrors, setValid } from './validity.js'
 import { default as deepcopy } from 'json-deep-copy'
 import { default as jsonPointer } from 'json-pointer'
 import { foreachSchema } from './walk.js'
@@ -39,6 +39,7 @@ Validator.prototype.resetStats = function() {
 
 Validator.prototype.checkValid = checkValid
 Validator.prototype.addError = addError
+Validator.prototype.resetErrors = resetErrors
 Validator.prototype.setValid = setValid
 
 Validator.prototype.validateNumber = validateNumber
@@ -60,6 +61,9 @@ Validator.prototype.validate = function() {
 	return this.validateSchema(this.schema, this.data, "", this, 'data')
 }
 
+Validator.prototype.validateData = function(data) {
+	return this.validateSchema(this.schema, data, "", this, 'data')
+}
 
 // order:
 //   deref
@@ -68,19 +72,20 @@ Validator.prototype.validate = function() {
 //   validate data against schema
 Validator.prototype.validateSchema = function(schema, data, path, parent, prop) {
 	if (typeof schema !== 'object') throw new SchemaError("schema is not an object", path || "/")
-		
+
+	this.resetErrors(schema)
+
 	//console.log("schema found at path:", path || '(root)')
-	//console.log("this:", this)
+	//console.log("validateSchema this:", this)
 	
 	if ('$ref' in schema) {
 		this.refCount++
 		let ptr = schema['$ref'].substring(schema['$ref'].lastIndexOf("#") + 1);
-		console.log("ref to:", ptr)
+		//console.log("ref to:", ptr)
 		schema['$deref'] = schema['$ref']
 		delete schema['$ref']
-		//let ref = getPath(this.baseSchema, ptr)
-		//let clone = jsonPointer.get(this.baseSchema, ptr)
-		let clone = jsonPointer.get(this.baseSchema, ptr)
+		//console.log(this.origSchema)
+		let clone = jsonPointer.get(this.origSchema, ptr)
 		for (let key in clone) {
 			schema[key] = clone[key]
 		}
@@ -106,9 +111,9 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	//console.log(path || '/', "datatype:", dataType, "; schematype:", allowedTypes || "any", "; type validates:", isValidType, isValue ? "; data: " + data: "")
 	
 	//if ('enum' in schema) setValid(schema, validateEnum(schema, data, out, parent, path, _validateSchema))
-	if ('enum' in schema) console.log("found enum:", schema, schema['.q'])
+	//if ('enum' in schema) console.log("found enum:", schema, schema['.q'])
 	let enumValid = 'enum' in schema ? this.validateEnum(schema, data, path, parent, prop, this.validateSchema) : true
-	if ('enum' in schema) console.log("enumValid:", enumValid, data)
+	//if ('enum' in schema) console.log("enumValid:", enumValid, data)
 			
 	//console.log("passed enum, datatype:", dataType)
 	
@@ -121,12 +126,13 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	// combiners run in this schema's context so will set an error that will get picked up at the end;
 	// the respective schemas inside those combining keywords could be true or false though
 	let combinersValid = true
+	let self = this
 	Object.keys(_Combiners).filter(k => k in schema).forEach(function(kw) {
 		//console.log("DEBUG:", kw)
 		//if (! (kw in schema)) continue
 		//console.log("DEBUG: found combiner:", kw)
 		//if (!(_Combiners[kw].validator.bind(this))(schema, data, path, parent, prop, this.validateSchema.bind(this))) {
-		if (!_Combiners[kw].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this))) {
+		if (!_Combiners[kw].validator.call(self, schema, data, path, parent, prop, self.validateSchema.bind(self))) {
 			//console.log("DEBUG: combiner failed:", kw)
 			combinersValid = false
 			//addError("combiner" + kw + "failed")
@@ -155,4 +161,5 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
  * }
  */
 
-export { Validator }
+//export { Validator }
+export default Validator

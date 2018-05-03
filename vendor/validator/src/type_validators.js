@@ -115,7 +115,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 		//depProps[prop] = schema['dependencies'][prop].reduce(dep => { return {dep: 'dep of ' + prop} }, {})
 		// schema dependency, merge schema and extra requirements into new schema copy
 		if (!Array.isArray(schema['dependencies'][prop])) {
-			console.log("TEST: schema dependency; merge:", prop in data)
+			//console.log("TEST: schema dependency; merge:", prop in data)
 			if (prop in data) schema = merge(schema, schema['dependencies'][prop])
 			//console.log(schema)
 		} else {
@@ -146,6 +146,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 			
 		for (let prop in schema['properties']) {
 			// -wvh- functionality for empty data, check relevance in validation
+			/*
 			if (!(prop in data)) {
 				// missing property
 				if (config.createMissingProps) {
@@ -155,10 +156,11 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 				}
 				//data[prop] = {}
 			}
+			*/
 			if (prop in data) {
 				//console.log("DEBUG:", prop)
 				dataProps[prop] = false
-				if (prop in depProps) console.log("dependencies:", depProps[prop])
+				//if (prop in depProps) console.log("dependencies:", depProps[prop])
 				for (let dep in depProps[prop]) {
 					if (!(dep in data)) this.addError(origSchema, "missing prop: " + dep + " (dependency of " + prop + ")")
 				}
@@ -181,11 +183,11 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 				}
 			} else {
 				this.addError(origSchema, "extra properties not allowed: " + restProps.join(", "))
-				console.log("[FAIL] extra props not allowed:", restProps, "[" + (path || 'root') + "]")
+				//console.log("[FAIL] extra props not allowed:", restProps, "[" + (path || 'root') + "]")
 			}
 		}
 	}
-	
+
 	return this.checkValid(origSchema)
 }
 
@@ -203,7 +205,7 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 	
 	if (!asTuple) {
 		// list validation
-		console.log("list validation", path)
+		//console.log("list validation", path)
 		for (let i in data) {
 			let itemSchema = 'items' in schema ? deepcopy(schema['items']) : {}
 			if (!recurse(itemSchema, data[i], path + '/' + i, data, i, recurse)) this.addError(schema, "list validation failed for item: " + i)
@@ -211,7 +213,7 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		//if (!data.every((el, i) => recurse(schema['items'], data[i], out, data, path + '/' + i, recurse))) addError(schema, "array failed list validation")
 	} else {
 		// tuple validation
-		console.log("tuple validation", path)
+		//console.log("tuple validation", path)
 		let allowAddItems = schema['additionalItems'] !== false
 		let addItemSchema = typeof schema['additionalItems'] === 'object' ? schema['additionalItems'] : {}
 		
@@ -243,8 +245,9 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		//if (data.length > unique.length) addError(schema, "array contains non-unique items")
 		let shittySet = {}
 		if (data.some(e => e in shittySet || shittySet[e]++ )) this.addError(schema, "list contains duplicates")
+		//console.log(shittySet)
 	}
-	
+	//console.log(schema['.q'])
 	return this.checkValid(schema)
 }
 
