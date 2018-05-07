@@ -10,6 +10,13 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "deep-equal": "^1.0.1",
+    "deepmerge": "^2.1.0",
+    "json-deep-copy": "^1.0.2",
+    "json-pointer": "^0.6.0",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
     "mocha": "^5.1.1"
   }
 }
