@@ -3,7 +3,7 @@ import { isObject, isFinite, isInteger } from './is.js'
 import { _Types, _Combiners } from './keywords.js'
 import SchemaError from './error.js'
 import { getDataType, doesTypeValidate } from './data_validators.js'
-import { checkValid, addError, resetErrors, setValid } from './validity.js'
+import { checkValid, addError, addHelp, resetErrors, setValid } from './validity.js'
 import { default as deepcopy } from 'json-deep-copy'
 import { default as jsonPointer } from 'json-pointer'
 import { foreachSchema } from './walk.js'
@@ -13,8 +13,12 @@ import { validateNumber, validateString, validateBoolean, validateNull, validate
 import { validateAnyOf, validateAllOf, validateOneOf, validateNot } from './combiners.js'
 
 
-function Validator(schema, data) {
+function Validator(schema, data, options) {
 	if (!(this instanceof Validator)) throw new Error("Validator: call constructor with new")
+
+	if (!options) {
+		options = {}
+	}
 	
 	this.refCount = 0
 	this.schemaCount = -5
@@ -24,10 +28,39 @@ function Validator(schema, data) {
 	this.origSchema = deepcopy(schema)
 	//this.schema = schema
 	vue.set(this, 'schema', schema)
-	//this.data = data
-	vue.set(this, 'data', data)
+	this.data = data
+	//vue.set(this, 'data', data)
 	//this.v = {}
 	vue.set(this, 'v', {})
+
+	if (options.createFunc) {
+		this.createState = options.createFunc
+	} else {
+		this.createState = function(path) {
+			if (path in this.v) return false
+			
+			this.v[path] = {
+				v: false,
+				e: [],
+			}
+			return true
+		}
+	}
+
+	if (options.resetFunc) {
+		this.resetState = options.resetFunc
+	} else {
+		this.resetState = function(path) {
+			this.v[path].e.splice(0, this.v[path].e.length)
+		}
+	}
+	
+	if (options.cb) {
+		console.log("!!! set cb:", options.cb)
+		this.cb = options.cb
+	} else {
+		this.cb = null
+	}
 }
 
 
@@ -39,6 +72,7 @@ Validator.prototype.resetStats = function() {
 
 Validator.prototype.checkValid = checkValid
 Validator.prototype.addError = addError
+Validator.prototype.addHelp = addHelp
 Validator.prototype.resetErrors = resetErrors
 Validator.prototype.setValid = setValid
 
@@ -65,6 +99,7 @@ Validator.prototype.validateData = function(data) {
 	return this.validateSchema(this.schema, data, "", this, 'data')
 }
 
+
 // order:
 //   deref
 //   check correct data type
@@ -73,7 +108,22 @@ Validator.prototype.validateData = function(data) {
 Validator.prototype.validateSchema = function(schema, data, path, parent, prop) {
 	if (typeof schema !== 'object') throw new SchemaError("schema is not an object", path || "/")
 
-	this.resetErrors(schema)
+	//this.createState(path) || this.resetState(path)
+	this.resetErrors(path, schema)
+	if (path in this.v) {
+		this.v[path].e.splice(0, this.v[path].e.length)
+	} else {
+		/*
+		vue.set(this.v, path, {
+			v: false,
+			e: [],
+		})
+		*/
+		this.v[path] = {
+			v: false,
+			e: [],
+		}
+	}
 
 	//console.log("schema found at path:", path || '(root)')
 	//console.log("validateSchema this:", this)
@@ -86,7 +136,10 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 		delete schema['$ref']
 		//console.log(this.origSchema)
 		let clone = jsonPointer.get(this.origSchema, ptr)
+		//let ref = jsonPointer.get(this.origSchema, ptr)
+		//let clone = deepCopy(ref)
 		for (let key in clone) {
+			if (key === '.q') throw new SchemaError("validation state leaking into schema", path || "/")
 			schema[key] = clone[key]
 		}
 	}
@@ -100,11 +153,11 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	//console.log("debug:", path, allowedTypes, isValidType)
 	
 	if (!isValidType) {
-		this.addError(schema, "invalid data type" + "(got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any"))
+		this.addError(path, schema, "invalid data type" + "(got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any"))
 		//console.log("[FAIL] expected:", allowedTypes, "got:", dataType, "for path", path || "(root)", "schema:", schema)
 		// stop checking if data type is not valid according to schema type
 		if (data !== undefined) {
-			return this.checkValid(schema)
+			return this.checkValid(path, schema)
 		}
 	}
 	
@@ -120,8 +173,7 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	// data type is valid against the types in the schema or there were no types in the schema;
 	// call the validators for the data type
 	//this.setValid(schema, dataType !== undefined ? enumValid && (_Types[dataType].validator.bind(this))(schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
-	this.setValid(schema, dataType !== undefined ? enumValid && _Types[dataType].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
-		
+	this.setValid(path, schema, dataType !== undefined ? enumValid && _Types[dataType].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
 	
 	// combiners run in this schema's context so will set an error that will get picked up at the end;
 	// the respective schemas inside those combining keywords could be true or false though
@@ -138,8 +190,13 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 			//addError("combiner" + kw + "failed")
 		}
 	})
-	
-	return this.checkValid(schema)
+
+	if (path.startsWith("/creator")) {
+		console.log("VALIDATOR", path, data, this.v[path].e.length)
+	}
+	this.v[path].v = this.v[path].e.length
+	//if (this.cb) this.cb(path, this.v[path].e, this.v[path].v);
+	return this.checkValid(path, schema)
 }
 
 
