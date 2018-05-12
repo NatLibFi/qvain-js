@@ -8,9 +8,9 @@
 				</b-button-group>
 				
 				<b-input-group size="sm" class="mx-1" left="owner">
-					<b-form-select v-model="ownerSelect" v-b-tooltip.hover.bottom title="select record owner">
+					<b-form-select size="sm" v-model="ownerSelect" v-b-tooltip.hover.bottom title="select record owner">
 						<template slot="first">
-							<option :value="authUid" selected>myself</option>
+							<option :value="$auth.user.id" selected>myself</option>
 						</template>
 						<optgroup label="groups">
 							<option v-for="(option, idx) in myGroupsOptions" :value="option.value" :disabled="option.disabled" :key="`option_${idx}_opt`" v-html="option.text"></option>
@@ -25,14 +25,19 @@
 				<b-input-group size="sm" class="mx-1" left="search" v-b-tooltip.hover.bottom title="search titles">
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
-				
+
+				<busy-button size="sm">save</busy-button>
+
 			</b-button-toolbar>
 		</div>
 		
 		<div class="m-2">
-			<b-table class="m-1" striped hover show-empty :items="records" :fields="fields" :filter="filterTitles">
+			<b-table id="dataset-list" class="m-1" tbody-class="dataset-list" striped hover show-empty :items="records" :fields="fields" :filter="filterTitles">
 				<template slot="owner" slot-scope="data">
 					<span v-b-tooltip.hover.auto :title="data.item.uid">{{ data.item.owner }}</span>
+				</template>
+				<template slot="state" slot-scope="data">
+					<preservation-state v-if="data.item.state" :state="data.item.state">state</preservation-state>
 				</template>
 			<!--
 				<template slot="created" slot-scope="data">
@@ -45,4 +50,19 @@
 	</div>
 </template>
 
-<script src="./v-record-lister.js"></script>
+<style>
+	.dataset-list-enter, .dataset-list-leave-active {
+		display: none;
+		/* transition: all 1s; */
+		/* transition: fade 1s; */
+		transition: fade 1s;
+	}
+	.dataset-list-enter-active {
+		transition: transform 0.5s;
+	}
+	.dataset-list-move {
+		transition: transform 0.5s;
+	}
+</style>
+
+<script src="./RecordList.js"></script>

@@ -1,0 +1,92 @@
+{
+	"0": {
+		"name": "Initialized",
+		"short": { "en": "Waits for validation", "fi": "Odottaa tarkastusta" },
+		"type": "wait",
+		"who": "other"
+	},
+	"10": {
+		"name": "Proposed for digital preservation",
+		"short": { "en": "Enriching", "fi": "Rikastaa" },
+		"type": "wait",
+		"who": "system"
+	},
+	"20": {
+		"name": "Technical metadata generated",
+		"short": { "en": "Validating", "fi": "Tarkastaa" },
+		"type": "wait",
+		"who": "system"
+	},
+	"30": {
+		"name": "Technical metadata generation failed",
+		"short": { "en": "Enriching failed", "fi": "Rikastus katkesi" },
+		"type": "fail",
+		"who": "system"
+	},
+	"40": {
+		"name": "Invalid metadata",
+		"short": { "en": "Check metadata", "fi": "Korjaa metatietoja" },
+		"type": "wait",
+		"who": "user"
+	},
+	"50": {
+		"name": "Metadata validation failed",
+		"short": { "en": "Validation failed", "fi": "Tarkastus katkesi" },
+		"type": "fail",
+		"who": "user"
+	},
+	"60": {
+		"name": "Validated metadata updated",
+		"short": { "en": "Revalidating", "fi": "Tarkastaa taas" },
+		"type": "wait",
+		"who": "system"
+	},
+	"70": {
+		"name": "Valid metadata",
+		"short": { "en": "Waits for transfer", "fi": "Odottaa siirtoa" },
+		"type": "wait",
+		"who": "other"
+	},
+	"80": {
+		"name": "Accepted to digital preservation",
+		"short": { "en": "Transfer started", "fi": "Siirto aloitettu" },
+		"type": "wait",
+		"who": "system"
+	},
+	"90": {
+		"name": "in packaging service",
+		"short": { "en": "Packaging", "fi": "Paketoi" },
+		"type": "wait",
+		"who": "system"
+	},
+	"100": {
+		"name": "Packaging failed",
+		"short": { "en": "Packaging failed", "fi": "Paketointi katkesi" },
+		"type": "fail",
+		"who": "system"
+	},
+	"110": {
+		"name": "SIP sent to ingestion in digital preservation service",
+		"short": { "en": "Transferring", "fi": "Siirtää" },
+		"type": "wait",
+		"who": "system"
+	},
+	"120": {
+		"name": "in digital preservation",
+		"short": { "en": "OK – preserved", "fi": "OK – säilytyksessä" },
+		"type": "success",
+		"who": "system"
+	},
+	"130": {
+		"name": "Rejected in digital preservation service",
+		"short": { "en": "Transfer failed", "fi": "Siirto katkesi" },
+		"type": "fail",
+		"who": "system"
+	},
+	"140": {
+		"name": "in dissemination",
+		"short": { "en": "Available", "fi": "Saatavilla" },
+		"type": "success",
+		"who": "system"
+	}
+}
