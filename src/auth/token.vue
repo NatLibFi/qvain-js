@@ -9,7 +9,16 @@
 				<dt>name</dt><dd>{{ $auth.user.name }}</dd>
 				<dt>email</dt><dd>{{ $auth.user.email }}</dd>
 			</dl>
-			<p v-else>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
+			<div v-else>
+				<p>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
+				<b-input-group prepend="token">
+					<b-form-input v-model="tokenInput"></b-form-input>
+					<b-input-group-append>
+						<b-btn @click="login()">submit</b-btn>
+					</b-input-group-append>
+				</b-input-group>
+			</div>
+			
 	</div>
 </template>
 
@@ -17,7 +26,16 @@
 export default {
 	name: "token-login",
 	data: () => {
-		return {}
+		return {
+			//token: null,
+			tokenInput: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8",
+		}
+	},
+	methods: {
+		login() {
+			this.$auth.login(this.tokenInput)
+			this.$router.push(this.$route.query.redirect || "/")
+		},
 	},
 	computed: {
 		message() {
@@ -34,6 +52,11 @@ export default {
 		},
 	},
 	created: function() {
+		// logged in already, redir
+		if (this.$auth.loggedIn) {
+			this.$router.push(this.$route.query.redirect || "/")
+		}
+		// got token, login and redir if successful
 		if (this.token && this.$auth.login(this.token)) {
 			var vm = this
 			setTimeout(function() {

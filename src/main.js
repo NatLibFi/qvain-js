@@ -22,7 +22,10 @@ Vue.use(BootstrapVue)
 
 //Vue.use(refdataWidgets)
 
-Vue.use(AuthPlugin)
+Vue.use(AuthPlugin, {
+	router: router,
+	loginPage: "/token",
+})
 
 store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
@@ -52,5 +55,6 @@ const app = new Vue({
 		console.log("MODE:", process.env.VUE_APP_MODE)
 		console.log("METAX_API_URL:", process.env.VUE_APP_METAX_API_URL)
 		console.log("APP_DEBUG:", typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined)
+		console.log("localStorage token login:", this.$auth.localLogin(), this.$auth.loggedIn)
 	},
 }).$mount('#app')
