@@ -139,22 +139,18 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 		//let ref = jsonPointer.get(this.origSchema, ptr)
 		//let clone = deepCopy(ref)
 		for (let key in clone) {
-			if (key === '.q') throw new SchemaError("validation state leaking into schema", path || "/")
 			schema[key] = clone[key]
 		}
 	}
 	
 	var dataType = getDataType(data)
-	//var isValue = dataType !== 'object' && dataType !== 'array'
 	var allowedTypes = typeof schema['type'] === 'string' ? [schema['type']] : schema['type']
 	
 	var isAnyType = !('type' in schema)
 	var isValidType = isAnyType || doesTypeValidate(dataType, allowedTypes)
-	//console.log("debug:", path, allowedTypes, isValidType)
 	
 	if (!isValidType) {
 		this.addError(path, schema, "invalid data type" + "(got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any"))
-		//console.log("[FAIL] expected:", allowedTypes, "got:", dataType, "for path", path || "(root)", "schema:", schema)
 		// stop checking if data type is not valid according to schema type
 		if (data !== undefined) {
 			return this.checkValid(path, schema)
@@ -164,15 +160,10 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	//console.log(path || '/', "datatype:", dataType, "; schematype:", allowedTypes || "any", "; type validates:", isValidType, isValue ? "; data: " + data: "")
 	
 	//if ('enum' in schema) setValid(schema, validateEnum(schema, data, out, parent, path, _validateSchema))
-	//if ('enum' in schema) console.log("found enum:", schema, schema['.q'])
 	let enumValid = 'enum' in schema ? this.validateEnum(schema, data, path, parent, prop, this.validateSchema) : true
-	//if ('enum' in schema) console.log("enumValid:", enumValid, data)
 			
-	//console.log("passed enum, datatype:", dataType)
-	
 	// data type is valid against the types in the schema or there were no types in the schema;
 	// call the validators for the data type
-	//this.setValid(schema, dataType !== undefined ? enumValid && (_Types[dataType].validator.bind(this))(schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
 	this.setValid(path, schema, dataType !== undefined ? enumValid && _Types[dataType].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
 	
 	// combiners run in this schema's context so will set an error that will get picked up at the end;
@@ -180,21 +171,12 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	let combinersValid = true
 	let self = this
 	Object.keys(_Combiners).filter(k => k in schema).forEach(function(kw) {
-		//console.log("DEBUG:", kw)
-		//if (! (kw in schema)) continue
-		//console.log("DEBUG: found combiner:", kw)
-		//if (!(_Combiners[kw].validator.bind(this))(schema, data, path, parent, prop, this.validateSchema.bind(this))) {
 		if (!_Combiners[kw].validator.call(self, schema, data, path, parent, prop, self.validateSchema.bind(self))) {
-			//console.log("DEBUG: combiner failed:", kw)
 			combinersValid = false
-			//addError("combiner" + kw + "failed")
 		}
 	})
 
-	if (path.startsWith("/creator")) {
-		console.log("VALIDATOR", path, data, this.v[path].e.length)
-	}
-	this.v[path].v = this.v[path].e.length
+	this.v[path].v = !!this.v[path].e.length
 	//if (this.cb) this.cb(path, this.v[path].e, this.v[path].v);
 	return this.checkValid(path, schema)
 }
@@ -218,5 +200,4 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
  * }
  */
 
-//export { Validator }
 export default Validator

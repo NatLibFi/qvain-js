@@ -3,7 +3,7 @@ import * as config from './config.js'
 import { default as deepcopy } from 'json-deep-copy'
 import { default as deepequal } from 'deep-equal'
 
-var STRING_FORMAT_VALIDATORS = {
+const STRING_FORMAT_VALIDATORS = {
 	'date-time': function(){},
 	'email': function(email) { return email && email.indexOf('@') > 0 },
 	'hostname': function(){},
@@ -12,21 +12,10 @@ var STRING_FORMAT_VALIDATORS = {
 	'uri': function(uri) { return uri && uri.indexOf(':') > 0 },
 }
 
-/*
-function validateString() { return true }
-//function validateInteger() { return true }
-function validateNumber() { return true }
-function validateObject() { return true }
-function validateArray() { return true }
-function validateBoolean() { return true }
-function validateNull() { return true }
-function validateEnum() { return true }
-//function validateList() { return true }
-*/
 
 function validateString(schema, data, path, parent, prop) {
-	var min = schema['minLength']
-	var max = schema['maxLength']
+	const min = schema['minLength']
+	const max = schema['maxLength']
 
 	if (min && max) {
 		if (data.length < min || data.length > max) {
@@ -57,11 +46,6 @@ function validateString(schema, data, path, parent, prop) {
 		}
 	}
 
-	/*
-	schema[config.sentinel] = !errors.length
-	schema[config.errormsg] = errors
-	return schema[config.sentinel]
-	*/
 	return this.checkValid(path, schema)
 }
 
@@ -69,8 +53,7 @@ function validateString(schema, data, path, parent, prop) {
 function validateNumber(schema, data, path, parent, prop) {
 	const opMore = (a, b) => a > b
 	const opMoreOrEqual = (a, b) => a >= b
-	var type = schema['type'] // number or integer
-	var errors = []
+	const type = schema['type'] // number or integer
 	
 	// double-check and short-circuit to avoid doing arithmetics with something that's not a number
 	if (typeof data !== 'number') {
@@ -78,11 +61,6 @@ function validateNumber(schema, data, path, parent, prop) {
 		return this.checkValid(path, schema)
 	}
 
-	//var min = schema['minimum']
-	//var max = schema['maximum']
-	//var isMinExclusive = Boolean(schema['exclusiveMinimum'])
-	//var isMaxExclusive = Boolean(schema['exclusiveMaximum'])
-	//var minOp = Boolean(schema['exclusiveMinimum']) ? (a, b) => a > b : (a, b) => a >= b
 	if ('minimum' in schema) {
 		if (! (Boolean(schema['exclusiveMinimum']) ? opMore : opMoreOrEqual)(data, schema['minimum']) ) this.addError(path, schema, "number out of range (minimum)")
 	}
@@ -104,20 +82,15 @@ function validateNumber(schema, data, path, parent, prop) {
 // Refer to `origSchema` for returned values (i.e. parent), and work with and pass the updated `schema` down the tree (i.e. children).
 // This way the actual schema is not modified and we can test again even if the conditions (and hence the copy) change.
 function validateObject(schema, data, path, parent, prop, recurse) {
-	//console.log("here", this.schemaCount)
 	// copy ref in case we need to make a copy
-	var origSchema = schema
+	const origSchema = schema
 	var merge = require('deepmerge')
 	
 	let depProps = {}
 	for (let prop in schema['dependencies']) {
-		//schema['dependencies'][prop].forEach(dep => depProps[prop] = 'dep of ' + prop)
-		//depProps[prop] = schema['dependencies'][prop].reduce(dep => { return {dep: 'dep of ' + prop} }, {})
 		// schema dependency, merge schema and extra requirements into new schema copy
 		if (!Array.isArray(schema['dependencies'][prop])) {
-			//console.log("TEST: schema dependency; merge:", prop in data)
 			if (prop in data) schema = merge(schema, schema['dependencies'][prop])
-			//console.log(schema)
 		} else {
 			depProps[prop] = schema['dependencies'][prop].reduce((res, dep) => { res[dep] = 'dep of ' + prop; return res; }, {})
 		}
@@ -126,15 +99,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 	let addProps = schema['additionalProperties']
 	let allowAddProps = addProps !== undefined && typeof addProps === 'boolean' ? addProps : true
 	let addPropSchema = addProps !== undefined && typeof addProps === 'object' ? addProps : {}
-	
 	let reqProps = schema['required'] ? schema['required'].reduce((res, item) => { res[item] = true; return res; }, {}) : {}
-	/*
-	if ('dependencies' in schema) {
-		for (let prop in schema['dependencies']) {
-			schema['dependencies'][prop].forEach(dep => reqProps[dep] = 'dep of ' + prop)
-		}
-	}
-	*/
 	
 	if ('properties' in schema) {
 		let dataProps = {}
@@ -173,17 +138,13 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 		
 		let restProps = Object.keys(dataProps).filter(k => dataProps[k])
 		if (restProps.length > 0) {
-			//console.log("unhandled data:", restProps, addProps)
-			//console.log(allowAddProps ? "... but that's fine" : "... that's strictly forbidded!")
 			if (allowAddProps) {
 				for (let i in restProps) {
 					let prop = restProps[i]
-					//_validateSchema(schema['additionalProperties'], data[prop], out, data, path + '/' + prop)
 					if (!recurse(deepcopy(addPropSchema), data[prop], path + '/properties/' + prop, data, prop)) this.addError(path, origSchema, "failed prop: " + prop)
 				}
 			} else {
 				this.addError(path, origSchema, "extra properties not allowed: " + restProps.join(", "))
-				//console.log("[FAIL] extra props not allowed:", restProps, "[" + (path || 'root') + "]")
 			}
 		}
 	}
@@ -205,7 +166,6 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 	
 	if (!asTuple) {
 		// list validation
-		//console.log("list validation", path)
 		for (let i in data) {
 			let itemSchema = 'items' in schema ? deepcopy(schema['items']) : {}
 			if (!recurse(itemSchema, data[i], path + '/' + i, data, i, recurse)) this.addError(path, schema, "list validation failed for item: " + i + "data: " + data[i] + "(" + typeof data[i] + ")")
@@ -213,7 +173,6 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		//if (!data.every((el, i) => recurse(schema['items'], data[i], out, data, path + '/' + i, recurse))) addError(path, schema, "array failed list validation")
 	} else {
 		// tuple validation
-		//console.log("tuple validation", path)
 		let allowAddItems = schema['additionalItems'] !== false
 		let addItemSchema = typeof schema['additionalItems'] === 'object' ? schema['additionalItems'] : {}
 		
@@ -247,14 +206,12 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		if (data.some(e => e in shittySet || shittySet[e]++ )) this.addError(path, schema, "list contains duplicates")
 		//console.log(shittySet)
 	}
-	//console.log(schema['.q'])
 	return this.checkValid(path, schema)
 }
 
 
 function validateEnum(schema, data, path, parent, prop, recurse) {
 	//if (typeof schema['enum'] !== 'object' || (!(schema['enum'] instanceof Array))) { addError(path, schema, "not an array") }
-	//console.log("[pre]", schema['.q'])
 	if (schema['enum'].length <= 0) { this.addError(path, schema, "value not in enum") }
 	
 	if (!schema.enum.some(el => deepequal(el, data))) {
@@ -262,8 +219,6 @@ function validateEnum(schema, data, path, parent, prop, recurse) {
 		//console.log("addHelp:", schema.enum.map(x => typeof x === 'object' && x !== null ? JSON.stringify(x) : String(x)).join('|'))
 		this.addHelp(path, schema.enum.map(x => typeof x === 'object' && x !== null ? JSON.stringify(x) : String(x)).join('|'))
 	}
-	//console.log("found", data, "in enum?", schema.enum.some(el => deepequal(el, data)))
-	//console.log("[post]", checkValid(schema), schema['.q'])
 	return this.checkValid(path, schema)
 }
 

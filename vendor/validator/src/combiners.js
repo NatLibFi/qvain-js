@@ -1,5 +1,3 @@
-import * as config from './config.js'
-//import { checkValid, addError } from './validity.js'
 import SchemaError from './error.js'
 
 function validateAnyOf(schema, data, path, parent, prop, recurse) {
