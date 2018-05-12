@@ -317,6 +317,7 @@ var testSchemas = {
 	//	'iow_deref':        schemaIowDeref,
 	'fairdata-deref':   schemaFairDataDeref,
 	'fairdata-ui':      schemaFairDataUI,
+	'fairdata-ui-tabs': schemaFairDataUI,
 }
 
 export default testSchemas
