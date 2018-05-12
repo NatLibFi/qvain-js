@@ -6,14 +6,16 @@ export default {
 	name: 'i18n-string',
 	description: "a string with support for multiple languages",
 	schematype: 'object',
-	/*
 	props: {
-		"freeform": {
+		freeform: {
+			type: Boolean,
+			default: false,
+		},
+		isTitle: {
 			type: Boolean,
 			default: false,
 		},
 	},
-	*/
 	data: function() {
 		return {
 			newString: null,
@@ -28,7 +30,7 @@ export default {
 			state: null,
 			stringState: null,
 			langState: null,
-			freeform: false,
+			htmlTag: this.isTitle ? 'h5' : 'span',
 		}
 	},
 	methods: {
@@ -76,7 +78,6 @@ export default {
 		},		
 		updateValue: function() {
 			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e.target.value })
-			//this.state = this.schema['.q'] && e.target.value.length > 0 ? this.schema['.q']['v'] : null
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.value })
 		},
 	},
@@ -97,9 +98,6 @@ export default {
 		},
 		makeLabel: function() {
 			return this.schema['title'] || String(this.property) || "string"
-		},
-		liveState: function() {
-			return '.q' in this.schema ? this.schema['.q']['v'] : null
 		},
 	},
 	created() {

@@ -6,9 +6,9 @@
 				<b-list-group flush>
 					<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">
 						<div class="d-flex w-100 justify-content-start"> <!-- d-flex w-100 justify-content-between -->
-							<h5 class="mb-1">{{val}}</h5>
-							<small style="margin-left: 0.5em; vertical-align: top;">{{lang}}</small>
-							<b-badge class="ml-auto p-2" variant="danger" @click="deleteLang(lang)"><span class="fas fa-minus"></span></b-badge>
+							<component :is="htmlTag" class="my-1">{{val}} <sup class="langlabel">{{lang}}</sup></component>
+							<!-- small style="margin-left: 0.5em; margin-top: -0.5em; vertical-align: top;">{{lang}}</small -->
+							<b-btn class="ml-auto p-2" variant="danger" @click="deleteLang(lang)"><i class="fas fa-minus"></i></b-btn>
 						</div>
 					</b-list-group-item>
 				</b-list-group>
@@ -30,5 +30,12 @@
 		</b-form-group>
 	</div>
 </template>
+
+<style>
+sup.langlabel {
+	//font-variant: small-caps;
+	font-size: smaller;
+}
+</style>
 
 <script src="./i18n-string.js"></script>
