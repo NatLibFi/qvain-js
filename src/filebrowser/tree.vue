@@ -5,7 +5,7 @@
 		</span>
 		
 		<span v-if="children.length" :style="{'padding-left': 18*parents.length}">
-		<span v-for="child in children" :key="child">
+		<span v-for="child in children" :key="child.id">
 			<i class="fa fa-caret-square-right" aria-hidden="true"></i> <a href="#" @click="$emit('opendir', child.directory_path)">{{ child.directory_name }}</a>
 		</span>
 		</span>

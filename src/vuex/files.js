@@ -40,15 +40,15 @@ function prefixmatchSet(p, set) {
 export default {
 	namespaced: true,
 	state: {
-		selected: {},
+		selectedFiles: {},
 		selectedDirs: {},
 	},
 	getters: {
 		isSelected(state) {
-			return (project, id) => (project in state.selected) && (id in state.selected[project])
+			return (project, id) => (project in state.selected) && (id in state.selectedFiles[project])
 		},
-		getSelected(state) {
-			return project => state.selected[project] || {}
+		getSelectedFiles(state) {
+			return project => state.selectedFiles[project] || {}
 		},
 		getSelectedDirs(state) {
 			return project => state.selectedDirs[project] || {}
@@ -56,32 +56,17 @@ export default {
 		prefixMatcher(state) {
 			return (project, dir) => prefixmatchSet(dir, state.selectedDirs[project] || {})
 		},
-		/*
-		isLoggedIn: function(state) {
-			return state.loggedIn
-		},
-		getUserName: function(state) {
-			return state.user
-		},
-		getProjects: function(state) {
-			return Object.keys(state.projects)
-		},
-		*/
 	},
 	mutations: {
-		addPath(state, location) {
-			//if (! (location.project in state.selected)) state.selected[location.project] = {}
-			if (! (location.project in state.selected)) Vue.set(state.selected, location.project, {})
-			//state.selected[location.project][location.path] = true
-			Vue.set(state.selected[location.project], location.path, true)
+		addFile(state, location) {
+			if (! (location.project in state.selectedFiles)) Vue.set(state.selectedFiles, location.project, {})
+			Vue.set(state.selectedFiles[location.project], location.path, true)
 		},
-		removePath(state, location) {
-			if (! (location.project in state.selected)) return
-			//delete state.selected[location.project][location.path]
-			Vue.delete(state.selected[location.project], location.path)
+		removeFile(state, location) {
+			if (! (location.project in state.selectedFiles)) return
+			Vue.delete(state.selectedFiles[location.project], location.path)
 			if (Object.keys(state.selected[location.project]).length < 1) {
-				//delete state.selected[location.project]
-				Vue.delete(state.selected, location.project)
+				Vue.delete(state.selectedFiles, location.project)
 			}
 			return
 		},

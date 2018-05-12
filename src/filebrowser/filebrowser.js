@@ -41,7 +41,8 @@ export default {
 			//this.$router.push({ name: "files", params: { project: this.projects[index], relpath: this.relpath || '/' }})
 			// apparently this event gets triggered also on first load for the first tab; only change the url if it was an actual click
 			if (this.tabIndex !== index) {
-				this.$router.push({ name: "files", params: { project: this.projects[index], relpath: [] }})
+				console.log("relpath:", relpath)
+				this.$router.push({ name: "files", params: { project: this.projects[index], relpath: "/" }})
 			}
 			this.tabIndex = index
 			//this.getRootForProject(this.projects[index])
@@ -87,6 +88,10 @@ export default {
 	created() {
 		//console.log("store:", this.$store.getters)
 		console.log("filebrowser for project", this.project, "at", this.path)
+		if (this.path.indexOf(",") >= 0) {
+			console.log("comma in path!", this.path)
+		}
+		//this.$router.push({ name: "files", params: { project: this.project, relpath: this.relpath || [] }})
 		this.$router.push({ name: "files", params: { project: this.project, relpath: this.relpath || [] }})
 	},
 }

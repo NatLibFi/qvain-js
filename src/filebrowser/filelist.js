@@ -1,13 +1,14 @@
 import vFile from './file.vue'
 import vTree from './tree.vue'
 import vFileInfoModal from './fileinfo-modal.vue'
+import vFileEditModal from './fileedit-modal.vue'
 import axios from 'axios'
 import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
 
 var fileapi = axios.create({
 	baseURL: 'https://metax-test.csc.fi/rest/',
-	timeout: 1000,
+	timeout: 3000,
 	// WARNING: some browsers don't allow setting the User-Agent header
 	//headers: {'User-Agent': 'qvain.js (axios)'},
 	//headers: {'X-Requested-With': 'qvain.js (axios)'},
@@ -42,6 +43,7 @@ export default {
 	data: function() {
 		return {
 			error: null,
+			selectedOnly: true,
 			directories: [],
 			files: [],
 			rootId: null,
@@ -58,14 +60,22 @@ export default {
 				//'date_modified',
 				{
 					key: 'date_created',
+					label: "Created",
 					formatter: (value) => { return dateFormat(dateFromIso(value), 'YYYY-MM-DD') },
 				},
 				{
 					key: 'date_modified',
+					label: "Modified",
 					formatter: (value) => { return dateFormat(dateFromIso(value), 'YYYY-MM-DD') },
+				},
+				{
+					key: 'byte_size',
+					label: "Size",
 				},
 				'actions',
 			],
+			filter: null,
+			modalEditFile: { title: "", description: "", content: "", state: null },
 		}
 	},
 	methods: {
@@ -77,6 +87,9 @@ export default {
 			var vm = this
 			
 			console.log("openDir", dir)
+			if (typeof dir !== 'string') {
+				console.warn("dir is not a string:", typeof dir, dir)
+			}
 			fileapi.get('/directories/files', {
 				/*
 				mode: 'no-cors',
@@ -136,11 +149,11 @@ export default {
 		},
 		select: function(id) {
 			console.log("selecting file with id:", id)
-			this.$store.commit('files/addPath', {project: this.project, path: id})
+			this.$store.commit('files/addFile', {project: this.project, path: id})
 		},
 		deselect: function(id) {
 			console.log("deselecting file with id:", id)
-			this.$store.commit('files/removePath', {project: this.project, path: id})
+			this.$store.commit('files/removeFile', {project: this.project, path: id})
 		},
 		selectDir: function(id) {
 			console.log("selecting dir with id:", id)
@@ -149,6 +162,16 @@ export default {
 		deselectDir: function(id) {
 			console.log("selecting dir with id:", id)
 			this.$store.commit('files/removeDir', {project: this.project, path: id})
+		},
+		edit: function(item, index, button) {
+			//this.modalEditFile.title = `Row index: ${index}`
+			//this.modalEditFile.content = JSON.stringify(item, null, 2)
+			//this.$root.$emit('bv::show::modal', 'modalEditFile', button)
+			return this.$refs.refFileEditModal.show.apply(this, arguments)
+		},
+		resetEditFileModal: function() {
+			this.modalEditFile.title = ''
+			//this.modalEditFile.content = ''
 		},
 	},
 	computed: {
@@ -168,7 +191,7 @@ export default {
 			return this.$store.getters['files/prefixMatcher'](this.project, this.cwd)
 		},
 		selected: function() {
-			return this.$store.getters['files/getSelected'](this.project)
+			return this.$store.getters['files/getSelectedFiles'](this.project)
 		},
 		selectedDirs: function() {
 			return this.$store.getters['files/getSelectedDirs'](this.project)
@@ -182,6 +205,7 @@ export default {
 		'file': vFile,
 		'filetree': vTree,
 		'fileinfo-modal': vFileInfoModal,
+		'fileedit-modal': vFileEditModal,
 	},
 	created: function() {
 		if (this.project != "project_x") { return }
