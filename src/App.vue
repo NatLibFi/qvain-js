@@ -28,7 +28,6 @@
 					</b-nav-item-dropdown>
 
 					<!-- login dropdown -->
-					<b-nav-item>{{ $auth.loggedIn }}</b-nav-item>
 					<b-nav-item-dropdown v-if="$auth.loggedIn" right>
 
 						<!-- Using text slot -->
@@ -60,8 +59,9 @@
 			<b-collapse is-nav id="nav_collapse">
 
 				<b-navbar-nav>
-					<b-nav-item to="/edit">create record</b-nav-item>
-					<b-nav-item to="/list">show records</b-nav-item>
+					<b-nav-item to="/tabui">create record</b-nav-item>
+					<b-nav-item to="/records">show records</b-nav-item>
+					<b-nav-item to="/files">select files</b-nav-item>
 				</b-navbar-nav>
 			
 			</b-collapse>
