@@ -10,7 +10,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
-    "staging-build": "vue-cli-service build --mode staging",
+    "testing-build": "vue-cli-service build --mode testing",
     "lint": "vue-cli-service lint",
     "clean": "rm -r dist/*",
     "env": "env"
