@@ -1,4 +1,3 @@
-import * as config from './config.js'
 import { isObject, isFinite, isInteger } from './is.js'
 import { _Types, _Combiners } from './keywords.js'
 import SchemaError from './error.js'
@@ -113,16 +112,16 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	if (path in this.v) {
 		this.v[path].e.splice(0, this.v[path].e.length)
 	} else {
-		/*
 		vue.set(this.v, path, {
 			v: false,
 			e: [],
 		})
-		*/
+		/*
 		this.v[path] = {
 			v: false,
 			e: [],
 		}
+		*/
 	}
 
 	//console.log("schema found at path:", path || '(root)')
@@ -181,23 +180,5 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	return this.checkValid(path, schema)
 }
 
-
-/*
- * function countSchema(schema) {
- *	var foundChild = false
- *	countSchema.o++
- *	if (config.sentinel in schema) schema[config.sentinel]['v'] ? countSchema.t++ : countSchema.f++
- *	if (config.sentinel in schema) countSchema.q++
- *		
- *	for (let key in schema) {
- *		if (key === config.sentinel) continue
- *		if (typeof schema[key] === 'object' && !(schema[key] instanceof Array)) countSchema(schema[key])
- *		if (typeof schema[key] === 'object' && !(schema[key] instanceof Array)) foundChild = true
- *	}
- *	if (!foundChild && !Array.isArray(schema)) {
- *		countSchema.v++
- *	}
- * }
- */
 
 export default Validator

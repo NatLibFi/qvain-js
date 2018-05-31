@@ -1,10 +1,9 @@
 import { isObject } from './is.js'
-import * as config from './config.js'
 import { default as deepcopy } from 'json-deep-copy'
 import { default as deepequal } from 'deep-equal'
 
 const STRING_FORMAT_VALIDATORS = {
-	'date-time': function(){},
+	'date-time': function(dt) { return dt && dt.match(/^\d/) },
 	'email': function(email) { return email && email.indexOf('@') > 0 },
 	'hostname': function(){},
 	'ipv4': function(){},
@@ -119,7 +118,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 				} else {
 					console.log("[IGNORE] unset prop:", prop)
 				}
-				//data[prop] = {}
+				data[prop] = {}
 			}
 			*/
 			if (prop in data) {
@@ -168,7 +167,7 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		// list validation
 		for (let i in data) {
 			let itemSchema = 'items' in schema ? deepcopy(schema['items']) : {}
-			if (!recurse(itemSchema, data[i], path + '/' + i, data, i, recurse)) this.addError(path, schema, "list validation failed for item: " + i + "data: " + data[i] + "(" + typeof data[i] + ")")
+			if (!recurse(itemSchema, data[i], path + '/' + i, data, i, recurse)) this.addError(path, schema, "list validation failed for item: " + i)
 		}
 		//if (!data.every((el, i) => recurse(schema['items'], data[i], out, data, path + '/' + i, recurse))) addError(path, schema, "array failed list validation")
 	} else {
