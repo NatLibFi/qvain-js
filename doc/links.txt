@@ -1,25 +1,8 @@
-https://codeburst.io/vuex-getters-are-great-but-dont-overuse-them-9c946689b414
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+# ES index
+https://metax-test.csc.fi/es/reference_data/keyword/_search?q=label.en:build*&size=10000&pretty=1&filter_path=hits.hits._source
 
-const object1 = {};
-
-Object.defineProperty(object1, 'property1', {
-  value: ['a'],
-  writable: false,
-  configurable: true,
-  enumerable: true,
-});
-
-object1.property1.push('b');
-object1.property1.splice(0, object1.property1.length)
-// throws an error in strict mode
-
-for (let prop in object1) {
-  console.log(prop)
-}
-
-console.log(object1.property1);
-// expected output: 42
+# ES mapping
+https://metax-test.csc.fi/es/reference_data/keyword/_mapping?pretty=true
 
 # show browser default input widgets
 https://jsfiddle.net/cihkem/8k0skxdr/
