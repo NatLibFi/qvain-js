@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- i18n-string -->
-		<b-form-group id="i18n-string" horizontal :label-cols="4" breakpoint="md" :description="uiDescription" :label="uiLabel">
+		<b-form-group id="i18n-string" horizontal :label-cols="inArray ? 1 : 4" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-card no-body> <!-- :header="'<h5>' + ui['label'] + '</h5>'" -->
 				<b-list-group flush>
 					<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">

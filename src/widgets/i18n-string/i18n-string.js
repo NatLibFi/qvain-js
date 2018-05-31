@@ -93,12 +93,6 @@ export default {
 				this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: value })
 			},
 		},
-		inArray: function() {
-			return typeof property === 'number'
-		},
-		makeLabel: function() {
-			return this.schema['title'] || String(this.property) || "string"
-		},
 	},
 	created() {
 		//console.log("!!! i18n-string:", this, this.path, this.$props, this.$data, this.value, typeof this.value)

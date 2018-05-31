@@ -34,21 +34,32 @@ export default {
 			console.log("parent:", p, prop, val, typeof val, typeof e.target.value)
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: val })
 			*/
-			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: toNumber(e.target.value) })
+			console.log(typeof e.target.value, typeof toNumber(e.target.value))
+			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: toNumber(e.target.value) })
+			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e.target.value !== "" ? toNumber(e.target.value) : undefined })
 		},
 	},
 	computed: {
-		inArray: function() {
-			return typeof property === 'number'
-		},
 		makeLabel: function() {
-			return this.schema['title'] || String(this.property) || "number"
-		},
-		liveState: function() {
-			//console.log("number state:", this.schema['.q'] ? this.schema['.q']['v'] : null)
-			return '.q' in this.schema ? this.schema['.q']['v'] : null
+			//return this.schema['title'] || (typeof this.property === 'number' ? "#" + (this.property + 1) : String(this.property)) || "number"
+			return typeof this.property === 'number' ? "#" + (this.property + 1) : this.uiTitle
 		},
 	},
+	/*
+	watch: {
+		'validity': function(v) {
+			console.warn("schemaState watcher:", v)
+			console.log("schemaState watcher:")
+			if (v) {
+				this.$root.$emit('bv::hide::popover', 'jack');
+				this.$root.$emit('bv::disable::popover', 'jack');
+			} else {
+				this.$root.$emit('bv::enable::popover', 'jack');
+				this.$root.$emit('bv::show::popover', 'jack');
+			}
+		},
+	},
+	*/
 	created() {
 		//console.log("v-schema-number:", this, this.$data)
 	},

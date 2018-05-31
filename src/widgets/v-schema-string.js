@@ -24,20 +24,13 @@ export default {
 			//let prop = this.property
 			//let val = e.target.value
 			//console.log("parent:", p, prop, val)
-			//console.log("updateValue", '.q' in this.schema, '.q' in this.schema ? this.schema['.q']['v'] : null)
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e.target.value })
-			//this.state = this.schema['.q'] && e.target.value.length > 0 ? this.schema['.q']['v'] : null
 		},
 	},
 	computed: {
-		inArray: function() {
-			return typeof property === 'number'
-		},
 		makeLabel: function() {
-			return this.schema['title'] || String(this.property) || "string"
-		},
-		liveState: function() {
-			return '.q' in this.schema ? this.schema['.q']['v'] : null
+			//return this.schema['title'] || (typeof this.property === 'number' ? "#" + (this.property + 1) : String(this.property)) || "string"
+			return typeof this.property === 'number' ? "#" + (this.property + 1) : this.uiTitle
 		},
 		inputType: function() {
 			if (!('format' in this.schema)) return "text"

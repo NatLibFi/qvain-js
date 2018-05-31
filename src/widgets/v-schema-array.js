@@ -9,7 +9,7 @@ export default {
 	schematype: 'array',
 	data: function() {
 		return {
-			children: [],
+			//children: [],
 			minimum: 0,
 			maximum: 0,
 		}
@@ -17,11 +17,18 @@ export default {
 	methods: {
 		doMinus: function() {
 			// it's safe to pop() a zero-length array
-			if (this.children.length > this.minimum) this.children.pop()
+			//if (this.children.length > this.minimum) this.children.pop()
+			if (this.value.length > this.minimum) this.$store.commit('popValue', { p: this.parent, prop: this.property, val: this.value })
 		},
 		doPlus: function() {
 			//if (this.maximum === undefined || this.children.length < this.maximum) this.children.push('')
-			if (this.maximum === undefined || this.value.length < this.maximum) this.value.push('')
+			//if (this.maximum === undefined || this.value.length < this.maximum) this.value.push('')
+			if (this.maximum === undefined || this.value.length < this.maximum) {
+				//this.value.push({})
+				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: this.value })
+				return true
+			}
+			return false
 			console.log("didPlus, length now:", this.value.length)
 		},
 		deleteElement: function(index) {
@@ -44,7 +51,7 @@ export default {
 		init: function() {
 			this.minimum = typeof this.schema['minItems'] === 'number' && this.schema['minItems'] > 0 ? this.schema.minItems : 0
 			this.maximum = typeof this.schema['maxItems'] === 'number' && this.schema['maxItems'] > 0 ? this.schema.maxItems : undefined
-			console.log("schema-array: set min/max", this.minimum, this.maximum)
+			//console.log("schema-array: set min/max", this.minimum, this.maximum)
 			if (this.isTuple && !this.allowAdditional) this.maximum = this.schema['items'].length
 		},
 	},
@@ -56,6 +63,12 @@ export default {
 		allowAdditional: function() {
 			// additionalItems: true if missing, true if true, true when object; false if false
 			return this.schema['additionalItems'] !== false
+		},
+		children: {
+			cache: false,
+			get: function() {
+				return this.value
+			},
 		},
 	},
 	watch: {

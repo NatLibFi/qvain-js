@@ -1,33 +1,19 @@
 <template>
 	<div>
 		<!-- (number widget) -->
-		<div v-show="false">
-			<code>title: {{ schema['title'] }}</code>
-			<code>description: {{ schema['description'] }}</code>
-			<code>schema type: {{ schema['type'] }}</code>
-			<code>validation type: {{ valtype }}</code>
-			<code>parent: {{ parent }}</code>
-			<code>prop name: {{ property }}</code>
-			<hr/>
-			(slot)<slot></slot>(/slot)
-		</div>
-		<div style="display: none">
-		<label>{{ schema['title'] || String(property) || "number" }}:
-		<input type="number" name="abc" placeholder="" :step="schema['multipleOf']" :value="parent[property]" @input="updateValue">
-		<!-- <span v-if="inArray">{{ '#' + (property + 1) }}</span><span v-else>{{ property }}</span> -->
-		<button v-if="typeof property === 'number'" type="button" @click="deleteMe">x</button></label>
-		<p v-if="schema['description']">{{ schema['description'] }}</p>
-		</div>
-		
-		<!-- state: {{ liveState }} -->
-		<b-form-group id="" horizontal :label-cols="4" :description="ui['description'] || schema['description']" :label="makeLabel" :feedback="feedback" :state="liveState">
+		<b-form-group horizontal :label-cols="inArray ? 1 : 4" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
 			<b-input-group>
-				<b-form-input id="" type="number" name="" placeholder="" :step="schema['multipleOf']" :value="parent[property]" :state="liveState" @input.native="updateValue"></b-form-input>
-				<b-input-group-button v-if="inArray">
-					<b-btn type="button" variant="danger" @click="deleteMe">x</b-btn>
-				</b-input-group-button>
+				<b-form-input id="jack" type="number" name="" :placeholder="uiPlaceholder" :step="schema['multipleOf']" :value="parent[property]" :state="schemaState" @input.native="updateValue"
+				@focus.native="schemaState || $root.$emit('bv::show::popover', 'jack')" @blur.native="$root.$emit('bv::hide::popover', 'jack')"></b-form-input>
+				<b-input-group-append v-if="inArray">
+					<b-btn type="button" variant="danger" @click="deleteMe"><i class="fas fa-minus"></i></b-btn>
+				</b-input-group-append>
 			</b-input-group>
 		</b-form-group>
+		errors: {{ schemaErrors }} state: {{ schemaState }}/{{ !!schemaState }} {{ schemaErrors.length < 1 }} validity: {{ validity }} show? {{ showErrors }}
+		<b-btn @click="$root.$emit('bv::hide::popover', 'jack')">hide</b-btn>
+		<b-popover target="jack" triggers="" :show="!schemaState" title="errors" style="background-color: #660000; color: #aa0000;">{{ schemaErrors }}</b-popover>
+		<!-- :show="!schemaState" -->
 	</div>
 </template>
 

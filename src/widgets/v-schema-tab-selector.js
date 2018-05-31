@@ -7,6 +7,7 @@ import vSchemaAllOf from './v-schema-allof.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
+import TabbedArray from './TabbedArray.vue'
 
 import Skip from './skip.js'
 
@@ -21,7 +22,7 @@ export default {
 		schema: Object,
 	},
 	*/
-	props: ['schema', 'value', 'path', 'parent', 'property', 'tab', 'activeTab'],
+	props: ['schema', 'value', 'path', 'parent', 'property', 'tab', 'activeTab', 'depth'],
 	data: function() {
 		return {
 			dataType: null,
@@ -38,6 +39,18 @@ export default {
 				this.dataType = schemaType
 			}
 			//this.$emit('typeChanged', this.dataType)
+		},
+		emptyValue: function() {
+			switch (this.dataType) {
+				case 'object':
+					return {}
+				case 'array':
+					return []
+				case 'null':
+					return null
+				//default:
+			}
+			return undefined
 		},
 		handleCombiners: function() {
 			for (let i in COMBINERS) {
@@ -119,7 +132,15 @@ export default {
 			}
 			*/
 			//console.log('updateValue from vivicate', this.parent)
-			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.emptyValue })
+
+			// if we don't have a parent, we're changing the top level; set the record to the correct empty value
+			if (this.parent === undefined || this.parent === "") {
+				console.warn("tab-selector: no parent for", this.path)
+				//this.$store.commit('loadData', this.emptyValue())
+				return
+			}
+			this.$store.commit('initValue', { p: this.parent, prop: this.property, val: this.emptyValue() })
+			//this.$store.commit('initValue', { p: this.parent, prop: this.property, val: {} })
 			/*
 			else {
 				this.$set(target, key, "abc")
@@ -128,18 +149,6 @@ export default {
 		},
 	},
 	computed: {
-		emptyValue: function() {
-			switch (this.dataType) {
-			case 'object':
-				return {}
-			case 'array':
-				return []
-			case 'null':
-				return null
-			default:
-			}
-			return undefined
-		},
 		showTypeSelector: function() {
 			// schema type can be array or string (or undefined)
 			//return this.schema['type'] === undefined || typeof this.schema['type'] === 'object'
@@ -152,29 +161,30 @@ export default {
 			return ["string", "number", "integer", "object", "array", "boolean", "null"]
 		},
 		widget: function() {
-			//return this.dataType ? "schema-" + this.dataType : ""
-			//return this.defaultWidget(this.dataType)
-			//console.log("WIDGET ERRROR?", this.selectedWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType))
-			//return this.selectedWidget || this.uiHint['widget'] || this.defaultWidget(this.dataType)
-
-			//return this.selectedWidget || this.ui['widget'] || this.defaultWidget(this.dataType)
-			console.log("error will follow")
-			console.log("widget chain:", this.selectedWidget, this.uiForDef['widget'], this.uiForSchema['widget'], this.defaultWidget(this.dataType))
-			return this.selectedWidget || this.uiForDef['widget'] || this.uiForSchema['widget'] || this.defaultWidget(this.dataType)
+			console.log(`widget chain for ${this.path}:`, this.selectedWidget, this.uiForSchema['widget'], this.uiForDef['widget'], this.defaultWidget(this.dataType))
+			return this.selectedWidget || this.uiForSchema.widget || this.uiForDef.widget || this.defaultWidget(this.dataType)
 		},
+		widgetProps: function() {
+			return this.uiForSchema.props || this.uiForDef.props || undefined
+		},
+		/*
 		ui: function() {
 			return Object.assign({}, this.uiForDef, this.uiForSchema)
 		},
+		*/
+		ui: function() {
+			// if there was a $ref, use that ref's ui as default and load this path's on top of it
+			if (this.schema['$deref']) {
+				return Object.assign({}, this.$store.state.hints[this.schema['$deref']], this.$store.getters.uiForPath(this.path))
+			}
+			return this.$store.getters.uiForPath(this.path)
+		},
 		uiForSchema: function() {
 			//return this.$store.state.hints[this.path] || this.uiDefHint || {}
-			return this.$store.state.hints[this.path] || {}
+			return this.$store.getters.uiForPath(this.path)
 		},
 		uiForDef: function() {
-			if ('$deref' in this.schema) {
-				console.log("$deref:", this.schema['$deref'], this.$store.state.hints[this.schema['$deref']])
-			}
-			return '$deref' in this.schema && this.$store.state.hints[this.schema['$deref']] || {}
-			//return '$deref' in this.schema ? this.$store.state.hints[this.schema['$deref']] : {}
+			return ('$deref' in this.schema && this.$store.state.hints[this.schema['$deref']]) || {}
 		},
 		uiTab: function() {
 			return this.$store.state.hints[this.path] && this.$store.state.hints[this.path]['tab']
@@ -182,38 +192,22 @@ export default {
 		myTab: function() {
 			return typeof this.uiTab === 'number' ? this.uiTab : this.tab
 		},
+		newdepth: function() {
+			console.log("depth:", this.depth, typeof this.depth)
+			return 'tab' in this.uiForSchema ? 1 : this.depth + 1
+		},
 	},
 	watch: {
-		/*
 		schema: function() {
-			console.log("schema-tab-selector(", this.path, "): calling setDataType (watch) with", this.schema['type'])
-			this.setDataType(this.schema['type'])
-			
-			console.log("calling vivicate() from watcher")
-			this.vivicate()
-			
-			//if (this.path in this.$store.state.hints) {
-            //    console.log("found hint for path!")
-                
-            //    let hints = this.$store.state.hints[this.path]
-            //    if (hints['widget'] !== undefined) {
-            //        console.log("widget requested:", hints['widget'])
-            //        this.selectedWidget = hints['widget']
-            //   }
-            //}
-            
-			//this.$store.commit("addTab", this.schema)
-			
-			//console.log("destroying children", this.$children)
-			//this.$children.forEach(child => child.$destroy())
-			//console.log("destroyed children", this.$children)
-			//this.$forceUpdate()
-			
-			//this.$children.forEach(child => console.log("child:", child))
-			//this.$children = []
-			//console.log("set children to empty list", this.$children)
+			console.log("selector: schema watcher ran")
+			//if (this.$store.state.record === undefined) {
+			//if (!this.path && this.value === undefined) {
+			if (this.value === undefined) {
+				console.log("schema change, undefined value")
+				this.setDataType(this.schema['type'])
+				this.vivicate()
+			}
 		},
-		*/
 	},
 	components: {
 		//'schema': vSchemaSchema,
@@ -226,6 +220,7 @@ export default {
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,
 		'i18n-string': i18nString,
+		'tabbed-array': TabbedArray,
 		'skip': Skip,
 	},
 	created() {
@@ -235,5 +230,12 @@ export default {
 		//console.log("calling vivicate() from created()")
 		this.vivicate()
 		//console.log("startTab:", this.tab, "activeTab:", this.activeTab)
+	},
+	mounted() {
+		this.$nextTick(function () {
+			// Code that will run only after the
+			// entire view has been rendered
+			console.warn("v-tab-selector mounted triggered: READY")
+		})
 	},
 }

@@ -7,6 +7,37 @@ export default {
 	name: 'schema-object',
 	description: "generic object",
 	schematype: 'object',
+	data: function() {
+		return {
+			q: "not set",
+		}
+	},
+	watch: {
+		schema: {
+			handler(val) {
+				//this.q = this.schema['.q']
+				this.q = val['.q'] || "not set 2"
+				console.log("OBJECT SCHEMA WATCHER RAN for", this.path, "val:", val)
+			},
+			deep: true,
+		},
+	},
+	computed: {
+		vState() {
+			return this.$store.state.vState
+		},
+		myState: {
+			cache: false,
+			get: function() {
+				return this.vState[this.path] || {}
+			},
+		},
+		/*
+		myState() {
+			return this.vState[this.path] || {}
+		},
+		*/
+	},
 	created() {
 		//console.log("v-schema-object:", this, this.$data, this.$props)
 		//console.log("registered components:", this.$options.components)

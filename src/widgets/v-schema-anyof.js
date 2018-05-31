@@ -7,11 +7,4 @@ export default {
 	name: 'schema-anyof',
 	description: "generic anyof",
 	schematype: '',
-	computed: {
-		liveState: function() {
-			return '.q' in this.schema ? this.schema['.q']['v'] : null
-		},
-	},
-	created() {
-	},
 }

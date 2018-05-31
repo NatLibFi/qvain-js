@@ -46,7 +46,7 @@
 		
 		<!-- actual component -->
 		<!-- keep-alive -->
-		<component :is="widget" :schema="schema" :path="path" :value="value" :valtype="valType" :parent="parent" :property="property" :tab="myTab" v-on="$listeners">
+		<component is="widget" :schema="schema" :path="path" :value="value" :valtype="valType" :parent="parent" :property="property" :tab="myTab" v-on="$listeners">
 			<p>{{ valType }}</p>
 		</component>
 		<!-- /keep-alive -->
