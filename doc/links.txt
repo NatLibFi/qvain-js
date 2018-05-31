@@ -6,3 +6,6 @@ https://metax-test.csc.fi/es/reference_data/keyword/_mapping?pretty=true
 
 # show browser default input widgets
 https://jsfiddle.net/cihkem/8k0skxdr/
+
+# visual guide to css animations
+http://animista.net
