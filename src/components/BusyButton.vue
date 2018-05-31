@@ -5,7 +5,7 @@
 </template>
 
 <style>
-button svg { margin-right: 0.4rem; }
+/* button svg { margin-right: 0.4rem; } */
 </style>
 
 <script>

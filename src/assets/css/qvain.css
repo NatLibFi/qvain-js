@@ -1,3 +1,6 @@
+.bg-primary { background-color: #002233 !important; }
+.txt-primary { color: #002233 !important; }
+
 /*
 button { background-color: #00aacc; border: 0; }
 button.valid { background-color: #009900; }
@@ -20,6 +23,7 @@ div.debugging { color: #aa6666; }
 	transition: transform 0.5s;
 }
 
+/*
 table {
 	margin: 1em;
 	width: 100%;
@@ -28,6 +32,7 @@ th {
 	text-align: left;
 }
 th a { cursor: pointer; }
+*/
 
 #record-list tbody tr:hover { background-color: #002233; color: #ffffff; transition: ease-out background-color 0.5s; cursor: pointer; }
 
@@ -48,8 +53,6 @@ nav { background-color: #332200; }
 .navbar { background-color: #663300; }
 */
 
-.bg-primary { background-color: #002233 !important; }
-
 .metainfo {
 	font-style: italic;
 }
@@ -58,7 +61,6 @@ nav { background-color: #332200; }
 	color: #aaaaaa;
 }
 
-.txt-primary { color: #002233 !important; }
 
 .expander, .expander:hover, .expander:active, .expander:visited { text-decoration: none; }
 .expander:hover { text-shadow: 0px 0px 5px #002233; }

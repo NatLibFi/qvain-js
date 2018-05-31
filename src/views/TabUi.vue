@@ -67,10 +67,10 @@
 
 		<h2>Fairdata dataset schema</h2>
 		<b-tabs v-if="selectedSchema" v-model="tabIndex">
-			<b-tab :title="`Tab ${name}`" v-for="(name, i) in tabs" :key="i">
+			<b-tab :title="name ? name : `Tab ${i}`" v-for="(name, i) in tabs" :key="i">
 			<!-- b-tab :title="`Tab ${i}`" v-for="i in [0, 1, 2, 3]" :key="i" -->
 			<!-- b-tab :title="`Tab ${i}`" v-for="i in [0]" :key="i" -->
-				<component is="schema-tab-selector" v-if="tabIndex == i" :schema="schemaJson" path="" :parent="$store.state" property="record" :value="$store.state.record" :tab="startTab" :activeTab="i+1"></component>
+				<component is="schema-tab-selector" v-if="tabIndex == i" :schema="schemaJson" path="" :parent="$store.state" property="record" :value="$store.state.record" :tab="startTab" :activeTab="i+1" :depth="0"></component>
 
 				<!--
 				<p class="text-secondary">Tab Contents {{i}}</p>
