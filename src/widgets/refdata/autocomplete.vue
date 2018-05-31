@@ -9,7 +9,7 @@
 			<b-input v-model="input" @input="onInput" @change="onChange" @keyup.enter.native="addValue" :state="apiState"></b-input>
 			<b-input-group-append>
 				<b-dropdown :text="this.searchLanguage.toUpperCase()" v-if="this.languages.length > 1" @hidden="onInput">
-					<b-dropdown-item v-for="lang in languages" @click="searchLanguage = lang">{{ lang | uppercase }}</b-dropdown-item>
+					<b-dropdown-item v-for="lang in languages" :key="lang" @click="searchLanguage = lang">{{ lang | uppercase }}</b-dropdown-item>
 				</b-dropdown>
 				<b-btn @click="addValue">add</b-btn>
 			</b-input-group-append>
