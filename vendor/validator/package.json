@@ -1,10 +1,13 @@
 {
   "name": "qvain-validator",
-  "version": "0.8.0",
+  "version": "0.4.0",
   "description": "A json-schema validator for the Qvain metadata tool",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "build": "babel --no-babelrc src --out-dir build --presets=env",
+    "watch": "npm run build -- -w",
+    "test": "mocha --require babel-register",
+    "clean": "rm -rf build/"
   },
   "author": "Wouter Van Hemel",
   "license": "ISC",
@@ -17,6 +20,11 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "mocha": "^5.2.0"
+  },
+  "babel": {
+    "presets": ["env"]
   }
 }

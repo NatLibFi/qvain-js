@@ -1,6 +1,6 @@
-//import Validator from "./src/validate.js"
 var assert = require('assert');
-var Validator = require('../build/validate.js').default
+import Validator from "../src/validate.js"
+// without babel: var Validator = require('../build/validate.js').default
 
 describe('Array', function() {
   describe('#indexOf()', function() {
