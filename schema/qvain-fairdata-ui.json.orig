@@ -41,8 +41,8 @@
       "type": "string"
     },
     "title": {
-      "title": "Title",
-      "description": "Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.",
+      "title": "Multilingual string",
+      "description": "Object type for localized strings",
       "type": "object",
       "example": [
         "Vuorokauden alin lämpötila, 1961-2014, 10 km, GeoTIFF"
@@ -122,8 +122,8 @@
                 ]
               },
               "name": {
-                "title": "Name",
-                "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -156,8 +156,8 @@
                     "format": "uri"
                   },
                   "title": {
-                    "title": "Title",
-                    "description": "A name given to the document",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -165,8 +165,8 @@
                     }
                   },
                   "description": {
-                    "title": "Description",
-                    "description": "Description of the link. For example to be used as hover text.",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -194,8 +194,8 @@
                     ]
                   },
                   "name": {
-                    "title": "Name",
-                    "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -228,8 +228,8 @@
                         "format": "uri"
                       },
                       "title": {
-                        "title": "Title",
-                        "description": "A name given to the document",
+                        "title": "Multilingual string",
+                        "description": "Object type for localized strings",
                         "type": "object",
                         "$deref": "#/definitions/langString",
                         "additionalProperties": {
@@ -237,8 +237,8 @@
                         }
                       },
                       "description": {
-                        "title": "Description",
-                        "description": "Description of the link. For example to be used as hover text.",
+                        "title": "Multilingual string",
+                        "description": "Object type for localized strings",
                         "type": "object",
                         "$deref": "#/definitions/langString",
                         "additionalProperties": {
@@ -267,8 +267,8 @@
             ]
           },
           "type": {
-            "title": "Type",
-            "description": "a type of the identifier",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -279,8 +279,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -312,8 +312,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -479,8 +479,8 @@
         "description": "A project (a collective endeavour of some kind).",
         "properties": {
           "name": {
-            "title": "Name",
-            "description": "Name of the project",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -510,8 +510,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the document",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -519,8 +519,8 @@
                 }
               },
               "description": {
-                "title": "Description",
-                "description": "Description of the link. For example to be used as hover text.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -551,8 +551,8 @@
                   ]
                 },
                 "name": {
-                  "title": "Name",
-                  "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -585,8 +585,8 @@
                       "format": "uri"
                     },
                     "title": {
-                      "title": "Title",
-                      "description": "A name given to the document",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -594,8 +594,8 @@
                       }
                     },
                     "description": {
-                      "title": "Description",
-                      "description": "Description of the link. For example to be used as hover text.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -623,8 +623,8 @@
                       ]
                     },
                     "name": {
-                      "title": "Name",
-                      "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -657,8 +657,8 @@
                           "format": "uri"
                         },
                         "title": {
-                          "title": "Title",
-                          "description": "A name given to the document",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -666,8 +666,8 @@
                           }
                         },
                         "description": {
-                          "title": "Description",
-                          "description": "Description of the link. For example to be used as hover text.",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -697,8 +697,8 @@
             }
           },
           "funder_type": {
-            "title": "Funder type",
-            "description": "Project funder type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -709,8 +709,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -742,8 +742,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -788,8 +788,8 @@
                   ]
                 },
                 "name": {
-                  "title": "Name",
-                  "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -822,8 +822,8 @@
                       "format": "uri"
                     },
                     "title": {
-                      "title": "Title",
-                      "description": "A name given to the document",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -831,8 +831,8 @@
                       }
                     },
                     "description": {
-                      "title": "Description",
-                      "description": "Description of the link. For example to be used as hover text.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -860,8 +860,8 @@
                       ]
                     },
                     "name": {
-                      "title": "Name",
-                      "description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -894,8 +894,8 @@
                           "format": "uri"
                         },
                         "title": {
-                          "title": "Title",
-                          "description": "A name given to the document",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -903,8 +903,8 @@
                           }
                         },
                         "description": {
-                          "title": "Description",
-                          "description": "Description of the link. For example to be used as hover text.",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -996,8 +996,8 @@
             "format": "uri"
           },
           "pref_label": {
-            "title": "Preferred label",
-            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -1029,8 +1029,8 @@
               "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
               "properties": {
                 "pref_label": {
-                  "title": "Preferred label",
-                  "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -1067,8 +1067,8 @@
         "description": "Examples include written, spoken, sign, and computer languages.\n\nA system of signs, symbols, sounds, gestures, or rules used in communication.",
         "properties": {
           "title": {
-            "title": "Title",
-            "description": "A name of the Linguistic System. Name is given as localized text from IETF language codes. In case text cannot be localixed \"zxx\" or \"und\" language codes must be used.",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -1121,8 +1121,8 @@
             }
           },
           "place_uri": {
-            "title": "Place uri",
-            "description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1133,8 +1133,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1166,8 +1166,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -1234,8 +1234,8 @@
             "description": "Related entity",
             "properties": {
               "title": {
-                "title": "Title",
-                "description": "A name given to the resource.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1264,8 +1264,8 @@
                 "format": "uri"
               },
               "type": {
-                "title": "Type",
-                "description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
+                "title": "Concept",
+                "description": "An idea or notion; a unit of thought.",
                 "type": "object",
                 "$deref": "#/definitions/Concept",
                 "properties": {
@@ -1276,8 +1276,8 @@
                     "format": "uri"
                   },
                   "pref_label": {
-                    "title": "Preferred label",
-                    "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -1309,8 +1309,8 @@
                       "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                       "properties": {
                         "pref_label": {
-                          "title": "Preferred label",
-                          "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -1341,8 +1341,8 @@
             ]
           },
           "relation_type": {
-            "title": "Relation type",
-            "description": "Role of the influence. This property is considered same as rdf:isSingletonPropertyOf.",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1353,8 +1353,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1386,8 +1386,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -1435,8 +1435,8 @@
             "format": "uri"
           },
           "pref_label": {
-            "title": "Preferred label",
-            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -1468,8 +1468,8 @@
               "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
               "properties": {
                 "pref_label": {
-                  "title": "Preferred label",
-                  "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -1547,8 +1547,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the document",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1556,8 +1556,8 @@
                 }
               },
               "description": {
-                "title": "Description",
-                "description": "Description of the link. For example to be used as hover text.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1582,8 +1582,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the document",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1591,8 +1591,8 @@
                 }
               },
               "description": {
-                "title": "Description",
-                "description": "Description of the link. For example to be used as hover text.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1643,8 +1643,8 @@
                   "format": "uri"
                 },
                 "title": {
-                  "title": "Title",
-                  "description": "A name given to the resource.",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -1678,8 +1678,8 @@
             }
           },
           "file_type": {
-            "title": "File type",
-            "description": "File type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1690,8 +1690,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1723,8 +1723,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -1749,8 +1749,8 @@
             ]
           },
           "resource_type": {
-            "title": "Resource type",
-            "description": "type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1761,8 +1761,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1794,8 +1794,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -1820,8 +1820,8 @@
             ]
           },
           "use_category": {
-            "title": "Use category",
-            "description": "Use type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1832,8 +1832,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -1865,8 +1865,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -1964,8 +1964,8 @@
           "type": "string"
         },
         "access_type": {
-          "title": "Access type",
-          "description": "The nature or genre of the resource.",
+          "title": "Concept",
+          "description": "An idea or notion; a unit of thought.",
           "type": "object",
           "$deref": "#/definitions/Concept",
           "properties": {
@@ -1976,8 +1976,8 @@
               "format": "uri"
             },
             "pref_label": {
-              "title": "Preferred label",
-              "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+              "title": "Multilingual string",
+              "description": "Object type for localized strings",
               "type": "object",
               "$deref": "#/definitions/langString",
               "additionalProperties": {
@@ -2009,8 +2009,8 @@
                 "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                 "properties": {
                   "pref_label": {
-                    "title": "Preferred label",
-                    "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -2035,8 +2035,8 @@
           ]
         },
         "restriction_grounds": {
-          "title": "Restriction grounds",
-          "description": "Classified reason of allocated access type.",
+          "title": "Concept",
+          "description": "An idea or notion; a unit of thought.",
           "type": "object",
           "$deref": "#/definitions/Concept",
           "properties": {
@@ -2047,8 +2047,8 @@
               "format": "uri"
             },
             "pref_label": {
-              "title": "Preferred label",
-              "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+              "title": "Multilingual string",
+              "description": "Object type for localized strings",
               "type": "object",
               "$deref": "#/definitions/langString",
               "additionalProperties": {
@@ -2080,8 +2080,8 @@
                 "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                 "properties": {
                   "pref_label": {
-                    "title": "Preferred label",
-                    "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -2165,8 +2165,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the resource.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2216,8 +2216,8 @@
         "description": "An activity is something that occurs over a period of time and acts upon or with entities; it may include consuming, processing, transforming, modifying, relocating, using, or generating entities.",
         "properties": {
           "title": {
-            "title": "Title",
-            "description": "A name given to the activity.",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -2225,8 +2225,8 @@
             }
           },
           "description": {
-            "title": "Description",
-            "description": "The description of the activity",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -2284,8 +2284,8 @@
                 }
               },
               "place_uri": {
-                "title": "Place uri",
-                "description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
+                "title": "Concept",
+                "description": "An idea or notion; a unit of thought.",
                 "type": "object",
                 "$deref": "#/definitions/Concept",
                 "properties": {
@@ -2296,8 +2296,8 @@
                     "format": "uri"
                   },
                   "pref_label": {
-                    "title": "Preferred label",
-                    "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                    "title": "Multilingual string",
+                    "description": "Object type for localized strings",
                     "type": "object",
                     "$deref": "#/definitions/langString",
                     "additionalProperties": {
@@ -2329,8 +2329,8 @@
                       "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                       "properties": {
                         "pref_label": {
-                          "title": "Preferred label",
-                          "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                          "title": "Multilingual string",
+                          "description": "Object type for localized strings",
                           "type": "object",
                           "$deref": "#/definitions/langString",
                           "additionalProperties": {
@@ -2357,8 +2357,8 @@
             }
           },
           "preservation_event": {
-            "title": "Preservation Event",
-            "description": "Preservation event",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -2369,8 +2369,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2402,8 +2402,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2438,8 +2438,8 @@
               "description": "Related entity",
               "properties": {
                 "title": {
-                  "title": "Title",
-                  "description": "A name given to the resource.",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -2468,8 +2468,8 @@
                   "format": "uri"
                 },
                 "type": {
-                  "title": "Type",
-                  "description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
+                  "title": "Concept",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2480,8 +2480,8 @@
                       "format": "uri"
                     },
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2513,8 +2513,8 @@
                         "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                         "properties": {
                           "pref_label": {
-                            "title": "Preferred label",
-                            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                            "title": "Multilingual string",
+                            "description": "Object type for localized strings",
                             "type": "object",
                             "$deref": "#/definitions/langString",
                             "additionalProperties": {
@@ -2599,8 +2599,8 @@
               "description": "",
               "properties": {
                 "pref_label": {
-                  "title": "Preferred label",
-                  "description": "Preferred label for the variable",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {
@@ -2623,7 +2623,7 @@
                 },
                 "concept": {
                   "title": "Concept",
-                  "description": "Describes the concept of the variable",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2634,8 +2634,8 @@
                       "format": "uri"
                     },
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2667,8 +2667,8 @@
                         "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                         "properties": {
                           "pref_label": {
-                            "title": "Preferred label",
-                            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                            "title": "Multilingual string",
+                            "description": "Object type for localized strings",
                             "type": "object",
                             "$deref": "#/definitions/langString",
                             "additionalProperties": {
@@ -2693,8 +2693,8 @@
                   ]
                 },
                 "universe": {
-                  "title": "Universe",
-                  "description": "Indicates the Universe(s) of represented variable",
+                  "title": "Concept",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2705,8 +2705,8 @@
                       "format": "uri"
                     },
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2738,8 +2738,8 @@
                         "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                         "properties": {
                           "pref_label": {
-                            "title": "Preferred label",
-                            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                            "title": "Multilingual string",
+                            "description": "Object type for localized strings",
                             "type": "object",
                             "$deref": "#/definitions/langString",
                             "additionalProperties": {
@@ -2770,8 +2770,8 @@
                   "$deref": "#/definitions/ConceptScheme",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2796,7 +2796,7 @@
             }
           },
           "lifecycle_event": {
-            "title": "Lifecycle Event",
+            "title": "Concept",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "description": "An idea or notion; a unit of thought.",
@@ -2808,8 +2808,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2841,8 +2841,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -2919,8 +2919,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the document",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2928,8 +2928,8 @@
                 }
               },
               "description": {
-                "title": "Description",
-                "description": "Description of the link. For example to be used as hover text.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2942,8 +2942,8 @@
             ]
           },
           "file_type": {
-            "title": "File type",
-            "description": "File type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -2954,8 +2954,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -2987,8 +2987,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -3013,8 +3013,8 @@
             ]
           },
           "use_category": {
-            "title": "Use category",
-            "description": "Use type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -3025,8 +3025,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -3058,8 +3058,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -3165,8 +3165,8 @@
             "type": "string"
           },
           "use_category": {
-            "title": "Use Category",
-            "description": "Use category from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -3177,8 +3177,8 @@
                 "format": "uri"
               },
               "pref_label": {
-                "title": "Preferred label",
-                "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -3210,8 +3210,8 @@
                   "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
                   "properties": {
                     "pref_label": {
-                      "title": "Preferred label",
-                      "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                      "title": "Multilingual string",
+                      "description": "Object type for localized strings",
                       "type": "object",
                       "$deref": "#/definitions/langString",
                       "additionalProperties": {
@@ -3248,8 +3248,8 @@
                 "format": "uri"
               },
               "title": {
-                "title": "Title",
-                "description": "A name given to the document",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -3257,8 +3257,8 @@
                 }
               },
               "description": {
-                "title": "Description",
-                "description": "Description of the link. For example to be used as hover text.",
+                "title": "Multilingual string",
+                "description": "Object type for localized strings",
                 "type": "object",
                 "$deref": "#/definitions/langString",
                 "additionalProperties": {
@@ -3295,8 +3295,8 @@
             "format": "uri"
           },
           "pref_label": {
-            "title": "Preferred label",
-            "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+            "title": "Multilingual string",
+            "description": "Object type for localized strings",
             "type": "object",
             "$deref": "#/definitions/langString",
             "additionalProperties": {
@@ -3328,8 +3328,8 @@
               "description": "A set of concepts, optionally including statements about semantic relationships between those concepts.",
               "properties": {
                 "pref_label": {
-                  "title": "Preferred label",
-                  "description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+                  "title": "Multilingual string",
+                  "description": "Object type for localized strings",
                   "type": "object",
                   "$deref": "#/definitions/langString",
                   "additionalProperties": {

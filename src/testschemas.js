@@ -164,6 +164,28 @@ var _testOneOfSchema = {
 }
 
 
+var _testOneOfSchemaObjects = {
+	"oneOf": [
+		{
+			"type": "object",
+			"title": "person",
+			"properties": {
+				"name": { "type": "string" },
+				"age": { "type": "number" },
+			},
+		},
+		{
+			"type": "object",
+			"title": "company",
+			"properties": {
+				"name": { "type": "string" },
+				"workers": { "type": "number" },
+			},
+		},
+	]
+}
+
+
 var _testDefinitionsSchema = {
 	"definitions": {
 		"address": {
@@ -260,9 +282,9 @@ var _testTabSchema2 = {
 }
 
 
-var _testFunderWidget = {
-	"title": "funder test",
-	"description": "funder widget refdata test",
+var _testESWidget = {
+	"title": "ElasticSearch test",
+	"description": "ES widget refdata test",
 	"type": "object",
 	"properties": {
 		"title": { "title": "title of publication", "type": "object" },
@@ -287,6 +309,47 @@ var _testFunderWidget = {
 				//"definition": { "title": "Definition", "type": "array" },
 			},
 		},
+		"field_of_science": {
+			"title": "field of science",
+			"description": "Project field of science from reference data",
+			"type": "object",
+			//"additionalProperties": false,
+			"additionalProperties": {
+				"type":"string"
+			},
+			"properties": {
+				"identifier": { "title": "Identifier", "type": "string" },
+				"pref_label": {
+					"title": "Preferred label",
+					"type": "object",
+					"additionalProperties": {
+						"type":"string"
+					},
+					//additionalProperties: false,
+				},
+				//"definition": { "title": "Definition", "type": "array" },
+			},
+		},
+	}
+}
+
+
+var _testTabbedArraySchema = {
+	"title": "tabbed array test",
+	"description": "a widget that presents arrays in a tabbed interface",
+	"type": "object",
+	"properties": {
+		"justastring": {
+			"type": "string"
+		},
+		"persons": {
+			"type": "array",
+			"items": deepcopy(_testAgeSchema)
+		},
+		"more_persons": {
+			"type": "array",
+			"items": deepcopy(_testAgeSchema)
+		},
 	}
 }
 
@@ -307,12 +370,14 @@ var testSchemas = {
 	'anyof':            _testAnyOfSchema,
 	'allof':            _testAllOfSchema,
 	'oneof':            _testOneOfSchema,
+	'oneofObjects':     _testOneOfSchemaObjects,
 	'definitions':      _testDefinitionsSchema,
 	'refs':             _testRefSchema,
 	'ids':              _testIdSchema,
 	'tabs':             _testTabSchema,
 	'tabs2':            _testTabSchema2,
-	'funder':           _testFunderWidget,
+	'es':               _testESWidget,
+	'tabbed_array':     _testTabbedArraySchema,
 	//	'iow':              schemaIow,
 	//	'iow_deref':        schemaIowDeref,
 	'fairdata-deref':   schemaFairDataDeref,

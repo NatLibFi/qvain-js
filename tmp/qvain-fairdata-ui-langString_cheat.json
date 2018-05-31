@@ -267,8 +267,8 @@
             ]
           },
           "type": {
-            "title": "Type",
-            "description": "a type of the identifier",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -697,8 +697,8 @@
             }
           },
           "funder_type": {
-            "title": "Funder type",
-            "description": "Project funder type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1121,8 +1121,8 @@
             }
           },
           "place_uri": {
-            "title": "Place uri",
-            "description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1264,8 +1264,8 @@
                 "format": "uri"
               },
               "type": {
-                "title": "Type",
-                "description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
+                "title": "Concept",
+                "description": "An idea or notion; a unit of thought.",
                 "type": "object",
                 "$deref": "#/definitions/Concept",
                 "properties": {
@@ -1341,8 +1341,8 @@
             ]
           },
           "relation_type": {
-            "title": "Relation type",
-            "description": "Role of the influence. This property is considered same as rdf:isSingletonPropertyOf.",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1678,8 +1678,8 @@
             }
           },
           "file_type": {
-            "title": "File type",
-            "description": "File type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1749,8 +1749,8 @@
             ]
           },
           "resource_type": {
-            "title": "Resource type",
-            "description": "type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1820,8 +1820,8 @@
             ]
           },
           "use_category": {
-            "title": "Use category",
-            "description": "Use type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -1964,8 +1964,8 @@
           "type": "string"
         },
         "access_type": {
-          "title": "Access type",
-          "description": "The nature or genre of the resource.",
+          "title": "Concept",
+          "description": "An idea or notion; a unit of thought.",
           "type": "object",
           "$deref": "#/definitions/Concept",
           "properties": {
@@ -2035,8 +2035,8 @@
           ]
         },
         "restriction_grounds": {
-          "title": "Restriction grounds",
-          "description": "Classified reason of allocated access type.",
+          "title": "Concept",
+          "description": "An idea or notion; a unit of thought.",
           "type": "object",
           "$deref": "#/definitions/Concept",
           "properties": {
@@ -2284,8 +2284,8 @@
                 }
               },
               "place_uri": {
-                "title": "Place uri",
-                "description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
+                "title": "Concept",
+                "description": "An idea or notion; a unit of thought.",
                 "type": "object",
                 "$deref": "#/definitions/Concept",
                 "properties": {
@@ -2357,8 +2357,8 @@
             }
           },
           "preservation_event": {
-            "title": "Preservation Event",
-            "description": "Preservation event",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -2468,8 +2468,8 @@
                   "format": "uri"
                 },
                 "type": {
-                  "title": "Type",
-                  "description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
+                  "title": "Concept",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2623,7 +2623,7 @@
                 },
                 "concept": {
                   "title": "Concept",
-                  "description": "Describes the concept of the variable",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2693,8 +2693,8 @@
                   ]
                 },
                 "universe": {
-                  "title": "Universe",
-                  "description": "Indicates the Universe(s) of represented variable",
+                  "title": "Concept",
+                  "description": "An idea or notion; a unit of thought.",
                   "type": "object",
                   "$deref": "#/definitions/Concept",
                   "properties": {
@@ -2796,7 +2796,7 @@
             }
           },
           "lifecycle_event": {
-            "title": "Lifecycle Event",
+            "title": "Concept",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "description": "An idea or notion; a unit of thought.",
@@ -2942,8 +2942,8 @@
             ]
           },
           "file_type": {
-            "title": "File type",
-            "description": "File type from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -3013,8 +3013,8 @@
             ]
           },
           "use_category": {
-            "title": "Use category",
-            "description": "Use type of the resource",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {
@@ -3165,8 +3165,8 @@
             "type": "string"
           },
           "use_category": {
-            "title": "Use Category",
-            "description": "Use category from reference data",
+            "title": "Concept",
+            "description": "An idea or notion; a unit of thought.",
             "type": "object",
             "$deref": "#/definitions/Concept",
             "properties": {

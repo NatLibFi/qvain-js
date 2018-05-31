@@ -373,8 +373,8 @@
 							}
 						},
 						"publisher": {
-							"title": "Agent",
-							"description": "An agent (eg. person, group, software or physical artifact).",
+							"title": "Distributor",
+							"description": "An agent who has permission to distribute the dataset or who has made the dataset available.",
 							"type": "object",
 							"$deref": "#/definitions/ResearchAgent",
 							"properties": {
@@ -971,8 +971,8 @@
 							}
 						},
 						"rights_holder": {
-							"title": "Agent",
-							"description": "An agent (eg. person, group, software or physical artifact).",
+							"title": "Dataset owner",
+							"description": "A person or organisation who holds the copyright of the dataset at the current moment, usually the organization of the author – this does not mean the owner of the storage media (such as a memory stick) but the rights holder",
 							"type": "object",
 							"$deref": "#/definitions/ResearchAgent",
 							"properties": {
@@ -3827,8 +3827,8 @@
 										}
 									},
 									"publisher": {
-										"title": "Agent",
-										"description": "An agent (eg. person, group, software or physical artifact).",
+										"title": "Distributor",
+										"description": "An agent who has permission to distribute the dataset or who has made the dataset available.",
 										"type": "object",
 										"$deref": "#/definitions/ResearchAgent",
 										"properties": {
@@ -4425,8 +4425,8 @@
 										}
 									},
 									"rights_holder": {
-										"title": "Agent",
-										"description": "An agent (eg. person, group, software or physical artifact).",
+										"title": "Dataset owner",
+										"description": "A person or organisation who holds the copyright of the dataset at the current moment, usually the organization of the author – this does not mean the owner of the storage media (such as a memory stick) but the rights holder",
 										"type": "object",
 										"$deref": "#/definitions/ResearchAgent",
 										"properties": {
@@ -7286,8 +7286,8 @@
 												}
 											},
 											"publisher": {
-												"title": "Agent",
-												"description": "An agent (eg. person, group, software or physical artifact).",
+												"title": "Distributor",
+												"description": "An agent who has permission to distribute the dataset or who has made the dataset available.",
 												"type": "object",
 												"$deref": "#/definitions/ResearchAgent",
 												"properties": {
@@ -7884,8 +7884,8 @@
 												}
 											},
 											"rights_holder": {
-												"title": "Agent",
-												"description": "An agent (eg. person, group, software or physical artifact).",
+												"title": "Dataset owner",
+												"description": "A person or organisation who holds the copyright of the dataset at the current moment, usually the organization of the author – this does not mean the owner of the storage media (such as a memory stick) but the rights holder",
 												"type": "object",
 												"$deref": "#/definitions/ResearchAgent",
 												"properties": {
@@ -10840,8 +10840,8 @@
 									}
 								},
 								"publisher": {
-									"title": "Agent",
-									"description": "An agent (eg. person, group, software or physical artifact).",
+									"title": "Distributor",
+									"description": "An agent who has permission to distribute the dataset or who has made the dataset available.",
 									"type": "object",
 									"$deref": "#/definitions/ResearchAgent",
 									"properties": {
@@ -11438,8 +11438,8 @@
 									}
 								},
 								"rights_holder": {
-									"title": "Agent",
-									"description": "An agent (eg. person, group, software or physical artifact).",
+									"title": "Dataset owner",
+									"description": "A person or organisation who holds the copyright of the dataset at the current moment, usually the organization of the author – this does not mean the owner of the storage media (such as a memory stick) but the rights holder",
 									"type": "object",
 									"$deref": "#/definitions/ResearchAgent",
 									"properties": {

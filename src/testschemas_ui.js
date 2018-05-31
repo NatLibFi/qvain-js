@@ -27,7 +27,7 @@ var _testTabSchema2 = {
 }
 
 
-var _testFunderWidget = {
+var _testESWidget = {
 	'': { 'tab': 1 },
 	'/properties/funder_type': {
 		'widget': 'refdata-list',
@@ -35,6 +35,18 @@ var _testFunderWidget = {
 		'label': "funder type",
 		'description': "This is some fancy optional description for the funder field",
 		'help': "This is the optional help text for the funder field",
+	},
+	'/properties/field_of_science': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "field_of_science",
+			'optgroups': true,
+		},
+		'placeholder': "– choose field of science –",
+		'label': "field of science",
+		'description': "This is some fancy optional description for the field of science field",
+		'help': "This is the optional help text for the field of science field",
 	},
 	'/properties/title': {
 		'widget': 'i18n-string',
@@ -47,6 +59,16 @@ var _testFunderWidget = {
 		'description': "title of the dataset",
 		'help': "This is help for the title of the dataset",
 	},
+}
+
+
+var _testTabbedArraySchema = {
+	'/properties/persons': {
+		'widget': "tabbed-array",
+		'props': {
+			'tabField': "first_name",
+		},
+	}
 }
 
 
@@ -93,6 +115,12 @@ var _schemaFairDataUiTabs = {
 		'tab': 1,
 		'title': "Language",
 		'description': "Language or languages used in the data contents.",
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "language",
+		},
+		'placeholder': "– choose language –",
 	},
 	'/properties/description': {
 		'tab': 1,
@@ -114,6 +142,25 @@ var _schemaFairDataUiTabs = {
 		'title': "Field of Science",
 		'description': "Field of science in the classification of the Ministry of Education and Culture.",
 	},
+	'/properties/field_of_science': {
+		'tab': 1,
+		'label': "field of science",
+		'title': "Field of Science",
+		'description': "FIeld of science in the classification of the Ministry of Education and Culture.",
+	},
+	'/properties/field_of_science/*': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "field_of_science",
+			'optgroups': true,
+		},
+		'placeholder': "– choose field of science –",
+		'label': "field of science",
+		'title': "Field of Science",
+		'description': "This is some fancy optional description for the field of science field",
+		'help': "This is the optional help text for the field of science field",
+	},
 	'/properties/temporal': {
 		'tab': 2,
 		'title': "Temporal coverage",
@@ -124,11 +171,35 @@ var _schemaFairDataUiTabs = {
 		'title': "Spatial coverage",
 		'description': "Area covered by the dataset, e.g. places of observations.",
 	},
+	'/properties/spatial/*/properties/place_uri': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "location",
+			//x'optgroups': true,
+		},
+		'placeholder': "– choose location –",
+		'label': "location",
+		'description': "This is some fancy optional description for the location field",
+		'help': "This is the optional help text for the location field",
+	},
+
 	// "producer project"
 	'/properties/is_output_of': {
 		'tab': 3,
 		'title': "Producer Project",
 		'description': "Project in which the dataset was created",
+	},
+	'/properties/is_output_of/*/properties/funder_type': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "funder_type",
+		},
+		'placeholder': "– choose funder type –",
+		'label': "funder type",
+		'description': "This is some fancy optional description for the funder field",
+		'help': "This is the optional help text for the funder field",
 	},
 	'/properties/creator': {
 		'tab': 3,
@@ -146,16 +217,80 @@ var _schemaFairDataUiTabs = {
 		'title': "Curator",
 		'description': "Person tasked with reviewing, enhancing, cleaning, and standardizing metadata and the associated data.",
 	},
-	// missing: owner
+	// rights holder, also owner
+	'/properties/rights_holder': {
+		'tab': 3,
+		'title': "Rights holder",
+		'description': "A person or an organization that may edit, modify, share and restrict access to the dataset. The owner may also share or surrender these privileges to others.",
+	},
 	'/properties/relation': {
 		'tab': 4,
 		'title': "Reference to a related resource",
 		'description': "Another dataset, publication, infrastructure and so on, related to this dataset.",
 	},
+	'/properties/relation/*/properties/relation_type': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "relation_type",
+		},
+		'placeholder': "– choose relation type –",
+		'label': "relation type",
+		'description': "This is some fancy optional description for the relation type field",
+		'help': "This is the optional help text for the relation type field",
+	},
+	'/properties/relation/*/properties/entity/properties/type': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "relation_type",
+		},
+		'placeholder': "– choose entity relation type –",
+		'label': "entity relation type",
+		'description': "This is some fancy optional description for the entity relation type field",
+		'help': "This is the optional help text for the entity relation type field",
+	},
+	//path:"/properties/relation/0/properties/entity/properties/type/properties/identifier"
+
+	// was Life cycle event
 	'/properties/provenance': {
 		'tab': 4,
-		'title': "Life cycle event",
+		'title': "Provenance",
 		'description': "An action or event that the dataset was the subject of.",
+	},
+	'/properties/provenance/*/properties/spatial/properties/place_uri': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "location",
+			'optgroups': true,
+		},
+		'placeholder': "– choose location –",
+		'label': "location",
+		'description': "This is some fancy optional description for the location field",
+		'help': "This is the optional help text for the location field",
+	},
+	'/properties/provenance/*/properties/lifecycle_event': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "lifecycle_event",
+		},
+		'placeholder': "– choose type –",
+		'title': "lifecycle event type",
+		'description': "This is some fancy optional description for the type field",
+		'help': "This is the optional help text for the type field",
+	},
+	'/properties/provenance/*/properties/preservation_event': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "preservation_event",
+		},
+		'placeholder': "– choose type –",
+		'title': "preservation event type",
+		'description': "This is some fancy optional description for the type field",
+		'help': "This is the optional help text for the type field",
 	},
 	'/properties/files': {
 		'tab': 5,
@@ -171,15 +306,43 @@ var _schemaFairDataUiTabs = {
 		'title': "Access rights",
 		'description': "*** description for access rights goes here ***"
 	},
+	'/properties/access_rights/properties/access_type': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "access_type",
+		},
+		'placeholder': "– choose access type –",
+		'title': "access type",
+		'description': "This is some fancy optional description for the access type field",
+		'help': "This is the optional help text for the access type field",
+	},
+	'/properties/access_rights/properties/restriction_grounds': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "restriction_grounds",
+		},
+		'placeholder': "– choose restriction grounds –",
+		'title': "restriction grounds",
+		'description': "This is some fancy optional description for the restriction grounds field",
+		'help': "This is the optional help text for the restriction grounds field",
+	},
+	'/properties/access_rights/properties/license/*': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "license",
+		},
+		'placeholder': "– choose license –",
+		'title': "license",
+		'description': "This is some fancy optional description for the license field",
+		'help': "This is the optional help text for the license field",
+	},
 	'/properties/publisher': {
 		'tab': 6,
 		'title': "Publisher",
 		'description': "*** description for publisher goes here ***",
-	},
-	'/properties/field_of_science': {
-		'tab': 6,
-		'title': "Field of Science",
-		'description': "*** description for field of science goes here ***",
 	},
 	'/properties/issued': {
 		'tab': 6,
@@ -193,8 +356,15 @@ var _schemaFairDataUiTabs = {
 	},
 	'/properties/infrastructure': {
 		'tab': 6,
-		'title': "Infrastructure",
-		'description': "*** description for infrastructure goes here ***",
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "research_infra",
+		},
+		'placeholder': "– choose infrastructure –",
+		'title': "infrastructure",
+		'description': "This is some fancy optional description for the intrastructure field",
+		'help': "This is the optional help text for the infrastructure field",
 	},
 	'/properties/metadata_version_identifier': {
 		'tab': 6,
@@ -210,11 +380,6 @@ var _schemaFairDataUiTabs = {
 		'tab': 6,
 		'title': "Other identifier",
 		'description': "*** description for other identifier goes here ***",
-	},
-	'/properties/rights_holder': {
-		'tab': 6,
-		'title': "Rights holder",
-		'description': "*** description for rights holder goes here ***",
 	},
 	'/properties/total_ida_byte_size': {
 		'tab': 6,
@@ -247,11 +412,9 @@ var _schemaFairDataUiTabs = {
 var testSchemaUis = {
 	'tabs': _testTabSchema,
 	'tabs2': _testTabSchema2,
-	'funder': _testFunderWidget,
-	'fairdata-ui-tabs': _schemaFairDataUiTabs,	'/properties/total_remote_resources_byte_size': {
-		'tab': 6,
-	},
-
+	'es': _testESWidget,
+	'tabbed_array': _testTabbedArraySchema,
+	'fairdata-ui-tabs': _schemaFairDataUiTabs,
 }
 
 export default testSchemaUis
