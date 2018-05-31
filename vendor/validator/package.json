@@ -1,6 +1,6 @@
 {
   "name": "qvain-validator",
-  "version": "0.3.0",
+  "version": "0.8.0",
   "description": "A json-schema validator for the Qvain metadata tool",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,6 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "mocha": "^5.1.1"
+    "mocha": "^5.2.0"
   }
 }
