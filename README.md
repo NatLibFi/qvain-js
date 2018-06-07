@@ -31,10 +31,22 @@ $ npm run serve
 To build packages that can be uploaded to a server, run the npm `build` script:
 
 ```shell
-$ npm run serve
+$ npm run build
 ```
 
 ... it will build and package files into `./dist`. The contents of this directory is what your production web server should serve.
+
+
+## Releasing a version
+
+To release a version, forcefully add the `./dist` folder as it is ignored by default and either tag or commit:
+
+```shell
+$ npm run build
+$ git add -f dist/
+$ git tag -a v0.8.0 -m "Release 0.8.0"
+$ git push -v
+```
 
 
 ## Validator
