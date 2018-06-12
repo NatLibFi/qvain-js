@@ -11,6 +11,7 @@ export default {
 	'refdata-list': require('./refdata/list.vue').default,
 	'i18n-string': require('./i18n-string/i18n-string.vue').default,
 	'tabbed-array': require('./TabbedArray.vue').default,
+	'autocomplete': require('./refdata/autocomplete.vue').default,
 	
 	/*
 	'schema-selector': './v-schema-selector.vue',

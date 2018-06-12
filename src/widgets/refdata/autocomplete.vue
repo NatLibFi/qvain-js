@@ -2,6 +2,7 @@
 	<div>
 		<!-- autocomplete widget -->
 
+	<b-form-group horizontal :label-cols="inArray ? 1 : 4" :description="uiDescription" :label="uiLabel">
 		<transition-group name="tags" tag="div">
 			<b-badge :ref="`badge-${i}`" variant="secondary" class="p-1 m-1 animated-tag" v-for="(value, i) in values" :key="value.id" @mouseenter="hover" @mouseleave="unhover" @click="values.splice(i, 1)">{{ value.label[searchLanguage] || value.label['und'] }} <sup><i class="fas fa-times text-danger"></i></sup></b-badge>
 		</transition-group>
@@ -16,9 +17,11 @@
 		</b-input-group>
 
 		<b-form-select v-model="selected" :options="suggestions" :select-size="selectSize" class="mb-3" @input="onSelected" v-show="isOpen" v-if="typeahead"/>
+		<span v-if="false">
 		input: {{ input }}
 		values: {{ values }}
-
+		</span>
+	</b-form-group>
 	</div>
 </template>
 

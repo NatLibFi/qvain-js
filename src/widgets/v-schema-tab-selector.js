@@ -8,7 +8,7 @@ import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
 import TabbedArray from './TabbedArray.vue'
-
+import AutoComplete from './refdata/autocomplete.vue'
 import Skip from './skip.js'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
@@ -221,6 +221,7 @@ export default {
 		'refdata-list': refdataList,
 		'i18n-string': i18nString,
 		'tabbed-array': TabbedArray,
+		'autocomplete': AutoComplete,
 		'skip': Skip,
 	},
 	created() {

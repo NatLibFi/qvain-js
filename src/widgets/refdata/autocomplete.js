@@ -70,10 +70,11 @@ export default {
 		addValue: function() {
 			//this.values.push(this.input)
 			this.values.push(this.selected)
-			this.input = ""
-			this.selected = null
+			this.debouncedGetList.cancel()
 			this.isOpen = false
 			this.apiState = null
+			this.selected = null
+			this.input = ""
 		},
 		hover: function(e) {
 			e.target.classList.add('bg-danger')
@@ -109,9 +110,10 @@ export default {
 					this.apiError += ": " + error.response.status + (error.response.statusText ? "(" + error.response.statusText + ")" : "")
 				}
 			})
-			.finally(() => {
+			// "finally() is not a function"
+			//.finally(() => {
 				vm.apiBusy = false
-			})
+			//})
 		},
 	},
 	filters: {

@@ -125,6 +125,9 @@ var _schemaFairDataUiTabs = {
 	'/properties/description': {
 		'tab': 1,
 		'title': "Description",
+		'props': {
+			'large': true,
+		},
 		'description': "A characterization of the dataset that lucidly describes the dataset. Add new field for each language version. Please define the language used in each case.",
 	},
 	'/properties/bibliographic_citation': {
@@ -136,6 +139,7 @@ var _schemaFairDataUiTabs = {
 		'tab': 1,
 		'title': "Subject heading",
 		'description': "Choose subject headings from the General Finnish Ontology (YSO). It also has English and Swedish translations of the terms.",
+		'widget': 'autocomplete',
 	},
 	'/properties/field_of_science': {
 		'tab': 1,
@@ -146,7 +150,7 @@ var _schemaFairDataUiTabs = {
 		'tab': 1,
 		'label': "field of science",
 		'title': "Field of Science",
-		'description': "FIeld of science in the classification of the Ministry of Education and Culture.",
+		'description': "Field of science in the classification of the Ministry of Education and Culture.",
 	},
 	'/properties/field_of_science/*': {
 		'widget': 'refdata-list',
