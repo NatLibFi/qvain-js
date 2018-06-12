@@ -1,3 +1,10 @@
+/*
+body { font-family: "Open Sans", Roboto, sans-sans; }
+h1, h2, h3, h4, h5, h6, h7 { font-family: "Lato", serif; }
+*/
+
+body { color: #464646; }
+
 .bg-primary { background-color: #002233 !important; }
 .txt-primary { color: #002233 !important; }
 

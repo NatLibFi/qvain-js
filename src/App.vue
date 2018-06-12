@@ -5,7 +5,7 @@
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
 			<b-navbar-brand to="#">
-				<span>ATT</span>
+				<img src="/logos/Qvain_neg_300px.png" class="d-inline-block align-top" alt="Fairdata: Qvain">
 			</b-navbar-brand>
 
 			<b-collapse is-nav id="nav_collapse">
