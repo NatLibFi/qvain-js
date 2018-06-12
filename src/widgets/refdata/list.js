@@ -108,9 +108,10 @@ export default {
 						this.error += ": " + error.response.status + (error.response.statusText ? "(" + error.response.statusText + ")" : "")
 					}
 				})
-				.finally(() => {
+				// "finally() is not a function" :(
+				//.finally(() => {
 					vm.busy = false
-				})
+				//})
 		},
 		indexOf: function(id) {
 			if (!this.items) {
