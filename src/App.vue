@@ -42,7 +42,7 @@
 						<b-dropdown-item href="">profile</b-dropdown-item>
 						<b-dropdown-item href="">signout</b-dropdown-item>
 					</b-nav-item-dropdown>
-					<b-nav-item v-else to="/api/auth/login">login</b-nav-item>
+					<b-nav-item v-else href="/api/auth/login">login</b-nav-item>
 
 				</b-navbar-nav>
 			</b-collapse>
