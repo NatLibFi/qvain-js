@@ -5,7 +5,7 @@
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
 			<b-navbar-brand to="#">
-				<img src="/logos/Qvain_neg_300px.png" class="d-inline-block align-top" alt="Fairdata: Qvain">
+				<img src="/static/imgs/Qvain_neg_300px.png" class="d-inline-block align-top" alt="Fairdata: Qvain">
 			</b-navbar-brand>
 
 			<b-collapse is-nav id="nav_collapse">
@@ -42,7 +42,7 @@
 						<b-dropdown-item href="">profile</b-dropdown-item>
 						<b-dropdown-item href="">signout</b-dropdown-item>
 					</b-nav-item-dropdown>
-					<b-nav-item v-else to="http://id.example.com/">login</b-nav-item>
+					<b-nav-item v-else to="/api/auth/login">login</b-nav-item>
 
 				</b-navbar-nav>
 			</b-collapse>
