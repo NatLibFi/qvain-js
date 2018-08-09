@@ -8,6 +8,10 @@ body { color: #464646; }
 .bg-primary { background-color: #002233 !important; }
 .txt-primary { color: #002233 !important; }
 
+legend {
+	font-weight: bold;
+}
+
 /*
 button { background-color: #00aacc; border: 0; }
 button.valid { background-color: #009900; }

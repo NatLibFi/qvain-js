@@ -5,6 +5,7 @@ export default {
 	'schema-number': require('./v-schema-number.vue').default,
 	'schema-object': require('./v-schema-object.vue').default,
 	'schema-array': require('./v-schema-array.vue').default,
+	'schema-inline-array': require('./v-schema-inline-array.vue').default,
 	'schema-anyof': require('./v-schema-anyof.vue').default,
 	'schema-allof': require('./v-schema-allof.vue').default,
 	'widget-googlemaps': require('./widget-googlemaps.vue').default,

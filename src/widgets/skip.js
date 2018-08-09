@@ -15,6 +15,7 @@ export default {
 		
 		//:schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab"></component>
 		//for (let k in Object.keys(this.schema.properties))
+
 		return createElement(
 			'div', Object.keys(context.props.schema.properties).map(function(key) {
 				let myPath = context.props.path + '/properties/' + key
