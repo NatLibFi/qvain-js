@@ -11,9 +11,9 @@ import vSchema from './Attic/v-schema.vue'
 import vSchemaForm from './v-schema-form.vue'
 import vSchemaViewer from './viewer/v-schema-viewer.vue'
 import testAutoComplete from './widgets/refdata/autocomplete.vue'
-import testOldAutoComplete from './autocomplete/example.vue'
 import vFileBrowser from './filebrowser/filebrowser.vue'
 import Token from './auth/token.vue'
+import OrcidSearch from './orcid/search.vue'
 
 Vue.use(VueRouter)
 
@@ -30,7 +30,7 @@ const routes = [
 	{ path: '/viewschema', component: vSchemaViewer, props: false },
 	{ path: '/form', component: vSchemaForm, props: false },
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
-	{ path: '/oldautocomplete', component: testOldAutoComplete, props: false },
+	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
 	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
 	//{ path: '/files', component: vFileBrowser, props: true },
