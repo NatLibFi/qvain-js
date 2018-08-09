@@ -1,0 +1,70 @@
+{
+	"title":"Person",
+	"type":"object",
+	"@id":"http://xmlns.com/foaf/0.1/Person",
+	"description":"A person.",
+	"properties":{
+		"identifier":{
+			"@id":"http://purl.org/dc/terms/identifier",
+			"title":"Identifier",
+			"description":"An unambiguous reference to the resource within a given context.",
+			"@type":"@id",
+			"type":"string",
+			"format":"uri",
+			"example":[
+				"http://orcid.org/0000-0002-1825-0097"
+			]
+		},
+		"name":{
+			"@id":"http://xmlns.com/foaf/0.1/name",
+			"title":"Name",
+			"description":"This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
+			"@type":"http://www.w3.org/2001/XMLSchema#string",
+			"type":"string"
+		},
+		"email":{
+			"@id":"http://schema.org/email",
+			"title":"Email",
+			"description":"Email address.",
+			"@type":"http://www.w3.org/2001/XMLSchema#string",
+			"type":"string"
+		},
+		"telephone":{
+			"@id":"http://schema.org/telephone",
+			"title":"Phone",
+			"description":"The telephone number.",
+			"@type":"http://www.w3.org/2001/XMLSchema#string",
+			"type":"array",
+			"items":{
+				"type":"string"
+			}
+		},
+		"homepage":{
+			"@id":"http://xmlns.com/foaf/0.1/homepage",
+			"title":"Homepage",
+			"@type":"@id",
+			"type":"object",
+			"$ref":"#/definitions/Document"
+		},
+		"member_of":{
+			"@id":"http://www.w3.org/ns/org#memberOf",
+			"title":"Member of",
+			"description":"Indicates that a person is a member of the Organization with no indication of the nature of that membership or the role played.",
+			"@type":"@id",
+			"type":"object",
+			"$ref":"#/definitions/Organization"
+		},
+		"contributor_role":{
+			"@id":"http://purl.org/dc/terms/type",
+			"title":"Contributor role",
+			"description":"Contributor role from reference data",
+			"@type":"@id",
+			"type":"object",
+			"$ref":"#/definitions/Concept"
+		}
+	},
+	"required":[
+		"name",
+		"member_of"
+	]
+}

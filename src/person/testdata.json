@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Wouter Van Hemel",
+		"email": "wvh@example.com",
+		"telephone": "+358 555 555555",
+		"identifier": "https://orcid.org/0000-0001-7695-4511"
+	},
+	{
+		"name": "Esa-Pekka Keskitalo",
+		"email": "epk@example.com",
+		"telephone": "",
+		"identifier": "https://orcid.org/0000-0002-4411-8452"
+	},
+	{
+		"name": "Jessica Parland-von Essen",
+		"email": "jpve@example.com",
+		"telephone": "",
+		"identifier": "https://orcid.org/0000-0003-4460-3906"
+	}
+]

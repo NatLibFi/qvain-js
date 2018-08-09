@@ -14,6 +14,7 @@ import testAutoComplete from './widgets/refdata/autocomplete.vue'
 import vFileBrowser from './filebrowser/filebrowser.vue'
 import Token from './auth/token.vue'
 import OrcidSearch from './orcid/search.vue'
+import PersonList from './person/list.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,7 @@ const routes = [
 	{ path: '/form', component: vSchemaForm, props: false },
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
 	{ path: '/orcid', component: OrcidSearch, props: false },
+	{ path: '/personlist', component: PersonList, props: false },
 	{ path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
 	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
 	//{ path: '/files', component: vFileBrowser, props: true },
