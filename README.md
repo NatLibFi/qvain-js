@@ -61,4 +61,6 @@ $ npm test
 
 ## Browser support
 
-Qvain, being a modern web application, makes quite heavy use of Javascript and needs a modern standards-compliant browser. During development it is tested with Firefox and Chrome. IE11 might work with a lot of support from polyfills, but it is not advised. Earlier browsers, especially IE8 and earlier, are not supported at all. Apart from our own application code, Vue demands a ES5 compatible browser (at least IE9) and Bootstrap 4 at least IE10–IE11. Avoid Internet Explorer for modern web applications; any newer self-updating browser (including Edge) should work.
+Qvain is a modern [SPA](https://en.wikipedia.org/wiki/Single-page_application) web application written in ES6 (anno 2015) compliant Javascript and transpiled by Webpack and Babel. [The build process creates two bundles](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/): a faster and smaller one with modern ES6 Javascript for browsers supporting Javascript modules – all of the current self-updating browsers – and a slower and larger bundle with code transpiled to ES5 with optional polyfills for old browsers, in an attempt to support those people stuck with old browsers such as IE11.
+
+Note that because Qvain depends on [Vue](https://vuejs.org/v2/guide/installation.html#Compatibility-Note) and [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/browsers-devices/#supported-browsers), it is very unlikely to work on versions of Internet Explorer older than IE10.
