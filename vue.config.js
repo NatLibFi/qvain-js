@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
 	lintOnSave: false,
+	assetsDir: "static",
 	chainWebpack: config => {
 		// make sure BABEL_ENV is set to whatever NODE_ENV is set to in .env files
 		if (process.env.BABEL_ENV !== process.env.NODE_ENV) {
