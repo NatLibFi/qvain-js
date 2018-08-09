@@ -1,10 +1,35 @@
+<template>
+	<b-card no-body sub-title="uiDescription" class="my-3">
+		<h3 slot="header"><i class="fas fa-angle-right"></i> {{ uiTitle }}</h3>
+
+		<b-card-body>
+		<p class="card-text text-muted" v-if="uiDescription"><sup><i class="fas fa-quote-left text-muted"></i></sup> {{ uiDescription }}</p>
+		</b-card-body>
+		<!-- b-form-group id="" :label-cols="4" :description="uiDescription" :label="uiLabel" :horizontal="true" -->
+		<b-list-group flush>
+			<b-list-group-item v-for="(child, index) in children" :key="index">
+			<!-- style="border-left: 2px solid #aaaaaa; padding-left: 1em; margin-left: 1em;" -->
+				<component is="schema-tab-selector" :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></component>
+			</b-list-group-item>
+			<b-list-group-item v-if="!children || children.length < 1"><i>no items</i></b-list-group-item>
+		</b-list-group>
+		<!-- /b-form-group -->
+		<b-card-footer>
+			list <button type="button" :disabled="this.children.length <= this.minimum" @click="doMinus">-</button> | <button type="button" :disabled="this.children.length >= this.maximum" @click="doPlus">+</button>
+			(min: {{ minimum }} / max: {{ maximum || '-' }})
+		</b-card-footer>
+
+	</b-card>
+</template>
+
+<script>
 import vSchemaBase from './v-schema-base.vue'
 //import uiComponents from './uicomponents.js'
 //import vSchemaSelector from './v-schema-selector.vue'
 
 export default {
 	extends: vSchemaBase,
-	name: 'schema-array',
+	name: 'schema-inline-array',
 	description: "generic array",
 	schematype: 'array',
 	data: function() {
@@ -81,3 +106,4 @@ export default {
 	},
 	//components: uiComponents,
 }
+</script>
