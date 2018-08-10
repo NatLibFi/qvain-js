@@ -4,33 +4,39 @@
     <fileedit-modal ref="refFileEditModal"></fileedit-modal>
 
     <b-row no-gutters>
-      <b-col class="bg-primary p-3">
-        <h1>{{ project }}</h1>
+      <b-col class="bg-primary py-3 px-4">
+        <h1 class="text-white">{{ project }}</h1>
       </b-col>
     </b-row>
 
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
 
     <b-button-toolbar key-nav aria-label="File browser toolbar" class="d-flex align-items-center">
-      <Breadcrumbs :breadcrumbs=" breadcrumbs" :click="openDir" class="mr-auto">
+      <Breadcrumbs :breadcrumbs="breadcrumbs" :click="openDir" class="mr-auto" homePath="/">
       </Breadcrumbs>
       <b-col cols="12" md="auto">
         <b-button-group class="">
           <b-btn @click.stop="deselectDir(cwd)" v-if="cwd in selectedDirs">remove directory</b-btn>
-          <b-btn @click.stop="selectDir(cwd)" :disabled="isSelectedDeep" v-else>add directory</b-btn>
+          <b-btn @click.stop="selectDir(cwd)" :disabled="isSelectedDeep" v-else variant="primary">add directory</b-btn>
         </b-button-group>
       </b-col>
     </b-button-toolbar>
 
     <b-table :fields="fileFields" :items="filesAndFolders" show-empty empty-text="no files in this directory" striped hover>
       <template slot="type" slot-scope="data">
-        <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)">Open</b-btn>
+        <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)" variant="link" class="m-0 p-0 float-right">
+          <i class="fas fa-folder fa-2x"></i>
+        </b-btn>
+      </template>
+      <template slot="name" slot-scope="data">
+        <b-btn v-if="data.item.type !== 'file'" variant="link" @click.stop="openDir(data.item.path)" class="m-0 p-0">{{data.item.name}}</b-btn>
+        <span v-else>{{data.item.name}}</span>
       </template>
       <template slot="actions" slot-scope="data">
         <b-btn size="sm" @click.stop="deselect(data.item.id)" :class="{ 'btn-outline-primary': isSelectedDeep }" class="mr-2" :disabled="isSelectedDeep" v-if="data.item.id in selected">remove</b-btn>
-        <b-btn size="sm" @click.stop="select(data.item.id)" :class="{ 'btn-outline-primary': isSelectedDeep }" class="mr-2" :disabled="isSelectedDeep" v-else>{{ isSelectedDeep ?"selected" :"add" }}</b-btn>
-        <b-btn size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing" class="mr-2">details</b-btn>
-        <b-btn size="sm" @click.stop="edit(data.item, data.index, $event.target)" class="mr-2">edit</b-btn>
+        <b-btn size="sm" @click.stop="select(data.item.id)" :class="{ 'btn-outline-primary': isSelectedDeep }" class="mr-2" :disabled="isSelectedDeep" v-else variant="primary">{{ isSelectedDeep ?"selected" :"add" }}</b-btn>
+        <b-btn size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing" class="mr-2" v-if="data.item.type === 'file'">details</b-btn>
+        <b-btn size="sm" @click.stop="edit(data.item, data.index, $event.target)" class="mr-2" v-if="data.item.type === 'file'">edit</b-btn>
       </template>
       <template slot="row-details" slot-scope="data">
         <b-card>
@@ -119,14 +125,22 @@ export default {
       //curParentId: null,
       curDirInfo: null,
       fileFields: [
-        'type',
+        {
+          key: 'type',
+          label: '',
+          tdClass: 'align-middle',
+          class: 'px-2 mx-0',
+          thStyle: { width: '3.5em' },
+        },
         {
           key: 'name',
           sortable: true,
+          tdClass: 'align-middle',
         },
         {
           key: 'identifier',
           sortable: true,
+          tdClass: 'align-middle',
         },
         {
           key: 'date_modified',
@@ -134,10 +148,13 @@ export default {
           formatter: value => {
             return dateFormat(dateFromIso(value), 'YYYY-MM-DD')
           },
+          tdClass: 'align-middle',
         },
         {
           key: 'byte_size',
           label: 'Size',
+          sortable: true,
+          tdClass: 'align-middle',
         },
         'actions',
       ],
@@ -314,7 +331,6 @@ export default {
   },
   computed: {
     breadcrumbs: function() {
-      console.log('cwd', this.cwd)
       let split = this.cwd.split('/')
       let currpath = []
       return this.cwd.split('/').map(p => {
@@ -346,15 +362,7 @@ export default {
       return this.cwd.length <= 1
     },
   },
-  watch: {
-    // $route(to, from) {
-    //   console.log('route to fullpath:', to.fullPath)
-    //   console.log('route from fullpath:', from.fullPath)
-    //   if (to.fullPath !== from.fullPath) {
-    //     this.openDir(from.params.relpath.join('/'))
-    //   }
-    // },
-  },
+  watch: {},
   components: {
     file: vFile,
     filetree: vTree,
