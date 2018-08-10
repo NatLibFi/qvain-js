@@ -2,9 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 //import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './assets/css/qvain.css'
+import './assets/css/qvain.scss'
 
 import router from './router.js'
 import store from './store.js'
@@ -26,38 +24,44 @@ Vue.use(BootstrapVue)
 //Vue.use(refdataWidgets)
 
 Vue.use(AuthPlugin, {
-	router: router,
-	loginPage: "/token",
+  router: router,
+  loginPage: '/token',
 })
 
 store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
 
 // eslint-disable-next-line no-unused-vars
-const testJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8"
-
+const testJwt =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8'
 
 // create and mount the root instance
 // eslint-disable-next-line no-unused-vars
 const app = new Vue({
-	router,
-	store,
-	render: h => h(App),
-	data: {
-		"user": null,
-		//"DEBUG": APP_DEBUG,
-	},
-	methods: {
-	},
-	computed: {
-		authenticated: function() {
-			return this.user !== null
-		},
-	},
-	created: function() {
-		console.log("MODE:", process.env.VUE_APP_MODE)
-		console.log("METAX_API_URL:", process.env.VUE_APP_METAX_API_URL)
-		console.log("APP_DEBUG:", typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined)
-		console.log("localStorage token login:", this.$auth.localLogin(), this.$auth.loggedIn)
-	},
+  router,
+  store,
+  render: h => h(App),
+  data: {
+    user: null,
+    //"DEBUG": APP_DEBUG,
+  },
+  methods: {},
+  computed: {
+    authenticated: function() {
+      return this.user !== null
+    },
+  },
+  created: function() {
+    console.log('MODE:', process.env.VUE_APP_MODE)
+    console.log('METAX_API_URL:', process.env.VUE_APP_METAX_API_URL)
+    console.log(
+      'APP_DEBUG:',
+      typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined,
+    )
+    console.log(
+      'localStorage token login:',
+      this.$auth.localLogin(),
+      this.$auth.loggedIn,
+    )
+  },
 }).$mount('#app')
