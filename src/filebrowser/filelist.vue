@@ -9,11 +9,13 @@
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
 
     <FileTable v-if="filesAndFolders" :tableData="filesAndFolders" :openDir="openDir" :project="project" :cwd="cwd" />
+    <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected(project)" />
   </div>
 </template>
 
 <script>
 import FileTable from './table'
+import ObjectArray from './ObjectArray'
 
 const getReqParams = err => (err && err.config && err.config.params) || null
 
@@ -63,11 +65,18 @@ export default {
           })
         })
     },
+    getAllSelected: function(project) {
+      const files = this.$store.getters['files/getSelectedFiles'](project)
+      const dirs = this.$store.getters['files/getSelectedDirs'](project)
+      if (!files && !dirs) return false
+      return [(dirs && {type: 'dir', data: dirs}), (files && {type: 'file', data: files})]
+    },
   },
   computed: {},
   watch: {},
   components: {
     FileTable: FileTable,
+    ObjectArray: ObjectArray,
   },
   created: function() {
     if (this.project != 'project_x') {

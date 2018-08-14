@@ -144,8 +144,7 @@ export default {
     },
     addSelected: function() {
       this.$store.dispatch('files/addSelected', { project: this.project, items: this.selected })
-      console.log('dirs', this.$store.getters['files/getSelectedDirs'](this.project))
-      console.log('files', this.$store.getters['files/getSelectedFiles'](this.project))
+      this.selected = []
     },
   },
   computed: {
