@@ -8,28 +8,32 @@ var fileapi = axios.create({
   timeout: 3000,
   responseType: 'json',
 })
-
+// TODO: Add functions to clear data from store when user is finished
 export default {
   namespaced: true,
   state: {
     selectedFiles: {},
     selectedDirs: {},
     directory: {},
+    project: null,
+    allDirs: { files: [], directories: [] },
   },
   getters: {
     isSelectedFile(state) {
-      return (project, id) =>
-        project in state.selectedFiles && id in state.selectedFiles[project]
+      return id =>
+        state.project in state.selectedFiles &&
+        id in state.selectedFiles[state.project]
     },
     isSelectedDir(state) {
-      return (project, id) =>
-        project in state.selectedDirs && id in state.selectedDirs[project]
+      return id =>
+        state.project in state.selectedDirs &&
+        id in state.selectedDirs[state.project]
     },
     getSelectedFiles(state) {
-      return project => state.selectedFiles[project] || false
+      return state.selectedFiles[state.project] || false
     },
     getSelectedDirs(state) {
-      return project => state.selectedDirs[project] || false
+      return state.selectedDirs[state.project] || false
     },
     getFilesAndFolders(state) {
       // combines folders and files into single array of objects
@@ -93,72 +97,88 @@ export default {
           file: undefined,
         }))
       }
+      console.log('files and folders', [...parsedFolders, ...parsedFiles])
       return [...parsedFolders, ...parsedFiles]
+    },
+    getProject(state) {
+      return state.project
     },
   },
   mutations: {
-    addFiles(state, data) {
-      if (!(data.project in state.selectedFiles))
-        Vue.set(state.selectedFiles, data.project, [])
-      const selectedItems = data.items.map(single => {
-        return state.directory.files.find(
+    updateProject(state, project) {
+      state.project = project
+    },
+    // state.directory only has current folder
+    // so this won't work if the folder is changed
+    addFiles(state, items) {
+      if (!(state.project in state.selectedFiles))
+        Vue.set(state.selectedFiles, state.project, [])
+      const selectedItems = items.map(single => {
+        return state.allDirs.files.find(
           file => file.identifier === single.identifier,
         )
       })
-      state.selectedFiles[data.project].push(...selectedItems)
+      state.selectedFiles[state.project].push(...selectedItems)
     },
-    removeFile(state, project, item) {
-      if (!(location.project in state.selectedFiles)) return
-      Vue.delete(state.selectedFiles[location.project], location.path)
-      if (Object.keys(state.selectedFiles[location.project]).length < 1) {
-        Vue.delete(state.selectedFiles, location.project)
+    removeFile(state, identifier) {
+      if (!(state.project in state.selectedFiles)) return
+      const index = state.selectedFiles[state.project].findIndex(
+        single => single.identifier === identifier,
+      )
+      state.selectedFiles[state.project].splice(index, 1)
+      if (state.selectedFiles[state.project].length < 1) {
+        Vue.delete(state.selectedFiles, state.project)
       }
       return
     },
-    addDirs(state, data) {
-      if (!(data.project in state.selectedDirs))
-        Vue.set(state.selectedDirs, data.project, [])
-      const selectedItems = data.items.map(single => {
-        return state.directory.directories.find(
+    addDirs(state, items) {
+      if (!(state.project in state.selectedDirs))
+        Vue.set(state.selectedDirs, state.project, [])
+      const selectedItems = items.map(single => {
+        return state.allDirs.directories.find(
           dir => dir.identifier === single.identifier,
         )
       })
-      state.selectedDirs[data.project].push(...selectedItems)
+      state.selectedDirs[state.project].push(...selectedItems)
     },
-    removeDir(state, location) {
-      if (!(location.project in state.selectedDirs)) return
-      Vue.delete(state.selectedDirs[location.project], location.path)
-      if (Object.keys(state.selectedDirs[location.project]).length < 1) {
-        Vue.delete(state.selectedDirs, location.project)
+    removeDir(state, identifier) {
+      if (!(state.project in state.selectedDirs)) return
+      const index = state.selectedDirs[state.project].findIndex(
+        single => single.identifier === identifier,
+      )
+      state.selectedDirs[state.project].splice(index, 1)
+      if (state.selectedDirs[state.project].length < 1) {
+        Vue.delete(state.selectedDirs, state.project)
       }
       return
     },
     saveResults(state, data) {
+      state.allDirs.files.push(...data.files)
+      state.allDirs.directories.push(...data.directories)
       state.directory = data
     },
   },
   actions: {
-    addSelected({ commit, state }, data) {
+    addSelected({ commit, state }, items) {
       let files = []
       let dirs = []
-      data.items.map(single => {
+      items.map(single => {
         single.type === 'file' ? files.push(single) : dirs.push(single)
       })
       if (files.length > 0) {
-        commit('addFiles', { project: data.project, items: files })
+        commit('addFiles', files)
       }
       if (dirs.length > 0) {
-        commit('addDirs', { project: data.project, items: dirs })
+        commit('addDirs', dirs)
       }
     },
-    queryContent({ commit, state }, data) {
-      console.log('query', data)
+    queryContent({ commit, state }, { dir, project }) {
       return new Promise((resolve, reject) => {
         fileapi
           .get('/directories/files', {
             params: {
-              project: data.project,
-              path: data.dir,
+              project,
+              path: dir,
             },
           })
           .then(function(response) {

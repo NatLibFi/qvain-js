@@ -1,8 +1,5 @@
 <template>
   <div>
-    <fileinfo-modal ref="refFileInfoModal"></fileinfo-modal>
-    <fileedit-modal ref="refFileEditModal"></fileedit-modal>
-
     <!-- BREADCRUMBS AND TOOLBAR -->
     <b-button-toolbar key-nav aria-label="File browser toolbar" class="d-flex align-items-center">
       <Breadcrumbs :breadcrumbs="breadcrumbs" :click="openDir" class="mr-auto" homePath="/">
@@ -10,7 +7,11 @@
     </b-button-toolbar>
 
     <!-- TABLE -->
-    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory" striped hover @row-clicked="toggleSelection" class="mb-0">
+    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory" striped hover class="mb-0" :tbody-tr-class="rowClass">
+      <template slot="selection" slot-scope="data">
+        <b-form-checkbox class="m-0" :value="{identifier: data.item.identifier, type: data.item.type}" v-model="selected">
+        </b-form-checkbox>
+      </template>
       <template slot="type" slot-scope="data">
         <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)" variant="link" class="m-0 p-0 float-right">
           <i class="fas fa-folder fa-2x"></i>
@@ -58,22 +59,21 @@
             </b-col>
             <b-col>{{ data.item.file.file_characteristics['application_name'] }}</b-col>
           </b-row>
-          <b-button size="sm" @click.stop="modalOpen(data.item.identifier, data.item.path, project)">json</b-button>
+          <b-button size="sm" @click.stop="() => modalOpen(data.item.identifier, data.item.path, project)">json</b-button>
           <b-button size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing">hide</b-button>
         </b-card>
       </template>
     </b-table>
     <!-- BREADCRUMBS AND TOOLBAR -->
     <b-col cols="12" md="auto" class="border-top border-bottom p-2 d-flex justify-content-end align-items-center">
-        <span class="px-4">{{selected.length}} items selected</span><b-btn @click.stop="addSelected()" variant="primary" :disabled="selected.length === 0">add selected</b-btn>
+      <span class="px-4">{{selected.length}} items selected</span>
+      <b-btn @click.stop="() => addSelected()" variant="primary" :disabled="selected.length === 0">add selected</b-btn>
     </b-col>
   </div>
 </template>
 
 <script>
 import Breadcrumbs from './breadcrumbs.vue'
-import vFileInfoModal from './fileinfo-modal.vue'
-import vFileEditModal from './fileedit-modal.vue'
 import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
 import FileTable from './table'
@@ -85,8 +85,10 @@ export default {
     return {
       tableFields: [
         {
-          key: 'select',
+          key: 'selection',
           label: '',
+          class: 'pl-3 pr-0 mx-0',
+          thStyle: { width: '0em' },
         },
         {
           key: 'type',
@@ -129,7 +131,10 @@ export default {
   },
   methods: {
     toggleSelection: function(item) {
-      const index = this.selected.findIndex(single => single.identifier === item.identifier)
+      console.log('toggleSelection')
+      const index = this.selected.findIndex(
+        single => single.identifier === item.identifier,
+      )
       if (index === -1) {
         item.selected = true
         this.selected.push({ identifier: item.identifier, type: item.type })
@@ -138,13 +143,25 @@ export default {
         this.selected.splice(index, 1)
       }
     },
-    rowClass(item, type) {
-      if (!item) return
-      if (this.isSelected(item.identifier)) return 'table-info'
+    rowClass: function(item) {
+      console.log('update row class')
+      const classes = ['pointer']
+      console.log('item', item.identifier)
+      console.log('selected', this.isSelected(item.identifier))
+      if (!item) return classes.join(' ')
+      if (this.isSelected(item.identifier)) {
+        classes.push('table-primary')
+      }
+      return classes.join(' ')
     },
     addSelected: function() {
-      this.$store.dispatch('files/addSelected', { project: this.project, items: this.selected })
+      this.$store.dispatch('files/addSelected', this.selected)
       this.selected = []
+    },
+    isSelected: function(id) {
+      return this.selected.find(single => single.identifier === id)
+        ? true
+        : false
     },
   },
   computed: {
@@ -159,22 +176,19 @@ export default {
         }
       })
     },
-    isSelected: function(id) {
-      return this.selected.includes(id)
-    },
     selectedDirs: function() {
-      return this.$store.getters['files/getSelectedDirs'](this.project)
+      return this.$store.getters['files/getSelectedDirs']
     },
     selectedFiles: function() {
-      return this.$store.getters['files/getSelectedFiles'](this.project)
+      return this.$store.getters['files/getSelectedFiles']
     },
   },
   watch: {},
   components: {
-    'fileinfo-modal': vFileInfoModal,
-    'fileedit-modal': vFileEditModal,
     Breadcrumbs,
   },
-  created: function() {},
+  created: function() {
+    console.log('this', this)
+  },
 }
 </script>

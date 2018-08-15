@@ -5,14 +5,19 @@
       <div class="py-2">
         <div class="d-flex">
           <h6 class="mb-0">
-            {{title}}<span v-if="secondary" class="text-muted m-0 font-italic">, {{secondary}}</span>
+            {{title}}
+            <span v-if="secondary" class="text-muted m-0 font-italic">, {{secondary}}</span>
           </h6>
         </div>
         <p class="mb-0">Icons</p>
       </div>
       <b-btn-group class="ml-auto">
-        <b-btn variant="primary" class="px-3 py-2"><i class="fas fa-pen" /></b-btn>
-        <b-btn variant="danger" class="px-3 py-2"><i class="fas fa-trash" /></b-btn>
+        <b-btn variant="primary" class="px-3 py-2" @click="openModal">
+          <i class="fas fa-pen" />
+        </b-btn>
+        <b-btn variant="danger" class="px-3 py-2" @click="removeItem">
+          <i class="fas fa-trash" />
+        </b-btn>
       </b-btn-group>
     </b-card-body>
   </b-card>
@@ -21,7 +26,7 @@
 <script>
 export default {
   name: 'SingleObject',
-  props: ['icon', 'title', 'secondary', 'single'],
+  props: ['icon', 'title', 'secondary', 'single', 'removeItem', 'openModal'],
   data: function() {
     return {}
   },

@@ -233,4 +233,8 @@ table.b-table > tfoot > tr > th.sorting::after {
   line-height: 100%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @import '../../../node_modules/bootstrap/scss/bootstrap';

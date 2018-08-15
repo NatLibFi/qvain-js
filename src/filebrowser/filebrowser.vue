@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-tabs pills card vertical @input="getProjectForTab">
-      <b-tab :title="`Project ${project}`" v-for="project in projects" :key="project" no-body>
-        <filelist :project="project" :root="rootId" :path="path"></filelist>
+    <b-tabs pills card vertical>
+      <b-tab :title="`Project ${proj}`" v-for="proj in projects" :key="proj" no-body @click="() => updateProject(proj)" :active="proj === project">
+        <filelist :project="proj" :root="rootId" :path="path" v-if="proj === project"></filelist>
       </b-tab>
     </b-tabs>
   </div>
@@ -25,46 +25,14 @@ export default {
     }
   },
   methods: {
-    getProjectForTab: function(index) {
-      console.log(
-        'filebrowser getFilesForProject:',
-        index,
-        this.tabIndex,
-        this.projects[index],
-      )
-      //this.$router.push({ name: "files", params: { project: this.projects[index], relpath: this.relpath || '/' }})
-      // apparently this event gets triggered also on first load for the first tab; only change the url if it was an actual click
-      if (this.tabIndex !== index) {
-        console.log('relpath:', relpath)
+    updateProject: function(project, initial) {
+      this.$store.commit('files/updateProject', project)
+      if (!initial) {
         this.$router.push({
           name: 'files',
-          params: { project: this.projects[index], relpath: '/' },
-        })
-      }
-      this.tabIndex = index
-      //this.getRootForProject(this.projects[index])
-    },
-    getRootForProject: function(project) {
-      var v = this
-
-      console.log('DEBUG getting root for project', project)
-      axios
-        .get(API_PROJECT_ROOT_URL, {
           params: { project: project },
         })
-        .then(function(response) {
-          console.log('status:', response.status)
-          v.processRoot(response.data, v.$data)
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-    },
-    processRoot: function(response, data) {
-      if (!('id' in response)) data.error = 'empty'
-      console.log('root id:', response.id)
-      data.rootId = response.id
-      console.log('rootId set to:', data.rootId)
+      }
     },
   },
   computed: {
@@ -73,11 +41,8 @@ export default {
       if (typeof this.relpath === 'object') {
         return this.relpath ? '/' + this.relpath.join('/') : '/'
       }
+      console.log('relpath inside path', this.relpath)
       return this.relpath ? '/' + this.relpath : '/'
-    },
-    user: function() {
-      //return this.$store.state.auth.user
-      return this.$store.getters['auth/getUserName']
     },
     projects: function() {
       return this.$store.getters['auth/getProjects']
@@ -88,16 +53,12 @@ export default {
     filelist: vFileList,
   },
   created() {
-    //console.log("store:", this.$store.getters)
-    console.log('filebrowser for project', this.project, 'at', this.path)
-    if (this.path.indexOf(',') >= 0) {
-      console.log('comma in path!', this.path)
-    }
+    this.updateProject(this.project, true)
     //this.$router.push({ name: "files", params: { project: this.project, relpath: this.relpath || [] }})
-    this.$router.push({
-      name: 'files',
-      params: { project: this.project, relpath: this.relpath || [] },
-    })
+    // this.$router.push({
+    //   name: 'files',
+    //   params: { project: this.project, relpath: this.relpath || [] },
+    // })
   },
 }
 </script>

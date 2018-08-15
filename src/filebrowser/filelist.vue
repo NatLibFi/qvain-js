@@ -9,7 +9,7 @@
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
 
     <FileTable v-if="filesAndFolders" :tableData="filesAndFolders" :openDir="openDir" :project="project" :cwd="cwd" />
-    <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected(project)" />
+    <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
 </template>
 
@@ -33,9 +33,12 @@ export default {
   },
   methods: {
     openDir: function(dir) {
+      if (!dir) {
+        dir = '/'
+      }
       const vm = this
       this.$store
-        .dispatch('files/queryContent', { project: this.project, dir })
+        .dispatch('files/queryContent', { dir, project: this.project })
         .then(data => {
           vm.filesAndFolders = vm.$store.getters['files/getFilesAndFolders']
           vm.cwd = dir
@@ -65,11 +68,14 @@ export default {
           })
         })
     },
-    getAllSelected: function(project) {
-      const files = this.$store.getters['files/getSelectedFiles'](project)
-      const dirs = this.$store.getters['files/getSelectedDirs'](project)
+    getAllSelected: function() {
+      const files = this.$store.getters['files/getSelectedFiles']
+      const dirs = this.$store.getters['files/getSelectedDirs']
       if (!files && !dirs) return false
-      return [(dirs && {type: 'dir', data: dirs}), (files && {type: 'file', data: files})]
+      return [
+        dirs && { type: 'dir', data: dirs },
+        files && { type: 'file', data: files },
+      ]
     },
   },
   computed: {},
@@ -79,9 +85,6 @@ export default {
     ObjectArray: ObjectArray,
   },
   created: function() {
-    if (this.project != 'project_x') {
-      return
-    }
     this.openDir(this.path)
   },
 }
