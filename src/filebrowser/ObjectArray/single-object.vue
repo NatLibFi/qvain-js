@@ -11,6 +11,7 @@
         </div>
         <p class="mb-0">Icons</p>
       </div>
+
       <b-btn-group class="ml-auto">
         <b-btn variant="primary" class="px-3 py-2" @click="openModal">
           <i class="fas fa-pen" />

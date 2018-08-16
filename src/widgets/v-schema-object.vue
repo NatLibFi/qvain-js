@@ -1,47 +1,42 @@
 <template>
-	<b-card no-body header-class="with-fd-bg" class="my-3">
-		<h2 slot="header">{{ uiTitle }}</h2>
+  <b-card no-body header-class="with-fd-bg" class="my-3">
+    <h2 slot="header">{{ uiTitle }}</h2>
 
-		<b-card-body>
-			<p class="card-text text-muted" v-if="uiDescription">
-				<sup>
-					<i class="fas fa-quote-left text-muted"></i>
-				</sup> {{ uiDescription }}</p>
-		</b-card-body>
+    <b-card-body>
+      <p class="card-text text-muted" v-if="uiDescription">
+        <sup>
+          <i class="fas fa-quote-left text-muted"></i>
+        </sup> {{ uiDescription }}</p>
+    </b-card-body>
 
-		<code v-if="false">
-			q: {{ schema['.q'] }}<br/> local: {{ q }}<br/> path: {{ path }}<br/> value: {{ value }}<br/> vState: {{ vState[path] || "unset" }}<br/> myState: {{ myState || "unset" }}<br/> depth: {{ depth }} {{ typeof depth }}
-			<b-btn @click="q = schema['.q']">set q</b-btn>
-			<b-btn @click="schema.blah = 'wef'">set schema</b-btn>
-			<b-btn @click="schema.type = 'wef'">set schema type</b-btn>
-			<b-alert variant="danger" :show="myState.e && myState.e.length > 0">
-				<ul>
-					<li v-for="e in myState.e">{{ e }}</li>
-				</ul>
-			</b-alert>
-		</code>
-		<b-list-group flush>
-			<!-- b-row v-for="(propSchema, propName) in schema['properties']" :key="propName" -->
-			<!-- b-col -->
-			<!-- <b-button v-b-tooltip.hover.auto :title="propName"><i class="fa fa-tag" aria-hidden="true"></i></b-button> -->
-			<span v-if="false">
-				{{ $children.map(x => x.$children.length) }} {{ $children.map(x => '$vnode' in x) }} {{ $children.map(x => x.path) }}
-			</span>
-			<b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName">
-				<component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth"></component>
-				<!-- /b-col -->
-			</b-list-group-item>
-			<!-- /b-row -->
-		</b-list-group>
-	</b-card>
+    <code v-if="false">
+      q: {{ schema['.q'] }}<br/> local: {{ q }}<br/> path: {{ path }}<br/> value: {{ value }}<br/> vState: {{ vState[path] || "unset" }}<br/> myState: {{ myState || "unset" }}<br/> depth: {{ depth }} {{ typeof depth }}
+      <b-btn @click="q = schema['.q']">set q</b-btn>
+      <b-btn @click="schema.blah = 'wef'">set schema</b-btn>
+      <b-btn @click="schema.type = 'wef'">set schema type</b-btn>
+      <b-alert variant="danger" :show="myState.e && myState.e.length > 0">
+        <ul>
+          <li v-for="e in myState.e">{{ e }}</li>
+        </ul>
+      </b-alert>
+    </code>
+    <b-list-group flush>
+      <!-- b-row v-for="(propSchema, propName) in schema['properties']" :key="propName" -->
+      <!-- b-col -->
+      <!-- <b-button v-b-tooltip.hover.auto :title="propName"><i class="fa fa-tag" aria-hidden="true"></i></b-button> -->
+      <span v-if="false">
+        {{ $children.map(x => x.$children.length) }} {{ $children.map(x => '$vnode' in x) }} {{ $children.map(x => x.path) }}
+      </span>
+      <b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName">
+        <component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth"></component>
+        <!-- /b-col -->
+      </b-list-group-item>
+      <!-- /b-row -->
+    </b-list-group>
+  </b-card>
 </template>
 
 <style>
-div:empty {
-  background: lime;
-  /* display: none; */
-}
-
 /*
 	logos:
 	fd_logo_neg_80.png fd_logo_neg_160.png fd_logo_pos_80.png fd_logo_pos_160.png

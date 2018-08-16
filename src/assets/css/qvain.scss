@@ -237,4 +237,8 @@ table.b-table > tfoot > tr > th.sorting::after {
   cursor: pointer;
 }
 
+.cursor-reset {
+  cursor: initial;
+}
+
 @import '../../../node_modules/bootstrap/scss/bootstrap';

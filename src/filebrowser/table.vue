@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FileInfoModal ref="refFileInfoModal" />
     <!-- BREADCRUMBS AND TOOLBAR -->
     <b-button-toolbar key-nav aria-label="File browser toolbar" class="d-flex align-items-center">
       <Breadcrumbs :breadcrumbs="breadcrumbs" :click="openDir" class="mr-auto" homePath="/">
@@ -7,9 +8,9 @@
     </b-button-toolbar>
 
     <!-- TABLE -->
-    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory" striped hover class="mb-0" :tbody-tr-class="rowClass">
+    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory" striped hover class="mb-0" @row-clicked="toggleSelection" :tbody-tr-class="rowClass">
       <template slot="selection" slot-scope="data">
-        <b-form-checkbox class="m-0" :value="{identifier: data.item.identifier, type: data.item.type}" v-model="selected">
+        <b-form-checkbox class="m-0" v-model="data.item.picked" v-if="!data.item.selected">
         </b-form-checkbox>
       </template>
       <template slot="type" slot-scope="data">
@@ -24,50 +25,61 @@
       <template slot="actions" slot-scope="data">
         <!-- actions for file -->
         <div v-if="data.item.type === 'file'">
-          <b-btn size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing" class="mr-2">details</b-btn>
+          <b-btn size="sm" @click.stop="data.toggleDetails" class="mr-2">{{ data.detailsShowing ? 'Hide' : 'Show'}} Details</b-btn>
         </div>
       </template>
       <template slot="row-details" slot-scope="data">
-        <b-card>
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right">
-              <b>title:</b>
-            </b-col>
-            <b-col>{{ data.item.file.file_characteristics['title'] }}</b-col>
-          </b-row>
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right">
-              <b>description:</b>
-            </b-col>
-            <b-col>{{ data.item.file.file_characteristics['description'] }}</b-col>
-          </b-row>
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right">
-              <b>encoding:</b>
-            </b-col>
-            <b-col>{{ data.item.file.file_characteristics['encoding'] }}</b-col>
-          </b-row>
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right">
-              <b>format:</b>
-            </b-col>
-            <b-col>{{ data.item.file.file_format }}</b-col>
-          </b-row>
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right">
-              <b>application name:</b>
-            </b-col>
-            <b-col>{{ data.item.file.file_characteristics['application_name'] }}</b-col>
-          </b-row>
-          <b-button size="sm" @click.stop="() => modalOpen(data.item.identifier, data.item.path, project)">json</b-button>
-          <b-button size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing">hide</b-button>
+        <b-card class="cursor-reset bg-light">
+          <h4>Details</h4>
+          <table class="table-sm table-borderless w-100 mb-3">
+            <thead class="">
+              <th>
+                title
+              </th>
+              <th>
+                encoding
+              </th>
+              <th>
+                format
+              </th>
+              <th>
+                application name
+              </th>
+            </thead>
+            <tr class="bg-transparent">
+              <td>
+                {{ data.item.file.file_characteristics['title'] }}
+              </td>
+              <td>
+                {{ data.item.file.file_characteristics['encoding'] }}
+              </td>
+              <td>
+                {{ data.item.file.file_format }}
+              </td>
+              <td>
+                {{ data.item.file.file_characteristics['application_name'] }}
+              </td>
+            </tr>
+          </table>
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="mt-2 mb-2">
+                <b>description</b>
+              </p>
+              <p>{{ data.item.file.file_characteristics['description'] }}</p>
+            </div>
+            <b-btn-group class="align-self-end">
+              <b-button @click.stop="data.toggleDetails " :pressed.sync="data.detailsShowing " variant="secondary" class="w-100 h-100">hide</b-button>
+              <b-button @click.stop="()=> modalOpen(data.item.identifier, data.item.path, project)" variant="primary" class="w-100 h-100">json</b-button>
+            </b-btn-group>
+          </div>
         </b-card>
       </template>
     </b-table>
     <!-- BREADCRUMBS AND TOOLBAR -->
-    <b-col cols="12" md="auto" class="border-top border-bottom p-2 d-flex justify-content-end align-items-center">
-      <span class="px-4">{{selected.length}} items selected</span>
-      <b-btn @click.stop="() => addSelected()" variant="primary" :disabled="selected.length === 0">add selected</b-btn>
+    <b-col cols="12 " md="auto " class="border-top border-bottom p-2 d-flex justify-content-end align-items-center ">
+      <span class="px-4 ">{{picked}} items picked</span>
+      <b-btn @click.stop="()=> savePicked()" variant="primary" :disabled="picked === 0">add picked</b-btn>
     </b-col>
   </div>
 </template>
@@ -77,10 +89,11 @@ import Breadcrumbs from './breadcrumbs.vue'
 import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
 import FileTable from './table'
+import FileInfoModal from './fileinfo-modal'
 
 export default {
   name: 'FileTable',
-  props: ['tableData', 'cwd', 'openDir', 'project'],
+  props: ['tableData', 'cwd', 'openDir', 'project', 'picked'],
   data: function() {
     return {
       tableFields: [
@@ -89,6 +102,7 @@ export default {
           label: '',
           class: 'pl-3 pr-0 mx-0',
           thStyle: { width: '0em' },
+          tdClass: 'align-middle',
         },
         {
           key: 'type',
@@ -126,42 +140,39 @@ export default {
           label: '',
         },
       ],
-      selected: [],
     }
   },
   methods: {
-    toggleSelection: function(item) {
-      console.log('toggleSelection')
-      const index = this.selected.findIndex(
-        single => single.identifier === item.identifier,
-      )
-      if (index === -1) {
-        item.selected = true
-        this.selected.push({ identifier: item.identifier, type: item.type })
+    toggleSelection: function(item, i, e) {
+      if (e.target.tagName === 'LABEL') return
+      console.log('toggleselection')
+      if (item.selected) return
+      if (!item.picked) {
+        this.$store.commit('files/addPicked')
       } else {
-        item.selected = false
-        this.selected.splice(index, 1)
+        this.$store.commit('files/removePicked')
       }
+      item.picked = !item.picked
     },
     rowClass: function(item) {
-      console.log('update row class')
-      const classes = ['pointer']
-      console.log('item', item.identifier)
-      console.log('selected', this.isSelected(item.identifier))
+      const classes = []
       if (!item) return classes.join(' ')
-      if (this.isSelected(item.identifier)) {
+      if (item.picked) {
         classes.push('table-primary')
+      }
+      if (item.selected) {
+        classes.push('table-secondary text-muted')
+      } else {
+        classes.push('pointer')
       }
       return classes.join(' ')
     },
-    addSelected: function() {
-      this.$store.dispatch('files/addSelected', this.selected)
-      this.selected = []
+    savePicked: function() {
+      console.log(this.$store.state.files.directory)
+      this.$store.dispatch('files/savePicked')
     },
-    isSelected: function(id) {
-      return this.selected.find(single => single.identifier === id)
-        ? true
-        : false
+    modalOpen: function() {
+      return this.$refs.refFileInfoModal.show.apply(this, arguments)
     },
   },
   computed: {
@@ -176,16 +187,11 @@ export default {
         }
       })
     },
-    selectedDirs: function() {
-      return this.$store.getters['files/getSelectedDirs']
-    },
-    selectedFiles: function() {
-      return this.$store.getters['files/getSelectedFiles']
-    },
   },
   watch: {},
   components: {
     Breadcrumbs,
+    FileInfoModal,
   },
   created: function() {
     console.log('this', this)

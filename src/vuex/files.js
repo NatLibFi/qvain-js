@@ -8,12 +8,94 @@ var fileapi = axios.create({
   timeout: 3000,
   responseType: 'json',
 })
+
+const checkSelectedFile = (state, id) => {
+  return (
+    state.project in state.selectedFiles &&
+    id in state.selectedFiles[state.project]
+  )
+}
+
+const checkSelectedDir = (state, id) => {
+  return (
+    state.project in state.selectedDirs &&
+    id in state.selectedDirs[state.project]
+  )
+}
+
+const combine = (state, data) => {
+  // combines folders and files into single array of objects
+  /*
+    {
+      type: ,
+      identifier: ,
+      name: ,
+      path: ,
+      byte_size: ,
+      date_modified: ,
+      directory: {
+        file_count: ,
+      }
+      file: {
+        file_format?: ,
+        open_access?: ,
+        file_characteristics: ,
+        checksum: ,
+      }
+    }
+  */
+  let parsedFiles = []
+  let parsedFolders = []
+  if (typeof data.files === 'object' && data.files.length > 0) {
+    parsedFiles = data.files.map(file => ({
+      type: 'file',
+      picked: false,
+      selected: checkSelectedFile(state, file.identifier),
+      identifier: file.identifier,
+      name: file.file_name,
+      path: file.file_path,
+      byte_size: file.byte_size,
+      date_modified: file.date_modified,
+      file: {
+        file_format: file.file_format,
+        open_access: file.open_access,
+        file_characteristics: file.file_characteristics,
+        checksum: { value: file.checksum_value },
+      },
+      directory: undefined,
+      // custom class for bootstrap table details
+      _showDetails: false,
+    }))
+  }
+  if (typeof data.directories === 'object' && data.directories.length > 0) {
+    parsedFolders = data.directories.map(folder => ({
+      type: 'dir',
+      picked: false,
+      selected: checkSelectedDir(state, folder.identifier),
+      identifier: folder.identifier,
+      name: folder.directory_name,
+      path: folder.directory_path,
+      byte_size: folder.byte_size,
+      date_modified: folder.date_modified,
+      directory: {
+        file_count: folder.file_count,
+      },
+      file: undefined,
+      // custom class for bootstrap table details
+      _showDetails: false,
+    }))
+  }
+  console.log('files and folders', [...parsedFolders, ...parsedFiles])
+  return [...parsedFolders, ...parsedFiles]
+}
+
 // TODO: Add functions to clear data from store when user is finished
 export default {
   namespaced: true,
   state: {
     selectedFiles: {},
     selectedDirs: {},
+    pickedItems: 0,
     directory: {},
     project: null,
     allDirs: { files: [], directories: [] },
@@ -35,76 +117,20 @@ export default {
     getSelectedDirs(state) {
       return state.selectedDirs[state.project] || false
     },
-    getFilesAndFolders(state) {
-      // combines folders and files into single array of objects
-      /*
-        {
-          type: ,
-          identifier: ,
-          name: ,
-          path: ,
-          byte_size: ,
-          date_modified: ,
-          directory: {
-            file_count: ,
-          }
-          file: {
-            file_format?: ,
-            open_access?: ,
-            file_characteristics: ,
-            checksum: ,
-          }
-        }
-      */
-      let parsedFiles = []
-      let parsedFolders = []
-      if (
-        typeof state.directory.files === 'object' &&
-        state.directory.files.length > 0
-      ) {
-        parsedFiles = state.directory.files.map(file => ({
-          type: 'file',
-          selected: false,
-          identifier: file.identifier,
-          name: file.file_name,
-          path: file.file_path,
-          byte_size: file.byte_size,
-          date_modified: file.date_modified,
-          file: {
-            file_format: file.file_format,
-            open_access: file.open_access,
-            file_characteristics: file.file_characteristics,
-            checksum: { value: file.checksum_value },
-          },
-          directory: undefined,
-        }))
-      }
-      if (
-        typeof state.directory.directories === 'object' &&
-        state.directory.directories.length > 0
-      ) {
-        parsedFolders = state.directory.directories.map(folder => ({
-          type: 'dir',
-          selected: false,
-          identifier: folder.identifier,
-          name: folder.directory_name,
-          path: folder.directory_path,
-          byte_size: folder.byte_size,
-          date_modified: folder.date_modified,
-          directory: {
-            file_count: folder.file_count,
-          },
-          file: undefined,
-        }))
-      }
-      console.log('files and folders', [...parsedFolders, ...parsedFiles])
-      return [...parsedFolders, ...parsedFiles]
-    },
     getProject(state) {
       return state.project
     },
   },
   mutations: {
+    addPicked(state) {
+      state.pickedItems += 1
+    },
+    removePicked(state) {
+      state.pickedItems -= 1
+    },
+    clearPicked(state) {
+      state.pickedItems = 0
+    },
     updateProject(state, project) {
       state.project = project
     },
@@ -129,6 +155,16 @@ export default {
       if (state.selectedFiles[state.project].length < 1) {
         Vue.delete(state.selectedFiles, state.project)
       }
+      for (let property in state.directory) {
+        if (state.directory.hasOwnProperty(property)) {
+          state.directory[property].filter(single => {
+            if (single.identifier === identifier) {
+              single.picked = false
+              single.selected = false
+            }
+          })
+        }
+      }
       return
     },
     addDirs(state, items) {
@@ -150,19 +186,50 @@ export default {
       if (state.selectedDirs[state.project].length < 1) {
         Vue.delete(state.selectedDirs, state.project)
       }
+      for (let property in state.directory) {
+        if (state.directory.hasOwnProperty(property)) {
+          state.directory[property].filter(single => {
+            if (single.identifier === identifier) {
+              single.picked = false
+              single.selected = false
+            }
+          })
+        }
+      }
       return
     },
-    saveResults(state, data) {
+    saveResults(state, { data, dir }) {
+      // TODO: should not push data to allDirs if it is already there
       state.allDirs.files.push(...data.files)
       state.allDirs.directories.push(...data.directories)
-      state.directory = data
+      console.log('directory', data)
+      // We only add data on the first time they are fetched
+      // We don't want to overwrite the modified data
+      if (!state.directory[dir]) {
+        state.directory[dir] = combine(state, data)
+      }
     },
   },
   actions: {
-    addSelected({ commit, state }, items) {
+    savePicked({ commit, state }) {
+      let pickedItems = []
+      for (let property in state.directory) {
+        if (state.directory.hasOwnProperty(property)) {
+          pickedItems.push(
+            ...state.directory[property].filter(single => {
+              if (single.picked) {
+                single.picked = false
+                single.selected = true
+                return true
+              }
+              return false
+            }),
+          )
+        }
+      }
       let files = []
       let dirs = []
-      items.map(single => {
+      pickedItems.map(single => {
         single.type === 'file' ? files.push(single) : dirs.push(single)
       })
       if (files.length > 0) {
@@ -171,6 +238,7 @@ export default {
       if (dirs.length > 0) {
         commit('addDirs', dirs)
       }
+      commit('clearPicked')
     },
     queryContent({ commit, state }, { dir, project }) {
       return new Promise((resolve, reject) => {
@@ -182,7 +250,7 @@ export default {
             },
           })
           .then(function(response) {
-            commit('saveResults', response.data)
+            commit('saveResults', { data: response.data, dir })
             resolve(response.data)
           })
           .catch(function(error) {

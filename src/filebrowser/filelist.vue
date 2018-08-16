@@ -8,7 +8,7 @@
 
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
 
-    <FileTable v-if="filesAndFolders" :tableData="filesAndFolders" :openDir="openDir" :project="project" :cwd="cwd" />
+    <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir" :project="project" :cwd="cwd" />
     <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
 </template>
@@ -27,12 +27,11 @@ export default {
   data: function() {
     return {
       error: null,
-      filesAndFolders: null,
       cwd: '/',
     }
   },
   methods: {
-    openDir: function(dir) {
+    openDir: function(dir, id) {
       if (!dir) {
         dir = '/'
       }
@@ -40,7 +39,6 @@ export default {
       this.$store
         .dispatch('files/queryContent', { dir, project: this.project })
         .then(data => {
-          vm.filesAndFolders = vm.$store.getters['files/getFilesAndFolders']
           vm.cwd = dir
         })
         .catch(error => {
@@ -78,7 +76,14 @@ export default {
       ]
     },
   },
-  computed: {},
+  computed: {
+    directory: function() {
+      return this.$store.state.files.directory[this.cwd]
+    },
+    pickedItems: function() {
+      return this.$store.state.files.pickedItems
+    },
+  },
   watch: {},
   components: {
     FileTable: FileTable,
