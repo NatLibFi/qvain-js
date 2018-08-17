@@ -1,25 +1,19 @@
 <template>
   <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata">
-    <b-row class="my-1" v-for="(item, i) in editable" :key="item.label">
-      <b-col sm="3">
-        <b>
-          <label :for="'input' + i">{{item.label}}</label>
-        </b>
-      </b-col>
-      <b-col sm="9">
-        <b-form-input :id="'input' + i" :placeholder="item.label" v-model.trim="item.value"></b-form-input>
-      </b-col>
-    </b-row>
-    <!-- <b-form-group description="description comes here." label="Enter your label" label-for="input1" :state="state">
-      <b-form-input id="input1" :state="state" v-model.trim="title" placeholder="title"></b-form-input>
-      <b-form-input id="input2" :state="state" v-model.trim="description" placeholder="description"></b-form-input>
-      <b-form-input id="input3" :state="state" v-model.trim="encoding" placeholder="encoding"></b-form-input>
-      <b-form-input id="input3" :state="state" v-model.trim="format" placeholder="format"></b-form-input>
-    </b-form-group> -->
+    <b-form-group class="my-1" :label="item.label" v-for="(item, i) in editable" :key="item.label" horizontal :lable-for="'input' + i">
+      <b-form-input :id="'input' + i" :placeholder="item.label" v-model.trim="item.value"></b-form-input>
+    </b-form-group>
+    <RefList esDoctype="use_category" placeholder="use category" help="help" uiLabel="Use category" />
   </b-modal>
 </template>
 
 <script>
+import RefList from '../widgets/refdata/list-ui'
+
+const isFile = item => {
+  return typeof item === 'object' && typeof item.file_name === 'string'
+}
+
 export default {
   name: 'fileedit-modal',
   props: {},
@@ -32,24 +26,34 @@ export default {
   methods: {
     show: function(item) {
       this.apiData = item
-      console.log('modal item', item)
       // TODO: define fields to display here for files and for folders
-      if (
-        typeof item === 'object' &&
-        typeof item['file_characteristics'] === 'object'
-      ) {
-        let chars = item['file_characteristics']
-        chars['title'] &&
-          this.editable.push({ label: 'Title', value: chars['title'] })
-        chars['description'] &&
-          this.editable.push({
-            label: 'Description',
-            value: chars['description'],
-          })
-        chars['encoding'] &&
-          this.editable.push({ label: 'Encoding', value: chars['encoding'] })
-        item['file_format'] &&
-          this.editable.push({ label: 'Format', value: item['file_format'] })
+      // currently it gets fields from file characteristics, but folders don't have that
+      // in tietomalli/mrd you can see that folders also have a title and a description
+      // which both are provided by the user.
+
+      // fields in mrd:
+      // title
+      // description
+      // use_category
+      // access_url
+      // file_type
+
+      // how are these fields made?
+      const addEditable = (label, value) => {
+        this.editable.push({ label, value })
+      }
+      if (isFile(item)) {
+        if (typeof item['file_characteristics'] === 'object') {
+          let chars = item['file_characteristics']
+          chars['title'] && addEditable('Title', chars['title'])
+          chars['description'] &&
+            addEditable('Description', chars['description'])
+          chars['encoding'] && addEditable('Encoding', chars['encoding'])
+          item['file_format'] && addEditable('Format', chars['file_format'])
+        }
+      } else {
+        addEditable('Title')
+        addEditable('Description')
       }
       this.$refs['actual-fileinfo-modal'].show()
     },
@@ -63,6 +67,9 @@ export default {
     },
   },
   computed: {},
+  components: {
+    RefList,
+  },
   created: function() {},
 }
 </script>

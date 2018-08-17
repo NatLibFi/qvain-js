@@ -1,6 +1,7 @@
 <template>
   <b-card class="rounded-0" no-body>
     <b-card-body class="d-flex py-1 align-items-center">
+
       <i :class="`${icon} fa-2x mr-4 text-muted`"></i>
       <div class="py-2">
         <div class="d-flex">
@@ -12,7 +13,10 @@
         <p class="mb-0">Icons</p>
       </div>
 
-      <b-btn-group class="ml-auto">
+      <div class="ml-auto mr-3">
+        <RefList esDoctype="use_category" placeholder="use category" help="help" :setValue="setUseCategory" />
+      </div>
+      <b-btn-group class="">
         <b-btn variant="primary" class="px-3 py-2" @click="openModal">
           <i class="fas fa-pen" />
         </b-btn>
@@ -25,16 +29,30 @@
 </template>
 
 <script>
+import RefList from '../../widgets/refdata/list-ui'
+
 export default {
   name: 'SingleObject',
   props: ['icon', 'title', 'secondary', 'single', 'removeItem', 'openModal'],
   data: function() {
     return {}
   },
-  methods: {},
+  methods: {
+    setUseCategory: function(value) {
+      console.log('use_category', value)
+    },
+  },
   computed: {},
   watch: {},
-  components: {},
+  components: {
+    RefList,
+  },
   created: function() {},
 }
 </script>
+
+<style>
+.form-group {
+  margin-bottom: 0;
+}
+</style>
