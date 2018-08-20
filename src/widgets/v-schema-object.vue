@@ -5,7 +5,7 @@
     <b-card-body>
       <p class="card-text text-muted" v-if="uiDescription">
         <sup>
-          <i class="fas fa-quote-left text-muted"></i>
+          <font-awesome-icon :icon="icon.faQuoteLeft" class="text-muted" />
         </sup> {{ uiDescription }}</p>
     </b-card-body>
 
@@ -23,7 +23,6 @@
     <b-list-group flush>
       <!-- b-row v-for="(propSchema, propName) in schema['properties']" :key="propName" -->
       <!-- b-col -->
-      <!-- <b-button v-b-tooltip.hover.auto :title="propName"><i class="fa fa-tag" aria-hidden="true"></i></b-button> -->
       <span v-if="false">
         {{ $children.map(x => x.$children.length) }} {{ $children.map(x => '$vnode' in x) }} {{ $children.map(x => x.path) }}
       </span>
@@ -51,6 +50,8 @@
 </style>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import vSchemaBase from './v-schema-base.vue'
 //import uiComponents from './uicomponents.js'
 //import vSchemaSelector from './v-schema-selector.vue'
@@ -63,6 +64,9 @@ export default {
   data: function() {
     return {
       q: 'not set',
+      icon: {
+        faQuoteLeft,
+      },
     }
   },
   watch: {
@@ -104,6 +108,9 @@ export default {
       'slots:',
       this.$slots,
     )
+  },
+  components: {
+    FontAwesomeIcon,
   },
 }
 </script>

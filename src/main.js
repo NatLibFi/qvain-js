@@ -35,6 +35,8 @@ store.registerModule('files', FilesStore)
 const testJwt =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8'
 
+// Vue.component('App', App)
+
 // create and mount the root instance
 // eslint-disable-next-line no-unused-vars
 const app = new Vue({
@@ -43,7 +45,6 @@ const app = new Vue({
   render: h => h(App),
   data: {
     user: null,
-    //"DEBUG": APP_DEBUG,
   },
   methods: {},
   computed: {

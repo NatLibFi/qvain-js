@@ -15,7 +15,7 @@
       </template>
       <template slot="type" slot-scope="data">
         <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)" variant="link" class="m-0 p-0 float-right">
-          <i class="fas fa-folder fa-2x"></i>
+          <font-awesome-icon :icon="icon.faFolder" size="2x" />
         </b-btn>
       </template>
       <template slot="name" slot-scope="data">
@@ -85,6 +85,9 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
+
 import Breadcrumbs from './breadcrumbs.vue'
 import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
@@ -140,6 +143,9 @@ export default {
           label: '',
         },
       ],
+      icon: {
+        faFolder,
+      },
     }
   },
   methods: {
@@ -192,6 +198,7 @@ export default {
   components: {
     Breadcrumbs,
     FileInfoModal,
+    FontAwesomeIcon,
   },
   created: function() {
     console.log('this', this)

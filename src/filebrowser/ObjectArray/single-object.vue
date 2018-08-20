@@ -1,8 +1,7 @@
 <template>
   <b-card class="rounded-0" no-body>
     <b-card-body class="d-flex py-1 align-items-center">
-
-      <i :class="`${icon} fa-2x mr-4 text-muted`"></i>
+      <font-awesome-icon :icon="icon" size="2x" class="mr-4 text-muted" />
       <div class="py-2">
         <div class="d-flex">
           <h6 class="mb-0">
@@ -12,16 +11,13 @@
         </div>
         <p class="mb-0">Icons</p>
       </div>
-
-      <div class="ml-auto mr-3">
-        <RefList esDoctype="use_category" placeholder="use category" help="help" :setValue="setUseCategory" />
-      </div>
-      <b-btn-group class="">
+      <b-btn-group class="ml-auto">
         <b-btn variant="primary" class="px-3 py-2" @click="openModal">
-          <i class="fas fa-pen" />
+          <font-awesome-icon :icon="faPen" />
+
         </b-btn>
         <b-btn variant="danger" class="px-3 py-2" @click="removeItem">
-          <i class="fas fa-trash" />
+          <font-awesome-icon :icon="faTrash" />
         </b-btn>
       </b-btn-group>
     </b-card-body>
@@ -29,23 +25,23 @@
 </template>
 
 <script>
-import RefList from '../../widgets/refdata/list-ui'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'SingleObject',
   props: ['icon', 'title', 'secondary', 'single', 'removeItem', 'openModal'],
   data: function() {
-    return {}
+    return {
+      faPen,
+      faTrash,
+    }
   },
-  methods: {
-    setUseCategory: function(value) {
-      console.log('use_category', value)
-    },
-  },
+  methods: {},
   computed: {},
   watch: {},
   components: {
-    RefList,
+    FontAwesomeIcon,
   },
   created: function() {},
 }

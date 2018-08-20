@@ -9,7 +9,7 @@
     <b-card v-if="!data || data.length === 0" class="text-center bg-light">No files added</b-card>
     <b-card v-else no-body>
       <div v-for="category in data">
-        <SingleObject v-for="single in category.data" :title="category.type === 'file' ? single.file_name : single.directory_name" :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type)" :openModal="() => modalOpen(single)"></SingleObject>
+        <SingleObject :key="single.identifier" v-for="single in category.data" :title="category.type === 'file' ? single.file_name : single.directory_name" :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type)" :openModal="() => modalOpen(single)"></SingleObject>
       </div>
     </b-card>
   </div>
@@ -18,6 +18,7 @@
 <script>
 import FileEditModal from '../fileedit-modal.vue'
 import SingleObject from './single-object.vue'
+import { faFile, faFolder } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'object-array',
@@ -25,8 +26,8 @@ export default {
   data: function() {
     return {
       icons: {
-        file: 'fas fa-file',
-        dir: 'fas fa-folder',
+        file: faFile,
+        dir: faFolder,
       },
     }
   },
