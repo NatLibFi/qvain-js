@@ -18,29 +18,37 @@ import PersonList from './person/list.vue'
 
 Vue.use(VueRouter)
 
-
 // routes
 const routes = [
-	{ path: '/', name: "home", component: Welcome, props: false },
-	{ path: '/token', component: Token, props: false },
-	{ path: '/edit/:id?', component: vEditor, props: true },
-	{ path: '/list', component: vLister, props: false },
-	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
-	{ path: '/editor/:id', name: 'editor', component: vEditor, props: true },
-	{ path: '/schema', component: vSchema, props: false },
-	{ path: '/viewschema', component: vSchemaViewer, props: false },
-	{ path: '/form', component: vSchemaForm, props: false },
-	{ path: '/autocomplete', component: testAutoComplete, props: false },
-	{ path: '/orcid', component: OrcidSearch, props: false },
-	{ path: '/personlist', component: PersonList, props: false },
-	{ path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
-	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
-	//{ path: '/files', component: vFileBrowser, props: true },
+  { path: '/', name: 'home', component: Welcome, props: false },
+  { path: '/token', component: Token, props: false },
+  { path: '/edit/:id?', component: vEditor, props: true },
+  { path: '/list', component: vLister, props: false },
+  {
+    path: '/records',
+    component: RecordList,
+    props: false,
+    meta: { auth: true },
+  },
+  { path: '/editor/:id', name: 'editor', component: vEditor, props: true },
+  { path: '/schema', component: vSchema, props: false },
+  { path: '/viewschema', component: vSchemaViewer, props: false },
+  { path: '/form', component: vSchemaForm, props: false },
+  { path: '/autocomplete', component: testAutoComplete, props: false },
+  { path: '/orcid', component: OrcidSearch, props: false },
+  { path: '/personlist', component: PersonList, props: false },
+  { path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
+  {
+    path: '/files/:project?/:relpath*',
+    name: 'files',
+    component: vFileBrowser,
+    props: true,
+  },
 ]
 
 // mode: history or hash
 export default new VueRouter({
-	mode: 'history',
-	fallback: true,
-	routes
+  mode: 'history',
+  fallback: true,
+  routes,
 })

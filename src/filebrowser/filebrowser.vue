@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-tabs pills card vertical>
-      <b-tab :title="`Project ${proj}`" v-for="proj in projects" :key="proj" no-body @click="() => updateProject(proj)" :active="proj === project">
+      <b-tab :title="`Project ${proj}`" v-for="proj in projects" :key="proj" no-body @click="() => updateProject(proj)" :active="proj === project" v-if="project">
         <filelist :project="proj" :root="rootId" :path="path" v-if="proj === project"></filelist>
       </b-tab>
     </b-tabs>
@@ -37,11 +37,10 @@ export default {
   },
   computed: {
     path: function() {
-      // After hotreloading relpath will be an array of values.
+      // After hot reloading relpath will be an array of values.
       if (typeof this.relpath === 'object') {
         return this.relpath ? '/' + this.relpath.join('/') : '/'
       }
-      console.log('relpath inside path', this.relpath)
       return this.relpath ? '/' + this.relpath : '/'
     },
     projects: function() {
@@ -53,12 +52,7 @@ export default {
     filelist: vFileList,
   },
   created() {
-    this.updateProject(this.project, true)
-    //this.$router.push({ name: "files", params: { project: this.project, relpath: this.relpath || [] }})
-    // this.$router.push({
-    //   name: 'files',
-    //   params: { project: this.project, relpath: this.relpath || [] },
-    // })
+    this.updateProject(this.project ? this.project : this.projects[0], false)
   },
 }
 </script>

@@ -5,9 +5,7 @@
         <h1 class="text-white">{{ project }}</h1>
       </b-col>
     </b-row>
-
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
-
     <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir" :project="project" :cwd="cwd" />
     <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
@@ -31,7 +29,7 @@ export default {
     }
   },
   methods: {
-    openDir: function(dir, id) {
+    openDir: function(dir) {
       if (!dir) {
         dir = '/'
       }
@@ -78,6 +76,7 @@ export default {
   },
   computed: {
     directory: function() {
+      console.log('directory data', this.$store.state.files.directory[this.cwd])
       return this.$store.state.files.directory[this.cwd]
     },
     pickedItems: function() {

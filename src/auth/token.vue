@@ -1,29 +1,29 @@
 <template>
-	<div>
-		<font-awesome-icon :icon="icon.faCircleNotch" spin />
-		<p>message: {{ message }}</p>
-		<p>user:</p>
-		<dl v-if="$auth.loggedIn">
-			<dt>loggedIn</dt>
-			<dd>{{ $auth.loggedIn }}</dd>
-			<dt>id</dt>
-			<dd>{{ $auth.user.id }}</dd>
-			<dt>name</dt>
-			<dd>{{ $auth.user.name }}</dd>
-			<dt>email</dt>
-			<dd>{{ $auth.user.email }}</dd>
-		</dl>
-		<div v-else>
-			<p>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
-			<b-input-group prepend="token">
-				<b-form-input v-model="tokenInput"></b-form-input>
-				<b-input-group-append>
-					<b-btn @click="login()">submit</b-btn>
-				</b-input-group-append>
-			</b-input-group>
-		</div>
+  <div>
+    <font-awesome-icon :icon="icon.faCircleNotch" spin />
+    <p>message: {{ message }}</p>
+    <p>user:</p>
+    <dl v-if="$auth.loggedIn">
+      <dt>loggedIn</dt>
+      <dd>{{ $auth.loggedIn }}</dd>
+      <dt>id</dt>
+      <dd>{{ $auth.user.id }}</dd>
+      <dt>name</dt>
+      <dd>{{ $auth.user.name }}</dd>
+      <dt>email</dt>
+      <dd>{{ $auth.user.email }}</dd>
+    </dl>
+    <div v-else>
+      <p>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
+      <b-input-group prepend="token">
+        <b-form-input v-model="tokenInput"></b-form-input>
+        <b-input-group-append>
+          <b-btn @click="login()">submit</b-btn>
+        </b-input-group-append>
+      </b-input-group>
+    </div>
 
-	</div>
+  </div>
 </template>
 
 <script>
@@ -74,10 +74,10 @@ export default {
     // got token, login and redir if successful
     if (this.token && this.$auth.login(this.token)) {
       var vm = this
+      setTimeout(function() {
+        vm.$router.push('/')
+      }, 3000)
     }
-    setTimeout(function() {
-      vm.$router.push('/')
-    }, 3000)
   },
   components: {
     FontAwesomeIcon,

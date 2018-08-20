@@ -132,7 +132,7 @@ export default {
       state.pickedItems = 0
     },
     updateProject(state, project) {
-      state.project = project
+      Vue.set(state, project, project)
     },
     // state.directory only has current folder
     // so this won't work if the folder is changed
@@ -206,7 +206,7 @@ export default {
       // We only add data on the first time they are fetched
       // We don't want to overwrite the modified data
       if (!state.directory[dir]) {
-        state.directory[dir] = combine(state, data)
+        Vue.set(state.directory, dir, combine(state, data))
       }
     },
   },
