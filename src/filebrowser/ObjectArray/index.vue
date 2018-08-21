@@ -9,7 +9,10 @@
     <b-card v-if="!data || data.length === 0" class="text-center bg-light">No files added</b-card>
     <b-card v-else no-body>
       <div v-for="category in data">
-        <SingleObject :key="single.identifier" v-for="single in category.data" :title="category.type === 'file' ? single.file_name : single.directory_name" :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type)" :openModal="() => modalOpen(single)"></SingleObject>
+        <SingleObject :key="single.identifier" :single="single" v-for="single in category.data"
+          :type="category.type" :title="category.type === 'file' ? single.file_name : single.directory_name"
+          :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type)"
+          :openModal="() => modalOpen(single)" />
       </div>
     </b-card>
   </div>
@@ -38,6 +41,7 @@ export default {
         : this.$store.commit('files/removeDir', id)
     },
     modalOpen: function() {
+      console.log('data', this.data)
       return this.$refs.refFileEditModal.show.apply(this, arguments)
     },
   },

@@ -9,15 +9,20 @@
             <span v-if="secondary" class="text-muted m-0 font-italic">, {{secondary}}</span>
           </h6>
         </div>
-        <p class="mb-0">Icons</p>
+        <p class="my-1">
+          <font-awesome-icon v-b-tooltip.hover title="Title" :icon="icons.faPencilAlt" :class="(type === 'file' ? single.file_characteristics.title : single.title) ? 'text-primary' : 'text-secondary'"
+            class="mr-2" />
+          <font-awesome-icon v-b-tooltip.hover class="mr-2" :icon="icons.faTag" title="Use Category"
+            :class="'use_category' in single ? 'text-primary' : 'text-secondary'" />
+        </p>
       </div>
       <b-btn-group class="ml-auto">
         <b-btn variant="primary" class="px-3 py-2" @click="openModal">
-          <font-awesome-icon :icon="faPen" />
+          <font-awesome-icon :icon="icons.faPen" />
 
         </b-btn>
         <b-btn variant="danger" class="px-3 py-2" @click="removeItem">
-          <font-awesome-icon :icon="faTrash" />
+          <font-awesome-icon :icon="icons.faTrash" />
         </b-btn>
       </b-btn-group>
     </b-card-body>
@@ -26,15 +31,32 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import {
+  faTrash,
+  faPen,
+  faPencilAlt,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'SingleObject',
-  props: ['icon', 'title', 'secondary', 'single', 'removeItem', 'openModal'],
+  props: [
+    'icon',
+    'title',
+    'secondary',
+    'single',
+    'removeItem',
+    'openModal',
+    'type',
+  ],
   data: function() {
     return {
-      faPen,
-      faTrash,
+      icons: {
+        faPen,
+        faTrash,
+        faPencilAlt,
+        faTag,
+      },
     }
   },
   methods: {},

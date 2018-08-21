@@ -1,7 +1,8 @@
 <template>
   <div row>
     <!-- ElasticSearch widget -->
-    <b-form-group id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 0" :description="uiDescription" :label="uiLabel">
+    <b-form-group id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 0"
+      :description="uiDescription" :label="uiLabel">
       <!-- b-alert :show="!!error" variant="danger">error contacting reference data API server: {{ error }}</b-alert -->
       <b-input-group>
         <!-- <b-form-select :value="value" @change="setValue" v-if="optgroups">
@@ -12,10 +13,12 @@
           </optgroup>
         </b-form-select> -->
         <div v-if="type === 'multiselect'" class="flex-grow-1">
-          <Multiselect v-model="value" @change="setValue" :options="items" v-if="items" :customLabel="customLabel" :optionsLimit="40" :allowEmpty="false" :showLabels="false" />
+          <Multiselect v-model="model" @input="setValue" :options="items" v-if="items" :customLabel="customLabel"
+            :optionsLimit="40" :allowEmpty="!isRequired" :showLabels="false" />
         </div>
         <b-input-group-append>
-          <b-btn variant="danger" ref="refErrorButton" id="refdata-error-btn" v-b-tooltip.hover="error" v-if="error">
+          <b-btn variant="danger" ref="refErrorButton" id="refdata-error-btn" v-b-tooltip.hover="error"
+            v-if="error">
             <font-awesome-icon :icon="icon.faExclamationTriangle" />
           </b-btn>
           <b-btn variant="dark" v-b-tooltip.hover="error" title="retry" v-if="error" @click="getList(esIndex, esDoctype)">
@@ -146,10 +149,11 @@ export default {
       default: '3',
       type: String,
     },
+    customLabel: { type: Function },
+    isRequired: { type: Boolean },
     setValue: { required: true, type: Function },
     value: { required: true },
     type: { type: String },
-    customLabel: { type: Function },
   },
   data: function() {
     return {
@@ -331,7 +335,7 @@ export default {
         },
       ],
       items: null,
-      byId: {},
+      model: null,
       error: null,
       busy: false,
       filterApiFields: true,
@@ -405,6 +409,8 @@ export default {
   created() {
     //console.log("refdata widget", this.value)
     //this.getList("reference_data", "funder_type")
+    console.log('list item created')
+    this.model = this.value
     this.getList(this.esIndex, this.esDoctype)
   },
   components: {
