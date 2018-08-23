@@ -6,13 +6,12 @@
 </template>
 
 <script>
+import jsonPointer from 'json-pointer'
+
 import testSchemas from '../testschemas.js'
 import testSchemaUis from '../testschemas_ui.js'
 import testSchemasData from '../testschemas_data.js'
-import jsonPointer from 'json-pointer'
-
 import vSchemaTabSelector from '../widgets/v-schema-tab-selector.vue'
-
 import Validator from '../../vendor/validator/src/validate.js'
 
 export default {
@@ -22,11 +21,6 @@ export default {
       // predefined schema name, this can be defined in a selection screen
       schemaName: 'fairdata-ui-tabs',
       schemaJson: {},
-      validity: {
-        valid: false,
-      },
-      dataParseError: '',
-      doLive: true,
       unsubscribeFunc: null,
       validator: null,
       whereisInput: null,
@@ -39,7 +33,8 @@ export default {
       this.loadSchema(this.schemaName)
       this.loadUi(this.schemaName)
       this.loadData(this.schemaName)
-      this.$store.commit('resetState')
+      // Do not reset here
+      // this.$store.commit('resetState')
       this.subscribeValidator()
       this.$store.watch(
         () => this.$store.state.record,
@@ -51,41 +46,6 @@ export default {
     loadSchema: function(schemaName) {
       this.$store.commit('loadSchema', testSchemas[schemaName])
       this.schemaJson = testSchemas[schemaName]
-    },
-    subscribeValidator: function() {
-      var vm = this
-      this.validator = new Validator(
-        this.$store.state.schema,
-        this.$store.state.record,
-      )
-      this.validator.v = this.$store.state.vState
-      this.unsubscribeFunc = this.$store.subscribe(mutation => {
-        if (
-          mutation.type == 'updateValue' ||
-          mutation.type == 'pushValue' ||
-          mutation.type == 'popValue'
-        ) {
-          if (vm.validator.data !== vm.$store.state.record) {
-            console.warn(
-              'data == store?',
-              vm.validator.data == vm.$store.state.record,
-            )
-          }
-          console.log('validator ran')
-          vm.validator.validateData(vm.$store.state.record)
-          //console.warn("data == store? (after validate)", vm.validator.data == vm.$store.state.record, vm.validator.data, vm.$store.state.record)
-        }
-      })
-      //console.log("store:", this.$store, unsubscribe)
-    },
-    unsubscribeValidator: function() {
-      this.unsubscribeFunc()
-      this.unsubscribeFunc = null
-    },
-    toggleValidator: function() {
-      this.unsubscribeFunc === null
-        ? this.subscribeValidator()
-        : this.unsubscribeValidator()
     },
     loadUi: function(schemaName) {
       if (schemaName in testSchemaUis) {
@@ -102,47 +62,41 @@ export default {
       if (schemaName in testSchemasData) {
         this.testdata = JSON.stringify(testSchemasData[schemaName], null, 2)
       }
-      this.$store.commit('loadData', undefined)
+      // this.$store.commit('loadData', undefined)
       console.log('reset store data')
     },
-    mergeJson: function() {
-      var json = ''
-      try {
-        json = JSON.parse(this.testdata)
-      } catch (e) {
-        this.dataParseError = e.message
-        test.testdataValid = false
-        return
-      }
-      this.dataParseError = ''
-      this.testdataValid = true
-      this.$store.commit('mergeData', json)
+    // TODO: this is probably not the right place for the validator. Maybe the TabUi page?
+    subscribeValidator: function() {
+      var vm = this
+      this.validator = new Validator(
+        this.$store.state.schema,
+        this.$store.state.record,
+      )
+      this.validator.v = this.$store.state.vState
+      this.unsubscribeFunc = this.$store.subscribe(mutation => {
+        if (
+          mutation.type == 'updateValue' ||
+          mutation.type == 'pushValue' ||
+          mutation.type == 'popValue'
+        ) {
+          console.warn(
+            'data == store?',
+            vm.validator.data == vm.$store.state.record,
+          )
+          if (vm.validator.data !== vm.$store.state.record) {
+          }
+          vm.validator.validateData(vm.$store.state.record)
+        }
+      })
     },
-    getTestSchemaNames: function() {
-      return Object.keys(testSchemas)
+    unsubscribeValidator: function() {
+      this.unsubscribeFunc()
+      this.unsubscribeFunc = null
     },
-    parseJson: function() {
-      console.log('clicked parse button!')
-      try {
-        var tmp = JSON.parse(this.testdata)
-      } catch (e) {
-        this.dataParseError = e.message
-        this.testdataValid = false
-        console.log('testdata: NOT E')
-        console.log('testdata:', e)
-        console.log(
-          'testdata error:',
-          this.dataParseError,
-          this.dataParseError.length,
-        )
-        return
-      }
-      this.dataParseError = ''
-      this.testdataValid = true
-      this.$store.commit('loadData', tmp)
-    },
-    getJson: function() {
-      this.testdata = JSON.stringify(this.$store.state.record || '', null, 2)
+    toggleValidator: function() {
+      this.unsubscribeFunc === null
+        ? this.subscribeValidator()
+        : this.unsubscribeValidator()
     },
     whereis: function() {
       //this.whereisReply = 1
@@ -174,11 +128,6 @@ export default {
   computed: {
     tabs() {
       return this.$store.state.hints.tabs || ['metadata']
-    },
-  },
-  watch: {
-    schemaJson: function() {
-      console.log('schemaJson watcher ran')
     },
   },
   components: {

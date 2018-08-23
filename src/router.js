@@ -56,12 +56,6 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/files/:project?/:relpath*',
-    name: 'files',
-    component: vFileBrowser,
-    props: true,
-  },
 ]
 
 // mode: history or hash
