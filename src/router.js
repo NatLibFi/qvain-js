@@ -10,6 +10,7 @@ import vLister from './v-lister.vue'
 import vSchema from './Attic/v-schema.vue'
 import vSchemaForm from './v-schema-form.vue'
 import vSchemaViewer from './viewer/v-schema-viewer.vue'
+import SingleTab from './views/SingleTab.vue'
 import testAutoComplete from './widgets/refdata/autocomplete.vue'
 import vFileBrowser from './filebrowser/filebrowser.vue'
 import Token from './auth/token.vue'
@@ -37,7 +38,24 @@ const routes = [
   { path: '/autocomplete', component: testAutoComplete, props: false },
   { path: '/orcid', component: OrcidSearch, props: false },
   { path: '/personlist', component: PersonList, props: false },
-  { path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
+  {
+    path: '/new',
+    component: TabUi,
+    props: false,
+    meta: { auth: true },
+    children: [
+      {
+        path: 'files/:project?/:relpath*',
+        name: 'files',
+        props: true,
+        component: vFileBrowser,
+      },
+      {
+        path: ':tab',
+        component: SingleTab,
+      },
+    ],
+  },
   {
     path: '/files/:project?/:relpath*',
     name: 'files',

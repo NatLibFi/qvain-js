@@ -15,7 +15,8 @@
       <b-form-group class="my-1" label="Description" key="description" horizontal lable-for="description">
         <b-form-input id="description" placeholder="description" v-model="item.file_characteristics.description"
           v-if="isFile(item)"></b-form-input>
-        <b-form-input id="title" placeholder="title" v-model="item.description" v-else></b-form-input>
+        <b-form-input id="description" placeholder="description" v-model="item.description"
+          v-else></b-form-input>
       </b-form-group>
       <b-form-group class="my-1" label="Encoding" key="encoding" horizontal lable-for="encoding"
         v-if="isFile(item)">

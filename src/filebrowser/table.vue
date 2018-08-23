@@ -8,18 +8,21 @@
     </b-button-toolbar>
 
     <!-- TABLE -->
-    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory" striped hover class="mb-0" @row-clicked="toggleSelection" :tbody-tr-class="rowClass">
+    <b-table :fields="tableFields" :items="tableData" show-empty empty-text="no files in this directory"
+      striped hover class="mb-0" @row-clicked="toggleSelection" :tbody-tr-class="rowClass">
       <template slot="selection" slot-scope="data">
         <b-form-checkbox class="m-0" v-model="data.item.picked" v-if="!data.item.selected">
         </b-form-checkbox>
       </template>
       <template slot="type" slot-scope="data">
-        <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)" variant="link" class="m-0 p-0 float-right">
+        <b-btn v-if="data.item.type !=='file'" size="sm" @click.stop="openDir(data.item.path)"
+          variant="link" class="m-0 p-0 float-right">
           <font-awesome-icon :icon="icon.faFolder" size="2x" />
         </b-btn>
       </template>
       <template slot="name" slot-scope="data">
-        <b-btn v-if="data.item.type !== 'file'" variant="link" @click.stop="openDir(data.item.path)" class="m-0 p-0">{{data.item.name}}</b-btn>
+        <b-btn v-if="data.item.type !== 'file'" variant="link" @click.stop="openDir(data.item.path)"
+          class="m-0 p-0">{{data.item.name}}</b-btn>
         <span v-else>{{data.item.name}}</span>
       </template>
       <template slot="actions" slot-scope="data">
@@ -69,8 +72,10 @@
               <p>{{ data.item.file.file_characteristics['description'] }}</p>
             </div>
             <b-btn-group class="align-self-end">
-              <b-button @click.stop="data.toggleDetails " :pressed.sync="data.detailsShowing " variant="secondary" class="w-100 h-100">hide</b-button>
-              <b-button @click.stop="()=> modalOpen(data.item.identifier, data.item.path, project)" variant="primary" class="w-100 h-100">json</b-button>
+              <b-button @click.stop="data.toggleDetails " :pressed.sync="data.detailsShowing "
+                variant="secondary" class="w-100 h-100">hide</b-button>
+              <b-button @click.stop="()=> modalOpen(data.item.identifier, data.item.path, project)"
+                variant="primary" class="w-100 h-100">json</b-button>
             </b-btn-group>
           </div>
         </b-card>
@@ -93,6 +98,15 @@ import dateFromIso from 'date-fns/parse'
 import dateFormat from 'date-fns/format'
 import FileTable from './table'
 import FileInfoModal from './fileinfo-modal'
+
+const formatBytes = (bytes, decimals) => {
+  if (bytes == 0) return '0 Bytes'
+  const k = 1024,
+    dm = decimals || 2,
+    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+    i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+}
 
 export default {
   name: 'FileTable',
@@ -128,7 +142,7 @@ export default {
           key: 'date_modified',
           sortable: true,
           formatter: value => {
-            return dateFormat(dateFromIso(value), 'YYYY-MM-DD')
+            return dateFormat(value, 'YYYY-MM-DD')
           },
           tdClass: 'align-middle',
         },
@@ -137,6 +151,9 @@ export default {
           label: 'Size',
           sortable: true,
           tdClass: 'align-middle',
+          formatter: value => {
+            return formatBytes(value)
+          },
         },
         {
           key: 'actions',

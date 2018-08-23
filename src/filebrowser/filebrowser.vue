@@ -1,7 +1,8 @@
 <template>
   <div>
     <b-tabs pills card vertical>
-      <b-tab :title="`Project ${proj}`" v-for="proj in projects" :key="proj" no-body @click="() => updateProject(proj)" :active="proj === project" v-if="project">
+      <b-tab :title="`Project ${proj}`" v-for="proj in projects" :key="proj" no-body @click="() => updateProject(proj)"
+        :active="proj === project" v-if="project">
         <filelist :project="proj" :root="rootId" :path="path" v-if="proj === project"></filelist>
       </b-tab>
     </b-tabs>

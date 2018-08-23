@@ -6,10 +6,10 @@
         <div class="d-flex">
           <h6 class="mb-0">
             {{title}}
-            <span v-if="secondary" class="text-muted m-0 font-italic">, {{secondary}}</span>
+            <span v-if="secondary" class="text-muted m-0 font-italic">{{secondary}}</span>
           </h6>
         </div>
-        <p class="my-1">
+        <p class="my-2">
           <font-awesome-icon v-b-tooltip.hover title="Title" :icon="icons.faPencilAlt" :class="(type === 'file' ? single.file_characteristics.title : single.title) ? 'text-primary' : 'text-secondary'"
             class="mr-2" />
           <font-awesome-icon v-b-tooltip.hover class="mr-2" :icon="icons.faTag" title="Use Category"

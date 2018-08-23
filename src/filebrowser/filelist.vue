@@ -6,7 +6,8 @@
       </b-col>
     </b-row>
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
-    <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir" :project="project" :cwd="cwd" />
+    <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir"
+      :project="project" :cwd="cwd" />
     <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
 </template>
@@ -85,8 +86,8 @@ export default {
   },
   watch: {},
   components: {
-    FileTable: FileTable,
-    ObjectArray: ObjectArray,
+    FileTable,
+    ObjectArray,
   },
   created: function() {
     this.openDir(this.path)

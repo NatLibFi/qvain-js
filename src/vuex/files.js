@@ -55,7 +55,7 @@ const combine = (state, data) => {
       name: file.file_name,
       path: file.file_path,
       byte_size: file.byte_size,
-      date_modified: file.date_modified,
+      date_modified: file.file_modified,
       file: {
         file_format: file.file_format,
         open_access: file.open_access,
@@ -76,7 +76,7 @@ const combine = (state, data) => {
       name: folder.directory_name,
       path: folder.directory_path,
       byte_size: folder.byte_size,
-      date_modified: folder.date_modified,
+      date_modified: folder.directory_modified,
       directory: {
         file_count: folder.file_count,
       },
