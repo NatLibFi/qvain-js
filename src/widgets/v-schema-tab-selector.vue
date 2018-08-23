@@ -330,7 +330,6 @@ export default {
     //console.log(this.$options.components)
     //console.log("calling vivicate() from created()")
     this.vivicate()
-    //console.log("startTab:", this.tab, "activeTab:", this.activeTab)
   },
   mounted() {
     this.$nextTick(function() {

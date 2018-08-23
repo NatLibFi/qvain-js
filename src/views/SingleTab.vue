@@ -19,13 +19,12 @@ export default {
   name: 'singletab',
   data: function() {
     return {
+      // predefined schema name, this can be defined in a selection screen
       schemaName: 'fairdata-ui-tabs',
       schemaJson: {},
-      children: [],
       validity: {
         valid: false,
       },
-      value: undefined,
       dataParseError: '',
       doLive: true,
       unsubscribeFunc: null,
@@ -35,6 +34,20 @@ export default {
     }
   },
   methods: {
+    // TODO: run loadAll only initially, maybe in store. Now runs on each tab change
+    loadAll: function() {
+      this.loadSchema(this.schemaName)
+      this.loadUi(this.schemaName)
+      this.loadData(this.schemaName)
+      this.$store.commit('resetState')
+      this.subscribeValidator()
+      this.$store.watch(
+        () => this.$store.state.record,
+        value => {
+          console.log('store watcher: record changed')
+        },
+      )
+    },
     loadSchema: function(schemaName) {
       this.$store.commit('loadSchema', testSchemas[schemaName])
       this.schemaJson = testSchemas[schemaName]
@@ -92,19 +105,6 @@ export default {
       this.$store.commit('loadData', undefined)
       console.log('reset store data')
     },
-    loadAll: function() {
-      this.loadSchema(this.schemaName)
-      this.loadUi(this.schemaName)
-      this.loadData(this.schemaName)
-      this.$store.commit('resetState')
-      this.subscribeValidator()
-      this.$store.watch(
-        () => this.$store.state.record,
-        value => {
-          console.log('store watcher: record changed')
-        },
-      )
-    },
     mergeJson: function() {
       var json = ''
       try {
@@ -139,7 +139,6 @@ export default {
       }
       this.dataParseError = ''
       this.testdataValid = true
-      this.value = tmp
       this.$store.commit('loadData', tmp)
     },
     getJson: function() {
@@ -178,29 +177,6 @@ export default {
     },
   },
   watch: {
-    // selectedSchema: function() {
-    //   if (!this.selectedSchema) {
-    //     console.log('selectedSchema triggered without schema!')
-    //     return
-    //   }
-    //   this.loadSchema(this.selectedSchema)
-    //   this.loadUi(this.selectedSchema)
-    //   this.loadData(this.selectedSchema)
-    //   this.$store.commit('resetState')
-    //   this.subscribeValidator()
-    //   this.$store.watch(
-    //     () => this.$store.state.record,
-    //     value => {
-    //       console.log('store watcher: record changed')
-    //       //this.validator.data = value
-    //       //this.validator.validate()
-    //     },
-    //   )
-    //   //this.validator = SchemaValidator(this.$store.state.schema, this.$store.state.record)
-    //   //let tabs = []
-    //   //schemaToTabs(this.schemaJson, uiHints, tabs)
-    //   //console.log("tab array:", tabs)
-    // },
     schemaJson: function() {
       console.log('schemaJson watcher ran')
     },

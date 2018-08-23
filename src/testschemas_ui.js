@@ -87,12 +87,12 @@ var _schemaFairDataUI = {
 
 var _schemaFairDataUiTabs = {
   tabs: [
-    'Content Description',
-    'Temporal and Spatial Coverage',
-    'Actors',
-    'Relations and History',
-    'Files',
-    '(Extra)',
+    { label: 'Content Description', uri: 'description' },
+    { label: 'Temporal and Spatial Coverage', uri: 'coverage' },
+    { label: 'Actors', uri: 'actors' },
+    { label: 'Relations and History', uri: 'relations' },
+    { label: 'Files', uri: 'files' },
+    { label: 'Extra', uri: 'extra' },
   ],
   '': { tab: 'description' },
   '#/definitions/langString': {
@@ -142,7 +142,7 @@ var _schemaFairDataUiTabs = {
       'A characterization of the dataset that lucidly describes the dataset. Add new field for each language version. Please define the language used in each case.',
   },
   '/properties/bibliographic_citation': {
-    tab: 6,
+    tab: 'extra',
     title: 'Recommended Bibliographic Citation',
     description: 'Your preferred way to cite the dataset in publications, etc.',
   },
@@ -332,7 +332,7 @@ var _schemaFairDataUiTabs = {
     tab: 'files',
   },
   '/properties/access_rights': {
-    tab: 6,
+    tab: 'extra',
     title: 'Access rights',
     description: '*** description for access rights goes here ***',
   },
@@ -373,22 +373,22 @@ var _schemaFairDataUiTabs = {
     help: 'This is the optional help text for the license field',
   },
   '/properties/publisher': {
-    tab: 6,
+    tab: 'extra',
     title: 'Publisher',
     description: '*** description for publisher goes here ***',
   },
   '/properties/issued': {
-    tab: 6,
+    tab: 'extra',
     title: 'Issued',
     description: '*** description for issued goes here ***',
   },
   '/properties/modified': {
-    tab: 6,
+    tab: 'extra',
     title: 'modified',
     description: '*** description for modified goes here ***',
   },
   '/properties/infrastructure': {
-    tab: 6,
+    tab: 'extra',
     widget: 'refdata-list',
     props: {
       esIndex: 'reference_data',
@@ -401,44 +401,44 @@ var _schemaFairDataUiTabs = {
     help: 'This is the optional help text for the infrastructure field',
   },
   '/properties/metadata_version_identifier': {
-    tab: 6,
+    tab: 'extra',
     title: 'Metadata version identifier',
     description:
       '*** description for metadata version identifier goes here ***',
   },
   '/properties/preferred_identifier': {
-    tab: 6,
+    tab: 'extra',
     title: 'Preferred identifier',
     description: '*** description for preferred identifier goes here ***',
   },
   '/properties/other_identifier': {
-    tab: 6,
+    tab: 'extra',
     title: 'Other identifier',
     description: '*** description for other identifier goes here ***',
   },
   '/properties/total_ida_byte_size': {
-    tab: 6,
+    tab: 'extra',
     title: 'Total ida byte size',
     description: '*** description for total ida byte size goes here ***',
   },
   '/properties/total_remote_resources_byte_size': {
-    tab: 6,
+    tab: 'extra',
     title: 'Total remote resources byte size',
     description:
       '*** description for total remote resources byte size goes here ***',
   },
   '/properties/value': {
-    tab: 6,
+    tab: 'extra',
     label: 'Quality',
     description: 'Metadata quality value calculated in some manner.',
   },
   '/properties/version_info': {
-    tab: 6,
+    tab: 'extra',
     title: 'Version info',
     description: '*** description for version info goes here ***',
   },
   '/properties/version_notes': {
-    tab: 6,
+    tab: 'extra',
     title: 'Version notes',
     description: '*** description for version notes goes here ***',
   },
