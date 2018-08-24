@@ -7,23 +7,13 @@
         isRequired>
       </RefList>
       <b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
-        <b-form-input id="title" placeholder="title" v-model="item.file_characteristics.title"
-          v-if="isFile(item)" @change="validateTitle" :state="valid.title"></b-form-input>
-        <b-form-input v-else id="title" placeholder="title" v-model="item.title" @change="validateTitle"
-          :state="valid.title"></b-form-input>
+        <b-form-input id="title" placeholder="title" v-model="item.title" @change="validateTitle" :state="valid.title"></b-form-input>
       </b-form-group>
       <b-form-group class="my-1" label="Description" key="description" horizontal lable-for="description">
-        <b-form-input id="description" placeholder="description" v-model="item.file_characteristics.description"
-          v-if="isFile(item)"></b-form-input>
-        <b-form-input id="description" placeholder="description" v-model="item.description"
-          v-else></b-form-input>
+        <b-form-input id="description" placeholder="description" v-model="item.description"></b-form-input>
       </b-form-group>
-      <b-form-group class="my-1" label="Encoding" key="encoding" horizontal lable-for="encoding"
-        v-if="isFile(item)">
-        <b-form-input id="encoding" placeholder="encoding" v-model="item.file_characteristics.encoding"></b-form-input>
-      </b-form-group>
-      <RefList esDoctype="mime_type" placeholder="format" type="multiselect" help="help text"
-        uiLabel="Format" :value="item.file_characteristics.file_format" :setValue="setFormat"
+      <RefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text"
+        uiLabel="File Type" :value="item.file_type" :setValue="setType"
         v-if="isFile(item)" :customLabel="(item) => item.code">
       </RefList>
     </div>
@@ -65,13 +55,13 @@ export default {
       // Directories can also have a description and title for example
     },
     isFile: function(item) {
-      return typeof item === 'object' && typeof item.file_name === 'string'
+      return 'file_type' in item
     },
     setUseCategory: function(value) {
       Vue.set(this.item, 'use_category', value)
     },
-    setFormat: function(value) {
-      Vue.set(this.item.file_characteristics, 'file_format', value)
+    setType: function(value) {
+      Vue.set(this.item, 'file_type', value)
     },
     validateTitle: function(value) {
       if (value) {

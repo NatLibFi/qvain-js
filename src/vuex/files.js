@@ -115,9 +115,18 @@ export default {
     // so this won't work if the folder is changed
     addFiles(state, items) {
       const selectedItems = items.map(single => {
-        return state.allDirs.files.find(
-          file => file.identifier === single.identifier,
-        )
+        return {
+          ui: {
+            name: single.name,
+          }, 
+          identifier: single.identifier,
+          title: single.file_characteristics ? single.file_characteristics.title : undefined,
+          description: single.file_characteristics ? single.file_characteristics.description : undefined,
+          use_category: undefined,
+          file_type: undefined,
+          // or something from mfs?
+          access_url: undefined,
+        }
       })
       state.selectedFiles.push(...selectedItems)
     },
@@ -140,9 +149,17 @@ export default {
     },
     addDirs(state, items) {
       const selectedItems = items.map(single => {
-        return state.allDirs.directories.find(
-          dir => dir.identifier === single.identifier,
-        )
+        return {
+          ui: {
+            name: single.name,
+          }, 
+          identifier: single.identifier,
+          title: undefined,
+          description: undefined,
+          use_category: undefined,
+          // or something from mfs?
+          access_url: undefined,
+        }
       })
       state.selectedDirs.push(...selectedItems)
     },
@@ -228,3 +245,27 @@ export default {
     },
   },
 }
+
+/*
+{
+  files: [
+    {
+      identifier: ,
+      title: ,
+      description: ,
+      use_category: ,
+      file_type: ,
+      access_url: ,
+    }
+  ],
+  directories: [
+    {
+      identifier: ,
+      title: ,
+      description: ,
+      use_category: ,
+      access_url: ,
+    }
+  ]
+}
+*/
