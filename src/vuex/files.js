@@ -45,7 +45,7 @@ const combine = (state, data) => {
       file: {
         file_format: file.file_format,
         open_access: file.open_access,
-        file_characteristics: file.file_characteristics,
+        file_characteristics: file.file_characteristics || {},
         checksum: { value: file.checksum_value },
       },
       directory: undefined,

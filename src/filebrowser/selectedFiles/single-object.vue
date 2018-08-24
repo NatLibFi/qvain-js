@@ -65,7 +65,8 @@ export default {
   components: {
     FontAwesomeIcon,
   },
-  created: function() {},
+  created: function() {
+  },
 }
 </script>
 

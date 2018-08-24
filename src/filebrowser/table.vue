@@ -81,10 +81,6 @@
       </template>
     </b-table>
     <!-- BREADCRUMBS AND TOOLBAR -->
-    <b-col cols="12 " md="auto " class="border-top border-bottom p-2 d-flex justify-content-end align-items-center ">
-      <span class="px-4 ">{{picked}} items picked</span>
-      <b-btn @click.stop="()=> savePicked()" variant="primary" :disabled="picked === 0">add picked</b-btn>
-    </b-col>
   </div>
 </template>
 
@@ -109,7 +105,7 @@ const formatBytes = (bytes, decimals) => {
 
 export default {
   name: 'FileTable',
-  props: ['tableData', 'cwd', 'openDir', 'project', 'picked'],
+  props: ['tableData', 'cwd', 'openDir', 'project'],
   data: function() {
     return {
       tableFields: [
@@ -188,10 +184,6 @@ export default {
         classes.push('pointer')
       }
       return classes.join(' ')
-    },
-    savePicked: function() {
-      console.log(this.$store.state.files.directory)
-      this.$store.dispatch('files/savePicked')
     },
     modalOpen: function() {
       return this.$refs.refFileInfoModal.show.apply(this, arguments)

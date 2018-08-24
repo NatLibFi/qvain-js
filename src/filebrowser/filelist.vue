@@ -1,20 +1,22 @@
 <template>
   <div>
     <b-row no-gutters>
-      <b-col class="bg-primary py-3 px-4">
+      <b-col class="bg-primary py-3 px-4 d-flex justify-content-between">
         <h1 class="text-white">Project {{ project }}</h1>
       </b-col>
     </b-row>
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
-    <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir"
+    <FileTable v-if="directory" :tableData="directory" :openDir="openDir"
       :project="project" :cwd="cwd" />
+    <SelectButtons />
     <SelectedFiles icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
 </template>
 
 <script>
 import FileTable from './table'
-import selectedFiles from './selectedFiles'
+import SelectedFiles from './selectedFiles'
+import SelectButtons from './selectButtons'
 
 const getReqParams = err => (err && err.config && err.config.params) || null
 
@@ -79,11 +81,6 @@ export default {
     },
     getDirectory: function() {
       this.directory = this.$store.state.files.projects[this.project][this.cwd]
-    }
-  },
-  computed: {
-    pickedItems: function() {
-      return this.$store.state.files.pickedItems
     },
   },
   watch: {
@@ -97,7 +94,8 @@ export default {
   },
   components: {
     FileTable,
-    selectedFiles,
+    SelectedFiles,
+    SelectButtons
   },
   // created: function() {
   //   this.openDir(this.path)

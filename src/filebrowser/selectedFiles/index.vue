@@ -24,7 +24,7 @@ import SingleObject from './single-object.vue'
 import { faFile, faFolder } from '@fortawesome/free-regular-svg-icons'
 
 export default {
-  name: 'object-array',
+  name: 'SelectedFiles',
   props: ['title', 'data'],
   data: function() {
     return {

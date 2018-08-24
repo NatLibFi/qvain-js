@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     //record: "not loaded",
     record: undefined,
-    schema: 'not loaded',
+    schema: undefined,
     hints: {},
     UI_VALID_KEYWORDS: [
       'widget',

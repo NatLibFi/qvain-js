@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import RefList from '../widgets/refdata/list-ui'
+import RefList from '../../widgets/refdata/list-ui'
 import Vue from 'vue'
 
 export default {
@@ -43,7 +43,6 @@ export default {
       valid: {
         title: null,
       },
-      editable: [],
     }
   },
   methods: {

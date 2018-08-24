@@ -35,11 +35,13 @@ export default {
   },
   computed: {
     path: function() {
+      console.log('relpath', this.$route.params.relpath)
       // After hot reloading relpath will be an array of values.
-      if (typeof this.relpath === 'object') {
-        return this.relpath ? '/' + this.relpath.join('/') : '/'
+      if (typeof this.$route.params.relpath === 'object') {
+        console.warn('RELPATH IS A OBJECT!')
+        return this.$route.params.relpath ? '/' + this.$route.params.relpath.join('/') : '/'
       }
-      return this.relpath ? '/' + this.relpath : '/'
+      return this.$route.params.relpath ? '/' + this.$route.params.relpath : '/'
     },
     projects: function() {
       return this.$store.getters['auth/getProjects']
