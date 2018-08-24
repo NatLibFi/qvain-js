@@ -2,19 +2,19 @@
   <div>
     <b-row no-gutters>
       <b-col class="bg-primary py-3 px-4">
-        <h1 class="text-white">{{ project }}</h1>
+        <h1 class="text-white">Project {{ project }}</h1>
       </b-col>
     </b-row>
     <b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
     <FileTable v-if="directory" :tableData="directory" :picked="pickedItems" :openDir="openDir"
       :project="project" :cwd="cwd" />
-    <ObjectArray icon="fas fa-folder fa-2x" :data="getAllSelected()" />
+    <SelectedFiles icon="fas fa-folder fa-2x" :data="getAllSelected()" />
   </div>
 </template>
 
 <script>
 import FileTable from './table'
-import ObjectArray from './ObjectArray'
+import selectedFiles from './selectedFiles'
 
 const getReqParams = err => (err && err.config && err.config.params) || null
 
@@ -22,10 +22,11 @@ const getResStatus = err => (err && err.response && err.response.status) || null
 
 export default {
   name: 'filelist',
-  props: ['project', 'root', 'path'],
+  props: ['project', 'path'],
   data: function() {
     return {
       error: null,
+      directory: null,
       cwd: '/',
     }
   },
@@ -39,6 +40,8 @@ export default {
         .dispatch('files/queryContent', { dir, project: this.project })
         .then(data => {
           vm.cwd = dir
+          vm.getDirectory()
+          console.log('directory opened')
         })
         .catch(error => {
           // NOTE: if we have a CORS error, there is no response body and hence no status code :(
@@ -74,23 +77,30 @@ export default {
         files && { type: 'file', data: files },
       ]
     },
+    getDirectory: function() {
+      this.directory = this.$store.state.files.projects[this.project][this.cwd]
+    }
   },
   computed: {
-    directory: function() {
-      console.log('directory data', this.$store.state.files.directory[this.cwd])
-      return this.$store.state.files.directory[this.cwd]
-    },
     pickedItems: function() {
       return this.$store.state.files.pickedItems
     },
   },
-  watch: {},
+  watch: {
+    project: {
+      immediate: true,
+      handler(newP, old) {
+        this.error = null
+        this.openDir(this.path)
+      }
+    }
+  },
   components: {
     FileTable,
-    ObjectArray,
+    selectedFiles,
   },
-  created: function() {
-    this.openDir(this.path)
-  },
+  // created: function() {
+  //   this.openDir(this.path)
+  // },
 }
 </script>

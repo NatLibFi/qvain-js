@@ -9,20 +9,6 @@ var fileapi = axios.create({
   responseType: 'json',
 })
 
-const checkSelectedFile = (state, id) => {
-  return (
-    state.project in state.selectedFiles &&
-    id in state.selectedFiles[state.project]
-  )
-}
-
-const checkSelectedDir = (state, id) => {
-  return (
-    state.project in state.selectedDirs &&
-    id in state.selectedDirs[state.project]
-  )
-}
-
 const combine = (state, data) => {
   // combines folders and files into single array of objects
   /*
@@ -50,7 +36,7 @@ const combine = (state, data) => {
     parsedFiles = data.files.map(file => ({
       type: 'file',
       picked: false,
-      selected: checkSelectedFile(state, file.identifier),
+      selected: false,
       identifier: file.identifier,
       name: file.file_name,
       path: file.file_path,
@@ -71,7 +57,7 @@ const combine = (state, data) => {
     parsedFolders = data.directories.map(folder => ({
       type: 'dir',
       picked: false,
-      selected: checkSelectedDir(state, folder.identifier),
+      selected: false,
       identifier: folder.identifier,
       name: folder.directory_name,
       path: folder.directory_path,
@@ -93,29 +79,19 @@ const combine = (state, data) => {
 export default {
   namespaced: true,
   state: {
-    selectedFiles: {},
-    selectedDirs: {},
+    selectedFiles: [],
+    selectedDirs: [],
     pickedItems: 0,
-    directory: {},
+    projects: {},
     project: null,
     allDirs: { files: [], directories: [] },
   },
   getters: {
-    isSelectedFile(state) {
-      return id =>
-        state.project in state.selectedFiles &&
-        id in state.selectedFiles[state.project]
-    },
-    isSelectedDir(state) {
-      return id =>
-        state.project in state.selectedDirs &&
-        id in state.selectedDirs[state.project]
-    },
     getSelectedFiles(state) {
-      return state.selectedFiles[state.project] || false
+      return state.selectedFiles || false
     },
     getSelectedDirs(state) {
-      return state.selectedDirs[state.project] || false
+      return state.selectedDirs || false
     },
     getProject(state) {
       return state.project
@@ -132,32 +108,27 @@ export default {
       state.pickedItems = 0
     },
     updateProject(state, project) {
-      Vue.set(state, project, project)
+      console.log('update project', project)
+      Vue.set(state, 'project', project)
     },
-    // state.directory only has current folder
+    // state.projects[state.project] only has current folder
     // so this won't work if the folder is changed
     addFiles(state, items) {
-      if (!(state.project in state.selectedFiles))
-        Vue.set(state.selectedFiles, state.project, [])
       const selectedItems = items.map(single => {
         return state.allDirs.files.find(
           file => file.identifier === single.identifier,
         )
       })
-      state.selectedFiles[state.project].push(...selectedItems)
+      state.selectedFiles.push(...selectedItems)
     },
     removeFile(state, identifier) {
-      if (!(state.project in state.selectedFiles)) return
-      const index = state.selectedFiles[state.project].findIndex(
+      const index = state.selectedFiles.findIndex(
         single => single.identifier === identifier,
       )
-      state.selectedFiles[state.project].splice(index, 1)
-      if (state.selectedFiles[state.project].length < 1) {
-        Vue.delete(state.selectedFiles, state.project)
-      }
-      for (let property in state.directory) {
-        if (state.directory.hasOwnProperty(property)) {
-          state.directory[property].filter(single => {
+      state.selectedFiles.splice(index, 1)
+      for (let property in state.projects[state.project]) {
+        if (state.projects[state.project].hasOwnProperty(property)) {
+          state.projects[state.project][property].filter(single => {
             if (single.identifier === identifier) {
               single.picked = false
               single.selected = false
@@ -168,27 +139,21 @@ export default {
       return
     },
     addDirs(state, items) {
-      if (!(state.project in state.selectedDirs))
-        Vue.set(state.selectedDirs, state.project, [])
       const selectedItems = items.map(single => {
         return state.allDirs.directories.find(
           dir => dir.identifier === single.identifier,
         )
       })
-      state.selectedDirs[state.project].push(...selectedItems)
+      state.selectedDirs.push(...selectedItems)
     },
     removeDir(state, identifier) {
-      if (!(state.project in state.selectedDirs)) return
-      const index = state.selectedDirs[state.project].findIndex(
+      const index = state.selectedDirs.findIndex(
         single => single.identifier === identifier,
       )
-      state.selectedDirs[state.project].splice(index, 1)
-      if (state.selectedDirs[state.project].length < 1) {
-        Vue.delete(state.selectedDirs, state.project)
-      }
-      for (let property in state.directory) {
-        if (state.directory.hasOwnProperty(property)) {
-          state.directory[property].filter(single => {
+      state.selectedDirs.splice(index, 1)
+      for (let property in state.projects[state.project]) {
+        if (state.projects[state.project].hasOwnProperty(property)) {
+          state.projects[state.project][property].filter(single => {
             if (single.identifier === identifier) {
               single.picked = false
               single.selected = false
@@ -202,21 +167,24 @@ export default {
       // TODO: should not push data to allDirs if it is already there
       state.allDirs.files.push(...data.files)
       state.allDirs.directories.push(...data.directories)
-      console.log('directory', data)
+      console.log('save results', data)
       // We only add data on the first time they are fetched
       // We don't want to overwrite the modified data
-      if (!state.directory[dir]) {
-        Vue.set(state.directory, dir, combine(state, data))
+      if (!state.projects[state.project]) {
+        Vue.set(state.projects, state.project, {})
+      }
+      if (!state.projects[state.project][dir]) {
+        Vue.set(state.projects[state.project], dir, combine(state, data))
       }
     },
   },
   actions: {
     savePicked({ commit, state }) {
       let pickedItems = []
-      for (let property in state.directory) {
-        if (state.directory.hasOwnProperty(property)) {
+      for (let property in state.projects[state.project]) {
+        if (state.projects[state.project].hasOwnProperty(property)) {
           pickedItems.push(
-            ...state.directory[property].filter(single => {
+            ...state.projects[state.project][property].filter(single => {
               if (single.picked) {
                 single.picked = false
                 single.selected = true

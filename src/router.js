@@ -43,11 +43,11 @@ const routes = [
     component: TabUi,
     props: false,
     meta: { auth: true },
+    redirect: '/new/description',
     children: [
       {
         path: 'files/:project?/:relpath*',
         name: 'files',
-        props: true,
         component: vFileBrowser,
       },
       {

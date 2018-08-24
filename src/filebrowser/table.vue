@@ -26,7 +26,6 @@
         <span v-else>{{data.item.name}}</span>
       </template>
       <template slot="actions" slot-scope="data">
-        <!-- actions for file -->
         <div v-if="data.item.type === 'file'">
           <b-btn size="sm" @click.stop="data.toggleDetails" class="mr-2">{{ data.detailsShowing ? 'Hide' : 'Show'}} Details</b-btn>
         </div>

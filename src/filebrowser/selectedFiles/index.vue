@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import FileEditModal from '../fileedit-modal.vue'
+import FileEditModal from './fileedit-modal.vue'
 import SingleObject from './single-object.vue'
 import { faFile, faFolder } from '@fortawesome/free-regular-svg-icons'
 
