@@ -79,8 +79,7 @@ const combine = (state, data) => {
 export default {
   namespaced: true,
   state: {
-    selectedFiles: [],
-    selectedDirs: [],
+    namesOfSelected: {},
     pickedItems: 0,
     projects: {},
     project: null,
@@ -111,76 +110,11 @@ export default {
       console.log('update project', project)
       Vue.set(state, 'project', project)
     },
-    addFiles(state, items) {
-      const selectedItems = items.map(single => {
-        return {
-          ui: {
-            name: single.name,
-          },
-          item: {
-            identifier: single.identifier,
-            title: single.file_characteristics ? single.file_characteristics.title : undefined,
-            description: single.file_characteristics ? single.file_characteristics.description : undefined,
-            use_category: undefined,
-            file_type: undefined,
-            // or something from mfs?
-            access_url: undefined,
-          }
-        }
-      })
-      state.selectedFiles.push(...selectedItems)
+    addNames(state, items) {
+      Vue.set(state, 'namesOfSelected', {...state.namesOfSelected, ...items})
     },
-    removeFile(state, identifier) {
-      const index = state.selectedFiles.findIndex(
-        single => single.item.identifier === identifier,
-      )
-      state.selectedFiles.splice(index, 1)
-      for (let property in state.projects[state.project]) {
-        if (state.projects[state.project].hasOwnProperty(property)) {
-          state.projects[state.project][property].filter(single => {
-            if (single.identifier === identifier) {
-              single.picked = false
-              single.selected = false
-            }
-          })
-        }
-      }
-      return
-    },
-    addDirs(state, items) {
-      const selectedItems = items.map(single => {
-        return {
-          ui: {
-            name: single.name,
-          },
-          item: {
-            identifier: single.identifier,
-            title: undefined,
-            description: undefined,
-            use_category: undefined,
-            // or something from mfs?
-            access_url: undefined,
-          }
-        }
-      })
-      state.selectedDirs.push(...selectedItems)
-    },
-    removeDir(state, identifier) {
-      const index = state.selectedDirs.findIndex(
-        single => single.identifier === identifier,
-      )
-      state.selectedDirs.splice(index, 1)
-      for (let property in state.projects[state.project]) {
-        if (state.projects[state.project].hasOwnProperty(property)) {
-          state.projects[state.project][property].filter(single => {
-            if (single.identifier === identifier) {
-              single.picked = false
-              single.selected = false
-            }
-          })
-        }
-      }
-      return
+    removeName(state, identifier) {
+      Vue.delete(state.namesOfSelected, identifier)
     },
     saveResults(state, { data, dir }) {
       // TODO: should not push data to allDirs if it is already there
@@ -198,7 +132,7 @@ export default {
     },
   },
   actions: {
-    savePicked({ commit, state }) {
+    savePicked({ commit, state, rootState }) {
       let pickedItems = []
       for (let property in state.projects[state.project]) {
         if (state.projects[state.project].hasOwnProperty(property)) {
@@ -214,18 +148,58 @@ export default {
           )
         }
       }
-      let files = []
-      let dirs = []
+
+      const recordFiles = []
+      const recordDirs = []
+      const names = {}
+      
+      // get picked files ready to store in record
+      const parseItem = (single) => {
+        const item = {
+          identifier: single.identifier,
+          title: single.file_characteristics ? single.file_characteristics.title : undefined,
+          description: single.file_characteristics ? single.file_characteristics.description : undefined,
+          use_category: undefined,
+          // or something from mfs?
+          access_url: undefined,
+        }
+        if (single.type === 'file') {
+          item.file_type = undefined
+        }
+        return item
+      }
+
+      // save names separately. They will be displayed in ui but not stored in record
+      const saveName = (item) => {
+        names[item.identifier] = item.name
+      }
+
+      const process = (item) => {
+        item.type === 'file'
+          ? recordFiles.push(parseItem(item))
+          : recordDirs.push(parseItem(item))
+        saveName(item)
+      }
+
+      // loop through picked items and process them for saving to record 
       pickedItems.map(single => {
-        single.type === 'file' ? files.push(single) : dirs.push(single)
+        process(single)
       })
-      if (files.length > 0) {
-        commit('addFiles', files)
+
+      console.log('rootState', rootState)
+      if (recordFiles.length > 0) {
+        commit('pushMultiple', {p: rootState.record, prop: 'files', val: recordFiles}, { root: true })
       }
-      if (dirs.length > 0) {
-        commit('addDirs', dirs)
+      
+      if (recordDirs.length > 0) {
+        commit('pushMultiple', {p: rootState.record, prop: 'directories', val: recordDirs}, { root: true })
       }
+      commit('addNames', names)
       commit('clearPicked')
+    },
+    removeItem({ commit, state, rootState }, {identifier, type}) {
+      // TODO: remove also from record
+      commit('removeName', identifier)
     },
     queryContent({ commit, state }, { dir, project }) {
       return new Promise((resolve, reject) => {
@@ -247,27 +221,3 @@ export default {
     },
   },
 }
-
-/*
-{
-  files: [
-    {
-      identifier: ,
-      title: ,
-      description: ,
-      use_category: ,
-      file_type: ,
-      access_url: ,
-    }
-  ],
-  directories: [
-    {
-      identifier: ,
-      title: ,
-      description: ,
-      use_category: ,
-      access_url: ,
-    }
-  ]
-}
-*/

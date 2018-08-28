@@ -71,8 +71,8 @@ export default {
         })
     },
     getAllSelected: function() {
-      const files = this.$store.getters['files/getSelectedFiles']
-      const dirs = this.$store.getters['files/getSelectedDirs']
+      const files = this.$store.state.record.files
+      const dirs = this.$store.state.record.directories
       if (!files && !dirs) return false
       return [
         dirs && { type: 'dir', data: dirs },

@@ -38,7 +38,7 @@ export default {
   methods: {
     show: function(single) {
       console.log('show', single)
-      this.item = single.item
+      this.item = single
       // TODO: define fields to display here for files and for folders
       // currently it gets fields from file characteristics, but folders don't have that
       // in tietomalli/mrd you can see that folders also have a title and a description
@@ -58,11 +58,26 @@ export default {
       return 'file_type' in item
     },
     setUseCategory: function(value) {
-      Vue.set(this.item, 'use_category', value)
+      this.$store.commit('updateArrayValue', {
+        p: this.$store.state.record,
+        prop: this.isFile(this.item) ? 'files' : 'directories',
+        val: this.item,
+        search: {
+          field: 'identifier',
+          value: this.item.identifier,
+        }
+      })
     },
     setType: function(value) {
-      Vue.set(this.item, 'file_type', value)
-      
+      this.$store.commit('updateArrayValue', {
+        p: this.$store.state.record,
+        prop: this.isFile(this.item) ? 'files' : 'directories',
+        val: this.item,
+        search: {
+          field: 'identifier',
+          value: this.item.identifier,
+        }
+      })
     },
     validateTitle: function(value) {
       if (value) {

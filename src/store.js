@@ -71,15 +71,17 @@ export default new Vuex.Store({
       //payload.p[payload.prop] = payload.val
       Vue.set(payload.p, payload.prop, payload.val)
     },
+    updateArrayValue(state, payload) {
+      const index = payload.p[payload.prop].findIndex(x => x[payload.search.field] === payload.search.value)
+      Vue.set(payload.p[payload.prop], index, payload.val)
+    },
     pushValue(state, payload) {
       console.log('store push for', payload.p, 'payload:', payload)
-      //payload.p.push()
-      //payload.val.push('x')
-      //payload.p[payload.prop].push()
-      payload.val.push(undefined)
-      //let newArr = payload.val
-      //newArr.push(undefined)
-      //Vue.set(payload.p, payload.prop, newArr)
+      payload.p[payload.prop].push(payload.val)
+    },
+    pushMultiple(state, payload) {
+      console.log('store push for', payload.p, 'payload:', payload)
+      payload.p[payload.prop].push(...payload.val)
     },
     popValue(state, payload) {
       payload.val.pop()
