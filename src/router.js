@@ -46,9 +46,9 @@ const routes = [
     redirect: '/new/description',
     children: [
       {
-        path: 'files/:project?/:relpath*',
+        path: ':tab/:project?/:relpath*',
         name: 'files',
-        component: vFileBrowser,
+        component: SingleTab,
       },
       {
         path: ':tab',

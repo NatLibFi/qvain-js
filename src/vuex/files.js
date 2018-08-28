@@ -111,28 +111,28 @@ export default {
       console.log('update project', project)
       Vue.set(state, 'project', project)
     },
-    // state.projects[state.project] only has current folder
-    // so this won't work if the folder is changed
     addFiles(state, items) {
       const selectedItems = items.map(single => {
         return {
           ui: {
             name: single.name,
-          }, 
-          identifier: single.identifier,
-          title: single.file_characteristics ? single.file_characteristics.title : undefined,
-          description: single.file_characteristics ? single.file_characteristics.description : undefined,
-          use_category: undefined,
-          file_type: undefined,
-          // or something from mfs?
-          access_url: undefined,
+          },
+          item: {
+            identifier: single.identifier,
+            title: single.file_characteristics ? single.file_characteristics.title : undefined,
+            description: single.file_characteristics ? single.file_characteristics.description : undefined,
+            use_category: undefined,
+            file_type: undefined,
+            // or something from mfs?
+            access_url: undefined,
+          }
         }
       })
       state.selectedFiles.push(...selectedItems)
     },
     removeFile(state, identifier) {
       const index = state.selectedFiles.findIndex(
-        single => single.identifier === identifier,
+        single => single.item.identifier === identifier,
       )
       state.selectedFiles.splice(index, 1)
       for (let property in state.projects[state.project]) {
@@ -152,13 +152,15 @@ export default {
         return {
           ui: {
             name: single.name,
-          }, 
-          identifier: single.identifier,
-          title: undefined,
-          description: undefined,
-          use_category: undefined,
-          // or something from mfs?
-          access_url: undefined,
+          },
+          item: {
+            identifier: single.identifier,
+            title: undefined,
+            description: undefined,
+            use_category: undefined,
+            // or something from mfs?
+            access_url: undefined,
+          }
         }
       })
       state.selectedDirs.push(...selectedItems)

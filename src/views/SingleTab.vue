@@ -1,6 +1,6 @@
 <template>
   <component is="schema-tab-selector" :schema="schemaJson" path="" :parent="$store.state"
-    property="record" :value="$store.state.record" :tab="1" :activeTab="$route.params.tab"
+    property="record" :value="$store.state.record" :activeTab="$route.params.tab"
     :depth="0">
   </component>
 </template>

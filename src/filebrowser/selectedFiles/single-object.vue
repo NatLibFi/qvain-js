@@ -10,16 +10,15 @@
           </h6>
         </div>
         <p class="my-2">
-          <font-awesome-icon v-b-tooltip.hover title="Title" :icon="icons.faPencilAlt" :class="single.title ? 'text-primary' : 'text-secondary'"
+          <font-awesome-icon v-b-tooltip.hover title="Title" :icon="icons.faPencilAlt" :class="single.item.title ? 'text-primary' : 'text-secondary'"
             class="mr-2" />
           <font-awesome-icon v-b-tooltip.hover class="mr-2" :icon="icons.faTag" title="Use Category"
-            :class="single.use_category ? 'text-primary' : 'text-secondary'" />
+            :class="single.item.use_category ? 'text-primary' : 'text-secondary'" />
         </p>
       </div>
       <b-btn-group class="ml-auto">
         <b-btn variant="primary" class="px-3 py-2" @click="openModal">
           <font-awesome-icon :icon="icons.faPen" />
-
         </b-btn>
         <b-btn variant="danger" class="px-3 py-2" @click="removeItem">
           <font-awesome-icon :icon="icons.faTrash" />

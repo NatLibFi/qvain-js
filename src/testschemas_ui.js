@@ -326,10 +326,10 @@ var _schemaFairDataUiTabs = {
     widget: 'browser',
   },
   '/properties/directories': {
-    tab: 'files',
+    tab: 'notab',
   },
   '/properties/remote_resources': {
-    tab: 'files',
+    tab: 'notab',
   },
   '/properties/access_rights': {
     tab: 'extra',

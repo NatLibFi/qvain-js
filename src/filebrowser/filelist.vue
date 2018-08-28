@@ -97,8 +97,5 @@ export default {
     SelectedFiles,
     SelectButtons
   },
-  // created: function() {
-  //   this.openDir(this.path)
-  // },
 }
 </script>

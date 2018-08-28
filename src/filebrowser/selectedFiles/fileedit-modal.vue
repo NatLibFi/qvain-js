@@ -36,9 +36,9 @@ export default {
     }
   },
   methods: {
-    show: function(item) {
-      console.log('show', item)
-      this.item = item
+    show: function(single) {
+      console.log('show', single)
+      this.item = single.item
       // TODO: define fields to display here for files and for folders
       // currently it gets fields from file characteristics, but folders don't have that
       // in tietomalli/mrd you can see that folders also have a title and a description
@@ -62,6 +62,7 @@ export default {
     },
     setType: function(value) {
       Vue.set(this.item, 'file_type', value)
+      
     },
     validateTitle: function(value) {
       if (value) {

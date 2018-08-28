@@ -15,7 +15,9 @@ var API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
 
 export default {
   name: 'browser',
-  props: ['relpath'],
+  props: {
+    relpath: {},
+  },
   data: function() {
     return {
       selectedProject: this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0],

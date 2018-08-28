@@ -19,7 +19,7 @@
 <script>
 import FileEditModal from './fileedit-modal.vue'
 import SingleObject from './single-object.vue'
-import { faFile, faFolder } from '@fortawesome/free-regular-svg-icons'
+import { faFile, faFolder } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'SelectedFiles',

@@ -3,11 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-//import { SchemaValidator } from '../tmp/json-schema-live/src/validate.js'
-
 export default new Vuex.Store({
   state: {
-    //record: "not loaded",
     record: undefined,
     schema: undefined,
     hints: {},
@@ -30,15 +27,6 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    loadData(state, record) {
-      state.record = record
-      //Vue.set(state, 'record', record)
-    },
-    mergeData(state, payload) {
-      for (let key in payload) {
-        Vue.set(state.record, key, payload[key])
-      }
-    },
     loadSchema(state, schema) {
       state.schema = schema
       //state.schema = Vue.set(state, 'schema', schema)
