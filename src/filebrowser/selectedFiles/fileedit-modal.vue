@@ -1,6 +1,5 @@
 <template>
-  <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata"
-    ok-only>
+  <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata" @ok="save">
     <div v-if="item">
       <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category"
         :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item.label['en'] ? item.label['en'] : item.label.und"
@@ -47,37 +46,27 @@ export default {
       this.$refs['actual-fileinfo-modal'].show()
     },
     reset: function() {
-      this.apiData = null
       this.item = null
     },
-    save: function(items) {
-      // TODO: how is this data saved? In what fields will it be saved?
-      // Directories can also have a description and title for example
+    save: function() {
+      this.$store.commit('updateArrayValue', {
+        p: this.$store.state.record,
+        prop: this.isFile(this.item) ? 'files' : 'directories',
+        val: this.item,
+        search: {
+          field: 'identifier',
+          value: this.item.identifier,
+        }
+      })
     },
     isFile: function(item) {
       return 'file_type' in item
     },
     setUseCategory: function(value) {
-      this.$store.commit('updateArrayValue', {
-        p: this.$store.state.record,
-        prop: this.isFile(this.item) ? 'files' : 'directories',
-        val: this.item,
-        search: {
-          field: 'identifier',
-          value: this.item.identifier,
-        }
-      })
+      this.item.use_category = value
     },
     setType: function(value) {
-      this.$store.commit('updateArrayValue', {
-        p: this.$store.state.record,
-        prop: this.isFile(this.item) ? 'files' : 'directories',
-        val: this.item,
-        search: {
-          field: 'identifier',
-          value: this.item.identifier,
-        }
-      })
+      this.item.file_type = value
     },
     validateTitle: function(value) {
       if (value) {
