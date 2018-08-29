@@ -23,12 +23,34 @@ function UserFromToken(token) {
 		user.name = jwt['name'] || ""
 		user.email = jwt['email'] || ""
 		user.expires = jwt['exp'] ? parseUnixTime(jwt.exp) : null
+
+		// FairData specific
+		user.projects = jwt['group_names'] ? filterGroups("fairdata:IDA", jwt['group_names']) : []
+
+		// SAML/HAKA
+		user.eppn = jwt['eppn'] || null
+		user.organisation = jwt['schacHomeOrganization'] || null
+		user.organisation_type = jwt['schacHomeOrganizationType'] || null
+
+		// cache for debugging purposes
 		user._jwt = jwt
 		return user
 	}
 	return null
 }
 
+// CSC/IDA specific: Get the project number of those projects that are IDA projects
+// fairdata:IDA01:2001036 --> 2001036
+function filterGroups(prefix, groups) {
+	// strip first dot
+	//return groups.filter(grp => grp.startsWith(prefix).map(grp => grp.substring(grp.indexOf(":")+1))
+
+	// strip until last dot
+	//return groups.filter(grp => grp.startsWith(prefix).map(grp => grp.substring(grp.indexOf(":")+1))
+
+	// split third colon and accept numbers only
+	return groups.filter(grp => grp.startsWith(prefix)).map(grp => grp.split(":", 3)[2]).filter(grp => !isNaN(grp))
+}
 
 function Auth(url) {
 	this.url = url
