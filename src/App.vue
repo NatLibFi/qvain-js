@@ -1,5 +1,9 @@
 <template>
 	<div id="app">
+		<b-alert :show="$root.dismissCountDown" style="z-index: 1000; position: absolute; left: 0; right: 0; width: 90%; margin: 0 auto; opacity: 0.9;" dismissible fade :variant="$root.alertVariant" @dismissed="$root.dismissAlert" @dismiss-count-down="$root.countDownChanged">
+			<p>{{ $root.alertText }}</p>
+		</b-alert>
+
 		<b-navbar toggleable="md" type="dark" variant="primary">
 
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -15,16 +19,16 @@
 					<b-nav-item>Docs</b-nav-item>
 					<b-nav-item>Contact Us</b-nav-item>
 				</b-navbar-nav>
-				
-				
+
+
 				<!-- right-aligned items -->
 				<b-navbar-nav class="ml-auto">
 
 					<!-- language dropdown -->
 					<b-nav-item-dropdown text="lang" right>
-						<b-dropdown-item to="#">EN</b-dropdown-item>
-						<b-dropdown-item to="#">FI</b-dropdown-item>
-						<b-dropdown-item to="#">SE</b-dropdown-item>
+						<b-dropdown-item to="#" @click="$root.language = 'en'">EN</b-dropdown-item>
+						<b-dropdown-item to="#" @click="$root.language = 'fi'" disabled>FI</b-dropdown-item>
+						<b-dropdown-item to="#" @click="$root.language = 'se'" disabled>SE</b-dropdown-item>
 					</b-nav-item-dropdown>
 
 					<!-- login dropdown -->

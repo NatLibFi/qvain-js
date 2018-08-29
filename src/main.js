@@ -12,15 +12,6 @@ import AuthStore from './vuex/auth.js'
 import FilesStore from './vuex/files.js'
 import AuthPlugin from './auth/plugin.js'
 
-/*
-import vWelcome from './v-welcome.vue'
-import vEditor from './v-editor.vue'
-import vLister from './v-lister.vue'
-import vSchema from './v-schema.vue'
-import vSchemaForm from './v-schema-form.vue'
-import refdataWidgets from './widgets/plugin-ui-refdata.js'
-*/
-
 Vue.use(BootstrapVue)
 
 //Vue.use(refdataWidgets)
@@ -33,10 +24,6 @@ Vue.use(AuthPlugin, {
 store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
 
-// eslint-disable-next-line no-unused-vars
-const testJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8"
-
-
 // create and mount the root instance
 // eslint-disable-next-line no-unused-vars
 const app = new Vue({
@@ -44,20 +31,47 @@ const app = new Vue({
 	store,
 	render: h => h(App),
 	data: {
-		"user": null,
+		user: null,
+		language: null,
+		dismissSecs: 5,
+		dismissCountDown: 0,
+		alertText: "hello there!",
+		alertVariant: "dark",
 		//"DEBUG": APP_DEBUG,
 	},
 	methods: {
+		countDownChanged (dismissCountDown) {
+			this.dismissCountDown = dismissCountDown
+		},
+		showAlert (text, variant) {
+			this.dismissCountDown = this.dismissSecs
+			this.alertText = text
+			this.alertVariant = variant || "dark"
+		},
+		dismissAlert () {
+			this.dismissCountDown = 0
+			this.alertText = null
+			this.alertVariant = "dark"
+		},
 	},
 	computed: {
-		authenticated: function() {
+		authenticated() {
 			return this.user !== null
 		},
 	},
-	created: function() {
+	watch: {
+		language(val) {
+			this.showAlert("language set to " + val)
+			console.log("language set to", this.language)
+		}
+	},
+	created() {
+		//this.language = "en"
 		console.log("MODE:", process.env.VUE_APP_MODE)
 		console.log("METAX_API_URL:", process.env.VUE_APP_METAX_API_URL)
 		console.log("APP_DEBUG:", typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined)
+		console.log("NODE_ENV:", process.env.NODE_ENV)
+		console.log("DEV_TOKEN:", process.env.VUE_APP_DEV_TOKEN)
 		console.log("localStorage token login:", this.$auth.localLogin(), this.$auth.loggedIn)
 	},
 }).$mount('#app')
