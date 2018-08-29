@@ -6,7 +6,7 @@
 					<b-btn v-b-tooltip.hover.bottom title="create new record">new</b-btn>
 					<b-btn v-b-tooltip.hover.bottom title="edit a record">edit</b-btn>
 				</b-button-group>
-				
+
 				<b-input-group size="sm" class="mx-1" left="owner">
 					<b-form-select size="sm" v-model="ownerSelect" v-b-tooltip.hover.bottom title="select record owner">
 						<template slot="first">
@@ -21,7 +21,7 @@
 						<b-btn :pressed.sync="recordSource['metax']" @click="fetch('metax')" v-b-tooltip.hover.bottom title="show records awaiting approval">published</b-btn>
 					</b-input-group-button>
 				</b-input-group>
-				
+
 				<b-input-group size="sm" class="mx-1" left="search" v-b-tooltip.hover.bottom title="search titles">
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
@@ -30,7 +30,7 @@
 
 			</b-button-toolbar>
 		</div>
-		
+
 		<div class="m-2">
 			<b-table id="dataset-list" class="m-1" tbody-class="dataset-list" striped hover show-empty :items="records" :fields="fields" :filter="filterTitles">
 				<template slot="owner" slot-scope="data">
@@ -46,7 +46,7 @@
 			-->
 			</b-table>
 		</div>
-		
+
 	</div>
 </template>
 
@@ -66,7 +66,6 @@
 </style>
 
 <script>
-//import axios from 'axios'
 import PreservationState from '@/components/PreservationState.vue'
 import BusyButton from '@/components/BusyButton.vue'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
@@ -97,10 +96,6 @@ The preservation state is one of the following integers:
 130 = Rejected in digital preservation service
 140 = in dissemination
 */
-
-
-
-
 
 const records = [
 	{
@@ -262,7 +257,7 @@ const myGroups = [
 
 const AUTH_UID = "053bffbcc41edad4853bea91fc42ea18"
 
-/*	
+/*
 function parseApiResults(json) {
 	if (json['status'] !== "OK") return;
 	if (typeof json['results'] !== 'object') return;
@@ -292,32 +287,6 @@ export default {
 		}
 	},
 	methods: {
-		getAddress: function() {
-			/*
-			axios.get('http://maps.google.com/maps/api/geocode/json', {
-				params: {address: this.address},
-			 timeout: 3000,
-			 responseType: 'json',
-			})
-			.then(response => {
-				//this.sources = response.data.sources;
-				this.addressState = 'valid'
-				this.addressError = ""
-				let coords = parseApiResults(response.data)
-				console.log("coords:", coords)
-				if (coords) {
-					this.coordinates.latitude = coords.latitude
-					this.coordinates.longitude = coords.longitude
-					this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.coordinates })
-				}
-			})
-			.catch(error => {
-				this.addressState = 'invalid'
-				this.addressError = error
-				console.log(error)
-			})
-			*/
-		},
 		getGroups: function() {
 			this.myGroupsOptions = []
 			myGroups.forEach(
