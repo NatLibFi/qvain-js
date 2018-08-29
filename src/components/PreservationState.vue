@@ -66,7 +66,7 @@ export default {
 	computed: {
 		description: function() {
 			if (!this.state) {
-				return ""
+				return StateDefs['0']
 			}
 			return StateDefs[this.state] || {}
 		},
