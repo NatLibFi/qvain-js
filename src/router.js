@@ -5,7 +5,7 @@ import Welcome from './views/Welcome.vue'
 import RecordList from './views/RecordList.vue'
 import Datasets from './views/Datasets.vue'
 import TabUi from './views/TabUi.vue'
-
+import Editor from './views/Editor.vue'
 import UserInfo from './views/UserInfo.vue'
 import vEditor from './v-editor.vue'
 import vLister from './v-lister.vue'
@@ -28,7 +28,6 @@ const routes = [
 	{ path: '/edit/:id?', component: vEditor, props: true },
 	{ path: '/list', component: vLister, props: false },
 	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
-	{ path: '/editor/:id', name: 'editor', component: vEditor, props: true },
 	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
 	{ path: '/schema', component: vSchema, props: false },
 	{ path: '/viewschema', component: vSchemaViewer, props: false },
@@ -37,6 +36,7 @@ const routes = [
 	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/personlist', component: PersonList, props: false },
 	{ path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
+	{ path: '/editor', name: "editor", component: Editor, props: true, meta: { auth: true } },
 	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
 	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
 	//{ path: '/files', component: vFileBrowser, props: true },

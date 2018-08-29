@@ -42,10 +42,12 @@
 </template>
 
 <style>
+/*
 div:empty {
 	background: lime;
-	/* display: none; */
+	display: none;
 }
+*/
 
 /*
 	logos:
@@ -53,7 +55,7 @@ div:empty {
 	tree_logo_300px.png fd_tree_logo_colour_trans_300.png fd_tree_logo_gray_300.png fd_tree_logo_gray_trans_300.png fd_tree_logo_lightgray_trans_300.png
 */
 .with-fd-bg {
-	background-image: url('/imgs/fd_tree_logo_lightgray_trans_300.png');
+	background-image: url('/static/imgs/fd_tree_logo_lightgray_trans_300.png');
 	background-position: -150px -150px; /* left */
 	/* background-position: top -150px right -100px; */ /* right */
 	background-repeat: no-repeat;

@@ -17,15 +17,15 @@
 				</option>
 			</select>
 		</div>
-		
+
 		<!-- actual component -->
 		<!-- keep-alive -->
-		<component v-if="activeTab === myTab" :class="[ activeTab === myTab ? 'righttab': 'wrongtab']" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
+		<component v-if="activeTab === myTab" :class="[ activeTab === myTab ? 'righttab': 'wrongtab']" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
 			<p>{{ dataType }}</p>
 		</component>
-		<skip v-else :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
+		<skip v-else :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
 		<!-- <div style="color: #eeeeee;">hidden myTab: {{ myTab }} {{ typeof myTab }} tab: {{ tab }} {{ typeof tab }} active: {{ activeTab }} {{ typeof activeTab }}</div> -->
-		
+
 	</div>
 </template>
 
@@ -59,6 +59,7 @@ export default {
 	data: function() {
 		return {
 			dataType: null,
+			hasTypeError: false,
 			verbose: false,
 			showWidgets: false,
 			customWidget: null,
@@ -71,7 +72,6 @@ export default {
 			} else {
 				this.dataType = schemaType
 			}
-			//this.$emit('typeChanged', this.dataType)
 		},
 		emptyValue: function() {
 			switch (this.dataType) {
@@ -89,14 +89,14 @@ export default {
 			for (let i in COMBINERS) {
 				//console.log("combiner:", COMBINERS[i])
 				if (!(COMBINERS[i] in this.schema)) continue
-				
+
 				let combiner = COMBINERS[i]
-				
+
 				if (typeof this.schema[combiner] === 'object' && this.schema[combiner] instanceof Array) {
 					console.log("found combiner")
 					return 'schema-' + combiner.toLowerCase()
 				}
-				
+
 				console.log("invalid combiner")
 				return undefined
 			}
@@ -131,12 +131,12 @@ export default {
 				return ""
 			}
 		},
-		vivicate: function() {
+		vivicate: function(force) {
 			//console.log("value:", this.value, "path:", this.path, "parent:", this.parent, "prop:", this.property, "exists:", this.property !== undefined && (this.property in this.parent))
-			if (this.value !== undefined) {
+			if (this.value !== undefined && !force) {
 				return
 			}
-			
+
 			console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
 
 			var target, key // eslint-disable-line no-unused-vars
@@ -167,11 +167,14 @@ export default {
 			//console.log('updateValue from vivicate', this.parent)
 
 			// if we don't have a parent, we're changing the top level; set the record to the correct empty value
+			/*
 			if (this.parent === undefined || this.parent === "") {
 				console.warn("tab-selector: no parent for", this.path)
 				//this.$store.commit('loadData', this.emptyValue())
 				return
 			}
+			*/
+
 			this.$store.commit('initValue', { p: this.parent, prop: this.property, val: this.emptyValue() })
 			//this.$store.commit('initValue', { p: this.parent, prop: this.property, val: {} })
 			/*
@@ -226,7 +229,7 @@ export default {
 			return typeof this.uiTab === 'number' ? this.uiTab : this.tab
 		},
 		newdepth: function() {
-			console.log("depth:", this.depth, typeof this.depth)
+			//console.log("depth:", this.depth, typeof this.depth)
 			return 'tab' in this.uiForSchema ? 1 : this.depth + 1
 		},
 	},
@@ -239,6 +242,26 @@ export default {
 				console.log("schema change, undefined value")
 				this.setDataType(this.schema['type'])
 				this.vivicate()
+			}
+		},
+		value: function() {
+			console.log("selector: value watcher ran")
+			//if (this.$store.state.record === undefined) {
+			//if (!this.path && this.value === undefined) {
+			if (this.value === undefined) {
+				console.log("data change, undefined value")
+				this.setDataType(this.schema['type'])
+				this.vivicate()
+			}
+			if (this.value !== undefined && this.dataType === 'array' && typeof this.value !== 'object') {
+				console.error("[selector/value] array expected for path", this.path, "got:", typeof this.value)
+				this.hasTypeError = true
+				this.vivicate(true)
+			}
+			if (this.value !== undefined && this.dataType === 'object' && typeof this.value !== 'object') {
+				console.error("[selector/value] array expected for path", this.path, "got:", typeof this.value)
+				this.hasTypeError = true
+				this.vivicate(true)
 			}
 		},
 	},
@@ -261,10 +284,20 @@ export default {
 	created() {
 		console.log("schema-tab-selector(", this.path, "): calling setDataType (created) with", this.schema['type'], "and calling vivicate()")
 		this.setDataType(this.schema['type'])
-		//console.log(this.$options.components)
-		//console.log("calling vivicate() from created()")
-		this.vivicate()
-		//console.log("startTab:", this.tab, "activeTab:", this.activeTab)
+
+		if (this.value !== undefined && this.dataType === 'array' && typeof this.value !== 'object') {
+			console.error("[selector/created] array expected for path", this.path, "got:", typeof this.value)
+			this.hasTypeError = true
+			this.vivicate(true)
+		}
+		if (this.value !== undefined && this.dataType === 'object' && typeof this.value !== 'object') {
+			console.error("[selector/created] object expected for path", this.path, "got:", typeof this.value)
+			this.hasTypeError = true
+			this.vivicate(true)
+		}
+		if (this.value === undefined) {
+			this.vivicate()
+		}
 	},
 	mounted() {
 		this.$nextTick(function () {

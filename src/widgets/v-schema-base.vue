@@ -11,17 +11,17 @@
 //import Mapping from './mapping.js'
 
 /* This creates cyclic dependencies because the components are nested: A creates a B which creates an A.
- * 
+ *
  * If you are lucky enough to get a warning, it will look like this:
- * 
+ *
  *   Failed to mount component: template or render function not defined.
- * 
+ *
  * You often won't get a warning, things just don't work correctly, like missing props.
- * 
+ *
  * Apparently ES6 doesn't support lazy loading yet. You can't create an intermediate function either,
  * because you will always have the import statements on top. So the only way is to load components lazily
  * when the component is being created by using old module syntax in Webpack.
- * 
+ *
  * See also:
  *   https://vuejs.org/v2/guide/components.html#Circular-References-Between-Components
  */
@@ -29,7 +29,7 @@
 export default {
 	name: 'schema-base',
 	description: "base widget that all ui widgets inherit from",
-	props: ['schema', 'value', 'valtype', 'parent', 'property', 'path', 'tab', 'activeTab', 'depth'],
+	props: ['schema', 'value', 'valtype', 'parent', 'property', 'path', 'tab', 'activeTab', 'depth', 'hasTypeError'],
 	methods: {
 		newPath: function(prop) {
 			//return lvl !== undefined ? this.path + '/' + lvl : this.path
@@ -146,7 +146,7 @@ export default {
 	},
 	beforeCreate: function () {
 		//console.log("c1:", this.$options.components)
-		
+
 		//this.$options.components = require('./mapping.js').default
 		for (var component in require('./mapping.js').default) {
 			this.$options.components[component] = require('./mapping.js').default[component]

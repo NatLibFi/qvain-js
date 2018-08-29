@@ -1,6 +1,6 @@
 <template>
 	<div class="container-fluid">
-		
+
 		<div v-if="false">
 			<b-form-select v-model="selectedSchema" :options="getTestSchemaNames()" class="mb-3"></b-form-select>
 
@@ -83,7 +83,7 @@
 				There are no tabs
 			</div>
 		</b-tabs>
-		
+
 	</div>
 </template>
 
@@ -152,7 +152,7 @@ export default {
 			//this.$store.plugins.push(myPlugin)
 			this.$store.plugins = [myPlugin]
 			*/
-			
+
 			//this.subscribeValidator()
 		},
 		subscribeValidator: function() {
@@ -306,12 +306,12 @@ export default {
 	},
 	watch: {
 		selectedSchema: function() {
-			
+
 			if (!(this.selectedSchema)) {
 				console.log("selectedSchema triggered without schema!")
 				return
 			}
-			
+
 			//this.$children.forEach(child => child.$destroy())
 			this.loadSchema(this.selectedSchema)
 			this.loadUi(this.selectedSchema)
