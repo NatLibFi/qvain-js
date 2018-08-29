@@ -18,7 +18,7 @@
 					</b-input-group-append>
 				</b-input-group>
 			</div>
-			
+
 	</div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 	data: () => {
 		return {
 			//token: null,
-			tokenInput: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTNiZmZiY2M0MWVkYWQ0ODUzYmVhOTFmYzQyZWExOCIsIm5hbWUiOiJXb3V0ZXIgVmFuIEhlbWVsIiwiYWRtaW4iOnRydWV9.SzRhDZOKW2l1Y5VTNin43vxfbZ86QXhPVULpidMVyE8",
+			tokenInput: null,
 		}
 	},
 	methods: {
@@ -63,6 +63,9 @@ export default {
 				vm.$router.push('/')
 			}, 3000)
 		}
+		if (process.env.VUE_APP_DEV_TOKEN) {
+			this.tokenInput = process.env.VUE_APP_DEV_TOKEN
+		}
 	},
-}	
+}
 </script>
