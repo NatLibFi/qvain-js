@@ -2,21 +2,21 @@
 	<div>
 		<fileinfo-modal ref="refFileInfoModal"></fileinfo-modal>
 		<fileedit-modal ref="refFileEditModal"></fileedit-modal>
-		
+
 		file list for <b>{{ project }}</b> path <b>{{ cwd }}</b> deep: {{ isSelectedDeep }}
-		
+
 		<ul v-if="directories.length">
 			<li v-for="dir in directories" :key="dir.id">
 				<a @click="openDir(dir.directory_path)">{{ dir.directory_name }}</a> ({{ dir.id }} {{ dir.identifier }})
 			</li>
 		</ul>
 		<p v-else>no directories</p>
-		
+
 		<b-alert variant="danger" :show="!!error">{{ error }}</b-alert>
 		<hr/>
 		<b-breadcrumb :items="breadcrumbs"/>
 		<hr/>
-		
+
 		<b-button-toolbar key-nav aria-label="File browser toolbar">
 			<b-button-group class="mx-1">
 				<b-btn v-b-tooltip.hover title="go to project top directory" @click="openDir('/')" :disabled="isToplevel"><i class="fa fa-angle-double-up" aria-hidden="true"></i></b-btn>
@@ -28,9 +28,9 @@
 			</b-button-group>
 			<b-breadcrumb :items="breadcrumbs" class="my-0 p-2"/>
 		</b-button-toolbar>
-		
+
 		<filetree :self="cwd" :children="directories" @opendir="openDir"></filetree>
-		
+
 		<b-table :fields="fileFields" :items="files" show-empty empty-text="no files in this directory" small hover>
 			<template slot="actions" slot-scope="data">
 				<b-btn size="sm" @click.stop="deselect(data.item.id)" :class="{ 'btn-outline-primary': isSelectedDeep }" class="mr-2" :disabled="isSelectedDeep" v-if="data.item.id in selected">remove</b-btn>
@@ -64,7 +64,7 @@
 					<b-button size="sm" @click.stop="data.toggleDetails" :pressed.sync="data.detailsShowing">hide</b-button>
 				</b-card>
 			</template>
-			
+
 		</b-table>
 
 		<b-modal id="modalEditFile" @hide="resetEditFileModal" :title="modalEditFile.title" ok-only>
@@ -84,7 +84,7 @@
 		</ul>
 		<p v-else>no files</p>
 		//-->
-		
+
 		</div>
 </template>
 
@@ -176,7 +176,7 @@ export default {
 		},
 		openDir: function(dir) {
 			var vm = this
-			
+
 			console.log("openDir", dir)
 			if (typeof dir !== 'string') {
 				console.warn("dir is not a string:", typeof dir, dir)
@@ -224,7 +224,7 @@ export default {
 			} else {
 				data.directories = []
 			}
-			
+
 			if (typeof response['files'] === 'object' && response.files.length > 0) {
 				data.files = response['files']
 			} else {
@@ -299,7 +299,7 @@ export default {
 		'fileedit-modal': vFileEditModal,
 	},
 	created: function() {
-		if (this.project != "project_x") { return }
+		//if (this.project != "project_x") { return }
 		this.openDir(this.path)
 		//this.getRootFor(this.project)
 		//console.log("root dir:", this.root)
