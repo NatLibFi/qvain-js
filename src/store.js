@@ -13,6 +13,7 @@ export default new Vuex.Store({
 		record: undefined,
 		schema: "not loaded",
 		hints: {},
+		metadata: {},
 		UI_VALID_KEYWORDS: [
 			'widget',
 			'option',
@@ -32,6 +33,12 @@ export default new Vuex.Store({
 		},
 	},
 	mutations: {
+		setMetadata(state, payload) {
+			state.metadata = Object.assign({}, state.metadata, payload)
+		},
+		resetMetadata(state) {
+			state.metadata = {}
+		},
 		loadData(state, record) {
 			state.record = record
 			//Vue.set(state, 'record', record)
