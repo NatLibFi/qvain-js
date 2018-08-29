@@ -5,6 +5,7 @@ import Welcome from './views/Welcome.vue'
 import RecordList from './views/RecordList.vue'
 import TabUi from './views/TabUi.vue'
 
+import UserInfo from './views/UserInfo.vue'
 import vEditor from './v-editor.vue'
 import vLister from './v-lister.vue'
 import vSchema from './Attic/v-schema.vue'
@@ -34,6 +35,7 @@ const routes = [
 	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/personlist', component: PersonList, props: false },
 	{ path: '/tabui', component: TabUi, props: false, meta: { auth: true } },
+	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
 	{ path: '/files/:project?/:relpath*', name: "files", component: vFileBrowser, props: true },
 	//{ path: '/files', component: vFileBrowser, props: true },
 ]

@@ -38,12 +38,12 @@
 						<template slot="text">
 							<span style="font-weight: bold;">user</span>
 						</template>
-						
+
 						<b-dropdown-header>
 							<i class="fa fa-user" style="color: #0099aa;"></i><a>{{ $auth.user.name }}</a>
 						</b-dropdown-header>
 						<b-dropdown-divider></b-dropdown-divider>
-						<b-dropdown-item href="">profile</b-dropdown-item>
+						<b-dropdown-item to="userinfo">about me</b-dropdown-item>
 						<b-dropdown-item href="">signout</b-dropdown-item>
 					</b-nav-item-dropdown>
 					<b-nav-item v-else href="/api/auth/login">login</b-nav-item>
