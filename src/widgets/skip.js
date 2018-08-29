@@ -9,10 +9,10 @@ export default {
 			//return createElement('div', "dead leaf")
 			return undefined
 		}
-		
+
 		//console.log("dummy component, path:", context.path || '/', "context:", context)
 		//console.log("dummy schema props:", Object.keys(context.props.schema.properties).map(function(key) { return createElement('p', "key:" + key) }))
-		
+
 		//:schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab"></component>
 		//for (let k in Object.keys(this.schema.properties))
 
@@ -26,7 +26,7 @@ export default {
 					props: {
 						schema: context.props.schema.properties[key],
 						path: myPath,
-						value: context.props.value[key],
+						value: typeof context.props.value === 'object' ? context.props.value[key] : undefined,
 						parent: context.props.value,
 						property: key,
 						tab: myTab,
