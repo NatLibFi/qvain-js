@@ -247,7 +247,7 @@ var _schemaFairDataUiTabs = {
 		'widget': 'refdata-list',
 		'props': {
 			'esIndex': "reference_data",
-			'esDoctype': "relation_type",
+			'esDoctype': "resource_type",
 		},
 		'placeholder': "– choose entity relation type –",
 		'label': "entity relation type",
