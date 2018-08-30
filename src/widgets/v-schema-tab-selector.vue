@@ -42,6 +42,7 @@ import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
 import TabbedArray from './TabbedArray.vue'
 import AutoComplete from './refdata/autocomplete.vue'
+import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
@@ -226,7 +227,7 @@ export default {
 			return this.$store.state.hints[this.path] && this.$store.state.hints[this.path]['tab']
 		},
 		myTab: function() {
-			return typeof this.uiTab === 'number' ? this.uiTab : this.tab
+			return typeof this.uiTab === 'string' ? this.uiTab : this.tab
 		},
 		newdepth: function() {
 			//console.log("depth:", this.depth, typeof this.depth)
@@ -279,6 +280,7 @@ export default {
 		'i18n-string': i18nString,
 		'tabbed-array': TabbedArray,
 		'autocomplete': AutoComplete,
+		'browser': Filebrowser,
 		'skip': Skip,
 	},
 	created() {

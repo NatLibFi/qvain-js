@@ -4,7 +4,7 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './assets/css/qvain.css'
+import './assets/css/qvain.scss'
 
 import router from './router.js'
 import store from './store.js'
@@ -13,8 +13,6 @@ import FilesStore from './vuex/files.js'
 import AuthPlugin from './auth/plugin.js'
 
 Vue.use(BootstrapVue)
-
-//Vue.use(refdataWidgets)
 
 Vue.use(AuthPlugin, {
 	router: router,

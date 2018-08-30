@@ -1,26 +1,23 @@
 {
   "root": true,
-  "extends": [
-    "eslint:recommended",
-    "plugin:vue/essential"
-  ],
+  "extends": ["eslint:recommended", "plugin:vue/essential"],
   "env": {
-    'browser': true,
-    'node': true
+    "browser": true,
+    "node": true
   },
   "globals": {
     "APP_DEBUG": true
   },
-  rules: {
-    'indent': ["warn", 'tab'],
-    'no-tabs': 0,
-    'semi': ["warn", 'never'],
-    'semi-spacing': ["warn", { before: false, after: true }],
-    'no-unexpected-multiline': "warn",
-    'no-var': "warn",
-    'space-before-blocks': ["warn", 'always'],
-    'space-in-parens': ["warn", 'never'],
-    'no-unused-vars': "warn",
-    'no-console': 0
+  "rules": {
+    "indent": ["warn", "tab"],
+    "no-tabs": 0,
+    "semi": ["warn", "never"],
+    "semi-spacing": ["warn", { "before": false, "after": true }],
+    "no-unexpected-multiline": "warn",
+    "no-var": "warn",
+    "space-before-blocks": ["warn", "always"],
+    "space-in-parens": ["warn", "never"],
+    "no-unused-vars": "warn",
+    "no-console": 0
   }
 }

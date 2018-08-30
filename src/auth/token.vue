@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<i class="fas fa-circle-notch fa-spin fa-w-16"></i>
+		<font-awesome-icon :icon="icon.faCircleNotch" spin />
 		<p>message: {{ message }}</p>
 		<p>user:</p>
 			<dl v-if="$auth.loggedIn">
@@ -18,17 +18,23 @@
 					</b-input-group-append>
 				</b-input-group>
 			</div>
-
+			
 	</div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+
 export default {
 	name: "token-login",
 	data: () => {
 		return {
 			//token: null,
 			tokenInput: null,
+			icon: {
+				faCircleNotch,
+			},
 		}
 	},
 	methods: {
@@ -51,6 +57,9 @@ export default {
 			return "/"
 		},
 	},
+	components: {
+		FontAwesomeIcon,
+	},
 	created: function() {
 		// logged in already, redir
 		if (this.$auth.loggedIn) {
@@ -67,5 +76,5 @@ export default {
 			this.tokenInput = process.env.VUE_APP_DEV_TOKEN
 		}
 	},
-}
+}	
 </script>

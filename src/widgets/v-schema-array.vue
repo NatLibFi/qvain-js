@@ -1,10 +1,10 @@
 <template>
 	<b-card no-body sub-title="uiDescription" class="my-3">
-		<h3 slot="header"><i class="fas fa-angle-right"></i> {{ uiTitle }}</h3>
+		<h3 slot="header"><font-awesome-icon :icon="icon.faAngleRight" /> {{ uiTitle }}</h3>
 
 		<b-card-body>
 		<b-alert variant="danger" dismissible :show="!!error" @dismissed="error = null">{{ error }}</b-alert>
-		<p class="card-text text-muted" v-if="uiDescription"><sup><i class="fas fa-quote-left text-muted"></i></sup> {{ uiDescription }}</p>
+		<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon :icon="icon.faQuoteLeft" class="text-muted" /></sup> {{ uiDescription }}</p>
 		</b-card-body>
 		<!-- b-form-group id="" :label-cols="4" :description="uiDescription" :label="uiLabel" :horizontal="true" -->
 		<b-list-group flush>
@@ -25,6 +25,8 @@
 
 <script>
 import vSchemaBase from './v-schema-base.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faAngleRight, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default {
 	extends: vSchemaBase,
@@ -36,7 +38,10 @@ export default {
 			//children: [],
 			minimum: 0,
 			maximum: 0,
-			error: null,
+			icon: {
+				faAngleRight,
+				faQuoteLeft,
+			},
 		}
 	},
 	methods: {
@@ -74,18 +79,6 @@ export default {
 			}
 		},
 		init: function() {
-			console.log("array widget:", "hasTypeError:", this.hasTypeError, "typeof:", typeof this.value, this.value)
-			/*
-			if (!Array.isArray(this.value)) {
-				console.warn("array widget: value is not an array")
-				this.error = "initial data was not an array; reset. " + (typeof this.value)
-				this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: [] })
-			}
-			*/
-			if (this.hasTypeError) {
-				this.error = "initial data was not an array; data has been reset"
-			}
-
 			this.minimum = typeof this.schema['minItems'] === 'number' && this.schema['minItems'] > 0 ? this.schema.minItems : 0
 			this.maximum = typeof this.schema['maxItems'] === 'number' && this.schema['maxItems'] > 0 ? this.schema.maxItems : undefined
 			//console.log("schema-array: set min/max", this.minimum, this.maximum)
@@ -104,9 +97,6 @@ export default {
 		children: {
 			cache: false,
 			get: function() {
-				if (!Array.isArray(this.value)) {
-					console.warn("array widget, children: gotcha!", typeof this.value, "at", this.path)
-				}
 				return this.value
 			},
 		},
@@ -120,5 +110,8 @@ export default {
 		return this.init()
 	},
 	//components: uiComponents,
+	components: {
+		FontAwesomeIcon,
+	},
 }
 </script>

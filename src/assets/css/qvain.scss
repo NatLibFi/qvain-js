@@ -1,0 +1,244 @@
+/*
+body { font-family: "Open Sans", Roboto, sans-sans; }
+h1, h2, h3, h4, h5, h6, h7 { font-family: "Lato", serif; }
+*/
+
+// Custom colors for qvain
+$blue: #007fad;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #eb6672;
+$orange: #fd7e14;
+$yellow: #ffbd39;
+$green: #11a53c;
+$teal: #20c997;
+$cyan: #17a2b8;
+
+$primary: $blue;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$dark: #4f4f4f;
+// END custom colors
+
+body {
+  color: #464646;
+}
+
+legend {
+  font-weight: bold;
+}
+
+/*
+button { background-color: #00aacc; border: 0; }
+button.valid { background-color: #009900; }
+button.invalid { background-color: #aa0000; }
+*/
+.small {
+  font-size: 0.6em;
+}
+span.expandable {
+  display: none;
+}
+span.expanded {
+  display: block;
+}
+div.debugging {
+  color: #aa6666;
+}
+
+.record-list-enter,
+.record-list-leave-active {
+  display: none;
+  /* transition: all 1s; */
+  /* transition: fade 1s; */
+}
+.record-list-enter-active {
+  transition: transform 0.5s;
+}
+.record-list-move {
+  transition: transform 0.5s;
+}
+
+#record-list tbody tr:hover {
+  color: #ffffff;
+  transition: ease-out background-color 0.5s;
+  cursor: pointer;
+}
+
+/*
+.btn { border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px; border-bottom-left-radius: 0px; }
+.btn:hover { border: 1px solid rgba(0, 0, 0, 0.3); xbox-shadow: 0 0 5px #cccccc; }
+.btn:active { text-shadow: 0 0 2px #cccccc; }
+*/
+
+#c1 {
+  background-color: #00bfff;
+}
+#c2 {
+  background-color: #c000ff;
+}
+#c3 {
+  background-color: #00ccff;
+}
+#c4 {
+  background-color: #cc00ff;
+}
+
+/*
+nav .navbar { background-color: #002233; }
+nav { background-color: #332200; }
+.navbar { background-color: #663300; }
+*/
+
+.metainfo {
+  font-style: italic;
+}
+
+.metainfo.missing {
+  color: #aaaaaa;
+}
+
+.expander,
+.expander:hover,
+.expander:active,
+.expander:visited {
+  text-decoration: none;
+}
+.expander:hover {
+  text-shadow: 0px 0px 5px #002233;
+}
+
+ul.treeview {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: none; /* dot */
+}
+
+ul.treeview li {
+  /* list-style: none; */
+}
+
+ul.treeview.item {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/*
+div.treeview-branch {
+	padding: 0.5rem;
+	border: 1px solid white;
+}
+
+div.treeview-branch:hover {
+	xbackground-color: #ffc792;
+	xbackground-color: #ffe2c0;
+	background-color: #fff9ee;
+	border: 1px solid #ffeedd;
+	xborder: 1px solid #ffc792;
+}
+
+div.treeview-branch:active {
+	border: 1px solid #222266;
+	background-color: #000033;
+	color: #ffffff;
+}
+
+div.treeview-branch:hover {
+	background-color: #5bc0de;
+	background-color: #dd33ff;
+}
+*/
+
+/* autocomplete */
+
+#autocomplete-wrapper {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  height: 100%;
+}
+
+.autocomplete-input {
+  position: relative;
+  height: 300px;
+}
+
+.autocomplete-input ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.autocomplete-input li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.autocomplete-input input {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+
+ul.options-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: -12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+}
+
+ul.options-list li {
+  width: 100%;
+  flex-wrap: wrap;
+  background: white;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+  color: #363636;
+  padding: 7px;
+  cursor: pointer;
+}
+
+ul.options-list li.highlighted {
+  background: #f8f8f8;
+}
+
+.wrongtab {
+  background: #ffcccc;
+  /* display: none; */
+  /* visibility: hidden; */
+}
+
+.righttab {
+  /* background: #cccccc; */
+  /* display: block; */
+  /* visibility: visible; */
+}
+
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::after {
+  line-height: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.cursor-reset {
+  cursor: initial;
+}
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';

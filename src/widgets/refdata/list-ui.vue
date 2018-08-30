@@ -1,30 +1,31 @@
 <template>
-  <div>
+  <div row>
     <!-- ElasticSearch widget -->
-    <b-form-group id="fundertype-form-group" horizontal :label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+    <b-form-group id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 0"
+      :description="uiDescription" :label="uiLabel">
       <!-- b-alert :show="!!error" variant="danger">error contacting reference data API server: {{ error }}</b-alert -->
       <b-input-group>
-        <b-form-select v-model="selected" v-if="optgroups">
+        <!-- <b-form-select :value="value" @change="setValue" v-if="optgroups">
           <option :value="null" disabled>{{ uiPlaceholder }}</option>
           <option v-for="(child, childIndex) in noGroupItems" :key="child.id" :value="child" v-if="child !== null">{{ child.label[lang] || child.label['und'] }} [{{ child.code }}]</option>
           <optgroup v-for="(groupid, index) in groups" v-if="groupid !== null" :key="groupid" :label="items[groupid].group.label[lang]">
             <option v-for="(child, childIndex) in items[groupid].children" :key="child.id" :value="child" v-if="child !== null">{{ child.label[lang] || child.label['und'] }} [{{ child.code }}]</option>
           </optgroup>
-        </b-form-select>
-        <b-form-select v-model="selected" v-else>
-          <!-- class="mb-1" -->
-          <option :value="null" disabled>{{ placeholder }}</option>
-          <option v-for="item in items" :key="item.id" :value="item">{{ item.label[lang] || item.label['und'] }} [{{ item.code }}]</option>
-        </b-form-select>
+        </b-form-select> -->
+        <div v-if="type === 'multiselect'" class="flex-grow-1">
+          <Multiselect v-model="model" @input="setValue" :options="items" v-if="items" :customLabel="customLabel"
+            :optionsLimit="40" :allowEmpty="!isRequired" :showLabels="false" />
+        </div>
         <b-input-group-append>
-          <b-btn variant="danger" ref="refErrorButton" id="refdata-error-btn" v-b-tooltip.hover="error" v-if="error">
+          <b-btn variant="danger" ref="refErrorButton" id="refdata-error-btn" v-b-tooltip.hover="error"
+            v-if="error">
             <font-awesome-icon :icon="icon.faExclamationTriangle" />
           </b-btn>
           <b-btn variant="dark" v-b-tooltip.hover="error" title="retry" v-if="error" @click="getList(esIndex, esDoctype)">
-            <font-awesome-icon :icon="icon.faSync" v-if="!busy" />
+            <font-awesome-icon :icon="icon.faSync" />
             <font-awesome-icon :icon="icon.faSync" spin v-if="busy" />
           </b-btn>
-          <b-btn variant="secondary" v-b-popover.hover="ui['help']" title="help">
+          <b-btn variant="secondary" v-b-popover.hover="help" title="help" v-if="help" class="rounded-right">
             <font-awesome-icon :icon="icon.faQuestionCircle" />
           </b-btn>
         </b-input-group-append>
@@ -57,15 +58,15 @@
 </style>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {
-  faQuestionCircle,
-  faSync,
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons'
-
 import vSchemaBase from '../v-schema-base.vue'
 import esApiClient from './es.js'
+import Multiselect from 'vue-multiselect'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+  faExclamationTriangle,
+  faSync,
+  faQuestionCircle,
+} from '@fortawesome/free-solid-svg-icons'
 
 function groupByParent(objectArray) {
   var grouped = objectArray.reduce(function(acc, obj) {
@@ -115,7 +116,6 @@ function filterKeys(full, wanted) {
 }
 
 export default {
-  extends: vSchemaBase,
   name: 'refdata-list',
   description: 'refdata list from Elastic Search',
   schematype: 'object',
@@ -132,10 +132,31 @@ export default {
       default: false,
       type: Boolean,
     },
+    uiDescription: {
+      type: String,
+    },
+    uiPlaceholder: {
+      type: String,
+    },
+    uiLabel: {
+      type: String,
+    },
+    placeholder: {
+      type: String,
+    },
+    help: { type: String },
+    labelCols: {
+      default: '3',
+      type: String,
+    },
+    customLabel: { type: Function },
+    isRequired: { type: Boolean },
+    setValue: { required: true, type: Function },
+    value: { required: true },
+    type: { type: String },
   },
   data: function() {
     return {
-      //selected: null,
       staticItems: [
         {
           id: 'funder_type_tekes',
@@ -314,18 +335,13 @@ export default {
         },
       ],
       items: null,
-      byId: {},
-      //items: null,
+      model: null,
       error: null,
       busy: false,
       filterApiFields: true,
       lang: 'en',
       apiFields: ['code', 'id', 'label', 'type', 'uri'],
-      icon: {
-        faExclamationTriangle,
-        faQuestionCircle,
-        faSync,
-      },
+      icon: { faExclamationTriangle, faSync, faQuestionCircle },
     }
   },
   methods: {
@@ -334,6 +350,7 @@ export default {
       var vm = this
       esApiClient(index, doctype)
         .then(response => {
+          console.log('response', response)
           if (response.data && response.data.hits && response.data.hits.hits) {
             if (this.optgroups) {
               vm.items = groupByParent(response.data.hits.hits)
@@ -380,33 +397,6 @@ export default {
     },
   },
   computed: {
-    selected: {
-      get() {
-        //return this.$store.state.obj.message
-        //return this.value
-        if (this.value && this.value['id']) {
-          let index = this.indexOf(this.value.id)
-          if (index >= 0) {
-            return this.items[index]
-          }
-        }
-        return null
-      },
-      set(value) {
-        //this.$store.commit('updateMessage', value)
-        //console.log("selected:", value)
-        //this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.items[value] })
-        this.$store.commit('updateValue', {
-          p: this.parent,
-          prop: this.property,
-          val: {
-            identifier: value.uri,
-            pref_label: value.label,
-            id: value.id,
-          },
-        })
-      },
-    },
     groups: function() {
       return this.items ? Object.keys(this.items).sort() : []
     },
@@ -415,17 +405,24 @@ export default {
         ? this.items[''].children
         : []
     },
-    placeholder: function() {
-      return this.ui['placeholder'] || 'Select an option:'
-    },
   },
   created() {
     //console.log("refdata widget", this.value)
     //this.getList("reference_data", "funder_type")
+    console.log('list item created')
+    this.model = this.value
     this.getList(this.esIndex, this.esDoctype)
   },
   components: {
+    Multiselect,
     FontAwesomeIcon,
   },
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+.input-group {
+  flex-wrap: nowrap;
+}
+</style>

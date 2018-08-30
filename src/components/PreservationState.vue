@@ -1,5 +1,5 @@
 <template>
-	<b-badge :variant="variant" class="state-widget animate-pop-down" :class="type" v-b-tooltip.hover.auto :title="long"><i :class="icon"></i> {{ short }}</b-badge>
+	<b-badge :variant="variant" class="state-widget animate-pop-down" :class="type" v-b-tooltip.hover.auto :title="long"><font-awesome-icon :icon="icon" /> {{ short }}</b-badge>
 </template>
 
 <style>
@@ -53,6 +53,15 @@
 </style>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+	faExclamationTriangle,
+	faEdit,
+	faCogs,
+	faClock,
+	faEllipsisH,
+	faCheck,
+} from '@fortawesome/free-solid-svg-icons'
 import StateDefs from '@/data/preservation_state.json'
 
 export default {
@@ -82,26 +91,29 @@ export default {
 		icon: function() {
 			switch (this.description.type) {
 			case "fail":
-				return "fas fa-exclamation-triangle"
+				return faExclamationTriangle
 			case "wait":
 				switch (this.description.who) {
 				case "user":
-					return "fas fa-edit"
+					return faEdit
 				case "system":
-					return "fas fa-cogs"
+					return faCogs
 				case "other":
-					return "fas fa-clock"
+					return faClock
 				default:
-					return "fas fa-ellipsis-h"
+					return faEllipsisH
 				}
 			case "success":
-				return "fas fa-check"
+				return faCheck
 			}
 			return ""
 		},
 		numState: function() {
 			return Number(this.state)
 		},
+	},
+	components: {
+		FontAwesomeIcon,
 	},
 }
 </script>
