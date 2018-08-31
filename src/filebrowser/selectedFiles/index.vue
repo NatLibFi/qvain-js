@@ -8,8 +8,8 @@
     <b-card v-else no-body>
       <div v-for="category in data">
         <SingleObject :key="single.identifier" :single="single" v-for="single in category.data"
-          :type="category.type" :title="getTitle(single.identifier)"
-          :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type)"
+          :type="category.type" :info="getOtherInfo(single.identifier)"
+          :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type, getOtherInfo(single.identifier))"
           :openModal="() => modalOpen(single)" />
       </div>
     </b-card>
@@ -33,15 +33,16 @@ export default {
     }
   },
   methods: {
-    removeItem: function(id, type) {
+    removeItem: function(id, type, info) {
       // TODO: change to action
-      this.$store.commit('files/removeItem', {identifier: id, type})
+      console.log('remove item', id, type)
+      this.$store.dispatch('files/removeItem', {identifier: id, type, path: info.path, project: info.project})
     },
     modalOpen: function() {
       console.log('data', this.data)
       return this.$refs.refFileEditModal.show.apply(this, arguments)
     },
-    getTitle: function(id) {
+    getOtherInfo: function(id) {
       return this.$store.state.files.namesOfSelected[id]
     }
   },

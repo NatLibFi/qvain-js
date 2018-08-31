@@ -89,7 +89,11 @@ export default new Vuex.Store({
 			payload.p[payload.prop].push(...payload.val)
 		},
 		popValue(state, payload) {
-			payload.val.pop()
+			payload.p[payload.prop].pop()
+		},
+		removeValue(state, payload) {
+			const index = payload.p[payload.prop].findIndex(single => single.identifier === payload.val)
+			payload.p[payload.prop].splice(index, 1)
 		},
 		/*
 		setValue(state, payload) {

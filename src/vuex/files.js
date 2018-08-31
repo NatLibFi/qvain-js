@@ -9,7 +9,7 @@ var fileapi = axios.create({
   responseType: 'json',
 })
 
-const combine = (state, data) => {
+const combine = (state, data, dir) => {
   // combines folders and files into single array of objects
   /*
     {
@@ -17,6 +17,8 @@ const combine = (state, data) => {
       identifier: ,
       name: ,
       path: ,
+      parentPath: ,
+      project: ,
       byte_size: ,
       date_modified: ,
       directory: {
@@ -37,6 +39,8 @@ const combine = (state, data) => {
       type: 'file',
       picked: false,
       selected: false,
+      project: state.project,
+      parentPath: dir,
       identifier: file.identifier,
       name: file.file_name,
       path: file.file_path,
@@ -58,6 +62,7 @@ const combine = (state, data) => {
       type: 'dir',
       picked: false,
       selected: false,
+      project: state.project,
       identifier: folder.identifier,
       name: folder.directory_name,
       path: folder.directory_path,
@@ -82,6 +87,18 @@ export default {
     namesOfSelected: {},
     pickedItems: 0,
     projects: {},
+    /*
+    projects: {
+      'project_x': {
+        'path/to/folder1/': [
+          {files and folders}
+        ],
+        'path/to/': [
+          {files and folders}
+        ]
+      }
+    }
+    */
     project: null,
     allDirs: { files: [], directories: [] },
   },
@@ -127,7 +144,7 @@ export default {
         Vue.set(state.projects, state.project, {})
       }
       if (!state.projects[state.project][dir]) {
-        Vue.set(state.projects[state.project], dir, combine(state, data))
+        Vue.set(state.projects[state.project], dir, combine(state, data, dir))
       }
     },
   },
@@ -171,7 +188,7 @@ export default {
 
       // save names separately. They will be displayed in ui but not stored in record
       const saveName = (item) => {
-        names[item.identifier] = item.name
+        names[item.identifier] = {name: item.name, path: item.parentPath, project: item.project}
       }
 
       const process = (item) => {
@@ -197,9 +214,18 @@ export default {
       commit('addNames', names)
       commit('clearPicked')
     },
-    removeItem({ commit, state, rootState }, {identifier, type}) {
-      // TODO: remove also from record
+    removeItem({ commit, state, rootState }, {identifier, type, path, project}) {
       commit('removeName', identifier)
+      commit('removeValue', {p: rootState.record, prop: type === 'file' ? 'files' : 'directories', val: identifier}, {root: true})
+      console.log('projects,path', state.projects[project], path)
+      state.projects[project][path].find(single => {
+        if (single.identifier === identifier) {
+          single.picked = false
+          single.selected = false
+          return true
+        }
+        return false
+      })
     },
     queryContent({ commit, state }, { dir, project }) {
       return new Promise((resolve, reject) => {

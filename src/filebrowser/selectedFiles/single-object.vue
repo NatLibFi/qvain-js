@@ -5,7 +5,7 @@
       <div class="py-2">
         <div class="d-flex">
           <h6 class="mb-0">
-            {{title}}
+            {{info.name}}
             <span v-if="secondary" class="text-muted m-0 font-italic">{{secondary}}</span>
           </h6>
         </div>
@@ -41,7 +41,7 @@ export default {
   name: 'SingleObject',
   props: [
     'icon',
-    'title',
+    'info',
     'secondary',
     'single',
     'removeItem',
