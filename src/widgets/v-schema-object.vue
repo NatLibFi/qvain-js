@@ -42,10 +42,6 @@
 </template>
 
 <style>
-div:empty {
-	background: lime;
-	/* display: none; */
-}
 
 /*
 	logos:
