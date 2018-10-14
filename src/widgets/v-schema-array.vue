@@ -1,23 +1,25 @@
 <template>
-	<b-card no-body sub-title="uiDescription" class="my-3">
-		<h3 slot="header"><font-awesome-icon :icon="icon.faAngleRight" /> {{ uiTitle }}</h3>
+	<b-card no-body sub-title="uiDescription" class="my-3 q-card" header-class="with-fd-bg" :id="domId">
+	<h3 slot="header">{{ uiTitle }} <font-awesome-icon v-if="value.length < minimum" icon="exclamation-triangle" class="text-dark" v-b-tooltip.hover="`You need at least ${minimum}!`" /></h3>
 
-		<b-card-body>
+	<b-card-body>
 		<b-alert variant="danger" dismissible :show="!!error" @dismissed="error = null">{{ error }}</b-alert>
-		<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon :icon="icon.faQuoteLeft" class="text-muted" /></sup> {{ uiDescription }}</p>
+		<div class="float-right" v-for="e in schemaErrors"><b-badge variant="danger" class="q-validation-error"><font-awesome-icon icon="exclamation-triangle" fixed-width/> {{ e }}</b-badge></div>
+		<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
 		</b-card-body>
-		<!-- b-form-group id="" :label-cols="4" :description="uiDescription" :label="uiLabel" :horizontal="true" -->
+
 		<b-list-group flush>
 			<b-list-group-item v-for="(child, index) in value" :key="index">
 			<!-- style="border-left: 2px solid #aaaaaa; padding-left: 1em; margin-left: 1em;" -->
 				<component is="schema-tab-selector" :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></component>
 			</b-list-group-item>
-			<b-list-group-item v-if="!children || children.length < 1"><i>no items</i></b-list-group-item>
+			<b-list-group-item v-if="!value || value.length < 1"><empty-note>no items</empty-note></b-list-group-item>
 		</b-list-group>
 		<!-- /b-form-group -->
 		<b-card-footer>
-			list <button type="button" :disabled="!children || children.length <= this.minimum" @click="doMinus">-</button> | <button type="button" :disabled="this.children.length >= this.maximum" @click="doPlus">+</button>
+			list <button type="button" :disabled="!value || value.length <= this.minimum" @click="doMinus">-</button> | <button type="button" :disabled="value.length >= this.maximum" @click="doPlus">+</button>
 			(min: {{ minimum }} / max: {{ maximum || '-' }})
+			{{ schemaErrors }}
 		</b-card-footer>
 
 	</b-card>
@@ -25,53 +27,52 @@
 
 <script>
 import vSchemaBase from './v-schema-base.vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faAngleRight, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import ValidationPopover from '@/components/ValidationPopover.vue'
 
 export default {
 	extends: vSchemaBase,
 	name: 'schema-array',
-	description: "generic array",
+	description: "generic array, nested",
 	schematype: 'array',
+	components: {
+		ValidationPopover,
+	},
 	data: function() {
 		return {
-			//children: [],
+			error: null,
 			minimum: 0,
 			maximum: 0,
-			icon: {
-				faAngleRight,
-				faQuoteLeft,
-			},
 		}
 	},
 	methods: {
 		doMinus: function() {
 			// it's safe to pop() a zero-length array
-			//if (this.children.length > this.minimum) this.children.pop()
-			if (this.value.length > this.minimum) this.$store.commit('popValue', { p: this.parent, prop: this.property, val: this.value })
-		},
-		doPlus: function() {
-			//if (this.maximum === undefined || this.children.length < this.maximum) this.children.push('')
-			//if (this.maximum === undefined || this.value.length < this.maximum) this.value.push('')
-			if (this.maximum === undefined || this.value.length < this.maximum) {
-				//this.value.push({})
-				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: this.value })
+			if (this.value.length > this.minimum) {
+				this.$store.commit('popValue', { p: this.parent, prop: this.property, val: this.value })
 				return true
 			}
 			return false
-			console.log("didPlus, length now:", this.value.length)
+		},
+		doPlus: function() {
+			if (this.maximum === undefined || this.value.length < this.maximum) {
+				//this.value.push({})
+				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })
+				console.log("didPlus, length now:", this.value.length)
+				return true
+			}
+			return false
 		},
 		deleteElement: function(index) {
-			console.log("schema-array: request to delete element with index", index, "value:", this.children[index])
-			if (index >= 0 && index < this.children.length) {
-				this.children.splice(index, 1)
+			console.log("schema-array: request to delete element with index", index, "value:", this.value[index])
+			if (index >= 0 && index < this.value.length) {
+				this.value.splice(index, 1)
 			} else {
 				console.log("deleteElement: attempt to remove non-existing element at index", index)
 			}
 		},
 		schemaForChild: function(index) {
 			if (this.isTuple) {
-				var additionalSchema = typeof this.schema['additionalItems'] === 'object' ? this.schema['additionalItems'] : {}
+				let additionalSchema = typeof this.schema['additionalItems'] === 'object' ? this.schema['additionalItems'] : {}
 
 				return index < this.schema['items'].length ? this.schema['items'][index] : additionalSchema
 			} else {
@@ -94,24 +95,28 @@ export default {
 			// additionalItems: true if missing, true if true, true when object; false if false
 			return this.schema['additionalItems'] !== false
 		},
+		/*
 		children: {
 			cache: false,
 			get: function() {
 				return this.value
 			},
 		},
+		*/
 	},
+	/*
 	watch: {
 		schema: function() {
 			return this.init()
 		},
 	},
+	*/
 	created() {
+		if (this.value == undefined) {
+			console.log("array: undefined value for path", this.path)
+		}
+		console.log("array: typeof", this.path, typeof this.value)
 		return this.init()
-	},
-	//components: uiComponents,
-	components: {
-		FontAwesomeIcon,
 	},
 }
 </script>

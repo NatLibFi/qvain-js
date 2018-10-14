@@ -5,6 +5,7 @@
 
 <script>
 import genid from '@/lib/genid.js'
+import EmptyNote from '@/components/EmptyNote.vue'
 //import {pathToData} from '../schematodata.js'
 //import vSchemaNumber from './v-schema-number.vue'
 //import vSchemaString from './v-schema-string.vue'
@@ -33,9 +34,6 @@ export default {
 	props: ['schema', 'value', 'valtype', 'parent', 'property', 'path', 'tab', 'activeTab', 'depth', 'hasTypeError'],
 	methods: {
 		newPath: function(prop) {
-			//return lvl !== undefined ? this.path + '/' + lvl : this.path
-			//if (lvl === undefined) return this.path
-			//return this.path.length > 0 ? this.path + '/' + lvl : this.path
 			return this.path + '/' + prop
 		},
 	},
@@ -100,6 +98,7 @@ export default {
 			},
 		},
 		*/
+		/*
 		schemaState: {
 			cache: true,
 			get: function() {
@@ -117,24 +116,38 @@ export default {
 				return (this.$store.state.vState[this.path] || {}).v
 			},
 		},
+		*/
+		schemaState: function() {
+			return this.$store.state.vState[this.path].v
+		},
+		/*
 		showErrors: function() {
 			var state = this.$store.getters.getState(this.path)
 			return state ? !state.v : undefined
 		},
+		*/
+		/*
 		schemaErrors: {
 			cache: false,
 			get: function() {
 				return (this.$store.state.vState[this.path] || {}).e || []
 			},
 		},
+		*/
+		schemaErrors: function() {
+			return this.$store.state.vState[this.path].e
+		},
+		/*
 		validity: {
 			cache: false,
 			get: function() {
-				console.error(this.path)
+				//console.error(this.path)
 				return this.$store.getters.getState(this.path) || "not set"
 			},
 		},
+		*/
 	},
+	/*
 	watch: {
 		'validity': function(v) {
 			console.warn("schemaState watcher:", v)
@@ -148,13 +161,27 @@ export default {
 			}
 		},
 	},
+	*/
 	beforeCreate: function () {
 		//console.log("c1:", this.$options.components)
 
 		//this.$options.components = require('./mapping.js').default
-		for (var component in require('./mapping.js').default) {
+		for (let component in require('./mapping.js').default) {
 			this.$options.components[component] = require('./mapping.js').default[component]
 		}
 	},
+	components: {
+		EmptyNote,
+	},
+	created() {
+		this.$store.commit('initStateFor', this.path)
+	},
+	/*
+	destroyed() {
+		console.log("destroyed(): will destroy vState", this.path in this.$store.state.vState)
+		this.$store.commit('cleanStateFor', this.path)
+		console.log("destroyed(): destroyed vState", this.path in this.$store.state.vState)
+	},
+	*/
 }
 </script>
