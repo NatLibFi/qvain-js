@@ -133,14 +133,14 @@ import { faSquare as faSquareO } from '@fortawesome/free-regular-svg-icons'
 import Widgets from '../widgets/mapping.js'
 
 // eslint-disable-next-line no-unused-vars
-var genericWidgetOption = {
+let genericWidgetOption = {
 	value: null,
 	text: 'none (generic widget)',
 }
 
 // eslint-disable-next-line no-unused-vars
 function isEmpty(obj) {
-  for (var key in obj) {
+	for (let key in obj) {
 		if (obj.hasOwnProperty(key)) return false
 	}
 	return true

@@ -51,7 +51,7 @@
 							<dt class="col-sm-2">ida projects</dt>
 							<dd class="col-sm-10">
 								<ul v-if="$auth.user.projects" class="list-inline">
-								<li v-for="project in $auth.user.projects" class="list-inline-item"><span class="badge badge-secondary text-monospace">{{ project }}</span></li>
+								<li v-for="project in $auth.user.projects" :key="project" class="list-inline-item"><span class="badge badge-secondary text-monospace">{{ project }}</span></li>
 								</ul>
 								<span v-else class="font-italic">no projects</span>
 							</dd>
@@ -110,7 +110,7 @@ export default {
 		},
 	},
 	created() {
-		this.$auth.user.projects = ["2001036", "20010xx", "2001666"]
+		//this.$auth.user.projects = ["2001036", "20010xx", "2001666"]
 	},
 }
 </script>
