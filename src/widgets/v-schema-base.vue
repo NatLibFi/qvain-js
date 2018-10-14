@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import genid from '@/lib/genid.js'
 //import {pathToData} from '../schematodata.js'
 //import vSchemaNumber from './v-schema-number.vue'
 //import vSchemaString from './v-schema-string.vue'
@@ -44,6 +45,9 @@ export default {
 		},
 		uniqId: function() {
 			return this._uid
+		},
+		domId: function() {
+			return genid(this.path)
 		},
 		ui: function() {
 			// if there was a $ref, use that ref's ui as default and load this path's on top of it
