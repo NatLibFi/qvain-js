@@ -6,7 +6,7 @@
 			<li v-for="(person, i) in people" :key="i">
 				<font-awesome-icon :icon="icon.faIdCard" />
 				<div v-for="prop in Object.keys(schema.properties)" :key="prop">
-					<strong>{{ prop }}:</strong> {{ person[prop] || '–' }}</strong>
+					<strong>{{ prop }}:</strong> {{ person[prop] || '–' }}
 				</div>
 			</li>
 		</ul>
@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faIdCard } from '@fortawesome/free-regular-svg-icons'
 import {
 	faUserEdit,
@@ -166,7 +165,7 @@ export default {
 		},
 		splitName(fullName) {
 			if (fullName) {
-        ;[this.newLast, this.newFirst] = fullName.split(',', 2)
+				[this.newLast, this.newFirst] = fullName.split(',', 2)
 			}
 		},
 		open(i) {
@@ -208,10 +207,5 @@ export default {
 			return this.newFirst ? this.newLast + ', ' + this.newFirst : this.newLast
 		},
 	},
-
-  created() {},
-  components: {
-    FontAwesomeIcon,
-  },
 }
 </script>

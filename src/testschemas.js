@@ -11,14 +11,14 @@ import { default as deepcopy } from 'json-deep-copy'
 //var deepcopy = Object
 
 
-var _testSimpleSchema = {
+let _testSimpleSchema = {
 	'type': "string",
 	'minLength': 3,
 	'title': "this is the title",
 }
 
 
-var _testCoordinateSchema = {
+let _testCoordinateSchema = {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"description": "A geographical coordinate",
 	"type": "object",
@@ -29,7 +29,7 @@ var _testCoordinateSchema = {
 }
 
 
-var _testAgeSchema = {
+let _testAgeSchema = {
 	"title": "person",
 	"type": "object",
 	"required": ["first_name", "last_name", "age"],
@@ -41,14 +41,14 @@ var _testAgeSchema = {
 }
 
 
-var _testMultiTypeSchema = {
+let _testMultiTypeSchema = {
 	"type": ["number", "string"],
 	"title": "alphanum",
 	"description": "this can be a number or a string",
 }
 
 
-var _testArrayList = {
+let _testArrayList = {
 	"type": "array",
 	"items": {
 		"type": "number"
@@ -56,7 +56,7 @@ var _testArrayList = {
 }
 
 
-var _testArrayListMinMax = {
+let _testArrayListMinMax = {
 	"type": "array",
 	"minItems": 2,
 	"maxItems": 3,
@@ -66,7 +66,7 @@ var _testArrayListMinMax = {
 }
 
 
-var _testArrayListFancy = {
+let _testArrayListFancy = {
 	"type": "array",
 	"minItems": 2,
 	"maxItems": 5,
@@ -80,7 +80,7 @@ var _testArrayListFancy = {
 }
 
 
-var _testArrayTuple = {
+let _testArrayTuple = {
 	"type": "array",
 	"items": [
 		{
@@ -101,7 +101,7 @@ var _testArrayTuple = {
 }
 
 
-var _testArrayTupleAdd = {
+let _testArrayTupleAdd = {
 	"type": "array",
 	"items": [
 		{
@@ -123,24 +123,24 @@ var _testArrayTupleAdd = {
 }
 
 
-var _testTypedEnumSchema = {
+let _testTypedEnumSchema = {
 	"type": "string",
 	"enum": ["red", "amber", "green"]
 }
 
 
-var _testUntypedEnumSchema = {
+let _testUntypedEnumSchema = {
 	"enum": ["red", "amber", "green", null, 42]
 }
 
 
-var _testTypeAndEnumSchema = {
+let _testTypeAndEnumSchema = {
 	"type": "string",
 	"enum": ["red", "amber", "green", null]
 }
 
 
-var _testAnyOfSchema = {
+let _testAnyOfSchema = {
 	"anyOf": [
 		{ "type": "string", "maxLength": 5 },
 		{ "type": "number", "minimum": 0 }
@@ -148,7 +148,7 @@ var _testAnyOfSchema = {
 }
 
 
-var _testAllOfSchema = {
+let _testAllOfSchema = {
 	"allOf": [
 		{ "type": "string" },
 		{ "maxLength": 5 }
@@ -156,7 +156,7 @@ var _testAllOfSchema = {
 }
 
 
-var _testOneOfSchema = {
+let _testOneOfSchema = {
 	"oneOf": [
 		{ "type": "number", "multipleOf": 5 },
 		{ "type": "number", "multipleOf": 3 }
@@ -164,7 +164,7 @@ var _testOneOfSchema = {
 }
 
 
-var _testOneOfSchemaObjects = {
+let _testOneOfSchemaObjects = {
 	"oneOf": [
 		{
 			"type": "object",
@@ -186,7 +186,7 @@ var _testOneOfSchemaObjects = {
 }
 
 
-var _testDefinitionsSchema = {
+let _testDefinitionsSchema = {
 	"definitions": {
 		"address": {
 			"type": "object",
@@ -201,7 +201,7 @@ var _testDefinitionsSchema = {
 }
 
 
-var _testRefSchema = {
+let _testRefSchema = {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	
 	"definitions": {
@@ -225,7 +225,7 @@ var _testRefSchema = {
 }
 
 
-var _testIdSchema = {
+let _testIdSchema = {
 	"$id": "http://example.com/root.json",
 	"definitions": {
 		"A": { "$id": "#foo" },
@@ -243,7 +243,7 @@ var _testIdSchema = {
 }
 
 
-var _testTabSchema = {
+let _testTabSchema = {
 	"title": "tab test",
 	"description": "a tab test with data for 2 tabs",
 	"type": "object",
@@ -254,7 +254,7 @@ var _testTabSchema = {
 }
 
 
-var _testTabSchema2 = {
+let _testTabSchema2 = {
 	"title": "tab test",
 	"description": "a tab test with data for 2 tabs",
 	"type": "object",
@@ -282,7 +282,7 @@ var _testTabSchema2 = {
 }
 
 
-var _testESWidget = {
+let _testESWidget = {
 	"title": "ElasticSearch test",
 	"description": "ES widget refdata test",
 	"type": "object",
@@ -334,7 +334,7 @@ var _testESWidget = {
 }
 
 
-var _testTabbedArraySchema = {
+let _testTabbedArraySchema = {
 	"title": "tabbed array test",
 	"description": "a widget that presents arrays in a tabbed interface",
 	"type": "object",
@@ -354,7 +354,7 @@ var _testTabbedArraySchema = {
 }
 
 
-var testSchemas = {
+let testSchemas = {
 	'simple':           _testSimpleSchema,
 	'coordinate':       _testCoordinateSchema,
 	'age':              _testAgeSchema,

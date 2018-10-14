@@ -5,13 +5,13 @@
 //   - needed libraries (mainly vue and vue-router) go into vendor.bundle.js.
 //
 // See also: vue webpack-simple template https://github.com/vuejs-templates/webpack-simple
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 //process.traceDeprecation = true;
 
 function envToBool(envVar) {
-	return process.env[envVar] === undefined || process.env[envVar] == "" || process.env[envVar] == "0" || process.env[envVar] == "false" || process.env[envVar] == "no" ? false : true;
+	return process.env[envVar] === undefined || process.env[envVar] == "" || process.env[envVar] == "0" || process.env[envVar] == "false" || process.env[envVar] == "no" ? false : true
 }
 
 //const ISDEVBUILD = envToBool('APP_DEBUG');
@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === undefined && process.env.APP_DEBUG !== undefined) {
 	//var debugMode = process.env.APP_DEBUG === undefined || process.env.APP_DEBUG == "" || process.env.APP_DEBUG == "0" || process.env.APP_DEBUG == "no" ? false : true;
 	//console.log("APP_DEBUG:", process.env.APP_DEBUG);
 	//console.log("debugMode set to", debugMode);
-	process.env.NODE_ENV = envToBool('APP_DEBUG') ? 'development' : 'production';
-	console.log("NODE_ENV set to", process.env.NODE_ENV);
+	process.env.NODE_ENV = envToBool('APP_DEBUG') ? 'development' : 'production'
+	console.log("NODE_ENV set to", process.env.NODE_ENV)
 }
 
 module.exports = {

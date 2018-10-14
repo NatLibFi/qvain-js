@@ -124,7 +124,7 @@ export default {
 		},
 		mapUrl: function() {
 			//return "https://maps.google.com/maps?q=" + this.coordinates.latitude + "," + this.coordinates.longitude + "&hl=es;z=14&output=embed"
-			var coords = typeof this.coordinates.latitude === 'number' && typeof this.coordinates.longitude === 'number' ? this.coordinates : this.defaultCoordinates
+			let coords = typeof this.coordinates.latitude === 'number' && typeof this.coordinates.longitude === 'number' ? this.coordinates : this.defaultCoordinates
 			return "https://maps.google.com/maps?q=" + coords.latitude + "," + coords.longitude + "&hl=es;z=14&output=embed"
 		},
 		mapUrl2: function() {

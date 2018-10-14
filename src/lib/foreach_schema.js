@@ -18,8 +18,8 @@ const _Combiners = {
 	'not': {},
 }
 
-var ObjectKWs = ['properties', 'definitions'] // 'additionalProperties'
-var ArrayKWs = ['items', 'additionalItems']
+let ObjectKWs = ['properties', 'definitions'] // 'additionalProperties'
+let ArrayKWs = ['items', 'additionalItems']
 
 
 function foreachSchema(schema, func) {
@@ -85,7 +85,7 @@ function _walkAndSet(schema, path, func, cur) {
 	if (typeof schema !== 'object') throw new Error("schema is not an object: " + path || "/")
 		
 	//var cur = func(path) || cur
-	var found = func(path)
+	let found = func(path)
 	cur = typeof found === 'number' ? found : cur
 	
 	console.log(path || "root", ":", typeof found === 'number' ? found : "("+cur+")")

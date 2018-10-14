@@ -1,4 +1,4 @@
-var _testTabSchema = {
+let _testTabSchema = {
 	tabs: ['first', 'second'],
 	'/properties/user': {
 		tab: 'description',
@@ -8,7 +8,7 @@ var _testTabSchema = {
 	},
 }
 
-var _testTabSchema2 = {
+let _testTabSchema2 = {
 	'': { tab: 0 },
 	'/properties/user': { tab: 'description' },
 	'/properties/user/properties/first_name': { description: 'your first name' },
@@ -30,7 +30,7 @@ var _testTabSchema2 = {
 	'/properties/phone': { tab: 'files' },
 }
 
-var _testESWidget = {
+let _testESWidget = {
 	'': { tab: 'description' },
 	'/properties/funder_type': {
 		widget: 'refdata-list',
@@ -65,7 +65,7 @@ var _testESWidget = {
 	},
 }
 
-var _testTabbedArraySchema = {
+let _testTabbedArraySchema = {
 	'/properties/persons': {
 		widget: 'tabbed-array',
 		props: {
@@ -74,7 +74,7 @@ var _testTabbedArraySchema = {
 	},
 }
 
-var _schemaFairDataUI = {
+let _schemaFairDataUI = {
 	'': { tab: 'description' },
 	'#/definitions/langString': {
 		widget: 'i18n-string',
@@ -85,7 +85,7 @@ var _schemaFairDataUI = {
 	},
 }
 
-var _schemaFairDataUiTabs = {
+let _schemaFairDataUiTabs = {
 	tabs: [
 		{ label: 'Content Description', uri: 'description' },
 		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
@@ -159,13 +159,6 @@ var _schemaFairDataUiTabs = {
 		description:
       'Field of science in the classification of the Ministry of Education and Culture.',
 	},
-  '/properties/field_of_science': {
-    tab: 'description',
-    label: 'field of science',
-    title: 'Field of Science',
-    description:
-      'Field of science in the classification of the Ministry of Education and Culture.',
-  },
 	'/properties/field_of_science/*': {
 		widget: 'refdata-list',
 		props: {
@@ -444,7 +437,7 @@ var _schemaFairDataUiTabs = {
 	},
 }
 
-var testSchemaUis = {
+let testSchemaUis = {
 	tabs: _testTabSchema,
 	tabs2: _testTabSchema2,
 	es: _testESWidget,
