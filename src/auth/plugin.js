@@ -1,25 +1,29 @@
 import Auth from './auth.js'
 
-// addGlobalGuard adds a guard to Vue router that checks for a boolean requiresAuth on each route and, if necessary, sends the user to a login page if they are not logged in.
+// addGlobalGuard adds a hook to Vue router that checks for a boolean `auth` on each route and, if necessary, sends the user to a login page if they are not logged in.
 function addGlobalGuard(router, auth, loginPage) {
 	if (!loginPage) {
 		loginPage = "/login"
 	}
 
 	router.beforeEach((to, from, next) => {
+		console.log("router: logged in?", auth.loggedIn)
+		// if the route needs authentication...
 		if (to.matched.some(record => record.meta.auth)) {
 			// this route requires auth, check if logged in
 			// if not, redirect to login page.
-			if (!auth.loggedIn) {
+			console.log("router (must): logged in?", auth.loggedIn)
+			// if not logged in, try token in local storage, else send to login page
+			if (!auth.loggedIn && !auth.localLogin()) {
 				next({
 					path: loginPage,
 					query: { redirect: to.fullPath }
 				})
 			} else {
-				next()
+				next() // success, next
 			}
 		} else {
-			next() // make sure to always call next()!
+			next() // no auth needed, next
 		}
 	})
 }
@@ -38,14 +42,19 @@ function plugin(Vue, options) {
 		options = {}
 	}
 
-	const auth = new Auth("plugin.com")
+	if (Vue.util && Vue.util.defineReactive) {
+		Auth.prototype.defineProperty = Vue.util.defineReactive
+	} else {
+		console.warn("auth plugin: Vue.util.defineReactive not found on Vue instance")
+	}
+
+	const auth = new Auth("example.com")
 
 	if (options['router']) {
 		addGlobalGuard(options.router, auth, options['loginPage'])
 	}
 
 	Object.defineProperty(Vue.prototype, '$auth', {
-		//get () { return new Auth("url.com") }
 		get () { return auth }
 	})
 }

@@ -15,7 +15,7 @@ User.prototype.getId = function() {
 }
 
 function UserFromToken(token) {
-	var jwt = parseJwt(token)
+	let jwt = parseJwt(token)
 
 	if (jwt && jwt['sub']) {
 		let user = new User()
@@ -54,13 +54,21 @@ function filterGroups(prefix, groups) {
 
 function Auth(url) {
 	this.url = url
-	this._user = null
+
+	// might be Vue's reactive setter
+	this.defineProperty(Auth.prototype, "_user", {
+		value: null,
+		writable: true,
+	})
 
 	Object.defineProperty(Auth.prototype, "loggedIn", {
 		get: function() {
-			return this._user !== null
+			// WARNING: Do not compare to null! Vue observed objects will not equal null as they have at least the __ob__ key. Check for a specific property.
+			//return this._user !== null
+			return this._user && 'id' in this._user
 		}
 	})
+
 	Object.defineProperty(Auth.prototype, "user", {
 		get: function() {
 			return this._user
@@ -69,30 +77,41 @@ function Auth(url) {
 }
 Auth.prototype.constructor = Auth
 
-Auth.prototype.login = function(token) {
-	this._user = UserFromToken(token)
+Auth.prototype.setUser = function(user) {
+	this._user = user
+}
 
-	if (this._user !== null) {
+Auth.prototype.login = function(token) {
+	this.setUser(UserFromToken(token))
+	console.log("auth.login(): xxx", this._user, this.loggedIn)
+
+	if (this.loggedIn) {
+		console.log("auth.login(): setting localstorage")
 		localStorage.setItem(TokenName, token)
 		return true
 	}
+	console.log("auth.login(): token failed, removing localstorage")
 	localStorage.removeItem(TokenName)
 	return false
 }
 
 Auth.prototype.logout = function() {
-	this._user = null
+	// TODO: maybe empty object?
+	this.setUser(null)
 	localStorage.removeItem(TokenName)
 }
 
 Auth.prototype.localLogin = function() {
 	const token = localStorage.getItem(TokenName)
 	if (token && !isExpiredToken(token)) {
+		console.log("auth.localLogin(): have token", token)
 		return this.login(token)
 	}
 	localStorage.removeItem(TokenName)
 	return false
 }
+
+Auth.prototype.defineProperty = Object.defineProperty
 
 // parseUnixTime converts seconds to epoch to a Javascript date object, or null in case of error.
 function parseUnixTime(secs) {

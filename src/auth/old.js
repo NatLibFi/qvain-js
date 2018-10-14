@@ -2,13 +2,13 @@
 
 // http://stackoverflow.com/a/38552302
 function parseJwt(token) {
-	var base64Url = token.split('.')[1]
-	var base64 = base64Url.replace('-', '+').replace('_', '/')
+	let base64Url = token.split('.')[1]
+	let base64 = base64Url.replace('-', '+').replace('_', '/')
 	return JSON.parse(window.atob(base64))
 }
 
 
-var UserType = {
+let UserType = {
 	uid: "",
 	name: "",
 	isAdmin: false,
@@ -35,7 +35,7 @@ var UserType = {
 // UserFromToken parses a JWT and returns a user object or null in case of error.
 function UserFromToken(token) {
 	// empty user object
-	var user = UserType
+	let user = UserType
 	
 	// try to parse token
 	try {
