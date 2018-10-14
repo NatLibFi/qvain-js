@@ -11,7 +11,7 @@
 import vFileList from './filelist.vue'
 import axios from 'axios'
 
-var API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
+let API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
 
 export default {
 	name: 'browser',

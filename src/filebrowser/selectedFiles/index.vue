@@ -6,7 +6,7 @@
     </div>
     <b-card v-if="!data || data.length === 0" class="text-center bg-light">No files added</b-card>
     <b-card v-else no-body>
-      <div v-for="category in data">
+      <div v-for="category in data" :key="category.type">
         <SingleObject :key="single.identifier" :single="single" v-for="single in category.data"
           :type="category.type" :info="getOtherInfo(single.identifier)"
           :secondary="single.identifier" :icon="icons[category.type]" :removeItem="() => removeItem(single.identifier, category.type, getOtherInfo(single.identifier))"

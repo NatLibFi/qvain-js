@@ -53,12 +53,9 @@ export default {
 						console.log('key:', x)
 					}
 					console.log('response:', error.response.status)
-          let reqPath =
-            (getReqParams(error) && error.config.params.path) || null
+					let reqPath = (getReqParams(error) && error.config.params.path) || null
 					let resStatus = getResStatus(error) || null
-          vm.error = `error: can't list files in ${
-            reqPath ? reqPath : 'this path'
-          } ${resStatus ? `(status code ${resStatus})` : ''}`
+					vm.error = `error: can't list files in ${reqPath ? reqPath : 'this path'} ${resStatus ? `(status code ${resStatus})` : ''}`
 				})
 				.finally(function() {
 					vm.$router.push({
