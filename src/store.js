@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+//import jsonPointer from 'json-pointer'
+//import {api as vuePointer} from '../vendor/json-pointer/index.js'
+import vuePointer from '../vendor/json-pointer/index.js'
+//const vuePointer = require('../vendor/json-pointer/index.js').default
+//import * as vuePointer from '../vendor/json-pointer/index.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
 		record: undefined,
-		schema: "not loaded",
+		dataset: {},
+		schema: {},
 		hints: {},
 		metadata: {},
 		UI_VALID_KEYWORDS: [
@@ -35,8 +41,8 @@ export default new Vuex.Store({
 			state.metadata = {}
 		},
 		loadData(state, record) {
-			state.record = record
-			//Vue.set(state, 'record', record)
+			//state.record = record
+			Vue.set(state, 'record', record)
 		},
 		mergeData(state, payload) {
 			for (let key in payload) {
@@ -44,8 +50,18 @@ export default new Vuex.Store({
 			}
 		},
 		loadSchema(state, schema) {
-			state.schema = schema
-			//state.schema = Vue.set(state, 'schema', schema)
+			//state.schema = schema
+			//state.schema = Vue.set(state, 'schema', undefined)
+			Vue.set(state, 'schema', schema)
+			//Object.assign(state.schema, schema)
+		},
+		changeSchema(state) {
+			//state.schema.properties.creator.description = "I changed it!"
+			//delete state.schema.properties.creator
+			//Vue.delete(state.schema, 'properties')
+			Vue.delete(state.schema.properties, 'creator')
+			//Vue.set(state.schema.properties, 'creature', "frankenstein")
+			//Vue.set(state, 'schema', {})
 		},
 		loadHints(state, hints) {
 			//state.hints = hints
@@ -67,12 +83,12 @@ export default new Vuex.Store({
 			Vue.set(state.tabui, payload.tab, payload.schema)
 		},
 		initValue(state, payload) {
-			console.log("store init for", payload.p, "payload:", payload, "state:", state)
+			//console.log("store init for", payload.p, "payload:", payload, "state:", state)
 			//payload.p[payload.prop] = payload.val
 			Vue.set(payload.p, payload.prop, payload.val)
 		},
 		updateValue(state, payload) {
-			console.log("store update for", payload.p, "payload:", payload)
+			//console.log("store update for", payload.p, "payload:", payload)
 			//payload.p[payload.prop] = payload.val
 			Vue.set(payload.p, payload.prop, payload.val)
 		},
@@ -95,6 +111,23 @@ export default new Vuex.Store({
 			const index = payload.p[payload.prop].findIndex(single => single.identifier === payload.val)
 			payload.p[payload.prop].splice(index, 1)
 		},
+		deleteArrayValue(state, payload) {
+			payload.array.splice(payload.index, 1)
+		},
+		setPath(state, payload) {
+			/*
+			if (state.dataset === undefined) {
+				state.dataset = {}
+			}
+			*/
+			//jsonPointer.set(state.dataset, payload.path, payload.value)
+			//var obj = jsonPointer.get(state.dataset, payload.path)
+			//Vue.set(obj,
+			//Vue.set(state.dataset['rights_holder'], 'identifier', payload.value)
+			console.log("setPath:", payload.path)
+			vuePointer.set(state.dataset, payload.path, payload.value)
+		},
+
 		/*
 		setValue(state, payload) {
 			console.log("store update for", payload.old, "to:", payload.new)
@@ -102,12 +135,6 @@ export default new Vuex.Store({
 		},
 		*/
 		setState(state, payload) {
-			if (!(payload.path in state.vState)) {
-				Vue.set(state.vState, payload.path, {
-					v: false,
-					e: [],
-				})
-			}
 			Vue.set(state.vState, payload.path, {
 				v: payload.v,
 				e: payload.e,
@@ -118,6 +145,14 @@ export default new Vuex.Store({
 		},
 		updateStats(state, payload) {
 			state.stats = payload
+		},
+		initStateFor(state, path) {
+			if (!state.vState[path]) {
+				Vue.set(state.vState, path, {e: [], v: null})
+			}
+		},
+		cleanStateFor(state, path) {
+			Vue.delete(state.vState, path)
 		},
 	},
 	getters: {
@@ -133,6 +168,40 @@ export default new Vuex.Store({
 		},
 		uiValidKeywordsSet: (state) => {
 			return new Set(state.UI_VALID_KEYWORDS)
+		},
+		hasPath: (state) => (path) => {
+			return vuePointer.has(state.dataset, path)
+		},
+		getPath: (state) => (path) => {
+			console.log("getPath for", path)
+			/*
+			if (!vuePointer.has(state.dataset, path)) {
+				//jsonPointer.set(state.dataset, path, "")
+				//Vue.set(state, 'dataset', state.dataset)
+				//Vue.set(state.dataset, 'rights_holder', {})
+				//Vue.set(state.dataset['rights_holder'], 'identifier', "")
+				console.log("getPath: not set", path)
+				//vuePointer.set(state.dataset, path, "")
+
+			}
+			if (vuePointer.has(state.dataset, path)) {
+				console.log("getPath: set now", path)
+			}
+			*/
+			return vuePointer.get(state.dataset, path)
+		},
+		cachedPath: (state) => {
+			const localCache = {}
+			return (path) => {
+				if (localCache[path]) {
+					console.log("from cache", path)
+					return localCache[path]
+				}
+				console.log("from store", path)
+				let tmp = vuePointer.get(state.dataset, path)
+				localCache[path] = tmp
+				return tmp
+			}
 		},
 	},
 })
