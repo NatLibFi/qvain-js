@@ -60,6 +60,9 @@ function Validator(schema, data, options) {
 	} else {
 		this.cb = null
 	}
+
+	this.allowUndefined = options.allowUndefined || false
+	this.canDereference = options.canDereference || false
 }
 
 
@@ -127,7 +130,7 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	//console.log("schema found at path:", path || '(root)')
 	//console.log("validateSchema this:", this)
 
-	if ('$ref' in schema) {
+	if (this.canDereference && '$ref' in schema) {
 		this.refCount++
 		let ptr = schema['$ref'].substring(schema['$ref'].lastIndexOf("#") + 1);
 		//console.log("ref to:", ptr)
@@ -149,7 +152,13 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 	var isValidType = isAnyType || doesTypeValidate(dataType, allowedTypes)
 
 	if (!isValidType) {
-		this.addError(path, schema, "invalid data type" + "(got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any"))
+		if (data === undefined && this.allowUndefined) {
+			this.setValid(path, schema, null)
+			//return null
+			return true
+		}
+		this.addError(path, schema, "invalid data type (got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any") + ")")
+
 		// stop checking if data type is not valid according to schema type
 		if (data !== undefined) {
 			return this.checkValid(path, schema)
