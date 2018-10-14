@@ -3,7 +3,7 @@
 		<h2>Fairdata dataset schema</h2>
 		<ul class="nav nav-tabs">
 			<!-- TODO: errors could be shown in tabs also -->
-			<li v-for="tab in tabs" class="nav-item">
+			<li v-for="tab in tabs" :key="tab.uri" class="nav-item">
 				<router-link class="nav-link" :to="`/new/${tab.uri}`">{{tab.label}}</router-link>
 			</li>
 		</ul>
@@ -60,10 +60,13 @@ export default {
 		},
 		// TODO: this is probably not the right place for the validator. Maybe the TabUi page?
 		subscribeValidator: function() {
-			var vm = this
+			let vm = this
 			this.validator = new Validator(
 				this.$store.state.schema,
 				this.$store.state.record,
+				{
+					'allowUndefined': true,
+				},
 			)
 			this.validator.v = this.$store.state.vState
 			this.unsubscribeFunc = this.$store.subscribe(mutation => {
@@ -72,12 +75,8 @@ export default {
 					mutation.type == 'pushValue' ||
 					mutation.type == 'popValue'
 				) {
-					console.warn(
-						'data == store?',
-						vm.validator.data == vm.$store.state.record,
-					)
-					if (vm.validator.data !== vm.$store.state.record) {
-					}
+					console.warn('data == store?', vm.validator.data == vm.$store.state.record)
+					//if (vm.validator.data !== vm.$store.state.record) {}
 					vm.validator.validateData(vm.$store.state.record)
 				}
 			})

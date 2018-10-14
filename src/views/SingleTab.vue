@@ -1,5 +1,5 @@
 <template>
-	<component is="schema-tab-selector" :schema="schemaJson" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></component>
+	<component is="schema-tab-selector" :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></component>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
 
 	data: function() {
 		return {
-			schemaJson: this.$store.state.schema,
+			//schemaJson: this.$store.state.schema,
 			whereisInput: null,
 			whereisReply: null,
 		}
@@ -55,6 +55,9 @@ export default {
 	},
 	created() {
 		console.log("SingleTab called", this.$route.path)
+	},
+	mounted() {
+		console.warn("mounted():", this.$store.state.schema)
 	},
 }
 </script>
