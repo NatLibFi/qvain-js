@@ -64,22 +64,18 @@
       }
     },
     "description": {
+		"@id": "http://purl.org/dc/terms/description",
 		"title": "Description",
 		"description": "Free-form description of the dataset",
-      "minItems": 1,
-      "type": "array",
+		"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+		"type": "object",
 		"example":[
 			"Tämä aineisto on osaa FMI ClimGrid aineistoa, joka on päivittäinen ilmastohila-aineisto Suomelle ..."
 		],
-      "items": {
-        "type": "object",
 		"$deref": "#/definitions/langString",
-        "title": "Multilingual string",
-        "description": "Object type for localized strings",
 		"additionalProperties": {
 			"type": "string"
 		}
-      }
     },
     "bibliographic_citation": {
       "title": "Preferred Bibliographic Citation",
@@ -3363,6 +3359,42 @@
       "title": "Total remote resources byte size",
       "description": "Sum of all remote resources distribution byte size. Read only field.",
       "type": "number"
+    },
+	"Checksum": {
+		"title": "Checksum",
+		"type": "object",
+		"@id": "http://spdx.org/rdf/terms#Checksum",
+		"description": "",
+		"properties": {
+			"algorithm": {
+				"@id": "http://spdx.org/rdf/terms#algorithm",
+				"title": "Algorithm",
+				"description": "Used checksum algortihm",
+				"enum": [
+					"MD5",
+					"SHA-1",
+					"SHA-224",
+					"SHA-256",
+					"SHA-384",
+					"SHA-512",
+					"OTHER"
+				],
+				"@type": "http://www.w3.org/2001/XMLSchema#string",
+				"type": "string"
+			},
+			"checksum_value": {
+				"@id": "http://spdx.org/rdf/terms#checksumValue",
+				"title": "Checksum value",
+				"description": "Value of the checksum. xsd:hexBinary",
+				"@type": "http://www.w3.org/2001/XMLSchema#hexBinary",
+				"type": "string"
+			}
+		},
+		"required":[
+			"checksum_value",
+			"algorithm"
+		],
+		"additionalProperties": false
 	}
   },
   "required": [
