@@ -1,21 +1,21 @@
 <template>
 	<b-modal id="dataset-versions-modal" ref="dataset-versions-modal" size="lg" centered @shown="fetch(dataset)" @hide="reset" title="published versions" ok-only ok-title="close">
 		<b-alert variant="danger" :show="!!error">API error: {{ error }}</b-alert>
-		<h5 slot="modal-title" class="modal-title"><i class="fas fa-history"></i> Published versions</h5>
+		<h5 slot="modal-title" class="modal-title"><font-awesome-icon icon="history" fixed-width/> Published versions</h5>
 
 		<b-list-group v-if="versions.length">
 			<b-list-group-item class="flex-column align-items-left" :disabled="index + 1 < versions.length" v-for="(item, index) in versions" :key="index">
 				<header class="d-flex align-items-start w-100 justify-content-between">
 					<h5 class="font-weight-bold">
-					<b-badge v-if="false" variant="secondary" class="p-1 mr-1 font-weight-light"><i class="fas fa-database fa-fw"></i> metax</b-badge>
+					<b-badge v-if="false" variant="secondary" class="p-1 mr-1 font-weight-light"><font-awesome-icon icon="database" fixed-width /> metax</b-badge>
 					{{ item.identifier }}</h5>
 					<b-badge :variant="index + 1 < versions.length ? 'secondary' : 'primary'">v{{ index + 1 }}</b-badge>
 				</header>
-				<p class="mb-4 mt-0"><small class="font-weight-light"><i class="far fa-clock fa-fw text-dark"></i> {{ readableIso(item.date_created) }} ({{ friendlyDate(item.date_created) }} ago)</small></p>
+				<p class="mb-4 mt-0"><small class="font-weight-light"><font-awesome-icon icon="clock" fixed-width class="text-dark" /> {{ readableIso(item.date_created) }} ({{ friendlyDate(item.date_created) }} ago)</small></p>
 
-				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light"><i class="fas fa-database fa-fw"></i> metax</b-badge>
-				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light" v-if="item.removed"><i class="fas fa-trash fa-fw text-danger"></i> removed</b-badge>
-				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light" v-if="index + 1 < versions.length"><i class="fas fa-pen fa-fw text-danger"></i></i> read-only</b-badge>
+				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light"><font-awesome-icon icon="database" fixed-width /> metax</b-badge>
+				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light" v-if="item.removed"><font-awesome-icon icon="trash" fixed-width class="text-danger" /> removed</b-badge>
+				<b-badge variant="secondary" class="p-1 mr-1 font-weight-light" v-if="index + 1 < versions.length"><font-awesome-icon icon="pen" fixed-width class="text-danger" /> read-only</b-badge>
 			</b-list-group-item>
 		</b-list-group>
 		<b-alert v-else variant="light" show class="font-italic">no versions found</b-alert>
@@ -57,7 +57,7 @@ export default {
 				return
 			}
 
-			var vm = this
+			let vm = this
 
 			this.versions = []
 			vm.error = null
@@ -67,7 +67,7 @@ export default {
 				.then(response => {
 					console.log("reponse:", response.data)
 					if (!Array.isArray(response.data)) {
-					throw "invalid response from API: expected array";
+						throw "invalid response from API: expected array"
 					}
 					vm.versions = response.data.reverse()
 				})
