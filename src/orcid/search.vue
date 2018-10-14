@@ -67,7 +67,7 @@
 import client from './api.js'
 
 // pre-compile
-const reOrcid = new RegExp('^\\d{4}-\\d{4}-\\d{4}-\\d{4}$');
+const reOrcid = new RegExp('^\\d{4}-\\d{4}-\\d{4}-\\d{4}$')
 
 export default {
 	name: 'orchid-search',
@@ -87,7 +87,7 @@ export default {
 
 			this.error = null
 			this.busy = true
-			var vm = this
+			let vm = this
 			client(this.orcid, resource)
 				.then(response => {
 					console.log("success!", response.data)
@@ -115,7 +115,7 @@ export default {
 			this.lastName = ""
 		},
 		filterKeys (e) {
-			e = (e) ? e : window.event;
+			e = (e) ? e : window.event
 			if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode != 45) {
 				console.log("bad key:", e.keyCode)
 				e.preventDefault()
