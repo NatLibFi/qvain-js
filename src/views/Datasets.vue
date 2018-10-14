@@ -26,16 +26,14 @@
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
 
-				<busy-button size="sm">save</busy-button>
+				<busy-button size="sm" v-if="false">save</busy-button>
 
 			</b-button-toolbar>
 		</div>
 
+		<b-alert variant="danger" ref="datasetErrorAlert" :show="!!error" dismissible @dismissed="error = null">{{ error }}</b-alert>
+
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
-		<b-button size="sm" v-b-modal="'dataset-versions-modal'">show versions</b-button>
-		<b-button size="sm" @click="refresh()">refresh</b-button>
-		<p>modal: {{ activeInModal }}</p>
-		<p>isBusy: {{ isBusy }}</p>
 
 		<b-table id="dataset-list" ref="datasetTable" class="m-1" tbody-class="dataset-list" striped hover show-empty :items="apiProvider" :fields="fields" :filter="filterTitles" no-provider-filtering :busy.sync="isBusy">
 			<template slot="owner" slot-scope="data">
@@ -58,6 +56,7 @@
 				<b-button-group>
 					<b-button size="sm" @click.stop="open(row.item.id)">open</b-button>
 					<b-button size="sm" v-b-modal="'dataset-versions-modal'" @click="activeInModal = row.item.id" :disabled="row.item.versions < 1">versions</b-button>
+					<b-button size="sm" variant="danger" @click.stop="del(row.item.id)">delete</b-button>
 					<b-button size="sm" @click.stop="toggleDetails(row.item.id, row)" class="mr-2">{{ row.detailsShowing ? 'less' : 'more'}}</b-button>
 				</b-button-group>
 			</template>
@@ -131,18 +130,31 @@ The preservation state is one of the following integers:
 140 = in dissemination
 */
 
+function getApiError(error) {
+	let apiError = "api error"
+	//console.log("api error:", error)
+	if (error.response) {
+		apiError += " [" + error.response.status + "]"
+		if (error.response.data && error.response.data.msg) {
+			apiError += ": " + error.response.data.msg
+		}
+	} else if (error.message) {
+		apiError += ": " + error.message.toLowerCase()
+	}
+	return apiError
+}
+
 function apiProvider(ctx) {
 	let promise = apiClient.get("/datasets/")
+
+	this.error = null
 
 	return promise.then((response) => {
 		console.log("api count:", (response.data || []).length)
 		return (response.data || [])
 	})
 	.catch((error) => {
-		console.log("dataset api error:", error)
-		if (error.response && error.response.data) {
-			console.log("error response:", error.response.data)
-		}
+		this.error = getApiError(error)
 		return []
 	})
 }
@@ -161,14 +173,27 @@ export default {
 				metax: false,
 			},
 			isBusy: false,
+			error: null,
 		}
 	},
 	methods: {
 		open(id) {
 			this.$router.push({ name: 'editor', params: { id: id }})
 		},
+		del(id) {
+			this.error = null
+			apiClient.delete("/datasets/" + "05747df84d5a24ef3ca8d9cffb428de2")
+				.then((response) => {
+					// returns 204 or 200
+					vm.$root.showAlert("successfully deleted dataset", "success")
+					vm.$refs.datasetTable.refresh()
+				})
+				.catch((error) => {
+					this.error = getApiError(error)
+				})
+		},
 		apiProvider(ctx) {
-			return apiProvider(ctx)
+			return apiProvider.bind(this)(ctx)
 		},
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)
