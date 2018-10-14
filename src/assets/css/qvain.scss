@@ -23,19 +23,103 @@ $danger: $red;
 $dark: #4f4f4f;
 // END custom colors
 
+// override shadow around active input elements
+//$input-focus-box-shadow: false;
+//$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $green;
+//$input-box-shadow: 0 0 0 $input-btn-focus-width $green;
+//$input-box-shadow: none;
+//$input-btn-focus-box-shadow: none;
+//$input-btn-focus-box-shadow: 0 0 0 .2rem rgba(#99aacc, 0.50);
+$input-btn-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$input-focus-box-shadow: none;
+
+.qwidget {
+	margin-bottom: 0.5rem;
+}
+
+/*
 body {
-  color: #464646;
+	overflow: visible !important;
+	background: -webkit-linear-gradient(180deg, #085078 10%, #85d8ce 90%);
+	background: -moz-linear-gradient(180deg, #085078 10%, #85d8ce 90%);
+	background: -ms-linear-gradient(180deg, #085078 10%, #85d8ce 90%);
+	background: -o-linear-gradient(180deg, #085078 10%, #85d8ce 90%);
+	background: linear-gradient(180deg, #085078 10%, #85d8ce 90%);
+}
+*/
+
+body {
+	/* background: radial-gradient(ellipse at center, rgba(220,220,220,1) 0%,rgba(250,250,250,1) 100%); */
+	/* background: linear-gradient(0deg, #A3A5A8 10%, #E6E7E8 90%); */
+	/* background: linear-gradient(180deg, #004f79 10%, #007fad 90%); */
+	/* background:  linear-gradient(0deg, #4f4f4f 10%, #f7f7f7 90%); */
+	/* background: radial-gradient(ellipse at center, rgba(250,250,250,1) 0%,rgba(200,200,200,1) 100%); */
+}
+
+.multiselect__option--highlight, .multiselect__option--selected.multiselect__option--highlight {
+	background: $orange;
+}
+
+/*
+	official fairdata colours:
+
+	blue:  #007fad (cerulean) and #004f79 (darker) and #e5f2f7 (almost white)
+	green: #11a53c (green)
+	gray:  #4f4f4f (dark) and #f7f7f7 (light)
+*/
+
+// #282c34 black blue
+
+// #007fad cerulean
+// #1ccad8 bright cerulean
+// #00a8e8 vivid cerulean
+
+// #b3001b alabama crimson
+// #dd1c1a maximum red
+
+// #ccad8f khaki
+
+// #262626 raisin black
+// #50514f dark liver (mid gray)
+
+// #c5c3c6 lavender gray
+// #dcdcdd gainsboro
+// #46494c outer space
+//$form-feedback-valid-color: $dark !default;
+$form-feedback-valid-color: #ced4da !default;
+
+.q-validation-error {
+	color: white;
+	background-color: #b3001b;
+}
+
+.label-button {
+	background-color: $orange;
+}
+
+/*
+ *	logos:
+ *	fd_logo_neg_80.png fd_logo_neg_160.png fd_logo_pos_80.png fd_logo_pos_160.png
+ *	tree_logo_300px.png fd_tree_logo_colour_trans_300.png fd_tree_logo_gray_300.png fd_tree_logo_gray_trans_300.png fd_tree_logo_lightgray_trans_300.png
+ */
+.with-fd-bg {
+	background-image: url('/static/imgs/fd_tree_logo_lightgray_trans_300.png');
+	background-position: -150px -150px; /* left */
+	/* background-position: top -150px right -100px; */ /* right */
+	background-repeat: no-repeat;
+}
+
+.with-fd-bg-right {
+	background-image: url('/static/imgs/fd_tree_logo_lightgray_trans_300.png');
+	background-position: top -150px right -100px; /* right */
+	background-repeat: no-repeat;
 }
 
 legend {
   font-weight: bold;
 }
 
-/*
-button { background-color: #00aacc; border: 0; }
-button.valid { background-color: #009900; }
-button.invalid { background-color: #aa0000; }
- */
 .small {
   font-size: 0.6em;
 }
@@ -67,12 +151,6 @@ div.debugging {
   transition: ease-out background-color 0.5s;
   cursor: pointer;
 }
-
-/*
-.btn { border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px; border-bottom-left-radius: 0px; }
-.btn:hover { border: 1px solid rgba(0, 0, 0, 0.3); xbox-shadow: 0 0 5px #cccccc; }
-.btn:active { text-shadow: 0 0 2px #cccccc; }
-*/
 
 #c1 {
   background-color: #00bfff;
@@ -214,18 +292,6 @@ ul.options-list li.highlighted {
   background: #f8f8f8;
 }
 
-.wrongtab {
-  background: #ffcccc;
-  /* display: none; */
-  /* visibility: hidden; */
-}
-
-.righttab {
-  /* background: #cccccc; */
-  /* display: block; */
-  /* visibility: visible; */
-}
-
 table.b-table > thead > tr > th.sorting::before,
 table.b-table > thead > tr > th.sorting::after,
 table.b-table > tfoot > tr > th.sorting::before,
@@ -242,3 +308,97 @@ table.b-table > tfoot > tr > th.sorting::after {
 }
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.popover {
+	color: #ffeeee;
+	background-color: #880000;
+	border: 1px solid #aa0000;
+}
+
+.validation-popover {
+	background-color: #880000;
+	font-size: 24px;
+}
+
+.popover-header {
+	color: #ffcccc;
+	background-color: #990000;
+	border-bottom: 1px solid #aa0000;
+}
+
+.popover-body {
+	color: #aa9999;
+	/* background-color: #880000; */
+	background-color: #332222;
+}
+
+/*
+body {
+	background-color: #f2f2f2;
+}
+
+#app-body {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+#app-top-bar {
+	max-width: 1200px;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+#app-sub-wrap {
+	//background-color: lighten(desaturate($primary, 50%), 20%);
+	background-color: lighten($primary, 5%);
+	border-top: 1px solid lighten($primary, 10%);
+	border-bottom: 1px solid $primary;
+}
+*/
+
+#app-sub-bar {
+	//background-color: lighten(desaturate($primary, 50%), 20%);
+	background-color: lighten($primary, 5%);
+	border-top: 1px solid lighten($primary, 10%);
+	border-bottom: 1px solid $primary;
+}
+
+.q-card {
+	background-color: #f2f2f2;
+	//border: 2px solid #0092c7;
+	//border: 2px solid lighten($primary, 10%);
+	//border-left: 0;
+	//border-right: 0;
+}
+
+.card-header {
+	//color: white;
+	//background-color: $blue;
+	//background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+	background: linear-gradient(to bottom, rgba(252,252,252,1) 0%,rgba(240,240,240,1) 100%);
+	border-top: 1px solid #f2f2f2;
+}
+
+.card-body {
+	//background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(248,248,248,1) 100%);
+}
+
+.card-footer {
+	//color: white;
+	//background-color: $blue;
+	//background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+	background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(248,248,248,1) 100%);
+	border-bottom: 1px solid #f2f2f2;
+}
+
+/*
+.form-control:focus {
+	box-shadow: none;
+}
+*/
+
+// keep plaintext input boxes contents at the same position
+.form-control-plaintext {
+	padding: $input-padding-y $input-padding-x;
+}
+
