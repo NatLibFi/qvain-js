@@ -74,7 +74,7 @@ export default {
 			return this.ui['help']
 		},
 		uiPlaceholder: function() {
-			return this.ui['placeholder']
+			return this.ui['placeholder'] !== null ? this.ui['placeholder'] : this.uiLabel
 		},
 		inArray: function() {
 			return typeof this.property === 'number'
