@@ -1,28 +1,33 @@
-// dummy functional component
+import keysWithOrder from '@/lib/keysWithOrder.js'
 
 export default {
 	name: "skip",
 	functional: true,
 	render: function (createElement, context) {
-		//if ('properties' in this.schema) { throw Error("dummy: not an object") }
 		if (!('properties' in context.props.schema)) {
 			//return createElement('div', "dead leaf")
 			return undefined
 		}
 
-		//console.log("dummy component, path:", context.path || '/', "context:", context)
-		//console.log("dummy schema props:", Object.keys(context.props.schema.properties).map(function(key) { return createElement('p', "key:" + key) }))
-
-		//:schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab"></component>
-		//for (let k in Object.keys(this.schema.properties))
+		var keys = context.parent.$store.state.hints[context.props.path] && typeof context.parent.$store.state.hints[context.props.path]['order'] === 'object' ? keysWithOrder(context.props.schema['properties'], context.parent.$store.state.hints[context.props.path]['order']) : Object.keys(context.props.schema.properties)
+		//console.log("skip: schema.properties:", context.props.schema && context.props.schema.properties || "no schema.properties")
 
 		return createElement(
-			'div', Object.keys(context.props.schema.properties).map(function(key) {
+			'div',
+			{ class: "q-skipped" },
+//		return createElement('b-card', { props: { 'no-body': true }, class: "my-3 q-skipped q-skipped-card border-0" }, [
+//			createElement('b-list-group', { props: { 'flush': true }, class: "border-0 q-skipped q-skipped-list-group list-group-flush" },
+			keys.map(function(key) {
+//			Object.keys(context.props.schema.properties).map(function(key) {
 				let myPath = context.props.path + '/properties/' + key
 				let uiTab = context.parent.$store.state.hints[myPath] && context.parent.$store.state.hints[myPath]['tab']
-				let myTab = typeof uiTab === 'number' ? uiTab : context.props.tab
+				//let myTab = typeof uiTab === 'number' ? uiTab : context.props.tab
+				let myTab = uiTab != null ? uiTab : context.props.tab
+				let inSameTab = context.props.tab == myTab
 
-				return createElement('schema-tab-selector', {
+				//console.log(`skip (${myPath}) from (${context.props.path}) with key (${key})`, context.props.schema.properties[key])
+
+				let child = createElement('schema-tab-selector', {
 					props: {
 						schema: context.props.schema.properties[key],
 						path: myPath,
@@ -32,9 +37,25 @@ export default {
 						tab: myTab,
 						activeTab: context.props.activeTab,
 					},
+					// don't reuse VNode
+					key: key,
 				})
-			}),
-			context.children
+
+
+				//return createElement('b-list-group-item', { class: "border-0 q-skipped-b-list-group-item" }, [ child ])
+				//if (!inSameTab) {
+				if (myTab === context.props.activeTab) {
+					return createElement('b-card',
+						{
+							props: { 'no-body': true },
+							class: "border-0 my-3 q-skipped-added-card " + (inSameTab ? "q-insametab" : ("q-notinsametab-" + myTab + "-" + uiTab + "-" + context.props.tab)),
+						},
+						[ child ],
+					)
+				}
+				return child
+
+			})
 		)
 	},
 	props: ['schema', 'path', 'value', 'parent', 'property', 'tab', 'activeTab'],

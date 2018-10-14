@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="q-tab-selector">
 		<!-- schema-tab-selector -->
 		<div v-if="showWidgets">
 			<p>ui widgets</p>
@@ -20,7 +20,7 @@
 
 		<!-- actual component -->
 		<!-- keep-alive -->
-		<component v-if="activeTab === myTab" :class="[ activeTab === myTab ? 'righttab': 'wrongtab']" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
+		<component v-if="activeTab === myTab" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
 			<p>{{ dataType }}</p>
 		</component>
 		<skip v-else :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
@@ -64,6 +64,7 @@ export default {
 			verbose: false,
 			showWidgets: false,
 			customWidget: null,
+			cachedPath: null,
 		}
 	},
 	methods: {
@@ -76,12 +77,12 @@ export default {
 		},
 		emptyValue: function() {
 			switch (this.dataType) {
-				case 'object':
-					return {}
-				case 'array':
-					return []
-				case 'null':
-					return null
+			case 'object':
+				return {}
+			case 'array':
+				return []
+			case 'null':
+				return null
 				//default:
 			}
 			return undefined
@@ -115,7 +116,12 @@ export default {
 			case 'object':
 				return 'schema-object'
 			case 'array':
-				return 'schema-array'
+				// check if the array has values (strings, numbers, null) or nested objects (array, object)
+				// TODO: this only checks "list" validation, not "tuple" validation
+				let typeOfItems = this.schema.items && this.schema.items.type && this.schema.items.type || ""
+				console.log("array: typeOfItems:", typeOfItems, this.schema)
+				let hasValues = typeOfItems !== "array" && typeOfItems !== "object"
+				return hasValues ? 'schema-inline-array' : 'schema-array'
 			case 'boolean':
 				console.log("schema-selector: boolean not implemented yet")
 				return ""
@@ -140,7 +146,7 @@ export default {
 
 			console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
 
-			var target, key // eslint-disable-line no-unused-vars
+			let target, key // eslint-disable-line no-unused-vars
 
 			// the parent of the root path is the store
 			if (this.parent === undefined || this.parent === "") {
@@ -236,7 +242,10 @@ export default {
 	},
 	watch: {
 		schema: function() {
-			console.log("selector: schema watcher ran")
+			console.log("selector: schema watcher ran for", this.path)
+			if (this.path !== this.cachedPath) {
+				console.warn("selector (" + this.path + "): VNode was recycled!")
+			}
 			//if (this.$store.state.record === undefined) {
 			//if (!this.path && this.value === undefined) {
 			if (this.value === undefined) {
@@ -245,6 +254,7 @@ export default {
 				this.vivicate()
 			}
 		},
+		/*
 		value: function() {
 			console.log("selector: value watcher ran")
 			//if (this.$store.state.record === undefined) {
@@ -265,6 +275,7 @@ export default {
 				this.vivicate(true)
 			}
 		},
+		*/
 	},
 	components: {
 		//'schema': vSchemaSchema,
@@ -275,18 +286,25 @@ export default {
 		'schema-inline-array': vSchemaInlineArray,
 		'schema-anyof': vSchemaAnyOf,
 		'schema-allof': vSchemaAllOf,
+		'schema-enum': vSchemaEnum,
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,
 		'i18n-string': i18nString,
+		'i18n-textarea': i18nTextarea,
 		'tabbed-array': TabbedArray,
 		'autocomplete': AutoComplete,
 		'browser': Filebrowser,
 		'skip': Skip,
 	},
 	created() {
+		// fail-safe for inadvertent VNode recycling
+		this.cachedPath = this.path
 		console.log("schema-tab-selector(", this.path, "): calling setDataType (created) with", this.schema['type'], "and calling vivicate()")
 		this.setDataType(this.schema['type'])
 
+		// This should try to catch invalid data in case the schema (outside of the application) has changed
+		// and we have stale, deprecated or otherwise invalid data left.
+		// TODO: think how to handle this: simply delete invalid value, or set a flag to warn user
 		if (this.value !== undefined && this.dataType === 'array' && typeof this.value !== 'object') {
 			console.error("[selector/created] array expected for path", this.path, "got:", typeof this.value)
 			this.hasTypeError = true
@@ -300,13 +318,6 @@ export default {
 		if (this.value === undefined) {
 			this.vivicate()
 		}
-	},
-	mounted() {
-		this.$nextTick(function () {
-			// Code that will run only after the
-			// entire view has been rendered
-			console.warn("v-tab-selector mounted triggered: READY")
-		})
 	},
 }
 </script>
