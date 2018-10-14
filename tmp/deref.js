@@ -1,7 +1,9 @@
 "use strict";
 
 // location to latest schema
-var schema = require("../schema/schema.json")
+//var schema = require("../schema/schema.json")
+var idaSchema = require("../schema/ida.json")
+var attSchema = require("../schema/att.json")
 
 
 function parsePath(path) {
@@ -142,7 +144,7 @@ SchemaDereferencer.prototype.addTargetCount = function() {
 }
 
 
-function doit() {
+function doit(schema, fn) {
 	var dereferencer = new SchemaDereferencer(schema)
 	dereferencer.deref()
 
@@ -152,8 +154,6 @@ function doit() {
 	console.log("references:", dereferencer.refCount)
 	console.log("reference target count:")
 	dereferencer.listTargets()
-
-	const fn = "deref.json"
 
 	function saveSchema(schema) {
 		var fs = require('fs')
@@ -169,4 +169,5 @@ function doit() {
 	saveSchema(dereferencer.resolvedSchema)
 }
 
-doit()
+doit(idaSchema, "_ida.json")
+doit(attSchema, "_att.json")

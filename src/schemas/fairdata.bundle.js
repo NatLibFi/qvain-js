@@ -1,4 +1,6 @@
 import FairdataIdaSchema from './fairdata-ida.schema.json'
+import FairdataIdaOldSchema from './fairdata-ida-old.schema.json'
+import FairdataAttSchema from './fairdata-att.schema.json'
 import FairdataIdaUi from './fairdata-ida.ui.js'
 import jsonPointer from 'json-pointer'
 
@@ -35,6 +37,22 @@ export default {
 		ui: FairdataIdaUi,
 		name: "Fairdata (IDA)",
 		id: "metax-ida",
+		family: 2,
+		cloneFunc: clone,
+	},
+	'ida-old': {
+		schema: FairdataIdaOldSchema,
+		ui: FairdataIdaUi,
+		name: "Fairdata (IDA/old)",
+		id: "metax-ida",
+		family: 2,
+		cloneFunc: clone,
+	},
+	att: {
+		schema: FairdataAttSchema,
+		ui: FairdataIdaUi,
+		name: "Fairdata (ATT)",
+		id: "metax-att",
 		family: 2,
 		cloneFunc: clone,
 	},
