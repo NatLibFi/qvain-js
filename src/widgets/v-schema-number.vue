@@ -11,10 +11,6 @@
 				</b-input-group-append>
 			</b-input-group>
 		</b-form-group>
-		errors: {{ schemaErrors }} state: {{ schemaState }}/{{ !!schemaState }} {{ schemaErrors.length
-		< 1 }} validity: {{ validity }} show? {{ showErrors }} <b-btn @click="$root.$emit('bv::hide::popover', 'jack')">hide</b-btn>
-			<b-popover target="jack" triggers="" :show="!schemaState" title="errors" style="background-color: #660000; color: #aa0000;">{{ schemaErrors }}</b-popover>
-			<!-- :show="!schemaState" -->
 	</div>
 </template>
 
