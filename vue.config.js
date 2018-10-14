@@ -6,7 +6,6 @@ module.exports = {
 	chainWebpack: config => {
 		// make sure BABEL_ENV is set to whatever NODE_ENV is set to in .env files
 		if (process.env.BABEL_ENV !== process.env.NODE_ENV) {
-			//console.log("BABEL_ENV is not equal to NODE_ENV", process.env.BABEL_ENV)
 			process.env.BABEL_ENV = process.env.NODE_ENV
 		}
 
@@ -18,7 +17,9 @@ module.exports = {
 					APP_DEBUG: JSON.stringify('zork'),
 				})
 				Object.assign(args[0]['process.env'], {
-					VUE_APP_MODE: JSON.stringify(process.env.VUE_CLI_MODE)
+					VUE_APP_MODE: JSON.stringify(process.env.VUE_CLI_MODE),
+					VUE_APP_VERSION: JSON.stringify(require('./package.json').version),
+					VUE_APP_ENVIRONMENT: JSON.stringify(process.env.VUE_CLI_MODE || process.env.NODE_ENV)
 				})
 				return args
 			})
