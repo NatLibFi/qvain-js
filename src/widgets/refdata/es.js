@@ -20,7 +20,7 @@ export default function esApiClient(index, doctype) {
 		`${apiUrl}/${index}/${doctype}/_search?size=10000&pretty=1&filter_path=hits.hits._source`, {
 			timeout: 5000,
 			responseType: 'json',
-	})
+		})
 }
 
 export function esApiSearchClient(index, doctype, searchterm) {
