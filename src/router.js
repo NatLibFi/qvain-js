@@ -24,13 +24,9 @@ Vue.use(VueRouter)
 const routes = [
 	{ path: '/', name: "home", component: Welcome, props: false },
 	{ path: '/token', component: Token, props: false },
-	{ path: '/edit/:id?', component: vEditor, props: true },
-	{ path: '/list', component: vLister, props: false },
 	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
 	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
-	{ path: '/schema', component: vSchema, props: false },
 	{ path: '/viewschema', component: vSchemaViewer, props: false },
-	{ path: '/form', component: vSchemaForm, props: false },
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
 	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/personlist', component: PersonList, props: false },
