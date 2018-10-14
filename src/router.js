@@ -18,6 +18,7 @@ import vFileBrowser from './filebrowser/filebrowser.vue'
 import Token from './auth/token.vue'
 import OrcidSearch from './orcid/search.vue'
 import PersonList from './person/list.vue'
+import Config from './views/Config.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,7 @@ const routes = [
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
 	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/personlist', component: PersonList, props: false },
+	{ path: '/config', component: Config, props: false },
 	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
 	{ path: '/new', component: TabUi, props: false, meta: { auth: true }, redirect: '/new/description', children: [
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab },
