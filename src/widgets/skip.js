@@ -9,16 +9,16 @@ export default {
 			return undefined
 		}
 
-		var keys = context.parent.$store.state.hints[context.props.path] && typeof context.parent.$store.state.hints[context.props.path]['order'] === 'object' ? keysWithOrder(context.props.schema['properties'], context.parent.$store.state.hints[context.props.path]['order']) : Object.keys(context.props.schema.properties)
+		let keys = context.parent.$store.state.hints[context.props.path] && typeof context.parent.$store.state.hints[context.props.path]['order'] === 'object' ? keysWithOrder(context.props.schema['properties'], context.parent.$store.state.hints[context.props.path]['order']) : Object.keys(context.props.schema.properties)
 		//console.log("skip: schema.properties:", context.props.schema && context.props.schema.properties || "no schema.properties")
 
 		return createElement(
 			'div',
 			{ class: "q-skipped" },
-//		return createElement('b-card', { props: { 'no-body': true }, class: "my-3 q-skipped q-skipped-card border-0" }, [
-//			createElement('b-list-group', { props: { 'flush': true }, class: "border-0 q-skipped q-skipped-list-group list-group-flush" },
+			//		return createElement('b-card', { props: { 'no-body': true }, class: "my-3 q-skipped q-skipped-card border-0" }, [
+			//			createElement('b-list-group', { props: { 'flush': true }, class: "border-0 q-skipped q-skipped-list-group list-group-flush" },
 			keys.map(function(key) {
-//			Object.keys(context.props.schema.properties).map(function(key) {
+				//			Object.keys(context.props.schema.properties).map(function(key) {
 				let myPath = context.props.path + '/properties/' + key
 				let uiTab = context.parent.$store.state.hints[myPath] && context.parent.$store.state.hints[myPath]['tab']
 				//let myTab = typeof uiTab === 'number' ? uiTab : context.props.tab

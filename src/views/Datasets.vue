@@ -153,10 +153,10 @@ function apiProvider(ctx) {
 		console.log("api count:", (response.data || []).length)
 		return (response.data || [])
 	})
-	.catch((error) => {
-		this.error = getApiError(error)
-		return []
-	})
+		.catch((error) => {
+			this.error = getApiError(error)
+			return []
+		})
 }
 
 export default {

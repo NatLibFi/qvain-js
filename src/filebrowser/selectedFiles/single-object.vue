@@ -31,41 +31,41 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
-  faTrash,
-  faPen,
-  faPencilAlt,
-  faTag,
+	faTrash,
+	faPen,
+	faPencilAlt,
+	faTag,
 } from '@fortawesome/free-solid-svg-icons'
 
 export default {
-  name: 'SingleObject',
-  props: [
-    'icon',
-    'info',
-    'secondary',
-    'single',
-    'removeItem',
-    'openModal',
-    'type',
-  ],
-  data: function() {
-    return {
-      icons: {
-        faPen,
-        faTrash,
-        faPencilAlt,
-        faTag,
-      },
-    }
-  },
-  methods: {},
-  computed: {},
-  watch: {},
-  components: {
-    FontAwesomeIcon,
-  },
-  created: function() {
-  },
+	name: 'SingleObject',
+	props: [
+		'icon',
+		'info',
+		'secondary',
+		'single',
+		'removeItem',
+		'openModal',
+		'type',
+	],
+	data: function() {
+		return {
+			icons: {
+				faPen,
+				faTrash,
+				faPencilAlt,
+				faTag,
+			},
+		}
+	},
+	methods: {},
+	computed: {},
+	watch: {},
+	components: {
+		FontAwesomeIcon,
+	},
+	created: function() {
+	},
 }
 </script>
 

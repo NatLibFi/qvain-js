@@ -154,7 +154,7 @@ export default {
 
 			}
 			*/
-			var loader = this.id ? this.getDataset() : this.newDataset()
+			let loader = this.id ? this.getDataset() : this.newDataset()
 
 			loader.then(() => {
 				this.$nextTick(() => {
@@ -165,15 +165,15 @@ export default {
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
 			})
-			.then(() => {
-				this.subscribeValidator()
-				// set this to debug store updates
-				if (DEBUG_STORE_UPDATES) {
-					this.$store.watch(() => this.$store.state.record, value => {
-						console.log("store watcher: record changed")
-					})
-				}
-			})
+				.then(() => {
+					this.subscribeValidator()
+					// set this to debug store updates
+					if (DEBUG_STORE_UPDATES) {
+						this.$store.watch(() => this.$store.state.record, value => {
+							console.log("store watcher: record changed")
+						})
+					}
+				})
 
 			//this.$store.commit('resetState')
 			//this.$store.state.schema.title["description"] = "old schema"

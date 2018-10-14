@@ -2,8 +2,8 @@
 function b64DecodeUnicode(str) {
 	// Going backwards: from bytestream, to percent-encoding, to original string.
 	return decodeURIComponent(atob(str).split('').map(function(c) {
-		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-	}).join(''));
+		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+	}).join(''))
 }
 
 // decode_base64_url decodes URL encoded base64, taking unicode characters into consideration.

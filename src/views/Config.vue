@@ -27,7 +27,7 @@ export default {
 	},
 	methods: {
 		getVueKeys() {
-			return this.vueKeys.reduce((obj, val) => { obj[val] = process.env["VUE_APP_" + val]; return obj; }, {})
+			return this.vueKeys.reduce((obj, val) => { obj[val] = process.env["VUE_APP_" + val]; return obj }, {})
 		},
 		getEnvKey(key) {
 			return process.env[key]
