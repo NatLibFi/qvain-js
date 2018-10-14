@@ -37,6 +37,7 @@ import vSchemaArray from './v-schema-array.vue'
 import vSchemaInlineArray from './v-schema-inline-array.vue'
 import vSchemaAnyOf from './v-schema-anyof.vue'
 import vSchemaAllOf from './v-schema-allof.vue'
+import vSchemaEnum from './v-schema-enum.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
@@ -106,6 +107,12 @@ export default {
 		},
 		defaultWidget: function(schemaType) {
 			//console.log("schemaType:", schemaType)
+
+			// enum is special because it should handle any type included in its values
+			if (this.schema.enum) {
+				return 'schema-enum'
+			}
+
 			switch(schemaType) {
 			case 'string':
 				return 'schema-string'
