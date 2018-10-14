@@ -1,7 +1,7 @@
 
 function toData(ptr) {
 	if (ptr === "") return ""
-	
+
 	var els = ptr.substring(1).split(/\//)
 	var inProp = false
 

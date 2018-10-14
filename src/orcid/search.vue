@@ -89,21 +89,21 @@ export default {
 			this.busy = true
 			var vm = this
 			client(this.orcid, resource)
-			.then(response => {
-				console.log("success!", response.data)
-				vm.result = response.data
-			})
-			.catch(error => {
+				.then(response => {
+					console.log("success!", response.data)
+					vm.result = response.data
+				})
+				.catch(error => {
 				// Error: Request failed with status code 404
-				console.log(error)
-				if (error.response) {
-					if (error.response.status == 404) {
-						this.error = "not found"
-						return
+					console.log(error)
+					if (error.response) {
+						if (error.response.status == 404) {
+							this.error = "not found"
+							return
+						}
 					}
-				}
-				this.error = error.message
-			})
+					this.error = error.message
+				})
 			this.busy = false
 		},
 		resetError: function(e) {

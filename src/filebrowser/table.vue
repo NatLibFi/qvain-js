@@ -95,121 +95,121 @@ import FileTable from './table'
 import FileInfoModal from './fileinfo-modal'
 
 const formatBytes = (bytes, decimals) => {
-  if (bytes == 0) return '0 Bytes'
-  const k = 1024,
-    dm = decimals || 2,
-    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-    i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+	if (bytes == 0) return '0 Bytes'
+	const k = 1024,
+		dm = decimals || 2,
+		sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+		i = Math.floor(Math.log(bytes) / Math.log(k))
+	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
 export default {
-  name: 'FileTable',
-  props: ['tableData', 'cwd', 'openDir', 'project'],
-  data: function() {
-    return {
-      tableFields: [
-        {
-          key: 'selection',
-          label: '',
-          class: 'pl-3 pr-0 mx-0',
-          thStyle: { width: '0em' },
-          tdClass: 'align-middle',
-        },
-        {
-          key: 'type',
-          label: '',
-          tdClass: 'align-middle',
-          class: 'px-2 mx-0',
-          thStyle: { width: '3.5em' },
-        },
-        {
-          key: 'name',
-          sortable: true,
-          tdClass: 'align-middle',
-        },
-        {
-          key: 'identifier',
-          sortable: true,
-          tdClass: 'align-middle',
-        },
-        {
-          key: 'date_modified',
-          sortable: true,
-          formatter: value => {
-            return dateFormat(value, 'YYYY-MM-DD')
-          },
-          tdClass: 'align-middle',
-        },
-        {
-          key: 'byte_size',
-          label: 'Size',
-          sortable: true,
-          tdClass: 'align-middle',
-          formatter: value => {
-            return formatBytes(value)
-          },
-        },
-        {
-          key: 'actions',
-          label: '',
-        },
-      ],
-      icon: {
-        faFolder,
-      },
-    }
-  },
-  methods: {
-    toggleSelection: function(item, i, e) {
-      if (e.target.tagName === 'LABEL') return
-      console.log('toggleselection')
-      if (item.selected) return
-      if (!item.picked) {
-        this.$store.commit('files/addPicked')
-      } else {
-        this.$store.commit('files/removePicked')
-      }
-      item.picked = !item.picked
-    },
-    rowClass: function(item) {
-      const classes = []
-      if (!item) return classes.join(' ')
-      if (item.picked) {
-        classes.push('table-primary')
-      }
-      if (item.selected) {
-        classes.push('table-secondary text-muted')
-      } else {
-        classes.push('pointer')
-      }
-      return classes.join(' ')
-    },
-    modalOpen: function() {
-      return this.$refs.refFileInfoModal.show.apply(this, arguments)
-    },
-  },
-  computed: {
-    breadcrumbs: function() {
-      let split = this.cwd.split('/')
-      let currpath = []
-      return this.cwd.split('/').map(p => {
-        currpath.push(p)
-        return {
-          label: p,
-          to: currpath.join('/'),
-        }
-      })
-    },
-  },
-  watch: {},
-  components: {
-    Breadcrumbs,
-    FileInfoModal,
-    FontAwesomeIcon,
-  },
-  created: function() {
-    console.log('this', this)
-  },
+	name: 'FileTable',
+	props: ['tableData', 'cwd', 'openDir', 'project'],
+	data: function() {
+		return {
+			tableFields: [
+				{
+					key: 'selection',
+					label: '',
+					class: 'pl-3 pr-0 mx-0',
+					thStyle: { width: '0em' },
+					tdClass: 'align-middle',
+				},
+				{
+					key: 'type',
+					label: '',
+					tdClass: 'align-middle',
+					class: 'px-2 mx-0',
+					thStyle: { width: '3.5em' },
+				},
+				{
+					key: 'name',
+					sortable: true,
+					tdClass: 'align-middle',
+				},
+				{
+					key: 'identifier',
+					sortable: true,
+					tdClass: 'align-middle',
+				},
+				{
+					key: 'date_modified',
+					sortable: true,
+					formatter: value => {
+						return dateFormat(value, 'YYYY-MM-DD')
+					},
+					tdClass: 'align-middle',
+				},
+				{
+					key: 'byte_size',
+					label: 'Size',
+					sortable: true,
+					tdClass: 'align-middle',
+					formatter: value => {
+						return formatBytes(value)
+					},
+				},
+				{
+					key: 'actions',
+					label: '',
+				},
+			],
+			icon: {
+				faFolder,
+			},
+		}
+	},
+	methods: {
+		toggleSelection: function(item, i, e) {
+			if (e.target.tagName === 'LABEL') return
+			console.log('toggleselection')
+			if (item.selected) return
+			if (!item.picked) {
+				this.$store.commit('files/addPicked')
+			} else {
+				this.$store.commit('files/removePicked')
+			}
+			item.picked = !item.picked
+		},
+		rowClass: function(item) {
+			const classes = []
+			if (!item) return classes.join(' ')
+			if (item.picked) {
+				classes.push('table-primary')
+			}
+			if (item.selected) {
+				classes.push('table-secondary text-muted')
+			} else {
+				classes.push('pointer')
+			}
+			return classes.join(' ')
+		},
+		modalOpen: function() {
+			return this.$refs.refFileInfoModal.show.apply(this, arguments)
+		},
+	},
+	computed: {
+		breadcrumbs: function() {
+			let split = this.cwd.split('/')
+			let currpath = []
+			return this.cwd.split('/').map(p => {
+				currpath.push(p)
+				return {
+					label: p,
+					to: currpath.join('/'),
+				}
+			})
+		},
+	},
+	watch: {},
+	components: {
+		Breadcrumbs,
+		FileInfoModal,
+		FontAwesomeIcon,
+	},
+	created: function() {
+		console.log('this', this)
+	},
 }
 </script>

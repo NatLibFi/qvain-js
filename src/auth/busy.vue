@@ -56,34 +56,34 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
 export default {
-  name: 'token-login',
-  data: () => {
-    return {
-      icon: {
-        faCircleNotch,
-      },
-    }
-  },
-  computed: {
-    message() {
-      return this.$route.hash
-        ? `logging in... hash: |${this.$route.hash}| token: ${this.token}`
-        : 'no token'
-    },
-    token() {
-      return this.$route.hash.charAt(0) == '#'
-        ? this.$route.hash.substr(1)
-        : this.$route.hash
-    },
-  },
-  created: function() {
-    if (this.token) {
-      this.$auth.login(this.token)
-    }
-  },
-  components: {
-    FontAwesomeIcon,
-  },
+	name: 'token-login',
+	data: () => {
+		return {
+			icon: {
+				faCircleNotch,
+			},
+		}
+	},
+	computed: {
+		message() {
+			return this.$route.hash
+				? `logging in... hash: |${this.$route.hash}| token: ${this.token}`
+				: 'no token'
+		},
+		token() {
+			return this.$route.hash.charAt(0) == '#'
+				? this.$route.hash.substr(1)
+				: this.$route.hash
+		},
+	},
+	created: function() {
+		if (this.token) {
+			this.$auth.login(this.token)
+		}
+	},
+	components: {
+		FontAwesomeIcon,
+	},
 }
 </script>
 

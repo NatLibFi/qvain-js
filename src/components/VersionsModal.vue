@@ -64,17 +64,17 @@ export default {
 
 			console.log("calling API for dataset", dataset)
 			apiClient.get(`/datasets/${dataset}/versions`)
-			.then(response => {
-				console.log("reponse:", response.data)
-				if (!Array.isArray(response.data)) {
+				.then(response => {
+					console.log("reponse:", response.data)
+					if (!Array.isArray(response.data)) {
 					throw "invalid response from API: expected array";
-				}
-				vm.versions = response.data.reverse()
-			})
-			.catch(error => {
-				console.log("in catch block", error)
-				vm.error = error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "").toLowerCase()
-			})
+					}
+					vm.versions = response.data.reverse()
+				})
+				.catch(error => {
+					console.log("in catch block", error)
+					vm.error = error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "").toLowerCase()
+				})
 		},
 		friendlyDate: function(iso) {
 			// TODO: locale

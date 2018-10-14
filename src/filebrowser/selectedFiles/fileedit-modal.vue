@@ -24,62 +24,62 @@ import RefList from '../../widgets/refdata/list-ui'
 import Vue from 'vue'
 
 export default {
-  name: 'fileedit-modal',
-  props: {},
-  data: function() {
-    return {
-      item: null,
-      valid: {
-        title: null,
-      },
-    }
-  },
-  methods: {
-    show: function(single) {
-      console.log('show', single)
-      this.item = single
-      // TODO: define fields to display here for files and for folders
-      // currently it gets fields from file characteristics, but folders don't have that
-      // in tietomalli/mrd you can see that folders also have a title and a description
-      // which both are provided by the user.
+	name: 'fileedit-modal',
+	props: {},
+	data: function() {
+		return {
+			item: null,
+			valid: {
+				title: null,
+			},
+		}
+	},
+	methods: {
+		show: function(single) {
+			console.log('show', single)
+			this.item = single
+			// TODO: define fields to display here for files and for folders
+			// currently it gets fields from file characteristics, but folders don't have that
+			// in tietomalli/mrd you can see that folders also have a title and a description
+			// which both are provided by the user.
 
-      this.$refs['actual-fileinfo-modal'].show()
-    },
-    reset: function() {
-      this.item = null
-    },
-    save: function() {
-      this.$store.commit('updateArrayValue', {
-        p: this.$store.state.record,
-        prop: this.isFile(this.item) ? 'files' : 'directories',
-        val: this.item,
-        search: {
-          field: 'identifier',
-          value: this.item.identifier,
-        }
-      })
-    },
-    isFile: function(item) {
-      return 'file_type' in item
-    },
-    setUseCategory: function(value) {
-      this.item.use_category = value
-    },
-    setType: function(value) {
-      this.item.file_type = value
-    },
-    validateTitle: function(value) {
-      if (value) {
-        this.valid.title = null
-      } else {
-        this.valid.title = false
-      }
-    },
-  },
-  computed: {},
-  components: {
-    RefList,
-  },
-  created: function() {},
+			this.$refs['actual-fileinfo-modal'].show()
+		},
+		reset: function() {
+			this.item = null
+		},
+		save: function() {
+			this.$store.commit('updateArrayValue', {
+				p: this.$store.state.record,
+				prop: this.isFile(this.item) ? 'files' : 'directories',
+				val: this.item,
+				search: {
+					field: 'identifier',
+					value: this.item.identifier,
+				}
+			})
+		},
+		isFile: function(item) {
+			return 'file_type' in item
+		},
+		setUseCategory: function(value) {
+			this.item.use_category = value
+		},
+		setType: function(value) {
+			this.item.file_type = value
+		},
+		validateTitle: function(value) {
+			if (value) {
+				this.valid.title = null
+			} else {
+				this.valid.title = false
+			}
+		},
+	},
+	computed: {},
+	components: {
+		RefList,
+	},
+	created: function() {},
 }
 </script>

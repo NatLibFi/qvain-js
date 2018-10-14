@@ -16,19 +16,19 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 export default {
-  name: 'breadcrumbs',
-  props: ['breadcrumbs', 'click', 'homePath'],
-  data: function() {
-    return {
-      icon: { faHome },
-    }
-  },
-  updated: function() {
-    console.log('breadcrumbs:', this.breadcrumbs)
-  },
-  components: {
-    FontAwesomeIcon,
-  },
+	name: 'breadcrumbs',
+	props: ['breadcrumbs', 'click', 'homePath'],
+	data: function() {
+		return {
+			icon: { faHome },
+		}
+	},
+	updated: function() {
+		console.log('breadcrumbs:', this.breadcrumbs)
+	},
+	components: {
+		FontAwesomeIcon,
+	},
 }
 </script>
 

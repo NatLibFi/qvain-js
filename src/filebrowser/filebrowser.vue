@@ -14,51 +14,51 @@ import axios from 'axios'
 var API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
 
 export default {
-  name: 'browser',
-  props: {
-    relpath: {},
-  },
-  data: function() {
-    return {
-      selectedProject: this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0],
-      tabIndex: 0,
-      error: null,
-    }
-  },
-  methods: {
-    updateProject: function(proj) {
-      this.selectedProject = proj
-      this.$store.commit('files/updateProject', proj)
-      this.$router.push({
-        name: 'files',
-        params: { project: proj },
-      })
-    },
-  },
-  computed: {
-    path: function() {
-      console.log('relpath', this.$route.params.relpath)
-      // After hot reloading relpath will be an array of values.
-      if (typeof this.$route.params.relpath === 'object') {
-        console.warn('RELPATH IS A OBJECT!')
-        return this.$route.params.relpath ? '/' + this.$route.params.relpath.join('/') : '/'
-      }
-      return this.$route.params.relpath ? '/' + this.$route.params.relpath : '/'
-    },
-    projects: function() {
-      return this.$store.getters['auth/getProjects']
-    },
-    project: function() {
-      return this.$route.params.project
-    }
-  },
-  watch: {},
-  components: {
-    filelist: vFileList,
-  },
-  beforeCreate() {
-    console.log('before create')
-    this.$store.commit('files/updateProject', this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0])
-  },
+	name: 'browser',
+	props: {
+		relpath: {},
+	},
+	data: function() {
+		return {
+			selectedProject: this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0],
+			tabIndex: 0,
+			error: null,
+		}
+	},
+	methods: {
+		updateProject: function(proj) {
+			this.selectedProject = proj
+			this.$store.commit('files/updateProject', proj)
+			this.$router.push({
+				name: 'files',
+				params: { project: proj },
+			})
+		},
+	},
+	computed: {
+		path: function() {
+			console.log('relpath', this.$route.params.relpath)
+			// After hot reloading relpath will be an array of values.
+			if (typeof this.$route.params.relpath === 'object') {
+				console.warn('RELPATH IS A OBJECT!')
+				return this.$route.params.relpath ? '/' + this.$route.params.relpath.join('/') : '/'
+			}
+			return this.$route.params.relpath ? '/' + this.$route.params.relpath : '/'
+		},
+		projects: function() {
+			return this.$store.getters['auth/getProjects']
+		},
+		project: function() {
+			return this.$route.params.project
+		}
+	},
+	watch: {},
+	components: {
+		filelist: vFileList,
+	},
+	beforeCreate() {
+		console.log('before create')
+		this.$store.commit('files/updateProject', this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0])
+	},
 }
 </script>

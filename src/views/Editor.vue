@@ -17,10 +17,10 @@
 				<b-input-group size="sm" class="w-25 mx-1" prepend="owner">
 					<b-form-select :value="$auth.user ? $auth.user.name : 'you'" :options="[ $auth.user ? $auth.user.name : 'you' ]"></b-form-select>
 				</b-input-group>
-					<b-button-group size="sm" class="mx-1">
-				<b-btn v-b-tooltip.hover :title="!rateLimited ? 'Save this dataset' : 'Not so fast, buddy...'" @click="save" :disabled="rateLimited">Save</b-btn>
+				<b-button-group size="sm" class="mx-1">
+					<b-btn v-b-tooltip.hover :title="!rateLimited ? 'Save this dataset' : 'Not so fast, buddy...'" @click="save" :disabled="rateLimited">Save</b-btn>
 				<b-btn v-b-tooltip.hover :title="!rateLimited ? 'Ready to publish' : 'Not so fast, buddy...'" @click="publish" :disabled="rateLimited">Publish</b-btn>
-				<b-btn v-b-tooltip.hover title="Back to start page" to="/">Cancel</b-btn>
+					<b-btn v-b-tooltip.hover title="Back to start page" to="/">Cancel</b-btn>
 				</b-button-group>
 
 				<b-button-group size="sm" class="mx-1">
@@ -40,7 +40,7 @@
 			<!-- Render this if no tabs -->
 			<div slot="empty" class="text-center text-muted">
 				There are no tabs
-			</div>
+		</div>
 		</b-tabs>
 
 	</div>
@@ -104,14 +104,14 @@ export default {
 			this.loadBundle(this.selectedSchema)
 			//this.subscribeValidator()
 			this.$store.commit('resetState')
-			this.subscribeValidator()
+				this.subscribeValidator()
 
-			// set this to debug store updates
+				// set this to debug store updates
 			if (false) {
-				this.$store.watch(() => this.$store.state.record, value => {
-					console.log("store watcher: record changed")
-				})
-			}
+					this.$store.watch(() => this.$store.state.record, value => {
+						console.log("store watcher: record changed")
+					})
+				}
 		},
 		/*
 		runValidator: function() {
@@ -166,29 +166,29 @@ export default {
 			vm.error = null
 
 			apiClient.get(`/datasets/${id}`)
-			.then(response => {
-				if (response && response.data) {
-					console.log("load [success]:", response, response.data)
-					// Object() will create an empty object if undefined or null, otherwise returns the value
-					this.$store.commit('loadData', Object(response.data.dataset))
-					this.$store.commit('setMetadata', {id: id})
-					return
-				}
-				throw "empty response"
-			})
-			.catch(error => {
+				.then(response => {
+					if (response && response.data) {
+						console.log("load [success]:", response, response.data)
+						// Object() will create an empty object if undefined or null, otherwise returns the value
+						this.$store.commit('loadData', Object(response.data.dataset))
+						this.$store.commit('setMetadata', {id: id})
+						return
+					}
+					throw "empty response"
+				})
+				.catch(error => {
 				// keys: config, request, response
-				console.log("error GET:", error, Object.keys(error))
-				// print backend error `msg` if there is one; otherwise show error from object or string (e.g. browser's Network Error)
-				vm.setError (
-					error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
-					error.status
-				)
-				//vm.error = error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase()
-				if (error.response) {
-					console.log("details:", error.response)
-				}
-			})
+					console.log("error GET:", error, Object.keys(error))
+					// print backend error `msg` if there is one; otherwise show error from object or string (e.g. browser's Network Error)
+					vm.setError (
+						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
+						error.status
+					)
+					//vm.error = error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase()
+					if (error.response) {
+						console.log("details:", error.response)
+					}
+				})
 		},
 		save() {
 			var vm = this
@@ -202,24 +202,24 @@ export default {
 
 			console.log("selectedSchema:", this.selectedSchema['id'], Object.keys(this.selectedSchema))
 			apiClient.post("/datasets/", {
-				dataset: this.$store.state.record,
-				type: 2,
-				schema: "metax-ida"
-			})
-			.then(response => {
+						dataset: this.$store.state.record,
+						type: 2,
+						schema: "metax-ida"
+					})
+				.then(response => {
 				console.log("save [success]:", response, response.data)
 				console.log("save [continued]:", response)
 				vm.$root.showAlert("Success! Saved as " + (response.data.id || "new."))
-			})
-			.catch(error => {
-				vm.setError (
-					error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
-					error.status
-				)
-				if (error.response) {
-					console.log("details:", error.response)
-				}
-			})
+				})
+				.catch(error => {
+					vm.setError (
+						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
+						error.status
+					)
+					if (error.response) {
+						console.log("details:", error.response)
+					}
+				})
 		},
 		publish() {
 			console.log("publish clicked")

@@ -26,34 +26,34 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
-  faCaretSquareDown,
-  faCaretSquareRight,
+	faCaretSquareDown,
+	faCaretSquareRight,
 } from '@fortawesome/free-solid-svg-icons'
 
 export default {
-  name: 'filetree',
-  props: ['self', 'children'],
-  data: function() {
-    return {
-      open: false,
-      icon: { faCaretSquareDown, faCaretSquareRight },
-    }
-  },
-  computed: {
-    parents: function() {
-      return this.self.split('/').filter(x => x)
-    },
-  },
-  watch: {
-    self: function() {
-      console.log('self watcher trigger')
-    },
-  },
-  created: function() {
-    console.log('filetree component at', this.self)
-  },
-  components: {
-    FontAwesomeIcon,
-  },
+	name: 'filetree',
+	props: ['self', 'children'],
+	data: function() {
+		return {
+			open: false,
+			icon: { faCaretSquareDown, faCaretSquareRight },
+		}
+	},
+	computed: {
+		parents: function() {
+			return this.self.split('/').filter(x => x)
+		},
+	},
+	watch: {
+		self: function() {
+			console.log('self watcher trigger')
+		},
+	},
+	created: function() {
+		console.log('filetree component at', this.self)
+	},
+	components: {
+		FontAwesomeIcon,
+	},
 }
 </script>

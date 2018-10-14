@@ -18,12 +18,12 @@ function Validator(schema, data, options) {
 	if (!options) {
 		options = {}
 	}
-	
+
 	this.refCount = 0
 	this.schemaCount = -5
 	this.schemaPass = 0
 	this.schemaFail = 0
-	
+
 	this.origSchema = deepcopy(schema)
 	//this.schema = schema
 	vue.set(this, 'schema', schema)
@@ -37,7 +37,7 @@ function Validator(schema, data, options) {
 	} else {
 		this.createState = function(path) {
 			if (path in this.v) return false
-			
+
 			this.v[path] = {
 				v: false,
 				e: [],
@@ -53,7 +53,7 @@ function Validator(schema, data, options) {
 			this.v[path].e.splice(0, this.v[path].e.length)
 		}
 	}
-	
+
 	if (options.cb) {
 		console.log("!!! set cb:", options.cb)
 		this.cb = options.cb
@@ -126,7 +126,7 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 
 	//console.log("schema found at path:", path || '(root)')
 	//console.log("validateSchema this:", this)
-	
+
 	if ('$ref' in schema) {
 		this.refCount++
 		let ptr = schema['$ref'].substring(schema['$ref'].lastIndexOf("#") + 1);
@@ -141,13 +141,13 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 			schema[key] = clone[key]
 		}
 	}
-	
+
 	var dataType = getDataType(data)
 	var allowedTypes = typeof schema['type'] === 'string' ? [schema['type']] : schema['type']
-	
+
 	var isAnyType = !('type' in schema)
 	var isValidType = isAnyType || doesTypeValidate(dataType, allowedTypes)
-	
+
 	if (!isValidType) {
 		this.addError(path, schema, "invalid data type" + "(got: " + dataType + ", wanted: " + (allowedTypes.join(", ") || "any"))
 		// stop checking if data type is not valid according to schema type
@@ -155,16 +155,16 @@ Validator.prototype.validateSchema = function(schema, data, path, parent, prop) 
 			return this.checkValid(path, schema)
 		}
 	}
-	
+
 	//console.log(path || '/', "datatype:", dataType, "; schematype:", allowedTypes || "any", "; type validates:", isValidType, isValue ? "; data: " + data: "")
-	
+
 	//if ('enum' in schema) setValid(schema, validateEnum(schema, data, out, parent, path, _validateSchema))
 	let enumValid = 'enum' in schema ? this.validateEnum(schema, data, path, parent, prop, this.validateSchema) : true
-			
+
 	// data type is valid against the types in the schema or there were no types in the schema;
 	// call the validators for the data type
 	this.setValid(path, schema, dataType !== undefined ? enumValid && _Types[dataType].validator.call(this, schema, data, path, parent, prop, this.validateSchema.bind(this)) : false)
-	
+
 	// combiners run in this schema's context so will set an error that will get picked up at the end;
 	// the respective schemas inside those combining keywords could be true or false though
 	let combinersValid = true

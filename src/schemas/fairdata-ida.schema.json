@@ -64,21 +64,21 @@
       }
     },
     "description": {
-      "title": "Description",
-      "description": "Free-form description of the dataset",
+		"title": "Description",
+		"description": "Free-form description of the dataset",
       "minItems": 1,
       "type": "array",
-      "example": [
-        "Tämä aineisto on osaa FMI ClimGrid aineistoa, joka on päivittäinen ilmastohila-aineisto Suomelle ..."
-      ],
+		"example":[
+			"Tämä aineisto on osaa FMI ClimGrid aineistoa, joka on päivittäinen ilmastohila-aineisto Suomelle ..."
+		],
       "items": {
         "type": "object",
-        "$deref": "#/definitions/langString",
+		"$deref": "#/definitions/langString",
         "title": "Multilingual string",
         "description": "Object type for localized strings",
-        "additionalProperties": {
-          "type": "string"
-        }
+		"additionalProperties": {
+			"type": "string"
+		}
       }
     },
     "bibliographic_citation": {
@@ -3363,7 +3363,7 @@
       "title": "Total remote resources byte size",
       "description": "Sum of all remote resources distribution byte size. Read only field.",
       "type": "number"
-    }
+	}
   },
   "required": [
     "creator",

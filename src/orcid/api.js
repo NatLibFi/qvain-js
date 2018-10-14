@@ -12,5 +12,5 @@ export default function orcidApiClient(orcid, apiResource) {
 			headers: {
 				'Accept': 'application/json'
 			}
-	})
+		})
 }

@@ -106,9 +106,9 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faIdCard } from '@fortawesome/free-regular-svg-icons'
 import {
-  faUserEdit,
-  faTrashAlt,
-  faUser,
+	faUserEdit,
+	faTrashAlt,
+	faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
 import PersonComponent from './person.vue'
@@ -121,93 +121,93 @@ const keyOrder = ['name', 'email', 'telephone']
 const keySet = new Set(keyOrder)
 
 if (researchAgentSchema.properties) {
-  Object.keys(researchAgentSchema.properties).forEach(x => keySet.add(x))
+	Object.keys(researchAgentSchema.properties).forEach(x => keySet.add(x))
 }
 
 //console.log("fields:", keySet, keySet.keys(), Array.from(keySet))
 
 export default {
-  name: 'person-list',
-  components: {
-    person: PersonComponent,
-  },
-  data: function() {
-    return {
-      people: testdata,
-      schema: researchAgentSchema,
-      firstName: '',
-      lastName: '',
-      fields: Array.from(keySet),
-      newFirst: '',
-      newLast: '',
-      editingIndex: 0,
-      icon: {
-        faIdCard,
-        faUserEdit,
-        faTrashAlt,
-        faUser,
-      },
-    }
-  },
-  methods: {
-    remove(el) {
-      this.people.splice(el, 1)
-      this.$nextTick(() => this.$el.focus())
-      this.$el.focus()
-    },
-    add() {
-      if (!this.newLast) return
+	name: 'person-list',
+	components: {
+		person: PersonComponent,
+	},
+	data: function() {
+		return {
+			people: testdata,
+			schema: researchAgentSchema,
+			firstName: '',
+			lastName: '',
+			fields: Array.from(keySet),
+			newFirst: '',
+			newLast: '',
+			editingIndex: 0,
+			icon: {
+				faIdCard,
+				faUserEdit,
+				faTrashAlt,
+				faUser,
+			},
+		}
+	},
+	methods: {
+		remove(el) {
+			this.people.splice(el, 1)
+			this.$nextTick(() => this.$el.focus())
+			this.$el.focus()
+		},
+		add() {
+			if (!this.newLast) return
 
-      this.people.push({
-        name: this.lastFirstName,
-      })
-      this.editingIndex = null
-      this.newFirst = this.newLast = ''
-    },
-    splitName(fullName) {
-      if (fullName) {
+			this.people.push({
+				name: this.lastFirstName,
+			})
+			this.editingIndex = null
+			this.newFirst = this.newLast = ''
+		},
+		splitName(fullName) {
+			if (fullName) {
         ;[this.newLast, this.newFirst] = fullName.split(',', 2)
-      }
-    },
-    open(i) {
-      this.editingIndex = i
-      this.splitName(this.people[i].name)
-      this.$root.$emit('bv::show::modal', 'addPersonModal')
-    },
-  },
-  computed: {
-    state() {
-      if (this.editingIndex === null) {
-        return null
-      }
-      return 'name' in this.people[this.editingIndex] &&
+			}
+		},
+		open(i) {
+			this.editingIndex = i
+			this.splitName(this.people[i].name)
+			this.$root.$emit('bv::show::modal', 'addPersonModal')
+		},
+	},
+	computed: {
+		state() {
+			if (this.editingIndex === null) {
+				return null
+			}
+			return 'name' in this.people[this.editingIndex] &&
         (this.people[this.editingIndex].name.length > 1 &&
           this.people[this.editingIndex].name.length <= 30)
-        ? true
-        : false
-    },
-    invalidFeedback() {
-      if (this.fullName.length > 30) {
-        return 'That looks a bit long for an name...'
-      } else if (this.fullName.length < 1) {
-        return 'Please enter a name'
-      } else {
-        return ''
-      }
-    },
-    validFeedback() {
-      return this.state ? 'That looks about right!' : ''
-    },
-    fullName() {
-      //return this.newFirst + ' ' + this.newLast
-      if (this.editingIndex !== null) {
-        return this.people[this.editingIndex].name
-      }
-    },
-    lastFirstName() {
-      return this.newFirst ? this.newLast + ', ' + this.newFirst : this.newLast
-    },
-  },
+				? true
+				: false
+		},
+		invalidFeedback() {
+			if (this.fullName.length > 30) {
+				return 'That looks a bit long for an name...'
+			} else if (this.fullName.length < 1) {
+				return 'Please enter a name'
+			} else {
+				return ''
+			}
+		},
+		validFeedback() {
+			return this.state ? 'That looks about right!' : ''
+		},
+		fullName() {
+			//return this.newFirst + ' ' + this.newLast
+			if (this.editingIndex !== null) {
+				return this.people[this.editingIndex].name
+			}
+		},
+		lastFirstName() {
+			return this.newFirst ? this.newLast + ', ' + this.newFirst : this.newLast
+		},
+	},
 
   created() {},
   components: {

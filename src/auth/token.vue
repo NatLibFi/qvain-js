@@ -8,8 +8,8 @@
 				<dt>id</dt><dd>{{ $auth.user.id }}</dd>
 				<dt>name</dt><dd>{{ $auth.user.name }}</dd>
 				<dt>email</dt><dd>{{ $auth.user.email }}</dd>
-			</dl>
-			<div v-else>
+				</dl>
+		<div v-else>
 				<p>not logged in (loggedIn: {{ $auth.loggedIn }})</p>
 				<b-input-group prepend="token">
 					<b-form-input v-model="tokenInput"></b-form-input>
@@ -76,5 +76,5 @@ export default {
 			this.tokenInput = process.env.VUE_APP_DEV_TOKEN
 		}
 	},
-}	
+}
 </script>

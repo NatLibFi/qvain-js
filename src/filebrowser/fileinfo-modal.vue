@@ -19,43 +19,43 @@ import Loader from '../components/Loader.vue'
 const METAX_FILE_URL = 'https://metax-test.csc.fi/rest/files/'
 
 export default {
-  name: 'fileinfo-modal',
-  props: {},
-  data: function() {
-    return {
-      fileId: null,
-      filePath: null,
-      fileProject: null,
-      apiResponse: null,
-      apiError: null,
-    }
-  },
-  methods: {
-    show: function(id, path, project) {
-      console.log('modal called for file:', id)
-      this.fileId = id
-      this.filePath = path
-      this.fileProject = project
-      this.$refs['actual-fileinfo-modal'].show()
-    },
-    open: function() {
-      const vm = this
+	name: 'fileinfo-modal',
+	props: {},
+	data: function() {
+		return {
+			fileId: null,
+			filePath: null,
+			fileProject: null,
+			apiResponse: null,
+			apiError: null,
+		}
+	},
+	methods: {
+		show: function(id, path, project) {
+			console.log('modal called for file:', id)
+			this.fileId = id
+			this.filePath = path
+			this.fileProject = project
+			this.$refs['actual-fileinfo-modal'].show()
+		},
+		open: function() {
+			const vm = this
 
-      axios
-        .get(METAX_FILE_URL + this.fileId, {
-          //axios.get(METAX_FILE_URL + 666, {
-          transformResponse: req => {
-            return JSON.stringify(req, null, 2)
-          },
-          responseType: 'json',
-        })
-        .then(function(response) {
-          console.log('status:', response.status)
-          vm.apiResponse = response.data
-          vm.apiError = null
-        })
-        .catch(function(error) {
-          /*
+			axios
+				.get(METAX_FILE_URL + this.fileId, {
+					//axios.get(METAX_FILE_URL + 666, {
+					transformResponse: req => {
+						return JSON.stringify(req, null, 2)
+					},
+					responseType: 'json',
+				})
+				.then(function(response) {
+					console.log('status:', response.status)
+					vm.apiResponse = response.data
+					vm.apiError = null
+				})
+				.catch(function(error) {
+					/*
 				if (error.response) {
 					// The request was made and the server responded with a status code
 					// that falls out of the range of 2xx
@@ -72,28 +72,28 @@ export default {
 					console.log('Error', error.message);
 				}
 				*/
-          console.log(error)
-          vm.apiResponse = error.response || null
-          vm.apiError = error.message
-        })
-    },
-    save: function() {},
-    clear: function() {
-      this.apiResponse = null
-      this.apiError = null
-    },
-  },
-  computed: {
-    apiState: function() {
-      //console.log("apiState:", this.apiResponse, this.apiError, this.apiResponse === null && this.apiError === null ? null : !!(this.apiResponse && !this.apiError))
-      return this.apiResponse === null && this.apiError === null
-        ? null
-        : !!(this.apiResponse && !this.apiError)
-    },
-  },
-  components: {
-    Loader: Loader,
-  },
-  created: function() {},
+					console.log(error)
+					vm.apiResponse = error.response || null
+					vm.apiError = error.message
+				})
+		},
+		save: function() {},
+		clear: function() {
+			this.apiResponse = null
+			this.apiError = null
+		},
+	},
+	computed: {
+		apiState: function() {
+			//console.log("apiState:", this.apiResponse, this.apiError, this.apiResponse === null && this.apiError === null ? null : !!(this.apiResponse && !this.apiError))
+			return this.apiResponse === null && this.apiError === null
+				? null
+				: !!(this.apiResponse && !this.apiError)
+		},
+	},
+	components: {
+		Loader: Loader,
+	},
+	created: function() {},
 }
 </script>

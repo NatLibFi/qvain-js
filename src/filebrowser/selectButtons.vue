@@ -6,16 +6,16 @@
 </template>
 <script>
 export default {
-  name: 'SelectButtons',
-  methods: {
-    savePicked: function() {
-      this.$store.dispatch('files/savePicked')
-    },
-  },
-  computed: {
-    pickedItems: function() {
-      return this.$store.state.files.pickedItems
-    },
-  },
+	name: 'SelectButtons',
+	methods: {
+		savePicked: function() {
+			this.$store.dispatch('files/savePicked')
+		},
+	},
+	computed: {
+		pickedItems: function() {
+			return this.$store.state.files.pickedItems
+		},
+	},
 }
 </script>
