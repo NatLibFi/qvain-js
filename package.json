@@ -11,6 +11,7 @@
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
     "testing-build": "vue-cli-service build --mode testing",
+    "stable-build": "vue-cli-service build --mode stable",
     "lint": "vue-cli-service lint",
     "clean": "rm -r dist/*",
     "env": "env"

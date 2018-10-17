@@ -4,18 +4,14 @@ const apiBaseUrl = "/api"
 
 const apiUrl = function(str) {
 	if (!str) {
-		return "http://127.0.0.1:8080" + apiBaseUrl
+		return apiBaseUrl
 	}
 
-	if(str.substr(-1) === '/') {
+	if (str.substr(-1) === '/') {
 		return str.substr(0, str.length - 1)
 	}
 	return str
 }(process.env.VUE_APP_QVAIN_API_URL)
-
-if (!process.env.VUE_APP_QVAIN_API_URL) {
-	console.warn("no Qvain api url set; please define VUE_APP_QVAIN_API_URL")
-}
 
 /*
 export default function qvainApiClient(dataset) {
