@@ -4,12 +4,23 @@
 
 		<b-card-body>
 			<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
+			<b-form-select v-if="multipleTypes" v-model="selectedTypeIndex" :options="objectTypeOptions" class="" />
 		</b-card-body>
 
 		<b-list-group flush>
 			<!-- b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName" -->
 			<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-				<component is="schema-tab-selector" :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth"></component>
+				<schema-tab-selector
+					:key="propName"
+					:schema="propertiesFromSelectedSchema[propName]"
+					:path="newPath('properties/' + propName)"
+					:value="value[propName]"
+					:parent="value"
+					:property="propName"
+					:tab="myTab"
+					:activeTab="activeTab"
+					:depth="depth">
+				</schema-tab-selector>
 				<!-- component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName"></component -->
 			</b-list-group-item>
 		</b-list-group>
@@ -36,6 +47,7 @@ export default {
 	data: function() {
 		return {
 			q: "not set",
+			selectedTypeIndex: null,
 		}
 	},
 	/*
@@ -65,8 +77,24 @@ export default {
 			return this.vState[this.path] || {}
 		},
 		*/
+		multipleTypes() {
+			return !!this.schema['oneOf'];
+		},
+		objectTypeOptions() {
+			if (this.multipleTypes) {
+				const types = this.schema.oneOf.map((type, index) => ({ value: index, text: type.title }));
+				return [{ value: null, text: 'Select type' }, ...types];
+			}
+			return null;
+		},
+		propertiesFromSelectedSchema() {
+			if (this.multipleTypes && this.selectedTypeIndex !== null) {
+				return this.schema.oneOf[this.selectedTypeIndex].properties;
+			}
+			return this.schema['properties'];
+		},
 		sortedProps() {
-			if (!this.schema['properties']) {
+			if (!this.propertiesFromSelectedSchema) {
 				console.log("sortedProps(): no props")
 				return []
 			}
@@ -74,10 +102,10 @@ export default {
 			if (typeof this.ui['order'] === 'object') {
 				console.log("sortedProps(): found order:", this.ui['order'])
 
-				return keysWithOrder(this.schema['properties'], this.ui['order'])
+				return keysWithOrder(this.propertiesFromSelectedSchema, this.ui['order'])
 			} else {
-				console.log("sortedProps(): props not ordered", Object.keys(this.schema['properties']))
-				return Object.keys(this.schema['properties'])
+				console.log("sortedProps(): props not ordered", Object.keys(this.propertiesFromSelectedSchema));
+				return Object.keys(this.propertiesFromSelectedSchema);
 			}
 		},
 	},
