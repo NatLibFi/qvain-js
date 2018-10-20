@@ -39,10 +39,11 @@ export default {
 		'tab': 'description',
 		'title': "Language",
 		'description': "Language or languages used in the data contents.",
-		'widget': 'refdata-list',
+		'widget': 'autocomplete',
 		'props': {
 			'esIndex': "reference_data",
 			'esDoctype': "language",
+			'languages': []
 		},
 		'placeholder': "– choose language –",
 	},
@@ -65,7 +66,7 @@ export default {
 		'tab': 'description',
 		'title': "Subject heading",
 		'description': "Choose subject headings from the General Finnish Ontology (YSO). It also has English and Swedish translations of the terms.",
-		'widget': 'autocomplete',
+		'widget': 'autocomplete'
 	},
 	'/properties/field_of_science': {
 		'tab': 'description',
@@ -98,10 +99,11 @@ export default {
 		'description': "Area covered by the dataset, e.g. places of observations.",
 	},
 	'/properties/spatial/*/properties/place_uri': {
-		'widget': 'refdata-list',
+		'widget': 'autocomplete',
 		'props': {
 			'esIndex': "reference_data",
 			'esDoctype': "location",
+			'languages': []
 			//x'optgroups': true,
 		},
 		'placeholder': "– choose location –",
@@ -129,6 +131,7 @@ export default {
 	},
 	'/properties/creator': {
 		'tab': 'actors',
+		'widget': 'array',
 		'title': "Creator of the dataset",
 		'description': "The principal researcher or researchers involved in producing the data.",
 	},

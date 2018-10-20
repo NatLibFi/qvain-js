@@ -1,5 +1,13 @@
 <template>
-	<component is="schema-tab-selector" :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></component>
+	<component is="schema-tab-selector"
+		:schema="$store.state.schema"
+		path=""
+		:parent="$store.state"
+		property="record"
+		:value="$store.state.record"
+		:activeTab="$route.params.tab"
+		:depth="0">
+	</component>
 </template>
 
 <script>
