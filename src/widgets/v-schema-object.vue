@@ -1,5 +1,23 @@
 <template>
-	<b-card no-body header-class="with-fd-bg" class="my-3">
+	<div v-if="inArray">
+		<b-modal :visible="true" size="lg" id="modal1" title="Add object">
+			<div v-if="multipleTypes" class="mb-5">
+				<p>Select the type of object</p>
+				<b-form-select  v-model="selectedTypeIndex" :options="objectTypeOptions" />
+			</div>
+			<schema-tab-selector v-for="propName in sortedProps" :key="propName"
+				:schema="propertiesFromSelectedSchema[propName]"
+				:path="newPath('properties/' + propName)"
+				:value="value[propName]"
+				:parent="value"
+				:property="propName"
+				:tab="myTab"
+				:activeTab="activeTab"
+				:depth="depth">
+			</schema-tab-selector>
+  		</b-modal>
+	</div>
+	<b-card v-else no-body header-class="with-fd-bg" class="my-3">
 		<h2 slot="header">{{ uiTitle }}</h2>
 
 		<b-card-body>

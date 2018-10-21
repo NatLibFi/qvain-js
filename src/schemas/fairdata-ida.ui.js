@@ -131,7 +131,6 @@ export default {
 	},
 	'/properties/creator': {
 		'tab': 'actors',
-		'widget': 'array',
 		'title': "Creator of the dataset",
 		'description': "The principal researcher or researchers involved in producing the data.",
 	},
