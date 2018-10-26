@@ -1,5 +1,5 @@
 <template>
-	<div v-if="inArray">
+	<div v-if="false">
 		<b-modal :visible="true" size="lg" id="modal1" title="Add object">
 			<div v-if="multipleTypes" class="mb-5">
 				<p>Select the type of object</p>
