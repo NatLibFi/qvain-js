@@ -3,7 +3,7 @@
 		<b-modal :visible="true" size="lg" id="modal1" title="Add object">
 			<div v-if="multipleTypes" class="mb-5">
 				<p>Select the type of object</p>
-				<b-form-select  v-model="selectedTypeIndex" :options="objectTypeOptions" />
+				<b-form-select  v-model="value.selectedTypeIndex" :options="objectTypeOptions" />
 			</div>
 			<schema-tab-selector v-for="propName in sortedProps" :key="propName"
 				:schema="propertiesFromSelectedSchema[propName]"
@@ -22,7 +22,7 @@
 
 		<b-card-body>
 			<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
-			<b-form-select v-if="multipleTypes" v-model="selectedTypeIndex" :options="objectTypeOptions" class="" />
+			<b-form-select v-if="multipleTypes" v-model="value.selectedTypeIndex" :options="objectTypeOptions" class="" />
 		</b-card-body>
 
 		<b-list-group flush>
@@ -65,7 +65,6 @@ export default {
 	data: function() {
 		return {
 			q: "not set",
-			selectedTypeIndex: null,
 		}
 	},
 	/*
@@ -106,8 +105,8 @@ export default {
 			return null;
 		},
 		propertiesFromSelectedSchema() {
-			if (this.multipleTypes && this.selectedTypeIndex !== null) {
-				return this.schema.oneOf[this.selectedTypeIndex].properties;
+			if (this.multipleTypes && this.value.selectedTypeIndex !== null && typeof this.value.selectedTypeIndex !== 'undefined') {
+				return this.schema.oneOf[this.value.selectedTypeIndex].properties;
 			}
 			return this.schema['properties'];
 		},

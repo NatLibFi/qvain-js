@@ -37,14 +37,7 @@ const routes = [
 	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
 	//{ path: '/editor', name: "editor", component: Editor, props: true, meta: { auth: true } },
 	{ path: '/dataset', name: "editor", component: Editor, props: false, meta: { auth: true }, redirect: '/dataset/description', children: [
-		{ path: 'actors', component: AgentView, props: {
-			schema: this.$store.state.schema,
-			parent: this.$store.state,
-			property: "record",
-			value: this.$store.state.record,
-			activeTab: this.$route.params.tab,
-			depth:"0"
-		}},
+		{ path: 'actors1', component: AgentView, props: false },
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab },
 		{ path: ':tab', component: SingleTab },
 	]},

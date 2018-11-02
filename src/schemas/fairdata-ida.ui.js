@@ -3,6 +3,7 @@ export default {
 		{ label: 'Content Description', uri: 'description' },
 		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Actors', uri: 'actors' },
+		{ label: 'ActorsView', uri: 'actors1' }, // Only for development purposes
 		{ label: 'Relations and History', uri: 'relations' },
 		{ label: 'Files', uri: 'files' },
 		{ label: 'Extra', uri: 'extra' },
