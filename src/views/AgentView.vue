@@ -30,26 +30,13 @@
 			:activeTab="$route.params.tab"
 			:depth="0">
 		</component>-->
-		<!--<b-modal v-model="showAddObjectModal" size="lg" id="modal1" title="Add object">
-			<div v-if="multipleTypes" class="mb-5">
-				<p>Select the type of object</p>
-				<b-form-select  v-model="selectedTypeIndex" :options="objectTypeOptions" />
-			</div>
-			<schema-tab-selector v-for="propName in sortedProps" :key="propName"
-				:schema="propertiesFromSelectedSchema[propName]"
-				:path="newPath('properties/' + propName)"
-				:value="value[propName]"
-				:parent="value"
-				:property="propName"
-				:tab="myTab"
-				:activeTab="activeTab"
-				:depth="depth">
-			</schema-tab-selector>
-		</b-modal>-->
+
+		<Agent v-model="showAddObjectModal" @ok="addAgent"/>
 	</div>
 </template>
 
 <script>
+import Agent from '../components/Agent.vue';
 //import vSchemaBase from '../widgets/v-schema-base.vue'
 /*
 :schema="$store.state.schema"
@@ -62,9 +49,13 @@ property="record"
 */
 export default {
 	name: 'agent-view',
+	components: {
+		Agent
+	},
 	data() {
 		return {
 			showAddObjectModal: false,
+
 			// selectedTypeIndex: null,
 		}
 	},
@@ -93,6 +84,9 @@ export default {
 			const indexInFieldArray = items
 				.filter(item => item.field === row.field)
 				.findIndex(item => item.identifier === row.identifier);
+
+		},
+		addAgent(agent) {
 
 		},
 		editAgent(row) {
