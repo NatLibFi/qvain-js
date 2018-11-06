@@ -39,10 +39,13 @@ export default {
 		'tab': 'description',
 		'title': "Language",
 		'description': "Language or languages used in the data contents.",
-		'widget': 'refdata-list',
+		'widget': 'reference-data',
 		'props': {
 			'esIndex': "reference_data",
 			'esDoctype': "language",
+			'typeahead': true,
+			'tags': false,
+			'multiselect': true
 		},
 		'placeholder': "– choose language –",
 	},

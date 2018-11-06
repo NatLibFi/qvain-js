@@ -17,7 +17,7 @@ if (!process.env.VUE_APP_ES_API_URL) {
 
 export default function esApiClient(index, doctype) {
 	return axios.get(
-		`${apiUrl}/${index}/${doctype}/_search?size=10000&pretty=1&filter_path=hits.hits._source`, {
+		`${apiUrl}/${index}/${doctype}/_search?size=200&pretty=1&filter_path=hits.hits._source`, {
 			timeout: 5000,
 			responseType: 'json',
 		})
@@ -25,7 +25,7 @@ export default function esApiClient(index, doctype) {
 
 export function esApiSearchClient(index, doctype, searchterm) {
 	return axios.get(
-		`${apiUrl}/${index}/${doctype}/_search?q=${searchterm}&size=10000&pretty=1&filter_path=hits.hits._source`, {
+		`${apiUrl}/${index}/${doctype}/_search?q=${searchterm}&size=20&pretty=1&filter_path=hits.hits._source`, {
 			timeout: 5000,
 			responseType: 'json',
 		})
