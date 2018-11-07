@@ -20,7 +20,8 @@ Vue.use(BootstrapVue)
 
 Vue.use(AuthPlugin, {
 	router: router,
-	loginPage: "/token",
+	loginUrl: "/api/auth/login",
+	cbUrl: "/token",
 })
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

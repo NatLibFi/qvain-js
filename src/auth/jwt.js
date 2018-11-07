@@ -24,7 +24,45 @@ function decode_base64_url(text) {
 	return b64DecodeUnicode(base64)
 }
 
-export default function parseJwt(token) {
+// randomString generates a cryptographically secure random string with a given byte length.
+// Function taken from the auth0.com website.
+function cryptoRandomString(length) {
+	var bytes = new Uint8Array(length);
+	var random = window.crypto.getRandomValues(bytes);
+	//var random = crypto.randomFillSync(bytes);
+
+	var result = [];
+	var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+	random.forEach(function (c) {
+		result.push(charset[c % charset.length]);
+	});
+	return result.join('');
+}
+
+// pseudoRandomString generates a not-so-cryptographically secure random string.
+function pseudoRandomString(length) {
+	var out = ""
+	var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+
+	for (var i = 0; i < length; i++)
+		out += charset.charAt(Math.floor(Math.random() * charset.length));
+
+	return out;
+}
+
+function getRandomString(length) {
+	var rs
+	try {
+		rs = cryptoRandomString(length)
+	} catch(error) {
+		console.warn("getRandomString(): error calling crypto API function, falling back to insecure random generator; error was:", error.toString())
+		rs = pseudoRandomString(8)
+	}
+	return rs
+}
+
+
+function parseJwt(token) {
 	try {
 		let payload = token.split('.')[1]
 		let decoded = decode_base64_url(payload)
@@ -35,3 +73,5 @@ export default function parseJwt(token) {
 		return null
 	}
 }
+
+export { parseJwt, getRandomString }

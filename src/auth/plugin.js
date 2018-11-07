@@ -30,8 +30,9 @@ function addGlobalGuard(router, auth, loginPage) {
 
 // plugin for Vue
 // options:
-//   router: <vue router object>
-//   loginPage: <login page url>
+//   router: vue router object
+//   loginUrl: url to login api
+//   cbUrl: url to component that handles token callback
 function plugin(Vue, options) {
 	if (plugin.installed) {
 		return
@@ -48,10 +49,10 @@ function plugin(Vue, options) {
 		console.warn("auth plugin: Vue.util.defineReactive not found on Vue instance")
 	}
 
-	const auth = new Auth("example.com")
+	const auth = new Auth(options.loginUrl)
 
 	if (options['router']) {
-		addGlobalGuard(options.router, auth, options['loginPage'])
+		addGlobalGuard(options.router, auth, options['cbUrl'])
 	}
 
 	Object.defineProperty(Vue.prototype, '$auth', {

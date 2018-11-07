@@ -47,7 +47,7 @@
 						<b-dropdown-item to="/userinfo">about me</b-dropdown-item>
 						<b-dropdown-item @click="$auth.logout()">sign out</b-dropdown-item>
 					</b-nav-item-dropdown>
-					<b-nav-item v-else href="/api/auth/login">login</b-nav-item>
+					<b-nav-item v-else :href="$auth.loginUrl">login</b-nav-item>
 
 				</b-navbar-nav>
 			</b-collapse>
