@@ -3,7 +3,7 @@
 		<!-- (string widget) -->
 		<!-- b-form-group horizontal :label-cols="inArray ? 1 : 4" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState" -->
 
-		<b-form-group v-if="!inArray" class="qwidget" horizontal :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
+		<b-form-group v-if="!inArray" class="qwidget" :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
 			<b-form-input :type="inputType" :placeholder="uiPlaceholder" :value="value" :state="schemaState" @input.native="updateValue"></b-form-input>
 			<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
 		</b-form-group>

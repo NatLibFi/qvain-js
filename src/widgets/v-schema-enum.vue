@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- (enum widget) -->
-		<b-form-group horizontal :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
+		<b-form-group :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
 			<b-form-select :placeholder="uiPlaceholder" :value="value" @input.native="updateValue" :options="toOptions" />
 			<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
 		</b-form-group>
@@ -43,12 +43,24 @@ export default {
 			})
 		},
 		setDefault: function() {
-			if (this.schema && this.schema.default) {
+			if (!this.schema) return
+			if (this.value !== undefined) return
+
+			if (this.schema.default) {
 				this.$store.commit('updateValue', {
 					p: this.parent,
 					prop: this.property,
 					val: this.schema.default,
 				})
+				return
+			}
+			if (this.schema.enum.length === 1) {
+				this.$store.commit('updateValue', {
+					p: this.parent,
+					prop: this.property,
+					val: this.schema.enum[0],
+				})
+				return
 			}
 		},
 	},

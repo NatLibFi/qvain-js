@@ -1,5 +1,5 @@
 <template>
-	<b-form-group class="qwidget" horizontal :label-cols="2" :description="uiDescription" :label="uiLabel" :feedback="feedback" :state="schemaState">
+	<b-form-group class="qwidget" :label-cols="2" :description="uiDescription" :label="uiLabel" :feedback="feedback" :state="schemaState">
 		<b-card no-body border-variant="light">
 			<b-list-group flush>
 				<b-list-group-item v-for="(child, index) in value" :key="index" @remove="remove(index)">

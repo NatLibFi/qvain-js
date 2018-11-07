@@ -1,13 +1,13 @@
 <template>
 	<div :id="domId" class="qwidget">
 		<!-- i18n-textarea -->
-		<b-form-group horizontal label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-card no-body flush style="border: 0;">
-				TEXTAREA editing: {{ editing }} editingInput: {{ editingInput }} tabIndex {{ tabIndex }}
+				<span v-if="false">TEXTAREA editing: {{ editing }} editingInput: {{ editingInput }} tabIndex {{ tabIndex }}</span>
 				<b-tabs v-model="tabIndex" pills card><!-- pills end card -->
 					<b-tab v-for="(val, lang, i) in lpairs" :key="lang" :title="lang" no-body>
 						<b-card>
-							<h5>{{ languages[lang] || lang }} pl: {{ uiPlaceholder }} lbl: {{ uiLabel }} ttl: {{ uiTitle }}
+							<h5>{{ languages[lang] || lang }}
 								<div class="p-0 m-0 float-right">
 									<b-btn class="btn btn-outline-secondary" style="border: 0;" @click="resetEditing(lang, $event)" v-show="editing == lang"><font-awesome-icon icon="undo" fixed-width /></b-btn>
 									<b-btn class="btn btn-outline-danger" style="border: 0;" @click="deleteLang(lang)"><font-awesome-icon icon="trash" fixed-width class="text-dark" /></b-btn>

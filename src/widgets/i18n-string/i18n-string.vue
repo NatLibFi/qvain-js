@@ -1,7 +1,7 @@
 <template>
 	<div :id="domId" class="qwidget">
 		<!-- i18n-string -->
-		<b-form-group horizontal label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-card no-body border-variant="light">
 				<b-list-group flush>
 					<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">
