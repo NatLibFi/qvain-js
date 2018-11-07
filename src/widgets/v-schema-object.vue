@@ -57,6 +57,23 @@ export default {
 		},
 	},
 	*/
+	methods: {
+		shouldCreateProp(prop) {
+			if (!this.isPostponedProp(prop)) return true
+			if (prop in this.value) return true
+			console.log("shouldCreateProp():", false)
+			return false
+		},
+		isPostponedProp(prop) {
+			return this.postponedProps.includes(prop)
+		},
+		addProp(prop) {
+			this.$store.commit('addProp', {
+				val: this.value,
+				prop: prop,
+			})
+		},
+	},
 	computed: {
 		vState() {
 			return this.$store.state.vState
@@ -86,6 +103,9 @@ export default {
 				console.log("sortedProps(): props not ordered", Object.keys(this.schema['properties']))
 				return Object.keys(this.schema['properties'])
 			}
+		},
+		postponedProps() {
+			return this.ui['postponed'] || []
 		},
 		expandArrow() {
 			return this.visible ? "ellipsis-v" : "angle-right"
