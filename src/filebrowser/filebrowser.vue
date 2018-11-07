@@ -11,7 +11,7 @@
 import vFileList from './filelist.vue'
 import axios from 'axios'
 
-let API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
+//let API_PROJECT_ROOT_URL = 'https://metax-test.csc.fi/rest/directories/root'
 
 export default {
 	name: 'browser',
@@ -20,7 +20,7 @@ export default {
 	},
 	data: function() {
 		return {
-			selectedProject: this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0],
+			selectedProject: this.$route.params.project ? this.$route.params.project : (this.$auth.user.projects[0] || null),
 			tabIndex: 0,
 			error: null,
 		}
@@ -46,7 +46,8 @@ export default {
 			return this.$route.params.relpath ? '/' + this.$route.params.relpath : '/'
 		},
 		projects: function() {
-			return this.$store.getters['auth/getProjects']
+			//return this.$store.getters['auth/getProjects']
+			return this.$auth.user.projects || []
 		},
 		project: function() {
 			return this.$route.params.project
@@ -57,8 +58,9 @@ export default {
 		filelist: vFileList,
 	},
 	beforeCreate() {
-		console.log('before create')
-		this.$store.commit('files/updateProject', this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0])
+		console.log('before create, projects:', this.$auth.user.projects)
+		//this.$store.commit('files/updateProject', this.$route.params.project ? this.$route.params.project : this.$store.getters['auth/getProjects'][0])
+		this.$store.commit('files/updateProject', this.$route.params.project ? this.$route.params.project : (this.$auth.user.projects[0] || null))
 	},
 }
 </script>
