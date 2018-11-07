@@ -282,23 +282,22 @@ export default {
 
 
 			console.log("selectedSchema:", this.selectedSchema['id'], Object.keys(this.selectedSchema))
-
-			var apiCall
 			const isExisting = !!this.$store.state.metadata.id
+			console.log("saving dataset:", this.$store.getters.prunedDataset)
 
 			var apiCall = function(id) {
-				if (id) {
+				if (id && id !== "new") {
 					console.log("id exists:", this.$store.state.metadata.id)
 					return apiClient.put("/datasets/" + this.$store.state.metadata.id, {
-						dataset: this.$store.state.record,
+						dataset: this.$store.getters.prunedDataset,
 						type: 2,
 						schema: "metax-ida",
 						id: this.$store.state.metadata.id
 					})
 				} else {
 					console.log("id doesn't exist")
-					apiCall = apiClient.post("/datasets/", {
-						dataset: this.$store.state.record,
+					return apiClient.post("/datasets/", {
+						dataset: this.$store.getters.prunedDataset,
 						type: 2,
 						schema: "metax-ida"
 					})

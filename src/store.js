@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 //import jsonPointer from 'json-pointer'
 //import {api as vuePointer} from '../vendor/json-pointer/index.js'
 import vuePointer from '../vendor/json-pointer/index.js'
+import cloneWithPrune from './lib/cloneWithPrune.js'
 //const vuePointer = require('../vendor/json-pointer/index.js').default
 //import * as vuePointer from '../vendor/json-pointer/index.js'
 
@@ -156,6 +157,9 @@ export default new Vuex.Store({
 		},
 	},
 	getters: {
+		prunedDataset: (state) => {
+			return cloneWithPrune(state.record)
+		},
 		getState: (state) => (path) => {
 			return state.vState[path]
 		},
