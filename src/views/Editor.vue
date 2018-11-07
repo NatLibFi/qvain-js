@@ -39,6 +39,13 @@
 		</div>
 		<b-alert variant="danger" :show="!!error" dismissible @dismissed="error=null"><i class="fas fa-ban"></i> API error: {{ error }}</b-alert>
 		<b-alert variant="warning"><font-awesome-icon icon="info"></font-awesome-icon> Publishing: I understand that publishing this dataset:</b-alert>
+
+		<dataset-json-modal id="dataset-json-modal">
+			nothing here
+		</dataset-json-modal>
+		<b-modal id="dataset-json-modal2">
+		</b-modal>
+
 		<b-card variant="dark" bg-variant="dark" text-variant="white" v-if="showPublishConfirmation">
 			<h3 slot="title">
 				<font-awesome-icon icon="info" fixed-width />
@@ -81,8 +88,8 @@
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-import jsonPointer from 'json-pointer'
-import vSchemaTabSelector from '../widgets/v-schema-tab-selector.vue'
+import vSchemaTabSelector from '@/widgets/v-schema-tab-selector.vue'
+import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
 
 const RATE_LIMIT_MSECS = 3000
