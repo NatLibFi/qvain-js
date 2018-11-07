@@ -88,9 +88,11 @@ SchemaDereferencer.prototype._copyRefs = function(schema, path) {
 		let clone = deepCopy(ref)
 		for (let key in clone) {
 			//console.log("xxx", ptr, key)
+			/*
 			if (
 				(ptr === "/definitions/langString" || ptr === "/definitions/Concept")
 			 	&& key in schema && ['title', 'description', 'default'].indexOf(key) >= 0) continue
+			*/
 			schema[key] = clone[key]
 		}
 		if ('$ref' in schema) {
@@ -99,8 +101,9 @@ SchemaDereferencer.prototype._copyRefs = function(schema, path) {
 		}
 	}
 	//if ('definitions' in schema) delete schema['definitions']
-	if ('@id' in schema) delete schema['@id']
-	if ('@type' in schema) delete schema['@type']
+	//if ('@id' in schema) delete schema['@id']
+	if ('@type' in schema) console.log("@type at", path)
+	//if ('@type' in schema) delete schema['@type']
 	
 }
 
