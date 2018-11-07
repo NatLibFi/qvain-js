@@ -182,7 +182,7 @@ export default {
 		},
 		del(id) {
 			this.error = null
-			apiClient.delete("/datasets/" + "05747df84d5a24ef3ca8d9cffb428de2")
+			apiClient.delete("/datasets/" + id)
 				.then((response) => {
 					// returns 204 or 200
 					vm.$root.showAlert("successfully deleted dataset", "success")
