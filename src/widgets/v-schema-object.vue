@@ -1,18 +1,24 @@
 <template>
 	<b-card no-body header-class="with-fd-bg" class="my-3">
-		<h2 slot="header">{{ uiTitle }}</h2>
+		<h2 slot="header" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
+			<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/> {{ uiTitle }}
+		</h2>
 
-		<b-card-body>
-			<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
-		</b-card-body>
+		<b-collapse :id="domId + '-props'" v-model="visible">
+			<b-card-body>
+				<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
+			</b-card-body>
 
-		<b-list-group flush>
-			<!-- b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName" -->
-			<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-				<component is="schema-tab-selector" :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth"></component>
-				<!-- component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName"></component -->
-			</b-list-group-item>
-		</b-list-group>
+			<b-list-group flush>
+				<!-- b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName" -->
+				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
+					<component is="schema-tab-selector" :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></component>
+					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
+
+					<!-- component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName"></component -->
+				</b-list-group-item>
+			</b-list-group>
+		</b-collapse>
 
 	</b-card>
 </template>
@@ -36,6 +42,7 @@ export default {
 	data: function() {
 		return {
 			q: "not set",
+			visible: true,
 		}
 	},
 	/*
@@ -80,11 +87,15 @@ export default {
 				return Object.keys(this.schema['properties'])
 			}
 		},
+		expandArrow() {
+			return this.visible ? "ellipsis-v" : "angle-right"
+		},
 	},
 	created() {
 		//console.log("v-schema-object:", this, this.$data, this.$props)
 		//console.log("registered components:", this.$options.components)
 		//console.log("object:", this, "path:", this.path, "children:", this.$children, "slots:", this.$slots)
+		if ('visible' in this.ui) this.visible = this.ui['visible']
 	},
 }
 </script>

@@ -115,6 +115,12 @@ export default new Vuex.Store({
 		deleteArrayValue(state, payload) {
 			payload.array.splice(payload.index, 1)
 		},
+		deleteValue(state, payload) {
+			Vue.delete(payload.p, payload.prop)
+		},
+		addProp(state, payload) {
+			Vue.set(payload.val, payload.prop, undefined)
+		},
 		setPath(state, payload) {
 			/*
 			if (state.dataset === undefined) {
