@@ -5,6 +5,7 @@
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover.bottom title="create new record">new</b-btn>
 					<b-btn v-b-tooltip.hover.bottom title="edit a record">edit</b-btn>
+					<b-btn @click="open('05766a68-0519-65ba-885f-e1d375283063')">open</b-btn>
 				</b-button-group>
 
 				<b-input-group size="sm" class="mx-1" prepend="owner">
@@ -105,7 +106,7 @@ import formatDate from 'date-fns/format'
 const fields = [
 	{ label: "id",          key: "id",                 sortable: true },
 	{ label: "title",       key: "title",              sortable: true, formatter: 'preferredLanguage' },
-	{ label: "owner",       key: "owner",              sortable: true },
+	//{ label: "owner",       key: "owner",              sortable: true },
 	{ label: "created",     key: "created",            sortable: true, formatter: 'friendlyDate' },
 	{ label: "state",       key: "preservation_state", sortable: false },
 	{ label: "actions",     key: "actions",            sortable: false },
@@ -178,11 +179,12 @@ export default {
 	},
 	methods: {
 		open(id) {
-			this.$router.push({ name: 'editor', params: { id: id }})
+			console.log("request to open dataset", id)
+			this.$router.push({ name: 'editor', params: { id: id, blah: 'woof' }})
 		},
 		del(id) {
 			this.error = null
-			apiClient.delete("/datasets/" + "05747df84d5a24ef3ca8d9cffb428de2")
+			apiClient.delete("/datasets/" + id)
 				.then((response) => {
 					// returns 204 or 200
 					vm.$root.showAlert("successfully deleted dataset", "success")

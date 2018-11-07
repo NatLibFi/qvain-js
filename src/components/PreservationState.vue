@@ -30,8 +30,8 @@
 }
 
 .animate-pop-down {
-	animation: pop-in 1.2s ease-out forwards;
-	/* animation: 2s ease-out 0s fadeFromGrey; */
+	/* animation: pop-in 1.2s ease-out forwards; */
+	animation: 2s ease-out 0s fadeFromGrey;
 
 	/*
 	animation: 0.8s ease-out 0s pop-in,

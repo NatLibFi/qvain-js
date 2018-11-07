@@ -16,7 +16,7 @@
 import axios from 'axios'
 import Loader from '../components/Loader.vue'
 
-const METAX_FILE_URL = 'https://metax-test.csc.fi/rest/files/'
+const METAX_FILE_URL = process.env.VUE_APP_METAX_FILEAPI_URL
 
 export default {
 	name: 'fileinfo-modal',

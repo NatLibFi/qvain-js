@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- (number widget) -->
-		<b-form-group horizontal label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
+		<b-form-group label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
 			<b-input-group>
 				<b-form-input id="jack" type="number" name="" :placeholder="uiPlaceholder" :step="schema['multipleOf']" :value="parent[property]" :state="schemaState" @input.native="updateValue" @focus.native="schemaState || $root.$emit('bv::show::popover', 'jack')" @blur.native="$root.$emit('bv::hide::popover', 'jack')"></b-form-input>
 				<b-input-group-append v-if="inArray">

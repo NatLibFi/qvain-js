@@ -8,14 +8,24 @@ export default {
 		{ label: 'Extra', uri: 'extra' },
 	],
 	//'': { 'tab': 'description' },
-	//'': { 'tab': 'extra', 'order': ["title", "description", "language"] },
-	'': { 'tab': 'extra' },
+	'': { 'tab': 'extra', 'order': ["title", "description", "language"] },
+	//'': { 'tab': 'extra' },
 	'#/definitions/langString': {
 		'widget': 'i18n-string',
 		'placeholder': "text",
 		//'label': "multilingual string",
 		//'description': "multilingual string",
 		'help': "An item possibly defined in multiple languages.",
+	},
+	'#/definitions/Person': {
+		'order': ["name", "email", "telephone", "identifier"],
+	},
+	'#/definitions/Organization': {
+		'order': ["name", "email", "telephone", "identifier"],
+		'postponed': ["is_part_of"],
+	},
+	'#/definitions/Document': {
+		'visible': false,
 	},
 	'/properties/title': {
 		'tab': 'description',
@@ -134,6 +144,39 @@ export default {
 		'tab': 'actors',
 		'title': "Creator of the dataset",
 		'description': "The principal researcher or researchers involved in producing the data.",
+	},
+	'/properties/creator/*/oneOf/*/properties/contributor_type/*': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "contributor_type",
+		},
+		'placeholder': "– choose contributor type –",
+		'label': "contributor type",
+		'description': "This is some fancy optional description for the contributor type field",
+		'help': "This is the optional help text for the contributor type field",
+	},
+	'/properties/creator/*/oneOf/*/properties/member_of/properties/contributor_type': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "contributor_type",
+		},
+		'placeholder': "– choose contributor type –",
+		'label': "contributor type",
+		'description': "This is some fancy optional description for the contributor type field",
+		'help': "This is the optional help text for the contributor type field",
+	},
+	'/properties/creator/*/oneOf/*/properties/contributor_role/*': {
+		'widget': 'refdata-list',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "contributor_role",
+		},
+		'placeholder': "– choose contributor role –",
+		'label': "contributor role",
+		'description': "This is some fancy optional description for the contributor role field",
+		'help': "This is the optional help text for the contributor role field",
 	},
 	// missing: distributor
 	'/properties/contributor': {

@@ -1,4 +1,4 @@
-import parseJwt from './jwt.js'
+import {parseJwt, getRandomString} from './jwt.js'
 
 const TokenName = "jwt"
 
@@ -73,6 +73,10 @@ function Auth(url) {
 		get: function() {
 			return this._user
 		}
+	})
+
+	Object.defineProperty(Auth.prototype, "loginUrl", {
+		get: function() { return this.url + '?' + getRandomString(8) }
 	})
 }
 Auth.prototype.constructor = Auth

@@ -20,10 +20,12 @@
 
 		<!-- actual component -->
 		<!-- keep-alive -->
+		<keep-alive>
 		<component v-if="activeTab === myTab" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
 			<p>{{ dataType }}</p>
 		</component>
 		<skip v-else :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
+		</keep-alive>
 		<!-- <div style="color: #eeeeee;">hidden myTab: {{ myTab }} {{ typeof myTab }} tab: {{ tab }} {{ typeof tab }} active: {{ activeTab }} {{ typeof activeTab }}</div> -->
 
 	</div>
@@ -37,6 +39,7 @@ import vSchemaArray from './v-schema-array.vue'
 import vSchemaInlineArray from './v-schema-inline-array.vue'
 import vSchemaAnyOf from './v-schema-anyof.vue'
 import vSchemaAllOf from './v-schema-allof.vue'
+import vSchemaOneOf from './v-schema-oneof.vue'
 import vSchemaEnum from './v-schema-enum.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
@@ -113,6 +116,10 @@ export default {
 			// enum is special because it should handle any type included in its values
 			if (this.schema.enum) {
 				return 'schema-enum'
+			}
+
+			if (this.schema.oneOf) {
+				return "schema-oneof"
 			}
 
 			switch(schemaType) {
@@ -295,6 +302,7 @@ export default {
 		'schema-inline-array': vSchemaInlineArray,
 		'schema-anyof': vSchemaAnyOf,
 		'schema-allof': vSchemaAllOf,
+		'schema-oneof': vSchemaOneOf,
 		'schema-enum': vSchemaEnum,
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,

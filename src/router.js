@@ -34,10 +34,13 @@ const routes = [
 	{ path: '/tags', component: Tags, props: false },
 	{ path: '/config', component: Config, props: false },
 	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
-	//{ path: '/editor', name: "editor", component: Editor, props: true, meta: { auth: true } },
-	{ path: '/dataset', name: "editor", component: Editor, props: false, meta: { auth: true }, redirect: '/dataset/description', children: [
+	//{ path: '/editor', name: "editorx", component: Editor, props: true, meta: { auth: true } },
+	//{ path: '/dataset', name: "editor", component: Editor, props: true, meta: { auth: true }, redirect: '/dataset/description', children: [
+	{ path: '/dataset', name: "new", redirect: '/dataset/new' },
+	{ path: '/dataset/:id', name: "editor", component: Editor, props: true, meta: { auth: true }, children: [
+		{ path: ':tab', name: "tab", component: SingleTab },
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab },
-		{ path: ':tab', component: SingleTab },
+		//{ path: ':tab', component: SingleTab },
 	]},
 	{ path: '/new', component: TabUi, props: false, meta: { auth: true }, redirect: '/new/description', children: [
 		{ path: ':tab/:project?/:relpath*', name: 'filesx', component: SingleTab },

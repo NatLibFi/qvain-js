@@ -1,14 +1,13 @@
 <template>
 	<div class="container-fluid">
 		<div>
+		id: {{ id }} isClone: {{ isClone }} params: {{ $router.params }}
 			<b-button-toolbar aria-label="Dataset toolbar" class="my-2">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new dataset" :to="{ name: 'editor', params: {id: null} }">New</b-btn>
-					<b-btn v-b-tooltip.hover title="Create new dataset" @click="init()">New</b-btn>
-					<b-btn v-b-tooltip.hover title="Empty schema" @click="setEmptySchema">Empty</b-btn>
-					<b-btn v-b-tooltip.hover title="Change title" @click="changeSchema">change title</b-btn>
-					<b-btn v-b-tooltip.hover title="Home" :to="{ name: 'home', params: {} }">Home</b-btn>
-					<b-btn v-b-tooltip.hover title="Clone this dataset as new">Clone</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new dataset" :to="{ name: 'new' }">Route</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new dataset" @click="create()">new</b-btn>
+					<b-btn v-b-tooltip.hover title="Clone this dataset as new" @click="clone()">Clone</b-btn>
+					<b-btn v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
 				</b-button-group>
 
 				<b-input-group size="sm" class="mx-1" prepend="dataset">
@@ -38,8 +37,15 @@
 				</b-button-group>
 			</b-button-toolbar>
 		</div>
-		<b-alert variant="danger" :show="!!error"><i class="fas fa-ban"></i> API error: {{ error }}</b-alert>
+		<b-alert variant="danger" :show="!!error" dismissible @dismissed="error=null"><i class="fas fa-ban"></i> API error: {{ error }}</b-alert>
 		<b-alert variant="warning"><font-awesome-icon icon="info"></font-awesome-icon> Publishing: I understand that publishing this dataset:</b-alert>
+
+		<dataset-json-modal id="dataset-json-modal">
+			nothing here
+		</dataset-json-modal>
+		<b-modal id="dataset-json-modal2">
+		</b-modal>
+
 		<b-card variant="dark" bg-variant="dark" text-variant="white" v-if="showPublishConfirmation">
 			<h3 slot="title">
 				<font-awesome-icon icon="info" fixed-width />
@@ -54,24 +60,26 @@
 			<div class="float-right">
 				<b-button variant="primary" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="times" fixed-width /> cancel</b-button>
 				<b-button variant="danger" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="info" fixed-width /> go somewhere</b-button>
-				<b-button variant="success" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
+				<b-button variant="success" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
 			</div>
 		</b-card>
 
 		<div v-if="ready" :key="renderKey">
+			<h2>Fairdata dataset</h2>
+			<ul class="nav nav-tabs">
+				<!-- TODO: errors could be shown in tabs also -->
+				<li v-for="tab in tabs" :key="tab.uri" class="nav-item">
+					<router-link class="nav-link" :to="`/dataset/${id}/${tab.uri}`">{{tab.label}}</router-link>
+				</li>
+			</ul>
 
-		<h2>Fairdata dataset</h2>
-		<ul class="nav nav-tabs">
-			<!-- TODO: errors could be shown in tabs also -->
-			<li v-for="tab in tabs" :key="tab.uri" class="nav-item">
-				<router-link class="nav-link" :to="`/dataset/${tab.uri}`">{{tab.label}}</router-link>
-			</li>
-		</ul>
+			<div class="container-fluid my-3">
+				<router-view></router-view>
+			</div>
 
-		<div class="container-fluid my-3">
-			<router-view></router-view>
 		</div>
-
+		<div v-else>
+			<font-awesome-icon icon="circle-notch" spin v-if="this.loading" />
 		</div>
 
 	</div>
@@ -80,8 +88,8 @@
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-import jsonPointer from 'json-pointer'
-import vSchemaTabSelector from '../widgets/v-schema-tab-selector.vue'
+import vSchemaTabSelector from '@/widgets/v-schema-tab-selector.vue'
+import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
 
 const RATE_LIMIT_MSECS = 3000
@@ -94,7 +102,11 @@ export default {
 		id: {
 			type: String,
 			//default: "056bffbc-c41e-dad4-853b-ea9100000001",
-			default: "05766a68-0519-65ba-885f-e1d375283063",
+			//default: "05766a68-0519-65ba-885f-e1d375283063",
+		},
+		isClone: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data: function() {
@@ -114,6 +126,7 @@ export default {
 			validator: null,
 			error: null,
 			ready: false,
+			loading: false,
 			renderKey: 666,
 			rateLimited: false,
 			showPublishConfirmation: false,
@@ -127,36 +140,25 @@ export default {
 			this.$store.commit('changeSchema')
 			//this.renderKey += 1
 		},
-		init() {
+		reset() {
+			console.log(this.$route, this.$route.params)
+			this.$set(this.$route.params, 'id', null)
+			console.log(this.$route.params)
+		},
+		init(id, isClone) {
 			// stop updating UI
 			this.ready = false
-			console.log("init called:", this.id)
-			/*
-			if (this.id) {
-				// get
-				console.warn("calling getDataset()")
-				this.getDataset(this.id)
-				//this.selectedSchema = Bundle['fairdata']['ida']
+			this.loading = true
+			this.error = null
+			let loader = id && id !== "new" ? this.getDataset(id) : this.newDataset(isClone)
 
-				// TODO: set schema here
-				//this.selectedSchema = Bundle['fairdata']['ida']
-				//this.$store.commit('loadSchema', this.selectedSchema.schema)
-				//this.$store.commit('loadHints', this.selectedSchema.ui)
-			}
-			else {
-				// new
-				console.log("setting default dataset schema")
-				//this.newDataset()
-				//this.$store.commit('loadData', {"title": {"en": "Example empty dataset", "fi": "Tietoaineiston esimerkki"}})
-				this.selectedSchema = Bundle['fairdata']['ida']
-				//this.$store.commit('loadSchema', this.selectedSchema.schema)
-				//this.$store.commit('loadHints', this.selectedSchema.ui)
+			console.log("init called with dataset id:", id, this.$route.params.id, this.$route.params.isClone)
+			console.log("loader:", loader)
+			console.log("[1] current route is", this.$route)
 
-			}
-			*/
-			let loader = this.id ? this.getDataset() : this.newDataset()
-
+			// load empty or existing dataset, then...
 			loader.then(() => {
+				// data loading succeeded, load schema
 				this.$nextTick(() => {
 					console.log("setting ready to true")
 					this.ready = true
@@ -164,46 +166,35 @@ export default {
 				this.selectedSchema = Bundle['fairdata']['ida']
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
+			}).then(() => {
+				// start validator
+				this.subscribeValidator()
+				// set this to debug store updates
+				if (DEBUG_STORE_UPDATES) {
+					this.$store.watch(() => this.$store.state.record, value => {
+						console.log("store watcher: record changed")
+					})
+				}
+			}).then(() => {
+				// have data, schema and validator; redirect to first tab
+				console.log("current route is", this.$route)
+				console.log("tabs:", this.selectedSchema.ui.tabs)
+				let firstTab = this.selectedSchema && this.selectedSchema.ui && this.selectedSchema.ui.tabs && this.selectedSchema.ui.tabs[0] && this.selectedSchema.ui.tabs[0].uri || null
+				console.log("first tab:", firstTab)
+				//this.$router.push({ name: 'editor', params: { id: this.id, tab: firstTab }})
+				//this.$router.push({ name: 'editor', params: { tab: firstTab }})
+				// Vue router doesn't react to changes to params
+				//this.$router.replace(this.$route.path + '/' + firstTab)
+				this.$router.replace({ name: 'tab', params: { tab: firstTab }})
 			})
-				.then(() => {
-					this.subscribeValidator()
-					// set this to debug store updates
-					if (DEBUG_STORE_UPDATES) {
-						this.$store.watch(() => this.$store.state.record, value => {
-							console.log("store watcher: record changed")
-						})
-					}
-				})
+			.catch(error => {
+				// if we haven't handled the error before in a more specific catch block...
+				if (!this.error) {
+					console.error(error)
+				}
+			})
 
-			//this.$store.commit('resetState')
-			//this.$store.state.schema.title["description"] = "old schema"
-			//let schemaKeys = Object.keys(this.$store.state.schema).length
-			//const roSchema = this.selectedSchema
-			//console.warn("calling loadBundle()", this.$store.state.record, this.$store.state.schema, schemaKeys)
-			/*
-			this.selectedSchema = Bundle['fairdata']['ida']
-			this.$store.commit('loadSchema', this.selectedSchema.schema)
-			this.$store.commit('loadHints', this.selectedSchema.ui)
-			*/
-			//if (schemaKeys < 1) {
-				//console.warn("loading roSchema:", roSchema)
-				//this.loadBundle(this.selectedSchema)
-
-				//this.loadBundle(roSchema)
-			//}
-			//setTimeout(this.loadBundle(this.selectedSchema), 2000)
-			//console.warn("called loadBundle()", this.$store.state.record, this.$store.state.schema)
-			//this.subscribeValidator()
-			//this.subscribeValidator()
-			//this.$nextTick(() => {
-			//	console.log("setting ready to true")
-			//	this.ready = true
-			//})
-			//this.selectedSchema = Bundle['fairdata']['ida']
-			//this.renderKey += 1
-			//this.$store.commit('loadSchema', this.selectedSchema.schema)
-			//this.$store.commit('loadHints', this.selectedSchema.ui)
-
+			this.loading = false
 		},
 		/*
 		runValidator: function() {
@@ -217,10 +208,15 @@ export default {
 
 			console.log("loaded schema/ui bundle")
 		},
-		newDataset: function() {
-			this.$store.commit('loadData', undefined)
-			this.$store.commit('resetMetadata')
-			//this.$store.commit('loadData', {"title": {"en": "Example empty dataset", "fi": "Tietoaineiston esimerkki"}})
+		newDataset: function(isClone) {
+			return new Promise((resolve, reject) => {
+				if (!isClone) {
+					console.log("resetting data", this.isClone, this.$route.params)
+					this.$store.commit('loadData', undefined)
+				}
+				this.$store.commit('resetMetadata')
+				resolve("loaded")
+			})
 		},
 		subscribeValidator: function() {
 			let vm = this
@@ -243,7 +239,6 @@ export default {
 					//console.warn("data == store? (after validate)", vm.validator.data == vm.$store.state.record, vm.validator.data, vm.$store.state.record)
 				}
 			})
-			//console.log("store:", this.$store, unsubscribe)
 		},
 		unsubscribeValidator: function() {
 			this.unsubscribeFunc()
@@ -258,8 +253,6 @@ export default {
 		getDataset: function(id) {
 			let vm = this
 
-			vm.error = null
-
 			return apiClient.get(`/datasets/${id}`)
 				.then(response => {
 					if (response && response.data) {
@@ -272,32 +265,17 @@ export default {
 					throw "empty response"
 				})
 				.catch(error => {
-				// keys: config, request, response
-					console.log("error GET:", error, Object.keys(error))
+					// catch API errors and set error, but rethrow to stop the promise chain
+
 					// print backend error `msg` if there is one; otherwise show error from object or string (e.g. browser's Network Error)
-					vm.setError (
+					vm.setError(
 						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
 						error.status
 					)
-					//vm.error = error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase()
-					if (error.response) {
-						console.log("details:", error.response)
-					}
+
+					// reject whatever comes next
+					return Promise.reject("api error")
 				})
-				/*
-				.then(() => {
-					this.$nextTick(() => {
-						console.log("setting ready to true")
-						this.ready = true
-					})
-					this.selectedSchema = Bundle['fairdata']['ida']
-					this.$store.commit('loadSchema', this.selectedSchema.schema)
-					this.$store.commit('loadHints', this.selectedSchema.ui)
-				})
-				.then(() => {
-					this.subscribeValidator()
-				})
-				*/
 		},
 		save() {
 			let vm = this
@@ -311,23 +289,22 @@ export default {
 
 
 			console.log("selectedSchema:", this.selectedSchema['id'], Object.keys(this.selectedSchema))
-
-			var apiCall
 			const isExisting = !!this.$store.state.metadata.id
+			console.log("saving dataset:", this.$store.getters.prunedDataset)
 
 			var apiCall = function(id) {
-				if (id) {
+				if (id && id !== "new") {
 					console.log("id exists:", this.$store.state.metadata.id)
 					return apiClient.put("/datasets/" + this.$store.state.metadata.id, {
-						dataset: this.$store.state.record,
+						dataset: this.$store.getters.prunedDataset,
 						type: 2,
 						schema: "metax-ida",
 						id: this.$store.state.metadata.id
 					})
 				} else {
 					console.log("id doesn't exist")
-					apiCall = apiClient.post("/datasets/", {
-						dataset: this.$store.state.record,
+					return apiClient.post("/datasets/", {
+						dataset: this.$store.getters.prunedDataset,
 						type: 2,
 						schema: "metax-ida"
 					})
@@ -346,7 +323,9 @@ export default {
 					}
 				})
 				.catch(error => {
-					vm.setError (
+					vm.$root.showAlert("Save failed!", "danger")
+
+					vm.setError(
 						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
 						error.status
 					)
@@ -356,16 +335,68 @@ export default {
 				})
 		},
 		confirmPublish() {
+			const isExisting = !!this.$store.state.metadata.id
+
+			if (!isExisting) {
+				this.$root.showAlert("Please save your dataset first", "danger")
+				return
+			}
 			this.showPublishConfirmation = true
 		},
 		publish() {
-			console.log("publish clicked")
+			const isExisting = !!this.$store.state.metadata.id
+			this.showPublishConfirmation = false
+
+			if (!isExisting) {
+				this.$root.showAlert("Please save your dataset first", "danger")
+				return
+			}
+
+			var vm = this
+
+			return apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
+				.then(response => {
+					console.log("save [success]:", response.status)
+					if (!isExisting) {
+						let id = response.data && response.data.id
+						this.$store.commit('setMetadata', {id: id})
+						vm.$root.showAlert("Success! Created as " + id, "success")
+					}
+					else {
+						vm.$root.showAlert("Dataset successfully saved", "primary")
+					}
+				})
+				.catch(error => {
+					vm.$root.showAlert("Save failed!", "danger")
+
+					vm.setError(
+						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
+						error.status
+					)
+				})
 		},
 		setError(msg, status) {
 			this.error = msg
 		},
 		resetError() {
 			this.error = null
+		},
+		open(id) {
+			// vue router doesn't detect changes to params if the route endpoint stays the same
+			console.log("request to open dataset", id)
+			this.$router.push({ name: 'editor', params: { id: id }})
+		},
+		create() {
+			// this is likely no-op except for changing the URL
+			this.$router.replace({ name: 'editor', params: { id: 'new' }})
+			// vue router doesn't detect changes to params if the route endpoint stays the same
+			this.init('new')
+		},
+		clone() {
+			// this is likely no-op except for changing the URL
+			this.$router.replace({ name: 'editor', params: { id: 'new', isClone: true }})
+			this.init('new', true)
+			this.$root.showAlert("Dataset successfully cloned. Remember to save this copy!", "success")
 		},
 	},
 	computed: {
@@ -386,13 +417,38 @@ export default {
 			//this.init()
 			console.log("selectedSchema() triggered")
 		},
+		'$route.params.id': function(id) {
+			console.warn("$route.params.id watcher triggered for id", id)
+		},
+		/*
+		'$route': function(route) {
+			console.warn("$route watcher triggered for route", route)
+		},
+		*/
+		'$route': {
+			deep: true,
+			handler: function (route) {
+				console.warn("$route (deep) watcher triggered for route", route)
+			}
+		},
+		id: function(id) {
+			console.warn("id watcher ran", id)
+			this.init(id)
+		},
 	},
 	components: {
 		'schema-tab-selector': vSchemaTabSelector,
+		'dataset-json-modal': DatasetJsonModal,
 	},
+	/*
+	beforeRouteUpdate (to, from, next) {
+		console.warn("beforeRouteUpdate() called", from, to)
+		next()
+	},
+	*/
 	created() {
 		console.log("[editor] created called, calling init")
-		this.init()
+		this.init(this.$route.params.id)
 	},
 	mounted() {
 		this.$nextTick(function () {

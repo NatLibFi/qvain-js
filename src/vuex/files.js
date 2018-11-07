@@ -3,8 +3,10 @@ import Vue from 'vue'
 import { stat } from 'fs'
 import axios from 'axios'
 
+
+
 let fileapi = axios.create({
-	baseURL: 'https://metax-test.csc.fi/rest/',
+	baseURL: process.env.VUE_APP_METAX_FILEAPI_URL || '/api/proxy',
 	timeout: 3000,
 	responseType: 'json',
 })
@@ -230,7 +232,7 @@ export default {
 		queryContent({ commit, state }, { dir, project }) {
 			return new Promise((resolve, reject) => {
 				fileapi
-					.get('/directories/files', {
+					.get('/files', {
 						params: {
 							project,
 							path: dir,

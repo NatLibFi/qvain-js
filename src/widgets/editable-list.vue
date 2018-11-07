@@ -1,5 +1,5 @@
 <template>
-	<b-form-group horizontal :label-cols="2" description="description" label="label" feedback="feedback" state="">
+	<b-form-group :label-cols="2" description="description" label="label" feedback="feedback" state="">
 		<b-list-group>
 			<b-list-group-item v-for="(value, index) in children" :key="index" @remove="remove(index)" :active="index == editing" @click="edit(index, $event)">
 				<b-input-group>
