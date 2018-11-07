@@ -49,6 +49,7 @@ import TabbedArray from './TabbedArray.vue'
 import AutoComplete from './refdata/autocomplete.vue'
 import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
+import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
@@ -305,6 +306,7 @@ export default {
 		'schema-enum': vSchemaEnum,
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,
+		'reference-data': ReferenceData,
 		'i18n-string': i18nString,
 		'i18n-textarea': i18nTextarea,
 		'tabbed-array': TabbedArray,
