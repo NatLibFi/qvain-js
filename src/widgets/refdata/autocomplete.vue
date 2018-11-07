@@ -2,7 +2,7 @@
 	<div>
 		<!-- autocomplete widget -->
 
-		<b-form-group horizontal :label-cols="2" :description="uiDescription" :label="uiLabel">
+		<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel">
 			<transition-group name="tags" tag="div" class="my-2">
 				<b-badge :ref="`badge-${i}`" variant="secondary" class="p-1 mr-2 animated-tag" v-for="(value, i) in values" :key="value.id" @mouseenter="hover" @mouseleave="unhover" @click="values.splice(i, 1)">
 					<h6>{{ value.label[searchLanguage] || value.label['und'] }}

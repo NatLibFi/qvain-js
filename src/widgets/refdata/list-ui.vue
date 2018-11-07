@@ -156,7 +156,6 @@ export default {
 			filterApiFields: true,
 			lang: 'en',
 			apiFields: ['code', 'id', 'label', 'type', 'uri'],
-			icon: { faExclamationTriangle, faSync, faQuestionCircle },
 		}
 	},
 	methods: {
