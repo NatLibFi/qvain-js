@@ -1,5 +1,5 @@
 <template>
-	<b-form-group horizontal :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
+	<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
 		<Multiselect v-model="selectedOptions"
 			track-by="identifier"
 			:internalSearch="false"
