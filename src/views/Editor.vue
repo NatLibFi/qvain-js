@@ -8,6 +8,7 @@
 					<b-btn v-b-tooltip.hover title="Create new dataset" @click="create()">new</b-btn>
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new" @click="clone()">Clone</b-btn>
 					<b-btn v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
+					<b-btn v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
 				</b-button-group>
 
 				<b-input-group size="sm" class="mx-1" prepend="dataset">
@@ -40,11 +41,8 @@
 		<b-alert variant="danger" :show="!!error" dismissible @dismissed="error=null"><i class="fas fa-ban"></i> API error: {{ error }}</b-alert>
 		<b-alert variant="warning"><font-awesome-icon icon="info"></font-awesome-icon> Publishing: I understand that publishing this dataset:</b-alert>
 
-		<dataset-json-modal id="dataset-json-modal">
-			nothing here
-		</dataset-json-modal>
-		<b-modal id="dataset-json-modal2">
-		</b-modal>
+		<dataset-json-modal id="dataset-json-modal"></dataset-json-modal>
+		<dataset-overview-modal id="dataset-overview-modal"></dataset-overview-modal>
 
 		<b-card variant="dark" bg-variant="dark" text-variant="white" v-if="showPublishConfirmation">
 			<h3 slot="title">
@@ -90,6 +88,7 @@ import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
 import vSchemaTabSelector from '@/widgets/v-schema-tab-selector.vue'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
+import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
 
 const RATE_LIMIT_MSECS = 3000
@@ -439,6 +438,7 @@ export default {
 	components: {
 		'schema-tab-selector': vSchemaTabSelector,
 		'dataset-json-modal': DatasetJsonModal,
+		'dataset-overview-modal': DatasetOverviewModal,
 	},
 	/*
 	beforeRouteUpdate (to, from, next) {
