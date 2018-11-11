@@ -1,11 +1,11 @@
 <template>
-	<component is="schema-tab-selector" :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></component>
+	<TabSelector :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></TabSelector>
 </template>
 
 <script>
 import jsonPointer from 'json-pointer'
 
-import vSchemaTabSelector from '../widgets/v-schema-tab-selector.vue'
+import TabSelector from '@/widgets/TabSelector.vue'
 
 export default {
 	name: 'singletab',
@@ -51,7 +51,7 @@ export default {
 		},
 	},
 	components: {
-		'schema-tab-selector': vSchemaTabSelector,
+		'TabSelector': TabSelector,
 	},
 	created() {
 		console.log("SingleTab called", this.$route.path)

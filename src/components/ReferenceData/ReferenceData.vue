@@ -19,8 +19,8 @@
 
 <script>
 
-import vSchemaBase from '../../widgets/v-schema-base.vue';
-import { esApiSearchClient } from '../../widgets/refdata/es.js';
+import vSchemaBase from '@/widgets/base.vue';
+import { esApiSearchClient } from '@/widgets/refdata/es.js';
 
 import Multiselect from 'vue-multiselect';
 

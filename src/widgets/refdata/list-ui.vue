@@ -56,7 +56,7 @@
 </style>
 
 <script>
-import vSchemaBase from '../v-schema-base.vue'
+import vSchemaBase from '../base.vue'
 import esApiClient from './es.js'
 import Multiselect from 'vue-multiselect'
 

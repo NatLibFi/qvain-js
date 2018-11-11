@@ -3,7 +3,8 @@
 		<b-card no-body border-variant="light">
 			<b-list-group flush>
 				<b-list-group-item v-for="(child, index) in value" :key="index" @remove="remove(index)">
-					<component is="schema-tab-selector" :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></component>
+					<TabSelector :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" 
+					:depth="depth" @delete="deleteElement"></TabSelector>
 				</b-list-group-item>
 				<empty-note v-if="value.length < 1">no items</empty-note>
 			</b-list-group>
@@ -23,11 +24,11 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 
 export default {
 	extends: vSchemaBase,
-	name: 'schema-inline-array',
+	name: 'InlineArray',
 	description: 'generic array, inline',
 	schematype: 'array',
 	data: function() {

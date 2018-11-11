@@ -7,10 +7,6 @@
 import genid from '@/lib/genid.js'
 import EmptyNote from '@/components/EmptyNote.vue'
 //import {pathToData} from '../schematodata.js'
-//import vSchemaNumber from './v-schema-number.vue'
-//import vSchemaString from './v-schema-string.vue'
-//import vSchemaObject from './v-schema-object.vue'
-//import Mapping from './mapping.js'
 
 /* This creates cyclic dependencies because the components are nested: A creates a B which creates an A.
  *

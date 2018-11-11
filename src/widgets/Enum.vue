@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 
 export default {
 	extends: vSchemaBase,

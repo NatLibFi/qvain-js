@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 import { dataPointer } from '../../tmp/datapointer.js'
 
 export default {
@@ -117,14 +117,6 @@ export default {
 		}
 	},
 	created() {
-		//console.log("v-schema-string:", this, this.$data)
-		/*
-			console.log("zoink", "path:", this.path, "data:", this.datapath)
-			this.$store.commit('setPath', {
-				path: this.datapath,
-				value: "",
-			})
-		*/
 	},
 }
 </script>

@@ -9,16 +9,16 @@
 		<div v-for="(sub, i) in schema['allOf']" :key="sub">
 			{{ sub['type'] }} {{ i }}
 
-			<component is="schema-tab-selector" :schema="sub" :path="newPath('allOf/' + i)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab"></component>
+			<TabSelector :schema="sub" :path="newPath('allOf/' + i)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab"></TabSelector>
 		</div>
 
-		<component is="schema-tab-selector" :schema="merged" :path="newPath('allOf')" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab"></component>
+		<TabSelector :schema="merged" :path="newPath('allOf')" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab"></TabSelector>
 		
 	</div>
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 
 export default {
 	extends: vSchemaBase,

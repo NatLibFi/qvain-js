@@ -32,15 +32,15 @@
 </template>
 
 <script>
-import vSchemaNumber from './v-schema-number.vue'
-import vSchemaString from './v-schema-string.vue'
-import vSchemaObject from './v-schema-object.vue'
-import vSchemaArray from './v-schema-array.vue'
-import vSchemaInlineArray from './v-schema-inline-array.vue'
-import vSchemaAnyOf from './v-schema-anyof.vue'
-import vSchemaAllOf from './v-schema-allof.vue'
-import vSchemaOneOf from './v-schema-oneof.vue'
-import vSchemaEnum from './v-schema-enum.vue'
+import vSchemaNumber from './Number.vue'
+import vSchemaString from './String.vue'
+import vSchemaObject from './Object.vue'
+import vSchemaArray from './Array.vue'
+import vSchemaInlineArray from './InlineArray.vue'
+import vSchemaAnyOf from './anyOf.vue'
+import vSchemaAllOf from './allOf.vue'
+import vSchemaOneOf from './oneOf.vue'
+import vSchemaEnum from './Enum.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
@@ -54,7 +54,7 @@ import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
 export default {
-	name: 'schema-tab-selector',
+	name: 'TabSelector',
 	description: "internal dispatch wrapper",
 	widgettype: 'any',
 	/*
