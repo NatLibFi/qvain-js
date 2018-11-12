@@ -1,5 +1,9 @@
 <template>
 	<b-form>
+		<b-form-group label="Identifier" label-for="identifier">
+			<b-form-input id="identifier" type="text" v-model="person.identifier" required placeholder="Enter identifier" :disabled="edit"></b-form-input>
+		</b-form-group>
+
 		<b-form-group id="exampleInputGroup2" label="Your Name:" label-for="exampleInput2">
 			<b-form-input id="exampleInput2" type="text" v-model="person.name" required placeholder="Enter name"></b-form-input>
 		</b-form-group>
@@ -14,7 +18,21 @@
 
 export default {
 	name: 'person',
-	data() {
+	model: {
+		prop: 'person',
+		event: 'input'
+	},
+	props: {
+		person: {
+			type: Object,
+			required: true
+		},
+		edit: {
+			type: Boolean,
+			default: false
+		}
+	},
+	/*data() {
 		return {
 			person: {
 				identifier: '',
@@ -23,9 +41,8 @@ export default {
 				phone: ''
 			}
 		}
-	},
+	},*/
 	methods: {
-
 	},
 	computed: {
 
