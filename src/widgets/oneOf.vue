@@ -14,13 +14,14 @@
 
 		<b-textarea v-if="false" :rows="15" :value="JSON.stringify(schemaForChosen, null, 2)"></b-textarea>
 
-		<component is="schema-tab-selector" v-if="chosen !== null" :schema="schemaForChosen" :path="newPath('oneOf/' + chosen)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="'oneOf-'+chosen"></component>
+		<TabSelector v-if="chosen !== null" :schema="schemaForChosen" :path="newPath('oneOf/' + chosen)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" 
+		:depth="depth" :key="'oneOf-'+chosen"></TabSelector>
 
 	</div>
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 
 // TODO: find a more generic way to detect relevant oneOf schema
 const IDENTIFYING_FIELD = '@type'

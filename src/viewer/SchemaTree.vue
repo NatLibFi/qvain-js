@@ -12,11 +12,11 @@
 		</div>
 		<ul class="treeview fa-ul" v-show="open" v-if="isFolder">
 			<div class="item" v-for="(sub, key) in schema" :key="sub.id">
-				<schema-tree v-if="typeof sub === 'object'" class="item" :schema="sub" :path="path + '/' + key" :name="key" :pref="pref" :edit="edit" :tab="myTab" v-on="$listeners"></schema-tree>
+				<SchemaTree v-if="typeof sub === 'object'" class="item" :schema="sub" :path="path + '/' + key" :name="key" :pref="pref" :edit="edit" :tab="myTab" v-on="$listeners"></SchemaTree>
 				<li v-else>
 					<font-awesome-icon :icon="icon.faSquare" /> {{ key }}</li>
 			</div>
-			<!-- <schema-tree class="item" v-for="(sub, key) in schema" :schema="sub" :path="path + '/' + key" :name="key" :key="sub.id"></schema-tree> -->
+			<!-- <SchemaTree class="item" v-for="(sub, key) in schema" :schema="sub" :path="path + '/' + key" :name="key" :key="sub.id"></SchemaTree> -->
 		</ul>
 	</li>
 </template>
@@ -31,7 +31,7 @@ import {
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 
 export default {
-	name: 'schema-tree',
+	name: 'SchemaTree',
 	props: ['schema', 'path', 'name', 'pref', 'edit', 'tab'],
 	data: function() {
 		return {
@@ -91,7 +91,7 @@ export default {
 		},
 	},
 	components: {
-		'schema-tree': require('./v-schema-tree.vue').default,
+		'SchemaTree': require('./SchemaTree.vue').default,
 		FontAwesomeIcon,
 	},
 	created: function() {

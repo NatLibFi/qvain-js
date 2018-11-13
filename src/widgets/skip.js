@@ -27,7 +27,7 @@ export default {
 
 				//console.log(`skip (${myPath}) from (${context.props.path}) with key (${key})`, context.props.schema.properties[key])
 
-				let child = createElement('schema-tab-selector', {
+				let child = createElement('TabSelector', {
 					props: {
 						schema: context.props.schema.properties[key],
 						path: myPath,
@@ -60,6 +60,6 @@ export default {
 	},
 	props: ['schema', 'path', 'value', 'parent', 'property', 'tab', 'activeTab'],
 	components: {
-		'schema-tab-selector': require('./v-schema-tab-selector.vue'),
+		'TabSelector': require('./TabSelector.vue'),
 	},
 }

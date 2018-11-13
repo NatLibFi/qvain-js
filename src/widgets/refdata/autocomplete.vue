@@ -54,7 +54,7 @@
 </style>
 
 <script>
-import vSchemaBase from '../v-schema-base.vue'
+import vSchemaBase from '../base.vue'
 import { esApiSearchClient } from './es.js'
 //var debounce = require('lodash.debounce');
 import debounce from 'lodash.debounce'

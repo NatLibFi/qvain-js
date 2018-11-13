@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import vSchemaBase from '../v-schema-base.vue'
+import vSchemaBase from '../base.vue'
 import esApiClient, {convertToSchemaFields, groupByParent} from './es.js'
 
 

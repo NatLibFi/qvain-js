@@ -11,7 +11,8 @@
 		<b-list-group flush>
 			<b-list-group-item v-for="(child, index) in value" :key="index">
 			<!-- style="border-left: 2px solid #aaaaaa; padding-left: 1em; margin-left: 1em;" -->
-				<component is="schema-tab-selector" :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement" :key="'array-' + index"></component>
+				<TabSelector :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" 
+			@delete="deleteElement" :key="'array-' + index"></TabSelector>
 			</b-list-group-item>
 			<b-list-group-item v-if="!value || value.length < 1"><empty-note>no items</empty-note></b-list-group-item>
 		</b-list-group>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 import ValidationPopover from '@/components/ValidationPopover.vue'
 
 export default {
