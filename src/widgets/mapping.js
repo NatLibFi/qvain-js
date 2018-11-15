@@ -10,7 +10,7 @@ export default {
 	'schema-enum': require('./v-schema-enum.vue').default,
 	'widget-googlemaps': require('./widget-googlemaps.vue').default,
 	'refdata-list': require('./refdata/list.vue').default,
-	'reference-data': require('../components/ReferenceData/ReferenceData.vue').default,
+	'reference-data': require('../components/ReferenceData.vue').default,
 	'i18n-string': require('./i18n-string/i18n-string.vue').default,
 	'i18n-textarea': require('./i18n-string/i18n-textarea.vue').default,
 	'tabbed-array': require('./TabbedArray.vue').default,

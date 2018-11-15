@@ -55,12 +55,22 @@ export default function esApiClient(index, doctype) {
 		})
 }
 
-export function esApiSearchClient(index, doctype, searchterm) {
-	return axios.get(
-		`${apiUrl}/${index}/${doctype}/_search?q=${searchterm}&size=20&pretty=1&filter_path=hits.hits._source`, {
-			timeout: 5000,
-			responseType: 'json',
-		})
+export function esApiSearchClient(index, doctype, searchterm, count) {
+	const params = {
+		size: count,
+		pretty: 1,
+		filter_path: 'hits.hits._source'
+	}
+
+	if (searchterm !== '' && searchterm !== undefined) {
+		params.q = searchterm;
+	}
+
+	return axios.get(`${apiUrl}/${index}/${doctype}/_search`, {
+		params,
+		timeout: 5000,
+		responseType: 'json',
+	})
 }
 
 // Reduce callback function that takes a Elastic Search response.data.hits.hits array

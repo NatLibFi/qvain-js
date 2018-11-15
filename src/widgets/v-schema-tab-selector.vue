@@ -49,7 +49,7 @@ import TabbedArray from './TabbedArray.vue'
 import AutoComplete from './refdata/autocomplete.vue'
 import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
-import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
+import ReferenceData from '../components/ReferenceData.vue'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
@@ -160,7 +160,7 @@ export default {
 				return
 			}
 
-			console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
+			//console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
 
 			let target, key // eslint-disable-line no-unused-vars
 
@@ -220,7 +220,7 @@ export default {
 			return ["string", "number", "integer", "object", "array", "boolean", "null"]
 		},
 		widget: function() {
-			console.log(`widget chain for ${this.path}:`, this.selectedWidget, this.uiForSchema['widget'], this.uiForDef['widget'], this.defaultWidget(this.dataType))
+			//console.log(`widget chain for ${this.path}:`, this.selectedWidget, this.uiForSchema['widget'], this.uiForDef['widget'], this.defaultWidget(this.dataType))
 			return this.selectedWidget || this.uiForSchema.widget || this.uiForDef.widget || this.defaultWidget(this.dataType)
 		},
 		widgetProps: function() {
@@ -258,14 +258,14 @@ export default {
 	},
 	watch: {
 		schema: function() {
-			console.log("selector: schema watcher ran for", this.path)
+			//console.log("selector: schema watcher ran for", this.path)
 			if (this.path !== this.cachedPath) {
 				console.warn("selector (" + this.path + "): VNode was recycled!")
 			}
 			//if (this.$store.state.record === undefined) {
 			//if (!this.path && this.value === undefined) {
 			if (this.value === undefined) {
-				console.log("schema change, undefined value")
+				//console.log("schema change, undefined value")
 				this.setDataType(this.schema['type'])
 				this.vivicate()
 			}
@@ -317,7 +317,7 @@ export default {
 	created() {
 		// fail-safe for inadvertent VNode recycling
 		this.cachedPath = this.path
-		console.log("schema-tab-selector(", this.path, "): calling setDataType (created) with", this.schema['type'], "and calling vivicate()")
+		//console.log("schema-tab-selector(", this.path, "): calling setDataType (created) with", this.schema['type'], "and calling vivicate()")
 		this.setDataType(this.schema['type'])
 
 		// This should try to catch invalid data in case the schema (outside of the application) has changed

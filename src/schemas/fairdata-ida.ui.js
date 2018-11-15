@@ -55,7 +55,9 @@ export default {
 			'esDoctype': "language",
 			'typeahead': true,
 			'tags': false,
-			'multiselect': true
+			'multiselect': true,
+			'async': true,
+			'count': 20
 		},
 		'placeholder': "– choose language –",
 	},
@@ -82,24 +84,23 @@ export default {
 	},
 	'/properties/field_of_science': {
 		'tab': 'description',
-		'label': "field of science",
+		'label': "Field of science",
 		'title': "Field of Science",
 		'description': "Field of science in the classification of the Ministry of Education and Culture.",
-		'widget': "schema-inline-array",
-	},
-	'/properties/field_of_science/*': {
-		'widget': 'refdata-list',
+		'widget': 'reference-data',
 		'props': {
 			'esIndex': "reference_data",
 			'esDoctype': "field_of_science",
 			'optgroups': true,
-		},
-		'placeholder': "– choose field of science –",
-		'label': "field of science",
-		'title': "Field of Science",
-		'description': "This is some fancy optional description for the field of science field",
-		'help': "This is the optional help text for the field of science field",
+			'typeahead': true,
+			'tags': false,
+			'multiselect': true,
+			'async': false,
+			'count': 100
+		}
 	},
+
+
 	'/properties/temporal': {
 		'tab': 'coverage',
 		'title': "Temporal coverage",
