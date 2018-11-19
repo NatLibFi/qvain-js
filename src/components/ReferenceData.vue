@@ -1,6 +1,6 @@
 <template>
 	<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
-		<Multiselect v-if="parentItems.length > 0"
+		<Multiselect v-if="optionsShouldBeGrouped"
 			v-model="selectedOptions"
 			track-by="identifier"
 			:internalSearch="!async"
@@ -59,7 +59,8 @@ export default {
 		count: { type: Number, default: 10000 },
 		typeahead: { type: Boolean, dafault: false },
 		tags: { type: Boolean, default: false },
-		multiselect: { type: Boolean, default: false }
+		multiselect: { type: Boolean, default: false },
+		grouped: { type: Boolean, required: false }
 	},
 	data() {
 		return {
@@ -85,6 +86,9 @@ export default {
 		childrenItems() {
 			return this.optionItems.filter(item => !item.hasChildren);
 		},
+		optionsShouldBeGrouped() {
+			return this.grouped && this.parentItems.length > 0;
+		},
 		options() {
 			// empty case
 			if (!this.responseHasResults) {
@@ -92,7 +96,7 @@ export default {
 			}
 
 			// case with children
-			if (this.parentItems.length > 0) {
+			if (this.optionsShouldBeGrouped) {
 				return this.parentItems.map(parent => {
 					const children = this.childrenItems.filter(child => parent.children.includes(child.id));
 					return { ...parent, children };
@@ -113,7 +117,11 @@ export default {
 			return {
 				id: es.id,
 				identifier: es.uri,
-				pref_label: es.label[this.$root.language || 'en'],
+				pref_label: es.label[this.$root.language || 'en'] || es.label['und'],
+				// TODO: test if label are shown corretly
+				// place_uri is not set correctly??
+				// loading all the data takes too long
+				// we need a search?
 				children: es.child_ids,
 				hasChildren: es.has_children
 			};

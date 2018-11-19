@@ -63,7 +63,7 @@ export function esApiSearchClient(index, doctype, searchterm, count) {
 	}
 
 	if (searchterm !== '' && searchterm !== undefined) {
-		params.q = searchterm;
+		params.q = '*' + searchterm + '*';
 	}
 
 	return axios.get(`${apiUrl}/${index}/${doctype}/_search`, {

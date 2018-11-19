@@ -96,7 +96,8 @@ export default {
 			'tags': false,
 			'multiselect': true,
 			'async': false,
-			'count': 100
+			'count': 100,
+			'grouped': true,
 		}
 	},
 
@@ -112,11 +113,22 @@ export default {
 		'description': "Area covered by the dataset, e.g. places of observations.",
 	},
 	'/properties/spatial/*/properties/place_uri': {
-		'widget': 'refdata-list',
+		/*'widget': 'refdata-list',
 		'props': {
 			'esIndex': "reference_data",
 			'esDoctype': "location",
 			//x'optgroups': true,
+		},*/
+		'widget': 'reference-data',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "location",
+			'typeahead': true,
+			'tags': false,
+			'multiselect': false,
+			'async': true,
+			'count': 100,
+			'grouped': false,
 		},
 		'placeholder': "– choose location –",
 		'label': "location",
