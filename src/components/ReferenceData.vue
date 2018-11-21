@@ -118,10 +118,6 @@ export default {
 				id: es.id,
 				identifier: es.uri,
 				pref_label: es.label[this.$root.language || 'en'] || es.label['und'],
-				// TODO: test if label are shown corretly
-				// place_uri is not set correctly??
-				// loading all the data takes too long
-				// we need a search?
 				children: es.child_ids,
 				hasChildren: es.has_children
 			};
@@ -137,7 +133,7 @@ export default {
 		// TODO: if the es server is under too much stress debounce could be implemented
 		async search(searchQuery) {
 			if (!searchQuery) {
-				return;  // prevent empty search after removing characters from input
+				return; // prevent empty search after removing characters from input
 			}
 
 			this.isLoading = true;
@@ -148,7 +144,7 @@ export default {
 		}
 	},
 	async created() {
-		this.selectedOptions = this.value;
+		this.selectedOptions = Object.keys(this.value).length === 0 ? null : this.value;
 		if (!this.async) {
 			this.getAllReferenceData();
 		}
