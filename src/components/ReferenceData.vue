@@ -144,7 +144,8 @@ export default {
 		}
 	},
 	async created() {
-		this.selectedOptions = Object.keys(this.value).length === 0 ? null : this.value;
+		const isEmptyObject = this.value && typeof this.value === 'object' && Object.keys(this.value).length === 0;
+		this.selectedOptions = isEmptyObject ? null : this.value;
 		if (!this.async) {
 			this.getAllReferenceData();
 		}
