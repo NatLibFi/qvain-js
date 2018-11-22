@@ -59,7 +59,6 @@ export default {
 		count: { type: Number, default: 10000 },
 		typeahead: { type: Boolean, dafault: false },
 		tags: { type: Boolean, default: false },
-		//multiselect: { type: Boolean, default: false },
 		grouped: { type: Boolean, required: false }
 	},
 	data() {
