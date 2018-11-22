@@ -338,12 +338,6 @@ export default {
 		'description': "*** description for access rights goes here ***"
 	},
 	'/properties/access_rights/properties/access_type': {
-		// TODO: check this, might not be correct? Store has object inside it.
-		/*'widget': 'refdata-list',
-		'props': {
-			'esIndex': "reference_data",
-			'esDoctype': "access_type",
-		},*/
 		'widget': 'reference-data',
 		'props': {
 			'esIndex': "reference_data",
