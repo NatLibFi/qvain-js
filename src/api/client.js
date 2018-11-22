@@ -47,7 +47,7 @@ const addDataset = dataset => {
 		dataset,
 		type: 2,
 		schema: "metax-ida"
-	})
+	});
 }
 
 const updateDataset = id => dataset => {
@@ -59,10 +59,14 @@ const updateDataset = id => dataset => {
 	});
 }
 
+const getDataset = id =>
+	client.get('/datasets/' + id);
+
 export default {
 	client,
 	addDataset,
-	updateDataset
+	updateDataset,
+	getDataset
 };
 
 

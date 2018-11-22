@@ -250,31 +250,29 @@ export default {
 			return Bundle[bundle]
 		},
 		getDataset: function(id) {
-			let vm = this
-
 			return api.client.get(`/datasets/${id}`)
 				.then(response => {
-					if (response && response.data) {
-						console.log("load [success]:", response, response.data)
-						// Object() will create an empty object if undefined or null, otherwise returns the value
-						this.$store.commit('loadData', Object(response.data.dataset))
-						this.$store.commit('setMetadata', {id: id})
-						return
-					}
-					throw "empty response"
+					this.$store.commit('loadData', response.data.dataset);
+					this.$store.commit('setMetadata', {id: id});
 				})
 				.catch(error => {
 					// catch API errors and set error, but rethrow to stop the promise chain
-
 					// print backend error `msg` if there is one; otherwise show error from object or string (e.g. browser's Network Error)
-					vm.setError(
+					this.setError(
 						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
 						error.status
-					)
-
-					// reject whatever comes next
+					);
 					return Promise.reject("api error")
 				})
+		},
+		setErrorFromResponse(error) {
+			this.$root.showAlert("Save failed!", "danger");
+			const dataMessage = error.response &&
+				error.response.data &&
+				error.response.data.msg;
+
+			const errorMessage = error.message;
+			this.error = (dataMessage || errorMessage || "unknown error").toLowerCase();
 		},
 		save() {
 			// TODO: what is rate limit?
@@ -292,19 +290,11 @@ export default {
 				}
 			}
 
-			const failure = error => {
-					this.$root.showAlert("Save failed!", "danger");
-					const dataMessage = error.response && error.response.data && error.response.data.msg;
-					const errorMessage = error.message;
-					this.setError(
-						(dataMessage || errorMessage || "unknown error").toLowerCase(),
-						error.status
-					);
-				}
+
 
 			(isExisting ? api.updateDataset(id) : api.addDataset)(dataset)
 				.then(processResults)
-				.catch(failure);
+				.catch(setErrorFromResponse);
 		},
 		confirmPublish() {
 			const isExisting = !!this.$store.state.metadata.id
