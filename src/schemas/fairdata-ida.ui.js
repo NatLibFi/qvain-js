@@ -80,7 +80,6 @@ export default {
 		'tab': 'description',
 		'title': "Subject heading",
 		'description': "Choose subject headings from the General Finnish Ontology (YSO). It also has English and Swedish translations of the terms.",
-		/*'widget': 'autocomplete',*/
 		'widget': 'reference-data',
 		'props': {
 			'esIndex': "reference_data",
