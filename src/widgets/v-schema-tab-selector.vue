@@ -50,6 +50,7 @@ import AutoComplete from './refdata/autocomplete.vue'
 import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
 import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
+import DateRange from '../components/DateRange.vue'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
@@ -313,6 +314,7 @@ export default {
 		'autocomplete': AutoComplete,
 		'browser': Filebrowser,
 		'skip': Skip,
+		'date-range': DateRange,
 	},
 	created() {
 		// fail-safe for inadvertent VNode recycling

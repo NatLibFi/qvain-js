@@ -16,4 +16,5 @@ export default {
 	'tabbed-array': require('./TabbedArray.vue').default,
 	'autocomplete': require('./refdata/autocomplete.vue').default,
 	'browser': require('../filebrowser/filebrowser.vue').default,
+	'date-range': require('../components/DateRange.vue').default,
 }
