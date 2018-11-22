@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import apiClient from '@/api/client.js'
+import api from '@/api/client.js'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import format from 'date-fns/format'
 
@@ -63,7 +63,7 @@ export default {
 			vm.error = null
 
 			console.log("calling API for dataset", dataset)
-			apiClient.get(`/datasets/${dataset}/versions`)
+			api.client.get(`/datasets/${dataset}/versions`)
 				.then(response => {
 					console.log("reponse:", response.data)
 					if (!Array.isArray(response.data)) {

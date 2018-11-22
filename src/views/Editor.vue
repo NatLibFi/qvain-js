@@ -85,7 +85,7 @@
 
 <script>
 import Bundle from '@/schemas/bundle.js'
-import apiClient from '@/api/client.js'
+import api from '@/api/client.js'
 import vSchemaTabSelector from '@/widgets/v-schema-tab-selector.vue'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
@@ -252,7 +252,7 @@ export default {
 		getDataset: function(id) {
 			let vm = this
 
-			return apiClient.get(`/datasets/${id}`)
+			return api.client.get(`/datasets/${id}`)
 				.then(response => {
 					if (response && response.data) {
 						console.log("load [success]:", response, response.data)
@@ -277,61 +277,34 @@ export default {
 				})
 		},
 		save() {
-			let vm = this
+			// TODO: what is rate limit?
+			const id = this.$store.state.metadata.id;
+			const dataset = this.$store.getters.prunedDataset;
 
-			vm.error = null
-			vm.rateLimited = true
+			const isExisting = id !== null && typeof id !== 'undefined';
 
-			setTimeout(function() {
-				vm.rateLimited = false
-			}, RATE_LIMIT_MSECS)
-
-
-			console.log("selectedSchema:", this.selectedSchema['id'], Object.keys(this.selectedSchema))
-			const isExisting = !!this.$store.state.metadata.id
-			console.log("saving dataset:", this.$store.getters.prunedDataset)
-
-			var apiCall = function(id) {
-				if (id && id !== "new") {
-					console.log("id exists:", this.$store.state.metadata.id)
-					return apiClient.put("/datasets/" + this.$store.state.metadata.id, {
-						dataset: this.$store.getters.prunedDataset,
-						type: 2,
-						schema: "metax-ida",
-						id: this.$store.state.metadata.id
-					})
+			const processResults = response => {
+				if (!isExisting) {
+					this.$store.commit('setMetadata', {id: response.data.id});
+					this.$root.showAlert("Success! Created as " + id, "success");
 				} else {
-					console.log("id doesn't exist")
-					return apiClient.post("/datasets/", {
-						dataset: this.$store.getters.prunedDataset,
-						type: 2,
-						schema: "metax-ida"
-					})
+					this.$root.showAlert("Dataset successfully saved", "primary");
 				}
-			}.bind(this)(this.$store.state.metadata.id)
-			apiCall
-				.then(response => {
-					console.log("save [success]:", response.status)
-					if (!isExisting) {
-						let id = response.data && response.data.id
-						this.$store.commit('setMetadata', {id: id})
-						vm.$root.showAlert("Success! Created as " + id, "success")
-					}
-					else {
-						vm.$root.showAlert("Dataset successfully saved", "primary")
-					}
-				})
-				.catch(error => {
-					vm.$root.showAlert("Save failed!", "danger")
+			}
 
-					vm.setError(
-						error.response && error.response.data && error.response.data.msg ? error.response.data.msg : (error.message || error || "unknown error").toLowerCase(),
+			const failure = error => {
+					this.$root.showAlert("Save failed!", "danger");
+					const dataMessage = error.response && error.response.data && error.response.data.msg;
+					const errorMessage = error.message;
+					this.setError(
+						(dataMessage || errorMessage || "unknown error").toLowerCase(),
 						error.status
-					)
-					if (error.response) {
-						console.log("details:", error.response)
-					}
-				})
+					);
+				}
+
+			(isExisting ? api.updateDataset(id) : api.addDataset)(dataset)
+				.then(processResults)
+				.catch(failure);
 		},
 		confirmPublish() {
 			const isExisting = !!this.$store.state.metadata.id
@@ -353,7 +326,7 @@ export default {
 
 			var vm = this
 
-			return apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
+			return api.client.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 				.then(response => {
 					console.log("save [success]:", response.status)
 					if (!isExisting) {

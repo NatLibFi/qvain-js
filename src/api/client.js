@@ -13,15 +13,6 @@ const apiUrl = function(str) {
 	return str
 }(process.env.VUE_APP_QVAIN_API_URL)
 
-/*
-export default function qvainApiClient(dataset) {
-	return axios.get(
-		`${apiUrl}/${doctype}/_search?size=10000&pretty=1&filter_path=hits.hits._source`, {
-			timeout: 5000,
-			responseType: 'json',
-	})
-}
-*/
 
 /*
  * API errors look like this:
@@ -45,10 +36,33 @@ export default function qvainApiClient(dataset) {
  * the UI is unlikely to show anything that doesn't exist or the user doesn't have permission for.
  */
 
-const apiClient = axios.create({
+const client = axios.create({
 	baseURL: apiUrl,
 	timeout: 5000,
 	responseType: "json",
 })
 
-export default apiClient
+const addDataset = dataset => {
+	return client.post("/datasets/", {
+		dataset,
+		type: 2,
+		schema: "metax-ida"
+	})
+}
+
+const updateDataset = id => dataset => {
+	return client.put("/datasets/" + id, {
+		dataset,
+		type: 2,
+		schema: "metax-ida",
+		id
+	});
+}
+
+export default {
+	client,
+	addDataset,
+	updateDataset
+};
+
+

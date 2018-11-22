@@ -93,7 +93,7 @@
 </style>
 
 <script>
-import apiClient from '@/api/client.js'
+import api from '@/api/client.js'
 import PreservationState from '@/components/PreservationState.vue'
 import BusyButton from '@/components/BusyButton.vue'
 import DatasetVersionsModal from '@/components/VersionsModal.vue'
@@ -146,7 +146,7 @@ function getApiError(error) {
 }
 
 function apiProvider(ctx) {
-	let promise = apiClient.get("/datasets/")
+	let promise = api.client.get("/datasets/")
 
 	this.error = null
 
@@ -184,7 +184,7 @@ export default {
 		},
 		del(id) {
 			this.error = null
-			apiClient.delete("/datasets/" + id)
+			api.client.delete("/datasets/" + id)
 				.then((response) => {
 					// returns 204 or 200
 					vm.$root.showAlert("successfully deleted dataset", "success")
