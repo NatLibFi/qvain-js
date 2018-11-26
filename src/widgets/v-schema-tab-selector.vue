@@ -51,6 +51,7 @@ import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
 import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
 import DateRange from '../components/DateRange.vue'
+import Date from '../components/Date.vue'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
@@ -315,6 +316,7 @@ export default {
 		'browser': Filebrowser,
 		'skip': Skip,
 		'date-range': DateRange,
+		'date': Date,
 	},
 	created() {
 		// fail-safe for inadvertent VNode recycling

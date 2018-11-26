@@ -17,4 +17,5 @@ export default {
 	'autocomplete': require('./refdata/autocomplete.vue').default,
 	'browser': require('../filebrowser/filebrowser.vue').default,
 	'date-range': require('../components/DateRange.vue').default,
+	'date': require('../components/Date.vue').default,
 }

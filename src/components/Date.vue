@@ -2,14 +2,13 @@
 	<div>
 		<legend class="col-form-label pt-0">{{ property.charAt(0).toUpperCase() + property.slice(1) }}</legend>
 		<div class="wrapper">
-			<p>Select time range:</p>
-			<datepicker placeholder="From" class="widget ml-2" :disabledDates="disableBefore" v-model="start"></datepicker>
-			<p class="ml-2">-</p>
-			<datepicker placeholder="To" class="widget ml-2" :disabledDates="disableAfter" v-model="end"></datepicker>
-			<p v-if="start && end" class="ml-2">Time between the two dates: {{timeBetweenString}}</p>
+			<p>Select date:</p>
+			<datepicker class="widget ml-2"
+				placeholder="Click to select"
+				v-model="date">
+			</datepicker>
 		</div>
 	</div>
-
 </template>
 
 <script>
@@ -18,42 +17,26 @@ import vSchemaBase from '../widgets/v-schema-base.vue';
 import { distanceInWords } from 'date-fns';
 
 export default {
-	name: 'date-range',
+	name: 'date',
 	extends: vSchemaBase,
 	components: {
 		datepicker
 	},
 	data() {
 		return {
-			start: null,
-			end: null,
+			date: null
 		};
 	},
 	computed: {
-		timeBetweenString() {
-			return distanceInWords(this.end, this.start);
-		},
-		disableBefore() {
-			return {
-				from: this.end,
-			};
-		},
-		disableAfter() {
-			return {
-    			to: this.start,
-			};
-		},
 	},
 	created() {
 		// get start and end from store and set them
 		console.log('this value at creation', this.value);
+		this.date = this.value;
 	},
 	watch: {
-		start(e) {
-			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
-		},
-		end(e) {
-			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
+		date(e) {
+			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
 		}
 	}
 }

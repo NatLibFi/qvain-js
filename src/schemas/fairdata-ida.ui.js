@@ -326,7 +326,8 @@ export default {
 		'tab': 'extra',
 		'title': "modified",
 		'description': "*** description for modified goes here ***",
-		'widget': 'date-range'
+		//'widget': 'date-range'
+		'widget': 'date'
 	},
 	'/properties/infrastructure': {
 		'tab': 'extra',
