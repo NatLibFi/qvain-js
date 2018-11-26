@@ -50,7 +50,7 @@ export default {
 	methods: {
 		updateValue() {
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: {
-				start_data: this.start, end_date: this.end
+				start_date: this.start, end_date: this.end
 			}});
 		},
 	},
