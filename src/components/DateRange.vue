@@ -45,18 +45,24 @@ export default {
 		},
 		title() {
 			return this.schema.title;
+		},
+		startDateISO() {
+			return this.start ? this.start.toISOString() : null;
+		},
+		endDateISO() {
+			return this.end ? this.end.toISOString() : null;
 		}
 	},
 	methods: {
 		updateValue() {
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: {
-				start_date: this.start, end_date: this.end
+				start_date: this.startDateISO, end_date: this.endDateISO
 			}});
 		},
 	},
 	created() {
-		this.start = this.value.start_data;
-		this.end = this.value.end_date;
+		this.start = this.value.start_date ? new Date(this.value.start_data) : null;
+		this.end = this.value.end_date ? new Date(this.value.end_date) : null;
 	},
 	watch: {
 		start(){
