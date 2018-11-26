@@ -27,11 +27,7 @@ export default {
 			date: null
 		};
 	},
-	computed: {
-	},
 	created() {
-		// get start and end from store and set them
-		console.log('this value at creation', this.value);
 		this.date = this.value;
 	},
 	watch: {

@@ -105,6 +105,9 @@ export default {
 		'title': "Temporal coverage",
 		'description': "Time span that is covered by the dataset, e.g. period of observations.",
 	},
+	'/properties/temporal/*': {
+		'widget': 'date-range'
+	},
 	'/properties/spatial': {
 		'tab': 'coverage',
 		'title': "Spatial coverage",
@@ -326,7 +329,6 @@ export default {
 		'tab': 'extra',
 		'title': "modified",
 		'description': "*** description for modified goes here ***",
-		//'widget': 'date-range'
 		'widget': 'date'
 	},
 	'/properties/infrastructure': {

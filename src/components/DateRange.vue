@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<legend class="col-form-label pt-0">{{ property.charAt(0).toUpperCase() + property.slice(1) }}</legend>
+		<legend class="col-form-label pt-0">{{ title }}</legend>
 		<div class="wrapper">
 			<p>Select time range:</p>
 			<datepicker placeholder="From" class="widget ml-2" :disabledDates="disableBefore" v-model="start"></datepicker>
@@ -43,17 +43,27 @@ export default {
     			to: this.start,
 			};
 		},
+		title() {
+			return this.schema.title;
+		}
+	},
+	methods: {
+		updateValue() {
+			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: {
+				start_data: this.start, end_date: this.end
+			}});
+		},
 	},
 	created() {
-		// get start and end from store and set them
-		console.log('this value at creation', this.value);
+		this.start = this.value.start_data;
+		this.end = this.value.end_date;
 	},
 	watch: {
-		start(e) {
-			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
+		start(){
+			this.updateValue();
 		},
-		end(e) {
-			//this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
+		end() {
+			this.updateValue();
 		}
 	}
 }
