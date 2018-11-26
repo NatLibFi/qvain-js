@@ -267,6 +267,9 @@ export default {
 		'description': "This is some fancy optional description for the type field",
 		'help': "This is the optional help text for the type field",
 	},
+	'/properties/provenance/*/properties/temporal': {
+		'widget': 'date-range',
+	},
 	'/properties/files': {
 		'tab': 'files',
 		'widget': 'browser',
@@ -292,6 +295,9 @@ export default {
 		'title': "access type",
 		'description': "This is some fancy optional description for the access type field",
 		'help': "This is the optional help text for the access type field",
+	},
+	'/properties/access_rights/properties/available': {
+		'widget': 'date',
 	},
 	'/properties/access_rights/properties/restriction_grounds': {
 		'widget': 'refdata-list',
@@ -324,6 +330,7 @@ export default {
 		'tab': 'extra',
 		'title': "Issued",
 		'description': "*** description for issued goes here ***",
+		'widget': 'date'
 	},
 	'/properties/modified': {
 		'tab': 'extra',
