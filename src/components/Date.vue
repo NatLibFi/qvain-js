@@ -27,12 +27,17 @@ export default {
 			date: null
 		};
 	},
+	computed: {
+		dateString() {
+			return this.date ? this.date.toISOString() : null;
+		},
+	},
 	created() {
-		this.date = this.value;
+		this.date = this.value ? new Date(this.value) : null;
 	},
 	watch: {
 		date(e) {
-			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
+			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.dateString });
 		}
 	}
 }
