@@ -27,6 +27,9 @@
 				openDirection="below"
 				@search-change="search">
 				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+				<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
+					{{ option.$groupLabel || customLabel(option) }}
+				</div>
 			</Multiselect>
 			<Multiselect v-else
 				class="value-select"
@@ -87,6 +90,10 @@ export default {
 		}
 	},
 	computed: {
+		currentLanguage() {
+			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null;
+			return selectedLanguage || this.$root.language || 'en' || 'und';
+		},
 		isMultiselect() {
 			return this.schema.type === 'array';
 		},
@@ -129,13 +136,7 @@ export default {
 	},
 	methods: {
 		customLabel(option) {
-			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang;
-			return option.label[
-				selectedLanguage ||
-				this.$root.language ||
-				'en' ||
-				'und'
-			];
+			return option.label[this.currentLanguage];
 		},
 		acceptableOption(es) {
 			const FILTER_FIELD = 'internal_code';
@@ -148,12 +149,7 @@ export default {
 				id: es.id,
 				identifier: es.uri,
 				label: es.label,
-				pref_label: es.label[
-					selectedLanguage ||
-					this.$root.language ||
-					'en' ||
-					'und'
-				],
+				pref_label: es.label[this.currentLanguage],
 				children: es.child_ids,
 				hasChildren: es.has_children
 			};
@@ -209,6 +205,12 @@ export default {
 		flex-grow: 1;
 	}
 }
+
+.option__child {
+	padding-left: 20px;
+}
+.option__parent {
+	font-weight: bold;
+    color: black !important;
+}
 </style>
-
-
