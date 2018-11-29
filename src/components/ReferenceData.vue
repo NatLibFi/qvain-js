@@ -41,7 +41,7 @@
 				:taggable="tags"
 				:searchable="typeahead"
 				:multiple="isMultiselect"
-				:options="options"
+				:options="sortedOptions"
 				:showNoResults="true"
 				:customLabel="customLabel"
 				placeholder="Select option - you may have to type at least 3 letters"
@@ -92,7 +92,7 @@ export default {
 	computed: {
 		currentLanguage() {
 			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null;
-			return selectedLanguage || this.$root.language || 'en' || 'und';
+			return selectedLanguage || this.$root.language || 'en';
 		},
 		isMultiselect() {
 			return this.schema.type === 'array';
@@ -132,11 +132,18 @@ export default {
 
 			// normal case
 			return this.optionItems;
+		},
+		sortedOptions() {
+			return this.options.sort((a, b) => {
+				const aLabel = a.label[this.currentLanguage] || a.label['und'];
+				const bLabel = b.label[this.currentLanguage] || b.label['und'];
+				return aLabel.localeCompare(bLabel);
+			});
 		}
 	},
 	methods: {
 		customLabel(option) {
-			return option.label[this.currentLanguage];
+			return option.label[this.currentLanguage] || option.label['und'];
 		},
 		acceptableOption(es) {
 			const FILTER_FIELD = 'internal_code';
