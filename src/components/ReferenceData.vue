@@ -21,7 +21,7 @@
 				:options="options"
 				:showNoResults="true"
 				:customLabel="customLabel"
-				placeholder="Select option - you may have to type at least 3 letters"
+				placeholder="Select option"
 				group-values="children"
 				group-label="pref_label"
 				openDirection="below"
@@ -44,7 +44,7 @@
 				:options="sortedOptions"
 				:showNoResults="true"
 				:customLabel="customLabel"
-				placeholder="Select option - you may have to type at least 3 letters"
+				placeholder="Select option"
 				openDirection="below"
 				@search-change="search">
 				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
