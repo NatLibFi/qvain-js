@@ -89,6 +89,7 @@ export default {
 			'async': true,
 			'count': 100,
 			'grouped': false,
+			'showLang': true
 		}
 	},
 	'/properties/field_of_science': {

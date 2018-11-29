@@ -59,11 +59,8 @@ export function esApiSearchClient(index, doctype, searchterm, count) {
 	const params = {
 		size: count,
 		pretty: 1,
-		filter_path: 'hits.hits._source'
-	}
-
-	if (searchterm !== '' && searchterm !== undefined) {
-		params.q = '*' + searchterm + '*';
+		filter_path: 'hits.hits._source',
+		q: searchterm
 	}
 
 	return axios.get(`${apiUrl}/${index}/${doctype}/_search`, {

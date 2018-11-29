@@ -1,41 +1,52 @@
 <template>
 	<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
-		<Multiselect v-if="optionsShouldBeGrouped"
-			v-model="selectedOptions"
-			track-by="identifier"
-			:internalSearch="!async"
-			:loading="isLoading"
-			:optionsLimit="count"
-			:taggable="tags"
-			:searchable="typeahead"
-			:multiple="isMultiselect"
-			:options="options"
-			:showNoResults="true"
-			placeholder="Select option - you may have to type at least 3 letters"
-			label="pref_label"
-			group-values="children"
-			group-label="pref_label"
-			openDirection="below"
-			@search-change="search">
-			<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
-		</Multiselect>
-		<Multiselect v-else
-			v-model="selectedOptions"
-			track-by="identifier"
-			:internalSearch="!async"
-			:loading="isLoading"
-			:optionsLimit="count"
-			:taggable="tags"
-			:searchable="typeahead"
-			:multiple="isMultiselect"
-			:options="options"
-			:showNoResults="true"
-			placeholder="Select option - you may have to type at least 3 letters"
-			label="pref_label"
-			openDirection="below"
-			@search-change="search">
-			<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
-		</Multiselect>
+		<div class="wrapper">
+			<Multiselect v-if="showLang"
+				v-model="selectedLang"
+				:options="languages"
+				label="language"
+				placeholder="Language"
+				class="lang-select"/>
+
+			<Multiselect v-if="optionsShouldBeGrouped"
+				class="value-select"
+				v-model="selectedOptions"
+				track-by="identifier"
+				:internalSearch="!async"
+				:loading="isLoading"
+				:optionsLimit="count"
+				:taggable="tags"
+				:searchable="typeahead"
+				:multiple="isMultiselect"
+				:options="options"
+				:showNoResults="true"
+				:customLabel="customLabel"
+				placeholder="Select option - you may have to type at least 3 letters"
+				group-values="children"
+				group-label="pref_label"
+				openDirection="below"
+				@search-change="search">
+				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+			</Multiselect>
+			<Multiselect v-else
+				class="value-select"
+				v-model="selectedOptions"
+				track-by="identifier"
+				:internalSearch="!async"
+				:loading="isLoading"
+				:optionsLimit="count"
+				:taggable="tags"
+				:searchable="typeahead"
+				:multiple="isMultiselect"
+				:options="options"
+				:showNoResults="true"
+				:customLabel="customLabel"
+				placeholder="Select option - you may have to type at least 3 letters"
+				openDirection="below"
+				@search-change="search">
+				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+			</Multiselect>
+		</div>
 	</b-form-group>
 </template>
 
@@ -59,12 +70,19 @@ export default {
 		count: { type: Number, default: 10000 },
 		typeahead: { type: Boolean, dafault: false },
 		tags: { type: Boolean, default: false },
-		grouped: { type: Boolean, required: false }
+		showLang: { type: Boolean, default: false },
+		grouped: { type: Boolean, required: false },
 	},
 	data() {
 		return {
 			responseData: [],
 			selectedOptions: [],
+			languages: [
+				{ id: 'fi', language: 'Finnish' },
+				{ id: 'en', language: 'English' },
+				{ id: 'sv', language: 'Swedish' }
+			],
+			selectedLang: null,
 			isLoading: false,
 		}
 	},
@@ -110,16 +128,32 @@ export default {
 		}
 	},
 	methods: {
+		customLabel(option) {
+			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang;
+			return option.label[
+				selectedLanguage ||
+				this.$root.language ||
+				'en' ||
+				'und'
+			];
+		},
 		acceptableOption(es) {
 			const FILTER_FIELD = 'internal_code';
 			const hasURI = (es._source && es._source.uri);
 			return hasURI || es._source[FILTER_FIELD];
 		},
-		mapToInternalKeys(es) {
+		mapToInternalKeys(es, lang) {
+			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang;
 			return {
 				id: es.id,
 				identifier: es.uri,
-				pref_label: es.label[this.$root.language || 'en'] || es.label['und'],
+				label: es.label,
+				pref_label: es.label[
+					selectedLanguage ||
+					this.$root.language ||
+					'en' ||
+					'und'
+				],
 				children: es.child_ids,
 				hasChildren: es.has_children
 			};
@@ -140,7 +174,10 @@ export default {
 
 			this.isLoading = true;
 			if (this.async) {
-				this.searchReferenceData(searchQuery)
+				const q = this.selectedLang ?
+					`label.${this.selectedLang.id}:*${searchQuery}*`:
+					`*${searchQuery}*`;
+				this.searchReferenceData(q);
 			}
 			this.isLoading = false;
 		}
@@ -159,5 +196,19 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+.wrapper {
+	width: 100%;
+	display: inline-flex;
+
+	.lang-select {
+		width: 300px;
+		padding-right: 5px;
+	}
+	.value-select {
+		flex-grow: 1;
+	}
+}
+</style>
 
 
