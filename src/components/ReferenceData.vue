@@ -24,7 +24,6 @@
 				placeholder="Select option"
 				group-values="children"
 				group-label="pref_label"
-				openDirection="below"
 				@search-change="search">
 				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 				<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
@@ -45,7 +44,6 @@
 				:showNoResults="true"
 				:customLabel="customLabel"
 				placeholder="Select option"
-				openDirection="below"
 				@search-change="search">
 				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 			</Multiselect>
