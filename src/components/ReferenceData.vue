@@ -137,6 +137,14 @@ export default {
 				const bLabel = b.label[this.currentLanguage] || b.label['und'];
 				return aLabel.localeCompare(bLabel);
 			});
+		},
+		isEmptyObject() {
+			return this.value &&
+				typeof this.value === 'object' &&
+				Object.keys(this.value).length === 0;
+		},
+		isArray() {
+			return this.value && this.value.length > 0;
 		}
 	},
 	methods: {
@@ -153,8 +161,8 @@ export default {
 			return {
 				id: es.id,
 				identifier: es.uri,
-				label: es.label,
 				pref_label: es.label[this.currentLanguage],
+				label: es.label,
 				children: es.child_ids,
 				hasChildren: es.has_children
 			};
@@ -184,15 +192,33 @@ export default {
 		}
 	},
 	async created() {
-		const isEmptyObject = this.value && typeof this.value === 'object' && Object.keys(this.value).length === 0;
-		this.selectedOptions = isEmptyObject ? null : this.value;
+		if (this.isMultiselect && this.isArray) {
+			this.selectedOptions = this.value.map(v => ({ ...v, label: v.pref_label }));
+		}
+
+		if (!this.isMultiselect && !this.isEmptyObject) {
+			this.selectedOptions = this.value;
+		}
+
 		if (!this.async) {
 			this.getAllReferenceData();
 		}
 	},
 	watch: {
-		selectedOptions(e) {
-			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: e });
+		selectedOptions() {
+
+			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
+
+			let storableOptions;
+			if (this.isMultiselect && selectedValueIsSet) {
+				storableOptions = this.selectedOptions.map(option =>({ identifier: option.identifier, pref_label: Object.assign({}, option.label) }))
+			}
+
+			if (!this.isMultiselect && selectedValueIsSet) {
+				storableOptions = this.selectedOptions;
+			}
+
+			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });
 		}
 	}
 }
