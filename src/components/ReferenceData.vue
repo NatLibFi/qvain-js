@@ -249,3 +249,33 @@ export default {
     color: black !important;
 }
 </style>
+
+<style lang="scss">
+.multiselect__option--highlight,
+.multiselect__option--highlight:after,
+.multiselect__tag {
+	background: $fd-primary;
+}
+
+.multiselect__spinner:before,
+.multiselect__spinner:after {
+	border-color: $fd-primary transparent transparent;
+}
+
+.multiselect__tag-icon:after {
+	color: $fd-primary-black;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+	background: $fd-primary-dark;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+	background: $danger;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+	background: $danger;
+}
+</style>
