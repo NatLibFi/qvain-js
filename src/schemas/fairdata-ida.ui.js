@@ -116,6 +116,9 @@ export default {
 		'title': "Temporal coverage",
 		'description': "Time span that is covered by the dataset, e.g. period of observations.",
 	},
+	'/properties/temporal/*': {
+		'widget': 'date-range'
+	},
 	'/properties/spatial': {
 		'tab': 'coverage',
 		'title': "Spatial coverage",
@@ -355,6 +358,9 @@ export default {
 		'description': "This is some fancy optional description for the resource type field",
 		'help': "This is the optional help text for the resource type field",
 	},
+	'/properties/provenance/*/properties/temporal': {
+		'widget': 'date-range',
+	},
 	'/properties/files': {
 		'tab': 'files',
 		'widget': 'browser',
@@ -385,6 +391,9 @@ export default {
 		'title': "access type",
 		'description': "This is some fancy optional description for the access type field",
 		'help': "This is the optional help text for the access type field",
+	},
+	'/properties/access_rights/properties/available': {
+		'widget': 'date',
 	},
 	'/properties/access_rights/properties/restriction_grounds': {
 		'widget': 'reference-data',
@@ -427,11 +436,13 @@ export default {
 		'tab': 'extra',
 		'title': "Issued",
 		'description': "*** description for issued goes here ***",
+		'widget': 'date'
 	},
 	'/properties/modified': {
 		'tab': 'extra',
 		'title': "modified",
 		'description': "*** description for modified goes here ***",
+		'widget': 'date'
 	},
 	'/properties/infrastructure': {
 		'tab': 'extra',
