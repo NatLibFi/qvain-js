@@ -193,11 +193,12 @@ export default {
 	},
 	async created() {
 		if (this.isMultiselect && this.isArray) {
-			this.selectedOptions = this.value.map(v => ({ ...v, label: v.pref_label }));
+			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v.pref_label }));
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
-			this.selectedOptions = this.value;
+			const { identifier, pref_label } = this.value;
+			this.selectedOptions = { identifier, label: pref_label };
 		}
 
 		if (!this.async) {
@@ -206,16 +207,19 @@ export default {
 	},
 	watch: {
 		selectedOptions() {
-
 			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
 
 			let storableOptions;
 			if (this.isMultiselect && selectedValueIsSet) {
-				storableOptions = this.selectedOptions.map(option =>({ identifier: option.identifier, pref_label: Object.assign({}, option.label) }))
+				storableOptions = this.selectedOptions.map(option =>({
+					identifier: option.identifier,
+					pref_label: Object.assign({}, option.label)
+				}));
 			}
 
 			if (!this.isMultiselect && selectedValueIsSet) {
-				storableOptions = this.selectedOptions;
+				const { identifier, label } = this.selectedOptions;
+				storableOptions = { identifier, pref_label: Object.assign({}, label) };
 			}
 
 			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });
