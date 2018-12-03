@@ -1,54 +1,52 @@
 <template>
-	<div :id="domId" class="qwidget">
-		<!-- i18n-string -->
+	<wrapper>
+
 		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
-			<b-card no-body border-variant="light">
-				<b-list-group flush>
-					<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">
+			<b-list-group flush>
+				<b-list-group-item v-for="(val, lang) in lpairs" :key="lang">
 
-						<b-input-group style="border: 0px solid #cccedd; padding-left: 0rem;">
-							<b-form-input type="text" :value="editing == lang ? editingInput : val" :plaintext="editing != lang" @input.native="editingInput = $event.target.value" @keyup.enter.native="stopEditing(lang)" @keyup.esc.native="resetEditing(lang)" @blur.native="stopEditing(lang)" @click.native="startEditing(lang)" @focus.native="startEditing(lang)"></b-form-input>
-							<b-input-group slot="append">
-								<b-btn class="btn btn-outline-light" style="border: 0;" v-b-tooltip.hover :title="languages[lang]"><span class="text-dark font-italic">{{ lang }}</span></b-btn>
-								<b-btn class="btn btn-outline-danger" style="border: 0;" @click="deleteLang(lang)"><font-awesome-icon icon="trash" fixed-width class="text-dark" /></b-btn>
-							</b-input-group>
+					<b-input-group style="border: 0px solid #cccedd; padding-left: 0rem;">
+						<b-form-input type="text" :value="editing == lang ? editingInput : val" :plaintext="editing != lang" @input.native="editingInput = $event.target.value" @keyup.enter.native="stopEditing(lang)" @keyup.esc.native="resetEditing(lang)" @blur.native="stopEditing(lang)" @click.native="startEditing(lang)" @focus.native="startEditing(lang)"></b-form-input>
+						<b-input-group slot="append">
+							<b-btn class="btn btn-outline-light" style="border: 0;" v-b-tooltip.hover :title="languages[lang]"><span class="text-dark font-italic">{{ lang }}</span></b-btn>
+							<b-btn class="btn btn-outline-danger" style="border: 0;" @click="deleteLang(lang)"><font-awesome-icon icon="trash" fixed-width class="text-dark" /></b-btn>
 						</b-input-group>
+					</b-input-group>
 
-					</b-list-group-item>
-				</b-list-group>
-				<b-card-body v-if="!lpairs || Object.keys(lpairs).length < 1"><p class="font-italic text-muted text-centered"><font-awesome-icon icon="pen" fixed-width /> nothing here yet</p></b-card-body>
-				<b-card-footer>
-					<b-container fluid>
-						<b-row>
-							<b-col cols="9" class="mr-3 p-0">
-								<b-form-input :id="domId + '-newvalue'" type="text" :placeholder="uiPlaceholder" v-model="newString" :state="stringState" @input="resetState()"></b-form-input>
-							</b-col>
-							<b-col class="mr-3 p-0">
-								<b-form-input size="3" maxlength="3" id="i18n-string-newlang" type="text" name="i18n-string-newlang" placeholder="language" v-model="newLanguage" :state="langState" @input="resetState()" v-if="freeform"></b-form-input>
-								<language-select v-model="newLanguage" :state="langState" @change.native="resetState()" @blur.native="resetState()" @focus.native="resetState()" v-else></language-select>
-							</b-col>
-							<b-btn @click="addPair()" variant="primary">
-								<font-awesome-icon icon="plus" fixed-width />
-							</b-btn>
-						</b-row>
-					</b-container>
-				</b-card-footer>
-			</b-card>
+				</b-list-group-item>
+			</b-list-group>
+			<b-card-body v-if="!lpairs || Object.keys(lpairs).length < 1"><p class="font-italic text-muted text-centered"><font-awesome-icon icon="pen" fixed-width /> nothing here yet</p></b-card-body>
+
+			<b-container fluid>
+				<b-row>
+					<b-col cols="9" class="mr-3 p-0">
+						<b-form-input :id="domId + '-newvalue'" type="text" :placeholder="uiPlaceholder" v-model="newString" :state="stringState" @input="resetState()"></b-form-input>
+					</b-col>
+					<b-col class="mr-3 p-0">
+						<b-form-input size="3" maxlength="3" id="i18n-string-newlang" type="text" name="i18n-string-newlang" placeholder="language" v-model="newLanguage" :state="langState" @input="resetState()" v-if="freeform"></b-form-input>
+						<language-select v-model="newLanguage" :state="langState" @change.native="resetState()" @blur.native="resetState()" @focus.native="resetState()" v-else></language-select>
+					</b-col>
+					<b-btn @click="addPair()" variant="primary">
+						<font-awesome-icon icon="plus" fixed-width />
+					</b-btn>
+				</b-row>
+			</b-container>
 		</b-form-group>
-	</div>
+	</wrapper>
 </template>
 
 <style>
 sup.langlabel {
   /* font-variant: small-caps; */
-  font-size: smaller;
+  /*font-size: smaller;*/
 }
 </style>
 
 <script>
-import vSchemaBase from '../v-schema-base.vue'
-import langCodes2 from '../../data/iso639-1.json'
-import LanguageSelect from '@/components/LanguageSelect.vue'
+import vSchemaBase from '../v-schema-base.vue';
+import langCodes2 from '../../data/iso639-1.json';
+import LanguageSelect from '@/components/LanguageSelect.vue';
+import Wrapper from '../../components/Wrapper.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -204,6 +202,7 @@ export default {
 	},
 	components: {
 		LanguageSelect,
+		Wrapper,
 	},
 	created() {
 		//console.log("!!! i18n-string:", this, this.path, this.$props, this.$data, this.value, typeof this.value)
