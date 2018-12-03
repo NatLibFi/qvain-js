@@ -62,7 +62,8 @@ export default {
 			'typeahead': true,
 			'tags': false,
 			'async': true,
-			'count': 20
+			'count': 20,
+			'labelNameInMetax': 'title'
 		},
 		'placeholder': "– choose language –",
 	},
