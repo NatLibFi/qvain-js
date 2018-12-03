@@ -23,7 +23,7 @@
 				:customLabel="customLabel"
 				placeholder="Select option"
 				group-values="children"
-				:group-label="labelNameInMetax"
+				:group-label="labelNameInSchema"
 				@search-change="search">
 				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 				<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
@@ -72,7 +72,7 @@ export default {
 		typeahead: { type: Boolean, dafault: false },
 		tags: { type: Boolean, default: false },
 		showLang: { type: Boolean, default: false },
-		labelNameInMetax: { type: String, default: 'pref_label' },
+		labelNameInSchema: { type: String, default: 'pref_label' },
 		grouped: { type: Boolean, required: false },
 	},
 	data() {
@@ -162,7 +162,7 @@ export default {
 			return {
 				id: es.id,
 				identifier: es.uri,
-				[this.labelNameInMetax]: es.label[this.currentLanguage],
+				[this.labelNameInSchema]: es.label[this.currentLanguage],
 				label: es.label,
 				children: es.child_ids,
 				hasChildren: es.has_children
@@ -194,12 +194,12 @@ export default {
 	},
 	async created() {
 		if (this.isMultiselect && this.isArray) {
-			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v[this.labelNameInMetax] }));
+			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v[this.labelNameInSchema] }));
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
 			const { identifier } = this.value;
-			const label = this.value[this.labelNameInMetax];
+			const label = this.value[this.labelNameInSchema];
 			this.selectedOptions = { identifier, label: label };
 		}
 
@@ -215,13 +215,13 @@ export default {
 			if (this.isMultiselect && selectedValueIsSet) {
 				storableOptions = this.selectedOptions.map(option =>({
 					identifier: option.identifier,
-					[this.labelNameInMetax]: Object.assign({}, option.label)
+					[this.labelNameInSchema]: Object.assign({}, option.label)
 				}));
 			}
 
 			if (!this.isMultiselect && selectedValueIsSet) {
 				const { identifier, label } = this.selectedOptions;
-				storableOptions = { identifier, [this.labelNameInMetax]: Object.assign({}, label) };
+				storableOptions = { identifier, [this.labelNameInSchema]: Object.assign({}, label) };
 			}
 
 			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });

@@ -63,7 +63,7 @@ export default {
 			'tags': false,
 			'async': true,
 			'count': 20,
-			'labelNameInMetax': 'title'
+			'labelNameInSchema': 'title'
 		},
 		'placeholder': "– choose language –",
 	},
@@ -428,6 +428,7 @@ export default {
 			'async': false,
 			'count': 100,
 			'grouped': false,
+			'labelNameInSchema': 'title'
 		},
 		'placeholder': "– choose license –",
 		'title': "license",
