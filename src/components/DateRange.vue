@@ -61,7 +61,7 @@ export default {
 		},
 	},
 	created() {
-		this.start = this.value.start_date ? new Date(this.value.start_data) : null;
+		this.start = this.value.start_date ? new Date(this.value.start_date) : null;
 		this.end = this.value.end_date ? new Date(this.value.end_date) : null;
 	},
 	watch: {
