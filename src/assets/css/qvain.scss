@@ -98,6 +98,21 @@ $form-feedback-valid-color: #ced4da !default;
 	background-color: $orange;
 }
 
+.btn.danger-on-hover:hover,
+.btn.danger-on-hover:focus,
+.btn.danger-on-hover:active {
+	color: $danger !important;
+	background-color: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+.btn.danger-on-hover:active {
+	/* box-shadow: 0 0 4px 0 $danger !important; */
+	color: darken($danger, 5%) !important;
+	transform: scale(1.2) !important;
+}
+
 /*
  *	logos:
  *	fd_logo_neg_80.png fd_logo_neg_160.png fd_logo_pos_80.png fd_logo_pos_160.png

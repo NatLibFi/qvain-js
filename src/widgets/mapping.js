@@ -17,4 +17,6 @@ export default {
 	'tabbed-array': require('./TabbedArray.vue').default,
 	'autocomplete': require('./refdata/autocomplete.vue').default,
 	'browser': require('../filebrowser/filebrowser.vue').default,
+	'SelfReferentialObject': require('./SelfReferentialObject.vue').default,
+	'FlatObject': require('./FlatObject.vue').default,
 }

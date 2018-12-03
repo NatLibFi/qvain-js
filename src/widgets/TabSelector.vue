@@ -32,15 +32,15 @@
 </template>
 
 <script>
-import vSchemaNumber from './Number.vue'
-import vSchemaString from './String.vue'
-import vSchemaObject from './Object.vue'
-import vSchemaArray from './Array.vue'
-import vSchemaInlineArray from './InlineArray.vue'
-import vSchemaAnyOf from './anyOf.vue'
-import vSchemaAllOf from './allOf.vue'
-import vSchemaOneOf from './oneOf.vue'
-import vSchemaEnum from './Enum.vue'
+import SchemaNumber from './Number.vue'
+import SchemaString from './String.vue'
+import SchemaObject from './Object.vue'
+import SchemaArray from './Array.vue'
+import SchemaInlineArray from './InlineArray.vue'
+import SchemaAnyOf from './anyOf.vue'
+import SchemaAllOf from './allOf.vue'
+import SchemaOneOf from './oneOf.vue'
+import SchemaEnum from './Enum.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
@@ -50,6 +50,8 @@ import AutoComplete from './refdata/autocomplete.vue'
 import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
 import ReferenceData from '../components/ReferenceData/ReferenceData.vue'
+import SelfReferentialObject from './SelfReferentialObject.vue'
+import FlatObject from './FlatObject.vue'
 
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
@@ -294,16 +296,15 @@ export default {
 		*/
 	},
 	components: {
-		//'schema': vSchemaSchema,
-		'schema-number': vSchemaNumber,
-		'schema-string': vSchemaString,
-		'schema-object': vSchemaObject,
-		'schema-array': vSchemaArray,
-		'schema-inline-array': vSchemaInlineArray,
-		'schema-anyof': vSchemaAnyOf,
-		'schema-allof': vSchemaAllOf,
-		'schema-oneof': vSchemaOneOf,
-		'schema-enum': vSchemaEnum,
+		'schema-number': SchemaNumber,
+		'schema-string': SchemaString,
+		'schema-object': SchemaObject,
+		'schema-array': SchemaArray,
+		'schema-inline-array': SchemaInlineArray,
+		'schema-anyof': SchemaAnyOf,
+		'schema-allof': SchemaAllOf,
+		'schema-oneof': SchemaOneOf,
+		'schema-enum': SchemaEnum,
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,
 		'reference-data': ReferenceData,
@@ -313,6 +314,8 @@ export default {
 		'autocomplete': AutoComplete,
 		'browser': Filebrowser,
 		'skip': Skip,
+		SelfReferentialObject,
+		FlatObject,
 	},
 	created() {
 		// fail-safe for inadvertent VNode recycling

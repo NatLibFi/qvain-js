@@ -21,8 +21,14 @@ export default {
 		'order': ["name", "email", "telephone", "identifier"],
 	},
 	'#/definitions/Organization': {
+		'title': "Organisational hierarchy",
+		'description': "Hierarchical structure of organisation. Here you can provide an organisation or company's information. If desired, you can provide multiple organisational levels, such as company, department or faculty.",
+		'widget': 'SelfReferentialObject',
+		'props': {
+			'refField': "is_part_of",
+			'levels': ["organisation", "department or unit", "faculty or sub-unit"],
+		},
 		'order': ["name", "email", "telephone", "identifier"],
-		'postponed': ["is_part_of"],
 	},
 	'#/definitions/Document': {
 		'visible': false,

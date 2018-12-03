@@ -12,8 +12,7 @@
 			<b-list-group flush>
 				<!-- b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName" -->
 				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-					<TabSelector :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName"
-					:tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></TabSelector>
+					<TabSelector :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></TabSelector>
 					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
 
 					<!-- TabSelector :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab"
