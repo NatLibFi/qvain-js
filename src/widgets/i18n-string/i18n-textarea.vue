@@ -2,27 +2,26 @@
 	<wrapper>
 		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-tabs v-model="tabIndex" pills>
-				<b-tab v-for="(val, lang, i) in languageKeysAndValues" :key="lang" :title="languages[lang]" no-body>
+				<b-tab v-for="key in languageKeys" :key="key" :title="languages[key]" no-body>
+					<span @click="e => deleteLang(key)"><i class="delete-icon fas fa-trash"></i></span>
 					<b-form-textarea
 						class="textarea"
-						:id="'textarea-' + lang"
-						:ref="'textarea-tab-' + i"
-						:lang="lang"
+						:id="'textarea-' + key"
+						:ref="'textarea-tab-' + key"
 						:placeholder="uiPlaceholder"
-						:plaintext="false"
 						:rows="6"
 						:max-rows="12"
-						:value="val"
-						@input="e => updateValue(e)">
+						:value="state[key]"
+						@input="v => changeText(key, v)">
 					</b-form-textarea>
 				</b-tab>
 
 				<template slot="tabs">
-					<div class="lang-select-tab">
+					<div>
 						<language-select ref="langSelect"
-							:value="newLanguage"
-							@input="lang => addTab(lang)"
-							@keyup.enter.native="addTab()">
+							class="lang-select-tab"
+							v-model="selectedLanguage"
+							@keyup.enter.native="lang => selectedLanguage = lang">
 						</language-select>
 					</div>
 				</template>
@@ -34,10 +33,18 @@
 
 <style lang="scss" scoped>
 	.lang-select-tab {
-		display: inline-flex;
+		height: 40px;
+		margin-left: 10px;
 	}
 	.textarea {
 		margin-top: 10px;
+	}
+	.delete-icon {
+		float: right;
+		margin: 10px;
+		&:hover {
+			color: grey;
+		}
 	}
 </style>
 
@@ -53,75 +60,50 @@ export default {
 	name: 'i18n-textarea',
 	description: 'a string with support for multiple languages',
 	schematype: 'object',
-	/*directives: {
-		activate: {
-			inserted: function (el, binding, vnode) {
-				vnode.context.focusOnLastTab()
-			}
-		}
-	},*/
 	components: {
 		LanguageSelect,
 		Wrapper,
 	},
 	data: function() {
 		return {
-			newLanguage: null,
 			languages: langCodes2,
 			tabIndex: 0,
+			selectedLanguage: null,
+			state: {},
+		}
+	},
+	computed: {
+		languageKeys() {
+			return Object.keys(this.value);
 		}
 	},
 	methods: {
-		addTab: function(lang) {
-			console.log('add tab', lang);
-			this.newLanguage = lang;
-			// validate language
-			const shouldNotCreateTab = !this.newLanguage ||
-				this.newLanguage.length < 2 ||
-				this.newLanguage.length > 3 ||
-				!(this.newLanguage in this.languages)
-
-			if (shouldNotCreateTab) {
-				return true;
-			}
-
-			if (typeof this.value[this.newLanguage] === 'string') {
-				console.log("tab exists already")
-				this.newLanguage = null;
-				this.focusOnTabWithLanguage(this.newLanguage)
+		changeText(key, value) {
+			console.log('asd', key, value);
+			this.$set(this.state, key, value);
+			this.updateValue();
+		},
+		addTab(lang) {
+			console.log('add tab: ', lang);
+			if (lang in this.state) {
+				this.focusOnTabWithLanguage(lang);
 				return;
 			}
-
-			this.$set(this.value, this.newLanguage, "")
+			this.$set(this.state, lang, '');
 			this.updateValue();
 			this.focusOnLastTab();
-			this.newLanguage = null;
 		},
-		deleteLang: function(lang) {
-			this.$delete(this.value, lang);
+		deleteLang(lang) {
+			console.log('asdasdasdasd', lang);
+			this.$delete(this.state, lang);
 			this.updateValue();
 		},
 		updateValue() {
 			this.$store.commit('updateValue', {
 				p: this.parent,
 				prop: this.property,
-				val: this.value,
+				val: this.state,
 			});
-			//languageKeysAndValues[lang] = $event.target.value
-		},
-		updateLang: function(e, lang) {
-			this.$store.commit('updateValue', {
-				p: this.value,
-				prop: lang,
-				val: e.target.value,
-			})
-		},
-		setFromInput: function(lang) {
-			this.$store.commit('updateValue', {
-				p: this.value,
-				prop: lang,
-				val: this.editingInput,
-			})
 		},
 		focusOnLastTab: function() {
 			const last = Object.keys(this.value || {}).length - 1
@@ -129,8 +111,8 @@ export default {
 			// wait for tab to appear in DOM before switching to it;
 			// works for Chrome, but not Firefox
 			this.$nextTick(function() {
-				this.tabIndex = last
-				this.focusOnTextarea()
+				this.tabIndex = last;
+				this.focusOnTextarea();
 			})
 
 			// In Firefox, for some reason, $nextTick only ever fires before the tab gets added,
@@ -165,11 +147,16 @@ export default {
 			})
 		},
 	},
-	computed: {
-		languageKeysAndValues() {
-			console.log('getter called');
-			return this.value;
-		},
+	watch: {
+		selectedLanguage(lang) {
+			if (!lang) {
+				return;
+			}
+			this.addTab(lang);
+		}
 	},
+	created() {
+		this.state = this.value || {};
+	}
 }
 </script>
