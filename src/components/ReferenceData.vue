@@ -1,60 +1,63 @@
 <template>
-	<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
-		<div class="wrapper">
-			<Multiselect v-if="showLang"
-				v-model="selectedLang"
-				:options="languages"
-				label="language"
-				placeholder="Language"
-				class="lang-select"/>
+	<wrapper :wrapped="wrapped">
+		<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
+			<div class="wrapper">
+				<Multiselect v-if="showLang"
+					v-model="selectedLang"
+					:options="languages"
+					label="language"
+					placeholder="Language"
+					class="lang-select"/>
 
-			<Multiselect v-if="optionsShouldBeGrouped"
-				class="value-select"
-				v-model="selectedOptions"
-				track-by="identifier"
-				:internalSearch="!async"
-				:loading="isLoading"
-				:optionsLimit="count"
-				:taggable="tags"
-				:searchable="typeahead"
-				:multiple="isMultiselect"
-				:options="options"
-				:showNoResults="true"
-				:customLabel="customLabel"
-				placeholder="Select option"
-				group-values="children"
-				group-label="pref_label"
-				@search-change="search">
-				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
-				<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
-					{{ option.$groupLabel || customLabel(option) }}
-				</div>
-			</Multiselect>
-			<Multiselect v-else
-				class="value-select"
-				v-model="selectedOptions"
-				track-by="identifier"
-				:internalSearch="!async"
-				:loading="isLoading"
-				:optionsLimit="count"
-				:taggable="tags"
-				:searchable="typeahead"
-				:multiple="isMultiselect"
-				:options="sortedOptions"
-				:showNoResults="true"
-				:customLabel="customLabel"
-				placeholder="Select option"
-				@search-change="search">
-				<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
-			</Multiselect>
-		</div>
-	</b-form-group>
+				<Multiselect v-if="optionsShouldBeGrouped"
+					class="value-select"
+					v-model="selectedOptions"
+					track-by="identifier"
+					:internalSearch="!async"
+					:loading="isLoading"
+					:optionsLimit="count"
+					:taggable="tags"
+					:searchable="typeahead"
+					:multiple="isMultiselect"
+					:options="options"
+					:showNoResults="true"
+					:customLabel="customLabel"
+					placeholder="Select option"
+					group-values="children"
+					group-label="pref_label"
+					@search-change="search">
+					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+					<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
+						{{ option.$groupLabel || customLabel(option) }}
+					</div>
+				</Multiselect>
+				<Multiselect v-else
+					class="value-select"
+					v-model="selectedOptions"
+					track-by="identifier"
+					:internalSearch="!async"
+					:loading="isLoading"
+					:optionsLimit="count"
+					:taggable="tags"
+					:searchable="typeahead"
+					:multiple="isMultiselect"
+					:options="sortedOptions"
+					:showNoResults="true"
+					:customLabel="customLabel"
+					placeholder="Select option"
+					@search-change="search">
+					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+				</Multiselect>
+			</div>
+		</b-form-group>
+	</wrapper>
 </template>
 
 <script>
 
 import vSchemaBase from '../widgets/v-schema-base.vue';
 import { esApiSearchClient } from '../widgets/refdata/es.js';
+import Wrapper from './Wrapper.vue';
 
 import Multiselect from 'vue-multiselect';
 
@@ -62,7 +65,8 @@ export default {
 	name: 'reference-data',
 	extends: vSchemaBase,
 	components: {
-		Multiselect
+		Multiselect,
+		Wrapper
 	},
 	props: {
 		esIndex: { type: String, required: true },
@@ -72,6 +76,7 @@ export default {
 		typeahead: { type: Boolean, dafault: false },
 		tags: { type: Boolean, default: false },
 		showLang: { type: Boolean, default: false },
+		wrapped: { type: Boolean, default: false },
 		grouped: { type: Boolean, required: false },
 	},
 	data() {

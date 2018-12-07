@@ -44,6 +44,9 @@ export default {
 		'description': "Give free keywords that characterize the dataset. Below, there is an other field for controlled subject headings.",
 		'placeholder': "keywords",
 		'widget': "schema-inline-array",
+		'props': {
+			'wrapped': true
+		}
 	},
 	'/properties/language': {
 		'tab': 'description',
@@ -56,7 +59,8 @@ export default {
 			'typeahead': true,
 			'tags': false,
 			'async': true,
-			'count': 20
+			'count': 20,
+			'wrapped': true
 		},
 		'placeholder': "– choose language –",
 	},
@@ -89,7 +93,8 @@ export default {
 			'async': true,
 			'count': 100,
 			'grouped': false,
-			'showLang': true
+			'showLang': true,
+			'wrapped': true
 		}
 	},
 	'/properties/field_of_science': {
@@ -107,6 +112,7 @@ export default {
 			'async': false,
 			'count': 100,
 			'grouped': true,
+			'wrapped': true
 		}
 	},
 

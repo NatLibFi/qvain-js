@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper">
+	<div v-bind:class="{ wrapper: wrapped }">
 		<slot></slot>
 	</div>
 </template>
@@ -7,6 +7,9 @@
 
 export default {
 	name: 'wrapper',
+	props: {
+		wrapped: { type: Boolean, default: false }
+	}
 }
 </script>
 

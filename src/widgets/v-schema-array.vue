@@ -1,5 +1,5 @@
 <template>
-	<wrapper>
+	<wrapper :wrapped="true">
 		<!--<header>
 			<h3>
 			{{ uiTitle }}

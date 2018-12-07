@@ -1,5 +1,5 @@
 <template>
-	<wrapper>
+	<wrapper :wrapped="true">
 		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
 			<b-tabs v-model="tabIndex" pills>
 				<b-tab v-for="key in languageKeys" :key="key" :title="languages[key]" no-body>
