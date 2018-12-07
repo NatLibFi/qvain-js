@@ -1,23 +1,43 @@
 <template>
 	<div>
-		<!-- (oneof component) -->
-		<div class="clearfix">
-		<b-dropdown right text="choose type" variant="primary" class="m-2 float-right">
-			<b-dropdown-item v-for="(sub, i) in schema['oneOf']" :key="'oneOfSel' + i" @click="setChosen(i)">{{ sub['title'] || '#'+i }}</b-dropdown-item>
-		</b-dropdown>
-		<span class="text-muted">oneOf "{{ schema.title }}", chosen: #{{ chosen }} ({{ chosen !== null ? schema['oneOf'][chosen]['title'] || "[no name]" : "" }})</span>
-		<p>currentType: {{ currentType }}</p>
-		<p>possibleTypes: {{ possibleTypes }}</p>
-		xxx
+		<div v-if="chosen === null" class="wrapper">
+			<b-dropdown class="m-2" text="choose type" variant="primary">
+				<b-dropdown-item v-for="(sub, i) in schema['oneOf']"
+					:key="'oneOfSel' + i"
+					@click="setChosen(i)">
+					{{ sub['title'] || '#'+i }}
+				</b-dropdown-item>
+			</b-dropdown>
+			<!--<span class="text-muted">oneOf "{{ schema.title }}", chosen: #{{ chosen }} ({{ chosen !== null ? schema['oneOf'][chosen]['title'] || "[no name]" : "" }})</span>-->
+			<!--<p>currentType: {{ currentType }}</p>-->
+			<!--<p>possibleTypes: {{ possibleTypes }}</p>-->
 		</div>
-
-
 		<b-textarea v-if="false" :rows="15" :value="JSON.stringify(schemaForChosen, null, 2)"></b-textarea>
-
-		<component is="schema-tab-selector" v-if="chosen !== null" :schema="schemaForChosen" :path="newPath('oneOf/' + chosen)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="'oneOf-'+chosen"></component>
+		<component is="schema-tab-selector"
+			v-if="chosen !== null"
+			:schema="schemaForChosen"
+			:path="newPath('oneOf/' + chosen)"
+			:value="value"
+			:parent="parent"
+			:property="property"
+			:tab="myTab"
+			:activeTab="activeTab"
+			:depth="depth"
+			:key="'oneOf-'+chosen">
+		</component>
 
 	</div>
 </template>
+
+<style lang="scss" scoped>
+.wrapper {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+
+</style>
+
 
 <script>
 import vSchemaBase from './v-schema-base.vue'

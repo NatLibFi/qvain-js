@@ -71,7 +71,7 @@
 				</li>
 			</ul>
 
-			<div class="container-fluid my-3">
+			<div class="container-fluid no-padding my-3">
 				<router-view></router-view>
 			</div>
 
@@ -466,5 +466,10 @@ export default {
 	color: #495057;
 	background-color: #fff;
 	border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.no-padding {
+	padding-left: 0;
+	padding-right: 0;
 }
 </style>

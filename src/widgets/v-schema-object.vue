@@ -1,5 +1,32 @@
 <template>
-	<b-card no-body header-class="with-fd-bg" class="my-3">
+	<div :style="listItemStyle">
+		<header>
+			<h3 class="title" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
+				<!--<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/>-->
+				{{ uiTitle }}
+			</h3>
+		</header>
+		<section>
+			<b-list-group flush>
+				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
+					<component is="schema-tab-selector"
+						:schema="schema['properties'][propName]"
+						:path="newPath('properties/' + propName)"
+						:value="value[propName]"
+						:parent="value"
+						:property="propName"
+						:tab="myTab"
+						:activeTab="activeTab"
+						:depth="depth"
+						:key="propName"
+						v-if="shouldCreateProp(propName)">
+					</component>
+					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
+				</b-list-group-item>
+			</b-list-group>
+		</section>
+	</div>
+	<!--<b-card no-body header-class="with-fd-bg" class="my-3">
 		<h2 slot="header" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 			<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/> {{ uiTitle }}
 		</h2>
@@ -10,17 +37,13 @@
 			</b-card-body>
 
 			<b-list-group flush>
-				<!-- b-list-group-item class="border-0" v-for="(propSchema, propName) in schema['properties']" :key="propName" :test="'test-'+propName" -->
 				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
 					<component is="schema-tab-selector" :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></component>
 					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
-
-					<!-- component is="schema-tab-selector" :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName"></component -->
 				</b-list-group-item>
 			</b-list-group>
 		</b-collapse>
-
-	</b-card>
+	</b-card>-->
 </template>
 
 <style>
@@ -110,6 +133,36 @@ export default {
 		expandArrow() {
 			return this.visible ? "ellipsis-v" : "angle-right"
 		},
+		borderColor() {
+			const red = '#e6194B';
+			const orange = '#f58231';
+			const yellow = '#ffe119';
+			const lime = '#bfef45';
+			const green = '#3cb44b';
+			const cyan = '#42d4f4';
+			const blue = '#4363d8';
+			const purple = '#911eb4';
+			const magenta = '#f032e6';
+			const mint = '#aaffc3';
+			const teal = '#469990';
+
+			switch(this.depth % 10) {
+				case 1: return lime;
+				case 2: return green;
+				case 3: return cyan;
+				case 4: return blue;
+				case 5: return purple;
+				case 6: return magenta;
+				case 7: return mint;
+				case 8: return teal;
+				case 9: return yellow;
+				case 10: return orange;
+				default: return red;
+			}
+		},
+		listItemStyle() {
+			return { 'border-left': 'solid 10px ' + this.borderColor + ' !important' }
+		}
 	},
 	created() {
 		//console.log("v-schema-object:", this, this.$data, this.$props)
@@ -119,3 +172,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+	margin-left: 20px;
+}
+</style>
