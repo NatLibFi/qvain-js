@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div v-if="chosen === null" class="wrapper">
+	<wrapper :wrapped="!inArray">
+		<div v-if="chosen === null" class="conditional-wrapper">
 			<b-dropdown class="m-2" text="choose type" variant="primary">
 				<b-dropdown-item v-for="(sub, i) in schema['oneOf']"
 					:key="'oneOfSel' + i"
@@ -26,11 +26,11 @@
 			:key="'oneOf-'+chosen">
 		</component>
 
-	</div>
+	</wrapper>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
+.conditional-wrapper {
 	width: 100%;
 	display: inline-flex;
 	justify-content: center;
@@ -41,6 +41,7 @@
 
 <script>
 import vSchemaBase from './v-schema-base.vue'
+import Wrapper from '../components/Wrapper.vue';
 
 // TODO: find a more generic way to detect relevant oneOf schema
 const IDENTIFYING_FIELD = '@type'
@@ -50,6 +51,9 @@ export default {
 	name: 'schema-oneof',
 	description: "generic oneof",
 	schematype: 'any',
+	components: {
+		Wrapper,
+	},
 	data: function() {
 		return {
 			chosen: null,
