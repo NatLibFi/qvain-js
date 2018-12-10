@@ -2,20 +2,20 @@
 	<div>
 		<!-- (oneof component) -->
 		<div class="clearfix">
-		<b-dropdown right text="choose type" variant="primary" class="m-2 float-right">
-			<b-dropdown-item v-for="(sub, i) in schema['oneOf']" :key="'oneOfSel' + i" @click="setChosen(i)">{{ sub['title'] || '#'+i }}</b-dropdown-item>
-		</b-dropdown>
-		<span class="text-muted">oneOf "{{ schema.title }}", chosen: #{{ chosen }} ({{ chosen !== null ? schema['oneOf'][chosen]['title'] || "[no name]" : "" }})</span>
-		<p>currentType: {{ currentType }}</p>
-		<p>possibleTypes: {{ possibleTypes }}</p>
-		xxx
+			<b-dropdown right text="choose type" variant="primary" class="m-2 float-right">
+				<b-dropdown-header>type</b-dropdown-header>
+				<b-dropdown-item v-for="(sub, i) in schema['oneOf']" :key="'oneOfSel' + i" @click="setChosen(i)">{{ sub['title'] || '#'+i }}</b-dropdown-item>
+			</b-dropdown>
+			<div v-if="false">
+				<span class="text-muted">oneOf "{{ schema.title }}", chosen: #{{ chosen }} ({{ chosen !== null ? schema['oneOf'][chosen]['title'] || "[no name]" : "" }})</span>
+				<p>currentType: {{ currentType }}</p>
+				<p>possibleTypes: {{ possibleTypes }}</p>
+			</div>
 		</div>
-
 
 		<b-textarea v-if="false" :rows="15" :value="JSON.stringify(schemaForChosen, null, 2)"></b-textarea>
 
-		<TabSelector v-if="chosen !== null" :schema="schemaForChosen" :path="newPath('oneOf/' + chosen)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" 
-		:depth="depth" :key="'oneOf-'+chosen"></TabSelector>
+		<TabSelector v-if="chosen !== null" :schema="schemaForChosen" :path="newPath('oneOf/' + chosen)" :value="value" :parent="parent" :property="property" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="'oneOf-'+chosen"></TabSelector>
 
 	</div>
 </template>
