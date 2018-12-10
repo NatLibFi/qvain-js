@@ -1,46 +1,58 @@
 <template>
-	<b-card no-body header-class="with-fd-bg" class="my-3">
-		<h2 slot="header" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
+	<wrapper :wrapped="true">
+		<h3 @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 			<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/> {{ uiTitle }}
-		</h2>
+		</h3>
 		<b-collapse :id="domId + '-props'" v-model="visible">
-			<b-card-body>
-				<p class="card-text text-muted" v-if="uiDescription"><sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup> {{ uiDescription }}</p>
-			</b-card-body>
-
-			<div class="px-3 mb-3" role="tablist" v-for="(org, i) in flattened" :key="'level-' + i">
-				<b-card no-body class="mb-1">
-					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn href="#" v-b-toggle="domId + '-accordion-' + i" variant="link" style="text-align: left;"><font-awesome-icon icon="angle-right" fixed-width /> Level {{ i + 1 }}{{ getDescriptionForLevel(i) }}</b-btn>
-						<b-btn v-if="i > 0" class="btn-outline-secondary danger-on-hover border-0" @click="remove(i)"><font-awesome-icon icon="trash" /></b-btn>
-					</b-card-header>
-					<b-collapse :id="domId + '-accordion-' + i" visible :accordion="domId + '-accordion'" role="tabpanel">
-						<b-card-body class="p-0 m-0">
-							<FlatObject v-if="true" :schema="schema" :path="path" :value="org" :parent="i ? flattened[i - 1] : value" :property="i ? refField : property" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="'level-' + i"></FlatObject>
-						</b-card-body>
-					</b-collapse>
-				</b-card>
+			<p class="ml-4 card-text text-muted" v-if="uiDescription">
+				<sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup>
+				{{ uiDescription }}
+			</p>
+			<div :style="listItemStyle(depth)" class="mb-3" v-for="(org, i) in flattened" :key="'level-' + i">
+				<b-btn href="#" v-b-toggle="domId + '-accordion-' + i" variant="link" style="text-align: left;">
+					<font-awesome-icon icon="angle-right" fixed-width />
+					Level {{ i + 1 }}{{ getDescriptionForLevel(i) }}
+				</b-btn>
+				<b-btn v-if="i > 0" class="btn-outline-secondary danger-on-hover border-0" @click="remove(i)">
+					<font-awesome-icon icon="trash" />
+				</b-btn>
+				<b-collapse :id="domId + '-accordion-' + i" visible :accordion="domId + '-accordion'" role="tabpanel">
+					<FlatObject :schema="schema"
+						:path="path"
+						:value="org"
+						:parent="i ? flattened[i - 1] : value"
+						:property="i ? refField : property"
+						:tab="myTab"
+						:activeTab="activeTab"
+						:depth="depth"
+						:key="'level-' + i">
+					</FlatObject>
+				</b-collapse>
 			</div>
-
 			<b-button class="m-3" @click="add()"><font-awesome-icon icon="plus" fixed-width /> Add another level</b-button>
-
 			</b-collapse>
-	</b-card>
+		</wrapper>
 </template>
 
 <style>
 </style>
 
 <script>
-import SchemaBase from './base.vue'
-import keysWithOrder from '@/lib/keysWithOrder.js'
-import jsonPointer from 'json-pointer'
+import SchemaBase from './base.vue';
+import keysWithOrder from '@/lib/keysWithOrder.js';
+import jsonPointer from 'json-pointer';
+import Wrapper from '@/components/Wrapper.vue';
+import BorderColorMixin from '../mixins/border-color-mixin.js';
 
 export default {
 	extends: SchemaBase,
 	name: 'SelfReferentialObject',
 	description: "self-referential object",
 	schematype: 'object',
+	mixins: [BorderColorMixin],
+	components: {
+		Wrapper,
+	},
 	props: {
 		'refField': String,
 		'levels': Array,

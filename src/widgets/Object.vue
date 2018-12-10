@@ -1,5 +1,5 @@
 <template>
-	<div :style="listItemStyle">
+	<div :style="listItemStyle(depth)">
 		<header>
 			<h3 class="title" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 				<!--<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/>-->
@@ -56,12 +56,14 @@ div:empty {
 </style>
 
 <script>
-import vSchemaBase from './base.vue'
-import keysWithOrder from '@/lib/keysWithOrder.js'
-import jsonPointer from 'json-pointer'
+import vSchemaBase from './base.vue';
+import keysWithOrder from '@/lib/keysWithOrder.js';
+import jsonPointer from 'json-pointer';
+import BorderColorMixin from '../mixins/border-color-mixin.js';
 
 export default {
 	extends: vSchemaBase,
+	mixins: [BorderColorMixin],
 	name: 'SchemaObject',
 	description: "generic object",
 	schematype: 'object',
@@ -136,36 +138,6 @@ export default {
 		expandArrow() {
 			return this.visible ? "ellipsis-v" : "angle-right"
 		},
-		borderColor() {
-			const red = '#e6194B';
-			const orange = '#f58231';
-			const yellow = '#ffe119';
-			const lime = '#bfef45';
-			const green = '#3cb44b';
-			const cyan = '#42d4f4';
-			const blue = '#4363d8';
-			const purple = '#911eb4';
-			const magenta = '#f032e6';
-			const mint = '#aaffc3';
-			const teal = '#469990';
-
-			switch(this.depth % 10) {
-				case 1: return lime;
-				case 2: return green;
-				case 3: return cyan;
-				case 4: return blue;
-				case 5: return purple;
-				case 6: return magenta;
-				case 7: return mint;
-				case 8: return teal;
-				case 9: return yellow;
-				case 10: return orange;
-				default: return red;
-			}
-		},
-		listItemStyle() {
-			return { 'border-left': 'solid 10px ' + this.borderColor + ' !important' }
-		}
 	},
 	created() {
 		//console.log("registered components:", this.$options.components)
