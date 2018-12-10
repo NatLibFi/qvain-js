@@ -86,7 +86,6 @@
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-import vSchemaTabSelector from '@/widgets/v-schema-tab-selector.vue'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
@@ -436,7 +435,6 @@ export default {
 		},
 	},
 	components: {
-		'schema-tab-selector': vSchemaTabSelector,
 		'dataset-json-modal': DatasetJsonModal,
 		'dataset-overview-modal': DatasetOverviewModal,
 	},

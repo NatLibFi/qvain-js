@@ -9,7 +9,7 @@
 		<section>
 			<b-list-group flush>
 				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-					<component is="schema-tab-selector"
+					<TabSelector
 						:schema="schema['properties'][propName]"
 						:path="newPath('properties/' + propName)"
 						:value="value[propName]"
@@ -19,8 +19,7 @@
 						:activeTab="activeTab"
 						:depth="depth"
 						:key="propName"
-						v-if="shouldCreateProp(propName)">
-					</component>
+						v-if="shouldCreateProp(propName)" />
 					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
 				</b-list-group-item>
 			</b-list-group>
@@ -38,8 +37,11 @@
 
 			<b-list-group flush>
 				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-					<component is="schema-tab-selector" :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></component>
+					<TabSelector :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></TabSelector>
 					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
+
+					TabSelector :schema="propSchema" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab"
+				:depth="depth" :key="propName"></TabSelector
 				</b-list-group-item>
 			</b-list-group>
 		</b-collapse>
@@ -54,12 +56,13 @@ div:empty {
 </style>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 import keysWithOrder from '@/lib/keysWithOrder.js'
+import jsonPointer from 'json-pointer'
 
 export default {
 	extends: vSchemaBase,
-	name: 'schema-object',
+	name: 'SchemaObject',
 	description: "generic object",
 	schematype: 'object',
 	data: function() {
@@ -165,10 +168,11 @@ export default {
 		}
 	},
 	created() {
-		//console.log("v-schema-object:", this, this.$data, this.$props)
 		//console.log("registered components:", this.$options.components)
 		//console.log("object:", this, "path:", this.path, "children:", this.$children, "slots:", this.$slots)
 		if ('visible' in this.ui) this.visible = this.ui['visible']
+		// console.log("xxx Object: jsonPointer:", this.path)
+		//, jsonPointer.get(this.path))
 	},
 }
 </script>

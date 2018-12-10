@@ -30,3 +30,20 @@ export function dataPointer(ptr) {
 
 		return "/" + result.join("/")
 }
+
+function ptrFor(path) {
+	console.log(path, "-->", dataPointer(path))
+}
+
+ptrFor("")
+ptrFor("/")
+ptrFor("/identifier")
+ptrFor("/properties/title")
+ptrFor("/properties/properties/properties/name")
+ptrFor("/properties/creator/0")
+ptrFor("/properties/creator/0/properties/name")
+ptrFor("/properties/creator/0/properties")
+ptrFor("/properties/creator/0/properties/")
+ptrFor("/properties/creator/oneOf/0/properties/name")
+ptrFor("/properties/creator/oneOf/1/properties/partOf/properties/name")
+ptrFor("/properties/creator/not/properties/name")

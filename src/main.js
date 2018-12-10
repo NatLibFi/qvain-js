@@ -30,6 +30,26 @@ library.add(faUser, faInfo, faMinus, faPlus, faTimes, faAngleRight, faQuoteLeft,
 store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
 
+// get configuration from environment
+function getConfig() {
+	return {
+		// Metax Dataset API endpoint
+		MetaxApiUrl: process.env['VUE_APP_METAX_API_URL'],
+		// Elastic Search API endpoint
+		EsApiUrl: process.env['VUE_APP_ES_API_URL'],
+		// Etsin Dataset API endpoint
+		EtsinApiUrl: process.env['VUE_APP_ETSIN_API_URL'],
+		// Qvain (js) version
+		Version: process.env['VUE_APP_VERSION'],
+		// application execution environment (testing, stable, production)
+		Environment: process.env['VUE_APP_ENVIRONMENT'],
+		// node environment
+		NodeEnv: process.env['NODE_ENV'],
+		// development login token
+		DevToken: process.env['DEV_TOKEN'],
+	}
+}
+
 // create and mount the root instance
 // eslint-disable-next-line no-unused-vars
 const app = new Vue({
@@ -71,16 +91,6 @@ const app = new Vue({
 	},
 	created() {
 		//this.language = "en"
-		/*
-		console.log("env:", process.env)
-		console.log("MODE:", process.env.VUE_APP_MODE)
-		console.log("METAX_API_URL:", process.env.VUE_APP_METAX_API_URL)
-		console.log("ES_API_URL:", process.env.VUE_APP_ES_API_URL)
-		console.log("ETSIN_API_URL:", process.env.VUE_APP_ETSIN_API_URL)
-		console.log("APP_DEBUG:", typeof APP_DEBUG !== 'undefined' ? APP_DEBUG : undefined)
-		console.log("NODE_ENV:", process.env.NODE_ENV)
-		console.log("DEV_TOKEN:", process.env.VUE_APP_DEV_TOKEN)
-		*/
 
 		// we can't log in from a dev instance, so load a "fake" token
 		//if (process.env.NODE_ENV === "development" && process.env.VUE_APP_DEV_TOKEN) {
@@ -88,6 +98,9 @@ const app = new Vue({
 		//}
 		//console.log("localStorage token login:", this.$auth.localLogin(), this.$auth.loggedIn, this.$auth.user, this.$auth.user.name)
 		//console.log("logged in?", this.$auth.loggedIn, this.$auth.user, this.$auth._user)
+
+		// set configuration on root component
+		this.$config = getConfig()
 		console.log("login attempt with cached token:", this.$auth.localLogin())
 	},
 }).$mount('#app')

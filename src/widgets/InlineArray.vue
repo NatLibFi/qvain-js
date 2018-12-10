@@ -1,9 +1,9 @@
 <template>
 	<wrapper :wrapped="wrapped">
-		<b-form-group class="qwidget" :label-cols="2" :description="uiDescription" :label="uiLabel" :feedback="feedback" :state="schemaState">
+		<b-form-group class="qwidget" :label-cols="2" :description="uiDescription" :label="uiLabel" :state="schemaState">
 			<b-list-group flush>
 				<b-list-group-item v-for="(child, index) in value" :key="index" @remove="remove(index)">
-					<component is="schema-tab-selector" :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></component>
+					<TabSelector :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></TabSelector>
 				</b-list-group-item>
 				<empty-note v-if="value.length < 1">no items</empty-note>
 			</b-list-group>
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue';
 import Wrapper from '../components/Wrapper.vue';
+import vSchemaBase from './base.vue'
 
 export default {
 	extends: vSchemaBase,
-	name: 'schema-inline-array',
+	name: 'InlineArray',
 	description: 'generic array, inline',
 	schematype: 'array',
 	components: {
@@ -37,7 +37,6 @@ export default {
 		return {
 			minimum: 0,
 			maximum: 0,
-			feedback: "very well, I feed back",
 			warning: null,
 			dismissSecs: 5,
 			dismissCountDown: 0,

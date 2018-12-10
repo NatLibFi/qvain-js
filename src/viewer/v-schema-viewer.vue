@@ -23,7 +23,7 @@
 			</form>
 		</b-modal>
 		
-		<hint-editor ref="refHintEditor" :schema="{}" path=""></hint-editor>
+		<HintEditor ref="refHintEditor" :schema="{}" path=""></HintEditor>
 		<b-btn @click="edit('blah')">open</b-btn>
 
 		<hr/>
@@ -37,8 +37,8 @@
 
 <script>
 import testSchemas from '../testschemas.js'
-import vHintEditor from './hint-editor.vue'
-import vSchemaTree from './v-schema-tree.vue'
+import HintEditor from './HintEditor.vue'
+import SchemaTree from './SchemaTree.vue'
 
 export default {
 	data: function() {
@@ -85,8 +85,8 @@ export default {
 		},
 	},
 	components: {
-		'hint-editor': vHintEditor,
-		'schema-tree': vSchemaTree,
+		'HintEditor': HintEditor,
+		'SchemaTree': SchemaTree,
 	},
 	created() {
 		console.log("schemaviewer:", this, this.$refs)

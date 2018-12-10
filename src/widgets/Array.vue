@@ -20,7 +20,7 @@
 		<b-form-group :label-cols="2" :description="uiDescription" :label="uiTitle" :state="schemaState">
 			<b-list-group flush>
 				<b-list-group-item class="list-item" v-for="(child, index) in value" :key="index">
-					<component is="schema-tab-selector"
+					<TabSelector
 						:schema="schemaForChild(index)"
 						:path="newPath(index)"
 						:value="value[index]"
@@ -30,8 +30,7 @@
 						:activeTab="activeTab"
 						:depth="depth"
 						@delete="deleteElement"
-						:key="'array-' + index">
-					</component>
+						:key="'array-' + index" />
 				</b-list-group-item>
 				<b-list-group-item v-if="!value || value.length < 1"><empty-note>no items, add one!</empty-note></b-list-group-item>
 			</b-list-group>
@@ -56,9 +55,10 @@
 
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
-import ValidationPopover from '@/components/ValidationPopover.vue'
-import Wrapper from '../components/Wrapper.vue';
+import vSchemaBase from './base.vue';
+import ValidationPopover from '@/components/ValidationPopover.vue';
+import Wrapper from '@/components/Wrapper.vue';
+import TabSelector from '@/widgets/TabSelector.vue';
 
 export default {
 	extends: vSchemaBase,

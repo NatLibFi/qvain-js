@@ -13,12 +13,12 @@
 
 <script>
 import datepicker from 'vuejs-datepicker';
-import vSchemaBase from '../widgets/v-schema-base.vue';
+import SchemaBase from '@/widgets/base.vue';
 import { distanceInWords } from 'date-fns';
 
 export default {
 	name: 'date',
-	extends: vSchemaBase,
+	extends: SchemaBase,
 	components: {
 		datepicker
 	},

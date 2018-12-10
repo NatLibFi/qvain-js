@@ -24,7 +24,7 @@
 					:customLabel="customLabel"
 					placeholder="Select option"
 					group-values="children"
-					group-label="pref_label"
+					:group-label="labelNameInSchema"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 					<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
@@ -54,9 +54,8 @@
 </template>
 
 <script>
-
-import vSchemaBase from '../widgets/v-schema-base.vue';
-import { esApiSearchClient } from '../widgets/refdata/es.js';
+import vSchemaBase from '@/widgets/base.vue';
+import { esApiSearchClient } from '@/widgets/refdata/es.js';
 import Wrapper from './Wrapper.vue';
 
 import Multiselect from 'vue-multiselect';
@@ -77,6 +76,7 @@ export default {
 		tags: { type: Boolean, default: false },
 		showLang: { type: Boolean, default: false },
 		wrapped: { type: Boolean, default: false },
+		labelNameInSchema: { type: String, default: 'pref_label' },
 		grouped: { type: Boolean, required: false },
 	},
 	data() {
@@ -166,7 +166,7 @@ export default {
 			return {
 				id: es.id,
 				identifier: es.uri,
-				pref_label: es.label[this.currentLanguage],
+				[this.labelNameInSchema]: es.label[this.currentLanguage],
 				label: es.label,
 				children: es.child_ids,
 				hasChildren: es.has_children
@@ -198,12 +198,13 @@ export default {
 	},
 	async created() {
 		if (this.isMultiselect && this.isArray) {
-			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v.pref_label }));
+			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v[this.labelNameInSchema] }));
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
-			const { identifier, pref_label } = this.value;
-			this.selectedOptions = { identifier, label: pref_label };
+			const { identifier } = this.value;
+			const label = this.value[this.labelNameInSchema];
+			this.selectedOptions = { identifier, label: label };
 		}
 
 		if (!this.async) {
@@ -218,13 +219,13 @@ export default {
 			if (this.isMultiselect && selectedValueIsSet) {
 				storableOptions = this.selectedOptions.map(option =>({
 					identifier: option.identifier,
-					pref_label: Object.assign({}, option.label)
+					[this.labelNameInSchema]: Object.assign({}, option.label)
 				}));
 			}
 
 			if (!this.isMultiselect && selectedValueIsSet) {
 				const { identifier, label } = this.selectedOptions;
-				storableOptions = { identifier, pref_label: Object.assign({}, label) };
+				storableOptions = { identifier, [this.labelNameInSchema]: Object.assign({}, label) };
 			}
 
 			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });
@@ -252,5 +253,35 @@ export default {
 .option__parent {
 	font-weight: bold;
     color: black !important;
+}
+</style>
+
+<style lang="scss">
+.multiselect__option--highlight,
+.multiselect__option--highlight:after,
+.multiselect__tag {
+	background: $fd-primary;
+}
+
+.multiselect__spinner:before,
+.multiselect__spinner:after {
+	border-color: $fd-primary transparent transparent;
+}
+
+.multiselect__tag-icon:after {
+	color: $fd-primary-black;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+	background: $fd-primary-dark;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+	background: $danger;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+	background: $danger;
 }
 </style>

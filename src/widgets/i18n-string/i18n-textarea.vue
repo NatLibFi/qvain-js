@@ -50,7 +50,7 @@
 
 
 <script>
-import vSchemaBase from '../v-schema-base.vue'
+import vSchemaBase from '../base.vue'
 import langCodes2 from '../../data/iso639-1.json'
 import LanguageSelect from '@/components/LanguageSelect.vue'
 import Wrapper from '../../components/Wrapper.vue';

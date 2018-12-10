@@ -4,6 +4,7 @@ h1, h2, h3, h4, h5, h6, h7 { font-family: "Lato", serif; }
 */
 
 // Custom colors for qvain
+/*
 $blue: #007fad;
 $indigo: #6610f2;
 $purple: #6f42c1;
@@ -15,6 +16,11 @@ $green: #11a53c;
 $teal: #20c997;
 $cyan: #17a2b8;
 
+$fd-primary: #007fad;
+$fd-primary-dark: #004f6b;
+$fd-primary-black: #002533;
+$fd-primary-white: #e5f2f7;
+
 $primary: $blue;
 $success: $green;
 $info: $cyan;
@@ -22,6 +28,7 @@ $warning: $yellow;
 $danger: $red;
 $dark: #4f4f4f;
 // END custom colors
+*/
 
 // override shadow around active input elements
 //$input-focus-box-shadow: false;
@@ -57,9 +64,41 @@ body {
 	/* background: radial-gradient(ellipse at center, rgba(250,250,250,1) 0%,rgba(200,200,200,1) 100%); */
 }
 
+/*
 .multiselect__option--highlight, .multiselect__option--selected.multiselect__option--highlight {
 	background: $orange;
 }
+*/
+
+/*
+.multiselect__option--highlight,
+.multiselect__option--highlight:after,
+.multiselect__tag {
+	background: $fd-primary;
+}
+
+.multiselect__spinner:before,
+.multiselect__spinner:after {
+	border-color: $fd-primary transparent transparent;
+}
+
+.multiselect__tag-icon:after {
+	color: $fd-primary-black;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+	background: $fd-primary-dark;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+	background: $danger;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+	background: $danger;
+}
+*/
 
 /*
 	official fairdata colours:
@@ -96,6 +135,21 @@ $form-feedback-valid-color: #ced4da !default;
 
 .label-button {
 	background-color: $orange;
+}
+
+.btn.danger-on-hover:hover,
+.btn.danger-on-hover:focus,
+.btn.danger-on-hover:active {
+	color: $danger !important;
+	background-color: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+.btn.danger-on-hover:active {
+	/* box-shadow: 0 0 4px 0 $danger !important; */
+	color: darken($danger, 5%) !important;
+	transform: scale(1.2) !important;
 }
 
 /*

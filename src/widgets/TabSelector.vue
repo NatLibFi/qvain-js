@@ -32,15 +32,15 @@
 </template>
 
 <script>
-import vSchemaNumber from './v-schema-number.vue'
-import vSchemaString from './v-schema-string.vue'
-import vSchemaObject from './v-schema-object.vue'
-import vSchemaArray from './v-schema-array.vue'
-import vSchemaInlineArray from './v-schema-inline-array.vue'
-import vSchemaAnyOf from './v-schema-anyof.vue'
-import vSchemaAllOf from './v-schema-allof.vue'
-import vSchemaOneOf from './v-schema-oneof.vue'
-import vSchemaEnum from './v-schema-enum.vue'
+import SchemaNumber from './Number.vue'
+import SchemaString from './String.vue'
+import SchemaObject from './Object.vue'
+import SchemaArray from './Array.vue'
+import SchemaInlineArray from './InlineArray.vue'
+import SchemaAnyOf from './anyOf.vue'
+import SchemaAllOf from './allOf.vue'
+import SchemaOneOf from './oneOf.vue'
+import SchemaEnum from './Enum.vue'
 import WidgetGoogleMaps from './widget-googlemaps.vue'
 import refdataList from './refdata/list.vue'
 import i18nString from './i18n-string/i18n-string.vue'
@@ -49,15 +49,16 @@ import TabbedArray from './TabbedArray.vue'
 import AutoComplete from './refdata/autocomplete.vue'
 import Filebrowser from '../filebrowser/filebrowser.vue'
 import Skip from './skip.js'
+import SelfReferentialObject from './SelfReferentialObject.vue'
+import FlatObject from './FlatObject.vue'
 import ReferenceData from '../components/ReferenceData.vue'
 import DateRange from '../components/DateRange.vue'
 import Date from '../components/Date.vue'
 
-
 const COMBINERS = ['anyOf', 'allOf', 'oneOf', 'not']
 
 export default {
-	name: 'schema-tab-selector',
+	name: 'TabSelector',
 	description: "internal dispatch wrapper",
 	widgettype: 'any',
 	/*
@@ -297,16 +298,15 @@ export default {
 		*/
 	},
 	components: {
-		//'schema': vSchemaSchema,
-		'schema-number': vSchemaNumber,
-		'schema-string': vSchemaString,
-		'schema-object': vSchemaObject,
-		'schema-array': vSchemaArray,
-		'schema-inline-array': vSchemaInlineArray,
-		'schema-anyof': vSchemaAnyOf,
-		'schema-allof': vSchemaAllOf,
-		'schema-oneof': vSchemaOneOf,
-		'schema-enum': vSchemaEnum,
+		'schema-number': SchemaNumber,
+		'schema-string': SchemaString,
+		'schema-object': SchemaObject,
+		'schema-array': SchemaArray,
+		'schema-inline-array': SchemaInlineArray,
+		'schema-anyof': SchemaAnyOf,
+		'schema-allof': SchemaAllOf,
+		'schema-oneof': SchemaOneOf,
+		'schema-enum': SchemaEnum,
 		'widget-googlemaps': WidgetGoogleMaps,
 		'refdata-list': refdataList,
 		'reference-data': ReferenceData,
@@ -316,6 +316,8 @@ export default {
 		'autocomplete': AutoComplete,
 		'browser': Filebrowser,
 		'skip': Skip,
+		SelfReferentialObject,
+		FlatObject,
 		'date-range': DateRange,
 		'date': Date,
 	},

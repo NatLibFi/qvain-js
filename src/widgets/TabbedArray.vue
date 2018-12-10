@@ -13,7 +13,8 @@
 					<b-btn size="sm" variant="danger" class="float-right" :disabled="value.length <= minimum" @click="()=>closeTab(i)">Delete entry</b-btn>
 					<b-btn size="sm" @click="tabIndex = 2">sel-2</b-btn>
 
-					<component is="schema-tab-selector" :schema="schemaForChild(i)" :path="newPath(i)" :value="value[i]" :parent="parent[property]" :property="i" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></component>
+					<TabSelector :schema="schemaForChild(i)" :path="newPath(i)" :value="value[i]" :parent="parent[property]" :property="i" :tab="myTab" :activeTab="activeTab" :depth="depth" 
+				@delete="deleteElement"></TabSelector>
 				</b-tab>
 
 				<b-nav-item slot="tabs" :disabled="value.length >= maximum" @click.prevent="newTab" href="#">+</b-nav-item>
@@ -30,8 +31,8 @@
 </template>
 
 <script>
-//import vSchemaBase from './v-schema-base.vue'
-import vSchemaArray from './v-schema-array.vue'
+//import vSchemaBase from './base.vue'
+import vSchemaArray from './Array.vue'
 
 export default {
 	extends: vSchemaArray,

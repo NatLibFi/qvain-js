@@ -7,7 +7,7 @@ import Datasets from './views/Datasets.vue'
 import TabUi from './views/TabUi.vue'
 import Editor from './views/Editor.vue'
 import UserInfo from './views/UserInfo.vue'
-import vSchemaViewer from './viewer/v-schema-viewer.vue'
+import SchemaViewer from './viewer/v-schema-viewer.vue'
 import SingleTab from './views/SingleTab.vue'
 import testAutoComplete from './widgets/refdata/autocomplete.vue'
 import vFileBrowser from './filebrowser/filebrowser.vue'
@@ -26,7 +26,7 @@ const routes = [
 	{ path: '/token', component: Token, props: false },
 	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
 	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
-	{ path: '/viewschema', component: vSchemaViewer, props: false },
+	{ path: '/viewschema', component: SchemaViewer, props: false },
 	{ path: '/autocomplete', component: testAutoComplete, props: false },
 	{ path: '/orcid', component: OrcidSearch, props: false },
 	{ path: '/personlist', component: PersonList, props: false },

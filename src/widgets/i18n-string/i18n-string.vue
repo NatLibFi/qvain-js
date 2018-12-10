@@ -43,10 +43,11 @@ sup.langlabel {
 </style>
 
 <script>
-import vSchemaBase from '../v-schema-base.vue';
+
+import vSchemaBase from '../base.vue';
 import langCodes2 from '../../data/iso639-1.json';
 import LanguageSelect from '@/components/LanguageSelect.vue';
-import Wrapper from '../../components/Wrapper.vue';
+import Wrapper from '@/components/Wrapper.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -83,12 +84,7 @@ export default {
 		addPair: function() {
 			console.log(this.newString, this.newLanguage)
 			// validate language
-			if (
-				!this.newLanguage ||
-        (this.freeform &&
-          (this.newLanguage.length < 2 || this.newLanguage.length > 3)) ||
-        (!this.freeform && !(this.newLanguage in this.languages))
-			) {
+			if (!this.newLanguage || (this.freeform && (this.newLanguage.length < 2 || this.newLanguage.length > 3)) || (!this.freeform && !(this.newLanguage in this.languages))) {
 				this.langState = false
 			}
 			// validate string
@@ -99,27 +95,21 @@ export default {
 			if (this.stringState === false || this.langState === false) {
 				return
 			}
-			//this.$set(this.pairs, this.newLanguage, this.newString)
-			//this.$set(this.lpairs, this.newLanguage, this.newString)
-			console.log(this.value, this.lpairs)
-			//this.lpairs[this.newLanguage] = this.newString
-			//this.$set(this.lpairs, this.newLanguage, this.newString)
 
-			// setter doesn't run
-			this.value[this.newLanguage] = this.newString
-			this.updateValue()
-			//this.$set(this.value, this.newLanguage, this.newString)
-			//this.lpairs['xx'] = "wlekfjklwejf"
-			//this.$set(this.lpairs, "xx", "testing testing")
-			//this.lpairs = {'xx': "testing title"}
-			//this.lpairs['xx'] = "testing title"
+			this.$store.commit('updateValue', {
+				p: this.value,
+				prop: this.newLanguage,
+				val: this.newString,
+			})
+
 			this.newLanguage = this.newString = null
-			//this.langState = this.stringState = true
 			this.resetState()
 		},
 		deleteLang: function(lang) {
-			this.$delete(this.value, lang)
-			this.updateValue()
+			this.$store.commit('deleteValue', {
+				p: this.value,
+				prop: lang,
+			})
 		},
 		resetState: function() {
 			if (!this.langState || !this.stringState) {

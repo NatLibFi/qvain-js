@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 import axios from 'axios'
 
 function parseApiResults(json) {

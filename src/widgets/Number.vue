@@ -17,7 +17,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
-import vSchemaBase from './v-schema-base.vue'
+import vSchemaBase from './base.vue'
 
 // from Vue code
 function toNumber(val) {
@@ -88,7 +88,6 @@ export default {
 	},
 	*/
 	created() {
-		//console.log("v-schema-number:", this, this.$data)
 	},
 	components: {
 		FontAwesomeIcon,
