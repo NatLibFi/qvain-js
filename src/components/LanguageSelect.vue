@@ -15,7 +15,7 @@ export default {
 		value: String,
 		placeholder: {
 			type: String,
-			default: "– language –",
+			default: "Select language",
 		}
 	},
 	data() {
