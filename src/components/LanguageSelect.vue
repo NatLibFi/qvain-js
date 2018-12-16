@@ -1,5 +1,5 @@
-<template>
-	<b-form-select :value="value" :options="languages" v-bind="$attrs" v-on="$listeners">
+<template functional>
+	<b-form-select :options="languages" v-bind="$attrs" v-on="$listeners">
 		<template slot="first">
 			<option :value="null" disabled class="text-muted">{{ placeholder }}</option>
 		</template>
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import langCodes2 from '@/data/iso639-1.json'
 
 export default {
