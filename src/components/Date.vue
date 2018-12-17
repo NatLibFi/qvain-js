@@ -29,7 +29,16 @@ export default {
 	},
 	computed: {
 		dateString() {
-			return this.date ? this.date.toISOString() : null;
+			if (!this.date) {
+				return null;
+			}
+
+			if (this.schema.format === 'date') {
+				return this.date.toISOString().split('T')[0];
+			}
+
+			// if format is date-time
+			return this.date.toISOString();
 		},
 	},
 	created() {
