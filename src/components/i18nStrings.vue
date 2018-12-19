@@ -1,18 +1,18 @@
 <template>
 	<wrapper :wrapped="true">
-		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+		<div class="validation">
+			<ValidationStatus :status="validationStatus" class="validation__icon" />
+		</div>
+		<b-form-group :status="false" label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+			<div class="header" slot="label"><p>{{uiLabel}}</p></div>
+
 			<b-list-group flush>
 				<div v-if="Object.keys(state).length === 0">
 					<p class="intro-text">
 						Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
 					</p>
 					<div class="language-row">
-						<b-input-group class="input-width">
-							<b-input-group-text slot="prepend">
-								<font-awesome-icon icon="plus" fixed-width class="text-dark" />
-							</b-input-group-text>
-							<language-select :value="null" @input="e => addPair(e)" />
-						</b-input-group>
+						<language-select class="input-width" @change="addPair" />
 					</div>
 				</div>
 
@@ -29,12 +29,7 @@
 				</b-list-group-item>
 
 				<b-list-group-item v-if="Object.keys(state).length > 0" class="language-row">
-					<b-input-group class="input-width">
-						<b-input-group-text slot="prepend">
-        					<font-awesome-icon icon="plus" fixed-width class="text-dark" />
-    					</b-input-group-text>
-						<language-select :value="null" @input="e => addPair(e)" />
-					</b-input-group>
+					<language-select class="input-width" @change="addPair" />
 				</b-list-group-item>
 
 			</b-list-group>
@@ -45,6 +40,19 @@
 
 <style lang="scss" scoped>
 // $background: #fbfbfb;
+.validation {
+	position: relative;
+    top: -35px;
+	right: -35px;
+	.validation__icon {
+		float: right;
+	}
+}
+.header {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-between;
+}
 
 .intro-text {
 	text-align: center; margin-top: 30px;
@@ -82,6 +90,7 @@ import vSchemaBase from '@/widgets/base.vue';
 import LanguageSelect from '@/components/LanguageSelect.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import DeleteButton from '@/partials/DeleteButton.vue';
+import ValidationStatus from '@/partials/ValidationStatus.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -91,7 +100,8 @@ export default {
 	components: {
 		LanguageSelect,
 		Wrapper,
-		DeleteButton
+		DeleteButton,
+		ValidationStatus,
 	},
 	data() {
 		return {
@@ -113,13 +123,28 @@ export default {
 			this.$store.commit('updateValue', {
 				p: this.parent,
 				prop: this.property,
-				val: this.state,
+				val: this.state
 			});
 		},
 	},
+	computed: {
+		hasEmptyValues() {
+			return Object.values(this.state).some(v => v.length == 0);
+		},
+		validationStatus() {
+			if (this.schemaState && this.hasEmptyValues) return 'uncertain';
+			if (this.schemaState) return 'valid';
+			if (this.schemaState !== null && !this.schemaState) return 'invalid';
+			return null;
+		}
+	},
 	watch: {
-		state() {
+		state(newState, oldState) {
+			const shouldClearValidation = Object.keys(newState).length < Object.keys(oldState).length;
 			this.updateValue();
+			if (shouldClearValidation) {
+				this.$store.commit('cleanStateFor', this.path);
+			}
 		}
 	},
 	created() {

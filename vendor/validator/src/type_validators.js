@@ -24,7 +24,7 @@ function validateString(schema, data, path, parent, prop) {
 		if (min && data.length < min) this.addError(path, schema, "length must be at least " + min + " characters")
 		if (max && data.length > max) this.addError(path, schema, "length must be at most " + max + " characters")
 	}
-	
+
 	// regex
 	if ('pattern' in schema) {
 		try {
@@ -35,7 +35,7 @@ function validateString(schema, data, path, parent, prop) {
 			// invalid regex (log?)
 		}
 	}
-	
+
 	// formats not implemented should PASS (http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.1)
 	if ('format' in schema) {
 		if (schema['format'] in STRING_FORMAT_VALIDATORS) {
@@ -53,7 +53,7 @@ function validateNumber(schema, data, path, parent, prop) {
 	const opMore = (a, b) => a > b
 	const opMoreOrEqual = (a, b) => a >= b
 	const type = schema['type'] // number or integer
-	
+
 	// double-check and short-circuit to avoid doing arithmetics with something that's not a number
 	if (typeof data !== 'number') {
 		this.addError(path, schema, "not a number")
@@ -66,7 +66,7 @@ function validateNumber(schema, data, path, parent, prop) {
 	if ('maximum' in schema) {
 		if (! (Boolean(schema['exclusiveMaximum']) ? opMore : opMoreOrEqual)(schema['maximum'], data) ) this.addError(path, schema, "number out of range (maximum)")
 	}
-		
+
 	if ('multipleOf' in schema) {
 		if (data % schema['multipleOf']) {
 			this.addError(path, schema, data + " is not a multiple of " + schema['multipleOf'])
@@ -84,7 +84,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 	// copy ref in case we need to make a copy
 	const origSchema = schema
 	var merge = require('deepmerge')
-	
+
 	let depProps = {}
 	for (let prop in schema['dependencies']) {
 		// schema dependency, merge schema and extra requirements into new schema copy
@@ -94,20 +94,20 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 			depProps[prop] = schema['dependencies'][prop].reduce((res, dep) => { res[dep] = 'dep of ' + prop; return res; }, {})
 		}
 	}
-	
+
 	let addProps = schema['additionalProperties']
 	let allowAddProps = addProps !== undefined && typeof addProps === 'boolean' ? addProps : true
 	let addPropSchema = addProps !== undefined && typeof addProps === 'object' ? addProps : {}
 	let reqProps = schema['required'] ? schema['required'].reduce((res, item) => { res[item] = true; return res; }, {}) : {}
-	
+
+	let dataProps = {}
+	if (isObject(data)) Object.keys(data).forEach(k => dataProps[k] = true)
+
+	let numProps = Object.keys(dataProps).length
+	if ('minProperties' in schema && numProps < schema['minProperties']) this.addError(path, origSchema, "too few properties (got " + numProps + ", need at least " + schema['minProperties'] + ")")
+	if ('maxProperties' in schema && numProps > schema['maxProperties']) this.addError(path, origSchema, "too many properties (got " + numProps + ", need at most " + schema['maxProperties'] + ")")
+
 	if ('properties' in schema) {
-		let dataProps = {}
-		if (isObject(data)) Object.keys(data).forEach(k => dataProps[k] = true)
-			
-		let numProps = Object.keys(dataProps).length
-		if ('minProperties' in schema && numProps < schema['minProperties']) this.addError(path, origSchema, "too few properties (got " + numProps + ", need at least " + schema['minProperties'] + ")")
-		if ('maxProperties' in schema && numProps > schema['maxProperties']) this.addError(path, origSchema, "too many properties (got " + numProps + ", need at most " + schema['maxProperties'] + ")")
-			
 		for (let prop in schema['properties']) {
 			// -wvh- functionality for empty data, check relevance in validation
 			/*
@@ -134,7 +134,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 				//else console.log("missing prop (not required): " + prop)
 			}
 		}
-		
+
 		let restProps = Object.keys(dataProps).filter(k => dataProps[k])
 		if (restProps.length > 0) {
 			if (allowAddProps) {
@@ -155,14 +155,14 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 function validateArray(schema, data, path, parent, prop, recurse) {
 	// top caller handles type
 	//if (typeof data !== 'object' || (!(data instanceof Array))) { addError(path, schema, "not an array") }
-	
+
 	// no schema restrictions, thus valid
 	//if (typeof schema['items'] !== 'object') return checkValid(path, schema)
 	if ('items' in schema && typeof schema['items'] !== 'object') throw new SchemaError("items (in array type) is not an object", path || "/")
-	
+
 	// list or tuple validation?
 	var asTuple = schema['items'] instanceof Array
-	
+
 	if (!asTuple) {
 		// list validation
 		for (let i in data) {
@@ -174,12 +174,12 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 		// tuple validation
 		let allowAddItems = schema['additionalItems'] !== false
 		let addItemSchema = typeof schema['additionalItems'] === 'object' ? schema['additionalItems'] : {}
-		
+
 		if (!allowAddItems && schema['items'].length < data.length) {
 			this.addError(path, schema, "additional items not allowed in array")
 			//return checkValid(path, schema)
 		}
-		
+
 		for (let i in data) {
 			/*
 			if (typeof schema['items'][i] !== 'object') {
@@ -195,7 +195,7 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 	// minItems and maxItems
 	if (typeof schema['minItems'] === 'number' && data.length < schema['minItems']) this.addError(path, schema, "too few items in array")
 	if (typeof schema['maxItems'] === 'number' && data.length > schema['maxItems']) this.addError(path, schema, "too many items in array")
-	
+
 	// TODO: optimise (use Set or short-circuit)
 	// see also: https://stackoverflow.com/questions/1960473/unique-values-in-an-array
 	if (schema['uniqueItems'] === true) {
@@ -212,7 +212,7 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 function validateEnum(schema, data, path, parent, prop, recurse) {
 	//if (typeof schema['enum'] !== 'object' || (!(schema['enum'] instanceof Array))) { addError(path, schema, "not an array") }
 	if (schema['enum'].length <= 0) { this.addError(path, schema, "value not in enum") }
-	
+
 	if (!schema.enum.some(el => deepequal(el, data))) {
 		this.addError(path, schema, "value not in enum")
 		//console.log("addHelp:", schema.enum.map(x => typeof x === 'object' && x !== null ? JSON.stringify(x) : String(x)).join('|'))

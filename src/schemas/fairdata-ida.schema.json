@@ -60,6 +60,7 @@
 			"description": "Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.",
 			"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 			"type": "object",
+			"minProperties": 1,
 			"example": [
 				"Vuorokauden alin lämpötila, 1961-2014, 10 km, GeoTIFF"
 			],
