@@ -1,6 +1,6 @@
 <template functional>
 	<b-btn class="delete-button" variant="link" v-on:click="listeners.click">
-		<font-awesome-icon icon="trash" fixed-width class="icon" />
+		<font-awesome-icon icon="times" fixed-width class="icon" />
 	</b-btn>
 </template>
 

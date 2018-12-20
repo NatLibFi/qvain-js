@@ -42,12 +42,13 @@
 // $background: #fbfbfb;
 .validation {
 	position: relative;
+}
+.validation__icon {
+	position: absolute;
     top: -35px;
 	right: -35px;
-	.validation__icon {
-		float: right;
-	}
 }
+
 .header {
 	width: 100%;
 	display: inline-flex;

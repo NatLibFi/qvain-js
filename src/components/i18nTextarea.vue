@@ -1,9 +1,16 @@
 <template>
 	<wrapper :wrapped="true">
+		<div class="validation">
+			<ValidationStatus :status="validationStatus" class="validation__icon" />
+		</div>
 		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
-			<b-tabs v-model="tabIndex" pills>
-				<b-tab v-for="key in languageKeys" :key="key" :title="languages[key]" no-body>
-					<span @click="e => deleteLang(key)"><i class="delete-icon fas fa-trash"></i></span>
+			<b-tabs class="tabs-nav" v-model="tabIndex" pills>
+				<b-tab v-for="key in languageKeys" :key="key" no-body>
+					<template slot="title">
+     					{{ languages[key] }}
+						<font-awesome-icon icon="times" @click="deleteLang(key)" />
+   					</template>
+
 					<b-form-textarea
 						class="textarea"
 						:id="'textarea-' + key"
@@ -16,7 +23,7 @@
 					</b-form-textarea>
 				</b-tab>
 
-				<template slot="tabs">
+				<template slot="tabs" v-if="languageKeys.length > 0">
 					<div>
 						<language-select ref="langSelect"
 							class="lang-select-tab"
@@ -25,35 +32,76 @@
 						</language-select>
 					</div>
 				</template>
-				<div slot="empty"><empty-note></empty-note></div>
+
+				<div slot="empty">
+					<p class="intro-text">
+						Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
+					</p>
+					<div class="language-row">
+						<language-select class="input-width" @change="addTab" />
+					</div>
+				</div>
 			</b-tabs>
 		</b-form-group>
 	</wrapper>
 </template>
 
 <style lang="scss" scoped>
-	.lang-select-tab {
-		height: 40px;
-		margin-left: 10px;
+.validation {
+	position: relative;
+}
+.validation__icon {
+	position: absolute;
+    top: -35px;
+	right: -35px;
+}
+.lang-select-tab {
+	height: 40px;
+	margin-left: 10px;
+}
+.textarea {
+	margin-top: 10px;
+
+	padding: 10px;
+	line-height: 1.5;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	box-shadow: 1px 1px 1px #999;
+}
+.delete-icon {
+	float: right;
+	margin: 10px;
+	&:hover {
+		color: grey;
 	}
-	.textarea {
-		margin-top: 10px;
+}
+.tabs-nav .nav-item .nav-link {
+	height: 38px;
+}
+.intro-text {
+	text-align: center; margin-top: 30px;
+}
+.language-row {
+	display: inline-flex;
+	justify-content: space-around;
+	width: 100%;
+	margin-bottom: 35px;
+	border: 0;
+
+	.input-width {
+		width: 220px;
 	}
-	.delete-icon {
-		float: right;
-		margin: 10px;
-		&:hover {
-			color: grey;
-		}
-	}
+}
+
 </style>
 
 
 <script>
-import vSchemaBase from '../base.vue'
-import langCodes2 from '../../data/iso639-1.json'
-import LanguageSelect from '@/components/LanguageSelect.vue'
-import Wrapper from '../../components/Wrapper.vue';
+import vSchemaBase from '@/widgets/base.vue';
+import langCodes2 from '@/data/iso639-1.json';
+import LanguageSelect from '@/components/LanguageSelect.vue';
+import Wrapper from '@/components/Wrapper.vue';
+import ValidationStatus from '@/partials/ValidationStatus.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -63,8 +111,9 @@ export default {
 	components: {
 		LanguageSelect,
 		Wrapper,
+		ValidationStatus,
 	},
-	data: function() {
+	data() {
 		return {
 			languages: langCodes2,
 			tabIndex: 0,
@@ -75,16 +124,23 @@ export default {
 	computed: {
 		languageKeys() {
 			return Object.keys(this.value);
+		},
+		hasEmptyValues() {
+			return Object.values(this.state).some(v => v.length == 0);
+		},
+		validationStatus() {
+			if (this.schemaState && this.hasEmptyValues) return 'uncertain';
+			if (this.schemaState) return 'valid';
+			if (this.schemaState !== null && !this.schemaState) return 'invalid';
+			return null;
 		}
 	},
 	methods: {
 		changeText(key, value) {
-			console.log('asd', key, value);
 			this.$set(this.state, key, value);
 			this.updateValue();
 		},
 		addTab(lang) {
-			console.log('add tab: ', lang);
 			if (lang in this.state) {
 				this.focusOnTabWithLanguage(lang);
 				return;
@@ -94,7 +150,6 @@ export default {
 			this.focusOnLastTab();
 		},
 		deleteLang(lang) {
-			console.log('asdasdasdasd', lang);
 			this.$delete(this.state, lang);
 			this.updateValue();
 		},
