@@ -78,7 +78,6 @@ export default {
 		},
 		possibleTypes() {
 			return this.schema['oneOf'].map(sub => sub['title'])
-			//return this.schema['oneOf'].map(sub => { "x" })
 		},
 		currentType() {
 			return this.value && this.value[IDENTIFYING_FIELD] || null

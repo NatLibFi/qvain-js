@@ -1,5 +1,5 @@
 <template>
-	<wrapper :wrapped="true">
+	<wrapper class="min-height" :wrapped="true">
 		<!--<header>
 			<h3>
 			{{ uiTitle }}
@@ -17,7 +17,34 @@
 			</b-badge>
 		</div>-->
 
-		<b-form-group :label-cols="2" :description="uiDescription" :label="uiTitle" :state="schemaState">
+		<!--<b-form-group :label-cols="2" :description="uiDescription" :label="uiTitle" :state="schemaState">-->
+			<h3>{{uiTitle}}</h3>
+			<p class="small form-text text-muted">{{uiDescription}}</p>
+			<div class="d-flex align-items-stretch float-right"><!-- buttons -->
+				<b-btn type="button" variant="secondary" class="mr-2"><font-awesome-icon icon="list" fixed-width class="mr-2"/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
+				<b-btn type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
+			</div>
+			<b-tabs class="tab-array-margin" pills>
+				<b-tab style="{margin-top: 5px}" v-for="(child, index) in value" :key="index">
+					<template slot="title">
+     					{{ tabTitle(index) }} <font-awesome-icon icon="times" />
+   					</template>
+
+					<TabSelector
+						:schema="schemaForChild(index)"
+						:path="newPath(index)"
+						:value="value[index]"
+						:parent="parent[property]"
+						:property="index"
+						:tab="myTab"
+						:activeTab="activeTab"
+						:depth="depth"
+						@delete="deleteElement"
+						:key="'array-' + index" />
+				</b-tab>
+			</b-tabs>
+
+			<!--
 			<b-list-group flush>
 				<b-list-group-item class="list-item" v-for="(child, index) in value" :key="index">
 					<TabSelector
@@ -34,14 +61,19 @@
 				</b-list-group-item>
 				<b-list-group-item v-if="!value || value.length < 1"><empty-note>no items, add one!</empty-note></b-list-group-item>
 			</b-list-group>
-			<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
+			-->
+
+			<!--
+				<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
 		</b-form-group>
+		-->
+		<!--
 		<footer>
 			list <button type="button" :disabled="!value || value.length <= this.minimum" @click="doMinus">-</button> | <button type="button" :disabled="value.length >= this.maximum" @click="doPlus">+</button>
 			(min: {{ minimum }} / max: {{ maximum || '-' }})
 			{{ schemaErrors }}
 		</footer>
-
+		-->
 	</wrapper>
 </template>
 <style lang="scss" scoped>
@@ -50,6 +82,15 @@
     border-bottom: 0;
 	border-top: 0;
 	padding: 0;
+}
+.min-height {
+	min-height: 160px;
+}
+</style>
+
+<style>
+.tab-array-margin.tabs .tab-content {
+	margin-top: 15px;
 }
 </style>
 
@@ -69,7 +110,7 @@ export default {
 		ValidationPopover,
 		Wrapper
 	},
-	data: function() {
+	data() {
 		return {
 			error: null,
 			minimum: 0,
@@ -77,7 +118,35 @@ export default {
 		}
 	},
 	methods: {
-		doMinus: function() {
+		tabTitle(index) {
+			console.log('tabTitle', index);
+			const objectAtIndexExists = typeof this.parent[this.property][index] !== 'undefined';
+			if (!objectAtIndexExists) {
+				return `${index}#`;
+			}
+
+			const tabObject = this.parent[this.property][index];
+			const tabObjectType = tabObject['@type'];
+
+			if (tabObjectType === 'Person' && tabObject.name) {
+				return tabObject.name;
+			}
+
+			if (tabObjectType === 'Person') {
+				return `${index}# (Person)`;
+			}
+
+			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
+				return tabObject.name['fi'] || tabObject.name['en'];
+			}
+
+			if (tabObjectType === 'Organization') {
+				return `${index}# (Organization)`;
+			}
+
+			return `${index}#`;
+		},
+		doMinus() {
 			// it's safe to pop() a zero-length array
 			if (this.value.length > this.minimum) {
 				this.$store.commit('popValue', { p: this.parent, prop: this.property, val: this.value })
@@ -85,7 +154,7 @@ export default {
 			}
 			return false
 		},
-		doPlus: function() {
+		doPlus() {
 			if (this.maximum === undefined || this.value.length < this.maximum) {
 				//this.value.push({})
 				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })

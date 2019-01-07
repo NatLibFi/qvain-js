@@ -1,6 +1,6 @@
 <template>
-	<wrapper :wrapped="true">
-		<h3 @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
+	<wrapper :wrapped="false" :style="listItemStyle(depth)">
+		<h3 @click="visible = !visible" class="margin-left" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 			<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/> {{ uiTitle }}
 		</h3>
 		<b-collapse :id="domId + '-props'" v-model="visible">
@@ -8,7 +8,7 @@
 				<sup><font-awesome-icon icon="quote-left" class="text-muted" /></sup>
 				{{ uiDescription }}
 			</p>
-			<div :style="listItemStyle(depth)" class="mb-3" v-for="(org, i) in flattened" :key="'level-' + i">
+			<div class="mb-3" v-for="(org, i) in flattened" :key="'level-' + i">
 				<b-btn href="#" v-b-toggle="domId + '-accordion-' + i" variant="link" style="text-align: left;">
 					<font-awesome-icon icon="angle-right" fixed-width />
 					Level {{ i + 1 }}{{ getDescriptionForLevel(i) }}
@@ -34,7 +34,10 @@
 		</wrapper>
 </template>
 
-<style>
+<style <style lang="scss" scoped>
+.margin-left {
+	margin-left: 20px;
+}
 </style>
 
 <script>
