@@ -24,16 +24,20 @@
 				<b-btn type="button" variant="secondary" class="mr-2"><font-awesome-icon icon="list" fixed-width class="mr-2"/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
 				<b-btn type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
 			</div>
-			<b-tabs class="tab-array-margin" pills>
+			<b-tabs :value="tabIndex" class="tab-array-margin" pills>
 				<!--
 					There is a bug in bootstrap-vue preventing correct update of tab title template (template is not reactive)
 					By making the actual tab component depend on the tabTitle function we make it emit tab change every time tabTitle is update.
 					The class update_trigger_hack itself does nothing.
 					https://github.com/bootstrap-vue/bootstrap-vue/issues/1677
 				-->
-				<b-tab style="{margin-top: 5px}" v-for="(child, index) in value" :key="index" :title-link-class="{ 'update_trigger_hack': !!tabTitle(index) }">
+				<b-tab
+					v-for="(child, index) in value"
+					style="{margin-top: 5px}"
+					:key="index"
+					:title-link-class="{ 'update_trigger_hack': !!tabTitle(index) }">
 					<template slot="title">
-     					{{ tabTitle(index) }} <font-awesome-icon icon="times" />
+     					{{ tabTitle(index) }} <font-awesome-icon icon="times" @click="deleteElement(index)" />
    					</template>
 
 					<TabSelector
@@ -121,14 +125,14 @@ export default {
 			error: null,
 			minimum: 0,
 			maximum: 0,
+			tabIndex: 0,
 		}
 	},
 	methods: {
 		tabTitle(index) {
-			console.log('tabTitle', index);
 			const objectAtIndexExists = typeof this.parent[this.property][index] !== 'undefined';
 			if (!objectAtIndexExists) {
-				return `${index}#`;
+				return `#${index}`;
 			}
 
 			const tabObject = this.parent[this.property][index];
@@ -139,7 +143,7 @@ export default {
 			}
 
 			if (tabObjectType === 'Person') {
-				return `${index}# (Person)`;
+				return `#${index} (Person)`;
 			}
 
 			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
@@ -147,10 +151,10 @@ export default {
 			}
 
 			if (tabObjectType === 'Organization') {
-				return `${index}# (Organization)`;
+				return `#${index} (Organization)`;
 			}
 
-			return `${index}#`;
+			return `#${index}`;
 		},
 		doMinus() {
 			// it's safe to pop() a zero-length array
@@ -165,14 +169,24 @@ export default {
 				//this.value.push({})
 				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })
 				console.log("didPlus, length now:", this.value.length)
+				console.log('Set active tab to', this.value.length - 1);
+				this.$nextTick(function() { // make sure that the tab is there before causing the new tab to be selected
+					this.tabIndex = this.value.length - 1;
+				})
 				return true
 			}
 			return false
 		},
-		deleteElement: function(index) {
+		deleteElement(index) {
 			console.log("schema-array: request to delete element with index", index, "value:", this.value[index])
 			if (index >= 0 && index < this.value.length) {
-				this.value.splice(index, 1)
+				const val = [...this.value.slice(0, index),  ...this.value.slice(index +1, this.value.length)];
+				console.log(val);
+				this.$store.commit('updateValue', {
+					p: this.parent,
+					prop: this.property,
+					val
+				});
 			} else {
 				console.log("deleteElement: attempt to remove non-existing element at index", index)
 			}
