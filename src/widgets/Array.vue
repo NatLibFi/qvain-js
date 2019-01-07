@@ -25,7 +25,13 @@
 				<b-btn type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
 			</div>
 			<b-tabs class="tab-array-margin" pills>
-				<b-tab style="{margin-top: 5px}" v-for="(child, index) in value" :key="index">
+				<!--
+					There is a bug in bootstrap-vue preventing correct update of tab title template (template is not reactive)
+					By making the actual tab component depend on the tabTitle function we make it emit tab change every time tabTitle is update.
+					The class update_trigger_hack itself does nothing.
+					https://github.com/bootstrap-vue/bootstrap-vue/issues/1677
+				-->
+				<b-tab style="{margin-top: 5px}" v-for="(child, index) in value" :key="index" :title-link-class="{ 'update_trigger_hack': !!tabTitle(index) }">
 					<template slot="title">
      					{{ tabTitle(index) }} <font-awesome-icon icon="times" />
    					</template>
