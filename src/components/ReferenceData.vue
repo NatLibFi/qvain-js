@@ -216,8 +216,8 @@ export default {
 			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
 
 			const mapToStore = option => {
-				const { identifier, label: { en, fi, und } } = option;
-				return { identifier, [this.labelNameInSchema]: { en, fi, und } };
+				const { identifier, label: { sv, en, fi, und } } = option;
+				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } };
 			}
 
 			let storableOptions;
