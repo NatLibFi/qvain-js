@@ -215,17 +215,18 @@ export default {
 		selectedOptions() {
 			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
 
+			const mapToStore = option => {
+				const { identifier, label: { en, fi, und } } = option;
+				return { identifier, [this.labelNameInSchema]: { en, fi, und } };
+			}
+
 			let storableOptions;
 			if (this.isMultiselect && selectedValueIsSet) {
-				storableOptions = this.selectedOptions.map(option =>({
-					identifier: option.identifier,
-					[this.labelNameInSchema]: Object.assign({}, option.label)
-				}));
+				storableOptions = this.selectedOptions.map(mapToStore);
 			}
 
 			if (!this.isMultiselect && selectedValueIsSet) {
-				const { identifier, label } = this.selectedOptions;
-				storableOptions = { identifier, [this.labelNameInSchema]: Object.assign({}, label) };
+				storableOptions = mapToStore(this.selectedOptions);
 			}
 
 			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });
