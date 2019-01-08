@@ -6,7 +6,7 @@
 			<datepicker placeholder="From" class="widget ml-2" :disabledDates="disableBefore" v-model="start"></datepicker>
 			<p class="ml-2">-</p>
 			<datepicker placeholder="To" class="widget ml-2" :disabledDates="disableAfter" v-model="end"></datepicker>
-			<DeleteButton @click="$emit('delete', property)"/>
+			<DeleteButton v-if="inArray" @click="$emit('delete', property)"/>
 		</div>
 		<div>
 			<p v-if="start && end" class="ml-2">Time between the two dates: {{timeBetweenString}}</p>
