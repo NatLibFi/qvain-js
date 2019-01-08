@@ -24,7 +24,11 @@
 				<b-btn type="button" variant="secondary" class="mr-2"><font-awesome-icon icon="list" fixed-width class="mr-2"/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
 				<b-btn type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
 			</div>
-			<b-tabs :value="tabIndex" class="tab-array-margin" pills>
+			<!--
+				There is not easy way to force v-for to not use inplace update strategy. In this case it is mandatory to make deleting item show correctly.
+				This could be code smell but at the moment the best solution is just to patch this. See https://github.com/xianshenglu/blog/issues/47 for reference.
+			-->
+			<b-tabs v-if="forceArrayUpdateHack && tabFormat" :value="tabIndex" class="tab-array-margin" pills>
 				<!--
 					There is a bug in bootstrap-vue preventing correct update of tab title template (template is not reactive)
 					By making the actual tab component depend on the tabTitle function we make it emit tab change every time tabTitle is update.
@@ -54,8 +58,8 @@
 				</b-tab>
 			</b-tabs>
 
-			<!--
-			<b-list-group flush>
+
+			<b-list-group v-else-if="forceArrayUpdateHack && !tabFormat" flush>
 				<b-list-group-item class="list-item" v-for="(child, index) in value" :key="index">
 					<TabSelector
 						:schema="schemaForChild(index)"
@@ -69,9 +73,8 @@
 						@delete="deleteElement"
 						:key="'array-' + index" />
 				</b-list-group-item>
-				<b-list-group-item v-if="!value || value.length < 1"><empty-note>no items, add one!</empty-note></b-list-group-item>
 			</b-list-group>
-			-->
+
 
 			<!--
 				<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
@@ -120,12 +123,19 @@ export default {
 		ValidationPopover,
 		Wrapper
 	},
+	props: {
+		tabFormat: {
+			type: Boolean,
+			default: true
+		}
+	},
 	data() {
 		return {
 			error: null,
 			minimum: 0,
 			maximum: 0,
 			tabIndex: 0,
+			forceArrayUpdateHack: true
 		}
 	},
 	methods: {
@@ -180,12 +190,14 @@ export default {
 		deleteElement(index) {
 			console.log("schema-array: request to delete element with index", index, "value:", this.value[index])
 			if (index >= 0 && index < this.value.length) {
-				const val = [...this.value.slice(0, index),  ...this.value.slice(index +1, this.value.length)];
-				console.log(val);
-				this.$store.commit('updateValue', {
-					p: this.parent,
-					prop: this.property,
-					val
+				this.$store.commit('deleteArrayValue', {
+					parent: this.parent,
+					property: this.property,
+					index
+				});
+				this.forceArrayUpdateHack = !this.forceArrayUpdateHack
+				this.$nextTick(() => {
+					this.forceArrayUpdateHack = !this.forceArrayUpdateHack;
 				});
 			} else {
 				console.log("deleteElement: attempt to remove non-existing element at index", index)

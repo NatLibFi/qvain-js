@@ -6,6 +6,9 @@
 			<datepicker placeholder="From" class="widget ml-2" :disabledDates="disableBefore" v-model="start"></datepicker>
 			<p class="ml-2">-</p>
 			<datepicker placeholder="To" class="widget ml-2" :disabledDates="disableAfter" v-model="end"></datepicker>
+			<DeleteButton @click="$emit('delete', property)"/>
+		</div>
+		<div>
 			<p v-if="start && end" class="ml-2">Time between the two dates: {{timeBetweenString}}</p>
 		</div>
 	</div>
@@ -16,12 +19,14 @@
 import datepicker from 'vuejs-datepicker';
 import SchemaBase from '@/widgets/base.vue';
 import { distanceInWords } from 'date-fns';
+import DeleteButton from '@/partials/DeleteButton.vue';
 
 export default {
 	name: 'date-range',
 	extends: SchemaBase,
 	components: {
-		datepicker
+		datepicker,
+		DeleteButton
 	},
 	data() {
 		return {
@@ -79,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 	.wrapper {
 		display: inline-flex;
+		height: 40px;
 		> p {
 			line-height: 40px;
 			vertical-align: middle;
