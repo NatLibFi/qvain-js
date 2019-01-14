@@ -28,7 +28,7 @@ export default {
 			}
 		},
 		listItemStyle(depth) {
-			const width = 11 - depth;
+			const width = 6; //11 - depth;
 			return { 'border-left': `solid ${width}px ${this.borderColor(depth)} !important` }
 		}
 	}

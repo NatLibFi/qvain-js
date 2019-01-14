@@ -64,7 +64,7 @@
 			<b-collapse is-nav id="nav_collapse">
 
 				<b-navbar-nav>
-					<b-nav-item to="/dataset">create record</b-nav-item>
+					<b-nav-item to="/dataset/new">create record</b-nav-item>
 					<b-nav-item to="/datasets">show records</b-nav-item>
 				</b-navbar-nav>
 
