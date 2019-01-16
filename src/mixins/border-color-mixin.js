@@ -26,6 +26,10 @@ export default {
 				case 10: return orange;
 				default: return red;
 			}
+
+			// https://learnui.design/tools/data-color-picker.html
+			//const colours = ['#007fad', '#007c97', '#01777f', '#297069', '#3d6857', '#49604b', '#505844', '#698135', '#7d9c1f', '#99bb00']
+			//return colours[depth % 10]
 		},
 		listItemStyle(depth) {
 			const width = 11 - depth;
