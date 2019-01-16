@@ -20,7 +20,7 @@
 						:depth="depth"
 						:key="propName"
 						v-if="shouldCreateProp(propName)" />
-					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
+						<b-btn @click="addProp(propName)" v-else-if="isPostponedProp(propName)">add {{ propName }}</b-btn>
 				</b-list-group-item>
 			</b-list-group>
 		</section>

@@ -551,7 +551,8 @@ export default {
 	'/properties/access_rights': {
 		'tab': 'rights',
 		'title': "Access rights",
-		'description': "*** description for access rights goes here ***"
+		'description': "*** description for access rights goes here ***",
+		'ignored': ["access_process"]
 	},
 	'/properties/access_rights/properties/access_type': {
 		'widget': 'reference-data',
