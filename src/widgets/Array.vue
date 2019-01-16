@@ -142,7 +142,7 @@ export default {
 		tabTitle(index) {
 			const objectAtIndexExists = typeof this.parent[this.property][index] !== 'undefined';
 			if (!objectAtIndexExists) {
-				return `#${index}`;
+				return `#${index +1}`;
 			}
 
 			const tabObject = this.parent[this.property][index];
@@ -153,7 +153,7 @@ export default {
 			}
 
 			if (tabObjectType === 'Person') {
-				return `#${index} (Person)`;
+				return `#${index +1} (Person)`;
 			}
 
 			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
@@ -161,10 +161,10 @@ export default {
 			}
 
 			if (tabObjectType === 'Organization') {
-				return `#${index} (Organization)`;
+				return `#${index +1} (Organization)`;
 			}
 
-			return `#${index}`;
+			return `#${index +1}`;
 		},
 		doMinus() {
 			// it's safe to pop() a zero-length array
