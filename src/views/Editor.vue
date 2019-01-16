@@ -188,7 +188,6 @@ export default {
 				const isExisting = !!this.$store.state.metadata.id;
 				if (isExisting) {
 					const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {});
-					this.$router.replace({ name: 'tab', params: { id: 'new' }});
 					this.$root.showAlert("Dataset successfully published", "primary");
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger");
@@ -213,6 +212,8 @@ export default {
 					const { data: { id }} = await apiClient.post("/datasets/", payload);
 
 					this.$store.commit('setMetadata', { id })
+					this.$router.replace({ name: 'tab', params: { id }});
+
 					this.$root.showAlert("Success! Created as " + id, "success");
 				}
 			} catch(error) {
