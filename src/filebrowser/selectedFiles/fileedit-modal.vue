@@ -63,9 +63,37 @@ export default {
 			return 'file_type' in item
 		},
 		setUseCategory: function(value) {
+			// TODO: -wvh- hack
+			if (!value) return
+			if (value['uri']) {
+				value['identifier'] = value['uri']
+				delete value['uri']
+			}
+			if (value['label']) {
+				value['pref_label'] = value['label']
+				delete value['label']
+			}
+			delete value['code']
+			delete value['id']
+			delete value['type']
+
 			this.item.use_category = value
 		},
 		setType: function(value) {
+			// TODO: -wvh- hack
+			if (!value) return
+			if (value['uri']) {
+				value['identifier'] = value['uri']
+				delete value['uri']
+			}
+			if (value['label']) {
+				value['pref_label'] = value['label']
+				delete value['label']
+			}
+			delete value['code']
+			delete value['id']
+			delete value['type']
+			
 			this.item.file_type = value
 		},
 		validateTitle: function(value) {
