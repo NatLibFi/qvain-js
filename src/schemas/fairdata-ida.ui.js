@@ -128,6 +128,9 @@ export default {
 		'tab': 'coverage',
 		'title': "Temporal coverage",
 		'description': "Time span that is covered by the dataset, e.g. period of observations.",
+		'props': {
+			'tabFormat': false
+		}
 	},
 	'/properties/temporal/*': {
 		'widget': 'date-range'

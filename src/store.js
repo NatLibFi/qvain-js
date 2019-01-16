@@ -112,8 +112,9 @@ export default new Vuex.Store({
 			const index = payload.p[payload.prop].findIndex(single => single.identifier === payload.val)
 			payload.p[payload.prop].splice(index, 1)
 		},
-		deleteArrayValue(state, payload) {
-			payload.array.splice(payload.index, 1)
+		deleteArrayValue(state, { parent, property, index }) {
+			console.log(parent[property]);
+			Vue.delete(parent[property], index);
 		},
 		deleteValue(state, payload) {
 			Vue.delete(payload.p, payload.prop)
