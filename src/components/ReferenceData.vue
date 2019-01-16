@@ -88,7 +88,7 @@ export default {
 				{ id: 'en', language: 'English' },
 				{ id: 'sv', language: 'Swedish' }
 			],
-			selectedLang: null,
+			selectedLang: { id: 'fi', language: 'Finnish' },
 			isLoading: false,
 		}
 	},
