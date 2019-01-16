@@ -515,6 +515,22 @@ export default {
 		'description': "This is some fancy optional description for the resource type field",
 		'help': "This is the optional help text for the resource type field",
 	},
+	'/properties/provenance/*/properties/was_associated_with/*/oneOf/*/properties/member_of/properties/contributor_type': {
+		'widget': 'reference-data',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "contributor_type",
+			'typeahead': true,
+			'tags': false,
+			'async': false,
+			'count': 100,
+			'grouped': false,
+		},
+		'placeholder': "– choose contributor type –",
+		'label': "contributor type",
+		'description': "This is some fancy optional description for the contributor type field",
+		'help': "This is the optional help text for the contributor type field",
+	},
 	'/properties/provenance/*/properties/temporal': {
 		'widget': 'date-range',
 	},
