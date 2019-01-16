@@ -268,7 +268,7 @@ export default {
 	},
 	computed: {
 		tabs() {
-			return this.$store.state.hints.tabs
+			return this.$store.state.hints.tabs.filter(tab => tab.uri)
 		},
 		bundles() {
 			return Object.keys(Bundle)

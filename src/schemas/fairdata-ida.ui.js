@@ -6,7 +6,7 @@ export default {
 		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Relations and History', uri: 'relations' },
 		{ label: 'Files', uri: 'files' },
-		{ label: 'Extra', uri: 'extra' },
+		{ label: 'Extra', uri: null },
 	],
 	//'': { 'tab': 'description' },
 	'': { 'tab': 'extra', 'order': ["title", "description", "language"] },
