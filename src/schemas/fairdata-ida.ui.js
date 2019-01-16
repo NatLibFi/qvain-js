@@ -1,8 +1,9 @@
 export default {
 	tabs: [
 		{ label: 'Content Description', uri: 'description' },
-		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Actors', uri: 'actors' },
+		{ label: 'Rights and Licences', uri: 'rights' },
+		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Relations and History', uri: 'relations' },
 		{ label: 'Files', uri: 'files' },
 		{ label: 'Extra', uri: 'extra' },
@@ -548,7 +549,7 @@ export default {
 		'tab': 'notab',
 	},
 	'/properties/access_rights': {
-		'tab': 'extra',
+		'tab': 'rights',
 		'title': "Access rights",
 		'description': "*** description for access rights goes here ***"
 	},
