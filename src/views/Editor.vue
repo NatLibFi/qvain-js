@@ -1,13 +1,13 @@
 <template>
 	<div class="container-fluid">
 		<div>
-			<b-button-toolbar aria-label="Dataset toolbar" class="my-2">
+			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new dataset" @click="createNewRecord()">Create new</b-btn>
-					<b-btn v-b-tooltip.hover title="Clone this dataset as new" @click="createCloneRecord()">Clone</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
+					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone dataset</b-btn>
 
-					<b-btn v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
-					<b-btn v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
+					<b-btn v-if="inDev" v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
+					<b-btn v-if="inDev" v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
 				</b-button-group>
 
 				<!--
@@ -15,7 +15,7 @@
 					<b-form-input type="text" placeholder="not saved" :value="$store.state.metadata.id || 'new'" readonly></b-form-input>
 				</b-input-group>
 				-->
-				<b-input-group size="sm" class="w-25 mx-1" prepend="schema">
+				<b-input-group v-if="inDev" size="sm" class="w-25 mx-1" prepend="schema">
 					<b-form-select value="fairdata" v-model="selectedSchema">
 					<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
 						<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
@@ -27,9 +27,8 @@
 				</b-input-group>
 
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover :title="!rateLimited ? 'Save this dataset' : 'Not so fast, buddy...'" @click="save" :disabled="rateLimited">Save</b-btn>
-					<b-btn v-b-tooltip.hover :title="!rateLimited ? 'Ready to publish' : 'Not so fast, buddy...'" @click="confirmPublish" :disabled="rateLimited">Publish</b-btn>
-					<b-btn v-b-tooltip.hover title="Back to start page" to="/">Cancel</b-btn>
+					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited">Publish</b-btn>
 				</b-button-group>
 
 				<!--
@@ -74,7 +73,10 @@
 		<dataset-overview-modal id="dataset-overview-modal"></dataset-overview-modal>
 
 		<div v-if="!loading">
-			<h2>Fairdata dataset</h2>
+			<!--
+				This could be replaced with title from title part?
+				<h2>Fairdata dataset</h2>
+			-->
 			<ul class="nav nav-tabs">
 				<!-- TODO: errors could be shown in tabs also -->
 				<li v-for="tab in tabs" :key="tab.uri" class="nav-item">
@@ -134,6 +136,7 @@ export default {
 			loading: false,
 			rateLimited: false,
 			showPublishConfirmation: false,
+			inDev: false
 		}
 	},
 	methods: {
@@ -185,7 +188,8 @@ export default {
 				const isExisting = !!this.$store.state.metadata.id;
 				if (isExisting) {
 					const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {});
-					this.$root.showAlert("Dataset successfully saved", "primary");
+					this.$router.replace({ name: 'tab', params: { id: 'new' }});
+					this.$root.showAlert("Dataset successfully published", "primary");
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger");
 				}
@@ -204,15 +208,15 @@ export default {
 					payload.id = currentId;
 					const response = await apiClient.put("/datasets/" + currentId, payload);
 
-					vm.$root.showAlert("Dataset successfully saved", "primary")
+					this.$root.showAlert("Dataset successfully saved", "primary")
 				} else {
 					const { data: { id }} = await apiClient.post("/datasets/", payload);
 
 					this.$store.commit('setMetadata', { id })
-					vm.$root.showAlert("Success! Created as " + id, "success");
+					this.$root.showAlert("Success! Created as " + id, "success");
 				}
 			} catch(error) {
-				vm.$root.showAlert("Save failed!", "danger");
+				this.$root.showAlert("Save failed!", "danger");
 			}
 		}, 3000, { leading: true, trailing: false }),
 		createNewRecord() {
@@ -308,5 +312,12 @@ export default {
 .no-padding {
 	padding-left: 0;
 	padding-right: 0;
+}
+</style>
+
+<style lang="scss" scoped>
+.tool-bar {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 </style>
