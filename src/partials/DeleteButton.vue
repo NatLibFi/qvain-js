@@ -1,7 +1,7 @@
 <template functional>
-	<button class="delete-button" variant="link" v-on:click="listeners.click">
+	<span class="delete-button" variant="link" v-on:click="listeners.click">
 		<font-awesome-icon icon="times" fixed-width class="icon" />
-	</button>
+	</span>
 </template>
 
 <style lang="scss" scoped>
