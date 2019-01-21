@@ -45,6 +45,7 @@
 					:showNoResults="true"
 					:customLabel="customLabel"
 					placeholder="Select option"
+					@select="() => { responseData = {} }"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 				</Multiselect>
@@ -81,7 +82,7 @@ export default {
 	},
 	data() {
 		return {
-			responseData: [],
+			responseData: {},
 			selectedOptions: [],
 			languages: [
 				{ id: 'fi', language: 'Finnish' },
