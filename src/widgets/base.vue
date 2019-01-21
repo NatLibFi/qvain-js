@@ -64,7 +64,8 @@ export default {
 			return this.ui['description'] || this.schema['description']
 		},
 		uiLabel: function() {
-			return this.ui['label'] || this.uiTitle
+			const string = (this.ui['label'] || this.uiTitle);
+			return string.charAt(0).toUpperCase() + string.slice(1);
 		},
 		uiHelp: function() {
 			return this.ui['help']

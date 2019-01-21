@@ -55,7 +55,7 @@
 				</Multiselect>
 			</div>
 			<div class="tag__list">
-				<p v-for="option in selectedOptions" :key="option.label.und" class="tag">
+				<p v-for="option in selectedOptions" :key="option.identifier" class="tag">
 					{{customLabel(option)}}
 					<span class="remove-button">
 						<DeleteButton @click="removeValue($index)" />

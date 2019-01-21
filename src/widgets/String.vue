@@ -19,6 +19,19 @@
 	</div>
 </template>
 
+<style lang="scss" scoped>
+input[type=text].form-control {
+	border: 0;
+	border-radius: 0;
+	border-bottom: solid 1px lightgray;
+
+	&:focus {
+		border-bottom-color: #2ec7ff;
+	}
+}
+</style>
+
+
 <script>
 import vSchemaBase from './base.vue'
 import { dataPointer } from '../../tmp/datapointer.js'
@@ -48,7 +61,6 @@ export default {
 			} else {
 				this.editing = false
 			}
-			console.log("hello")
 		},
 		updateValue: function(e) {
 			//console.log("this:", this.parent, this.property, this.parent[this.property], e.target.value, this.$store.state.latitude)
