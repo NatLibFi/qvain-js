@@ -324,4 +324,10 @@ export default {
 .multiselect__option--selected.multiselect__option--highlight:after {
 	background: $danger;
 }
+
+.multiselect__tags {
+	border: 0;
+	border-radius: 0;
+	border-bottom: solid 1px lightgray;
+}
 </style>
