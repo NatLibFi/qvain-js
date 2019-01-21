@@ -1,12 +1,12 @@
 <template>
 	<wrapper :wrapped="wrapped">
-		<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
+		<b-form-group :style="{ 'width': '100%' }" :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
 			<div class="wrapper">
 				<Multiselect v-if="showLang"
 					v-model="selectedLang"
 					:options="languages"
+					:placeholder="placeholder"
 					label="language"
-					placeholder="Language"
 					class="lang-select"/>
 
 				<Multiselect v-if="optionsShouldBeGrouped"
@@ -22,7 +22,7 @@
 					:options="options"
 					:showNoResults="true"
 					:customLabel="customLabel"
-					placeholder="Select option"
+					:placeholder="placeholder"
 					group-values="children"
 					:group-label="labelNameInSchema"
 					@search-change="search">
@@ -44,7 +44,7 @@
 					:options="sortedOptions"
 					:showNoResults="true"
 					:customLabel="customLabel"
-					placeholder="Select option"
+					:placeholder="placeholder"
 					@select="() => { responseData = {} }"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
@@ -94,6 +94,11 @@ export default {
 		}
 	},
 	computed: {
+		placeholder() {
+			return this.async ?
+				'Type to search for available options' :
+				'Select option';
+		},
 		currentLanguage() {
 			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null;
 			return selectedLanguage || this.$root.language || 'en';
