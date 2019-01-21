@@ -30,6 +30,7 @@
 					<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
 						{{ option.$groupLabel || customLabel(option) }}
 					</div>
+					<div v-if="selectedOptions.length > 0" slot="selection">{{placeholder}}</div>
 				</Multiselect>
 				<Multiselect v-else
 					class="value-select"
@@ -48,7 +49,18 @@
 					@select="() => { responseData = {} }"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+					<div slot="selection" slot-scope="{ values, search, isOpen }">
+						<span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ placeholder }} options selected</span>
+					</div>
 				</Multiselect>
+			</div>
+			<div class="tag__list">
+				<p v-for="option in selectedOptions" :key="option.label.und" class="tag">
+					{{customLabel(option)}}
+					<span class="remove-button">
+						<DeleteButton @click="removeValue($index)" />
+					</span>
+				</p>
 			</div>
 		</b-form-group>
 	</wrapper>
@@ -58,7 +70,7 @@
 import vSchemaBase from '@/widgets/base.vue';
 import { esApiSearchClient } from '@/widgets/refdata/es.js';
 import Wrapper from './Wrapper.vue';
-
+import DeleteButton from '@/partials/DeleteButton.vue';
 import Multiselect from 'vue-multiselect';
 
 export default {
@@ -66,7 +78,8 @@ export default {
 	extends: vSchemaBase,
 	components: {
 		Multiselect,
-		Wrapper
+		Wrapper,
+		DeleteButton
 	},
 	props: {
 		esIndex: { type: String, required: true },
@@ -200,6 +213,9 @@ export default {
 				this.searchReferenceData(q);
 			}
 			this.isLoading = false;
+		},
+		removeValue(index) {
+			this.selectedOptions.splice(index, 1)
 		}
 	},
 	async created() {
@@ -244,6 +260,7 @@ export default {
 .wrapper {
 	width: 100%;
 	display: inline-flex;
+	margin-bottom: 5px;
 
 	.lang-select {
 		width: 300px;
@@ -252,6 +269,22 @@ export default {
 	.value-select {
 		flex-grow: 1;
 	}
+}
+
+.tag {
+	color: white;
+	background: #007fad;
+	border-radius: 5px;
+
+	padding-left: 5px;
+	margin-bottom: 0px;
+    margin-right: 10px;
+}
+.tag__list {
+	display: inline-flex;
+}
+.remove-button {
+	vertical-align: top;
 }
 
 .option__child {
