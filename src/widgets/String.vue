@@ -20,7 +20,8 @@
 </template>
 
 <style lang="scss" scoped>
-input[type=text].form-control {
+input[type=text].form-control,
+input[type=url].form-control {
 	border: 0;
 	border-radius: 0;
 	border-bottom: solid 1px lightgray;
