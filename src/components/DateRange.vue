@@ -6,7 +6,9 @@
 			<datepicker placeholder="From" class="widget ml-2" :disabledDates="disableBefore" v-model="start"></datepicker>
 			<p class="ml-2">-</p>
 			<datepicker placeholder="To" class="widget ml-2" :disabledDates="disableAfter" v-model="end"></datepicker>
-			<DeleteButton v-if="inArray" @click="$emit('delete', property)"/>
+			<div class="align">
+				<DeleteButton v-if="inArray" @click="$emit('delete', property)"/>
+			</div>
 		</div>
 		<div>
 			<p v-if="start && end" class="ml-2">Time between the two dates: {{timeBetweenString}}</p>
@@ -89,6 +91,10 @@ export default {
 			line-height: 40px;
 			vertical-align: middle;
 		}
+	}
+	.align {
+		padding: 12px;
+    	padding-left: 5px;
 	}
 </style>
 
