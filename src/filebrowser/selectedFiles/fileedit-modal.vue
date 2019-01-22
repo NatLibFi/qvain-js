@@ -2,8 +2,7 @@
   <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata" @ok="save">
     <div v-if="item">
       <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category"
-        :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item.label['en'] ? item.label['en'] : item.label.und"
-        isRequired>
+	  :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']" isRequired>
       </RefList>
       <b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
         <b-form-input id="title" placeholder="title" v-model="item.title" @change="validateTitle" :state="valid.title"></b-form-input>
@@ -13,14 +12,17 @@
       </b-form-group>
       <RefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text"
         uiLabel="File Type" :value="item.file_type" :setValue="setType"
-        v-if="isFile(item)" :customLabel="(item) => item.code">
+        v-if="isFile(item)" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']">
       </RefList>
+      <p>hello</p>
+      <RealRefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text" uiLabel="File Type" :value="item.file_type" :setValue="setType" v-if="isFile(item)" :customLabel="(item) => item.code" schema="this."></RealRefList>
     </div>
   </b-modal>
 </template>
 
 <script>
 import RefList from '../../widgets/refdata/list-ui'
+import RealRefList from '@/components/ReferenceData.vue'
 import Vue from 'vue'
 
 export default {
@@ -65,23 +67,25 @@ export default {
 		setUseCategory: function(value) {
 			// TODO: -wvh- hack
 			if (!value) return
-			if (value['uri']) {
-				value['identifier'] = value['uri']
-				delete value['uri']
-			}
-			if (value['label']) {
-				value['pref_label'] = value['label']
-				delete value['label']
-			}
+
+			delete value['label']
 			delete value['code']
 			delete value['id']
 			delete value['type']
+
+			/*
+			const mapToStore = option => {
+				const { identifier, label: { sv, en, fi, und } } = option;
+				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } };
+			}
+			*/
 
 			this.item.use_category = value
 		},
 		setType: function(value) {
 			// TODO: -wvh- hack
 			if (!value) return
+			/*
 			if (value['uri']) {
 				value['identifier'] = value['uri']
 				delete value['uri']
@@ -90,10 +94,12 @@ export default {
 				value['pref_label'] = value['label']
 				delete value['label']
 			}
+			*/
+			delete value['label']
 			delete value['code']
 			delete value['id']
 			delete value['type']
-			
+
 			this.item.file_type = value
 		},
 		validateTitle: function(value) {
@@ -107,7 +113,10 @@ export default {
 	computed: {},
 	components: {
 		RefList,
+		RealRefList,
 	},
-	created: function() {},
+	created: function() {
+		console.log("filepicker: schema:", this)
+	},
 }
 </script>
