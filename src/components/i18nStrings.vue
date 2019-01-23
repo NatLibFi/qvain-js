@@ -23,7 +23,9 @@
 						</div>
 						<b-form-input type="text" :ref="lang" class="text-field" :placeholder="uiPlaceholder" v-model="state[lang]" />
 						<b-input-group slot="append">
-							<DeleteButton @click="deleteLanguage(lang)"/>
+							<span class="remove-button">
+								<DeleteButton @click="deleteLanguage(lang)"/>
+							</span>
 						</b-input-group>
 					</b-input-group>
 				</b-list-group-item>
@@ -54,7 +56,10 @@
 	display: inline-flex;
 	justify-content: space-between;
 }
-
+.remove-button {
+	padding: 10px;
+    padding-left: 2px;
+}
 .intro-text {
 	text-align: center; margin-top: 30px;
 }
