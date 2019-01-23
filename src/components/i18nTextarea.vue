@@ -15,12 +15,11 @@
 						class="textarea"
 						:id="'textarea-' + key"
 						:ref="'textarea-tab-' + key"
-						:placeholder="uiPlaceholder"
-						:rows="6"
+						placeholder="Start typing!"
 						:max-rows="12"
 						:value="state[key]"
 						@input="v => changeText(key, v)">
-					</b-form-textarea>
+					</b-form-textarea><!--:rows="6"-->
 				</b-tab>
 
 				<template slot="tabs" v-if="languageKeys.length > 0">
@@ -60,13 +59,16 @@
 	margin-left: 10px;
 }
 .textarea {
-	margin-top: 10px;
-
-	padding: 10px;
-	line-height: 1.5;
-	border-radius: 5px;
-	border: 1px solid #ccc;
-	box-shadow: 1px 1px 1px #999;
+	min-height: 100px;
+	overflow: hidden;
+    background-image: linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+    background-size: 100% 31px;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    //box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 31px;
+    font-family: Arial, Helvetica, Sans-serif;
+    padding: 8px;
 }
 .delete-icon {
 	float: right;
@@ -103,6 +105,8 @@ import LanguageSelect from '@/components/LanguageSelect.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
 
+import autosize from 'autosize';
+
 export default {
 	extends: vSchemaBase,
 	name: 'i18n-textarea',
@@ -137,6 +141,9 @@ export default {
 	},
 	methods: {
 		changeText(key, value) {
+			const el = this.$refs['textarea-tab-' + key][0].$el;
+			autosize(el);
+
 			this.$set(this.state, key, value);
 			this.updateValue();
 		},
