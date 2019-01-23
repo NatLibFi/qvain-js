@@ -61,6 +61,7 @@
 .textarea {
 	min-height: 100px;
 	overflow: hidden;
+	resize: none;
     background-image: linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
     background-size: 100% 31px;
     border: 0px solid #ccc;
