@@ -5,9 +5,6 @@
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone dataset</b-btn>
-
-					<b-btn v-if="inDev" v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
-					<b-btn v-if="inDev" v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
 				</b-button-group>
 
 				<!--
@@ -37,6 +34,12 @@
 					<b-btn v-b-tooltip.hover title="Validate while editing" size="sm" id="checkbox-live" :pressed="unsubscribeFunc !== null" @change="toggleValidator()" v-model="doLive">live?</b-btn>
 				</b-button-group>
 				-->
+
+				<b-button-group size="sm" class="mx-1" v-if="inDev">
+					<b-btn variant="outline-light" v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
+					<b-btn variant="outline-light" v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
+				</b-button-group>
+
 			</b-button-toolbar>
 			<!--
 			<p>
@@ -136,7 +139,7 @@ export default {
 			loading: false,
 			rateLimited: false,
 			showPublishConfirmation: false,
-			inDev: false
+			inDev: true
 		}
 	},
 	methods: {
