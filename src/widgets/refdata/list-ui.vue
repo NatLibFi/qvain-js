@@ -169,10 +169,25 @@ export default {
 						if (this.optgroups) {
 							vm.items = groupByParent(response.data.hits.hits)
 						} else {
+							/*
 							let items = response.data.hits.hits
 							vm.items = vm.filterApiFields
 								? items.map(item => filterKeys(item['_source'], vm.apiFields))
 								: items.map(item => item['_source'])
+							*/
+
+							let lang = this.$root.language || 'en'
+
+							vm.items = response.data.hits.hits.map(item => {
+								let es = item['_source']
+								return {
+									'identifier': es.uri,
+									'code': es.code,
+									'pref_label': es.label,
+									'label': es.label[lang],
+								}
+							})
+							console.log("xxx:", vm.items)
 						}
 						vm.error = null
 					} else {
