@@ -14,8 +14,7 @@
         uiLabel="File Type" :value="item.file_type" :setValue="setType"
         v-if="isFile(item)" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']">
       </RefList>
-      <p>hello</p>
-      <RealRefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text" uiLabel="File Type" :value="item.file_type" :setValue="setType" v-if="isFile(item)" :customLabel="(item) => item.code" schema="this."></RealRefList>
+
     </div>
   </b-modal>
 </template>
