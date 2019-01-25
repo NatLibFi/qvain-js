@@ -1,106 +1,68 @@
 <template>
-	<wrapper :wrapped="true">
-		<div v-if="false" class="validation">
-			<ValidationStatus :status="validationStatus" class="validation__icon" />
-		</div>
-		<b-form-group :status="false" label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
-			<div class="header" slot="label">
-				<p>
-					{{uiLabel}}<span :style="{ 'color': 'red' }">*</span>
-				</p>
-				<div class="header__right">
-					<font-awesome-icon :icon="icons.faQuestionCircle" size="lg" />
-				</div>
+	<wrapper>
+		<record-field :required="true">
+			<title-component slot="title" :title="uiLabel" />
+			<div slot="header-right" class="header__right">
+				<ValidationStatus :status="validationStatus" />
+				<InfoIcon :description="uiDescription"/>
 			</div>
 
-			<b-list-group flush>
-				<div v-if="Object.keys(state).length === 0">
-					<p class="intro-text">
-						Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
-					</p>
-					<div class="language-row">
-						<language-select class="input-width" @change="addPair" />
+			<div slot="input">
+				<b-input-group v-for="(val, lang) in state" :key="lang">
+					<div class="input-group__prepend" slot="prepend">
+						<p class="input-group__language text-dark font-italic">{{ languages[lang] }}</p>
 					</div>
-				</div>
-
-				<b-list-group-item v-for="(val, lang) in state" :key="lang" class="less-padding border-0">
-					<b-input-group>
-						<div class="input-group__prepend" slot="prepend">
-							<p class="input-group__language text-dark font-italic">{{ languages[lang] }}</p>
-						</div>
-						<b-form-input type="text" :ref="lang" class="text-field" :placeholder="uiPlaceholder" v-model="state[lang]" />
-						<b-input-group slot="append">
-							<span class="remove-button">
-								<DeleteButton @click="deleteLanguage(lang)"/>
-							</span>
-						</b-input-group>
+					<b-form-input type="text" :ref="lang" class="text-field" :placeholder="uiPlaceholder" v-model="state[lang]" />
+					<b-input-group slot="append">
+						<span class="remove-button">
+							<DeleteButton @click="deleteLanguage(lang)"/>
+						</span>
 					</b-input-group>
-				</b-list-group-item>
+				</b-input-group>
 
-				<b-list-group-item v-if="Object.keys(state).length > 0" class="language-row">
+				<p class="intro-text" v-if="Object.keys(state).length === 0">
+					Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
+				</p>
+				<div class="language-row">
 					<language-select class="input-width" @change="addPair" />
-				</b-list-group-item>
-
-			</b-list-group>
-		</b-form-group>
+				</div>
+			</div>
+		</record-field>
 	</wrapper>
 </template>
 
 
 <style lang="scss" scoped>
-// $background: #fbfbfb;
-.less-padding {
-	padding-top: 0px;
-    padding-bottom: 5px;
-}
-
-.validation {
-	position: relative;
-}
-.validation__icon {
-	position: absolute;
-    top: -35px;
-	right: -35px;
-}
-
-.header {
-	width: 100%;
-	display: inline-flex;
-
-	.header__right {
-		margin-left: auto;
-	}
-}
 .remove-button {
 	padding: 10px;
     padding-left: 2px;
 }
 .intro-text {
-	text-align: center; margin-top: 30px;
+	text-align: center;
+	margin: 0;
 }
 .language-row {
 	display: inline-flex;
 	justify-content: space-around;
 	width: 100%;
-	margin-bottom: 35px;
 	border: 0;
+	margin-top: 10px;
 
 	.input-width {
 		width: 220px;
+	}
+}
+.input-group__prepend {
+	width: 150px;
+	.input-group__language {
+		line-height: 38px;
+		margin: 0;
 	}
 }
 .text-field {
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
-}
-.input-group__prepend {
-	width: 150px;
-
-	.input-group__language {
-		line-height: 38px;
-		margin: 0;
-	}
 }
 </style>
 
@@ -112,14 +74,9 @@ import LanguageSelect from '@/components/LanguageSelect.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import DeleteButton from '@/partials/DeleteButton.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {
-	faQuestionCircle,
-	faSquare
-} from '@fortawesome/free-regular-svg-icons';
-import {
-	faInfo
-} from '@fortawesome/free-solid-svg-icons';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -131,7 +88,9 @@ export default {
 		Wrapper,
 		DeleteButton,
 		ValidationStatus,
-		FontAwesomeIcon
+		RecordField,
+		TitleComponent,
+		InfoIcon
 	},
 	data() {
 		return {
@@ -158,13 +117,6 @@ export default {
 		},
 	},
 	computed: {
-		icons() {
-			return {
-				faQuestionCircle,
-				faSquare,
-				faInfo
-			};
-		},
 		hasEmptyValues() {
 			return Object.values(this.state).some(v => v.length == 0);
 		},
