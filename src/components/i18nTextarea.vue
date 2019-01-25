@@ -1,4 +1,5 @@
 <template>
+	<!--
 	<wrapper :wrapped="true">
 		<div class="validation">
 			<ValidationStatus :status="validationStatus" class="validation__icon" />
@@ -13,13 +14,12 @@
 
 					<b-form-textarea
 						class="textarea"
+						placeholder="Start typing!"
+						:value="state[key]"
 						:id="'textarea-' + key"
 						:ref="'textarea-tab-' + key"
-						placeholder="Start typing!"
-						:max-rows="12"
-						:value="state[key]"
 						@input="v => changeText(key, v)">
-					</b-form-textarea><!--:rows="6"-->
+					</b-form-textarea>
 				</b-tab>
 
 				<template slot="tabs" v-if="languageKeys.length > 0">
@@ -43,17 +43,58 @@
 			</b-tabs>
 		</b-form-group>
 	</wrapper>
+	-->
+	<wrapper>
+		<record-field :required="true">
+			<title-component slot="title" :title="uiLabel" />
+			<div slot="header-right" class="header__right">
+				<ValidationStatus :status="validationStatus" />
+				<InfoIcon :description="uiDescription"/>
+			</div>
+
+			<div slot="input">
+				<b-tabs class="tabs-nav" v-model="tabIndex" pills>
+					<b-tab v-for="key in languageKeys" :key="key" no-body>
+						<template slot="title">
+							{{ languages[key] }}
+							<font-awesome-icon icon="times" @click="deleteLang(key)" />
+						</template>
+
+						<b-form-textarea
+							class="textarea"
+							placeholder="Start typing!"
+							:value="state[key]"
+							:id="'textarea-' + key"
+							:ref="'textarea-tab-' + key"
+							@input="v => changeText(key, v)">
+						</b-form-textarea>
+					</b-tab>
+
+					<template slot="tabs" v-if="languageKeys.length > 0">
+						<div> <!-- this div makes the tab stay on first line -->
+							<language-select ref="langSelect"
+								class="lang-select-tab"
+								v-model="selectedLanguage"
+								@keyup.enter.native="lang => selectedLanguage = lang">
+							</language-select>
+						</div>
+					</template>
+
+					<div slot="empty">
+						<p class="intro-text">
+							Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
+						</p>
+						<div class="language-row">
+							<language-select class="input-width" @change="addTab" />
+						</div>
+					</div>
+				</b-tabs>
+			</div>
+		</record-field>
+	</wrapper>
 </template>
 
 <style lang="scss" scoped>
-.validation {
-	position: relative;
-}
-.validation__icon {
-	position: absolute;
-    top: -35px;
-	right: -35px;
-}
 .lang-select-tab {
 	height: 40px;
 	margin-left: 10px;
@@ -66,7 +107,6 @@
     background-size: 100% 31px;
     border: 0px solid #ccc;
     border-radius: 8px;
-    //box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     line-height: 31px;
     font-family: Arial, Helvetica, Sans-serif;
     padding: 8px;
@@ -82,13 +122,12 @@
 	height: 38px;
 }
 .intro-text {
-	text-align: center; margin-top: 30px;
+	text-align: center;
 }
 .language-row {
 	display: inline-flex;
 	justify-content: space-around;
 	width: 100%;
-	margin-bottom: 35px;
 	border: 0;
 
 	.input-width {
@@ -105,6 +144,9 @@ import langCodes2 from '@/data/iso639-1.json';
 import LanguageSelect from '@/components/LanguageSelect.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
 
 import autosize from 'autosize';
 
@@ -117,6 +159,9 @@ export default {
 		LanguageSelect,
 		Wrapper,
 		ValidationStatus,
+		RecordField,
+		TitleComponent,
+		InfoIcon
 	},
 	data() {
 		return {
