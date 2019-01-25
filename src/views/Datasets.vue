@@ -2,12 +2,6 @@
 	<b-container fluid>
 		<div class="mx-2 my-3 row">
 			<b-button-toolbar aria-label="dataset list toolbar">
-				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover.bottom title="create new record">new</b-btn>
-					<b-btn v-b-tooltip.hover.bottom title="edit a record">edit</b-btn>
-					<b-btn @click="open('05766a68-0519-65ba-885f-e1d375283063')">open</b-btn>
-				</b-button-group>
-
 				<b-input-group size="sm" class="mx-1" prepend="owner">
 					<b-form-select v-model="ownerSelect" v-b-tooltip.hover.bottom title="select record owner" style="min-width: 12rem;">
 						<template slot="first">
@@ -187,8 +181,8 @@ export default {
 			apiClient.delete("/datasets/" + id)
 				.then((response) => {
 					// returns 204 or 200
-					vm.$root.showAlert("successfully deleted dataset", "success")
-					vm.$refs.datasetTable.refresh()
+					this.$root.showAlert("successfully deleted dataset", "success")
+					this.$refs.datasetTable.refresh()
 				})
 				.catch((error) => {
 					this.error = getApiError(error)
