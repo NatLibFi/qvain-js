@@ -13,7 +13,7 @@ export default {
 			const mint = '#aaffc3';
 			const teal = '#469990';
 
-			switch(depth % 10) {
+			switch(depth - 1 % 10) {
 				case 1: return lime;
 				case 2: return green;
 				case 3: return cyan;
@@ -33,6 +33,7 @@ export default {
 		},
 		listItemStyle(depth) {
 			const width = 6; //11 - depth;
+			if (depth < 2) return null
 			return { 'border-left': `solid ${width}px ${this.borderColor(depth)} !important` }
 		}
 	}
