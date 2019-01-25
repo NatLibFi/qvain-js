@@ -1,10 +1,17 @@
 <template>
 	<wrapper :wrapped="true">
-		<div class="validation">
+		<div v-if="false" class="validation">
 			<ValidationStatus :status="validationStatus" class="validation__icon" />
 		</div>
 		<b-form-group :status="false" label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
-			<div class="header" slot="label"><p>{{uiLabel}}</p></div>
+			<div class="header" slot="label">
+				<p>
+					{{uiLabel}}<span :style="{ 'color': 'red' }">*</span>
+				</p>
+				<div class="header__right">
+					<font-awesome-icon :icon="icons.faQuestionCircle" size="lg" />
+				</div>
+			</div>
 
 			<b-list-group flush>
 				<div v-if="Object.keys(state).length === 0">
@@ -16,7 +23,7 @@
 					</div>
 				</div>
 
-				<b-list-group-item v-for="(val, lang) in state" :key="lang" class="border-0">
+				<b-list-group-item v-for="(val, lang) in state" :key="lang" class="less-padding border-0">
 					<b-input-group>
 						<div class="input-group__prepend" slot="prepend">
 							<p class="input-group__language text-dark font-italic">{{ languages[lang] }}</p>
@@ -42,6 +49,11 @@
 
 <style lang="scss" scoped>
 // $background: #fbfbfb;
+.less-padding {
+	padding-top: 0px;
+    padding-bottom: 5px;
+}
+
 .validation {
 	position: relative;
 }
@@ -54,7 +66,10 @@
 .header {
 	width: 100%;
 	display: inline-flex;
-	justify-content: space-between;
+
+	.header__right {
+		margin-left: auto;
+	}
 }
 .remove-button {
 	padding: 10px;
@@ -97,6 +112,14 @@ import LanguageSelect from '@/components/LanguageSelect.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import DeleteButton from '@/partials/DeleteButton.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+	faQuestionCircle,
+	faSquare
+} from '@fortawesome/free-regular-svg-icons';
+import {
+	faInfo
+} from '@fortawesome/free-solid-svg-icons';
 
 export default {
 	extends: vSchemaBase,
@@ -108,6 +131,7 @@ export default {
 		Wrapper,
 		DeleteButton,
 		ValidationStatus,
+		FontAwesomeIcon
 	},
 	data() {
 		return {
@@ -134,6 +158,13 @@ export default {
 		},
 	},
 	computed: {
+		icons() {
+			return {
+				faQuestionCircle,
+				faSquare,
+				faInfo
+			};
+		},
 		hasEmptyValues() {
 			return Object.values(this.state).some(v => v.length == 0);
 		},
