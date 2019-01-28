@@ -1,34 +1,32 @@
 <template>
-	<wrapper>
-		<record-field :required="true">
-			<title-component slot="title" :title="uiLabel" />
-			<div slot="header-right" class="header__right">
-				<ValidationStatus :status="validationStatus" />
-				<InfoIcon :description="uiDescription"/>
-			</div>
+	<record-field :required="true" :wrapped="true">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<ValidationStatus :status="validationStatus" />
+			<InfoIcon :description="uiDescription"/>
+		</div>
 
-			<div slot="input">
-				<b-input-group v-for="(val, lang) in state" :key="lang">
-					<div class="input-group__prepend" slot="prepend">
-						<p class="input-group__language text-dark font-italic">{{ languages[lang] }}</p>
-					</div>
-					<b-form-input type="text" :ref="lang" class="text-field" :placeholder="uiPlaceholder" v-model="state[lang]" />
-					<b-input-group slot="append">
-						<span class="remove-button">
-							<DeleteButton @click="deleteLanguage(lang)"/>
-						</span>
-					</b-input-group>
-				</b-input-group>
-
-				<p class="intro-text" v-if="Object.keys(state).length === 0">
-					Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
-				</p>
-				<div class="language-row">
-					<language-select class="input-width" @change="addPair" />
+		<div slot="input">
+			<b-input-group v-for="(val, lang) in state" :key="lang">
+				<div class="input-group__prepend" slot="prepend">
+					<p class="input-group__language text-dark font-italic">{{ languages[lang] }}</p>
 				</div>
+				<b-form-input type="text" :ref="lang" class="text-field" :placeholder="uiPlaceholder" v-model="state[lang]" />
+				<b-input-group slot="append">
+					<span class="remove-button">
+						<DeleteButton @click="deleteLanguage(lang)"/>
+					</span>
+				</b-input-group>
+			</b-input-group>
+
+			<p class="intro-text" v-if="Object.keys(state).length === 0">
+				Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
+			</p>
+			<div class="language-row">
+				<language-select class="input-width" @change="addPair" />
 			</div>
-		</record-field>
-	</wrapper>
+		</div>
+	</record-field>
 </template>
 
 

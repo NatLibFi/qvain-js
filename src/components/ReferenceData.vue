@@ -1,7 +1,13 @@
 <template>
-	<wrapper :wrapped="wrapped">
-		<b-form-group :style="{ 'width': '100%' }" :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
-			<div class="wrapper">
+	<record-field :required="true" :wrapped="wrapped">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<!--<ValidationStatus :status="validationStatus" />-->
+			<InfoIcon :description="uiDescription"/>
+		</div>
+
+		<div slot="input">
+			<div class="input-row__inline">
 				<Multiselect v-if="showLang"
 					v-model="selectedLang"
 					:options="languages"
@@ -62,8 +68,8 @@
 					</span>
 				</p>
 			</div>
-		</b-form-group>
-	</wrapper>
+		</div>
+	</record-field>
 </template>
 
 <script>
@@ -72,6 +78,10 @@ import { esApiSearchClient } from '@/widgets/refdata/es.js';
 import Wrapper from './Wrapper.vue';
 import DeleteButton from '@/partials/DeleteButton.vue';
 import Multiselect from 'vue-multiselect';
+import ValidationStatus from '@/partials/ValidationStatus.vue';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
 
 export default {
 	name: 'reference-data',
@@ -79,7 +89,11 @@ export default {
 	components: {
 		Multiselect,
 		Wrapper,
-		DeleteButton
+		DeleteButton,
+		ValidationStatus,
+		RecordField,
+		TitleComponent,
+		InfoIcon
 	},
 	props: {
 		esIndex: { type: String, required: true },
@@ -257,7 +271,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wrapper {
+.input-row__inline {
 	width: 100%;
 	display: inline-flex;
 	margin-bottom: 5px;

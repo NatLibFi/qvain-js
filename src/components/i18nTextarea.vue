@@ -1,16 +1,18 @@
 <template>
-	<!--
-	<wrapper :wrapped="true">
-		<div class="validation">
-			<ValidationStatus :status="validationStatus" class="validation__icon" />
+	<record-field :required="true" :wrapped="true">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<ValidationStatus :status="validationStatus" />
+			<InfoIcon :description="uiDescription"/>
 		</div>
-		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+
+		<div slot="input">
 			<b-tabs class="tabs-nav" v-model="tabIndex" pills>
 				<b-tab v-for="key in languageKeys" :key="key" no-body>
 					<template slot="title">
-     					{{ languages[key] }}
+						{{ languages[key] }}
 						<font-awesome-icon icon="times" @click="deleteLang(key)" />
-   					</template>
+					</template>
 
 					<b-form-textarea
 						class="textarea"
@@ -23,7 +25,7 @@
 				</b-tab>
 
 				<template slot="tabs" v-if="languageKeys.length > 0">
-					<div>
+					<div> <!-- this div makes the tab stay on first line -->
 						<language-select ref="langSelect"
 							class="lang-select-tab"
 							v-model="selectedLanguage"
@@ -41,57 +43,8 @@
 					</div>
 				</div>
 			</b-tabs>
-		</b-form-group>
-	</wrapper>
-	-->
-	<wrapper>
-		<record-field :required="true">
-			<title-component slot="title" :title="uiLabel" />
-			<div slot="header-right" class="header__right">
-				<ValidationStatus :status="validationStatus" />
-				<InfoIcon :description="uiDescription"/>
-			</div>
-
-			<div slot="input">
-				<b-tabs class="tabs-nav" v-model="tabIndex" pills>
-					<b-tab v-for="key in languageKeys" :key="key" no-body>
-						<template slot="title">
-							{{ languages[key] }}
-							<font-awesome-icon icon="times" @click="deleteLang(key)" />
-						</template>
-
-						<b-form-textarea
-							class="textarea"
-							placeholder="Start typing!"
-							:value="state[key]"
-							:id="'textarea-' + key"
-							:ref="'textarea-tab-' + key"
-							@input="v => changeText(key, v)">
-						</b-form-textarea>
-					</b-tab>
-
-					<template slot="tabs" v-if="languageKeys.length > 0">
-						<div> <!-- this div makes the tab stay on first line -->
-							<language-select ref="langSelect"
-								class="lang-select-tab"
-								v-model="selectedLanguage"
-								@keyup.enter.native="lang => selectedLanguage = lang">
-							</language-select>
-						</div>
-					</template>
-
-					<div slot="empty">
-						<p class="intro-text">
-							Start by selecting the language. You may add as many languages as you wish by clicking them from the dropdown below.
-						</p>
-						<div class="language-row">
-							<language-select class="input-width" @change="addTab" />
-						</div>
-					</div>
-				</b-tabs>
-			</div>
-		</record-field>
-	</wrapper>
+		</div>
+	</record-field>
 </template>
 
 <style lang="scss" scoped>

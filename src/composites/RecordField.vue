@@ -1,5 +1,5 @@
 <template functional>
-	<wrapper :wrapped="true">
+	<wrapper :wrapped="props.wrapped">
 		<div class="header">
 			<div class="header__label">
 				<slot name="title"/><span v-if="props.required" class="header__required">*</span>
