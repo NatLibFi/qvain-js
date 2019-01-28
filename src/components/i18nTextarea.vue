@@ -95,7 +95,6 @@
 import vSchemaBase from '@/widgets/base.vue';
 import langCodes2 from '@/data/iso639-1.json';
 import LanguageSelect from '@/components/LanguageSelect.vue';
-import Wrapper from '@/components/Wrapper.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
 import RecordField from '@/composites/RecordField.vue';
 import TitleComponent from '@/partials/Title.vue';
@@ -110,7 +109,6 @@ export default {
 	schematype: 'object',
 	components: {
 		LanguageSelect,
-		Wrapper,
 		ValidationStatus,
 		RecordField,
 		TitleComponent,

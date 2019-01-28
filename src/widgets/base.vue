@@ -64,8 +64,12 @@ export default {
 			return this.ui['description'] || this.schema['description']
 		},
 		uiLabel: function() {
+			if (this.inArray) {
+				return null;
+			}
 			const string = (this.ui['label'] || this.uiTitle);
-			return string.charAt(0).toUpperCase() + string.slice(1);
+			console.log('label was', string);
+			return string ? string.charAt(0).toUpperCase() + string.slice(1) : null;
 		},
 		uiHelp: function() {
 			return this.ui['help']

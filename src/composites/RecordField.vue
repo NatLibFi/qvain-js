@@ -1,8 +1,8 @@
-<template functional>
-	<wrapper :wrapped="props.wrapped">
-		<div class="header">
+<template>
+	<wrapper :wrapped="wrapped">
+		<div v-if="header" class="header">
 			<div class="header__label">
-				<slot name="title"/><span v-if="props.required" class="header__required">*</span>
+				<slot name="title"/><span v-if="required" class="header__required">*</span>
 			</div>
 			<div class="header__right">
 				<slot name="header-right"/>
@@ -39,7 +39,25 @@
 </style>
 
 <script>
+import Wrapper from '@/components/Wrapper.vue';
 export default {
 	name: 'record-field',
+	components: {
+		Wrapper
+	},
+	props: {
+		wrapped: {
+			type: Boolean,
+			default: false
+		},
+		required: {
+			type: Boolean,
+			default: false
+		},
+		header: {
+			type: Boolean,
+			default: true
+		}
+	}
 }
 </script>

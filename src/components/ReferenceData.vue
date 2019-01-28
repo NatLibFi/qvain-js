@@ -343,5 +343,6 @@ export default {
 	border: 0;
 	border-radius: 0;
 	border-bottom: solid 1px lightgray;
+	height: 40px;
 }
 </style>

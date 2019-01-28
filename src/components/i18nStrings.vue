@@ -69,7 +69,6 @@
 import languages from '../data/iso639-1.json';
 import vSchemaBase from '@/widgets/base.vue';
 import LanguageSelect from '@/components/LanguageSelect.vue';
-import Wrapper from '@/components/Wrapper.vue';
 import DeleteButton from '@/partials/DeleteButton.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
 import RecordField from '@/composites/RecordField.vue';
@@ -83,7 +82,6 @@ export default {
 	schematype: 'object',
 	components: {
 		LanguageSelect,
-		Wrapper,
 		DeleteButton,
 		ValidationStatus,
 		RecordField,
