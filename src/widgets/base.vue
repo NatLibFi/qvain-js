@@ -68,7 +68,6 @@ export default {
 				return null;
 			}
 			const string = (this.ui['label'] || this.uiTitle);
-			console.log('label was', string);
 			return string ? string.charAt(0).toUpperCase() + string.slice(1) : null;
 		},
 		uiHelp: function() {

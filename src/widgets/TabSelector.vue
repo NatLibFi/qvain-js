@@ -141,7 +141,8 @@ export default {
 				let typeOfItems = this.schema.items && this.schema.items.type && this.schema.items.type || ""
 				console.log("array: typeOfItems:", typeOfItems, this.schema)
 				let hasValues = typeOfItems !== "array" && typeOfItems !== "object"
-				return hasValues ? 'schema-inline-array' : 'schema-array'
+				//return hasValues ? 'schema-inline-array' : 'schema-array'
+				return 'schema-array';
 			case 'boolean':
 				console.log("schema-selector: boolean not implemented yet")
 				return ""

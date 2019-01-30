@@ -6,7 +6,8 @@
 			<InfoIcon :description="uiDescription"/>
 		</div>
 
-		<div slot="input">
+		<div slot="input" class="input">
+			<p v-if="inArray" class="input__number">#{{property}}</p>
 			<b-form-input
 				:type="inputType"
 				:placeholder="uiPlaceholder"
@@ -14,11 +15,32 @@
 				:state="schemaState"
 				@input.native="updateValue">
 			</b-form-input>
+			<span class="input__delete">
+				<DeleteButton v-if="inArray" @click="deleteMe" />
+			</span>
 		</div>
 	</record-field>
 </template>
 
 <style lang="scss" scoped>
+.input {
+	width: 100%;
+	display: inline-flex;
+
+	.input__number {
+		padding: 10px;
+		margin: 0;
+	}
+
+	.input__delete {
+		padding: 10px !important;
+	}
+
+	> * {
+		height: 40px;
+	}
+}
+
 input[type=text].form-control,
 input[type=url].form-control {
 	border: 0;
@@ -30,6 +52,10 @@ input[type=url].form-control {
 	}
 
 	&.is-valid:focus {
+		box-shadow: none;
+	}
+
+	&.is-invalid:focus {
 		box-shadow: none;
 	}
 }
@@ -44,6 +70,7 @@ import ValidationStatus from '@/partials/ValidationStatus.vue';
 import RecordField from '@/composites/RecordField.vue';
 import TitleComponent from '@/partials/Title.vue';
 import InfoIcon from '@/partials/InfoIcon.vue';
+import DeleteButton from '@/partials/DeleteButton.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -54,7 +81,8 @@ export default {
 		ValidationStatus,
 		RecordField,
 		TitleComponent,
-		InfoIcon
+		InfoIcon,
+		DeleteButton
 	},
 	data() {
 		return {
