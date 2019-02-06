@@ -1,29 +1,11 @@
 <template>
-	<wrapper class="min-height" :wrapped="true">
-		<!--<header>
-			<h3>
-			{{ uiTitle }}
-			<font-awesome-icon v-if="value.length < minimum"
-				icon="exclamation-triangle"
-				class="text-dark"
-				v-b-tooltip.hover="`You need at least ${minimum}!`" />
-			</h3>
-		</header>-->
-		<!--<b-alert variant="danger" dismissible :show="!!error" @dismissed="error = null">{{ error }}</b-alert>-->
-		<!--<div class="float-right" v-for="e in schemaErrors">
-			<b-badge variant="danger" class="q-validation-error">
-				<font-awesome-icon icon="exclamation-triangle" fixed-width/>
-				{{ e }}
-			</b-badge>
-		</div>-->
-
-		<!--<b-form-group :label-cols="2" :description="uiDescription" :label="uiTitle" :state="schemaState">-->
-			<h3>{{uiTitle}}</h3>
-			<p class="small form-text text-muted">{{uiDescription}}</p>
-			<div class="d-flex align-items-stretch float-right"><!-- buttons -->
-				<b-btn type="button" variant="secondary" class="mr-2"><font-awesome-icon icon="list" fixed-width class="mr-2"/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
-				<b-btn type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
-			</div>
+	<record-field class="min-height" :required="true" :wrapped="wrapped" :header="!inArray">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<!--<ValidationStatus :status="validationStatus" />-->
+			<InfoIcon :description="uiDescription"/>
+		</div>
+		<div slot="input">
 			<!--
 				There is not easy way to force v-for to not use inplace update strategy. In this case it is mandatory to make deleting item show correctly.
 				This could be code smell but at the moment the best solution is just to patch this. See https://github.com/xianshenglu/blog/issues/47 for reference.
@@ -41,8 +23,8 @@
 					:key="index"
 					:title-link-class="{ 'update_trigger_hack': !!tabTitle(index) }">
 					<template slot="title">
-     					{{ tabTitle(index) }} <font-awesome-icon icon="times" @click="deleteElement(index)" />
-   					</template>
+						{{ tabTitle(index) }} <font-awesome-icon icon="times" @click="deleteElement(index)" />
+					</template>
 
 					<TabSelector
 						:schema="schemaForChild(index)"
@@ -56,10 +38,16 @@
 						@delete="deleteElement"
 						:key="'array-' + index" />
 				</b-tab>
+
+				<div slot="tabs" class="input__controls">
+					<b-btn class="input__control mr-2" type="button" variant="secondary"><font-awesome-icon icon="list" fixed-width/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
+					<b-btn class="input__control" type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
+				</div>
+
 			</b-tabs>
 
+			<b-list-group class="item-list" v-else-if="forceArrayUpdateHack && !tabFormat" flush>
 
-			<b-list-group v-else-if="forceArrayUpdateHack && !tabFormat" flush>
 				<b-list-group-item class="list-item" v-for="(child, index) in value" :key="index">
 					<TabSelector
 						:schema="schemaForChild(index)"
@@ -73,31 +61,34 @@
 						@delete="deleteElement"
 						:key="'array-' + index" />
 				</b-list-group-item>
+				<div class="input__controls">
+					<b-btn class="input__control mr-2" type="button" variant="secondary"><font-awesome-icon icon="list" fixed-width/> <span>{{ minimum || "–" }} / {{ value.length }} / {{ maximum || "–" }}</span></b-btn>
+					<b-btn class="input__control" type="button" variant="primary" :disabled="value.length >= this.maximum" @click="doPlus()"><font-awesome-icon icon="plus" fixed-width /></b-btn>
+				</div>
 			</b-list-group>
-
-
-			<!--
-				<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
-		</b-form-group>
-		-->
-		<!--
-		<footer>
-			list <button type="button" :disabled="!value || value.length <= this.minimum" @click="doMinus">-</button> | <button type="button" :disabled="value.length >= this.maximum" @click="doPlus">+</button>
-			(min: {{ minimum }} / max: {{ maximum || '-' }})
-			{{ schemaErrors }}
-		</footer>
-		-->
-	</wrapper>
+		</div>
+	</record-field>
 </template>
 <style lang="scss" scoped>
+.input__controls {
+	margin-left: auto;
+	margin-top: 10px;
+
+	.input__control {
+		height: 40px;
+	}
+}
+
+
 .list-item {
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 0px;
     border-bottom: 0;
 	border-top: 0;
 	padding: 0;
 }
 .min-height {
-	min-height: 160px;
+	min-height: 108px;
 }
 </style>
 
@@ -113,6 +104,10 @@ import vSchemaBase from './base.vue';
 import ValidationPopover from '@/components/ValidationPopover.vue';
 import Wrapper from '@/components/Wrapper.vue';
 import TabSelector from '@/widgets/TabSelector.vue';
+import ValidationStatus from '@/partials/ValidationStatus.vue';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
 
 export default {
 	extends: vSchemaBase,
@@ -121,13 +116,15 @@ export default {
 	schematype: 'array',
 	components: {
 		ValidationPopover,
+		ValidationStatus,
+		RecordField,
+		TitleComponent,
+		InfoIcon,
 		Wrapper
 	},
 	props: {
-		tabFormat: {
-			type: Boolean,
-			default: true
-		}
+		tabFormat: { type: Boolean, default: true },
+		wrapped: { type: Boolean, default: true },
 	},
 	data() {
 		return {

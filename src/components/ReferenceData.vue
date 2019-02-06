@@ -1,12 +1,18 @@
 <template>
-	<wrapper :wrapped="wrapped">
-		<b-form-group :label-cols="2" :description="uiDescription" :label="uiLabel" feedback="feedback">
-			<div class="wrapper">
+	<record-field :required="true" :wrapped="wrapped">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<!--<ValidationStatus :status="validationStatus" />-->
+			<InfoIcon :description="uiDescription"/>
+		</div>
+
+		<div slot="input">
+			<div class="input-row__inline">
 				<Multiselect v-if="showLang"
 					v-model="selectedLang"
 					:options="languages"
+					:placeholder="placeholder"
 					label="language"
-					placeholder="Language"
 					class="lang-select"/>
 
 				<Multiselect v-if="optionsShouldBeGrouped"
@@ -22,7 +28,7 @@
 					:options="options"
 					:showNoResults="true"
 					:customLabel="customLabel"
-					placeholder="Select option"
+					:placeholder="placeholder"
 					group-values="children"
 					:group-label="labelNameInSchema"
 					@search-change="search">
@@ -30,7 +36,9 @@
 					<div v-bind:class="{ option__child: !option.$groupLabel, option__parent: option.$groupLabel }" slot="option" slot-scope="{ option }" v-if="grouped">
 						{{ option.$groupLabel || customLabel(option) }}
 					</div>
+					<div v-if="selectedOptions.length > 0" slot="selection">{{placeholder}}</div>
 				</Multiselect>
+
 				<Multiselect v-else
 					class="value-select"
 					v-model="selectedOptions"
@@ -41,31 +49,61 @@
 					:taggable="tags"
 					:searchable="typeahead"
 					:multiple="isMultiselect"
+					:clearOnSelect="false"
 					:options="sortedOptions"
 					:showNoResults="true"
 					:customLabel="customLabel"
-					placeholder="Select option"
+					:placeholder="placeholder"
+					@select="atSelect"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
+					<div slot="selection" slot-scope="{ values, search, isOpen }">
+						<span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ placeholder }} options selected</span>
+					</div>
 				</Multiselect>
 			</div>
-		</b-form-group>
-	</wrapper>
+			<div v-if="isMultiselect" class="tag__list">
+				<p v-for="(option, index) in Array.from(selectedOptions)" :key="option.identifier" class="tag">
+					{{customLabel(option)}}
+					<span class="remove-button">
+						<DeleteButton @click="removeValue(index)" />
+					</span>
+				</p>
+			</div>
+			<div v-if="!isMultiselect && !Array.isArray(selectedOptions)" class="tag__list">
+				<p class="tag">
+					{{customLabel(selectedOptions)}}
+					<span class="remove-button">
+						<DeleteButton @click="removeValue(-1)" />
+					</span>
+				</p>
+			</div>
+		</div>
+	</record-field>
 </template>
 
 <script>
 import vSchemaBase from '@/widgets/base.vue';
 import { esApiSearchClient } from '@/widgets/refdata/es.js';
 import Wrapper from './Wrapper.vue';
-
+import DeleteButton from '@/partials/DeleteButton.vue';
 import Multiselect from 'vue-multiselect';
+import ValidationStatus from '@/partials/ValidationStatus.vue';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
 
 export default {
 	name: 'reference-data',
 	extends: vSchemaBase,
 	components: {
 		Multiselect,
-		Wrapper
+		Wrapper,
+		DeleteButton,
+		ValidationStatus,
+		RecordField,
+		TitleComponent,
+		InfoIcon
 	},
 	props: {
 		esIndex: { type: String, required: true },
@@ -81,7 +119,7 @@ export default {
 	},
 	data() {
 		return {
-			responseData: [],
+			responseData: {},
 			selectedOptions: [],
 			languages: [
 				{ id: 'fi', language: 'Finnish' },
@@ -93,6 +131,11 @@ export default {
 		}
 	},
 	computed: {
+		placeholder() {
+			return this.async ?
+				'Type to search for available options' :
+				'Select option';
+		},
 		currentLanguage() {
 			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null;
 			return selectedLanguage || this.$root.language || 'en';
@@ -145,8 +188,7 @@ export default {
 		},
 		isEmptyObject() {
 			return this.value &&
-				typeof this.value === 'object' &&
-				Object.keys(this.value).length === 0;
+				typeof this.value === 'object' && Object.keys(this.value).length === 0;
 		},
 		isArray() {
 			return this.value && this.value.length > 0;
@@ -154,7 +196,11 @@ export default {
 	},
 	methods: {
 		customLabel(option) {
-			return option.label[this.currentLanguage] || option.label['und'];
+			if (option === null) {
+				return option;
+			}
+
+			return option.label ? option.label[this.currentLanguage] || option.label['und'] : null;
 		},
 		acceptableOption(es) {
 			const FILTER_FIELD = 'internal_code';
@@ -194,6 +240,17 @@ export default {
 				this.searchReferenceData(q);
 			}
 			this.isLoading = false;
+		},
+		removeValue(index) {
+			if (index === -1) {
+				this.selectedOptions = null;
+			}
+			this.selectedOptions.splice(index, 1)
+		},
+		atSelect() {
+			if (this.async) {
+				this.responseData = {};
+			}
 		}
 	},
 	async created() {
@@ -202,9 +259,13 @@ export default {
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
-			const { identifier } = this.value;
-			const label = this.value[this.labelNameInSchema];
-			this.selectedOptions = { identifier, label: label };
+			if (!this.value.identifier) {
+				this.selectedOptions = null;
+			} else {
+				const { identifier } = this.value;
+				const label = this.value[this.labelNameInSchema];
+				this.selectedOptions = { identifier, label };
+			}
 		}
 
 		if (!this.async) {
@@ -216,6 +277,10 @@ export default {
 			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
 
 			const mapToStore = option => {
+				if (typeof option === 'undefined') {
+					return option;
+				}
+
 				const { identifier, label: { sv, en, fi, und } } = option;
 				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } };
 			}
@@ -235,9 +300,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wrapper {
+.input-row__inline {
 	width: 100%;
 	display: inline-flex;
+	margin-bottom: 5px;
 
 	.lang-select {
 		width: 300px;
@@ -246,6 +312,22 @@ export default {
 	.value-select {
 		flex-grow: 1;
 	}
+}
+
+.tag {
+	color: white;
+	background: #007fad;
+	border-radius: 5px;
+
+	padding-left: 5px;
+	margin-bottom: 0px;
+    margin-right: 10px;
+}
+.tag__list {
+	display: inline-flex;
+}
+.remove-button {
+	vertical-align: top;
 }
 
 .option__child {
@@ -284,5 +366,12 @@ export default {
 
 .multiselect__option--selected.multiselect__option--highlight:after {
 	background: $danger;
+}
+
+.multiselect__tags {
+	border: 0;
+	border-radius: 0;
+	border-bottom: solid 1px lightgray;
+	height: 40px;
 }
 </style>

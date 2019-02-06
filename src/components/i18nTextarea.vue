@@ -1,30 +1,31 @@
 <template>
-	<wrapper :wrapped="true">
-		<div class="validation">
-			<ValidationStatus :status="validationStatus" class="validation__icon" />
+	<record-field :required="true" :wrapped="true">
+		<title-component slot="title" :title="uiLabel" />
+		<div slot="header-right" class="header__right">
+			<ValidationStatus :status="validationStatus" />
+			<InfoIcon :description="uiDescription"/>
 		</div>
-		<b-form-group label-cols="2" breakpoint="md" :description="uiDescription" :label="uiLabel">
+
+		<div slot="input">
 			<b-tabs class="tabs-nav" v-model="tabIndex" pills>
 				<b-tab v-for="key in languageKeys" :key="key" no-body>
 					<template slot="title">
-     					{{ languages[key] }}
+						{{ languages[key] }}
 						<font-awesome-icon icon="times" @click="deleteLang(key)" />
-   					</template>
+					</template>
 
 					<b-form-textarea
 						class="textarea"
+						placeholder="Start typing!"
+						:value="state[key]"
 						:id="'textarea-' + key"
 						:ref="'textarea-tab-' + key"
-						:placeholder="uiPlaceholder"
-						:rows="6"
-						:max-rows="12"
-						:value="state[key]"
 						@input="v => changeText(key, v)">
 					</b-form-textarea>
 				</b-tab>
 
 				<template slot="tabs" v-if="languageKeys.length > 0">
-					<div>
+					<div> <!-- this div makes the tab stay on first line -->
 						<language-select ref="langSelect"
 							class="lang-select-tab"
 							v-model="selectedLanguage"
@@ -42,31 +43,26 @@
 					</div>
 				</div>
 			</b-tabs>
-		</b-form-group>
-	</wrapper>
+		</div>
+	</record-field>
 </template>
 
 <style lang="scss" scoped>
-.validation {
-	position: relative;
-}
-.validation__icon {
-	position: absolute;
-    top: -35px;
-	right: -35px;
-}
 .lang-select-tab {
 	height: 40px;
 	margin-left: 10px;
 }
 .textarea {
-	margin-top: 10px;
-
-	padding: 10px;
-	line-height: 1.5;
-	border-radius: 5px;
-	border: 1px solid #ccc;
-	box-shadow: 1px 1px 1px #999;
+	min-height: 100px;
+	overflow: hidden;
+	resize: none;
+    background-image: linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+    background-size: 100% 31px;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    line-height: 31px;
+    font-family: Arial, Helvetica, Sans-serif;
+    padding: 8px;
 }
 .delete-icon {
 	float: right;
@@ -79,13 +75,12 @@
 	height: 38px;
 }
 .intro-text {
-	text-align: center; margin-top: 30px;
+	text-align: center;
 }
 .language-row {
 	display: inline-flex;
 	justify-content: space-around;
 	width: 100%;
-	margin-bottom: 35px;
 	border: 0;
 
 	.input-width {
@@ -100,8 +95,12 @@
 import vSchemaBase from '@/widgets/base.vue';
 import langCodes2 from '@/data/iso639-1.json';
 import LanguageSelect from '@/components/LanguageSelect.vue';
-import Wrapper from '@/components/Wrapper.vue';
 import ValidationStatus from '@/partials/ValidationStatus.vue';
+import RecordField from '@/composites/RecordField.vue';
+import TitleComponent from '@/partials/Title.vue';
+import InfoIcon from '@/partials/InfoIcon.vue';
+
+import autosize from 'autosize';
 
 export default {
 	extends: vSchemaBase,
@@ -110,8 +109,10 @@ export default {
 	schematype: 'object',
 	components: {
 		LanguageSelect,
-		Wrapper,
 		ValidationStatus,
+		RecordField,
+		TitleComponent,
+		InfoIcon
 	},
 	data() {
 		return {
@@ -137,6 +138,9 @@ export default {
 	},
 	methods: {
 		changeText(key, value) {
+			const el = this.$refs['textarea-tab-' + key][0].$el;
+			autosize(el);
+
 			this.$set(this.state, key, value);
 			this.updateValue();
 		},
