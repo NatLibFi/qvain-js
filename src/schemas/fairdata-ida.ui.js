@@ -1,11 +1,12 @@
 export default {
 	tabs: [
 		{ label: 'Content Description', uri: 'description' },
-		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Actors', uri: 'actors' },
+		{ label: 'Rights and Licences', uri: 'rights' },
+		{ label: 'Temporal and Spatial Coverage', uri: 'coverage' },
 		{ label: 'Relations and History', uri: 'relations' },
 		{ label: 'Files', uri: 'files' },
-		{ label: 'Extra', uri: 'extra' },
+		{ label: 'Extra', uri: null },
 	],
 	//'': { 'tab': 'description' },
 	'': { 'tab': 'extra', 'order': ["title", "description", "language"] },
@@ -573,6 +574,22 @@ export default {
 		'description': "This is some fancy optional description for the resource type field",
 		'help': "This is the optional help text for the resource type field",
 	},
+	'/properties/provenance/*/properties/was_associated_with/*/oneOf/*/properties/member_of/properties/contributor_type': {
+		'widget': 'reference-data',
+		'props': {
+			'esIndex': "reference_data",
+			'esDoctype': "contributor_type",
+			'typeahead': true,
+			'tags': false,
+			'async': false,
+			'count': 100,
+			'grouped': false,
+		},
+		'placeholder': "– choose contributor type –",
+		'label': "contributor type",
+		'description': "This is some fancy optional description for the contributor type field",
+		'help': "This is the optional help text for the contributor type field",
+	},
 	'/properties/provenance/*/properties/temporal': {
 		'widget': 'date-range',
 	},
@@ -587,9 +604,10 @@ export default {
 		'tab': 'notab',
 	},
 	'/properties/access_rights': {
-		'tab': 'extra',
+		'tab': 'rights',
 		'title': "Access rights",
-		'description': "*** description for access rights goes here ***"
+		'description': "*** description for access rights goes here ***",
+		'ignored': ["access_process"]
 	},
 	'/properties/access_rights/properties/access_type': {
 		'widget': 'reference-data',

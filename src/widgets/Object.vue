@@ -20,7 +20,7 @@
 						:depth="depth"
 						:key="propName"
 						v-if="shouldCreateProp(propName)" />
-					<b-btn @click="addProp(propName)" v-else>add {{ propName }}</b-btn>
+						<b-btn @click="addProp(propName)" v-else-if="isPostponedProp(propName)">add {{ propName }}</b-btn>
 				</b-list-group-item>
 			</b-list-group>
 		</section>
@@ -87,13 +87,16 @@ export default {
 	*/
 	methods: {
 		shouldCreateProp(prop) {
-			if (!this.isPostponedProp(prop)) return true
+			if (!this.isPostponedProp(prop) && !this.isIgnoredProp(prop)) return true
 			if (prop in this.value) return true
 			console.log("shouldCreateProp():", false)
 			return false
 		},
 		isPostponedProp(prop) {
 			return this.postponedProps.includes(prop)
+		},
+		isIgnoredProp(prop) {
+			return this.ignoredProps.includes(prop)
 		},
 		addProp(prop) {
 			this.$store.commit('addProp', {
@@ -134,6 +137,9 @@ export default {
 		},
 		postponedProps() {
 			return this.ui['postponed'] || []
+		},
+		ignoredProps() {
+			return this.ui['ignored'] || []
 		},
 		expandArrow() {
 			return this.visible ? "ellipsis-v" : "angle-right"

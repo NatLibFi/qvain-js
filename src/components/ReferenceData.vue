@@ -38,6 +38,7 @@
 					</div>
 					<div v-if="selectedOptions.length > 0" slot="selection">{{placeholder}}</div>
 				</Multiselect>
+
 				<Multiselect v-else
 					class="value-select"
 					v-model="selectedOptions"
@@ -48,11 +49,12 @@
 					:taggable="tags"
 					:searchable="typeahead"
 					:multiple="isMultiselect"
+					:clearOnSelect="false"
 					:options="sortedOptions"
 					:showNoResults="true"
 					:customLabel="customLabel"
 					:placeholder="placeholder"
-					@select="() => { responseData = {} }"
+					@select="atSelect"
 					@search-change="search">
 					<div slot="noResult">No elements found. Consider changing the search query. You may have to type at least 3 letters.</div>
 					<div slot="selection" slot-scope="{ values, search, isOpen }">
@@ -60,11 +62,19 @@
 					</div>
 				</Multiselect>
 			</div>
-			<div class="tag__list">
-				<p v-for="option in selectedOptions" :key="option.identifier" class="tag">
+			<div v-if="isMultiselect" class="tag__list">
+				<p v-for="(option, index) in Array.from(selectedOptions)" :key="option.identifier" class="tag">
 					{{customLabel(option)}}
 					<span class="remove-button">
-						<DeleteButton @click="removeValue($index)" />
+						<DeleteButton @click="removeValue(index)" />
+					</span>
+				</p>
+			</div>
+			<div v-else class="tag__list">
+				<p class="tag">
+					{{customLabel(selectedOptions)}}
+					<span class="remove-button">
+						<DeleteButton @click="removeValue(-1)" />
 					</span>
 				</p>
 			</div>
@@ -178,8 +188,7 @@ export default {
 		},
 		isEmptyObject() {
 			return this.value &&
-				typeof this.value === 'object' &&
-				Object.keys(this.value).length === 0;
+				typeof this.value === 'object' && Object.keys(this.value).length === 0;
 		},
 		isArray() {
 			return this.value && this.value.length > 0;
@@ -187,7 +196,7 @@ export default {
 	},
 	methods: {
 		customLabel(option) {
-			return option.label[this.currentLanguage] || option.label['und'];
+			return option.label ? option.label[this.currentLanguage] || option.label['und'] : null;
 		},
 		acceptableOption(es) {
 			const FILTER_FIELD = 'internal_code';
@@ -229,7 +238,15 @@ export default {
 			this.isLoading = false;
 		},
 		removeValue(index) {
+			if (index === -1) {
+				this.selectedOptions = null;
+			}
 			this.selectedOptions.splice(index, 1)
+		},
+		atSelect() {
+			if (this.async) {
+				this.responseData = {};
+			}
 		}
 	},
 	async created() {
@@ -238,9 +255,13 @@ export default {
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
-			const { identifier } = this.value;
-			const label = this.value[this.labelNameInSchema];
-			this.selectedOptions = { identifier, label: label };
+			if (!this.value.identifier) {
+				this.selectedOptions = null;
+			} else {
+				const { identifier } = this.value;
+				const label = this.value[this.labelNameInSchema];
+				this.selectedOptions = { identifier, label };
+			}
 		}
 
 		if (!this.async) {
@@ -252,6 +273,10 @@ export default {
 			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
 
 			const mapToStore = option => {
+				if (typeof option === 'undefined') {
+					return option;
+				}
+
 				const { identifier, label: { sv, en, fi, und } } = option;
 				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } };
 			}

@@ -13,7 +13,7 @@ export default {
 			const mint = '#aaffc3';
 			const teal = '#469990';
 
-			switch(depth % 10) {
+			switch(depth - 1 % 10) {
 				case 1: return lime;
 				case 2: return green;
 				case 3: return cyan;
@@ -26,9 +26,14 @@ export default {
 				case 10: return orange;
 				default: return red;
 			}
+
+			// https://learnui.design/tools/data-color-picker.html
+			//const colours = ['#007fad', '#007c97', '#01777f', '#297069', '#3d6857', '#49604b', '#505844', '#698135', '#7d9c1f', '#99bb00']
+			//return colours[depth % 10]
 		},
 		listItemStyle(depth) {
 			const width = 6; //11 - depth;
+			if (depth < 2) return null
 			return { 'border-left': `solid ${width}px ${this.borderColor(depth)} !important` }
 		}
 	}
