@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Qvain is the metadata editor of the Fairdata project by the Finnish [Ministry of Education and Culture](https://minedu.fi/en/). It has been developed at the [National Library of Finland](https://www.kansalliskirjasto.fi/) together with the [IT Center for Science (CSC)](https://csc.fi/).
+Qvain is the metadata editor of the Fairdata project by the Finnish [Ministry of Education and Culture](https://minedu.fi/en/). It has been developed by the [National Library of Finland](https://www.kansalliskirjasto.fi/) jointly with related services for Fairdata by [IT Center for Science (CSC)](https://csc.fi/).
 
 Qvain is a web application. The UI itself – about 2/3rds of total SLOC – is written in [Vue](https://vuejs.org/) (Javascript); the other third is back-end code written in the [Go (Golang)](https://golang.org/) programming language. It is accurate to think of Qvain as mainly a Vue web application with a thin API layer in Go.
 
