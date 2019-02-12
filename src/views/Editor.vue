@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid limited-width">
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
@@ -323,5 +323,9 @@ export default {
 .tool-bar {
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.limited-width {
+	width: 1100px;
 }
 </style>

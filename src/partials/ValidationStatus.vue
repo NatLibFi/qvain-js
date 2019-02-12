@@ -1,22 +1,34 @@
 <template>
-	<ValidationUnclearIcon v-if="status === 'uncertain'"
+	<font-awesome-icon v-if="status === 'uncertain'"
+		icon="exclamation-triangle"
+		class="icon icon__uncertain"
+		fixed-width
 		v-b-tooltip.hover.left
 		:title="reason || uncertainDefault" />
-	<ValidationSuccessIcon v-else-if="status === 'valid'"
+
+	<font-awesome-icon v-else-if="status === 'invalid'"
+		icon="exclamation"
+		class="icon icon__invalid"
+		fixed-width
 		v-b-tooltip.hover.left
-		:title="reason || validDefault" />
-	<ValidationFailedIcon v-else-if="status === 'invalid'"
-		v-b-tooltip.hover.left
-		:title="reason || invalidDefault" />
+		:title="reason || invalidDefault"/>
 </template>
 
 <style lang="scss" scoped>
+.icon {
+	font-size: 20px;
+
+	&__invalid {
+		color: red;
+	}
+	&__uncertain {
+		color: #d28c13;
+	}
+}
+
 </style>
 
 <script>
-import ValidationFailedIcon from '@/partials/ValidationFailedIcon.vue';
-import ValidationUnclearIcon from '@/partials/ValidationUnclearIcon.vue';
-import ValidationSuccessIcon from '@/partials/ValidationSuccessIcon.vue';
 
 export default {
 	name: 'validation-status',
@@ -38,9 +50,6 @@ export default {
 		};
 	},
 	components: {
-		ValidationFailedIcon,
-		ValidationUnclearIcon,
-		ValidationSuccessIcon
 	}
 }
 </script>

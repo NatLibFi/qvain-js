@@ -50,9 +50,9 @@ export default {
 		'title': "Keywords",
 		'description': "Give free keywords that characterize the dataset. Below, there is an other field for controlled subject headings.",
 		'placeholder': "keywords",
-		'widget': "schema-inline-array",
+		'widget': "schema-array",
 		'props': {
-			'wrapped': true
+			'tabFormat': false
 		}
 	},
 	'/properties/language': {
@@ -140,6 +140,13 @@ export default {
 		'tab': 'coverage',
 		'title': "Spatial coverage",
 		'description': "Area covered by the dataset, e.g. places of observations.",
+	},
+	'/properties/spatial/*/properties/as_wkt': {
+		'widget': 'schema-array',
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
 	},
 	'/properties/spatial/*/properties/place_uri': {
 		'widget': 'reference-data',
@@ -232,6 +239,54 @@ export default {
 		'label': "contributor role",
 		'description': "This is some fancy optional description for the contributor role field",
 		'help': "This is the optional help text for the contributor role field",
+	},
+	'/properties/creator/*/oneOf/*/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/creator/*/oneOf/*/properties/member_of/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/contributor/*/oneOf/*/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/contributor/*/oneOf/*/properties/member_of/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/rights_holder/*/oneOf/*/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/rights_holder/*/oneOf/*/properties/member_of/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/curator/*/oneOf/*/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
+	},
+	'/properties/curator/*/oneOf/*/properties/member_of/properties/telephone': {
+		'props': {
+			'tabFormat': false,
+			'wrapped': false
+		}
 	},
 	// missing: distributor
 	'/properties/contributor': {

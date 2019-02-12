@@ -64,7 +64,11 @@ export default {
 			return this.ui['description'] || this.schema['description']
 		},
 		uiLabel: function() {
-			return this.ui['label'] || this.uiTitle
+			if (this.inArray) {
+				return null;
+			}
+			const string = (this.ui['label'] || this.uiTitle);
+			return string ? string.charAt(0).toUpperCase() + string.slice(1) : null;
 		},
 		uiHelp: function() {
 			return this.ui['help']
