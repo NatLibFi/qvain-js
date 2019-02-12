@@ -123,13 +123,13 @@ Some work on wireframing has been done by our organisation's UX designer in Dece
 
 The version 2 UI improvement depends on the _path addressing_ mentioned above. Addressing tree branches would be too brittle and complex; path addressing would make this simply a matter of basic UI component (re)design.
 
-### Version 3 (future ideas)
+### Version 3 – future ideas
 
 There are no concrete plans for version 3; or at least, there is no timetable or priority list for future features. Loose ideas include:
 
 - storing user data so users would not need to re-enter the same persons, organisations or other information all over;
 - group/admin functionality based on Perun;
-- logging improvements across Fairdata services;
+- logging improvements and statistics across Fairdata services;
 - improving the use of Qvain with different metadata schemas;
 - import and export functionality;
 - update to the upcoming Vue 3, which will bring some improvements to reactivity benefitting Qvain.
