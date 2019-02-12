@@ -17,11 +17,11 @@
     "env": "env"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.13",
-    "@fortawesome/free-regular-svg-icons": "^5.7.0",
-    "@fortawesome/free-solid-svg-icons": "^5.7.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-regular-svg-icons": "^5.7.1",
+    "@fortawesome/free-solid-svg-icons": "^5.7.1",
     "@fortawesome/vue-fontawesome": "^0.1.5",
-    "@vue/cli": "^3.3.0",
+    "@vue/cli": "^3.4.0",
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
@@ -38,21 +38,21 @@
     "lodash.setwith": "^4.3.2",
     "lodash.unset": "^4.5.2",
     "node-sass": "^4.11.0",
-    "vue": "^2.5.22",
+    "vue": "^2.6.6",
     "vue-multiselect": "^2.1.3",
     "vue-router": "^3.0.2",
     "vuejs-datepicker": "^1.5.4",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-plugin-unit-mocha": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
-    "@vue/test-utils": "^1.0.0-beta.28",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "chai": "^4.2.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.22"
+    "vue-template-compiler": "^2.6.6"
   },
   "browserslist": [
     "> 1%",
