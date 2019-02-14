@@ -102,7 +102,7 @@ The core of Qvain builds an interface out of the json-schemas provided by – fo
 
 - There are several related schemas for Fairdata, with regular (so far) changes; it is thought it would be easier to handle all these variations by handling the schema directly;
 - Most of the data points in these schemas are optional, meaning they don't exist or are empty lists when the dataset is empty, so most of the dynamic funtionality is required anyway;
-- If the need arises, widgets can be design as hardcoded as needed without actually taking the schema into consideration.
+- If the need arises, widgets can be designed as hardcoded as needed without actually taking the schema into consideration.
 
 ## Milestones
 
