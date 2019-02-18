@@ -86,13 +86,13 @@ export default {
 			handler(newP, old) {
 				this.error = null
 				this.openDir(this.path)
-			}
-		}
+			},
+		},
 	},
 	components: {
 		FileTable,
 		SelectedFiles,
-		SelectButtons
+		SelectButtons,
 	},
 }
 </script>

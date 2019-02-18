@@ -29,8 +29,8 @@ Schema expects:
 Fields with 'internal_code' set should be filtered out.
 */
 
-const FILTER_FIELD = 'internal_code'
-const FILTER_VALUE = "hide"
+const FILTER_FIELD = 'internal_code' // eslint-disable-line no-unused-vars
+const FILTER_VALUE = "hide" // eslint-disable-line no-unused-vars
 
 const apiUrl = function(str) {
 	if (!str) {
@@ -60,7 +60,7 @@ export function esApiSearchClient(index, doctype, searchterm, count) {
 		size: count,
 		pretty: 1,
 		filter_path: 'hits.hits._source',
-		q: searchterm
+		q: searchterm,
 	}
 
 	return axios.get(`${apiUrl}/${index}/${doctype}/_search`, {
@@ -76,14 +76,14 @@ export function esApiSearchClient(index, doctype, searchterm, count) {
 export function convertToSchemaFields(res, es) {
 	if (!es._source || !es._source.uri || es._source[FILTER_FIELD]) return res
 
-		es = es._source
+	es = es._source
 
-		res.push({
-			identifier: es.uri,
-			secondary: es.code || es.id || null,
-			pref_label: es.label,
-		})
-		return res
+	res.push({
+		identifier: es.uri,
+		secondary: es.code || es.id || null,
+		pref_label: es.label,
+	})
+	return res
 }
 
 const sortById = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
@@ -92,30 +92,30 @@ export function groupByParent(objectArray) {
 	let grouped = objectArray.reduce(function(acc, obj) {
 		if (!obj['_source']) return acc
 
-			// get rid of the annoying _source level
-			obj = obj['_source']
+		// get rid of the annoying _source level
+		obj = obj['_source']
 
-			// if a value doesn't have parent_ids, add it to empty key
-			let targets = obj['parent_ids'] || ['']
+		// if a value doesn't have parent_ids, add it to empty key
+		let targets = obj['parent_ids'] || ['']
 
-			// group top categories with their children
-			if (targets.length < 1) {
-				targets = obj['has_children'] ? [obj.id] : ['']
+		// group top categories with their children
+		if (targets.length < 1) {
+			targets = obj['has_children'] ? [obj.id] : ['']
+		}
+
+		for (let key of targets) {
+			if (!acc[key]) {
+				acc[key] = { group: null, children: [] }
 			}
-
-			for (let key of targets) {
-				if (!acc[key]) {
-					acc[key] = { group: null, children: [] }
-				}
-				if (obj.id === key) {
-					// group item
-					acc[key].group = obj
-				} else {
-					// child item
-					acc[key].children.push(obj)
-				}
+			if (obj.id === key) {
+				// group item
+				acc[key].group = obj
+			} else {
+				// child item
+				acc[key].children.push(obj)
 			}
-			return acc
+		}
+		return acc
 	}, {})
 
 	// pre-sort children
@@ -126,9 +126,9 @@ export function groupByParent(objectArray) {
 
 export function filterKeys(full, wanted) {
 	return Object.keys(full)
-	.filter(key => wanted.includes(key))
-	.reduce((obj, key) => {
-		obj[key] = full[key]
-		return obj
-	}, {})
+		.filter(key => wanted.includes(key))
+		.reduce((obj, key) => {
+			obj[key] = full[key]
+			return obj
+		}, {})
 }

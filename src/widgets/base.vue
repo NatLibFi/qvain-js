@@ -65,10 +65,10 @@ export default {
 		},
 		uiLabel: function() {
 			if (this.inArray) {
-				return null;
+				return null
 			}
-			const string = (this.ui['label'] || this.uiTitle);
-			return string ? string.charAt(0).toUpperCase() + string.slice(1) : null;
+			const string = (this.ui['label'] || this.uiTitle)
+			return string ? string.charAt(0).toUpperCase() + string.slice(1) : null
 		},
 		uiHelp: function() {
 			return this.ui['help']

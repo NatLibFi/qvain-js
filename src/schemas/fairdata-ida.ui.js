@@ -52,8 +52,8 @@ export default {
 		'placeholder': "keywords",
 		'widget': "schema-array",
 		'props': {
-			'tabFormat': false
-		}
+			'tabFormat': false,
+		},
 	},
 	'/properties/language': {
 		'tab': 'description',
@@ -68,7 +68,7 @@ export default {
 			'async': true,
 			'count': 20,
 			'wrapped': true,
-			'labelNameInSchema': 'title'
+			'labelNameInSchema': 'title',
 		},
 		'placeholder': "– choose language –",
 	},
@@ -102,8 +102,8 @@ export default {
 			'count': 100,
 			'grouped': false,
 			'showLang': true,
-			'wrapped': true
-		}
+			'wrapped': true,
+		},
 	},
 	'/properties/field_of_science': {
 		'tab': 'description',
@@ -120,8 +120,8 @@ export default {
 			'async': false,
 			'count': 100,
 			'grouped': true,
-			'wrapped': true
-		}
+			'wrapped': true,
+		},
 	},
 
 
@@ -130,11 +130,11 @@ export default {
 		'title': "Temporal coverage",
 		'description': "Time span that is covered by the dataset, e.g. period of observations.",
 		'props': {
-			'tabFormat': false
-		}
+			'tabFormat': false,
+		},
 	},
 	'/properties/temporal/*': {
-		'widget': 'date-range'
+		'widget': 'date-range',
 	},
 	'/properties/spatial': {
 		'tab': 'coverage',
@@ -145,8 +145,8 @@ export default {
 		'widget': 'schema-array',
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/spatial/*/properties/place_uri': {
 		'widget': 'reference-data',
@@ -243,50 +243,50 @@ export default {
 	'/properties/creator/*/oneOf/*/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/creator/*/oneOf/*/properties/member_of/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/contributor/*/oneOf/*/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/contributor/*/oneOf/*/properties/member_of/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/rights_holder/*/oneOf/*/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/rights_holder/*/oneOf/*/properties/member_of/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/curator/*/oneOf/*/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	'/properties/curator/*/oneOf/*/properties/member_of/properties/telephone': {
 		'props': {
 			'tabFormat': false,
-			'wrapped': false
-		}
+			'wrapped': false,
+		},
 	},
 	// missing: distributor
 	'/properties/contributor': {
@@ -607,7 +607,7 @@ export default {
 		'tab': 'rights',
 		'title': "Access rights",
 		'description': "*** description for access rights goes here ***",
-		'ignored': ["access_process"]
+		'ignored': ["access_process"],
 	},
 	'/properties/access_rights/properties/access_type': {
 		'widget': 'reference-data',
@@ -654,7 +654,7 @@ export default {
 			'async': false,
 			'count': 100,
 			'grouped': false,
-			'labelNameInSchema': 'title'
+			'labelNameInSchema': 'title',
 		},
 		'placeholder': "– choose license –",
 		'title': "license",
@@ -670,13 +670,13 @@ export default {
 		'tab': 'extra',
 		'title': "Issued",
 		'description': "*** description for issued goes here ***",
-		'widget': 'date'
+		'widget': 'date',
 	},
 	'/properties/modified': {
 		'tab': 'extra',
 		'title': "modified",
 		'description': "*** description for modified goes here ***",
-		'widget': 'date'
+		'widget': 'date',
 	},
 	'/properties/infrastructure': {
 		'tab': 'extra',

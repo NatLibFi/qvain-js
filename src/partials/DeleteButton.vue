@@ -16,6 +16,6 @@
 
 <script>
 export default {
-    name: 'delete-button',
+	name: 'delete-button',
 }
 </script>

@@ -8,7 +8,7 @@ const refdataWidgets = {
 		}
 	
 		Vue.component(refdataList.name, refdataList)
-	}
+	},
 }
 
 export default refdataWidgets

@@ -32,6 +32,6 @@ export default {
 		getEnvKey(key) {
 			return process.env[key]
 		},
-	}
+	},
 }
 </script>

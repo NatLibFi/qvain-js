@@ -44,7 +44,7 @@ export default {
 		},
 		getOtherInfo: function(id) {
 			return this.$store.state.files.namesOfSelected[id]
-		}
+		},
 	},
 	computed: {},
 	watch: {},

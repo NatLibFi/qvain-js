@@ -8,8 +8,8 @@
 export default {
 	name: 'wrapper',
 	props: {
-		wrapped: { type: Boolean, default: false }
-	}
+		wrapped: { type: Boolean, default: false },
+	},
 }
 </script>
 

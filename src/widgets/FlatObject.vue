@@ -56,8 +56,8 @@ export default {
 			},
 		},
 		countLevels() {
-			var recurse = this.value
-			var depth = 0
+			let recurse = this.value
+			let depth = 0
 			while (this.refField in this.value) {
 				depth++
 				recurse = this.value[this.refField]

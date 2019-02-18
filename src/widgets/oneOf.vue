@@ -38,9 +38,9 @@
 
 
 <script>
-import Wrapper from '@/components/Wrapper.vue';
-import vSchemaBase from '@/widgets/base.vue';
-import TabSelector from '@/widgets/TabSelector';
+import Wrapper from '@/components/Wrapper.vue'
+import vSchemaBase from '@/widgets/base.vue'
+import TabSelector from '@/widgets/TabSelector'
 
 // TODO: find a more generic way to detect relevant oneOf schema
 const IDENTIFYING_FIELD = '@type'
@@ -95,7 +95,7 @@ export default {
 
 				let index = this.possibleTypes.indexOf(this.currentType)
 				this.chosen = index >= 0 ? index : null
-			}
+			},
 		},
 	},
 	created() {

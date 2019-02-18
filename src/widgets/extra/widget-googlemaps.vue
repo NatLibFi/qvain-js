@@ -107,7 +107,7 @@ export default {
 					this.addressError = error
 					console.log(error)
 				})
-		}
+		},
 	},
 	computed: {
 		coordinates: {
@@ -118,7 +118,7 @@ export default {
 			set (value) {
 				//this.$store.commit('updateMessage', value)
 				this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: value })
-			}
+			},
 		},
 		mapUrl: function() {
 			//return "https://maps.google.com/maps?q=" + this.coordinates.latitude + "," + this.coordinates.longitude + "&hl=es;z=14&output=embed"

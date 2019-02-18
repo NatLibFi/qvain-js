@@ -41,7 +41,7 @@ module.exports = {
 						collapseWhitespace: false,
 						conservativeCollapse: false,
 						preserveLineBreaks: true,
-						removeAttributeQuotes: false
+						removeAttributeQuotes: false,
 					},
 				})])
 		}
@@ -51,8 +51,8 @@ module.exports = {
 			sass: {
 				data: `
 					@import "@/assets/css/_variables.scss";
-				`
-			}
-		}
-	}
+				`,
+			},
+		},
+	},
 }

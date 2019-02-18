@@ -100,14 +100,14 @@
 
 
 <script>
-import vSchemaBase from './base.vue';
-import ValidationPopover from '@/components/ValidationPopover.vue';
-import Wrapper from '@/components/Wrapper.vue';
-import TabSelector from '@/widgets/TabSelector.vue';
-import ValidationStatus from '@/partials/ValidationStatus.vue';
-import RecordField from '@/composites/RecordField.vue';
-import TitleComponent from '@/partials/Title.vue';
-import InfoIcon from '@/partials/InfoIcon.vue';
+import vSchemaBase from './base.vue'
+import ValidationPopover from '@/components/ValidationPopover.vue'
+import Wrapper from '@/components/Wrapper.vue'
+import TabSelector from '@/widgets/TabSelector.vue'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
+import RecordField from '@/composites/RecordField.vue'
+import TitleComponent from '@/partials/Title.vue'
+import InfoIcon from '@/partials/InfoIcon.vue'
 
 export default {
 	extends: vSchemaBase,
@@ -120,7 +120,7 @@ export default {
 		RecordField,
 		TitleComponent,
 		InfoIcon,
-		Wrapper
+		Wrapper,
 	},
 	props: {
 		tabFormat: { type: Boolean, default: true },
@@ -132,36 +132,36 @@ export default {
 			minimum: 0,
 			maximum: 0,
 			tabIndex: 0,
-			forceArrayUpdateHack: true
+			forceArrayUpdateHack: true,
 		}
 	},
 	methods: {
 		tabTitle(index) {
-			const objectAtIndexExists = typeof this.parent[this.property][index] !== 'undefined';
+			const objectAtIndexExists = typeof this.parent[this.property][index] !== 'undefined'
 			if (!objectAtIndexExists) {
-				return `#${index +1}`;
+				return `#${index +1}`
 			}
 
-			const tabObject = this.parent[this.property][index];
-			const tabObjectType = tabObject['@type'];
+			const tabObject = this.parent[this.property][index]
+			const tabObjectType = tabObject['@type']
 
 			if (tabObjectType === 'Person' && tabObject.name) {
-				return tabObject.name;
+				return tabObject.name
 			}
 
 			if (tabObjectType === 'Person') {
-				return `#${index +1} (Person)`;
+				return `#${index +1} (Person)`
 			}
 
 			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
-				return tabObject.name['fi'] || tabObject.name['en'];
+				return tabObject.name['fi'] || tabObject.name['en']
 			}
 
 			if (tabObjectType === 'Organization') {
-				return `#${index +1} (Organization)`;
+				return `#${index +1} (Organization)`
 			}
 
-			return `#${index +1}`;
+			return `#${index +1}`
 		},
 		doMinus() {
 			// it's safe to pop() a zero-length array
@@ -176,9 +176,9 @@ export default {
 				//this.value.push({})
 				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })
 				console.log("didPlus, length now:", this.value.length)
-				console.log('Set active tab to', this.value.length - 1);
+				console.log('Set active tab to', this.value.length - 1)
 				this.$nextTick(function() { // make sure that the tab is there before causing the new tab to be selected
-					this.tabIndex = this.value.length - 1;
+					this.tabIndex = this.value.length - 1
 				})
 				return true
 			}
@@ -190,12 +190,12 @@ export default {
 				this.$store.commit('deleteArrayValue', {
 					parent: this.parent,
 					property: this.property,
-					index
-				});
+					index,
+				})
 				this.forceArrayUpdateHack = !this.forceArrayUpdateHack
 				this.$nextTick(() => {
-					this.forceArrayUpdateHack = !this.forceArrayUpdateHack;
-				});
+					this.forceArrayUpdateHack = !this.forceArrayUpdateHack
+				})
 			} else {
 				console.log("deleteElement: attempt to remove non-existing element at index", index)
 			}

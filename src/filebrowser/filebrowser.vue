@@ -51,7 +51,7 @@ export default {
 		},
 		project: function() {
 			return this.$route.params.project
-		}
+		},
 	},
 	watch: {},
 	components: {

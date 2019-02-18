@@ -67,17 +67,17 @@ module.exports = {
 					babelrc: false,
 					presets: [
 						/* ["es2015", { "modules": false }], */
-						["env", { "modules": false }]
+						["env", { "modules": false }],
 					],
-					plugins: [require('babel-plugin-transform-object-rest-spread')]
+					plugins: [require('babel-plugin-transform-object-rest-spread')],
 				},
 			},
 			{
 				test: /\.css$/,
 				use: [
 					'style-loader',
-					'css-loader'
-				]
+					'css-loader',
+				],
 			},
 			// ideally all modules would be in the es2015/ES6 format as it's the closest thing to a standard; ours are, but import'ed code in our app might not be, so we can't force it
 			//
@@ -109,7 +109,7 @@ module.exports = {
 		// define constants that get compiled into the application
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"development"'
+				NODE_ENV: '"development"',
 				/* process.env.NODE_ENV !== 'production'; */
 			},
 			'APP_DEBUG': envToBool('APP_DEBUG'),
@@ -120,8 +120,8 @@ module.exports = {
 	resolve: {
 		alias: {
 			// refer to the ES6-formatted module of Vue, not the old Node format; Vue in Node comes in multiple module formats
-			'vue$': 'vue/dist/vue.esm.js'
-		}
+			'vue$': 'vue/dist/vue.esm.js',
+		},
 	},
 	externals: {
 		//'bootstrap-vue': 'bootstrapVue',
@@ -129,8 +129,8 @@ module.exports = {
 	},
 	devtool: 'cheap-module-eval-source-map', /* 'eval-source-map' */
 	node: {
-		setImmediate: false
-	}
+		setImmediate: false,
+	},
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -142,17 +142,17 @@ if (process.env.NODE_ENV === 'production') {
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"production"'
-			}
+				NODE_ENV: '"production"',
+			},
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			sourceMap: true,
 			compress: {
-				warnings: false
-			}
+				warnings: false,
+			},
 		}),
 		new webpack.LoaderOptionsPlugin({
-			minimize: true
-		})
+			minimize: true,
+		}),
 	])
 }

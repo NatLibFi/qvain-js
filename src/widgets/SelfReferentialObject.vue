@@ -41,11 +41,11 @@
 </style>
 
 <script>
-import SchemaBase from './base.vue';
-import keysWithOrder from '@/lib/keysWithOrder.js';
-import jsonPointer from 'json-pointer';
-import Wrapper from '@/components/Wrapper.vue';
-import BorderColorMixin from '../mixins/border-color-mixin.js';
+import SchemaBase from './base.vue'
+import keysWithOrder from '@/lib/keysWithOrder.js'
+import jsonPointer from 'json-pointer'
+import Wrapper from '@/components/Wrapper.vue'
+import BorderColorMixin from '../mixins/border-color-mixin.js'
 
 export default {
 	extends: SchemaBase,
@@ -67,7 +67,7 @@ export default {
 	},
 	methods: {
 		add() {
-			var obj = this.value
+			let obj = this.value
 			console.log("add() called", obj)
 			while (this.refField in obj) {
 				obj = obj[this.refField]
@@ -85,9 +85,9 @@ export default {
 			// don't allow deleting top level for now
 			if (!level) return
 
-			var obj = this.value
-			var i = 0
-			var parent = this.parent
+			let obj = this.value
+			let i = 0
+			let parent = this.parent
 			while (i !== level && this.refField in obj) {
 				parent = obj
 				obj = obj[this.refField]
@@ -109,8 +109,8 @@ export default {
 	computed: {
 		countLevels() {
 			if (!this.value) { return -1 }
-			var recurse = this.value
-			var depth = 0
+			let recurse = this.value
+			let depth = 0
 			while (this.refField in recurse) {
 				depth++
 				recurse = recurse[this.refField]
@@ -121,8 +121,8 @@ export default {
 			return this.visible ? "ellipsis-v" : "angle-right"
 		},
 		flattened() {
-			var obj = this.value
-			var arr = []
+			let obj = this.value
+			let arr = []
 
 			if (!obj || typeof obj !== 'object') return arr
 
@@ -131,7 +131,7 @@ export default {
 			while (this.refField in obj) {
 				obj = obj[this.refField]
 				if (!obj || typeof obj !== 'object') return arr
-					arr.push(obj)
+				arr.push(obj)
 			}
 
 			return arr

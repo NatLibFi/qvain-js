@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Wrapper from '../components/Wrapper.vue';
+import Wrapper from '../components/Wrapper.vue'
 import vSchemaBase from './base.vue'
 
 export default {
@@ -28,7 +28,7 @@ export default {
 	description: 'generic array, inline',
 	schematype: 'array',
 	components: {
-		Wrapper
+		Wrapper,
 	},
 	props: {
 		wrapped: { type: Boolean, default: false },

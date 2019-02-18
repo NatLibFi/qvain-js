@@ -25,7 +25,7 @@ export default {
 		},
 		countChildren(val) {
 			return typeof val === 'object' ? Object.keys(val).length : val !== undefined && val !== "" ? 1 : 0
-		}
+		},
 	},
 	computed: {
 		rootProps() {

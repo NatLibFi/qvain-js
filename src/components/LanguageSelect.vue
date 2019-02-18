@@ -35,7 +35,7 @@ export default {
 		placeholder: {
 			type: String,
 			default: "Select language",
-		}
+		},
 	},
 	data() {
 		return {

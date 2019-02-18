@@ -66,17 +66,17 @@ function Auth(url) {
 			// WARNING: Do not compare to null! Vue observed objects will not equal null as they have at least the __ob__ key. Check for a specific property.
 			//return this._user !== null
 			return this._user && 'id' in this._user
-		}
+		},
 	})
 
 	Object.defineProperty(Auth.prototype, "user", {
 		get: function() {
 			return this._user
-		}
+		},
 	})
 
 	Object.defineProperty(Auth.prototype, "loginUrl", {
-		get: function() { return this.url + '?' + getRandomString(8) }
+		get: function() { return this.url + '?' + getRandomString(8) },
 	})
 }
 Auth.prototype.constructor = Auth

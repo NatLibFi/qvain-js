@@ -74,8 +74,8 @@ export default {
 			},
 			set (value) {
 				this.$store.commit('setHint', {path: this.curPointer, hint: value})
-			}
-		}
+			},
+		},
 	},
 	watch: {
 		selectedSchema: function() {

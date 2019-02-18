@@ -16,11 +16,11 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
 	faQuestionCircle,
-	faSquare
-} from '@fortawesome/free-regular-svg-icons';
+	faSquare,
+} from '@fortawesome/free-regular-svg-icons'
 import {
-	faInfo
-} from '@fortawesome/free-solid-svg-icons';
+	faInfo,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default {
 	name: 'info-icon',
@@ -30,16 +30,16 @@ export default {
 	props: {
 		description: {
 			type: String,
-		}
+		},
 	},
 	computed: {
 		icons() {
 			return {
 				faQuestionCircle,
 				faSquare,
-				faInfo
-			};
+				faInfo,
+			}
 		},
-	}
+	},
 }
 </script>

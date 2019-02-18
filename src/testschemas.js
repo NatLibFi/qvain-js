@@ -24,8 +24,8 @@ let _testCoordinateSchema = {
 	"type": "object",
 	"properties": {
 		"latitude": { "type": "number" },
-		"longitude": { "type": "number" }
-	}
+		"longitude": { "type": "number" },
+	},
 }
 
 
@@ -36,8 +36,8 @@ let _testAgeSchema = {
 	"properties": {
 		"first_name": { "type": "string", "title": "first name" },
 		"last_name": { "type": "string", "title": "last name" },
-		"age": { "type": "integer", "minimum": 12, "maximum": 120, "multipleOf": 10 }
-	}
+		"age": { "type": "integer", "minimum": 12, "maximum": 120, "multipleOf": 10 },
+	},
 }
 
 
@@ -51,8 +51,8 @@ let _testMultiTypeSchema = {
 let _testArrayList = {
 	"type": "array",
 	"items": {
-		"type": "number"
-	}
+		"type": "number",
+	},
 }
 
 
@@ -61,8 +61,8 @@ let _testArrayListMinMax = {
 	"minItems": 2,
 	"maxItems": 3,
 	"items": {
-		"type": "number"
-	}
+		"type": "number",
+	},
 }
 
 
@@ -75,8 +75,8 @@ let _testArrayListFancy = {
 	"items": {
 		"type": "number",
 		"title": "favourite",
-		"multipleOf": 5
-	}
+		"multipleOf": 5,
+	},
 }
 
 
@@ -84,20 +84,20 @@ let _testArrayTuple = {
 	"type": "array",
 	"items": [
 		{
-			"type": "number"
-		},
-		{
-			"type": "string"
+			"type": "number",
 		},
 		{
 			"type": "string",
-			"enum": ["Street", "Avenue", "Boulevard"]
 		},
 		{
 			"type": "string",
-			"enum": ["NW", "NE", "SW", "SE"]
-		}
-	]
+			"enum": ["Street", "Avenue", "Boulevard"],
+		},
+		{
+			"type": "string",
+			"enum": ["NW", "NE", "SW", "SE"],
+		},
+	],
 }
 
 
@@ -105,62 +105,62 @@ let _testArrayTupleAdd = {
 	"type": "array",
 	"items": [
 		{
-			"type": "number"
-		},
-		{
-			"type": "string"
+			"type": "number",
 		},
 		{
 			"type": "string",
-			"enum": ["Street", "Avenue", "Boulevard"]
 		},
 		{
 			"type": "string",
-			"enum": ["NW", "NE", "SW", "SE"]
-		}
+			"enum": ["Street", "Avenue", "Boulevard"],
+		},
+		{
+			"type": "string",
+			"enum": ["NW", "NE", "SW", "SE"],
+		},
 	],
-	"additionalItems": false
+	"additionalItems": false,
 }
 
 
 let _testTypedEnumSchema = {
 	"type": "string",
-	"enum": ["red", "amber", "green"]
+	"enum": ["red", "amber", "green"],
 }
 
 
 let _testUntypedEnumSchema = {
-	"enum": ["red", "amber", "green", null, 42]
+	"enum": ["red", "amber", "green", null, 42],
 }
 
 
 let _testTypeAndEnumSchema = {
 	"type": "string",
-	"enum": ["red", "amber", "green", null]
+	"enum": ["red", "amber", "green", null],
 }
 
 
 let _testAnyOfSchema = {
 	"anyOf": [
 		{ "type": "string", "maxLength": 5 },
-		{ "type": "number", "minimum": 0 }
-	]
+		{ "type": "number", "minimum": 0 },
+	],
 }
 
 
 let _testAllOfSchema = {
 	"allOf": [
 		{ "type": "string" },
-		{ "maxLength": 5 }
-	]
+		{ "maxLength": 5 },
+	],
 }
 
 
 let _testOneOfSchema = {
 	"oneOf": [
 		{ "type": "number", "multipleOf": 5 },
-		{ "type": "number", "multipleOf": 3 }
-	]
+		{ "type": "number", "multipleOf": 3 },
+	],
 }
 
 
@@ -182,7 +182,7 @@ let _testOneOfSchemaObjects = {
 				"workers": { "type": "number" },
 			},
 		},
-	]
+	],
 }
 
 
@@ -193,11 +193,11 @@ let _testDefinitionsSchema = {
 			"properties": {
 				"street_address": { "type": "string" },
 				"city":           { "type": "string" },
-				"state":          { "type": "string" }
+				"state":          { "type": "string" },
 			},
-			"required": ["street_address", "city", "state"]
-		}
-	}
+			"required": ["street_address", "city", "state"],
+		},
+	},
 }
 
 
@@ -210,18 +210,18 @@ let _testRefSchema = {
 			"properties": {
 				"street_address": { "type": "string" },
 				"city":           { "type": "string" },
-				"state":          { "type": "string" }
+				"state":          { "type": "string" },
 			},
-			"required": ["street_address", "city", "state"]
-		}
+			"required": ["street_address", "city", "state"],
+		},
 	},
 	
 	"type": "object",
 	
 	"properties": {
 		"billing_address": { "$ref": "#/definitions/address" },
-		"shipping_address": { "$ref": "#/definitions/address" }
-	}
+		"shipping_address": { "$ref": "#/definitions/address" },
+	},
 }
 
 
@@ -233,13 +233,13 @@ let _testIdSchema = {
 			"$id": "other.json",
 			"definitions": {
 				"X": { "$id": "#bar" },
-				"Y": { "$id": "t/inner.json" }
-			}
+				"Y": { "$id": "t/inner.json" },
+			},
 		},
 		"C": {
-			"$id": "urn:uuid:ee564b8a-7a87-4125-8c96-e9f123d6766f"
-		}
-	}
+			"$id": "urn:uuid:ee564b8a-7a87-4125-8c96-e9f123d6766f",
+		},
+	},
 }
 
 
@@ -250,7 +250,7 @@ let _testTabSchema = {
 	"properties": {
 		"user": deepcopy(_testAgeSchema),
 		"location": deepcopy(_testCoordinateSchema),
-	}
+	},
 }
 
 
@@ -278,7 +278,7 @@ let _testTabSchema2 = {
 			},
 		},
 		"extra": { "title": "some extra information", "type": "string" },
-	}
+	},
 }
 
 
@@ -294,7 +294,7 @@ let _testESWidget = {
 			"type": "object",
 			//"additionalProperties": false,
 			"additionalProperties": {
-				"type":"string"
+				"type":"string",
 			},
 			"properties": {
 				"identifier": { "title": "Identifier", "type": "string" },
@@ -302,7 +302,7 @@ let _testESWidget = {
 					"title": "Preferred label",
 					"type": "object",
 					"additionalProperties": {
-						"type":"string"
+						"type":"string",
 					},
 					//additionalProperties: false,
 				},
@@ -315,7 +315,7 @@ let _testESWidget = {
 			"type": "object",
 			//"additionalProperties": false,
 			"additionalProperties": {
-				"type":"string"
+				"type":"string",
 			},
 			"properties": {
 				"identifier": { "title": "Identifier", "type": "string" },
@@ -323,14 +323,14 @@ let _testESWidget = {
 					"title": "Preferred label",
 					"type": "object",
 					"additionalProperties": {
-						"type":"string"
+						"type":"string",
 					},
 					//additionalProperties: false,
 				},
 				//"definition": { "title": "Definition", "type": "array" },
 			},
 		},
-	}
+	},
 }
 
 
@@ -340,17 +340,17 @@ let _testTabbedArraySchema = {
 	"type": "object",
 	"properties": {
 		"justastring": {
-			"type": "string"
+			"type": "string",
 		},
 		"persons": {
 			"type": "array",
-			"items": deepcopy(_testAgeSchema)
+			"items": deepcopy(_testAgeSchema),
 		},
 		"more_persons": {
 			"type": "array",
-			"items": deepcopy(_testAgeSchema)
+			"items": deepcopy(_testAgeSchema),
 		},
-	}
+	},
 }
 
 

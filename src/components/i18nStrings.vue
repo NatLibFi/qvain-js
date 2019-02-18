@@ -66,14 +66,14 @@
 
 <script>
 
-import languages from '../data/iso639-1.json';
-import vSchemaBase from '@/widgets/base.vue';
-import LanguageSelect from '@/components/LanguageSelect.vue';
-import DeleteButton from '@/partials/DeleteButton.vue';
-import ValidationStatus from '@/partials/ValidationStatus.vue';
-import RecordField from '@/composites/RecordField.vue';
-import TitleComponent from '@/partials/Title.vue';
-import InfoIcon from '@/partials/InfoIcon.vue';
+import languages from '../data/iso639-1.json'
+import vSchemaBase from '@/widgets/base.vue'
+import LanguageSelect from '@/components/LanguageSelect.vue'
+import DeleteButton from '@/partials/DeleteButton.vue'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
+import RecordField from '@/composites/RecordField.vue'
+import TitleComponent from '@/partials/Title.vue'
+import InfoIcon from '@/partials/InfoIcon.vue'
 
 export default {
 	extends: vSchemaBase,
@@ -86,7 +86,7 @@ export default {
 		ValidationStatus,
 		RecordField,
 		TitleComponent,
-		InfoIcon
+		InfoIcon,
 	},
 	data() {
 		return {
@@ -96,44 +96,44 @@ export default {
 	},
 	methods: {
 		addPair(lang) {
-			if (!lang || lang in this.state) return;
-			this.$set(this.state, lang, '');
+			if (!lang || lang in this.state) return
+			this.$set(this.state, lang, '')
 			// wait for rendering so that the ref is present in dom before focus
-			this.$nextTick(() => this.$refs[lang][0].$el.focus());
+			this.$nextTick(() => this.$refs[lang][0].$el.focus())
 		},
 		deleteLanguage(lang) {
-			this.$delete(this.state, lang);
+			this.$delete(this.state, lang)
 		},
 		updateValue() {
 			this.$store.commit('updateValue', {
 				p: this.parent,
 				prop: this.property,
-				val: this.state
-			});
+				val: this.state,
+			})
 		},
 	},
 	computed: {
 		hasEmptyValues() {
-			return Object.values(this.state).some(v => v.length == 0);
+			return Object.values(this.state).some(v => v.length == 0)
 		},
 		validationStatus() {
-			if (this.schemaState && this.hasEmptyValues) return 'uncertain';
-			if (this.schemaState) return 'valid';
-			if (this.schemaState !== null && !this.schemaState) return 'invalid';
-			return null;
-		}
+			if (this.schemaState && this.hasEmptyValues) return 'uncertain'
+			if (this.schemaState) return 'valid'
+			if (this.schemaState !== null && !this.schemaState) return 'invalid'
+			return null
+		},
 	},
 	watch: {
 		state(newState, oldState) {
-			const shouldClearValidation = Object.keys(newState).length < Object.keys(oldState).length;
-			this.updateValue();
+			const shouldClearValidation = Object.keys(newState).length < Object.keys(oldState).length
+			this.updateValue()
 			if (shouldClearValidation) {
-				this.$store.commit('cleanStateFor', this.path);
+				this.$store.commit('cleanStateFor', this.path)
 			}
-		}
+		},
 	},
 	created() {
-		this.state = this.value;
-	}
+		this.state = this.value
+	},
 }
 </script>
