@@ -1,0 +1,88 @@
+{
+	"directories": [],
+	"files": [{
+		"open_access": true,
+		"file_uploaded": "2018-10-01T16:37:43+03:00",
+		"checksum": {
+			"value": "45d2cd2a1f0bd70f6835bf913df1f14356051d9d6e7cd8e80974c009d7757457",
+			"algorithm": "sha2",
+			"checked": "2018-10-01T13:37:43Z"
+		},
+		"byte_size": 1469730,
+		"project_identifier": "2001036",
+		"file_name": "File-Formats-1.6.0-en.pdf",
+		"file_path": "/Arton testi/File-Formats-1.6.0-en.pdf",
+		"removed": false,
+		"file_frozen": "2018-10-01T16:37:32+03:00",
+		"parent_directory": {
+			"identifier": "dad41288bdbf3b168cb892b4811520ee",
+			"id": 26
+		},
+		"file_storage": {
+			"identifier": "pid:urn:storageidentifier1",
+			"id": 1
+		},
+		"identifier": "5bb2231cd7aa9952564724f23685926",
+		"service_created": "metax",
+		"file_modified": "2019-01-09T12:27:28.098963+02:00",
+		"file_format": "pdf",
+		"id": 121,
+		"date_created": "2019-01-09T12:27:26+02:00"
+	}, {
+		"open_access": true,
+		"file_uploaded": "2018-10-01T16:37:43+03:00",
+		"checksum": {
+			"value": "2518ed80b263c4acfd91875faa1217eb56a6c67b7848cabb3ad0160d697514f3",
+			"algorithm": "sha2",
+			"checked": "2018-10-01T13:37:43Z"
+		},
+		"byte_size": 1465548,
+		"project_identifier": "2001036",
+		"file_name": "File-Formats-1.6.1-en.pdf",
+		"file_path": "/Arton testi/File-Formats-1.6.1-en.pdf",
+		"removed": false,
+		"file_frozen": "2018-10-01T16:37:32+03:00",
+		"parent_directory": {
+			"identifier": "dad41288bdbf3b168cb892b4811520ee",
+			"id": 26
+		},
+		"file_storage": {
+			"identifier": "pid:urn:storageidentifier1",
+			"id": 1
+		},
+		"identifier": "5bb2231cd88da855441601f23685927",
+		"service_created": "metax",
+		"file_modified": "2019-01-09T12:27:28.132886+02:00",
+		"file_format": "pdf",
+		"id": 122,
+		"date_created": "2019-01-09T12:27:26+02:00"
+	}, {
+		"open_access": true,
+		"file_uploaded": "2018-10-01T16:40:08+03:00",
+		"checksum": {
+			"value": "e119a3ede6ea938a50b54c068503f4544e57754e36790b78efdd5c73ea4c4cb2",
+			"algorithm": "sha2",
+			"checked": "2018-10-01T13:40:07Z"
+		},
+		"byte_size": 1478456,
+		"project_identifier": "2001036",
+		"file_name": "PAS-tiedostomuodot-1.6.0.pdf",
+		"file_path": "/Arton testi/PAS-tiedostomuodot-1.6.0.pdf",
+		"removed": false,
+		"file_frozen": "2018-10-01T16:40:01+03:00",
+		"parent_directory": {
+			"identifier": "dad41288bdbf3b168cb892b4811520ee",
+			"id": 26
+		},
+		"file_storage": {
+			"identifier": "pid:urn:storageidentifier1",
+			"id": 1
+		},
+		"identifier": "5bb223b1634f6884139100f23685932",
+		"service_created": "metax",
+		"file_modified": "2019-01-09T12:27:28.133068+02:00",
+		"file_format": "pdf",
+		"id": 123,
+		"date_created": "2019-01-09T12:27:26+02:00"
+	}]
+}

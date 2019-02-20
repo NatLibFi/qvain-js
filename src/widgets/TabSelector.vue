@@ -47,7 +47,7 @@ import i18nString from '@/components/i18nStrings.vue'
 import i18nTextarea from '@/components/i18nTextarea.vue'
 import TabbedArray from './TabbedArray.vue'
 import AutoComplete from './refdata/autocomplete.vue'
-import Filebrowser from '../filebrowser/filebrowser.vue'
+import FilePicker from '../filebrowser/FilePicker.vue'
 import Skip from './skip.js'
 import SelfReferentialObject from './SelfReferentialObject.vue'
 import FlatObject from './FlatObject.vue'
@@ -315,7 +315,7 @@ export default {
 		'i18n-textarea': i18nTextarea,
 		'tabbed-array': TabbedArray,
 		'autocomplete': AutoComplete,
-		'browser': Filebrowser,
+		'filepicker': FilePicker,
 		'skip': Skip,
 		SelfReferentialObject,
 		FlatObject,

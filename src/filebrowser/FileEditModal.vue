@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import RefList from '../../widgets/refdata/list-ui'
+import RefList from '@/widgets/refdata/list-ui'
 import RealRefList from '@/components/ReferenceData.vue'
 import Vue from 'vue'
 
 export default {
 	name: 'fileedit-modal',
 	props: {},
-	data: function() {
+	data() {
 		return {
 			item: null,
 			valid: {
@@ -36,7 +36,7 @@ export default {
 		}
 	},
 	methods: {
-		show: function(single) {
+		show(single) {
 			console.log('show', single)
 			this.item = single
 			// TODO: define fields to display here for files and for folders
@@ -46,10 +46,10 @@ export default {
 
 			this.$refs['actual-fileinfo-modal'].show()
 		},
-		reset: function() {
+		reset() {
 			this.item = null
 		},
-		save: function() {
+		save() {
 			this.$store.commit('updateArrayValue', {
 				p: this.$store.state.record,
 				prop: this.isFile(this.item) ? 'files' : 'directories',
@@ -60,10 +60,10 @@ export default {
 				}
 			})
 		},
-		isFile: function(item) {
+		isFile(item) {
 			return 'file_type' in item
 		},
-		setUseCategory: function(value) {
+		setUseCategory(value) {
 			// TODO: -wvh- hack
 			if (!value) return
 
@@ -81,7 +81,7 @@ export default {
 
 			this.item.use_category = value
 		},
-		setType: function(value) {
+		setType(value) {
 			// TODO: -wvh- hack
 			if (!value) return
 			/*
@@ -114,7 +114,7 @@ export default {
 		RefList,
 		RealRefList,
 	},
-	created: function() {
+	created() {
 		console.log("filepicker: schema:", this)
 	},
 }

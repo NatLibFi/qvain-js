@@ -1,0 +1,52 @@
+{
+	"directories": [{
+		"directory_modified": "2019-01-18T14:01:15.623714+02:00",
+		"service_created": "ida",
+		"removed": false,
+		"id": 42,
+		"directory_path": "/tpas_demo",
+		"date_created": "2019-01-18T14:01:15+02:00",
+		"byte_size": 689,
+		"parent_directory": {
+			"identifier": "545aa72ad4b637158b4fecb69c045ba1",
+			"id": 25
+		},
+		"project_identifier": "2001036",
+		"file_count": 2,
+		"directory_name": "tpas_demo",
+		"identifier": "726a4eb33f07315193122b76e2074b4b"
+	}, {
+		"directory_modified": "2019-01-09T12:27:28.080540+02:00",
+		"service_created": "metax",
+		"removed": false,
+		"id": 26,
+		"directory_path": "/Arton testi",
+		"date_created": "2019-01-09T12:27:26+02:00",
+		"byte_size": 4413734,
+		"parent_directory": {
+			"identifier": "545aa72ad4b637158b4fecb69c045ba1",
+			"id": 25
+		},
+		"project_identifier": "2001036",
+		"file_count": 3,
+		"directory_name": "Arton testi",
+		"identifier": "dad41288bdbf3b168cb892b4811520ee"
+	}, {
+		"directory_modified": "2019-01-09T12:52:47.297856+02:00",
+		"service_created": "ida",
+		"removed": false,
+		"id": 27,
+		"directory_path": "/PythonModules",
+		"date_created": "2019-01-09T12:52:47+02:00",
+		"byte_size": 608226,
+		"parent_directory": {
+			"identifier": "545aa72ad4b637158b4fecb69c045ba1",
+			"id": 25
+		},
+		"project_identifier": "2001036",
+		"file_count": 72,
+		"directory_name": "PythonModules",
+		"identifier": "a7ae46b0074e3ee1b2f55a75ddf48ce4"
+	}],
+	"files": []
+}

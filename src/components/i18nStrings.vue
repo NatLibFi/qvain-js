@@ -134,6 +134,9 @@ export default {
 	},
 	created() {
 		this.state = this.value;
+	},
+	mounted() {
+		console.log('parent schema:', this.$parent.$parent.schema);
 	}
 }
 </script>
