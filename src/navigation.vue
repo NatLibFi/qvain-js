@@ -6,7 +6,7 @@
 		</b-alert>
 		</transition>
 
-		<b-navbar id="app-top-bar" toggleable="md" type="dark" variant="primary">
+		<b-navbar id="app-topbar" toggleable="md" type="dark" variant="primary">
 
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -53,15 +53,15 @@
 			</b-collapse>
 		</b-navbar>
 
-		<b-navbar toggleable type="dark" id="app-sub-bar">
+		<b-navbar toggleable="md" type="dark" id="app-subbar">
 
-			<b-nav-toggle target="nav_collapse"></b-nav-toggle>
+			<b-nav-toggle target="app-subbar-collapse"></b-nav-toggle>
 
 			<b-link class="navbar-brand" to="/">
 				<span>Qvain</span>
 			</b-link>
 
-			<b-collapse is-nav id="nav_collapse">
+			<b-collapse is-nav id="app-subbar-collapse">
 
 				<b-navbar-nav>
 					<b-nav-item to="/dataset/new">create record</b-nav-item>
