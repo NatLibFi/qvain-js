@@ -15,18 +15,46 @@ Services:
 - ATT id/login service: the Qvain frontend doesn't handle login, it expects a [JSON web token](https://jwt.io/) to assert the user's identity, which the backend provides
 
 
-## Build for development
+## Installation
+
+### Requirements
+
+You need to have a reasonably recent version of node and (usually included) npm – the Node Package Manager – installed.
+
+Most Javascript development uses [node](https://nodejs.org/) as engine to run the actual Javascript and its package manager [npm](https://www.npmjs.com/) to install dependencies. You can also use [yarn](https://yarnpkg.com/) to manage package dependencies.
+
+### Install
+
+First, clone this repository and install dependencies:
+
+```shell
+$ git clone https://...
+$ cd qvain-js
+$ npm install
+  [... npm downloads the whole internet ...]
+```
+
+### Build for development
 
 To run the application for development on localhost, run the npm `serve` script:
 
 ```shell
 $ npm run serve
+ DONE  Compiled successfully in 11715ms                                                                                                                                                                                                                                                       16:50:53
+
+
+   App running at:
+     - Local:   http://localhost:8080/
+     - Network: unavailable
+
+   Note that the development build is not optimized.
+   To create a production build, run npm run build.
 ```
 
 ... and open a browser window at http://localhost:8080/.
 
 
-## Building dist packages
+### Building dist packages
 
 To build packages that can be uploaded to a server, run the npm `build` script:
 
@@ -34,7 +62,7 @@ To build packages that can be uploaded to a server, run the npm `build` script:
 $ npm run build
 ```
 
-... it will build and package files into `./dist`. The contents of this directory is what your production web server should serve.
+... it will build and bundle files into `./dist`. The contents of this directory is what your production web server should serve.
 
 
 ## Releasing a version
