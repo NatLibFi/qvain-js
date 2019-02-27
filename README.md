@@ -25,7 +25,7 @@ Most Javascript development uses [node](https://nodejs.org/) as engine to run th
 
 ### Install dependencies
 
-First, clone this repository and install dependencies:
+First, clone this repository and install the dependencies listed in [package.json](package.json):
 
 ```shell
 $ git clone https://.../qvain-js
