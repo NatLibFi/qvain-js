@@ -29,7 +29,7 @@
 			<div class="px-2 py-2 d-flex justify-content-between">
 				<h3>Selected items</h3>
 			</div>
-			<b-card v-if="state.dir.length === 0 && state.file.length === 0" class="text-center bg-light">No files added</b-card>
+			<b-card v-if="state.directories.length === 0 && state.files.length === 0" class="text-center bg-light">No files added</b-card>
 			<b-card v-else no-body>
 				<div v-for="category in Object.keys(state)" :key="category">
 					<FileItem v-for="item in state[category]"
@@ -37,17 +37,11 @@
 						:single="item"
 						:type="category"
 						:secondary="item.identifier"
-						:icon="icons[category.type]"
-						@delete="removeFileOrDirectory"
-						:openModal="() => modalOpen(item)" />
+						:icon="icons[category]"
+						@delete="removeFileOrDirectory"/>
 				</div>
 			</b-card>
 		</div>
-
-		<!--
-		<FileEditModal ref="refFileEditModal" />
-		<FileInfoModal ref="refFileInfoModal" />
-		-->
 	</div>
 </template>
 
@@ -73,28 +67,34 @@ export default {
 		return {
 			error: null,
 			icons: {
-				file: faFile,
-				dir: faFolder,
+				files: faFile,
+				directories: faFolder,
 			},
 			state: {
-				dir: [],
-				file: [],
+				directories: [],
+				files: [],
 			},
+			project: null,
 		}
 	},
 	methods: {
-		addFileOrDirectory(item) {
-			if (item.type === 'file') {
-				this.state.file.push(item);
+		addFileOrDirectory({ type, fields }) {
+			if (type === 'files') {
+				this.state.files.push(fields);
 			} else {
-				this.state.dir.push(item);
+				this.state.directories.push(fields);
 			}
+			this.project = this.selectedProject;
 		},
-		removeFileOrDirectory(item) {
-			if (item.type === 'file') {
-				this.state.file = this.state.file.filter(f => f.identifier !== item.identifier);
+		removeFileOrDirectory({ type, fields }) {
+			if (type === 'files') {
+				this.$set(this.state, 'files', this.state.files.filter(f => f.identifier !== fields.identifier));
 			} else {
-				this.state.dir = this.state.dir.filter(d => d.identifier !== item.identifier);
+				this.$set(this.state, 'directories', this.state.directories.filter(d => d.identifier !== fields.identifier));
+			}
+
+			if (this.selectedByIdentifiers.length === 0) {
+				this.project = null;
 			}
 		},
 
@@ -104,13 +104,8 @@ export default {
 		},
 
 		loadFilesAndFoldersFromStore() {
-			this.state = this.$store.state.record.files;
-		},
-
-		modalOpen() {
-			debugger
-			// TODO: what is this?
-			//return this.$refs.refFileEditModal.show.apply(this, arguments)
+			this.state.files = this.$store.state.record.files || [];
+			this.state.directories = this.$store.state.record.directories || [];
 		},
 	},
 	computed: {
@@ -123,22 +118,39 @@ export default {
 			const usersFirstProject = this.$auth.user.projects[0];
 
 			// add current store project before userFirstProject
-			return projectIDInRoute || usersFirstProject || null;
+			return projectIDInRoute || this.project || usersFirstProject || null;
 		},
 		selectedByIdentifiers() {
-			const { dir, file } = this.state;
-			return [...dir, ...file].map(item => item.identifier);
+			const { directories, files } = this.state;
+			return [...directories, ...files].map(item => item.identifier);
 		},
 		hasFilesFromOtherProject() {
-			const { dir, file } = this.state;
-			const oldProject = (dir[0] || file[0] || {}).project;
-			return oldProject && oldProject !== this.selectedProject;
-
-			//return [...dir, ...file].some(item => item.project !== this.selectedProject);
+			return this.project && this.project !== this.selectedProject;
 		}
 	},
-	created() {
+	async created() {
+		this.loadFilesAndFoldersFromStore();
 		// deny adding files outside current project of selected files
+		try {
+			if (this.state.files.length > 0) {
+				const identifier = this.state.files[0].identifier;
+				const url = `https://metax-test.csc.fi/rest/files/${identifier}`;
+				const { data } = await axios.get(url);
+				const project = data.project_identifier;
+
+				this.project = project;
+			} else if (this.state.directories.length > 0) {
+				const identifier = this.state.directories[0].identifier;
+				const url = `https://metax-test.csc.fi/rest/directories/${identifier}/files`;
+				const { data } = await axios.get(url);
+				const project = (data.directories && data.directories[0] && data.directories[0].project_identifier) ||
+					(data.files && data.files[0] && data.files[0].project_identifier) || null;
+
+				this.project = project;
+			}
+		} catch(e) {
+			console.log('error retriving project', e);
+		}
 	},
 	watch: {
 		state: {
@@ -147,7 +159,12 @@ export default {
 				this.$store.commit('updateValue', {
 					p: this.$store.state.record,
 					prop: 'files',
-					val: this.state
+					val: this.state.files
+				});
+				this.$store.commit('updateValue', {
+					p: this.$store.state.record,
+					prop: 'directories',
+					val: this.state.directories
 				});
 			}
 		}

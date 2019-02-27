@@ -21,18 +21,18 @@
 			</template>
 
 	  		<template slot="type" slot-scope="data">
-        		<b-btn v-if="data.item.type !== 'file'" size="sm" @click.stop="goTo(data.item.path)" variant="link" class="m-0 p-0 float-right">
+        		<b-btn v-if="data.item.type !== 'files'" size="sm" @click.stop="goTo(data.item.path)" variant="link" class="m-0 p-0 float-right">
           			<font-awesome-icon :icon="icon.faFolder" size="2x" />
         		</b-btn>
       		</template>
 
 			<template slot="name" slot-scope="data">
-				<b-btn v-if="data.item.type !== 'file'" variant="link" @click.stop="goTo(data.item.path)" class="m-0 p-0">{{data.item.name}}</b-btn>
+				<b-btn v-if="data.item.type !== 'files'" variant="link" @click.stop="goTo(data.item.path)" class="m-0 p-0">{{data.item.name}}</b-btn>
 				<span v-else>{{data.item.name}}</span>
 			</template>
 
 			<template slot="actions" slot-scope="data">
-				<div v-if="data.item.type === 'file'">
+				<div v-if="data.item.type === 'files'">
 					<b-btn size="sm" @click.stop="data.toggleDetails" class="mr-2">{{ data.detailsShowing ? 'Hide' : 'Show'}} Details</b-btn>
 				</div>
 			</template>
@@ -187,10 +187,23 @@ export default {
 			}
 		},
 		togglePick(state, data) {
+			const description = data.item.file_characteristics ?
+				data.item.file_characteristics.description : '';
+
+			const title = data.item.file_characteristics ?
+				data.item.file_characteristics.title :
+				data.item.name;
+
+			const fields = {
+				identifier: data.item.identifier,
+				use_category: data.item.use_category,
+				title,
+				description,
+			};
 			if (state) {
-				this.$emit('select', data.item);
+				this.$emit('select', { type: data.item.type, fields });
 			} else {
-				this.$emit('remove', data.item);
+				this.$emit('remove', { type: data.item.type, fields });
 			}
 		},
 	},
@@ -247,12 +260,12 @@ export default {
 					directory: undefined,
 				};
 
-				return Object.assign(base, shared, type === 'file' ? file : directory);
+				return Object.assign(base, shared, type === 'files' ? file : directory);
 			};
 
 			return [
-				...this.directory.directories.map(mapToInternalValues('dir')),
-				...this.directory.files.map(mapToInternalValues('file'))
+				...this.directory.directories.map(mapToInternalValues('directories')),
+				...this.directory.files.map(mapToInternalValues('files'))
 			];
 		},
 	},

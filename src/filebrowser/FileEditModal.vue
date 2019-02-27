@@ -1,15 +1,19 @@
 <template>
   <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata" @ok="save">
     <div v-if="item">
+
       <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category"
 	  :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']" isRequired>
       </RefList>
+
       <b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
         <b-form-input id="title" placeholder="title" v-model="item.title" @change="validateTitle" :state="valid.title"></b-form-input>
       </b-form-group>
+
       <b-form-group class="my-1" label="Description" key="description" horizontal lable-for="description">
         <b-form-input id="description" placeholder="description" v-model="item.description"></b-form-input>
       </b-form-group>
+
       <RefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text"
         uiLabel="File Type" :value="item.file_type" :setValue="setType"
         v-if="isFile(item)" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']">
@@ -21,12 +25,15 @@
 
 <script>
 import RefList from '@/widgets/refdata/list-ui'
-import RealRefList from '@/components/ReferenceData.vue'
+import RealRefList from '@/components/ReferenceData.vue' // this is not used atm
 import Vue from 'vue'
 
 export default {
 	name: 'fileedit-modal',
-	props: {},
+	components: {
+		RefList,
+		RealRefList,
+	},
 	data() {
 		return {
 			item: null,
@@ -108,14 +115,6 @@ export default {
 				this.valid.title = false
 			}
 		},
-	},
-	computed: {},
-	components: {
-		RefList,
-		RealRefList,
-	},
-	created() {
-		console.log("filepicker: schema:", this)
 	},
 }
 </script>
