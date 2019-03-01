@@ -16,56 +16,9 @@
 
 			<b-collapse is-nav id="nav_collapse">
 
-				<b-navbar-nav>
-					<b-nav-item href="mailto:servicedesk@csc.fi?subject=Fairdata%2FQvain%3A%20support%20request">Support</b-nav-item>
-					<b-nav-item href="https://www.fairdata.fi/en/qvain/qvain-user-guide/">Docs</b-nav-item>
-					<b-nav-item>Contact Us</b-nav-item>
-				</b-navbar-nav>
-
-
-				<!-- right-aligned items -->
 				<b-navbar-nav class="ml-auto">
-
-					<!-- language dropdown -->
-					<b-nav-item-dropdown text="lang" right>
-						<b-dropdown-item to="#" @click="$root.language = 'en'">EN</b-dropdown-item>
-						<b-dropdown-item to="#" @click="$root.language = 'fi'" disabled>FI</b-dropdown-item>
-						<b-dropdown-item to="#" @click="$root.language = 'se'" disabled>SE</b-dropdown-item>
-					</b-nav-item-dropdown>
-
-					<!-- login dropdown -->
-					<b-nav-item-dropdown v-if="$auth.loggedIn" right>
-
-						<template slot="text">
-							<span style="font-weight: bold;">user</span>
-						</template>
-
-						<b-dropdown-header>
-							<font-awesome-icon icon="user" class="text-primary mr-2" fixed-width /> <a>{{ $auth.user.name }}</a>
-						</b-dropdown-header>
-						<b-dropdown-divider></b-dropdown-divider>
-						<b-dropdown-item to="/userinfo">about me</b-dropdown-item>
-						<b-dropdown-item @click="$auth.logout()">sign out</b-dropdown-item>
-					</b-nav-item-dropdown>
-					<b-nav-item v-else :href="$auth.loginUrl">login</b-nav-item>
-
-				</b-navbar-nav>
-			</b-collapse>
-		</b-navbar>
-
-		<b-navbar toggleable="md" type="dark" id="app-subbar">
-
-			<b-nav-toggle target="app-subbar-collapse"></b-nav-toggle>
-
-			<b-link class="navbar-brand" to="/">
-				<span>Qvain</span>
-			</b-link>
-
-			<b-collapse is-nav id="app-subbar-collapse">
-
-				<b-navbar-nav>
-					<b-nav-item to="/dataset/new">create record</b-nav-item>
-					<b-nav-item to="/datasets">show records</b-nav-item>
+					<b-nav-item href="mailto:servicedesk@csc.fi?subject=Fairdata%2FQvain%3A%20support%20request">Contact us</b-nav-item>
+					<b-nav-item right href="https://www.fairdata.fi/en/qvain/qvain-user-guide/">Docs</b-nav-item>
 				</b-navbar-nav>
 
 			</b-collapse>

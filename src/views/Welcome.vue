@@ -5,16 +5,29 @@
 		</template>
 
 		<template slot="lead">
-			Welcome to Qvain, the Fairdata metadata editor.
+			Aineistojen metatietojen kuvailupalvelu, Qvain, avataan pian!
+			Tarkempi aikataulu selviää maaliskuun (2019) aikana.
 		</template>
 
 		<hr class="my-4">
 
-		<div v-if="!$auth.loggedIn">
-			<p>In order to use Qvain, you need to log in using Haka credentials.</p>
-			<p><a :href="$auth.loginUrl" class="btn btn-info btn-lg" role="button">Login now!</a></p>
-		</div>
+		<div>
+			<p>
+				Ennen Qvain -palvelun avaamista <a href="https://etsin.fairdata.fi/">uuteen Etsimeen</a> voi lisätä aineistoja vain Metax-rajapinnan kautta.
+				Kokeile tätä ensin <a href="https://metax-test.csc.fi/docs/">testiympäristössä</a>, vältä turhien pysyvien tunnisteiden luomista ja huomaa, että uudessa järjestelmässä aineistot menevät rikki peruuttamattomasti, mikäli niihin liitettyjä tiedostoja muuttaa!
+				<a href="https://etsin.avointiede.fi/">Vanhaan Etsimeen</a> voi lisätä aineistokuvailuja, mutta IDA:ssa olevia aineistoja ei voi linkittää niihin.
+				Linkityksen voi tehdä, kun kuvailutyökalu Qvain on julkaistu.
+				Vanhaan Etsimeen lisätyt aineistot siirretään CSC:n toimesta uuteen Etsimeen kun koko Fairdata-palvelukokonaisuus on tuotannossa vuonna 2019.
+				Mikäli haluat julkaista aineistokuvailuja vanhassa Etsimessä, siihen löytyy myös erilliset <a href="https://www.fairdata.fi/etsin/aineistojen-lisaaminen-vanhaan-etsimeen/">ohjeet</a>. Kuvailutiedot kopioidaan uuteen Etsimeen, kun Qvain on valmis.
+			</p>
 
-		<p v-else><router-link class="btn btn-info btn-lg" to="/dataset" role="button">Create a new dataset now!</router-link></p>
+		</div>
+		<p>
+			Yhteydenotot CSCn asiakaspalveluun: <br>
+			Arkipäivisin klo 8.30 – 16.00 <br>
+			+358 9 457 2821 <br>
+			asiakaspalvelu (a) csc.fi <br>
+		</p>
+
 	</b-jumbotron>
 </template>

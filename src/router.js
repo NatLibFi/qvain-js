@@ -21,22 +21,6 @@ Vue.use(VueRouter)
 // routes
 const routes = [
 	{ path: '/', name: "home", component: Welcome, props: false },
-	{ path: '/token', component: Token, props: false },
-	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
-	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
-	{ path: '/viewschema', component: SchemaViewer, props: false },
-	{ path: '/autocomplete', component: testAutoComplete, props: false },
-	{ path: '/orcid', component: OrcidSearch, props: false },
-	{ path: '/personlist', component: PersonList, props: false },
-	{ path: '/editablelist', component: EditableList, props: false },
-	{ path: '/tags', component: Tags, props: false },
-	{ path: '/config', component: Config, props: false },
-	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
-	{ path: '/dataset/:id', name: "editor", component: Editor, props: true, meta: { auth: true }, children: [
-		{ path: '', redirect: { path: 'description' } },
-		{ path: ':tab', name: "tab", component: SingleTab },
-		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab }, // what is this for?
-	]},
 ]
 
 // mode: history or hash
