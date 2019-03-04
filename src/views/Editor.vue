@@ -174,8 +174,6 @@ export default {
 		toggleValidator: function() {
 			this.unsubscribeFunc === null ? this.subscribeValidator() : this.unsubscribeValidator()
 		},
-
-
 		getSchemas(bundle) {
 			return Bundle[bundle]
 		},
@@ -200,7 +198,7 @@ export default {
 			} catch(e) {
 				this.$root.showAlert("Publish failed!", "danger")
 			}
-		}, 3000, { leading: true, trailing: false }),
+		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {
 			try {
 				const currentId = this.$store.state.metadata.id
@@ -280,7 +278,7 @@ export default {
 		},
 		title() {
 			// TODO: make foolproof
-			return this.$store.state.record.title && (this.$store.state.record.title[this.$root.language] || this.$store.state.record.title[Object.keys(this.$store.state.record.title)[0]] || null)
+			return this.$store.state.record && this.$store.state.record.title && (this.$store.state.record.title[this.$root.language] || this.$store.state.record.title[Object.keys(this.$store.state.record.title)[0]] || null)
 		},
 	},
 	watch: {
