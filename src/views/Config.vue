@@ -4,7 +4,7 @@
 
 		<b-card title="environment" class="mb-1">
 			<dl class="row card-text">
-				<template v-for="(val, key) in getVueKeys()" :key="key">
+				<template v-for="(val, key) in getVueKeys()">
 					<dt class="col-sm-2 text-monospace"><code>{{ key }}</code></dt>
 					<dd class="col-sm-10 text-monospace"><code>{{ val || "–" }}</code></dd>
 				</template>
