@@ -17,7 +17,7 @@ function addGlobalGuard(router, auth, loginPage) {
 			if (!auth.loggedIn && !auth.localLogin()) {
 				next({
 					path: loginPage,
-					query: { redirect: to.fullPath }
+					query: { redirect: to.fullPath },
 				})
 			} else {
 				next() // success, next
@@ -56,7 +56,7 @@ function plugin(Vue, options) {
 	}
 
 	Object.defineProperty(Vue.prototype, '$auth', {
-		get () { return auth }
+		get () { return auth },
 	})
 }
 

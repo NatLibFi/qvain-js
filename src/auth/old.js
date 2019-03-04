@@ -36,10 +36,11 @@ let UserType = {
 function UserFromToken(token) {
 	// empty user object
 	let user = UserType
+	let jwt
 	
 	// try to parse token
 	try {
-		var jwt = parseJwt(token)
+		jwt = parseJwt(token)
 	} catch(e) {
 		console.log("error parsing jwt:", e)
 		// ...can't parse token, return empty user

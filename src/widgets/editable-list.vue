@@ -73,8 +73,8 @@ export default {
 		focus: {
 			inserted: function (el) {
 				el.focus()
-			}
-		}
+			},
+		},
 	},
 	components: {
 		TagList,

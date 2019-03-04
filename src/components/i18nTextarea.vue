@@ -92,15 +92,15 @@
 
 
 <script>
-import vSchemaBase from '@/widgets/base.vue';
-import langCodes2 from '@/data/iso639-1.json';
-import LanguageSelect from '@/components/LanguageSelect.vue';
-import ValidationStatus from '@/partials/ValidationStatus.vue';
-import RecordField from '@/composites/RecordField.vue';
-import TitleComponent from '@/partials/Title.vue';
-import InfoIcon from '@/partials/InfoIcon.vue';
+import vSchemaBase from '@/widgets/base.vue'
+import langCodes2 from '@/data/iso639-1.json'
+import LanguageSelect from '@/components/LanguageSelect.vue'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
+import RecordField from '@/composites/RecordField.vue'
+import TitleComponent from '@/partials/Title.vue'
+import InfoIcon from '@/partials/InfoIcon.vue'
 
-import autosize from 'autosize';
+import autosize from 'autosize'
 
 export default {
 	extends: vSchemaBase,
@@ -112,7 +112,7 @@ export default {
 		ValidationStatus,
 		RecordField,
 		TitleComponent,
-		InfoIcon
+		InfoIcon,
 	},
 	data() {
 		return {
@@ -124,45 +124,45 @@ export default {
 	},
 	computed: {
 		languageKeys() {
-			return Object.keys(this.value);
+			return Object.keys(this.value)
 		},
 		hasEmptyValues() {
-			return Object.values(this.state).some(v => v.length == 0);
+			return Object.values(this.state).some(v => v.length == 0)
 		},
 		validationStatus() {
-			if (this.schemaState && this.hasEmptyValues) return 'uncertain';
-			if (this.schemaState) return 'valid';
-			if (this.schemaState !== null && !this.schemaState) return 'invalid';
-			return null;
-		}
+			if (this.schemaState && this.hasEmptyValues) return 'uncertain'
+			if (this.schemaState) return 'valid'
+			if (this.schemaState !== null && !this.schemaState) return 'invalid'
+			return null
+		},
 	},
 	methods: {
 		changeText(key, value) {
-			const el = this.$refs['textarea-tab-' + key][0].$el;
-			autosize(el);
+			const el = this.$refs['textarea-tab-' + key][0].$el
+			autosize(el)
 
-			this.$set(this.state, key, value);
-			this.updateValue();
+			this.$set(this.state, key, value)
+			this.updateValue()
 		},
 		addTab(lang) {
 			if (lang in this.state) {
-				this.focusOnTabWithLanguage(lang);
-				return;
+				this.focusOnTabWithLanguage(lang)
+				return
 			}
-			this.$set(this.state, lang, '');
-			this.updateValue();
-			this.focusOnLastTab();
+			this.$set(this.state, lang, '')
+			this.updateValue()
+			this.focusOnLastTab()
 		},
 		deleteLang(lang) {
-			this.$delete(this.state, lang);
-			this.updateValue();
+			this.$delete(this.state, lang)
+			this.updateValue()
 		},
 		updateValue() {
 			this.$store.commit('updateValue', {
 				p: this.parent,
 				prop: this.property,
 				val: this.state,
-			});
+			})
 		},
 		focusOnLastTab: function() {
 			const last = Object.keys(this.value || {}).length - 1
@@ -170,8 +170,8 @@ export default {
 			// wait for tab to appear in DOM before switching to it;
 			// works for Chrome, but not Firefox
 			this.$nextTick(function() {
-				this.tabIndex = last;
-				this.focusOnTextarea();
+				this.tabIndex = last
+				this.focusOnTextarea()
 			})
 
 			// In Firefox, for some reason, $nextTick only ever fires before the tab gets added,
@@ -209,13 +209,13 @@ export default {
 	watch: {
 		selectedLanguage(lang) {
 			if (!lang) {
-				return;
+				return
 			}
-			this.addTab(lang);
-		}
+			this.addTab(lang)
+		},
 	},
 	created() {
-		this.state = this.value || {};
-	}
+		this.state = this.value || {}
+	},
 }
 </script>

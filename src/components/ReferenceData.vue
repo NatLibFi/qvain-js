@@ -83,15 +83,15 @@
 </template>
 
 <script>
-import vSchemaBase from '@/widgets/base.vue';
-import { esApiSearchClient } from '@/widgets/refdata/es.js';
-import Wrapper from './Wrapper.vue';
-import DeleteButton from '@/partials/DeleteButton.vue';
-import Multiselect from 'vue-multiselect';
-import ValidationStatus from '@/partials/ValidationStatus.vue';
-import RecordField from '@/composites/RecordField.vue';
-import TitleComponent from '@/partials/Title.vue';
-import InfoIcon from '@/partials/InfoIcon.vue';
+import vSchemaBase from '@/widgets/base.vue'
+import { esApiSearchClient } from '@/widgets/refdata/es.js'
+import Wrapper from './Wrapper.vue'
+import DeleteButton from '@/partials/DeleteButton.vue'
+import Multiselect from 'vue-multiselect'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
+import RecordField from '@/composites/RecordField.vue'
+import TitleComponent from '@/partials/Title.vue'
+import InfoIcon from '@/partials/InfoIcon.vue'
 
 export default {
 	name: 'reference-data',
@@ -103,7 +103,7 @@ export default {
 		ValidationStatus,
 		RecordField,
 		TitleComponent,
-		InfoIcon
+		InfoIcon,
 	},
 	props: {
 		esIndex: { type: String, required: true },
@@ -124,7 +124,7 @@ export default {
 			languages: [
 				{ id: 'fi', language: 'Finnish' },
 				{ id: 'en', language: 'English' },
-				{ id: 'sv', language: 'Swedish' }
+				{ id: 'sv', language: 'Swedish' },
 			],
 			selectedLang: { id: 'fi', language: 'Finnish' },
 			isLoading: false,
@@ -134,169 +134,169 @@ export default {
 		placeholder() {
 			return this.async ?
 				'Type to search for available options' :
-				'Select option';
+				'Select option'
 		},
 		currentLanguage() {
-			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null;
-			return selectedLanguage || this.$root.language || 'en';
+			const selectedLanguage = this.selectedLang ? this.selectedLang.id : null
+			return selectedLanguage || this.$root.language || 'en'
 		},
 		isMultiselect() {
-			return this.schema.type === 'array';
+			return this.schema.type === 'array'
 		},
 		responseHasResults() {
-			return this.responseData.hits && this.responseData.hits.hits;
+			return this.responseData.hits && this.responseData.hits.hits
 		},
 		optionItems() {
-			const items = this.responseHasResults ? this.responseData.hits.hits : [];
+			const items = this.responseHasResults ? this.responseData.hits.hits : []
 			return items
 				.filter(this.acceptableOption)
 				.map(es => es._source)
-				.map(this.mapToInternalKeys);
+				.map(this.mapToInternalKeys)
 		},
 		parentItems() {
- 			return this.optionItems.filter(item => item.hasChildren);
+ 			return this.optionItems.filter(item => item.hasChildren)
 		},
 		childrenItems() {
-			return this.optionItems.filter(item => !item.hasChildren);
+			return this.optionItems.filter(item => !item.hasChildren)
 		},
 		optionsShouldBeGrouped() {
-			return this.grouped && this.parentItems.length > 0;
+			return this.grouped && this.parentItems.length > 0
 		},
 		options() {
 			// empty case
 			if (!this.responseHasResults) {
-				return [];
+				return []
 			}
 
 			// case with children
 			if (this.optionsShouldBeGrouped) {
 				return this.parentItems.map(parent => {
-					const children = this.childrenItems.filter(child => parent.children.includes(child.id));
-					return { ...parent, children };
-				});
+					const children = this.childrenItems.filter(child => parent.children.includes(child.id))
+					return { ...parent, children }
+				})
 			}
 
 			// normal case
-			return this.optionItems;
+			return this.optionItems
 		},
 		sortedOptions() {
 			return this.options.sort((a, b) => {
-				const aLabel = a.label[this.currentLanguage] || a.label['und'];
-				const bLabel = b.label[this.currentLanguage] || b.label['und'];
-				return aLabel.localeCompare(bLabel);
-			});
+				const aLabel = a.label[this.currentLanguage] || a.label['und']
+				const bLabel = b.label[this.currentLanguage] || b.label['und']
+				return aLabel.localeCompare(bLabel)
+			})
 		},
 		isEmptyObject() {
 			return this.value &&
-				typeof this.value === 'object' && Object.keys(this.value).length === 0;
+				typeof this.value === 'object' && Object.keys(this.value).length === 0
 		},
 		isArray() {
-			return this.value && this.value.length > 0;
-		}
+			return this.value && this.value.length > 0
+		},
 	},
 	methods: {
 		customLabel(option) {
 			if (option === null) {
-				return option;
+				return option
 			}
 
-			return option.label ? option.label[this.currentLanguage] || option.label['und'] : null;
+			return option.label ? option.label[this.currentLanguage] || option.label['und'] : null
 		},
 		acceptableOption(es) {
-			const FILTER_FIELD = 'internal_code';
-			const hasURI = (es._source && es._source.uri);
-			return hasURI || es._source[FILTER_FIELD];
+			const FILTER_FIELD = 'internal_code'
+			const hasURI = (es._source && es._source.uri)
+			return hasURI || es._source[FILTER_FIELD]
 		},
 		mapToInternalKeys(es, lang) {
-			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang;
+			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang
 			return {
 				id: es.id,
 				identifier: es.uri,
 				[this.labelNameInSchema]: es.label[this.currentLanguage],
 				label: es.label,
 				children: es.child_ids,
-				hasChildren: es.has_children
-			};
+				hasChildren: es.has_children,
+			}
 		},
 		async getAllReferenceData() {
-			const res = await esApiSearchClient(this.esIndex, this.esDoctype, undefined, this.count);
-			this.responseData = res.data;
+			const res = await esApiSearchClient(this.esIndex, this.esDoctype, undefined, this.count)
+			this.responseData = res.data
 		},
 		async searchReferenceData(searchQuery) {
-			const res = await esApiSearchClient(this.esIndex, this.esDoctype, searchQuery, this.count);
-			this.responseData = res.data;
+			const res = await esApiSearchClient(this.esIndex, this.esDoctype, searchQuery, this.count)
+			this.responseData = res.data
 		},
 		// TODO: if the es server is under too much stress debounce could be implemented
 		async search(searchQuery) {
 			if (!searchQuery) {
-				return; // prevent empty search after removing characters from input
+				return // prevent empty search after removing characters from input
 			}
 
-			this.isLoading = true;
+			this.isLoading = true
 			if (this.async) {
 				const q = this.selectedLang ?
 					`label.${this.selectedLang.id}:*${searchQuery}*`:
-					`*${searchQuery}*`;
-				this.searchReferenceData(q);
+					`*${searchQuery}*`
+				this.searchReferenceData(q)
 			}
-			this.isLoading = false;
+			this.isLoading = false
 		},
 		removeValue(index) {
 			if (index === -1) {
-				this.selectedOptions = null;
+				this.selectedOptions = null
 			}
 			this.selectedOptions.splice(index, 1)
 		},
 		atSelect() {
 			if (this.async) {
-				this.responseData = {};
+				this.responseData = {}
 			}
-		}
+		},
 	},
 	async created() {
 		if (this.isMultiselect && this.isArray) {
-			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v[this.labelNameInSchema] }));
+			this.selectedOptions = this.value.map(v => ({ identifier: v.identifier, label: v[this.labelNameInSchema] }))
 		}
 
 		if (!this.isMultiselect && !this.isEmptyObject) {
 			if (!this.value.identifier) {
-				this.selectedOptions = null;
+				this.selectedOptions = null
 			} else {
-				const { identifier } = this.value;
-				const label = this.value[this.labelNameInSchema];
-				this.selectedOptions = { identifier, label };
+				const { identifier } = this.value
+				const label = this.value[this.labelNameInSchema]
+				this.selectedOptions = { identifier, label }
 			}
 		}
 
 		if (!this.async) {
-			this.getAllReferenceData();
+			this.getAllReferenceData()
 		}
 	},
 	watch: {
 		selectedOptions() {
-			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined';
+			const selectedValueIsSet = this.selectedOptions !== null && typeof this.selectedOptions !== 'undefined'
 
 			const mapToStore = option => {
 				if (typeof option === 'undefined') {
-					return option;
+					return option
 				}
 
-				const { identifier, label: { sv, en, fi, und } } = option;
-				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } };
+				const { identifier, label: { sv, en, fi, und } } = option
+				return { identifier, [this.labelNameInSchema]: { sv, en, fi, und } }
 			}
 
-			let storableOptions;
+			let storableOptions
 			if (this.isMultiselect && selectedValueIsSet) {
-				storableOptions = this.selectedOptions.map(mapToStore);
+				storableOptions = this.selectedOptions.map(mapToStore)
 			}
 
 			if (!this.isMultiselect && selectedValueIsSet) {
-				storableOptions = mapToStore(this.selectedOptions);
+				storableOptions = mapToStore(this.selectedOptions)
 			}
 
-			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions });
-		}
-	}
+			storableOptions && this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: storableOptions })
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

@@ -107,7 +107,7 @@ import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
 
-import debounce from 'lodash.debounce';
+import debounce from 'lodash.debounce'
 
 const RATE_LIMIT_MSECS = 3000
 
@@ -120,7 +120,7 @@ export default {
 	props: {
 		id: {
 			type: String,
-			default: 'new'
+			default: 'new',
 			//default: "056bffbc-c41e-dad4-853b-ea9100000001",
 			//default: "05766a68-0519-65ba-885f-e1d375283063",
 		},
@@ -139,7 +139,7 @@ export default {
 			loading: false,
 			rateLimited: false,
 			showPublishConfirmation: false,
-			inDev: true
+			inDev: true,
 		}
 	},
 	methods: {
@@ -178,94 +178,94 @@ export default {
 			return Bundle[bundle]
 		},
 		confirmPublish() {
-			const isExisting = !!this.$store.state.metadata.id;
+			const isExisting = !!this.$store.state.metadata.id
 			if (!isExisting) {
-				this.$root.showAlert("Please save your dataset first", "danger");
-				return;
+				this.$root.showAlert("Please save your dataset first", "danger")
+				return
 			}
-			this.showPublishConfirmation = true;
+			this.showPublishConfirmation = true
 		},
 		publish: debounce(async function() {
 			try {
-				this.showPublishConfirmation = false;
-				const isExisting = !!this.$store.state.metadata.id;
+				this.showPublishConfirmation = false
+				const isExisting = !!this.$store.state.metadata.id
 				if (isExisting) {
-					const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {});
-					this.$root.showAlert("Dataset successfully published", "primary");
+					const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
+					this.$root.showAlert("Dataset successfully published", "primary")
 				} else {
-					this.$root.showAlert("Please save your dataset first", "danger");
+					this.$root.showAlert("Please save your dataset first", "danger")
 				}
 			} catch(e) {
 				this.$root.showAlert("Publish failed!", "danger")
 			}
 		}, 3000, { leading: true, trailing: false }),
-		save: debounce(async function(){
+		save: debounce(async function() {
 			try {
-				const currentId = this.$store.state.metadata.id;
-				const dataset = this.$store.getters.prunedDataset;
-				const payload = { dataset, type: 2, schema: "metax-ida" };
+				const currentId = this.$store.state.metadata.id
+				const dataset = this.$store.getters.prunedDataset
+				const payload = { dataset, type: 2, schema: "metax-ida" }
 
-				const isExisting = (currentId && currentId !== 'new');
+				const isExisting = (currentId && currentId !== 'new')
 				if (isExisting) {
-					payload.id = currentId;
-					const response = await apiClient.put("/datasets/" + currentId, payload);
+					payload.id = currentId
+					const response = await apiClient.put("/datasets/" + currentId, payload)
 
 					this.$root.showAlert("Dataset successfully saved", "primary")
 				} else {
-					const { data: { id }} = await apiClient.post("/datasets/", payload);
+					const { data: { id }} = await apiClient.post("/datasets/", payload)
 
 					this.$store.commit('setMetadata', { id })
-					this.$router.replace({ name: 'tab', params: { id }});
+					this.$router.replace({ name: 'tab', params: { id }})
 
-					this.$root.showAlert("Success! Created as " + id, "success");
+					this.$root.showAlert("Success! Created as " + id, "success")
 				}
 			} catch(error) {
-				this.$root.showAlert("Save failed!", "danger");
+				this.$root.showAlert("Save failed!", "danger")
 			}
 		}, 3000, { leading: true, trailing: false }),
 		createNewRecord() {
-			this.loading = true;
+			this.loading = true
 			this.$nextTick(() => {
-				this.clearRecord();
-				this.initDataset();
-				this.loading = false;
-			});
+				this.clearRecord()
+				this.initDataset()
+				this.loading = false
+			})
 		},
 		createCloneRecord() {
-			this.loading = true;
+			this.loading = true
 			this.$nextTick(() => {
-				this.cloneCurrentRecord();
-				this.initDataset();
-				this.loading = false;
-			});
+				this.cloneCurrentRecord()
+				this.initDataset()
+				this.loading = false
+			})
 		},
 		initDataset() {
-			this.selectedSchema = Bundle['fairdata']['ida'];
-			this.$store.commit('loadSchema', this.selectedSchema.schema);
-			this.$store.commit('loadHints', this.selectedSchema.ui);
+			this.selectedSchema = Bundle['fairdata']['ida']
+			this.$store.commit('loadSchema', this.selectedSchema.schema)
+			this.$store.commit('loadHints', this.selectedSchema.ui)
 
 			// start validator
-			this.subscribeValidator();
+			this.subscribeValidator()
 		},
 
 		clearRecord() {
-			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }});
-			this.$store.commit('loadData', undefined);
-			this.$store.commit('resetMetadata');
+			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }})
+			this.$store.commit('loadData', undefined)
+			this.$store.commit('resetMetadata')
 		},
 		cloneCurrentRecord() {
-			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }});
-			this.$store.commit('resetMetadata');
+			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }})
+			this.$store.commit('resetMetadata')
 		},
 		async openRecord(id) {
 			try {
-				this.loading = true;
+				this.loading = true
 
-				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`);
-				this.$store.commit('loadData', Object(dataset));
-				this.$store.commit('setMetadata', { id });
+				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`)
+				this.$store.commit('loadData', Object(dataset))
+				this.$store.commit('setMetadata', { id })
 			} finally {
-				this.loading = false;
+				this.loading = false
 			}
 		},
 	},
@@ -279,17 +279,17 @@ export default {
 	},
 	watch: {
 		'$route.params.id': async function(newId, oldId) {
-			console.log("$route.params.id watcher triggered from", oldId, newId);
+			console.log("$route.params.id watcher triggered from", oldId, newId)
 			if (this.id !== 'new') {
-				await this.openRecord(this.id);
+				await this.openRecord(this.id)
 			} else {
-				this.clearRecord();
+				this.clearRecord()
 			}
 		},
 	},
 	async created() {
 		if (this.id !== 'new') {
-			await this.openRecord(this.id);
+			await this.openRecord(this.id)
 		} /*
 		// on later date add possibility to clear on clear=true route param
 		// and by default load stored data from localStorage
@@ -299,7 +299,7 @@ export default {
 			this.loadFromStorage();
 		}*/
 
-		this.initDataset();
+		this.initDataset()
 	},
 }
 </script>

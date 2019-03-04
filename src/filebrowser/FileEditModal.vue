@@ -64,7 +64,7 @@ export default {
 				search: {
 					field: 'identifier',
 					value: this.item.identifier,
-				}
+				},
 			})
 		},
 		isFile(item) {

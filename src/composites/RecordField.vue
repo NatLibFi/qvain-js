@@ -39,25 +39,25 @@
 </style>
 
 <script>
-import Wrapper from '@/components/Wrapper.vue';
+import Wrapper from '@/components/Wrapper.vue'
 export default {
 	name: 'record-field',
 	components: {
-		Wrapper
+		Wrapper,
 	},
 	props: {
 		wrapped: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		required: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		header: {
 			type: Boolean,
-			default: true
-		}
-	}
+			default: true,
+		},
+	},
 }
 </script>

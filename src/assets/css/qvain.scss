@@ -396,13 +396,13 @@ body {
 	margin: 0 auto;
 }
 
-#app-top-bar {
+#app-topbar {
 	max-width: 1200px;
 	width: 1200px;
 	margin: 0 auto;
 }
 
-#app-sub-wrap {
+#app-subbar-wrap {
 	//background-color: lighten(desaturate($primary, 50%), 20%);
 	background-color: lighten($primary, 5%);
 	border-top: 1px solid lighten($primary, 10%);
@@ -410,7 +410,7 @@ body {
 }
 */
 
-#app-sub-bar {
+#app-subbar {
 	//background-color: lighten(desaturate($primary, 50%), 20%);
 	background-color: lighten($primary, 5%);
 	border-top: 1px solid lighten($primary, 10%);

@@ -18,7 +18,7 @@ let fileapi = axios.create({
 	baseURL: apiUrl,
 	timeout: apiTimeout,
 	headers: {'User-Agent': 'qvain.js (axios)'},
-	responseType: 'json'
+	responseType: 'json',
 })
 
 //https://metax-test.csc.fi/rest/directories/files?project=project_x&path=/
@@ -26,6 +26,6 @@ let fileapi = axios.create({
 fileapi.get('/files', {
 	params: {
 		project: 'project_x',
-		path: '/'
-	}
+		path: '/',
+	},
 })

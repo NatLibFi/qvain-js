@@ -22,7 +22,7 @@ export default new Vuex.Store({
 			'label',
 			'help',
 			'placeholder',
-			'tab'
+			'tab',
 		],
 		tabui: {},
 		validation: {},
@@ -113,8 +113,8 @@ export default new Vuex.Store({
 			payload.p[payload.prop].splice(index, 1)
 		},
 		deleteArrayValue(state, { parent, property, index }) {
-			console.log(parent[property]);
-			Vue.delete(parent[property], index);
+			console.log(parent[property])
+			Vue.delete(parent[property], index)
 		},
 		deleteValue(state, payload) {
 			Vue.delete(payload.p, payload.prop)

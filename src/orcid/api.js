@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiUrl = "https://pub.orcid.org/v2.1"
-const apiResource = "record"
+const apiResource = "record" // eslint-disable-line no-unused-vars
 
 export default function orcidApiClient(orcid, apiResource) {
 	return axios.get(
@@ -10,7 +10,7 @@ export default function orcidApiClient(orcid, apiResource) {
 			responseType: 'json',
 			// force application/json only, otherwise the orcid API returns an XML blob with mime type "application/vnd.orcid+xml"
 			headers: {
-				'Accept': 'application/json'
-			}
+				'Accept': 'application/json',
+			},
 		})
 }

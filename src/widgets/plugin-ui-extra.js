@@ -8,7 +8,7 @@ const extraWidgets = {
 		}
 	
 		Vue.component(widgetGoogleMaps.name, widgetGoogleMaps)
-	}
+	},
 }
 
 export default extraWidgets

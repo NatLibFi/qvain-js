@@ -27,31 +27,31 @@ function decode_base64_url(text) {
 // randomString generates a cryptographically secure random string with a given byte length.
 // Function taken from the auth0.com website.
 function cryptoRandomString(length) {
-	var bytes = new Uint8Array(length);
-	var random = window.crypto.getRandomValues(bytes);
+	let bytes = new Uint8Array(length)
+	let random = window.crypto.getRandomValues(bytes)
 	//var random = crypto.randomFillSync(bytes);
 
-	var result = [];
-	var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+	let result = []
+	let charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
 	random.forEach(function (c) {
-		result.push(charset[c % charset.length]);
-	});
-	return result.join('');
+		result.push(charset[c % charset.length])
+	})
+	return result.join('')
 }
 
 // pseudoRandomString generates a not-so-cryptographically secure random string.
 function pseudoRandomString(length) {
-	var out = ""
-	var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+	let out = ""
+	let charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
 
-	for (var i = 0; i < length; i++)
-		out += charset.charAt(Math.floor(Math.random() * charset.length));
+	for (let i = 0; i < length; i++)
+		out += charset.charAt(Math.floor(Math.random() * charset.length))
 
-	return out;
+	return out
 }
 
 function getRandomString(length) {
-	var rs
+	let rs
 	try {
 		rs = cryptoRandomString(length)
 	} catch(error) {

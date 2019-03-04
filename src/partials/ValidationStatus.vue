@@ -35,21 +35,21 @@ export default {
 	props: {
 		status: {
 			type: String,
-			validator: (val) => ['valid', 'uncertain', 'invalid', null].includes(val)
+			validator: (val) => ['valid', 'uncertain', 'invalid', null].includes(val),
 		},
 		reason: {
 			type: String,
-			required: false
-		}
+			required: false,
+		},
 	},
 	data() {
 		return {
 			validDefault: 'This field is valid',
 			invalidDefault: 'This field is invalid',
-			uncertainDefault: 'This field might be valid. Some values might be empty.'
-		};
+			uncertainDefault: 'This field might be valid. Some values might be empty.',
+		}
 	},
 	components: {
-	}
+	},
 }
 </script>

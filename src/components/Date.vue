@@ -12,43 +12,43 @@
 </template>
 
 <script>
-import datepicker from 'vuejs-datepicker';
-import SchemaBase from '@/widgets/base.vue';
-import { distanceInWords } from 'date-fns';
+import datepicker from 'vuejs-datepicker'
+import SchemaBase from '@/widgets/base.vue'
+import { distanceInWords } from 'date-fns'
 
 export default {
 	name: 'date',
 	extends: SchemaBase,
 	components: {
-		datepicker
+		datepicker,
 	},
 	data() {
 		return {
-			date: null
-		};
+			date: null,
+		}
 	},
 	computed: {
 		dateString() {
 			if (!this.date) {
-				return null;
+				return null
 			}
 
 			if (this.schema.format === 'date') {
-				return this.date.toISOString().split('T')[0];
+				return this.date.toISOString().split('T')[0]
 			}
 
 			// if format is date-time
-			return this.date.toISOString();
+			return this.date.toISOString()
 		},
 	},
 	created() {
-		this.date = this.value ? new Date(this.value) : null;
+		this.date = this.value ? new Date(this.value) : null
 	},
 	watch: {
 		date(e) {
-			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.dateString });
-		}
-	}
+			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.dateString })
+		},
+	},
 }
 </script>
 

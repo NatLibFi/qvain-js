@@ -18,67 +18,67 @@
 </template>
 
 <script>
-import datepicker from 'vuejs-datepicker';
-import SchemaBase from '@/widgets/base.vue';
-import { distanceInWords } from 'date-fns';
-import DeleteButton from '@/partials/DeleteButton.vue';
+import datepicker from 'vuejs-datepicker'
+import SchemaBase from '@/widgets/base.vue'
+import { distanceInWords } from 'date-fns'
+import DeleteButton from '@/partials/DeleteButton.vue'
 
 export default {
 	name: 'date-range',
 	extends: SchemaBase,
 	components: {
 		datepicker,
-		DeleteButton
+		DeleteButton,
 	},
 	data() {
 		return {
 			start: null,
 			end: null,
-		};
+		}
 	},
 	computed: {
 		timeBetweenString() {
-			return distanceInWords(this.end, this.start);
+			return distanceInWords(this.end, this.start)
 		},
 		disableBefore() {
 			return {
 				from: this.end,
-			};
+			}
 		},
 		disableAfter() {
 			return {
     			to: this.start,
-			};
+			}
 		},
 		title() {
-			return this.schema.title;
+			return this.schema.title
 		},
 		startDateISO() {
-			return this.start ? this.start.toISOString() : null;
+			return this.start ? this.start.toISOString() : null
 		},
 		endDateISO() {
-			return this.end ? this.end.toISOString() : null;
-		}
+			return this.end ? this.end.toISOString() : null
+		},
 	},
 	methods: {
 		updateValue() {
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: {
-				start_date: this.startDateISO, end_date: this.endDateISO
-			}});
+				start_date: this.startDateISO, end_date: this.endDateISO,
+			}})
 		},
 	},
 	created() {
-		this.start = this.value.start_date ? new Date(this.value.start_date) : null;
-		this.end = this.value.end_date ? new Date(this.value.end_date) : null;
+		this.start = this.value.start_date ? new Date(this.value.start_date) : null
+		this.end = this.value.end_date ? new Date(this.value.end_date) : null
 	},
 	watch: {
-		start(){
-			this.updateValue();
+		start() {
+			this.updateValue()
 		},
 		end() {
-			this.updateValue();
-		}
-	}
+			this.updateValue()
+		},
+	},
 }
 </script>
 

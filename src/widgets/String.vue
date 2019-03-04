@@ -66,11 +66,11 @@ input[type=url].form-control {
 import vSchemaBase from './base.vue'
 import { dataPointer } from '../../tmp/datapointer.js'
 
-import ValidationStatus from '@/partials/ValidationStatus.vue';
-import RecordField from '@/composites/RecordField.vue';
-import TitleComponent from '@/partials/Title.vue';
-import InfoIcon from '@/partials/InfoIcon.vue';
-import DeleteButton from '@/partials/DeleteButton.vue';
+import ValidationStatus from '@/partials/ValidationStatus.vue'
+import RecordField from '@/composites/RecordField.vue'
+import TitleComponent from '@/partials/Title.vue'
+import InfoIcon from '@/partials/InfoIcon.vue'
+import DeleteButton from '@/partials/DeleteButton.vue'
 
 export default {
 	extends: vSchemaBase,
@@ -82,7 +82,7 @@ export default {
 		RecordField,
 		TitleComponent,
 		InfoIcon,
-		DeleteButton
+		DeleteButton,
 	},
 	data() {
 		return {
@@ -110,7 +110,7 @@ export default {
 				p: this.parent,
 				prop: this.property,
 				val: e.target.value,
-			});
+			})
 		},
 	},
 	computed: {
@@ -118,18 +118,18 @@ export default {
 			return typeof this.property === 'number' ? '#' + (this.property + 1) : this.uiTitle
 		},
 		inputType: function() {
-			if (!('format' in this.schema)) return 'text';
+			if (!('format' in this.schema)) return 'text'
 			switch (this.schema['format']) {
-				case 'uri':
-					return 'url';
-				case 'time':
-					return 'time';
-				case 'date':
-					return 'date';
-				case 'date-time':
-					return 'date';
-				default:
-					return 'text';
+			case 'uri':
+				return 'url'
+			case 'time':
+				return 'time'
+			case 'date':
+				return 'date'
+			case 'date-time':
+				return 'date'
+			default:
+				return 'text'
 			}
 		},
 		ctxIcon() {
@@ -146,8 +146,8 @@ export default {
 		focus: {
 			inserted: function (el) {
 				el.focus()
-			}
-		}
+			},
+		},
 	},
 	created() {
 	},
