@@ -34,7 +34,7 @@
 		</wrapper>
 </template>
 
-<style <style lang="scss" scoped>
+<style lang="scss" scoped>
 .margin-left {
 	margin-left: 20px;
 }
@@ -42,8 +42,6 @@
 
 <script>
 import SchemaBase from './base.vue'
-import keysWithOrder from '@/lib/keysWithOrder.js'
-import jsonPointer from 'json-pointer'
 import Wrapper from '@/components/Wrapper.vue'
 import BorderColorMixin from '../mixins/border-color-mixin.js'
 

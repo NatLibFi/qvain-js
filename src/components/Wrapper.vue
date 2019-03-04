@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style <style lang="scss" scoped>
+<style lang="scss" scoped>
 .wrapper {
 	padding: 20px;
     box-shadow: 2px 2px 15px 0px lightgrey;

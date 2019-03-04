@@ -66,7 +66,6 @@ input[type=url].form-control {
 import vSchemaBase from './base.vue'
 import { dataPointer } from '../../tmp/datapointer.js'
 
-import ValidationStatus from '@/partials/ValidationStatus.vue'
 import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
@@ -78,7 +77,6 @@ export default {
 	description: 'generic string',
 	schematype: 'string',
 	components: {
-		ValidationStatus,
 		RecordField,
 		TitleComponent,
 		InfoIcon,
@@ -98,7 +96,7 @@ export default {
 			console.log('schema-string: removal requested', event, this.property)
 			this.$parent.$emit('delete', this.property)
 		},
-		deleteIfEmpty(event) {
+		deleteIfEmpty() {
 			if (this.value === undefined || this.value.length < 1) {
 				this.$parent.$emit('delete', this.property)
 			} else {

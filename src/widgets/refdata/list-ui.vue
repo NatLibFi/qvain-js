@@ -45,7 +45,6 @@
 </style>
 
 <script>
-import vSchemaBase from '../base.vue'
 import esApiClient from './es.js'
 import Multiselect from 'vue-multiselect'
 
@@ -87,6 +86,7 @@ function groupByParent(objectArray) {
 
 const sortById = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
 
+// eslint-disable-next-line no-unused-vars
 function filterKeys(full, wanted) {
 	return Object.keys(full)
 		.filter(key => wanted.includes(key))

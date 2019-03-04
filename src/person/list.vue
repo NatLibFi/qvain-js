@@ -110,8 +110,8 @@ import {
 	faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
-import PersonComponent from './person.vue'
-import personSchema from './personSchema.json'
+//import PersonComponent from './person.vue'
+//import personSchema from './personSchema.json'
 import researchAgentSchema from './researchAgentSchema.json'
 import testdata from './testdata.json'
 
@@ -127,9 +127,6 @@ if (researchAgentSchema.properties) {
 
 export default {
 	name: 'person-list',
-	components: {
-		person: PersonComponent,
-	},
 	data: function() {
 		return {
 			people: testdata,
@@ -202,6 +199,7 @@ export default {
 			if (this.editingIndex !== null) {
 				return this.people[this.editingIndex].name
 			}
+			return null
 		},
 		lastFirstName() {
 			return this.newFirst ? this.newLast + ', ' + this.newFirst : this.newLast

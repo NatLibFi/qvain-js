@@ -16,7 +16,7 @@ $iconColor: #16c516;
 
 	svg {
 		color: $iconColor;
-    	font-size: 30px;
+		font-size: 30px;
 	}
 }
 </style>

@@ -255,7 +255,7 @@ const myGroups = [
 	},
 ]
 
-const AUTH_UID = "053bffbcc41edad4853bea91fc42ea18"
+//const AUTH_UID = "053bffbcc41edad4853bea91fc42ea18"
 
 /*
 function parseApiResults(json) {

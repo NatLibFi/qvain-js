@@ -1,7 +1,7 @@
 <template>
-  	<b-card class="rounded-0" no-body>
-    	<b-card-body class="d-flex py-1 align-items-center">
-      		<font-awesome-icon :icon="icon" size="2x" class="mr-4 text-muted"/>
+	<b-card class="rounded-0" no-body>
+		<b-card-body class="d-flex py-1 align-items-center">
+			<font-awesome-icon :icon="icon" size="2x" class="mr-4 text-muted"/>
 			<div class="py-2">
 				<div class="d-flex">
 					<h6 class="mb-0">
@@ -32,7 +32,7 @@
 					<font-awesome-icon :icon="icons.faTrash"/>
 				</b-btn>
 			</b-btn-group>
-    	</b-card-body>
+		</b-card-body>
 		<b-collapse :id="single.identifier" accordion="file-accordion" class="mt-2" :style="{'padding': '20px', 'padding-top': '0px'}">
 			<b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
 				<b-form-input class="qvain-input" id="title" placeholder="Title" v-model="single.title"></b-form-input>
@@ -85,34 +85,33 @@
 					'(no label)' : item['identifier']">
 			</RefList>
 		</b-collapse>
-  	</b-card>
+	</b-card>
 </template>
 
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import RefList from '@/widgets/refdata/list-ui'
-import RealRefList from '@/components/ReferenceData.vue'
+//import RealRefList from '@/components/ReferenceData.vue'
 
 import {
 	faTrash,
 	faPen,
 	faPencilAlt,
-	faTag
-} from "@fortawesome/free-solid-svg-icons";
+	faTag,
+} from "@fortawesome/free-solid-svg-icons"
 
 export default {
 	name: "SingleObject",
 	components: {
 		FontAwesomeIcon,
 		RefList,
-		RealRefList,
 	},
 	props: [
 		"icon",
 		"secondary",
 		"single",
 		"removeItem",
-		"type"
+		"type",
 	],
 	data() {
 		return {
@@ -120,11 +119,11 @@ export default {
 				faPen,
 				faTrash,
 				faPencilAlt,
-				faTag
-			}
-		};
+				faTag,
+			},
+		}
 	},
-};
+}
 </script>
 
 <style>

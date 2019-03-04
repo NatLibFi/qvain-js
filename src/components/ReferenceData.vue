@@ -85,10 +85,8 @@
 <script>
 import vSchemaBase from '@/widgets/base.vue'
 import { esApiSearchClient } from '@/widgets/refdata/es.js'
-import Wrapper from './Wrapper.vue'
 import DeleteButton from '@/partials/DeleteButton.vue'
 import Multiselect from 'vue-multiselect'
-import ValidationStatus from '@/partials/ValidationStatus.vue'
 import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
@@ -98,9 +96,7 @@ export default {
 	extends: vSchemaBase,
 	components: {
 		Multiselect,
-		Wrapper,
 		DeleteButton,
-		ValidationStatus,
 		RecordField,
 		TitleComponent,
 		InfoIcon,
@@ -154,7 +150,7 @@ export default {
 				.map(this.mapToInternalKeys)
 		},
 		parentItems() {
- 			return this.optionItems.filter(item => item.hasChildren)
+			return this.optionItems.filter(item => item.hasChildren)
 		},
 		childrenItems() {
 			return this.optionItems.filter(item => !item.hasChildren)
@@ -207,8 +203,7 @@ export default {
 			const hasURI = (es._source && es._source.uri)
 			return hasURI || es._source[FILTER_FIELD]
 		},
-		mapToInternalKeys(es, lang) {
-			const selectedLanguage = this.selectedLang ? this.selectedLang.id : this.selectedLang
+		mapToInternalKeys(es) {
 			return {
 				id: es.id,
 				identifier: es.uri,
@@ -264,7 +259,7 @@ export default {
 			} else {
 				const { identifier } = this.value
 				const label = this.value[this.labelNameInSchema]
-				this.selectedOptions = { identifier, label }
+				this.selectedOptions = { identifier, label }
 			}
 		}
 

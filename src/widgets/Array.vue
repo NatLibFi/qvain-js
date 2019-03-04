@@ -101,10 +101,10 @@
 
 <script>
 import vSchemaBase from './base.vue'
-import ValidationPopover from '@/components/ValidationPopover.vue'
-import Wrapper from '@/components/Wrapper.vue'
-import TabSelector from '@/widgets/TabSelector.vue'
-import ValidationStatus from '@/partials/ValidationStatus.vue'
+//import ValidationPopover from '@/components/ValidationPopover.vue'
+//import Wrapper from '@/components/Wrapper.vue'
+//import TabSelector from '@/widgets/TabSelector.vue'
+//import ValidationStatus from '@/partials/ValidationStatus.vue'
 import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
@@ -115,12 +115,9 @@ export default {
 	description: "generic array, nested",
 	schematype: 'array',
 	components: {
-		ValidationPopover,
-		ValidationStatus,
 		RecordField,
 		TitleComponent,
 		InfoIcon,
-		Wrapper,
 	},
 	props: {
 		tabFormat: { type: Boolean, default: true },
@@ -153,7 +150,7 @@ export default {
 				return `#${index +1} (Person)`
 			}
 
-			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
+			if (tabObjectType === 'Organization' && (tabObject.name['fi'] || tabObject.name['en'])) {
 				return tabObject.name['fi'] || tabObject.name['en']
 			}
 

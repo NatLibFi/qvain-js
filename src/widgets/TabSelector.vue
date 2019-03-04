@@ -135,14 +135,15 @@ export default {
 				return 'schema-number'
 			case 'object':
 				return 'schema-object'
-			case 'array':
+			case 'array': {
 				// check if the array has values (strings, numbers, null) or nested objects (array, object)
 				// TODO: this only checks "list" validation, not "tuple" validation
 				let typeOfItems = this.schema.items && this.schema.items.type && this.schema.items.type || ""
 				console.log("array: typeOfItems:", typeOfItems, this.schema)
-				let hasValues = typeOfItems !== "array" && typeOfItems !== "object"
+				//let hasValues = typeOfItems !== "array" && typeOfItems !== "object"
 				//return hasValues ? 'schema-inline-array' : 'schema-array'
 				return 'schema-array'
+			}
 			case 'boolean':
 				console.log("schema-selector: boolean not implemented yet")
 				return ""

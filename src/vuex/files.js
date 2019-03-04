@@ -1,6 +1,6 @@
 // vuex module for file selection
 import Vue from 'vue'
-import { stat } from 'fs'
+//import { stat } from 'fs'
 import axios from 'axios'
 
 
@@ -229,10 +229,10 @@ export default {
 				return false
 			})
 		},
-		queryContent({ commit, state }, { dir, project }) {
+		queryContent({ commit }, { dir, project }) {
 			return fileapi
 				.get('/files', { params: { project, path: dir }})
-				.then(response => { commit('saveResults', { data: response.data, dir }) });
+				.then(response => { commit('saveResults', { data: response.data, dir }) })
 		},
 	},
 }

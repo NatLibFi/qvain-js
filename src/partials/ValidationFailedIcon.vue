@@ -15,7 +15,7 @@
 
 	svg {
 		color: red;
-    	font-size: 30px;
+		font-size: 30px;
 	}
 }
 </style>

@@ -47,20 +47,18 @@
 
 <script>
 
-import Browser from './Browser';
-import FileItem from './FileItem.vue';
-import FileEditModal from './FileEditModal.vue';
-import FileInfoModal from './fileinfo-modal';
+import Browser from './Browser'
+import FileItem from './FileItem.vue'
+//import FileEditModal from './FileEditModal.vue'
+//import FileInfoModal from './fileinfo-modal'
 
-import { faFile, faFolder } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { faFile, faFolder } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 
 export default {
 	name: 'filepicker',
 	components: {
 		Browser,
-		FileEditModal,
-		FileInfoModal,
 		FileItem,
 	},
 	data() {
@@ -80,76 +78,76 @@ export default {
 	methods: {
 		addFileOrDirectory({ type, fields }) {
 			if (type === 'files') {
-				this.state.files.push(fields);
+				this.state.files.push(fields)
 			} else {
-				this.state.directories.push(fields);
+				this.state.directories.push(fields)
 			}
-			this.project = this.selectedProject;
+			this.project = this.selectedProject
 		},
 		removeFileOrDirectory({ type, fields }) {
 			if (type === 'files') {
-				this.$set(this.state, 'files', this.state.files.filter(f => f.identifier !== fields.identifier));
+				this.$set(this.state, 'files', this.state.files.filter(f => f.identifier !== fields.identifier))
 			} else {
-				this.$set(this.state, 'directories', this.state.directories.filter(d => d.identifier !== fields.identifier));
+				this.$set(this.state, 'directories', this.state.directories.filter(d => d.identifier !== fields.identifier))
 			}
 
 			if (this.selectedByIdentifiers.length === 0) {
-				this.project = null;
+				this.project = null
 			}
 		},
 
 
 		updateProject(project) {
-			this.$router.push({ name: 'files', params: { project } });
+			this.$router.push({ name: 'files', params: { project } })
 		},
 
 		loadFilesAndFoldersFromStore() {
-			this.state.files = this.$store.state.record.files || [];
-			this.state.directories = this.$store.state.record.directories || [];
+			this.state.files = this.$store.state.record.files || []
+			this.state.directories = this.$store.state.record.directories || []
 		},
 	},
 	computed: {
 		projects() {
 			//return this.$auth.user.projects || []
-			return ['project_x', '2001036']; // TODO: remove this!!
+			return ['project_x', '2001036'] // TODO: remove this!!
 		},
 		selectedProject() {
-			const { project: projectIDInRoute } = this.$route.params;
-			const usersFirstProject = this.$auth.user.projects[0];
+			const { project: projectIDInRoute } = this.$route.params
+			const usersFirstProject = this.$auth.user.projects[0]
 
 			// add current store project before userFirstProject
-			return projectIDInRoute || this.project || usersFirstProject || null;
+			return projectIDInRoute || this.project || usersFirstProject || null
 		},
 		selectedByIdentifiers() {
-			const { directories, files } = this.state;
-			return [...directories, ...files].map(item => item.identifier);
+			const { directories, files } = this.state
+			return [...directories, ...files].map(item => item.identifier)
 		},
 		hasFilesFromOtherProject() {
-			return this.project && this.project !== this.selectedProject;
-		}
+			return this.project && this.project !== this.selectedProject
+		},
 	},
 	async created() {
-		this.loadFilesAndFoldersFromStore();
+		this.loadFilesAndFoldersFromStore()
 		// deny adding files outside current project of selected files
 		try {
 			if (this.state.files.length > 0) {
-				const identifier = this.state.files[0].identifier;
-				const url = `https://metax-test.csc.fi/rest/files/${identifier}`;
-				const { data } = await axios.get(url);
-				const project = data.project_identifier;
+				const identifier = this.state.files[0].identifier
+				const url = `https://metax-test.csc.fi/rest/files/${identifier}`
+				const { data } = await axios.get(url)
+				const project = data.project_identifier
 
-				this.project = project;
+				this.project = project
 			} else if (this.state.directories.length > 0) {
-				const identifier = this.state.directories[0].identifier;
-				const url = `https://metax-test.csc.fi/rest/directories/${identifier}/files`;
-				const { data } = await axios.get(url);
+				const identifier = this.state.directories[0].identifier
+				const url = `https://metax-test.csc.fi/rest/directories/${identifier}/files`
+				const { data } = await axios.get(url)
 				const project = (data.directories && data.directories[0] && data.directories[0].project_identifier) ||
-					(data.files && data.files[0] && data.files[0].project_identifier) || null;
+					(data.files && data.files[0] && data.files[0].project_identifier) || null
 
-				this.project = project;
+				this.project = project
 			}
 		} catch(e) {
-			console.log('error retriving project', e);
+			console.log('error retriving project', e)
 		}
 	},
 	watch: {
@@ -159,15 +157,15 @@ export default {
 				this.$store.commit('updateValue', {
 					p: this.$store.state.record,
 					prop: 'files',
-					val: this.state.files
-				});
+					val: this.state.files,
+				})
 				this.$store.commit('updateValue', {
 					p: this.$store.state.record,
 					prop: 'directories',
-					val: this.state.directories
-				});
-			}
-		}
+					val: this.state.directories,
+				})
+			},
+		},
 	},
 }
 </script>

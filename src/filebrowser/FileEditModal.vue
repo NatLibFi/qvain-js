@@ -2,8 +2,7 @@
   <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata" @ok="save">
     <div v-if="item">
 
-      <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category"
-	  :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']" isRequired>
+      <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category" :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']" isRequired>
       </RefList>
 
       <b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
@@ -25,14 +24,12 @@
 
 <script>
 import RefList from '@/widgets/refdata/list-ui'
-import RealRefList from '@/components/ReferenceData.vue' // this is not used atm
-import Vue from 'vue'
+//import RealRefList from '@/components/ReferenceData.vue' // this is not used atm
 
 export default {
 	name: 'fileedit-modal',
 	components: {
 		RefList,
-		RealRefList,
 	},
 	data() {
 		return {

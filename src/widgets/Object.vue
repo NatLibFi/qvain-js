@@ -58,7 +58,6 @@ div:empty {
 <script>
 import vSchemaBase from './base.vue'
 import keysWithOrder from '@/lib/keysWithOrder.js'
-import jsonPointer from 'json-pointer'
 import BorderColorMixin from '../mixins/border-color-mixin.js'
 
 export default {

@@ -107,7 +107,7 @@ import formatDate from 'date-fns/format'
 
 const fields = [
 	{ label: "published",   key: "published",          sortable: false },
-//	{ label: "id",          key: "id",                 sortable: true },
+	//	{ label: "id",          key: "id",                 sortable: true },
 	{ label: "title",       key: "title",              sortable: true, formatter: 'preferredLanguage' },
 	//{ label: "owner",       key: "owner",              sortable: true },
 	{ label: "created",     key: "created",            sortable: true, formatter: 'friendlyDate' },
@@ -167,7 +167,8 @@ function fakeClient() {
 }
 
 // apiProvider fills the table with datasets from an (real or fake) API response.
-function apiProvider(ctx) {
+// Function is passed (ctx, callback).
+function apiProvider() {
 	let promise = process.env.VUE_APP_ENVIRONMENT !== 'development' ? apiClient.get("/datasets/") : fakeClient()
 
 	this.error = null
@@ -176,10 +177,10 @@ function apiProvider(ctx) {
 		console.log("api count:", (response.data || []).length)
 		return (response.data || [])
 	})
-	.catch((error) => {
-		this.error = getApiError(error)
-		return []
-	})
+		.catch((error) => {
+			this.error = getApiError(error)
+			return []
+		})
 }
 
 export default {

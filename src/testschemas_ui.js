@@ -74,7 +74,7 @@ let _testTabbedArraySchema = {
 	},
 }
 
-let _schemaFairDataUI = {
+let _schemaFairDataUi = {
 	'': { tab: 'description' },
 	'#/definitions/langString': {
 		widget: 'i18n-string',
@@ -442,6 +442,7 @@ let testSchemaUis = {
 	tabs2: _testTabSchema2,
 	es: _testESWidget,
 	tabbed_array: _testTabbedArraySchema,
+	'fairdata-ui': _schemaFairDataUi,
 	'fairdata-ui-tabs': _schemaFairDataUiTabs,
 }
 

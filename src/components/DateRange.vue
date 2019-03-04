@@ -47,7 +47,7 @@ export default {
 		},
 		disableAfter() {
 			return {
-    			to: this.start,
+				to: this.start,
 			}
 		},
 		title() {
@@ -94,7 +94,7 @@ export default {
 	}
 	.align {
 		padding: 12px;
-    	padding-left: 5px;
+		padding-left: 5px;
 	}
 </style>
 

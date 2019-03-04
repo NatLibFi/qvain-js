@@ -5,7 +5,7 @@
 
 <script>
 import genid from '@/lib/genid.js'
-import EmptyNote from '@/components/EmptyNote.vue'
+//import EmptyNote from '@/components/EmptyNote.vue'
 //import {pathToData} from '../schematodata.js'
 
 /* This creates cyclic dependencies because the components are nested: A creates a B which creates an A.
@@ -171,7 +171,7 @@ export default {
 		}
 	},
 	components: {
-		EmptyNote,
+		//EmptyNote,
 	},
 	created() {
 		this.$store.commit('initStateFor', this.path)

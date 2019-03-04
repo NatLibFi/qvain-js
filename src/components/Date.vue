@@ -14,7 +14,6 @@
 <script>
 import datepicker from 'vuejs-datepicker'
 import SchemaBase from '@/widgets/base.vue'
-import { distanceInWords } from 'date-fns'
 
 export default {
 	name: 'date',
@@ -45,7 +44,7 @@ export default {
 		this.date = this.value ? new Date(this.value) : null
 	},
 	watch: {
-		date(e) {
+		date() {
 			this.$store.commit('updateValue', { p: this.parent, prop: this.property, val: this.dateString })
 		},
 	},

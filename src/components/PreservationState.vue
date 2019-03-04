@@ -26,14 +26,14 @@ export default {
 		},
 		variant: function() {
 			switch (this.description.type) {
-				case "wait":
-					return "text-secondary"
-				case "fail":
-					return "text-error"
-				case "success":
-					return "text-success"
-				default:
-					return "text-secondary"
+			case "wait":
+				return "text-secondary"
+			case "fail":
+				return "text-error"
+			case "success":
+				return "text-success"
+			default:
+				return "text-secondary"
 			}
 		},
 	},

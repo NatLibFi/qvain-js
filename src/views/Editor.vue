@@ -104,7 +104,7 @@
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-import api from '@/api/api.js'
+//import api from '@/api/api.js'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
@@ -224,7 +224,7 @@ export default {
 			} catch(error) {
 				this.$root.showAlert("Save failed!", "danger")
 			}
-		}, 3000, { leading: true, trailing: false }),
+		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		createNewRecord() {
 			this.loading = true
 			this.$nextTick(() => {

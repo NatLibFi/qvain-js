@@ -36,12 +36,14 @@ export default {
 			// reset?
 			this.$store.commit('resetState')
 			this.subscribeValidator()
+			/*
 			this.$store.watch(
 				() => this.$store.state.record,
 				value => {
 					console.log('store watcher: record changed')
 				},
 			)
+			*/
 		},
 		loadSchema: function(schemaName) {
 			this.$store.commit('loadSchema', testSchemas[schemaName])
