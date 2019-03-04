@@ -595,7 +595,7 @@ export default {
 	},
 	'/properties/files': {
 		'tab': 'files',
-		'widget': 'browser',
+		'widget': 'filepicker',
 	},
 	'/properties/directories': {
 		'tab': 'notab',

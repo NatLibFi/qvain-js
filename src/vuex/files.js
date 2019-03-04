@@ -171,7 +171,7 @@ export default {
 			const recordFiles = []
 			const recordDirs = []
 			const names = {}
-      
+
 			// get picked files ready to store in record
 			const parseItem = (single) => {
 				const item = {
@@ -200,7 +200,7 @@ export default {
 				saveName(item)
 			}
 
-			// loop through picked items and process them for saving to record 
+			// loop through picked items and process them for saving to record
 			pickedItems.map(single => {
 				process(single)
 			})
@@ -209,7 +209,7 @@ export default {
 			if (recordFiles.length > 0) {
 				commit('pushMultiple', {p: rootState.record, prop: 'files', val: recordFiles}, { root: true })
 			}
-      
+
 			if (recordDirs.length > 0) {
 				commit('pushMultiple', {p: rootState.record, prop: 'directories', val: recordDirs}, { root: true })
 			}
@@ -230,22 +230,9 @@ export default {
 			})
 		},
 		queryContent({ commit, state }, { dir, project }) {
-			return new Promise((resolve, reject) => {
-				fileapi
-					.get('/files', {
-						params: {
-							project,
-							path: dir,
-						},
-					})
-					.then(function(response) {
-						commit('saveResults', { data: response.data, dir })
-						resolve(response.data)
-					})
-					.catch(function(error) {
-						reject(error)
-					})
-			})
+			return fileapi
+				.get('/files', { params: { project, path: dir }})
+				.then(response => { commit('saveResults', { data: response.data, dir }) });
 		},
 	},
 }

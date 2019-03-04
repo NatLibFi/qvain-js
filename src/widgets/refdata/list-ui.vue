@@ -2,15 +2,7 @@
   <div row>
     <!-- ElasticSearch widget -->
     <b-form-group id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 1" :description="uiDescription" :label="uiLabel">
-      <!-- b-alert :show="!!error" variant="danger">error contacting reference data API server: {{ error }}</b-alert -->
       <b-input-group>
-        <!-- <b-form-select :value="value" @change="setValue" v-if="optgroups">
-          <option :value="null" disabled>{{ uiPlaceholder }}</option>
-          <option v-for="(child, childIndex) in noGroupItems" :key="child.id" :value="child" v-if="child !== null">{{ child.label[lang] || child.label['und'] }} [{{ child.code }}]</option>
-          <optgroup v-for="(groupid, index) in groups" v-if="groupid !== null" :key="groupid" :label="items[groupid].group.label[lang]">
-            <option v-for="(child, childIndex) in items[groupid].children" :key="child.id" :value="child" v-if="child !== null">{{ child.label[lang] || child.label['und'] }} [{{ child.code }}]</option>
-          </optgroup>
-        </b-form-select> -->
         <div v-if="type === 'multiselect'" class="flex-grow-1">
           <Multiselect v-model="model" @input="setValue" :options="items" v-if="items" :customLabel="customLabel"
             :optionsLimit="40" :allowEmpty="!isRequired" :showLabels="false" />
@@ -22,9 +14,6 @@
           <b-btn variant="dark" v-b-tooltip.hover="error" title="retry" v-if="error" @click="getList(esIndex, esDoctype)">
             <font-awesome-icon icon="sync" />
             <font-awesome-icon icon="sync" spin v-if="busy" />
-          </b-btn>
-          <b-btn variant="secondary" v-b-popover.hover="help" title="help" v-if="help" class="rounded-right">
-            <font-awesome-icon icon="question-circle" />
           </b-btn>
         </b-input-group-append>
         <b-popover target="refdata-error-btn" triggers="hover click" class="error-popover">

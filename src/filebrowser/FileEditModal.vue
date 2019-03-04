@@ -1,15 +1,19 @@
 <template>
   <b-modal id="actual-fileedit-modal" ref="actual-fileinfo-modal" @hide="reset" title="Set metadata" @ok="save">
     <div v-if="item">
+
       <RefList esDoctype="use_category" placeholder="use category" help="help text" uiLabel="Use category"
 	  :value="item.use_category" :setValue="setUseCategory" type="multiselect" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']" isRequired>
       </RefList>
+
       <b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
         <b-form-input id="title" placeholder="title" v-model="item.title" @change="validateTitle" :state="valid.title"></b-form-input>
       </b-form-group>
+
       <b-form-group class="my-1" label="Description" key="description" horizontal lable-for="description">
         <b-form-input id="description" placeholder="description" v-model="item.description"></b-form-input>
       </b-form-group>
+
       <RefList esDoctype="file_type" placeholder="file type" type="multiselect" help="help text"
         uiLabel="File Type" :value="item.file_type" :setValue="setType"
         v-if="isFile(item)" :customLabel="(item) => item['pref_label'] ? item['pref_label']['en'] || item['pref_label']['fi'] || item['pref_label']['und'] || '(no label)' : item['identifier']">
@@ -20,14 +24,17 @@
 </template>
 
 <script>
-import RefList from '../../widgets/refdata/list-ui'
-import RealRefList from '@/components/ReferenceData.vue'
+import RefList from '@/widgets/refdata/list-ui'
+import RealRefList from '@/components/ReferenceData.vue' // this is not used atm
 import Vue from 'vue'
 
 export default {
 	name: 'fileedit-modal',
-	props: {},
-	data: function() {
+	components: {
+		RefList,
+		RealRefList,
+	},
+	data() {
 		return {
 			item: null,
 			valid: {
@@ -36,7 +43,7 @@ export default {
 		}
 	},
 	methods: {
-		show: function(single) {
+		show(single) {
 			console.log('show', single)
 			this.item = single
 			// TODO: define fields to display here for files and for folders
@@ -46,10 +53,10 @@ export default {
 
 			this.$refs['actual-fileinfo-modal'].show()
 		},
-		reset: function() {
+		reset() {
 			this.item = null
 		},
-		save: function() {
+		save() {
 			this.$store.commit('updateArrayValue', {
 				p: this.$store.state.record,
 				prop: this.isFile(this.item) ? 'files' : 'directories',
@@ -60,10 +67,10 @@ export default {
 				},
 			})
 		},
-		isFile: function(item) {
+		isFile(item) {
 			return 'file_type' in item
 		},
-		setUseCategory: function(value) {
+		setUseCategory(value) {
 			// TODO: -wvh- hack
 			if (!value) return
 
@@ -81,7 +88,7 @@ export default {
 
 			this.item.use_category = value
 		},
-		setType: function(value) {
+		setType(value) {
 			// TODO: -wvh- hack
 			if (!value) return
 			/*
@@ -108,14 +115,6 @@ export default {
 				this.valid.title = false
 			}
 		},
-	},
-	computed: {},
-	components: {
-		RefList,
-		RealRefList,
-	},
-	created: function() {
-		console.log("filepicker: schema:", this)
 	},
 }
 </script>
