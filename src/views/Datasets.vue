@@ -1,23 +1,17 @@
 <template>
 	<b-container fluid>
+		<h1 class="component-title">My datasets</h1>
+
 		<div class="mx-2 my-3 row">
 			<b-button-toolbar aria-label="dataset list toolbar">
-				<b-input-group size="sm" class="mx-1" prepend="owner">
-					<b-form-select v-model="ownerSelect" v-b-tooltip.hover.bottom title="select record owner" style="min-width: 12rem;">
-						<template slot="first">
-							<option :value="$auth.user.id" selected>myself</option>
-						</template>
-						<optgroup label="groups" v-if="myGroupsOptions.length">
-							<option v-for="(option, idx) in myGroupsOptions" :value="option.value" :disabled="option.disabled" :key="`option_${idx}_opt`" v-html="option.text"></option>
-						</optgroup>
-					</b-form-select>
-					<b-input-group-append>
-						<b-btn :pressed.sync="recordSource['local']" @click="fetch('local')" v-b-tooltip.hover.bottom title="show in-progress records">in progress</b-btn>
-						<b-btn :pressed.sync="recordSource['metax']" @click="fetch('metax')" v-b-tooltip.hover.bottom title="show records awaiting approval">published</b-btn>
-					</b-input-group-append>
+				<b-input-group size="sm" class="mx-0 px-0" prepend="show">
+				<b-button-group size="sm">
+					<b-btn :pressed.sync="showDatasetState.draft" variant="outline-secondary" v-b-tooltip.hover.bottom title="show draft datasets">draft</b-btn>
+					<b-btn :pressed.sync="showDatasetState.published" variant="outline-secondary" v-b-tooltip.hover.bottom title="show published datasets">published</b-btn>
+				</b-button-group>
 				</b-input-group>
 
-				<b-input-group size="sm" class="mx-1" left="search" v-b-tooltip.hover.bottom title="search titles">
+				<b-input-group size="sm" class="mx-1 px-1" left="search" v-b-tooltip.hover.bottom title="search titles" prepend="search">
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
 
@@ -27,16 +21,20 @@
 		</div>
 
 		<b-alert variant="danger" ref="datasetErrorAlert" :show="!!error" dismissible @dismissed="error = null">{{ error }}</b-alert>
+		<b-alert variant="warning" :show="!!devWarning" dismissible @dismissed="devWarning = false"><strong>development environment</strong> – you are viewing fake API data.</b-alert>
 
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
 
-		<b-table id="dataset-list" ref="datasetTable" class="m-1" tbody-class="dataset-list" striped hover show-empty :items="apiProvider" :fields="fields" :filter="filterTitles" no-provider-filtering :busy.sync="isBusy">
+		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :items="apiProvider" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
+			<template slot="published" slot-scope="row">
+				<font-awesome-icon icon="circle" class="text-success text-small text-center fa-xs" fixed-width v-if="row.item.published" />
+				<font-awesome-icon icon="circle" class="text-light text-small text-center fa-xs" style="color: #abcdef;" fixed-width v-else />
+			</template>
 			<template slot="owner" slot-scope="data">
 				<span v-b-tooltip.hover.auto :title="data.item.uid">{{ data.item.owner }}</span>
 			</template>
 			<template slot="preservation_state" slot-scope="data">
-				<preservation-state v-if="data.item.state" :state="data.item.state">state</preservation-state>
-				<preservation-state :state="data.item.preservation_state">state</preservation-state>
+				<preservation-state :state="data.item.preservation_state"/>
 			</template>
 			<template slot="created" slot-scope="row">
 				{{ readableIso(row.item.created) }} <p class="text-muted"><small>{{ friendlyDate(row.item.created) }} ago</small></p>
@@ -49,10 +47,11 @@
 			</template>
 			<template slot="actions" slot-scope="row">
 				<b-button-group>
-					<b-button size="sm" @click.stop="open(row.item.id)">open</b-button>
-					<b-button size="sm" v-b-modal="'dataset-versions-modal'" @click="activeInModal = row.item.id" :disabled="row.item.versions < 1">versions</b-button>
-					<b-button size="sm" variant="danger" @click.stop="del(row.item.id)">delete</b-button>
-					<b-button size="sm" @click.stop="toggleDetails(row.item.id, row)" class="mr-2">{{ row.detailsShowing ? 'less' : 'more'}}</b-button>
+					<b-button size="sm" @click.stop="open(row.item.id)"><font-awesome-icon icon="pen" fixed-width /> open</b-button>
+					<b-button size="sm" @click.stop="view(row.item.identifier)" :disabled="row.item.identifier == null"><font-awesome-icon icon="external-link-alt" fixed-width /> view</b-button>
+					<b-button size="sm" v-b-modal="'dataset-versions-modal'" @click="activeInModal = row.item.id" :disabled="row.item.versions < 1"><font-awesome-icon icon="history" fixed-width /> versions</b-button>
+					<b-button size="sm" variant="danger" @click.stop="del(row.item.id)"><font-awesome-icon icon="trash" fixed-width /> delete</b-button>
+					<b-button size="sm" variant="secondary" @click.stop="toggleDetails(row.item.id, row)" class="mr-2">{{ row.detailsShowing ? 'less' : 'more...'}}</b-button>
 				</b-button-group>
 			</template>
 			<template slot="row-details" slot-scope="row">
@@ -72,22 +71,31 @@
 </template>
 
 <style>
-	.dataset-list-enter, .dataset-list-leave-active {
-		display: none;
-		/* transition: all 1s; */
-		/* transition: fade 1s; */
-		transition: fade 1s;
+	.datasets-flip-enter-active {
+		transition: all .5s ease;
 	}
-	.dataset-list-enter-active {
-		transition: transform 0.5s;
+	.datasets-flip-leave-active {
+		transition: all .3s ease-in;
+		position: absolute;
+		/*
+		width: 0px;
+		height: 0px;
+		*/
+		/* display: none; */
+		/* visibility: collapse; */
 	}
-	.dataset-list-move {
+	.datasets-flip-enter, .datasets-flip-leave-to {
+		transform: translateX(10px);
+		opacity: 0;
+	}
+	.datasets-flip-move {
 		transition: transform 0.5s;
 	}
 </style>
 
 <script>
 import apiClient from '@/api/client.js'
+import testList from '@/api/test-datasets.json'
 import PreservationState from '@/components/PreservationState.vue'
 import BusyButton from '@/components/BusyButton.vue'
 import DatasetVersionsModal from '@/components/VersionsModal.vue'
@@ -98,7 +106,8 @@ import formatDate from 'date-fns/format'
 // id owner created modified published identifier title{} description{} preservation_state
 
 const fields = [
-	{ label: "id",          key: "id",                 sortable: true },
+	{ label: "published",   key: "published",          sortable: false },
+//	{ label: "id",          key: "id",                 sortable: true },
 	{ label: "title",       key: "title",              sortable: true, formatter: 'preferredLanguage' },
 	//{ label: "owner",       key: "owner",              sortable: true },
 	{ label: "created",     key: "created",            sortable: true, formatter: 'friendlyDate' },
@@ -139,8 +148,27 @@ function getApiError(error) {
 	return apiError
 }
 
+// fakeFetch returns a promise that fakes an Axios response.
+const fakeFetch = (data, delay = 0) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve({
+				data: data,
+				status: 200,
+				statusText: 'OK',
+			})
+		}, delay)
+	})
+}
+
+// fakeClient returns a fake Axios response with the given data and delay.
+function fakeClient() {
+	return fakeFetch(testList, 500)
+}
+
+// apiProvider fills the table with datasets from an (real or fake) API response.
 function apiProvider(ctx) {
-	let promise = apiClient.get("/datasets/")
+	let promise = process.env.VUE_APP_ENVIRONMENT !== 'development' ? apiClient.get("/datasets/") : fakeClient()
 
 	this.error = null
 
@@ -148,10 +176,10 @@ function apiProvider(ctx) {
 		console.log("api count:", (response.data || []).length)
 		return (response.data || [])
 	})
-		.catch((error) => {
-			this.error = getApiError(error)
-			return []
-		})
+	.catch((error) => {
+		this.error = getApiError(error)
+		return []
+	})
 }
 
 export default {
@@ -163,12 +191,13 @@ export default {
 			ownerSelect: null,
 			filterString: null,
 			myGroupsOptions: [],
-			recordSource: {
-				local: false,
-				metax: false,
+			showDatasetState: {
+				draft: true,
+				published: true,
 			},
 			isBusy: false,
 			error: null,
+			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development',
 		}
 	},
 	methods: {
@@ -188,6 +217,10 @@ export default {
 					this.error = getApiError(error)
 				})
 		},
+		view(extid) {
+			console.log("opening:", `{process.env.VUE_APP_ETSIN_API_URL}/{extid}`)
+			window.open(`${process.env.VUE_APP_ETSIN_API_URL}/${extid}`, '_blank')
+		},
 		apiProvider(ctx) {
 			return apiProvider.bind(this)(ctx)
 		},
@@ -206,6 +239,14 @@ export default {
 			}
 			return langObj[this.$root.language] || langObj['en'] || langObj['fi'] || langObj['se'] || langObj[Object.keys(langObj)[0]] || ""
 		},
+		filter: function(item) {
+			return this.filterState(item) && this.filterTitles(item)
+		},
+		filterState: function(item) {
+			// both or none
+			if (this.showDatasetState.draft === this.showDatasetState.published) return this.showDatasetState.draft
+			return this.showDatasetState.draft ? !item.published : item.published
+		},
 		filterTitles: function(item) {
 			if (!this.filterString) return true // don't filter null.toString()
 
@@ -221,9 +262,6 @@ export default {
 		},
 		fetch: function(source) {
 			this.toggleSource(source)
-		},
-		toggleSource: function(source) {
-			Object.keys(this.recordSource).forEach(x => this.recordSource[x] = x === source)
 		},
 		toggleDetails(id, row) {
 			row.toggleDetails()

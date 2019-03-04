@@ -1,5 +1,7 @@
 <template>
 	<div class="container-fluid limited-width">
+		<h1 class="component-title">Dataset <small class="secondary-text text-muted" v-if="title">{{ title }}</small></h1>
+
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
@@ -275,6 +277,10 @@ export default {
 		},
 		bundles() {
 			return Object.keys(Bundle)
+		},
+		title() {
+			// TODO: make foolproof
+			return this.$store.state.record.title && (this.$store.state.record.title[this.$root.language] || this.$store.state.record.title[Object.keys(this.$store.state.record.title)[0]] || null)
 		},
 	},
 	watch: {

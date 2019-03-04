@@ -128,6 +128,26 @@ body {
 //$form-feedback-valid-color: $dark !default;
 $form-feedback-valid-color: #ced4da !default;
 
+
+/* real css from here on */
+
+
+// Component headers
+h1.component-title {
+	font-weight: lighter;
+	margin: 1.2rem 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+h1 .secondary-text {
+	border-left: 1px solid #ccc;
+	margin-left: 0.5rem;
+	padding-left: 1rem;
+}
+
+
 .q-validation-error {
 	color: white;
 	background-color: #b3001b;
