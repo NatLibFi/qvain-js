@@ -9,6 +9,9 @@ import cloneWithPrune from './lib/cloneWithPrune.js'
 
 Vue.use(Vuex)
 
+// temporary counter to check how often a getter is called
+//let counter = 0
+
 export default new Vuex.Store({
 	state: {
 		record: undefined,
@@ -164,55 +167,43 @@ export default new Vuex.Store({
 		},
 	},
 	getters: {
+		// prunedDataset returns a deep-clone of the dataset discarding empty leaves
 		prunedDataset: (state) => {
 			return cloneWithPrune(state.record)
 		},
+		// getState returns the validation state for a given path
 		getState: (state) => (path) => {
 			return state.vState[path]
 		},
+		// uiForPath returns the UI overrides for the given path (if any)
 		uiForPath: (state) => (path) => {
 			return state.hints[path.replace(/(\/|^)[0-9]+(\/|$)/g, "$1*$2")] || {}
 		},
+		// uiValidKeywordsList returns a static array of valid keywords
 		uiValidKeywordsList: (state) => {
 			//Object.keys(state.UI_VALID_KEYWORDS)
 			return state.UI_VALID_KEYWORDS
 		},
+		// uiValidKeywordsSet returns a static set of valid keywords
 		uiValidKeywordsSet: (state) => {
 			return new Set(state.UI_VALID_KEYWORDS)
 		},
+		// hasPath checks if the given json-pointer path exists
 		hasPath: (state) => (path) => {
-			return vuePointer.has(state.dataset, path)
+			return vuePointer.has(state.record, path)
 		},
+		// getPath gets the value for the given json-pointer path
 		getPath: (state) => (path) => {
 			console.log("getPath for", path)
-			/*
-			if (!vuePointer.has(state.dataset, path)) {
-				//jsonPointer.set(state.dataset, path, "")
-				//Vue.set(state, 'dataset', state.dataset)
-				//Vue.set(state.dataset, 'rights_holder', {})
-				//Vue.set(state.dataset['rights_holder'], 'identifier', "")
-				console.log("getPath: not set", path)
-				//vuePointer.set(state.dataset, path, "")
-
-			}
-			if (vuePointer.has(state.dataset, path)) {
-				console.log("getPath: set now", path)
-			}
-			*/
-			return vuePointer.get(state.dataset, path)
+			return vuePointer.get(state.record, path)
 		},
-		cachedPath: (state) => {
-			const localCache = {}
-			return (path) => {
-				if (localCache[path]) {
-					console.log("from cache", path)
-					return localCache[path]
-				}
-				console.log("from store", path)
-				let tmp = vuePointer.get(state.dataset, path)
-				localCache[path] = tmp
-				return tmp
-			}
+		// getTitle returns the English title or the first one defined
+		getTitle: (state) => {
+			return state.record && state.record.title && (state.record.title['en'] || state.record.title[Object.keys(state.record.title)[0]] || null)
+		},
+		// getTitleWithLanguage returns the title for the given language or the first defined
+		getTitleWithLanguage: (state) => (lang) => {
+			return state.record && state.record.title && (state.record.title[lang] || state.record.title[Object.keys(state.record.title)[0]] || null)
 		},
 	},
 })

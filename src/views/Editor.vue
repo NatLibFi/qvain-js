@@ -277,8 +277,12 @@ export default {
 			return Object.keys(Bundle)
 		},
 		title() {
-			// TODO: make foolproof
-			return this.$store.state.record && this.$store.state.record.title && (this.$store.state.record.title[this.$root.language] || this.$store.state.record.title[Object.keys(this.$store.state.record.title)[0]] || null)
+			// get English title or first defined
+			// TODO: make generic?
+			return this.$store.getters.getTitle
+
+			// alternatively, get app language title or first defined
+			//return this.$store.getters.getTitleWithLanguage(this.$root.language || 'en')
 		},
 	},
 	watch: {
