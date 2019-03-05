@@ -6,6 +6,8 @@ import vuePointer from '../vendor/json-pointer/index.js'
 import cloneWithPrune from './lib/cloneWithPrune.js'
 //const vuePointer = require('../vendor/json-pointer/index.js').default
 //import * as vuePointer from '../vendor/json-pointer/index.js'
+import getDotted from 'lodash.get'
+import hasDotted from 'lodash.has'
 
 Vue.use(Vuex)
 
@@ -196,6 +198,16 @@ export default new Vuex.Store({
 		getPath: (state) => (path) => {
 			console.log("getPath for", path)
 			return vuePointer.get(state.record, path)
+		},
+		// hasDataPath checks if the given dotted path exists (see: lodash.has)
+		hasDataPath: (state) => (path) => {
+			// _.has(object, path)
+			return hasDotted(state.record, path)
+		},
+		// getDataPath gets the value for the given dotted path (see: lodash.get)
+		getDataPath: (state) => (path) => {
+			// _.get(object, path, [defaultValue])
+			return getDotted(state.record, path)
 		},
 		// getTitle returns the English title or the first one defined
 		getTitle: (state) => {
