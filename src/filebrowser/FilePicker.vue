@@ -49,11 +49,15 @@
 
 import Browser from './Browser'
 import FileItem from './FileItem.vue'
-//import FileEditModal from './FileEditModal.vue'
-//import FileInfoModal from './fileinfo-modal'
 
 import { faFile, faFolder } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+
+const metaxAPI = axios.create({
+	baseURL: process.env.VUE_APP_METAX_API_URL || '/api/proxy',
+	timeout: 3000,
+	responseType: 'json',
+})
 
 export default {
 	name: 'filepicker',
@@ -108,8 +112,8 @@ export default {
 	},
 	computed: {
 		projects() {
-			//return this.$auth.user.projects || []
-			return ['project_x', '2001036'] // TODO: remove this!!
+			// return this.$auth.user.projects || []
+			return ['project_x', '2001036'] // this is only for development purpose
 		},
 		selectedProject() {
 			const { project: projectIDInRoute } = this.$route.params
@@ -132,15 +136,13 @@ export default {
 		try {
 			if (this.state.files.length > 0) {
 				const identifier = this.state.files[0].identifier
-				const url = `https://metax-test.csc.fi/rest/files/${identifier}`
-				const { data } = await axios.get(url)
+				const { data } = await metaxAPI.get(`/files/${identifier}`)
 				const project = data.project_identifier
 
 				this.project = project
 			} else if (this.state.directories.length > 0) {
 				const identifier = this.state.directories[0].identifier
-				const url = `https://metax-test.csc.fi/rest/directories/${identifier}/files`
-				const { data } = await axios.get(url)
+				const { data } = await metaxAPI.get(`/directories/${identifier}/files`)
 				const project = (data.directories && data.directories[0] && data.directories[0].project_identifier) ||
 					(data.files && data.files[0] && data.files[0].project_identifier) || null
 
