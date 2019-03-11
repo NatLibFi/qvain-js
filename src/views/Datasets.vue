@@ -24,8 +24,8 @@
 		<b-alert variant="warning" :show="!!devWarning" dismissible @dismissed="devWarning = false"><strong>development environment</strong> – you are viewing fake API data.</b-alert>
 
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
-
-		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :items="apiProvider" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
+		{{ datasetData }}
+		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :items="datasetData" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
 			<template slot="published" slot-scope="row">
 				<font-awesome-icon icon="circle" class="text-success text-small text-center fa-xs" fixed-width v-if="row.item.published" />
 				<font-awesome-icon icon="circle" class="text-light text-small text-center fa-xs" style="color: #abcdef;" fixed-width v-else />
@@ -104,7 +104,6 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import formatDate from 'date-fns/format'
 
 // id owner created modified published identifier title{} description{} preservation_state
-
 const fields = [
 	{ label: "published",   key: "published",          sortable: false },
 	//	{ label: "id",          key: "id",                 sortable: true },
@@ -161,31 +160,16 @@ const fakeFetch = (data, delay = 0) => {
 	})
 }
 
-// fakeClient returns a fake Axios response with the given data and delay.
-function fakeClient() {
-	return fakeFetch(testList, 500)
-}
 
-// apiProvider fills the table with datasets from an (real or fake) API response.
-// Function is passed (ctx, callback).
-function apiProvider() {
-	let promise = process.env.VUE_APP_ENVIRONMENT !== 'development' ? apiClient.get("/datasets/") : fakeClient()
-
-	this.error = null
-
-	return promise.then((response) => {
-		console.log("api count:", (response.data || []).length)
-		return (response.data || [])
-	})
-		.catch((error) => {
-			this.error = getApiError(error)
-			return []
-		})
-}
 
 export default {
 	name: "dataset-list",
-	data: function() {
+	components: {
+		PreservationState,
+		BusyButton,
+		DatasetVersionsModal,
+	},
+	data() {
 		return {
 			activeInModal: null,
 			fields: fields,
@@ -199,9 +183,25 @@ export default {
 			isBusy: false,
 			error: null,
 			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development',
+			datasetData: [],
 		}
 	},
 	methods: {
+		// apiProvider fills the table with datasets from an (real or fake) API response.
+		// Function is passed (ctx, callback).
+		async fetchDataset() {
+			try {
+				this.error = null
+				const { data } = await (process.env.VUE_APP_ENVIRONMENT !== 'development' ?
+					apiClient.get("/datasets/") : fakeFetch(testList, 500))
+
+				console.log("api count:", data.length)
+				this.datasetData = data
+			} catch (e) {
+				this.error = getApiError(e)
+				this.datasetData = []
+			}
+		},
 		open(id) {
 			console.log("request to open dataset", id)
 			this.$router.push({ name: 'editor', params: { id: id, blah: 'woof' }})
@@ -222,9 +222,9 @@ export default {
 			console.log("opening:", `{process.env.VUE_APP_ETSIN_API_URL}/{extid}`)
 			window.open(`${process.env.VUE_APP_ETSIN_API_URL}/${extid}`, '_blank')
 		},
-		apiProvider(ctx) {
+		/*apiProvider(ctx) {
 			return apiProvider.bind(this)(ctx)
-		},
+		},*/
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)
 		},
@@ -276,13 +276,9 @@ export default {
 			return new RegExp('.*' + this.filterString + '.*', 'ig')
 		},
 	},
-	components: {
-		PreservationState,
-		BusyButton,
-		DatasetVersionsModal,
-	},
-	created: function() {
+	async created() {
 		this.ownerSelect = this.$auth.user.id
+		await this.fetchDataset()
 	},
 }
 </script>
