@@ -40,6 +40,7 @@
 				<b-button-group size="sm" class="mx-1" v-if="inDev">
 					<b-btn variant="outline-light" v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
 					<b-btn variant="outline-light" v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
+					<b-btn variant="outline-light" v-b-tooltip.hover title="Publish" v-b-modal="'publish-modal'">publish</b-btn>
 				</b-button-group>
 
 			</b-button-toolbar>
@@ -76,6 +77,7 @@
 		<!-- Modals -->
 		<dataset-json-modal id="dataset-json-modal"></dataset-json-modal>
 		<dataset-overview-modal id="dataset-overview-modal"></dataset-overview-modal>
+		<publish-modal id="publish-modal"></publish-modal>
 
 		<div v-if="!loading">
 			<!--
@@ -107,6 +109,7 @@ import apiClient from '@/api/client.js'
 //import api from '@/api/api.js'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
+import PublishModal from '@/components/PublishModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
 
 import debounce from 'lodash.debounce'
@@ -118,6 +121,7 @@ export default {
 	components: {
 		'dataset-json-modal': DatasetJsonModal,
 		'dataset-overview-modal': DatasetOverviewModal,
+		'publish-modal': PublishModal,
 	},
 	props: {
 		id: {
