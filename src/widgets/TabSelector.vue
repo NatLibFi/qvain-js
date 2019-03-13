@@ -1,5 +1,12 @@
 <template>
 	<div class="q-tab-selector">
+		<!--
+		Tab schema {{ schema.required }}
+		Widget {{ widget }}
+		this is required {{ required }}
+		property was {{ property }}
+		-->
+
 		<!-- schema-tab-selector -->
 		<div v-if="showWidgets">
 			<p>ui widgets</p>
@@ -21,10 +28,11 @@
 		<!-- actual component -->
 		<!-- keep-alive -->
 		<keep-alive>
-		<component v-if="activeTab === myTab" :is="widget" v-bind="widgetProps" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
-			<p>{{ dataType }}</p>
-		</component>
-		<skip v-else :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
+			<component v-if="activeTab === myTab" :is="widget" v-bind="widgetProps" :required="required" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="newdepth" v-on="$listeners">
+				<p>{{ dataType }}</p>
+			</component>
+			<skip v-else :required="(schema.required || []).includes(property)" :schema="schema" :path="path" :value="parent[property]" :valtype="dataType" :parent="parent" :property="property" :hasTypeError="hasTypeError" :tab="myTab" :activeTab="activeTab" :depth="depth" v-on="$listeners"></skip>
+			{{ (schema.required || []).includes(property) }}
 		</keep-alive>
 		<!-- <div style="color: #eeeeee;">hidden myTab: {{ myTab }} {{ typeof myTab }} tab: {{ tab }} {{ typeof tab }} active: {{ activeTab }} {{ typeof activeTab }}</div> -->
 
@@ -66,7 +74,7 @@ export default {
 		schema: Object,
 	},
 	*/
-	props: ['schema', 'value', 'path', 'parent', 'property', 'tab', 'activeTab', 'depth'],
+	props: ['schema', 'value', 'path', 'parent', 'property', 'tab', 'activeTab', 'depth', 'required'],
 	data: function() {
 		return {
 			dataType: null,

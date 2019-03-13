@@ -24,7 +24,6 @@
 		<b-alert variant="warning" :show="!!devWarning" dismissible @dismissed="devWarning = false"><strong>development environment</strong> – you are viewing fake API data.</b-alert>
 
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
-		{{ datasetData }}
 		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :items="datasetData" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
 			<template slot="published" slot-scope="row">
 				<font-awesome-icon icon="circle" class="text-success text-small text-center fa-xs" fixed-width v-if="row.item.published" />

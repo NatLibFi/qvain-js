@@ -1,5 +1,6 @@
 <template>
 	<div :style="listItemStyle(depth)">
+		Object schema {{ schema.required }}
 		<header>
 			<h3 class="title" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 				<!--<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/>-->

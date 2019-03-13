@@ -196,7 +196,9 @@ export default {
 					this.$root.showAlert("Please save your dataset first", "danger")
 				}
 			} catch(e) {
-				this.$root.showAlert("Publish failed!", "danger")
+				const errorMessage = `Publish failed, please check you have inserted all mandatory fields. Mandatory fields are:
+				creator, description, access_rights and title. The error was: ${e}`
+				this.$root.showAlert(errorMessage, "danger")
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {

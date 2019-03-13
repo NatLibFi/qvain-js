@@ -1,8 +1,9 @@
 <template>
-	<record-field class="min-height" :required="true" :wrapped="wrapped" :header="!inArray">
+	<record-field class="min-height" :required="required" :wrapped="wrapped" :header="!inArray" :error="!schemaState">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right" class="header__right">
-			<!--<ValidationStatus :status="validationStatus" />-->
+			<p :key="error" v-for="error in schemaErrors" class="error-message">{{ error }}</p>
+			<ValidationStatus v-if="!schemaState" :status="'invalid'" />
 			<InfoIcon :description="uiDescription"/>
 		</div>
 		<div slot="input">
@@ -70,6 +71,10 @@
 	</record-field>
 </template>
 <style lang="scss" scoped>
+.error-message {
+	display: inline-block;
+}
+
 .input__controls {
 	margin-left: auto;
 	margin-top: 10px;
@@ -108,6 +113,7 @@ import vSchemaBase from './base.vue'
 import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
 
 export default {
 	extends: vSchemaBase,
@@ -118,6 +124,7 @@ export default {
 		RecordField,
 		TitleComponent,
 		InfoIcon,
+		ValidationStatus
 	},
 	props: {
 		tabFormat: { type: Boolean, default: true },

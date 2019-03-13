@@ -1,5 +1,5 @@
 <template>
-	<wrapper :wrapped="wrapped">
+	<wrapper :wrapped="wrapped" :error="error">
 		<div v-if="header" class="header">
 			<div class="header__label">
 				<slot name="title"/><span v-if="required" class="header__required">*</span>
@@ -58,6 +58,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		error: {
+			type: Boolean,
+			default: false
+		}
 	},
 }
 </script>
