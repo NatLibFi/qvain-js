@@ -175,7 +175,7 @@ export default {
 		async openDirectory() {
 			try {
 				this.error = null
-				const { data } = await fileAPI.get('/files/', {
+				const { data } = await fileAPI.get('/directories/files/', {
 					params: { project: this.project, path: this.path },
 				})
 				this.directory = data
@@ -262,8 +262,8 @@ export default {
 			}
 
 			return [
-				...this.directory.directories.map(mapToInternalValues('directories')),
-				...this.directory.files.map(mapToInternalValues('files')),
+				...(this.directory.directories || []).map(mapToInternalValues('directories')),
+				...(this.directory.files || []).map(mapToInternalValues('files')),
 			]
 		},
 	},
