@@ -175,7 +175,7 @@ export default {
 		async openDirectory() {
 			try {
 				this.error = null
-				const { data } = await fileAPI.get('/directories/files/', {
+				const { data } = await fileAPI.get('/directories/files', {
 					params: { project: this.project, path: this.path },
 				})
 				this.directory = data
