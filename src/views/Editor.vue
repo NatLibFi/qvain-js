@@ -165,6 +165,7 @@ export default {
 					vm.validator.validateData(vm.$store.state.record)
 					//console.warn("data == store? (after validate)", vm.validator.data == vm.$store.state.record, vm.validator.data, vm.$store.state.record)
 				}*/
+				console.log('mutation type', mutation.type)
 				if (mutation.type !== 'initValue') {
 					vm.validator.validateData(vm.$store.state.record)
 				}

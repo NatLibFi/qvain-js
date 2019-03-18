@@ -92,9 +92,15 @@ export default new Vuex.Store({
 			Vue.set(payload.p, payload.prop, payload.val)
 		},
 		updateValue(state, payload) {
-			//console.log("store update for", payload.p, "payload:", payload)
-			//payload.p[payload.prop] = payload.val
+			console.log('payload', payload)
+
 			Vue.set(payload.p, payload.prop, payload.val)
+			Vue.nextTick(() => {
+				if (payload.val === '') {
+					console.log('delete prop')
+					Vue.delete(payload.p, payload.prop)
+				}
+			})
 		},
 		updateArrayValue(state, payload) {
 			const index = payload.p[payload.prop].findIndex(x => x[payload.search.field] === payload.search.value)
