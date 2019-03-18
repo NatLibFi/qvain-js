@@ -2,7 +2,7 @@
 	<record-field class="min-height" :required="required" :wrapped="wrapped" :header="!inArray" :error="!schemaState">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right" class="header__right">
-			<p :key="error" v-for="error in schemaErrors" class="error-message">{{ error }}</p>
+			<p :key="error" v-for="error in errors" class="error-message">{{ error }}</p>
 			<ValidationStatus v-if="!schemaState" :status="'invalid'" />
 			<InfoIcon :description="uiDescription"/>
 		</div>
@@ -229,6 +229,21 @@ export default {
 			// additionalItems: true if missing, true if true, true when object; false if false
 			return this.schema['additionalItems'] !== false
 		},
+		errors() {
+			const incorrectElements = this.schemaErrors
+				.filter(e => e.slice(0, 31) === 'list validation failed for item')
+				.map(e => Number(e.slice(32)) +1)
+				.join(', #')
+
+			const otherErrors = this.schemaErrors
+				.filter(e => e.slice(0, 31) !== 'list validation failed for item')
+
+			if (incorrectElements.length > 0) {
+				otherErrors.push('Check element(s) #' + incorrectElements)
+			}
+
+			return otherErrors
+		}
 	},
 	created() {
 		if (this.value == undefined) {

@@ -27,7 +27,6 @@ export default {
 
 				//console.log(`skip (${myPath}) from (${context.props.path}) with key (${key})`, context.props.schema.properties[key])
 
-				console.log('skip props:', context.props)
 				let child = createElement('TabSelector', {
 					props: {
 						schema: context.props.schema.properties[key],

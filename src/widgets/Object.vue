@@ -1,6 +1,5 @@
 <template>
 	<div :style="listItemStyle(depth)">
-		Object schema {{ schema.required }}
 		<header>
 			<h3 class="title" @click="visible = !visible" :aria-controls="domId + '-props'" :aria-expanded="visible ? 'true' : 'false'">
 				<!--<font-awesome-icon v-if="!visible" :icon="expandArrow" class="text-dark"/>-->
@@ -11,6 +10,7 @@
 			<b-list-group flush>
 				<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
 					<TabSelector
+						:required="(schema.required || []).includes(propName)"
 						:schema="schema['properties'][propName]"
 						:path="newPath('properties/' + propName)"
 						:value="value[propName]"

@@ -157,13 +157,16 @@ export default {
 			this.validator.v = this.$store.state.vState
 			console.log("data == store? (before)", this.validator.data == this.$store.state.record)
 			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
-				if (mutation.type == "updateValue" || mutation.type == "pushValue" || mutation.type == "popValue") {
+				/*if (mutation.type == "updateValue" || mutation.type == "pushValue" || mutation.type == "popValue" || mutation.type === 'deleteArrayValue') {
 					if (vm.validator.data !== vm.$store.state.record) {
 						console.warn("data == store?", vm.validator.data == vm.$store.state.record)
 					}
 					console.log("validator ran")
 					vm.validator.validateData(vm.$store.state.record)
 					//console.warn("data == store? (after validate)", vm.validator.data == vm.$store.state.record, vm.validator.data, vm.$store.state.record)
+				}*/
+				if (mutation.type !== 'initValue') {
+					vm.validator.validateData(vm.$store.state.record)
 				}
 			})
 		},

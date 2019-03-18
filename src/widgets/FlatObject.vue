@@ -2,7 +2,19 @@
 	<b-card no-body class="my-3 p-0 m-0 border-0">
 		<b-list-group flush>
 			<b-list-group-item class="border-0" v-for="propName in sortedProps" :key="propName">
-				<TabSelector :schema="schema['properties'][propName]" :path="newPath('properties/' + propName)" :value="value[propName]" :parent="value" :property="propName" :tab="myTab" :activeTab="activeTab" :depth="depth" :key="propName" v-if="shouldCreateProp(propName)"></TabSelector>
+				<TabSelector
+					:schema="schema['properties'][propName]"
+					:required="(schema.required || []).includes(propName)"
+					:path="newPath('properties/' + propName)"
+					:value="value[propName]"
+					:parent="value"
+					:property="propName"
+					:tab="myTab"
+					:activeTab="activeTab"
+					:depth="depth"
+					:key="propName"
+					v-if="shouldCreateProp(propName)">
+				</TabSelector>
 			</b-list-group-item>
 		</b-list-group>
 	</b-card>
