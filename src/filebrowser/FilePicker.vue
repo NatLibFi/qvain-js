@@ -112,8 +112,8 @@ export default {
 	},
 	computed: {
 		projects() {
-			// return this.$auth.user.projects || []
-			return ['project_x', '2001036'] // this is only for development purpose
+			return this.$auth.user.projects || []
+			//return ['project_x', '2001036'] // this is only for development purpose
 		},
 		selectedProject() {
 			const { project: projectIDInRoute } = this.$route.params
