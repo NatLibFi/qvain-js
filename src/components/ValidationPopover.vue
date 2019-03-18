@@ -26,7 +26,6 @@ export default {
 	computed: {
 	},
 	created() {
-		console.log("validation-popover created")
 	},
 }
 </script>

@@ -89,7 +89,6 @@ export default {
 		shouldCreateProp(prop) {
 			if (!this.isPostponedProp(prop) && !this.isIgnoredProp(prop)) return true
 			if (prop in this.value) return true
-			console.log("shouldCreateProp():", false)
 			return false
 		},
 		isPostponedProp(prop) {
@@ -122,16 +121,12 @@ export default {
 		*/
 		sortedProps() {
 			if (!this.schema['properties']) {
-				console.log("sortedProps(): no props")
 				return []
 			}
 
 			if (typeof this.ui['order'] === 'object') {
-				console.log("sortedProps(): found order:", this.ui['order'])
-
 				return keysWithOrder(this.schema['properties'], this.ui['order'])
 			} else {
-				console.log("sortedProps(): props not ordered", Object.keys(this.schema['properties']))
 				return Object.keys(this.schema['properties'])
 			}
 		},

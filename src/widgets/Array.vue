@@ -177,10 +177,7 @@ export default {
 		},
 		doPlus() {
 			if (this.maximum === undefined || this.value.length < this.maximum) {
-				//this.value.push({})
 				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })
-				console.log("didPlus, length now:", this.value.length)
-				console.log('Set active tab to', this.value.length - 1)
 				this.$nextTick(function() { // make sure that the tab is there before causing the new tab to be selected
 					this.tabIndex = this.value.length - 1
 				})
@@ -189,7 +186,6 @@ export default {
 			return false
 		},
 		deleteElement(index) {
-			console.log("schema-array: request to delete element with index", index, "value:", this.value[index])
 			if (index >= 0 && index < this.value.length) {
 				this.$store.commit('deleteArrayValue', {
 					parent: this.parent,
@@ -200,8 +196,6 @@ export default {
 				this.$nextTick(() => {
 					this.forceArrayUpdateHack = !this.forceArrayUpdateHack
 				})
-			} else {
-				console.log("deleteElement: attempt to remove non-existing element at index", index)
 			}
 		},
 		schemaForChild: function(index) {
@@ -246,10 +240,6 @@ export default {
 		}
 	},
 	created() {
-		if (this.value == undefined) {
-			console.log("array: undefined value for path", this.path)
-		}
-		console.log("array: typeof", this.path, typeof this.value)
 		return this.init()
 	},
 }

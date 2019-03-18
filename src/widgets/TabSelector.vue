@@ -107,17 +107,14 @@ export default {
 		},
 		handleCombiners: function() {
 			for (let i in COMBINERS) {
-				//console.log("combiner:", COMBINERS[i])
 				if (!(COMBINERS[i] in this.schema)) continue
 
 				let combiner = COMBINERS[i]
 
 				if (typeof this.schema[combiner] === 'object' && this.schema[combiner] instanceof Array) {
-					console.log("found combiner")
 					return 'schema-' + combiner.toLowerCase()
 				}
 
-				console.log("invalid combiner")
 				return undefined
 			}
 			return undefined
@@ -147,44 +144,33 @@ export default {
 				// check if the array has values (strings, numbers, null) or nested objects (array, object)
 				// TODO: this only checks "list" validation, not "tuple" validation
 				let typeOfItems = this.schema.items && this.schema.items.type && this.schema.items.type || ""
-				console.log("array: typeOfItems:", typeOfItems, this.schema)
 				//let hasValues = typeOfItems !== "array" && typeOfItems !== "object"
 				//return hasValues ? 'schema-inline-array' : 'schema-array'
 				return 'schema-array'
 			}
 			case 'boolean':
-				console.log("schema-selector: boolean not implemented yet")
 				return ""
 			case 'null':
-				console.log("schema-selector: null not implemented yet")
 				return ""
 			case undefined:
-				console.log("schemaType: checking for combiners...", this.handleCombiners())
 				return this.handleCombiners() || ""
-				//console.log("schema-selector: `any` not implemented yet")
-				//return ""
 			default:
-				console.log("schema-selector: unknown schemaType")
 				return ""
 			}
 		},
 		vivicate: function(force) {
-			//console.log("value:", this.value, "path:", this.path, "parent:", this.parent, "prop:", this.property, "exists:", this.property !== undefined && (this.property in this.parent))
 			if (this.value !== undefined && !force) {
 				return
 			}
 
-			//console.log("vivicate(): undefined data for", this.path, "type:", this.dataType)
 
 			let target, key // eslint-disable-line no-unused-vars
 
 			// the parent of the root path is the store
 			if (this.parent === undefined || this.parent === "") {
-				console.log("setting parent to store")
 				target = this.$store.state
 				key = 'record'
 			} else {
-				//console.log("setting parent to parameter")
 				target = this.parent
 				key = this['property']
 			}
@@ -234,7 +220,6 @@ export default {
 			return ["string", "number", "integer", "object", "array", "boolean", "null"]
 		},
 		widget: function() {
-			//console.log(`widget chain for ${this.path}:`, this.selectedWidget, this.uiForSchema['widget'], this.uiForDef['widget'], this.defaultWidget(this.dataType))
 			return this.selectedWidget || this.uiForSchema.widget || this.uiForDef.widget || this.defaultWidget(this.dataType)
 		},
 		widgetProps: function() {
@@ -266,20 +251,17 @@ export default {
 			return typeof this.uiTab === 'string' ? this.uiTab : this.tab
 		},
 		newdepth: function() {
-			//console.log("depth:", this.depth, typeof this.depth)
 			return 'tab' in this.uiForSchema ? 1 : this.depth + 1
 		},
 	},
 	watch: {
 		schema: function() {
-			//console.log("selector: schema watcher ran for", this.path)
 			if (this.path !== this.cachedPath) {
 				console.warn("selector (" + this.path + "): VNode was recycled!")
 			}
 			//if (this.$store.state.record === undefined) {
 			//if (!this.path && this.value === undefined) {
 			if (this.value === undefined) {
-				//console.log("schema change, undefined value")
 				this.setDataType(this.schema['type'])
 				this.vivicate()
 			}
@@ -334,7 +316,6 @@ export default {
 	created() {
 		// fail-safe for inadvertent VNode recycling
 		this.cachedPath = this.path
-		//console.log("schema-tab-selector(", this.path, "): calling setDataType (created) with", this.schema['type'], "and calling vivicate()")
 		this.setDataType(this.schema['type'])
 
 		// This should try to catch invalid data in case the schema (outside of the application) has changed

@@ -39,7 +39,6 @@ function validateString(schema, data, path, parent, prop) {
 	// formats not implemented should PASS (http://json-schema.org/latest/json-schema-validation.html#rfc.section.8.1)
 	if ('format' in schema) {
 		if (schema['format'] in STRING_FORMAT_VALIDATORS) {
-			console.log('validation STRING FORMATS', data)
 			if (!STRING_FORMAT_VALIDATORS[schema['format']](data)) this.addError(path, schema, "invalid format for " + schema['format'])
 		} else {
 			// unknown format, pass (log somewhere?)

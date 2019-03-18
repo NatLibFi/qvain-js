@@ -56,10 +56,7 @@ export default new Vuex.Store({
 			}
 		},
 		loadSchema(state, schema) {
-			//state.schema = schema
-			//state.schema = Vue.set(state, 'schema', undefined)
 			Vue.set(state, 'schema', schema)
-			//Object.assign(state.schema, schema)
 		},
 		changeSchema(state) {
 			//state.schema.properties.creator.description = "I changed it!"
@@ -94,12 +91,9 @@ export default new Vuex.Store({
 			Vue.set(payload.p, payload.prop, payload.val)
 		},
 		updateValue(state, payload) {
-			console.log('payload', payload)
-
 			Vue.set(payload.p, payload.prop, payload.val)
 			Vue.nextTick(() => {
 				if (payload.val === '') {
-					console.log('delete prop')
 					Vue.delete(payload.p, payload.prop)
 				}
 			})
@@ -124,7 +118,6 @@ export default new Vuex.Store({
 			payload.p[payload.prop].splice(index, 1)
 		},
 		deleteArrayValue(state, { parent, property, index }) {
-			console.log(parent[property])
 			Vue.delete(parent[property], index)
 		},
 		deleteValue(state, payload) {
@@ -143,7 +136,6 @@ export default new Vuex.Store({
 			//var obj = jsonPointer.get(state.dataset, payload.path)
 			//Vue.set(obj,
 			//Vue.set(state.dataset['rights_holder'], 'identifier', payload.value)
-			console.log("setPath:", payload.path)
 			vuePointer.set(state.dataset, payload.path, payload.value)
 		},
 
@@ -202,7 +194,6 @@ export default new Vuex.Store({
 		},
 		// getPath gets the value for the given json-pointer path
 		getPath: (state) => (path) => {
-			console.log("getPath for", path)
 			return vuePointer.get(state.record, path)
 		},
 		// hasDataPath checks if the given dotted path exists (see: lodash.has)

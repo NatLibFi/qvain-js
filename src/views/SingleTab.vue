@@ -54,7 +54,6 @@ export default {
 		'TabSelector': TabSelector,
 	},
 	created() {
-		console.log("SingleTab called", this.$route.path)
 	},
 	mounted() {
 		console.warn("mounted():", this.$store.state.schema)

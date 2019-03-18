@@ -159,17 +159,7 @@ export default {
 				},
 			)
 			this.validator.v = this.$store.state.vState
-			console.log("data == store? (before)", this.validator.data == this.$store.state.record)
 			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
-				/*if (mutation.type == "updateValue" || mutation.type == "pushValue" || mutation.type == "popValue" || mutation.type === 'deleteArrayValue') {
-					if (vm.validator.data !== vm.$store.state.record) {
-						console.warn("data == store?", vm.validator.data == vm.$store.state.record)
-					}
-					console.log("validator ran")
-					vm.validator.validateData(vm.$store.state.record)
-					//console.warn("data == store? (after validate)", vm.validator.data == vm.$store.state.record, vm.validator.data, vm.$store.state.record)
-				}*/
-				console.log('mutation type', mutation.type)
 				if (mutation.type !== 'initValue') {
 					vm.validator.validateData(vm.$store.state.record)
 				}
@@ -297,7 +287,6 @@ export default {
 	},
 	watch: {
 		'$route.params.id': async function(newId, oldId) {
-			console.log("$route.params.id watcher triggered from", oldId, newId)
 			if (this.id !== 'new') {
 				await this.openRecord(this.id)
 			} else {

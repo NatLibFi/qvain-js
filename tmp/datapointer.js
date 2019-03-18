@@ -32,7 +32,6 @@ export function dataPointer(ptr) {
 }
 
 function ptrFor(path) {
-	console.log(path, "-->", dataPointer(path))
 }
 
 ptrFor("")

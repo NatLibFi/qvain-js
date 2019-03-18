@@ -20,14 +20,12 @@ export default {
 	methods: {
 		edit(index, event) {
 			this.editing = index
-			console.log("editing:", this.editing, event, event.target.children[0])
 			//event.target.children[0].focus()
 		},
 	},
 	watch: {
 		items(val, old) {
 			if (val.length > old.length) {
-				console.log("added")
 				this.editing = val.length - 1
 			}
 		},

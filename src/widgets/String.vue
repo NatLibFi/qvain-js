@@ -107,7 +107,6 @@ export default {
 	},
 	methods: {
 		deleteMe(event) {
-			console.log('schema-string: removal requested', event, this.property)
 			this.$parent.$emit('delete', this.property)
 		},
 		deleteIfEmpty() {
