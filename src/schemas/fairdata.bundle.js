@@ -35,23 +35,23 @@ export default {
 	ida: {
 		schema: FairdataIdaSchema,
 		ui: FairdataIdaUi,
-		name: "Fairdata (IDA)",
+		name: "I want to select IDA files", // "Fairdata (IDA)",
 		id: "metax-ida",
 		family: 2,
 		cloneFunc: clone,
 	},
-	'ida-old': {
+	/*'ida-old': {
 		schema: FairdataIdaOldSchema,
 		ui: FairdataIdaUi,
 		name: "Fairdata (IDA/old)",
 		id: "metax-ida",
 		family: 2,
 		cloneFunc: clone,
-	},
+	},*/
 	att: {
 		schema: FairdataAttSchema,
 		ui: FairdataIdaUi,
-		name: "Fairdata (ATT)",
+		name: "I want to link Remote resources", // "Fairdata (ATT)",
 		id: "metax-att",
 		family: 2,
 		cloneFunc: clone,

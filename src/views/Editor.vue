@@ -5,22 +5,19 @@
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
-					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone dataset</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">Reset dataset editor</b-btn>
+					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
 				</b-button-group>
 
-				<!--
-				<b-input-group size="sm" class="mx-1" prepend="dataset">
-					<b-form-input type="text" placeholder="not saved" :value="$store.state.metadata.id || 'new'" readonly></b-form-input>
-				</b-input-group>
-				-->
-				<b-input-group v-if="inDev" size="sm" class="w-25 mx-1" prepend="schema">
-					<b-form-select value="fairdata" v-model="selectedSchema">
-					<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
-						<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
-					</optgroup>
+				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
+					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None">
+						<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
+							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
+						</optgroup>
+						<option v-if="selectedSchema === null" :value="null">None</option>
 					</b-form-select>
 				</b-input-group>
+
 				<b-input-group size="sm" class="w-25 mx-1" prepend="owner">
 					<b-form-select :value="$auth.user ? $auth.user.name : 'you'" :options="[ $auth.user ? $auth.user.name : 'you' ]"></b-form-select>
 				</b-input-group>
@@ -30,25 +27,13 @@
 					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited">Publish</b-btn>
 				</b-button-group>
 
-				<!--
-				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Validate dataset" size="sm" @click="runValidator()" :disabled="unsubscribeFunc !== null">validate</b-btn>
-					<b-btn v-b-tooltip.hover title="Validate while editing" size="sm" id="checkbox-live" :pressed="unsubscribeFunc !== null" @change="toggleValidator()" v-model="doLive">live?</b-btn>
-				</b-button-group>
-				-->
-
-				<b-button-group size="sm" class="mx-1" v-if="inDev">
+				<b-button-group size="sm" class="mx-1" v-if="!inDev">
 					<b-btn variant="outline-light" v-b-tooltip.hover title="View dataset JSON" v-b-modal="'dataset-json-modal'">json</b-btn>
 					<b-btn variant="outline-light" v-b-tooltip.hover title="Overview" v-b-modal="'dataset-overview-modal'">overview</b-btn>
 					<b-btn variant="outline-light" v-b-tooltip.hover title="Publish" v-b-modal="'publish-modal'">publish</b-btn>
 				</b-button-group>
 
 			</b-button-toolbar>
-			<!--
-			<p>
-				id: {{ id }} isClone: {{ isClone }} params: {{ $router.params }}
-			</p>
-			-->
 		</div>
 
 
@@ -137,7 +122,7 @@ export default {
 	},
 	data() {
 		return {
-			selectedSchema: '',
+			selectedSchema: null,
 			doLive: true,
 			unsubscribeFunc: null,
 			validator: null,
@@ -240,7 +225,7 @@ export default {
 			})
 		},
 		initDataset() {
-			this.selectedSchema = Bundle['fairdata']['ida']
+			// this.selectedSchema = Bundle['fairdata']['ida']
 			this.$store.commit('loadSchema', this.selectedSchema.schema)
 			this.$store.commit('loadHints', this.selectedSchema.ui)
 
@@ -271,7 +256,7 @@ export default {
 	},
 	computed: {
 		tabs() {
-			return this.$store.state.hints.tabs.filter(tab => tab.uri)
+			return (this.$store.state.hints.tabs || []).filter(tab => tab.uri)
 		},
 		bundles() {
 			return Object.keys(Bundle)
@@ -293,6 +278,9 @@ export default {
 				this.clearRecord()
 			}
 		},
+		selectedSchema() {
+			this.createNewRecord()
+		}
 	},
 	async created() {
 		if (this.id !== 'new') {
@@ -306,7 +294,7 @@ export default {
 			this.loadFromStorage();
 		}*/
 
-		this.initDataset()
+		//this.initDataset()
 	},
 }
 </script>
