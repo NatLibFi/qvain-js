@@ -203,7 +203,7 @@ export default {
 		},
 		open(id) {
 			console.log("request to open dataset", id)
-			this.$router.push({ name: 'editor', params: { id: id, blah: 'woof' }})
+			this.$router.push({ name: 'tab', params: { id: id, tab: 'description' }})
 		},
 		del(id) {
 			this.error = null
