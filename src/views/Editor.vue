@@ -247,6 +247,8 @@ export default {
 				this.loading = true
 
 				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`)
+				const schemas = this.getSchemas('fairdata')
+				this.selectedSchema = data.schema === 'metax-ida' ? schemas.ida : schemas.att
 				this.$store.commit('loadData', Object(dataset))
 				this.$store.commit('setMetadata', { id })
 			} finally {
