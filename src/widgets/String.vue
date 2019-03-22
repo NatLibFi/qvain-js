@@ -1,5 +1,5 @@
 <template>
-	<record-field :required="true" :wrapped="false" :header="!inArray">
+	<record-field :required="required" :wrapped="false" :header="!inArray">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right" class="header__right">
 			<!--<ValidationStatus :status="validationStatus" />-->
@@ -7,6 +7,11 @@
 		</div>
 
 		<div slot="input" class="input">
+			<!-- validation test
+			schemaState {{ schemaState }}
+			schemaError {{ schemaErrors }}
+			minItems {{ schema.minItems }}
+			-->
 			<p v-if="inArray" class="input__number">#{{property}}</p>
 			<b-form-input
 				:type="inputType"
@@ -71,6 +76,15 @@ import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
 import DeleteButton from '@/partials/DeleteButton.vue'
 
+/**
+ *
+ * "type": "object",
+	"minProperties": 1,
+	"additionalProperties": {
+		"type": "string"
+	}
+ */
+
 export default {
 	extends: vSchemaBase,
 	name: 'schema-string',
@@ -93,7 +107,6 @@ export default {
 	},
 	methods: {
 		deleteMe(event) {
-			console.log('schema-string: removal requested', event, this.property)
 			this.$parent.$emit('delete', this.property)
 		},
 		deleteIfEmpty() {

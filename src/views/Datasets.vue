@@ -25,7 +25,7 @@
 
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
 
-		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :tbody-tr-class="rowClass" :items="apiProvider" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
+		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :tbody-tr-class="rowClass" :items="datasetList" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
 			<template slot="published" slot-scope="row">
 				<font-awesome-icon icon="circle" class="text-success text-small text-center fa-xs" fixed-width v-if="row.item.published" />
 				<font-awesome-icon icon="circle" class="text-light text-small text-center fa-xs" style="color: #abcdef;" fixed-width v-else />
@@ -108,7 +108,6 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import formatDate from 'date-fns/format'
 
 // id owner created modified published identifier title{} description{} preservation_state
-
 const fields = [
 	{ label: "published",   key: "published",          sortable: false },
 	//	{ label: "id",          key: "id",                 sortable: true },
@@ -174,9 +173,7 @@ function fakeClient() {
 // Function is passed (ctx, callback).
 function apiProvider() {
 	let promise = process.env.VUE_APP_ENVIRONMENT !== 'development' ? apiClient.get("/datasets/") : fakeClient()
-
 	this.error = null
-
 	return promise.then((response) => {
 		console.log("api count:", (response.data || []).length)
 		return (response.data || [])
@@ -189,7 +186,12 @@ function apiProvider() {
 
 export default {
 	name: "dataset-list",
-	data: function() {
+	components: {
+		PreservationState,
+		BusyButton,
+		DatasetVersionsModal,
+	},
+	data() {
 		return {
 			activeInModal: null,
 			fields: fields,
@@ -204,9 +206,30 @@ export default {
 			error: null,
 			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development',
 			//highlighted: "0582f51d-86c3-2bc1-eb11-296b533b9731",
+			datasetList: [],
 		}
 	},
 	methods: {
+		// apiProvider fills the table with datasets from an (real or fake) API response.
+		// Function is passed (ctx, callback).
+		/*
+		apiProvider(ctx) {
+			return apiProvider.bind(this)(ctx)
+		},
+		*/
+		async fetchDataset() {
+			try {
+				this.error = null
+				const { data } = await (process.env.VUE_APP_ENVIRONMENT !== 'development' ?
+					apiClient.get("/datasets/") : fakeFetch(testList, 500))
+
+				console.log("api count:", data.length)
+				this.datasetList = data
+			} catch (e) {
+				this.error = getApiError(e)
+				this.datasetList = []
+			}
+		},
 		open(id) {
 			console.log("request to open dataset", id)
 			this.$router.push({ name: 'editor', params: { id: id, blah: 'woof' }})
@@ -226,9 +249,6 @@ export default {
 		view(extid) {
 			console.log("opening:", `{process.env.VUE_APP_ETSIN_API_URL}/{extid}`)
 			window.open(`${process.env.VUE_APP_ETSIN_API_URL}/${extid}`, '_blank')
-		},
-		apiProvider(ctx) {
-			return apiProvider.bind(this)(ctx)
 		},
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)
@@ -288,7 +308,7 @@ export default {
 				//return 'datasets-highlighted-row'
 				return 'table-warning alert-warning'
 			}
-		}
+		},
 	},
 	computed: {
 		filterRegExp: function() {
@@ -300,13 +320,9 @@ export default {
 			console.log("hash changed:", n, o)
 		},
 	},
-	components: {
-		PreservationState,
-		BusyButton,
-		DatasetVersionsModal,
-	},
-	created: function() {
+	async created() {
 		this.ownerSelect = this.$auth.user.id
+		await this.fetchDataset()
 	},
 }
 </script>

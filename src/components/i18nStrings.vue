@@ -1,7 +1,8 @@
 <template>
-	<record-field :required="true" :wrapped="true">
+	<record-field :required="required" :wrapped="true" :error="!schemaState">
 		<title-component slot="title" :title="uiLabel" />
-		<div slot="header-right" class="header__right">
+		<div slot="header-right">
+			<p :key="error" v-for="error in schemaErrors" class="error-message">{{ error }}</p>
 			<ValidationStatus :status="validationStatus" />
 			<InfoIcon :description="uiDescription"/>
 		</div>
@@ -31,6 +32,9 @@
 
 
 <style lang="scss" scoped>
+.error-message {
+	display: inline-block;
+}
 .remove-button {
 	padding: 10px;
     padding-left: 2px;

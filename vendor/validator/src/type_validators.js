@@ -4,11 +4,11 @@ import { default as deepequal } from 'deep-equal'
 
 const STRING_FORMAT_VALIDATORS = {
 	'date-time': function(dt) { return dt && dt.match(/^\d/) },
-	'email': function(email) { return email && email.indexOf('@') > 0 },
+	'email': function(email) { return !email || (email && email.indexOf('@') > 0 )},
 	'hostname': function(){},
 	'ipv4': function(){},
 	'ipv6': function(){},
-	'uri': function(uri) { return uri && uri.indexOf(':') > 0 },
+	'uri': function(uri) { return !uri || (uri && uri.indexOf(':') > 0) },
 }
 
 
@@ -104,7 +104,7 @@ function validateObject(schema, data, path, parent, prop, recurse) {
 	if (isObject(data)) Object.keys(data).forEach(k => dataProps[k] = true)
 
 	let numProps = Object.keys(dataProps).length
-	if ('minProperties' in schema && numProps < schema['minProperties']) this.addError(path, origSchema, "too few properties (got " + numProps + ", need at least " + schema['minProperties'] + ")")
+	if ('minProperties' in schema && numProps < schema['minProperties']) this.addError(path, origSchema, "At least " + schema['minProperties'] + " field(s) is required")
 	if ('maxProperties' in schema && numProps > schema['maxProperties']) this.addError(path, origSchema, "too many properties (got " + numProps + ", need at most " + schema['maxProperties'] + ")")
 
 	if ('properties' in schema) {
@@ -193,7 +193,8 @@ function validateArray(schema, data, path, parent, prop, recurse) {
 	}
 
 	// minItems and maxItems
-	if (typeof schema['minItems'] === 'number' && data.length < schema['minItems']) this.addError(path, schema, "too few items in array")
+
+	if (typeof schema['minItems'] === 'number' && data.length < schema['minItems']) this.addError(path, schema, `At least ${ schema['minItems'] } record(s) are required`)
 	if (typeof schema['maxItems'] === 'number' && data.length > schema['maxItems']) this.addError(path, schema, "too many items in array")
 
 	// TODO: optimise (use Set or short-circuit)

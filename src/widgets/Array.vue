@@ -1,8 +1,9 @@
 <template>
-	<record-field class="min-height" :required="true" :wrapped="wrapped" :header="!inArray">
+	<record-field class="min-height" :required="required" :wrapped="wrapped" :header="!inArray" :error="!schemaState">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right" class="header__right">
-			<!--<ValidationStatus :status="validationStatus" />-->
+			<p :key="error" v-for="error in errors" class="error-message">{{ error }}</p>
+			<ValidationStatus v-if="!schemaState" :status="'invalid'" />
 			<InfoIcon :description="uiDescription"/>
 		</div>
 		<div slot="input">
@@ -70,6 +71,10 @@
 	</record-field>
 </template>
 <style lang="scss" scoped>
+.error-message {
+	display: inline-block;
+}
+
 .input__controls {
 	margin-left: auto;
 	margin-top: 10px;
@@ -108,6 +113,7 @@ import vSchemaBase from './base.vue'
 import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
+import ValidationStatus from '@/partials/ValidationStatus.vue'
 
 export default {
 	extends: vSchemaBase,
@@ -118,6 +124,7 @@ export default {
 		RecordField,
 		TitleComponent,
 		InfoIcon,
+		ValidationStatus,
 	},
 	props: {
 		tabFormat: { type: Boolean, default: true },
@@ -170,10 +177,7 @@ export default {
 		},
 		doPlus() {
 			if (this.maximum === undefined || this.value.length < this.maximum) {
-				//this.value.push({})
 				this.$store.commit('pushValue', { p: this.parent, prop: this.property, val: undefined })
-				console.log("didPlus, length now:", this.value.length)
-				console.log('Set active tab to', this.value.length - 1)
 				this.$nextTick(function() { // make sure that the tab is there before causing the new tab to be selected
 					this.tabIndex = this.value.length - 1
 				})
@@ -182,7 +186,6 @@ export default {
 			return false
 		},
 		deleteElement(index) {
-			console.log("schema-array: request to delete element with index", index, "value:", this.value[index])
 			if (index >= 0 && index < this.value.length) {
 				this.$store.commit('deleteArrayValue', {
 					parent: this.parent,
@@ -193,8 +196,6 @@ export default {
 				this.$nextTick(() => {
 					this.forceArrayUpdateHack = !this.forceArrayUpdateHack
 				})
-			} else {
-				console.log("deleteElement: attempt to remove non-existing element at index", index)
 			}
 		},
 		schemaForChild: function(index) {
@@ -222,12 +223,23 @@ export default {
 			// additionalItems: true if missing, true if true, true when object; false if false
 			return this.schema['additionalItems'] !== false
 		},
+		errors() {
+			const incorrectElements = this.schemaErrors
+				.filter(e => e.slice(0, 31) === 'list validation failed for item')
+				.map(e => Number(e.slice(32)) +1)
+				.join(', #')
+
+			const otherErrors = this.schemaErrors
+				.filter(e => e.slice(0, 31) !== 'list validation failed for item')
+
+			if (incorrectElements.length > 0) {
+				otherErrors.push('Check element(s) #' + incorrectElements)
+			}
+
+			return otherErrors
+		},
 	},
 	created() {
-		if (this.value == undefined) {
-			console.log("array: undefined value for path", this.path)
-		}
-		console.log("array: typeof", this.path, typeof this.value)
 		return this.init()
 	},
 }

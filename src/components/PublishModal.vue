@@ -47,6 +47,6 @@ export default {
 		error(n, o) {
 			console.log(`publish error changed from ${o} to ${n}`)
 		},
-	}
+	},
 }
 </script>

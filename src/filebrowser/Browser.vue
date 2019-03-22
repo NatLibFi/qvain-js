@@ -262,7 +262,7 @@ export default {
 			}
 
 			return [
-				...(this.directory.directories || []).map(mapToInternalValues('directories')),
+				...(this.directory.directories || []).map(mapToInternalValues('directories')),
 				...(this.directory.files || []).map(mapToInternalValues('files')),
 			]
 		},

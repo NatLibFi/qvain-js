@@ -1,10 +1,19 @@
 <template>
-	<TabSelector :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></TabSelector>
+	<TabSelector v-if="Object.keys($store.state.schema).length > 0" :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></TabSelector>
+	<div v-else :style="{'padding': '20px'}">
+		Please select one option from "Where are my files" menu. Note that changing the selected option will empty the current form.
+		<br>
+		<br>
+		Where are your files related to this dataset:
+		<ul>
+			<li>In Fairdata IDA (you want to select files from IDA)" and "I want to select Fairdata IDA files"</li>
+			<li>Somewhere else (you want to link files from remote location)</li>
+		</ul>
+	</div>
 </template>
 
 <script>
 import jsonPointer from 'json-pointer'
-
 import TabSelector from '@/widgets/TabSelector.vue'
 
 export default {
@@ -54,7 +63,6 @@ export default {
 		'TabSelector': TabSelector,
 	},
 	created() {
-		console.log("SingleTab called", this.$route.path)
 	},
 	mounted() {
 		console.warn("mounted():", this.$store.state.schema)

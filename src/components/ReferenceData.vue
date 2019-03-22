@@ -1,5 +1,5 @@
 <template>
-	<record-field :required="true" :wrapped="wrapped">
+	<record-field :required="required" :wrapped="wrapped">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right" class="header__right">
 			<!--<ValidationStatus :status="validationStatus" />-->

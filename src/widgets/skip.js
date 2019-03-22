@@ -36,6 +36,7 @@ export default {
 						property: key,
 						tab: myTab,
 						activeTab: context.props.activeTab,
+						required: (context.props.schema.required || []).includes(key),
 					},
 					// don't reuse VNode
 					key: key,
@@ -58,7 +59,7 @@ export default {
 			})
 		)
 	},
-	props: ['schema', 'path', 'value', 'parent', 'property', 'tab', 'activeTab'],
+	props: ['schema', 'path', 'value', 'parent', 'property', 'tab', 'activeTab', 'required'],
 	components: {
 		'TabSelector': require('./TabSelector.vue'),
 	},

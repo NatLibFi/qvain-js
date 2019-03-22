@@ -87,14 +87,11 @@ Auth.prototype.setUser = function(user) {
 
 Auth.prototype.login = function(token) {
 	this.setUser(UserFromToken(token))
-	console.log("auth.login(): xxx", this._user, this.loggedIn)
 
 	if (this.loggedIn) {
-		console.log("auth.login(): setting localstorage")
 		localStorage.setItem(TokenName, token)
 		return true
 	}
-	console.log("auth.login(): token failed, removing localstorage")
 	localStorage.removeItem(TokenName)
 	return false
 }
@@ -108,7 +105,6 @@ Auth.prototype.logout = function() {
 Auth.prototype.localLogin = function() {
 	const token = localStorage.getItem(TokenName)
 	if (token && !isExpiredToken(token)) {
-		console.log("auth.localLogin(): have token", token)
 		return this.login(token)
 	}
 	localStorage.removeItem(TokenName)

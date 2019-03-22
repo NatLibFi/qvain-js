@@ -41,7 +41,6 @@ export default {
 	},
 	methods: {
 		show(single) {
-			console.log('show', single)
 			this.item = single
 			// TODO: define fields to display here for files and for folders
 			// currently it gets fields from file characteristics, but folders don't have that

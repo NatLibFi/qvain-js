@@ -118,30 +118,16 @@ export default {
 	},
 	methods: {
 		onSelected: function() {
-			console.log('onSelected triggered', this.selected)
 			if (this.selected) {
 				//this.isOpen = false
 				//this.selected = null
 				this.addValue()
 			}
 		},
-		onInput: function(e) {
+		onInput: function() {
 			// this *might* run also when this.input is set
-			console.log(
-				'onInput triggered',
-				e,
-				this.isOpen,
-				this.searchLanguage,
-				this.suggestions.length,
-			)
 			if (this.input.length > 2) {
 				this.debouncedGetList(this.input)
-				console.log(
-					'onInput, musthide?',
-					this.isOpen,
-					this.searchLanguage,
-					this.suggestions.length,
-				)
 				this.isOpen = this.suggestions.length > 0
 			} else {
 				this.isOpen = false

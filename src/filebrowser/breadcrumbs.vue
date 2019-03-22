@@ -24,7 +24,6 @@ export default {
 		}
 	},
 	updated: function() {
-		console.log('breadcrumbs:', this.breadcrumbs)
 	},
 	components: {
 		FontAwesomeIcon,
