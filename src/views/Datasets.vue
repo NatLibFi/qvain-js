@@ -25,7 +25,7 @@
 
 		<dataset-versions-modal :dataset="activeInModal"></dataset-versions-modal>
 
-		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :items="apiProvider" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
+		<b-table id="dataset-table" ref="datasetTable" class="m-1" striped hover show-empty selectable select-mode="single" :tbody-tr-class="rowClass" :items="apiProvider" :fields="fields" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
 			<template slot="published" slot-scope="row">
 				<font-awesome-icon icon="circle" class="text-success text-small text-center fa-xs" fixed-width v-if="row.item.published" />
 				<font-awesome-icon icon="circle" class="text-light text-small text-center fa-xs" style="color: #abcdef;" fixed-width v-else />
@@ -90,6 +90,10 @@
 	}
 	.datasets-flip-move {
 		transition: transform 0.5s;
+	}
+	.datasets-highlighted-row {
+		/* background: yellow; */
+		color: darkgoldenrod;
 	}
 </style>
 
@@ -199,6 +203,7 @@ export default {
 			isBusy: false,
 			error: null,
 			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development',
+			//highlighted: "0582f51d-86c3-2bc1-eb11-296b533b9731",
 		}
 	},
 	methods: {
@@ -270,10 +275,29 @@ export default {
 		refresh() {
 			this.$refs.datasetTable.refresh()
 		},
+		rowClass(item, type) {
+			if (!item) return
+			//if (!this.highlighted) return
+			/*
+			if (item.id === this.highlighted) {
+				return 'datasets-highlighted-row'
+			}
+			*/
+			if ('#' + item.id === this.$route.hash) {
+				console.log("highlighted", item.id)
+				//return 'datasets-highlighted-row'
+				return 'table-warning alert-warning'
+			}
+		}
 	},
 	computed: {
 		filterRegExp: function() {
 			return new RegExp('.*' + this.filterString + '.*', 'ig')
+		},
+	},
+	watch: {
+		'$route.hash': function(n, o) {
+			console.log("hash changed:", n, o)
 		},
 	},
 	components: {
