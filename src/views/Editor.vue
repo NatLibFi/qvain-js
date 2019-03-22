@@ -26,8 +26,8 @@
 				</b-input-group>
 
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited">Save</b-btn>
-					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited">Publish</b-btn>
+					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
 				</b-button-group>
 
 				<!--
@@ -77,7 +77,7 @@
 		<!-- Modals -->
 		<dataset-json-modal id="dataset-json-modal"></dataset-json-modal>
 		<dataset-overview-modal id="dataset-overview-modal"></dataset-overview-modal>
-		<publish-modal id="publish-modal"></publish-modal>
+		<publish-modal id="publish-modal" :error="publishError" @hidden="publishError = null"></publish-modal>
 
 		<div v-if="!loading">
 			<!--
@@ -142,6 +142,7 @@ export default {
 			unsubscribeFunc: null,
 			validator: null,
 			error: null,
+			publishError: null,
 			loading: false,
 			rateLimited: false,
 			showPublishConfirmation: false,
@@ -190,17 +191,39 @@ export default {
 			this.showPublishConfirmation = true
 		},
 		publish: debounce(async function() {
+			// xxx
+			/*
+			this.publishError = {
+				status: 400,
+				msg: "publish error",
+				origin: "metax",
+				more: {"research_dataset":["blah de blah blah"],"error_identifier":"2019-03-08T12:08:09-7dc7ab7a"},
+			}
+			if (this.publishError) {
+				this.showPublishConfirmation = false
+				this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
+			}
+			return
+			*/
 			try {
 				this.showPublishConfirmation = false
 				const isExisting = !!this.$store.state.metadata.id
 				if (isExisting) {
-					const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
+					//const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
+					const response = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					this.$root.showAlert("Dataset successfully published", "primary")
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger")
 				}
 			} catch(e) {
-				this.$root.showAlert("Publish failed!", "danger")
+				// check if we got an api error for the modal, else show a generic error message
+				console.log("publish error:", e, Object.keys(e))
+				if (e.response && e.response.data) {
+					this.publishError = e.data
+					this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
+				} else {
+					this.$root.showAlert("Publish failed!", "danger")
+				}
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {
