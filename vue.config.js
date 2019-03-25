@@ -46,6 +46,11 @@ module.exports = {
 				})])
 		}
 
+		// configure public address for dev server so hot reloading can work with a proxy
+		if (process.env.APP_HOSTNAME) {
+			config.devServer.public(process.env.APP_HOSTNAME)
+		}
+
 		// watch needs to be in poll mode for it to work properly in Vagrant
 		// set watch options for dev server mode (e.g. npm run serve)
 		config.devServer.watchOptions({
