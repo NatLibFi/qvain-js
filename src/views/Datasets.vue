@@ -2,22 +2,21 @@
 	<b-container fluid>
 		<h1 class="component-title">My datasets</h1>
 
-		<div class="mx-2 my-3 row">
+		<div :style="{'margin-left': '0px !important', 'margin-right': '0px !important'}" class="my-3 row">
 			<b-button-toolbar aria-label="dataset list toolbar">
-				<b-input-group size="sm" class="mx-0 px-0" prepend="show">
 				<b-button-group size="sm">
 					<b-btn :pressed.sync="showDatasetState.draft" variant="outline-secondary" v-b-tooltip.hover.bottom title="show draft datasets">draft</b-btn>
 					<b-btn :pressed.sync="showDatasetState.published" variant="outline-secondary" v-b-tooltip.hover.bottom title="show published datasets">published</b-btn>
 				</b-button-group>
-				</b-input-group>
 
 				<b-input-group size="sm" class="mx-1 px-1" left="search" v-b-tooltip.hover.bottom title="search titles" prepend="search">
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
-
-				<busy-button size="sm" v-if="false">save</busy-button>
-
 			</b-button-toolbar>
+
+			<b-button-group class="new-record" size="sm">
+				<b-btn class="new-record__button" variant="primary" @click="createNewRecord">Create new record</b-btn>
+			</b-button-group>
 		</div>
 
 		<b-alert variant="danger" ref="datasetErrorAlert" :show="!!error" dismissible @dismissed="error = null">{{ error }}</b-alert>
@@ -89,6 +88,9 @@
 	}
 	.datasets-flip-move {
 		transition: transform 0.5s;
+	}
+	.new-record {
+		margin-left: auto;
 	}
 </style>
 
@@ -269,6 +271,15 @@ export default {
 		refresh() {
 			this.$refs.datasetTable.refresh()
 		},
+		createNewRecord() {
+			this.$store.commit('loadData', undefined)
+			this.$store.commit('resetMetadata')
+
+			this.$store.commit('loadSchema', {})
+			this.$store.commit('loadHints', {})
+
+			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }})
+		}
 	},
 	computed: {
 		filterRegExp: function() {
