@@ -60,14 +60,12 @@
 			"description": "Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.",
 			"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 			"type": "object",
-			"minProperties": 1,
 			"example": [
 				"Vuorokauden alin lämpötila, 1961-2014, 10 km, GeoTIFF"
 			],
 			"$deref": "#/definitions/langString",
 			"additionalProperties": {
-				"type": "string",
-				"minLength": 1
+				"type": "string"
 			}
 		},
 		"keyword": {
@@ -185,6 +183,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -238,6 +280,58 @@
 										"items": {
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
 									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -485,6 +579,50 @@
 								"type": "string"
 							}
 						},
+						"homepage": {
+							"@id": "http://xmlns.com/foaf/0.1/Document",
+							"title": "Documented link",
+							"@type": "@id",
+							"type": "object",
+							"$deref": "#/definitions/Document",
+							"description": "A documented link to a document in the Web.",
+							"properties": {
+								"identifier": {
+									"@id": "http://purl.org/dc/terms/identifier",
+									"title": "URL",
+									"description": "URL of the homepage",
+									"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+									"type": "string",
+									"format": "uri"
+								},
+								"title": {
+									"@id": "http://purl.org/dc/terms/title",
+									"title": "Title",
+									"description": "A name given to the document",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								},
+								"description": {
+									"@id": "http://purl.org/dc/terms/description",
+									"title": "Description",
+									"description": "Description of the link. For example to be used as hover text.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							},
+							"required": [
+								"identifier"
+							],
+							"additionalProperties": false
+						},
 						"member_of": {
 							"@id": "http://xmlns.com/foaf/0.1/Organization",
 							"title": "Organization",
@@ -539,6 +677,50 @@
 										"type": "string"
 									}
 								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Documented link",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
+								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
 									"title": "Organization",
@@ -592,6 +774,58 @@
 											"items": {
 												"type": "string"
 											}
+										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Documented link",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
+										"is_part_of": {
+											"@id": "http://purl.org/dc/terms/isPartOf",
+											"title": "Is Part Of",
+											"description": "A related resource in which the described resource is physically or logically included.",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Organization"
 										},
 										"contributor_type": {
 											"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -900,6 +1134,50 @@
 								"type": "string"
 							}
 						},
+						"homepage": {
+							"@id": "http://xmlns.com/foaf/0.1/Document",
+							"title": "Documented link",
+							"@type": "@id",
+							"type": "object",
+							"$deref": "#/definitions/Document",
+							"description": "A documented link to a document in the Web.",
+							"properties": {
+								"identifier": {
+									"@id": "http://purl.org/dc/terms/identifier",
+									"title": "URL",
+									"description": "URL of the homepage",
+									"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+									"type": "string",
+									"format": "uri"
+								},
+								"title": {
+									"@id": "http://purl.org/dc/terms/title",
+									"title": "Title",
+									"description": "A name given to the document",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								},
+								"description": {
+									"@id": "http://purl.org/dc/terms/description",
+									"title": "Description",
+									"description": "Description of the link. For example to be used as hover text.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							},
+							"required": [
+								"identifier"
+							],
+							"additionalProperties": false
+						},
 						"is_part_of": {
 							"@id": "http://xmlns.com/foaf/0.1/Organization",
 							"title": "Organization",
@@ -953,6 +1231,58 @@
 									"items": {
 										"type": "string"
 									}
+								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Documented link",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
+								},
+								"is_part_of": {
+									"@id": "http://purl.org/dc/terms/isPartOf",
+									"title": "Is Part Of",
+									"description": "A related resource in which the described resource is physically or logically included.",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Organization"
 								},
 								"contributor_type": {
 									"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -1148,6 +1478,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -1202,6 +1576,50 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
 										"title": "Organization",
@@ -1255,6 +1673,58 @@
 												"items": {
 													"type": "string"
 												}
+											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Documented link",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
 											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -1563,6 +2033,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -1616,6 +2130,58 @@
 										"items": {
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
 									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -1812,6 +2378,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -1866,6 +2476,50 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
 										"title": "Organization",
@@ -1919,6 +2573,58 @@
 												"items": {
 													"type": "string"
 												}
+											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Documented link",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
 											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -2227,6 +2933,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -2280,6 +3030,58 @@
 										"items": {
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
 									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -2453,6 +3255,50 @@
 						"@type": "http://www.w3.org/2001/XMLSchema#string",
 						"type": "string"
 					},
+					"homepage": {
+						"@id": "http://xmlns.com/foaf/0.1/Document",
+						"title": "Documented link",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Document",
+						"description": "A documented link to a document in the Web.",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "URL",
+								"description": "URL of the homepage",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							},
+							"title": {
+								"@id": "http://purl.org/dc/terms/title",
+								"title": "Title",
+								"description": "A name given to the document",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"description": {
+								"@id": "http://purl.org/dc/terms/description",
+								"title": "Description",
+								"description": "Description of the link. For example to be used as hover text.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
 					"has_funding_agency": {
 						"@id": "http://purl.org/cerif/frapo/hasFundingAgency",
 						"title": "Funding agency",
@@ -2511,6 +3357,50 @@
 										"type": "string"
 									}
 								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Documented link",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
+								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
 									"title": "Organization",
@@ -2564,6 +3454,58 @@
 											"items": {
 												"type": "string"
 											}
+										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Documented link",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
+										"is_part_of": {
+											"@id": "http://purl.org/dc/terms/isPartOf",
+											"title": "Is Part Of",
+											"description": "A related resource in which the described resource is physically or logically included.",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Organization"
 										},
 										"contributor_type": {
 											"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -2808,6 +3750,50 @@
 										"type": "string"
 									}
 								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Documented link",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"additionalProperties": {
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
+								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
 									"title": "Organization",
@@ -2861,6 +3847,58 @@
 											"items": {
 												"type": "string"
 											}
+										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Documented link",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
+										"is_part_of": {
+											"@id": "http://purl.org/dc/terms/isPartOf",
+											"title": "Is Part Of",
+											"description": "A related resource in which the described resource is physically or logically included.",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Organization"
 										},
 										"contributor_type": {
 											"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -3063,6 +4101,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -3117,6 +4199,50 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
 										"title": "Organization",
@@ -3170,6 +4296,58 @@
 												"items": {
 													"type": "string"
 												}
+											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Documented link",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
 											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -3478,6 +4656,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -3531,6 +4753,58 @@
 										"items": {
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
 									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -4122,6 +5396,459 @@
 				},
 				"required": [
 					"identifier"
+				],
+				"additionalProperties": false
+			}
+		},
+		"remote_resources": {
+			"@id": "http://www.w3.org/ns/dcat#distribution",
+			"title": "Remote resources",
+			"description": "A concrete storage or expression format for the data in the dataset, for example a file, a database or a query interface to the data.",
+			"@type": "@id",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"$deref": "#/definitions/WebResource",
+				"title": "Remote Web Resource",
+				"@id": "http://www.w3.org/ns/dcat#Distribution",
+				"description": "Represents single available resource in the web.",
+				"properties": {
+					"identifier": {
+						"@id": "http://purl.org/dc/terms/identifier",
+						"title": "Identifier",
+						"description": "Unique identifier for the distribution from file: scheme",
+						"@type": "@id",
+						"type": "string",
+						"format": "uri",
+						"example": [
+							"file://etc/data/abc.txt"
+						]
+					},
+					"title": {
+						"@id": "http://purl.org/dc/terms/title",
+						"title": "Title",
+						"description": "A name given to the distribution.",
+						"@type": "http://www.w3.org/2001/XMLSchema#string",
+						"type": "string"
+					},
+					"description": {
+						"@id": "http://purl.org/dc/terms/description",
+						"title": "Description",
+						"description": "Free-text account of the distribution.",
+						"@type": "http://www.w3.org/2001/XMLSchema#string",
+						"type": "string"
+					},
+					"modified": {
+						"@id": "http://purl.org/dc/terms/modified",
+						"title": "Date Modified",
+						"description": "Date on which the resource was changed.",
+						"@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+						"type": "string",
+						"format": "date-time"
+					},
+					"byte_size": {
+						"@id": "http://www.w3.org/ns/dcat#byteSize",
+						"title": "Byte size",
+						"description": "The size of a distribution in bytes.",
+						"@type": "http://www.w3.org/2001/XMLSchema#integer",
+						"type": "integer"
+					},
+					"access_url": {
+						"@id": "http://xmlns.com/foaf/0.1/Document",
+						"title": "Documented link",
+						"description": "A documented link to a document in the Web.",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Document",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "URL",
+								"description": "URL of the homepage",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							},
+							"title": {
+								"@id": "http://purl.org/dc/terms/title",
+								"title": "Title",
+								"description": "A name given to the document",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"description": {
+								"@id": "http://purl.org/dc/terms/description",
+								"title": "Description",
+								"description": "Description of the link. For example to be used as hover text.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
+					"download_url": {
+						"@id": "http://xmlns.com/foaf/0.1/Document",
+						"title": "Documented link",
+						"description": "A documented link to a document in the Web.",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Document",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "URL",
+								"description": "URL of the homepage",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							},
+							"title": {
+								"@id": "http://purl.org/dc/terms/title",
+								"title": "Title",
+								"description": "A name given to the document",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"description": {
+								"@id": "http://purl.org/dc/terms/description",
+								"title": "Description",
+								"description": "Description of the link. For example to be used as hover text.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
+					"checksum": {
+						"@id": "http://spdx.org/rdf/terms#Checksum",
+						"title": "Checksum",
+						"description": "",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Checksum",
+						"properties": {
+							"algorithm": {
+								"@id": "http://spdx.org/rdf/terms#algorithm",
+								"title": "Algorithm",
+								"description": "Used checksum algortihm",
+								"enum": [
+									"MD5",
+									"SHA-1",
+									"SHA-224",
+									"SHA-256",
+									"SHA-384",
+									"SHA-512",
+									"OTHER"
+								],
+								"@type": "http://www.w3.org/2001/XMLSchema#string",
+								"type": "string"
+							},
+							"checksum_value": {
+								"@id": "http://spdx.org/rdf/terms#checksumValue",
+								"title": "Checksum value",
+								"description": "Value of the checksum. xsd:hexBinary",
+								"@type": "http://www.w3.org/2001/XMLSchema#hexBinary",
+								"type": "string"
+							}
+						},
+						"required": [
+							"checksum_value",
+							"algorithm"
+						],
+						"additionalProperties": false
+					},
+					"license": {
+						"@id": "http://purl.org/dc/terms/license",
+						"title": "License",
+						"description": "A legal document giving official permission to do something with the resource.",
+						"@type": "@id",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"$deref": "#/definitions/ResearchDataLicenseDocument",
+							"title": "License Document",
+							"@id": "http://purl.org/dc/terms/LicenseDocument",
+							"description": "A legal document giving official permission to do something with a Resource.",
+							"properties": {
+								"identifier": {
+									"@id": "http://purl.org/dc/terms/identifier",
+									"title": "Identifier",
+									"description": "License identifier from the reference data.",
+									"@type": "@id",
+									"type": "string",
+									"format": "uri"
+								},
+								"title": {
+									"@id": "http://purl.org/dc/terms/title",
+									"title": "Title",
+									"description": "A name given to the resource.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								},
+								"description": {
+									"@id": "http://purl.org/dc/terms/description",
+									"title": "Description",
+									"description": "Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource. An account of the resource.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"additionalProperties": {
+										"type": "string"
+									}
+								},
+								"license": {
+									"@id": "http://schema.org/license",
+									"title": "Licence URL",
+									"description": "A referenced license document that applies to this content",
+									"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+									"type": "string",
+									"format": "uri"
+								}
+							},
+							"required": [
+								"identifier"
+							],
+							"additionalProperties": false
+						}
+					},
+					"file_type": {
+						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
+						"title": "File type",
+						"description": "File type from reference data",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Concept",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "Identifier",
+								"description": "This is the IRI identifier for the concept",
+								"@type": "@id",
+								"type": "string",
+								"format": "uri"
+							},
+							"pref_label": {
+								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"definition": {
+								"@id": "http://www.w3.org/2004/02/skos/core#definition",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"in_scheme": {
+								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
+								"title": "In scheme",
+								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
+					"resource_type": {
+						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
+						"title": "Resource type",
+						"description": "type of the resource",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Concept",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "Identifier",
+								"description": "This is the IRI identifier for the concept",
+								"@type": "@id",
+								"type": "string",
+								"format": "uri"
+							},
+							"pref_label": {
+								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"definition": {
+								"@id": "http://www.w3.org/2004/02/skos/core#definition",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"in_scheme": {
+								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
+								"title": "In scheme",
+								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
+					"use_category": {
+						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
+						"title": "Use category",
+						"description": "Use type of the resource",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Concept",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "Identifier",
+								"description": "This is the IRI identifier for the concept",
+								"@type": "@id",
+								"type": "string",
+								"format": "uri"
+							},
+							"pref_label": {
+								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"definition": {
+								"@id": "http://www.w3.org/2004/02/skos/core#definition",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"in_scheme": {
+								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
+								"title": "In scheme",
+								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"type": "string",
+								"format": "uri"
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
+					},
+					"has_object_characteristics": {
+						"@id": "http://www.loc.gov/premis/rdf/v1#ObjectCharasteristics",
+						"title": "File characteristics",
+						"description": "Technical properties of files",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/DistributionCharacteristics",
+						"properties": {
+							"title": {
+								"@id": "http://purl.org/dc/terms/title",
+								"title": "File Type Name",
+								"description": "A name of the file type",
+								"@type": "http://www.w3.org/2001/XMLSchema#string",
+								"type": "string"
+							},
+							"description": {
+								"@id": "http://purl.org/dc/terms/description",
+								"title": "File Type Description",
+								"description": "Description of the file type",
+								"@type": "http://www.w3.org/2001/XMLSchema#string",
+								"type": "string"
+							},
+							"application_name": {
+								"@id": "http://www.loc.gov/premis/rdf/v1#hasCreatingApplicationName",
+								"title": "Application name",
+								"description": "A designation for the name of the software program that created the object",
+								"@type": "http://www.w3.org/2001/XMLSchema#string",
+								"type": "string",
+								"example": [
+									"MSWord"
+								]
+							},
+							"encoding": {
+								"@id": "http://schema.org/encoding",
+								"title": "Text encoding",
+								"description": "Used text encoding",
+								"@type": "http://www.w3.org/2001/XMLSchema#string",
+								"type": "string"
+							}
+						},
+						"required": [
+							"title"
+						],
+						"additionalProperties": false
+					},
+					"mediatype": {
+						"@id": "http://purl.org/dc/terms/format",
+						"title": "File format",
+						"description": "Mediatype as text from https://www.iana.org/assignments/media-types/",
+						"@type": "http://www.w3.org/2001/XMLSchema#string",
+						"type": "string"
+					}
+				},
+				"required": [
+					"use_category",
+					"title"
 				],
 				"additionalProperties": false
 			}
@@ -4869,6 +6596,50 @@
 												"type": "string"
 											}
 										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Documented link",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
 										"member_of": {
 											"@id": "http://xmlns.com/foaf/0.1/Organization",
 											"title": "Organization",
@@ -4923,6 +6694,50 @@
 														"type": "string"
 													}
 												},
+												"homepage": {
+													"@id": "http://xmlns.com/foaf/0.1/Document",
+													"title": "Documented link",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Document",
+													"description": "A documented link to a document in the Web.",
+													"properties": {
+														"identifier": {
+															"@id": "http://purl.org/dc/terms/identifier",
+															"title": "URL",
+															"description": "URL of the homepage",
+															"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+															"type": "string",
+															"format": "uri"
+														},
+														"title": {
+															"@id": "http://purl.org/dc/terms/title",
+															"title": "Title",
+															"description": "A name given to the document",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"additionalProperties": {
+																"type": "string"
+															}
+														},
+														"description": {
+															"@id": "http://purl.org/dc/terms/description",
+															"title": "Description",
+															"description": "Description of the link. For example to be used as hover text.",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"additionalProperties": {
+																"type": "string"
+															}
+														}
+													},
+													"required": [
+														"identifier"
+													],
+													"additionalProperties": false
+												},
 												"is_part_of": {
 													"@id": "http://xmlns.com/foaf/0.1/Organization",
 													"title": "Organization",
@@ -4976,6 +6791,58 @@
 															"items": {
 																"type": "string"
 															}
+														},
+														"homepage": {
+															"@id": "http://xmlns.com/foaf/0.1/Document",
+															"title": "Documented link",
+															"@type": "@id",
+															"type": "object",
+															"$deref": "#/definitions/Document",
+															"description": "A documented link to a document in the Web.",
+															"properties": {
+																"identifier": {
+																	"@id": "http://purl.org/dc/terms/identifier",
+																	"title": "URL",
+																	"description": "URL of the homepage",
+																	"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+																	"type": "string",
+																	"format": "uri"
+																},
+																"title": {
+																	"@id": "http://purl.org/dc/terms/title",
+																	"title": "Title",
+																	"description": "A name given to the document",
+																	"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+																	"type": "object",
+																	"$deref": "#/definitions/langString",
+																	"additionalProperties": {
+																		"type": "string"
+																	}
+																},
+																"description": {
+																	"@id": "http://purl.org/dc/terms/description",
+																	"title": "Description",
+																	"description": "Description of the link. For example to be used as hover text.",
+																	"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+																	"type": "object",
+																	"$deref": "#/definitions/langString",
+																	"additionalProperties": {
+																		"type": "string"
+																	}
+																}
+															},
+															"required": [
+																"identifier"
+															],
+															"additionalProperties": false
+														},
+														"is_part_of": {
+															"@id": "http://purl.org/dc/terms/isPartOf",
+															"title": "Is Part Of",
+															"description": "A related resource in which the described resource is physically or logically included.",
+															"@type": "@id",
+															"type": "object",
+															"$deref": "#/definitions/Organization"
 														},
 														"contributor_type": {
 															"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -5284,6 +7151,50 @@
 												"type": "string"
 											}
 										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Documented link",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"additionalProperties": {
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
 										"is_part_of": {
 											"@id": "http://xmlns.com/foaf/0.1/Organization",
 											"title": "Organization",
@@ -5337,6 +7248,58 @@
 													"items": {
 														"type": "string"
 													}
+												},
+												"homepage": {
+													"@id": "http://xmlns.com/foaf/0.1/Document",
+													"title": "Documented link",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Document",
+													"description": "A documented link to a document in the Web.",
+													"properties": {
+														"identifier": {
+															"@id": "http://purl.org/dc/terms/identifier",
+															"title": "URL",
+															"description": "URL of the homepage",
+															"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+															"type": "string",
+															"format": "uri"
+														},
+														"title": {
+															"@id": "http://purl.org/dc/terms/title",
+															"title": "Title",
+															"description": "A name given to the document",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"additionalProperties": {
+																"type": "string"
+															}
+														},
+														"description": {
+															"@id": "http://purl.org/dc/terms/description",
+															"title": "Description",
+															"description": "Description of the link. For example to be used as hover text.",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"additionalProperties": {
+																"type": "string"
+															}
+														}
+													},
+													"required": [
+														"identifier"
+													],
+													"additionalProperties": false
+												},
+												"is_part_of": {
+													"@id": "http://purl.org/dc/terms/isPartOf",
+													"title": "Is Part Of",
+													"description": "A related resource in which the described resource is physically or logically included.",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Organization"
 												},
 												"contributor_type": {
 													"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -5689,157 +7652,6 @@
 			"@type": "http://www.w3.org/2001/XMLSchema#decimal",
 			"type": "number"
 		},
-		"files": {
-			"@id": "http://www.w3.org/ns/dcat#distribution",
-			"title": "List of files",
-			"description": "Connects a dataset to one or more of files in IDA",
-			"@type": "@id",
-			"type": "array",
-			"items": {
-				"type": "object",
-				"$deref": "#/definitions/File",
-				"title": "File in IDA",
-				"@id": "http://www.w3.org/ns/dcat#Distribution",
-				"description": "File in IDA",
-				"properties": {
-					"identifier": {
-						"@id": "http://purl.org/dc/terms/identifier",
-						"title": "Identifier",
-						"description": "Unique identifier for the distribution",
-						"@type": "@id",
-						"type": "string",
-						"format": "uri",
-						"example": [
-							""
-						]
-					},
-					"title": {
-						"@id": "http://purl.org/dc/terms/title",
-						"title": "Title",
-						"description": "A name given to the file.",
-						"@type": "http://www.w3.org/2001/XMLSchema#string",
-						"type": "string"
-					},
-					"description": {
-						"@id": "http://purl.org/dc/terms/description",
-						"title": "Description",
-						"description": "Free-text account of the file.",
-						"@type": "http://www.w3.org/2001/XMLSchema#string",
-						"type": "string"
-					},
-					"file_type": {
-						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "File type",
-						"description": "File type from reference data",
-						"@type": "@id",
-						"type": "object",
-						"$deref": "#/definitions/Concept",
-						"properties": {
-							"identifier": {
-								"@id": "http://purl.org/dc/terms/identifier",
-								"title": "Identifier",
-								"description": "This is the IRI identifier for the concept",
-								"@type": "@id",
-								"type": "string",
-								"format": "uri"
-							},
-							"pref_label": {
-								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Preferred label",
-								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"definition": {
-								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Definition",
-								"description": "A statement or formal explanation of the meaning of a concept.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"in_scheme": {
-								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
-								"title": "In scheme",
-								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
-								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
-								"type": "string",
-								"format": "uri"
-							}
-						},
-						"required": [
-							"identifier"
-						],
-						"additionalProperties": false
-					},
-					"use_category": {
-						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Use category",
-						"description": "Use type of the resource",
-						"@type": "@id",
-						"type": "object",
-						"$deref": "#/definitions/Concept",
-						"properties": {
-							"identifier": {
-								"@id": "http://purl.org/dc/terms/identifier",
-								"title": "Identifier",
-								"description": "This is the IRI identifier for the concept",
-								"@type": "@id",
-								"type": "string",
-								"format": "uri"
-							},
-							"pref_label": {
-								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Preferred label",
-								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"definition": {
-								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Definition",
-								"description": "A statement or formal explanation of the meaning of a concept.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"in_scheme": {
-								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
-								"title": "In scheme",
-								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
-								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
-								"type": "string",
-								"format": "uri"
-							}
-						},
-						"required": [
-							"identifier"
-						],
-						"additionalProperties": false
-					}
-				},
-				"required": [
-					"identifier",
-					"use_category",
-					"title"
-				],
-				"additionalProperties": false
-			}
-		},
 		"curator": {
 			"@id": "http://uri.suomi.fi/datamodel/ns/mrd#curator",
 			"title": "Curator",
@@ -5901,6 +7713,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -5955,6 +7811,50 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
 										"title": "Organization",
@@ -6008,6 +7908,58 @@
 												"items": {
 													"type": "string"
 												}
+											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Documented link",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"additionalProperties": {
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
 											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -6316,6 +8268,50 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Documented link",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"additionalProperties": {
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -6369,6 +8365,58 @@
 										"items": {
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Documented link",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"additionalProperties": {
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
 									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
@@ -6504,105 +8552,6 @@
 				"description": "An agent (eg. person, group, software or physical artifact)."
 			}
 		},
-		"directories": {
-			"@id": "http://www.w3.org/ns/dcat#distribution",
-			"title": "List of directories",
-			"description": "Connects a dataset to one of its available distributions.",
-			"@type": "@id",
-			"type": "array",
-			"items": {
-				"type": "object",
-				"$deref": "#/definitions/Directory",
-				"title": "Directory in IDA",
-				"@id": "http://www.w3.org/ns/dcat#Distribution",
-				"description": "Directory that links to its contained resources.",
-				"properties": {
-					"identifier": {
-						"@id": "http://purl.org/dc/terms/identifier",
-						"title": "Identifier",
-						"description": "Unique identifier for the distribution",
-						"@type": "@id",
-						"type": "string",
-						"format": "uri",
-						"example": [
-							""
-						]
-					},
-					"title": {
-						"@id": "http://purl.org/dc/terms/title",
-						"title": "Title",
-						"description": "A name given to the file.",
-						"@type": "http://www.w3.org/2001/XMLSchema#string",
-						"type": "string"
-					},
-					"description": {
-						"@id": "http://purl.org/dc/terms/description",
-						"title": "Description",
-						"description": "Free-text account of the file.",
-						"@type": "http://www.w3.org/2001/XMLSchema#string",
-						"type": "string"
-					},
-					"use_category": {
-						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Use Category",
-						"description": "Use category from reference data",
-						"@type": "@id",
-						"type": "object",
-						"$deref": "#/definitions/Concept",
-						"properties": {
-							"identifier": {
-								"@id": "http://purl.org/dc/terms/identifier",
-								"title": "Identifier",
-								"description": "This is the IRI identifier for the concept",
-								"@type": "@id",
-								"type": "string",
-								"format": "uri"
-							},
-							"pref_label": {
-								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Preferred label",
-								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"definition": {
-								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Definition",
-								"description": "A statement or formal explanation of the meaning of a concept.",
-								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-								"type": "object",
-								"$deref": "#/definitions/langString",
-								"additionalProperties": {
-									"type": "string"
-								}
-							},
-							"in_scheme": {
-								"@id": "http://uri.suomi.fi/datamodel/ns/mrd#inScheme",
-								"title": "In scheme",
-								"description": "Relates a resource (for example a concept) to a concept scheme in which it is included.",
-								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
-								"type": "string",
-								"format": "uri"
-							}
-						},
-						"required": [
-							"identifier"
-						],
-						"additionalProperties": false
-					}
-				},
-				"required": [
-					"identifier",
-					"use_category",
-					"title"
-				],
-				"additionalProperties": false
-			}
-		},
 		"infrastructure": {
 			"@id": "http://uri.suomi.fi/datamodel/ns/mrd#infrastructure",
 			"title": "Used infrastructure",
@@ -6661,10 +8610,10 @@
 				"additionalProperties": false
 			}
 		},
-		"total_ida_byte_size": {
-			"@id": "http://uri.suomi.fi/datamodel/ns/mrd#totalidabytesize",
-			"title": "Total ida byte size",
-			"description": "Sum of all Ida distribution byte size. Read only field.",
+		"total_remote_resources_byte_size": {
+			"@id": "http://uri.suomi.fi/datamodel/ns/mrd#totalremoteresourcesbytesize",
+			"title": "Total remote resources byte size",
+			"description": "Sum of all remote resources distribution byte size. Read only field.",
 			"@type": "http://www.w3.org/2001/XMLSchema#decimal",
 			"type": "number"
 		}
