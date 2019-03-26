@@ -170,7 +170,7 @@ const fakeFetch = (data, delay = 0) => {
 // apiProvider fills the table with datasets from an (real or fake) API response.
 // Function is passed (ctx, callback).
 function apiProvider() {
-	let promise = process.env.VUE_APP_ENVIRONMENT !== 'development' ? apiClient.get("/datasets/") : fakeClient()
+	let promise = (process.env.VUE_APP_ENVIRONMENT === 'development' && !process.env.VUE_APP_QVAIN_API_URL) ? fakeClient() : apiClient.get("/datasets/")
 	this.error = null
 	return promise.then((response) => {
 		console.log("api count:", (response.data || []).length)
