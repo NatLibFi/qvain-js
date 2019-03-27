@@ -6,7 +6,9 @@
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">Reset dataset editor</b-btn>
+					<!--
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
+					-->
 				</b-button-group>
 
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
