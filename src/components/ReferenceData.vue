@@ -239,8 +239,9 @@ export default {
 		removeValue(index) {
 			if (index === -1) {
 				this.selectedOptions = null
+			} else {
+				this.selectedOptions.splice(index, 1)
 			}
-			this.selectedOptions.splice(index, 1)
 		},
 		atSelect() {
 			if (this.async) {
