@@ -7,7 +7,7 @@
 			<b-button v-b-toggle="'publish-modal-error-collapse'" variant="link" size="sm" class="p-0 m-0 small" v-if="extError">Show details &gt;</b-button>
 		</p>
 		<b-collapse id="publish-modal-error-collapse" class="mt-2" style="height: 200px;">
-			<b-form-textarea id="publish-modal-error-json" class="p-0 text-monospace small" plaintext readonly :value="JSON.stringify(extError, null, 2)" style="height: auto;" placeholder="no error" :rows="8" :max-rows="16" no-resize no-auto-shrink></b-form-textarea>
+			<b-form-textarea id="publish-modal-error-json" class="p-0 text-monospace small" plaintext readonly :value="JSON.stringify(extError, null, 2)" style="height: auto;" placeholder="no error" :rows="8" no-resize no-auto-shrink></b-form-textarea>
 		</b-collapse>
 	</b-modal>
 </template>

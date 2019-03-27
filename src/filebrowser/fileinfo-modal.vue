@@ -8,7 +8,7 @@
 		<div class="d-flex justify-content-center my-4" v-if="!apiError && !apiResponse">
 			<Loader />
 		</div>
-		<b-form-textarea id="modal-textarea" v-model="apiResponse" placeholder="loading" :rows="6" :max-rows="24" readonly v-if="!apiError && apiResponse"></b-form-textarea>
+		<b-form-textarea id="modal-textarea" v-model="apiResponse" placeholder="loading" :rows="8" readonly v-if="!apiError && apiResponse"></b-form-textarea>
 	</b-modal>
 </template>
 
