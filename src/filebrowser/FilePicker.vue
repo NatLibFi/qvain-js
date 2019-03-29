@@ -81,9 +81,21 @@ export default {
 	},
 	methods: {
 		addFileOrDirectory({ type, fields }) {
+			fields.use_category = {
+				"in_scheme": undefined,
+				"identifier": "http://uri.suomi.fi/codelist/fairdata/use_category/code/outcome",
+				"pref_label": {
+					"fi": "Tulosaineisto",
+					"en": "Outcome material",
+					"und": "Tulosaineisto"
+				}
+			}
+
 			if (type === 'files') {
+				fields.description = fields.description ? fields.description : 'File'
 				this.state.files.push(fields)
 			} else {
+				fields.description = fields.description ? fields.description : 'Folder'
 				this.state.directories.push(fields)
 			}
 			this.project = this.selectedProject
@@ -113,7 +125,7 @@ export default {
 	computed: {
 		projects() {
 			return this.$auth.user.projects || []
-			//return ['project_x', '2001036'] // this is only for development purpose
+			// return ['project_x', '2001036'] // this is only for development purpose
 		},
 		selectedProject() {
 			const { project: projectIDInRoute } = this.$route.params

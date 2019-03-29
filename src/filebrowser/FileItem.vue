@@ -5,8 +5,8 @@
 			<div class="py-2">
 				<div class="d-flex">
 					<h6 class="mb-0">
-						{{single.name}}
-						<span v-if="secondary" class="text-muted m-0 font-italic">{{secondary}}</span>
+						{{single.title}}
+						<span v-if="secondary" class="text-muted m-0 font-italic">({{secondary}})</span>
 					</h6>
 				</div>
 				<p class="my-2">
@@ -34,11 +34,11 @@
 			</b-btn-group>
 		</b-card-body>
 		<b-collapse :id="single.identifier" accordion="file-accordion" class="mt-2" :style="{'padding': '20px', 'padding-top': '0px'}">
-			<b-form-group class="my-1" label="Title" key="title" horizontal lable-for="title">
+			<b-form-group class="item-field my-1" label="Title" key="title" horizontal lable-for="title">
 				<b-form-input class="qvain-input" id="title" placeholder="Title" v-model="single.title"></b-form-input>
 			</b-form-group>
 
-			<b-form-group class="my-1" label="Description" key="description" horizontal lable-for="description">
+			<b-form-group class="item-field my-1" label="Description" key="description" horizontal lable-for="description">
 				<b-form-input class="qvain-input" id="description" placeholder="Description" v-model="single.description"></b-form-input>
 			</b-form-group>
 
@@ -61,7 +61,7 @@
 					item['pref_label']['fi'] ||
 					item['pref_label']['und'] ||
 					'(no label)' : item['identifier']"
-					isRequired>
+				isRequired>
 			</RefList>
 
 			<RefList v-if="type === 'files'"
@@ -91,7 +91,6 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import RefList from '@/widgets/refdata/list-ui'
-//import RealRefList from '@/components/ReferenceData.vue'
 
 import {
 	faTrash,
@@ -135,5 +134,10 @@ export default {
 	border-left: 0px;
 	border-right: 0px;
 	border-radius: 0px;
+}
+
+fieldset.item-field div.form-row legend:after {
+	content: '*';
+	color: red;
 }
 </style>
