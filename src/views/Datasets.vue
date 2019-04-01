@@ -2,22 +2,21 @@
 	<b-container fluid>
 		<h1 class="component-title">My datasets</h1>
 
-		<div class="mx-2 my-3 row">
+		<div :style="{'margin-left': '0px !important', 'margin-right': '0px !important'}" class="my-3 row">
 			<b-button-toolbar aria-label="dataset list toolbar">
-				<b-input-group size="sm" class="mx-0 px-0" prepend="show">
 				<b-button-group size="sm">
 					<b-btn :pressed.sync="showDatasetState.draft" variant="outline-secondary" v-b-tooltip.hover.bottom title="show draft datasets">draft</b-btn>
 					<b-btn :pressed.sync="showDatasetState.published" variant="outline-secondary" v-b-tooltip.hover.bottom title="show published datasets">published</b-btn>
 				</b-button-group>
-				</b-input-group>
 
 				<b-input-group size="sm" class="mx-1 px-1" left="search" v-b-tooltip.hover.bottom title="search titles" prepend="search">
 					<b-form-input v-model="filterString" placeholder="title" />
 				</b-input-group>
-
-				<busy-button size="sm" v-if="false">save</busy-button>
-
 			</b-button-toolbar>
+
+			<b-button-group class="new-record" size="sm">
+				<b-btn class="new-record__button" variant="primary" @click="createNewRecord">Create new record</b-btn>
+			</b-button-group>
 		</div>
 
 		<b-alert variant="danger" ref="datasetErrorAlert" :show="!!error" dismissible @dismissed="error = null">{{ error }}</b-alert>
@@ -95,6 +94,9 @@
 		/* background: yellow; */
 		color: darkgoldenrod;
 	}
+	.new-record {
+		margin-left: auto;
+	}
 </style>
 
 <script>
@@ -164,10 +166,6 @@ const fakeFetch = (data, delay = 0) => {
 	})
 }
 
-// fakeClient returns a fake Axios response with the given data and delay.
-function fakeClient() {
-	return fakeFetch(testList, 500)
-}
 
 // apiProvider fills the table with datasets from an (real or fake) API response.
 // Function is passed (ctx, callback).
@@ -232,7 +230,7 @@ export default {
 		},
 		open(id) {
 			console.log("request to open dataset", id)
-			this.$router.push({ name: 'editor', params: { id: id, blah: 'woof' }})
+			this.$router.push({ name: 'tab', params: { id: id, tab: 'description' }})
 		},
 		del(id) {
 			this.error = null
@@ -249,6 +247,9 @@ export default {
 		view(extid) {
 			console.log("opening:", `{process.env.VUE_APP_ETSIN_API_URL}/{extid}`)
 			window.open(`${process.env.VUE_APP_ETSIN_API_URL}/${extid}`, '_blank')
+		},
+		apiProvider(ctx) {
+			return apiProvider.bind(this)(ctx)
 		},
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)
@@ -309,16 +310,25 @@ export default {
 				return 'table-warning alert-warning'
 			}
 		},
+		createNewRecord() {
+			this.$store.commit('loadData', undefined)
+			this.$store.commit('resetMetadata')
+
+			this.$store.commit('loadSchema', {})
+			this.$store.commit('loadHints', {})
+
+			this.$router.replace({ name: 'tab', params: { id: 'new', tab: 'description' }})
+		},
 	},
 	computed: {
 		filterRegExp: function() {
 			return new RegExp('.*' + this.filterString + '.*', 'ig')
 		},
 	},
-	watch: {
-		'$route.hash': function(n, o) {
-			console.log("hash changed:", n, o)
-		},
+	components: {
+		PreservationState,
+		BusyButton,
+		DatasetVersionsModal,
 	},
 	async created() {
 		this.ownerSelect = this.$auth.user.id

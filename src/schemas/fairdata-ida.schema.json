@@ -4291,6 +4291,9 @@
 						"additionalProperties": false
 					}
 				},
+				"required": [
+					"place_uri"
+				],
 				"additionalProperties": false
 			}
 		},

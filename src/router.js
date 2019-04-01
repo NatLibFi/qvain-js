@@ -33,7 +33,7 @@ const routes = [
 	{ path: '/config', component: Config, props: false },
 	{ path: '/userinfo', component: UserInfo, props: false, meta: { auth: true } },
 	{ path: '/dataset/:id', name: "editor", component: Editor, props: true, meta: { auth: true }, children: [
-		{ path: '', redirect: { path: 'description' } },
+		{ path: '', redirect: { name: 'tab' } },
 		{ path: ':tab', name: "tab", component: SingleTab },
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab }, // what is this for?
 	]},

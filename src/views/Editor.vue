@@ -5,7 +5,7 @@
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">Reset dataset editor</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
 				</b-button-group>
 
@@ -206,6 +206,7 @@ export default {
 				// TODO: consider updating Publish modal error boiler plate with this error message
 				//const errorMessage = `Publish failed, please check you have inserted all mandatory fields. Mandatory fields are: creator, description, access_rights and title. The error was: ${e}`
 				//this.$root.showAlert(errorMessage, "danger")
+				this.$root.showAlert("Publish failed!", "danger")
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {
@@ -271,6 +272,8 @@ export default {
 				this.loading = true
 
 				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`)
+				const schemas = this.getSchemas('fairdata')
+				this.selectedSchema = data.schema === 'metax-ida' ? schemas.ida : schemas.att
 				this.$store.commit('loadData', Object(dataset))
 				this.$store.commit('setMetadata', { id })
 			} finally {
