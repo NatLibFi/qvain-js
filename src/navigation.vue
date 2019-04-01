@@ -54,20 +54,12 @@
 		</b-navbar>
 
 		<b-navbar toggleable="md" type="dark" id="app-subbar">
-
 			<b-nav-toggle target="app-subbar-collapse"></b-nav-toggle>
-
-			<b-link class="navbar-brand" to="/">
-				<span>Qvain</span>
-			</b-link>
-
 			<b-collapse is-nav id="app-subbar-collapse">
-
 				<b-navbar-nav>
-					<b-nav-item to="/datasets">my datasets</b-nav-item>
-					<b-nav-item to="/dataset/new">new dataset</b-nav-item>
+					<b-nav-item v-if="$route.path !== '/datasets'" to="/datasets">My Datasets</b-nav-item>
+					<b-nav-item v-else to="/dataset/new">Editor</b-nav-item>
 				</b-navbar-nav>
-
 			</b-collapse>
 		</b-navbar>
 	</div>
