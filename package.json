@@ -3,7 +3,7 @@
   "description": "Qvain metadata editor",
   "version": "0.1.0",
   "author": "Wouter Van Hemel",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
