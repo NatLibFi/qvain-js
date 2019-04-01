@@ -1,8 +1,8 @@
 <template>
   <div row>
     <!-- ElasticSearch widget -->
-    <b-form-group id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 1" :description="uiDescription" :label="uiLabel">
-      <b-input-group>
+    <b-form-group :class="isRequired ? 'required' : ''" id="fundertype-form-group" horizontal :label-cols="uiLabel ? labelCols : 1" :description="uiDescription" :label="uiLabel">
+	  <b-input-group>
         <div v-if="type === 'multiselect'" class="flex-grow-1">
           <Multiselect v-model="model" @input="setValue" :options="items" v-if="items" :customLabel="customLabel"
             :optionsLimit="40" :allowEmpty="!isRequired" :showLabels="false" />
@@ -41,6 +41,11 @@
 }
 .error-popover {
   background-color: red;
+}
+
+fieldset#fundertype-form-group.required div.form-row legend:after {
+	content: '*';
+	color: red;
 }
 </style>
 
