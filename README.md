@@ -95,3 +95,10 @@ $ npm test
 Qvain is a modern [SPA](https://en.wikipedia.org/wiki/Single-page_application) web application written in ES6 (anno 2015) compliant Javascript and transpiled by Webpack and Babel. [The build process creates two bundles](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/): a faster and smaller one with modern ES6 Javascript for browsers supporting Javascript modules – all of the current self-updating browsers – and a slower and larger bundle with code transpiled to ES5 with optional polyfills for old browsers, in an attempt to support those people stuck with old browsers such as IE11.
 
 Note that because Qvain depends on [Vue](https://vuejs.org/v2/guide/installation.html#Compatibility-Note) and [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/browsers-devices/#supported-browsers), it is very unlikely to work on versions of Internet Explorer older than IE10. In short, run Qvain in an [evergreen browser](https://www.w3.org/2001/tag/doc/evergreen-web/).
+
+
+## License
+
+Qvain metadata description tool
+Copyright (c) 2016–2019 National Library of Finland
+Licensed under the GPL 3.0
