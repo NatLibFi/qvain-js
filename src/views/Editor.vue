@@ -5,12 +5,12 @@
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecordWithoutSchema()">New dataset</b-btn>
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
 				</b-button-group>
 
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
-					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None">
+					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None" :disabled="!!selectedSchema" @change="selectSchema">
 						<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
 							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
 						</optgroup>
@@ -233,6 +233,11 @@ export default {
 				this.$root.showAlert("Save failed!", "danger")
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
+		createNewRecordWithoutSchema() {
+			this.createNewRecord();
+			this.selectedSchema = null;
+			this.$store.commit('loadSchema', {})
+		},
 		createNewRecord() {
 			this.loading = true
 			this.$nextTick(() => {
@@ -251,8 +256,10 @@ export default {
 		},
 		initDataset() {
 			// this.selectedSchema = Bundle['fairdata']['ida']
-			this.$store.commit('loadSchema', this.selectedSchema.schema)
-			this.$store.commit('loadHints', this.selectedSchema.ui)
+			if (this.selectedSchema !== null) {
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+			}
 
 			// start validator
 			this.subscribeValidator()
@@ -271,13 +278,20 @@ export default {
 			try {
 				this.loading = true
 
-				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`)
+				const { data } = await apiClient.get(`/datasets/${id}`)
 				const schemas = this.getSchemas('fairdata')
 				this.selectedSchema = data.schema === 'metax-ida' ? schemas.ida : schemas.att
-				this.$store.commit('loadData', Object(dataset))
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+				this.$store.commit('loadData', Object(data.dataset))
 				this.$store.commit('setMetadata', { id })
 			} finally {
 				this.loading = false
+			}
+		},
+		selectSchema() {
+			if (this.selectedSchema !== null) {
+				this.createNewRecord()
 			}
 		},
 	},
@@ -304,9 +318,6 @@ export default {
 			} else {
 				this.clearRecord()
 			}
-		},
-		selectedSchema() {
-			this.createNewRecord()
 		},
 	},
 	async created() {

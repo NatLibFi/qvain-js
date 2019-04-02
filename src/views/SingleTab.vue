@@ -1,7 +1,7 @@
 <template>
 	<TabSelector v-if="Object.keys($store.state.schema).length > 0" :schema="$store.state.schema" path="" :parent="$store.state" property="record" :value="$store.state.record" :activeTab="$route.params.tab" :depth="0"></TabSelector>
 	<div v-else :style="{'padding': '20px'}">
-		Please select one option from "Where are my files" menu. Note that changing the selected option will empty the current form.
+		Please select one option from "Where are my files" menu. Note that the selected option cannot be changed without creating a new dataset.
 		<br>
 		<br>
 		Where are your files related to this dataset:
