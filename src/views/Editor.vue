@@ -5,7 +5,7 @@
 		<div>
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecordWithoutSchema()">New dataset</b-btn>
+					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
 				</b-button-group>
 
@@ -233,17 +233,14 @@ export default {
 				this.$root.showAlert("Save failed!", "danger")
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
-		createNewRecordWithoutSchema() {
-			this.createNewRecord();
-			this.selectedSchema = null;
-			this.$store.commit('loadSchema', {})
-		},
 		createNewRecord() {
 			this.loading = true
 			this.$nextTick(() => {
 				this.clearRecord()
 				this.initDataset()
 				this.loading = false
+				this.selectedSchema = null
+				this.$store.commit('loadSchema', {})
 			})
 		},
 		createCloneRecord() {
@@ -291,7 +288,10 @@ export default {
 		},
 		selectSchema() {
 			if (this.selectedSchema !== null) {
-				this.createNewRecord()
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+			} else {
+				this.$store.commit('loadSchema', {})
 			}
 		},
 	},
