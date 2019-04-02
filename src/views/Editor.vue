@@ -12,7 +12,7 @@
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
 					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None" :disabled="!!selectedSchema" @change="selectSchema">
 						<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
-							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
+							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ !selectedSchema ? val.name : val.shortName }}</option>
 						</optgroup>
 						<option v-if="selectedSchema === null" :value="null">None</option>
 					</b-form-select>
