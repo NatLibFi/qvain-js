@@ -2,7 +2,10 @@ import FairdataIdaSchema from './fairdata-ida.schema.json'
 import FairdataIdaOldSchema from './fairdata-ida-old.schema.json'
 import FairdataAttSchema from './fairdata-att.schema.json'
 import FairdataIdaUi from './fairdata-ida.ui.js'
+import fairdataAttUiDiff from './fairdata-att.ui.diff.js'
 import jsonPointer from 'json-pointer'
+
+const FairdataAttUi = fairdataAttUiDiff(FairdataIdaUi)
 
 // Qvain backend knows these schemas as:
 //
@@ -50,7 +53,7 @@ export default {
 	},*/
 	att: {
 		schema: FairdataAttSchema,
-		ui: FairdataIdaUi,
+		ui: FairdataAttUi,
 		name: "I want to link Remote resources", // "Fairdata (ATT)",
 		id: "metax-att",
 		family: 2,
