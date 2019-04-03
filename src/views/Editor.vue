@@ -79,7 +79,12 @@
 			<div class="container-fluid no-padding my-3">
 				<router-view></router-view>
 			</div>
-
+			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse'}">
+				<b-button-group size="sm" class="mx-1">
+					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
+				</b-button-group>
+			</div>
 		</div>
 		<div v-else>
 			<font-awesome-icon icon="circle-notch" spin />
