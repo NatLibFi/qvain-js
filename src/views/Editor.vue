@@ -23,8 +23,8 @@
 				</b-input-group>
 
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
-					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
+					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
 				</b-button-group>
 
 				<b-button-group size="sm" class="mx-1" v-if="!inDev">
@@ -81,8 +81,8 @@
 			</div>
 			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse'}">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
-					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
+					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
 				</b-button-group>
 			</div>
 		</div>
