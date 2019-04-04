@@ -27,6 +27,9 @@ export default (idaUi) => {
 			'placeholder': "– choose license –",
 			'title': "license",
 		},
+		'/properties/remote_resources/*/properties/modified': {
+			'widget': 'date',
+		},
 		'/properties/remote_resources/*/properties/file_type': {
 			'widget': 'reference-data',
 			'props': {
@@ -37,7 +40,6 @@ export default (idaUi) => {
 				'async': false,
 				'count': 100,
 				'grouped': false,
-				'labelNameInSchema': 'title',
 			},
 			'placeholder': "– choose file type –",
 			'title': "file type",
@@ -52,7 +54,6 @@ export default (idaUi) => {
 				'async': false,
 				'count': 100,
 				'grouped': false,
-				'labelNameInSchema': 'title',
 			},
 			'placeholder': "– choose resource type –",
 			'title': "resource type",
@@ -67,7 +68,6 @@ export default (idaUi) => {
 				'async': false,
 				'count': 100,
 				'grouped': false,
-				'labelNameInSchema': 'title',
 			},
 			'placeholder': "– choose use category –",
 			'title': "use category",
