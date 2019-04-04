@@ -19,8 +19,17 @@ function UserFromToken(token) {
 
 	if (jwt && jwt['sub']) {
 		let user = new User()
-		user.id = jwt['sub']
-		user.name = jwt['name'] || ""
+
+		// Join given_name and family_name if available
+		const nameParts = []
+		if (jwt['given_name']) {
+			nameParts.push(jwt['given_name']);
+		}
+		if (jwt['family_name']) {
+			nameParts.push(jwt['family_name']);
+		}
+		user.name = nameParts.join(" ") || jwt['name'] || ""
+		user.id = jwt['CSCUserName'] || jwt['sub']
 		user.email = jwt['email'] || ""
 		user.expires = jwt['exp'] ? parseUnixTime(jwt.exp) : null
 
