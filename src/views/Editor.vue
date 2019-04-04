@@ -213,7 +213,7 @@ export default {
 			try {
 				const currentId = this.$store.state.metadata.id
 				const dataset = this.$store.getters.prunedDataset
-				const payload = { dataset, type: 2, schema: "metax-ida" }
+				const payload = { dataset, type: 2, schema: this.selectedSchema.id }
 
 				const isExisting = (currentId && currentId !== 'new')
 				if (isExisting) {
