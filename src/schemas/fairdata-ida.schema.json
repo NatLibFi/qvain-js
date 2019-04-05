@@ -65,8 +65,8 @@
 		},
 		"title": {
 			"@id": "http://purl.org/dc/terms/title",
-			"title": "Multilingual string",
-			"description": "Object type for localized strings",
+			"title": "Title",
+			"description": "Textual label which concisely describes the content of the dataset. Based on the title of the dataset, a human should have a general understanding of the topic of the dataset. The title should be unique enough that it is unlikely to be used for another dataset.",
 			"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 			"type": "object",
 			"example": [
@@ -95,8 +95,8 @@
 		},
 		"description": {
 			"@id": "http://purl.org/dc/terms/description",
-			"title": "Multilingual string",
-			"description": "Object type for localized strings",
+			"title": "Description",
+			"description": "Free-form description of the dataset",
 			"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 			"type": "object",
 			"example": [
@@ -176,8 +176,8 @@
 							},
 							"name": {
 								"@id": "http://xmlns.com/foaf/0.1/name",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Name",
+								"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -206,6 +206,56 @@
 									"minLength": 1,
 									"type": "string"
 								}
+							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
 							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -236,8 +286,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -267,6 +317,64 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
+									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 										"title": "Contributor type",
@@ -292,8 +400,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -305,8 +413,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -363,8 +471,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -376,8 +484,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -411,8 +519,8 @@
 					},
 					"type": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Type",
+						"description": "a type of the identifier",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -429,8 +537,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -442,8 +550,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -537,6 +645,56 @@
 								"type": "string"
 							}
 						},
+						"homepage": {
+							"@id": "http://xmlns.com/foaf/0.1/Document",
+							"title": "Homepage",
+							"@type": "@id",
+							"type": "object",
+							"$deref": "#/definitions/Document",
+							"minProperties": 1,
+							"description": "A documented link to a document in the Web.",
+							"properties": {
+								"identifier": {
+									"@id": "http://purl.org/dc/terms/identifier",
+									"title": "URL",
+									"description": "URL of the homepage",
+									"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+									"minLength": 1,
+									"type": "string",
+									"format": "uri"
+								},
+								"title": {
+									"@id": "http://purl.org/dc/terms/title",
+									"title": "Title",
+									"description": "A name given to the document",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"minProperties": 1,
+									"additionalProperties": {
+										"minLength": 1,
+										"type": "string"
+									}
+								},
+								"description": {
+									"@id": "http://purl.org/dc/terms/description",
+									"title": "Description",
+									"description": "Description of the link. For example to be used as hover text.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"minProperties": 1,
+									"additionalProperties": {
+										"minLength": 1,
+										"type": "string"
+									}
+								}
+							},
+							"required": [
+								"identifier"
+							],
+							"additionalProperties": false
+						},
 						"member_of": {
 							"@id": "http://xmlns.com/foaf/0.1/Organization",
 							"title": "Organization",
@@ -566,8 +724,8 @@
 								},
 								"name": {
 									"@id": "http://xmlns.com/foaf/0.1/name",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Name",
+									"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -596,6 +754,56 @@
 										"minLength": 1,
 										"type": "string"
 									}
+								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Homepage",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"minProperties": 1,
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"minLength": 1,
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
 								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -626,8 +834,8 @@
 										},
 										"name": {
 											"@id": "http://xmlns.com/foaf/0.1/name",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Name",
+											"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -656,6 +864,56 @@
 												"minLength": 1,
 												"type": "string"
 											}
+										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Homepage",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"minProperties": 1,
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"minLength": 1,
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
 										},
 										"is_part_of": {
 											"@id": "http://purl.org/dc/terms/isPartOf",
@@ -690,8 +948,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -703,8 +961,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -761,8 +1019,8 @@
 											},
 											"pref_label": {
 												"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Preferred label",
+												"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -774,8 +1032,8 @@
 											},
 											"definition": {
 												"@id": "http://www.w3.org/2004/02/skos/core#definition",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Definition",
+												"description": "A statement or formal explanation of the meaning of a concept.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -832,8 +1090,8 @@
 									},
 									"pref_label": {
 										"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Preferred label",
+										"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -845,8 +1103,8 @@
 									},
 									"definition": {
 										"@id": "http://www.w3.org/2004/02/skos/core#definition",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Definition",
+										"description": "A statement or formal explanation of the meaning of a concept.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -897,8 +1155,8 @@
 									},
 									"pref_label": {
 										"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Preferred label",
+										"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -910,8 +1168,8 @@
 									},
 									"definition": {
 										"@id": "http://www.w3.org/2004/02/skos/core#definition",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Definition",
+										"description": "A statement or formal explanation of the meaning of a concept.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -973,8 +1231,8 @@
 						},
 						"name": {
 							"@id": "http://xmlns.com/foaf/0.1/name",
-							"title": "Multilingual string",
-							"description": "Object type for localized strings",
+							"title": "Name",
+							"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 							"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 							"type": "object",
 							"$deref": "#/definitions/langString",
@@ -1003,6 +1261,56 @@
 								"minLength": 1,
 								"type": "string"
 							}
+						},
+						"homepage": {
+							"@id": "http://xmlns.com/foaf/0.1/Document",
+							"title": "Homepage",
+							"@type": "@id",
+							"type": "object",
+							"$deref": "#/definitions/Document",
+							"minProperties": 1,
+							"description": "A documented link to a document in the Web.",
+							"properties": {
+								"identifier": {
+									"@id": "http://purl.org/dc/terms/identifier",
+									"title": "URL",
+									"description": "URL of the homepage",
+									"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+									"minLength": 1,
+									"type": "string",
+									"format": "uri"
+								},
+								"title": {
+									"@id": "http://purl.org/dc/terms/title",
+									"title": "Title",
+									"description": "A name given to the document",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"minProperties": 1,
+									"additionalProperties": {
+										"minLength": 1,
+										"type": "string"
+									}
+								},
+								"description": {
+									"@id": "http://purl.org/dc/terms/description",
+									"title": "Description",
+									"description": "Description of the link. For example to be used as hover text.",
+									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+									"type": "object",
+									"$deref": "#/definitions/langString",
+									"minProperties": 1,
+									"additionalProperties": {
+										"minLength": 1,
+										"type": "string"
+									}
+								}
+							},
+							"required": [
+								"identifier"
+							],
+							"additionalProperties": false
 						},
 						"is_part_of": {
 							"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -1033,8 +1341,8 @@
 								},
 								"name": {
 									"@id": "http://xmlns.com/foaf/0.1/name",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Name",
+									"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -1063,6 +1371,56 @@
 										"minLength": 1,
 										"type": "string"
 									}
+								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Homepage",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"minProperties": 1,
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"minLength": 1,
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
 								},
 								"is_part_of": {
 									"@id": "http://purl.org/dc/terms/isPartOf",
@@ -1097,8 +1455,8 @@
 											},
 											"pref_label": {
 												"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Preferred label",
+												"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -1110,8 +1468,8 @@
 											},
 											"definition": {
 												"@id": "http://www.w3.org/2004/02/skos/core#definition",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Definition",
+												"description": "A statement or formal explanation of the meaning of a concept.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -1168,8 +1526,8 @@
 									},
 									"pref_label": {
 										"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Preferred label",
+										"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -1181,8 +1539,8 @@
 									},
 									"definition": {
 										"@id": "http://www.w3.org/2004/02/skos/core#definition",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Definition",
+										"description": "A statement or formal explanation of the meaning of a concept.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -1283,6 +1641,56 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -1312,8 +1720,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -1342,6 +1750,56 @@
 											"minLength": 1,
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
 									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -1372,8 +1830,8 @@
 											},
 											"name": {
 												"@id": "http://xmlns.com/foaf/0.1/name",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Name",
+												"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -1402,6 +1860,56 @@
 													"minLength": 1,
 													"type": "string"
 												}
+											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Homepage",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"minProperties": 1,
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"minLength": 1,
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
 											},
 											"is_part_of": {
 												"@id": "http://purl.org/dc/terms/isPartOf",
@@ -1436,8 +1944,8 @@
 														},
 														"pref_label": {
 															"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Preferred label",
+															"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -1449,8 +1957,8 @@
 														},
 														"definition": {
 															"@id": "http://www.w3.org/2004/02/skos/core#definition",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Definition",
+															"description": "A statement or formal explanation of the meaning of a concept.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -1507,8 +2015,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -1520,8 +2028,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -1578,8 +2086,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -1591,8 +2099,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -1643,8 +2151,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -1656,8 +2164,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -1719,8 +2227,8 @@
 							},
 							"name": {
 								"@id": "http://xmlns.com/foaf/0.1/name",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Name",
+								"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -1749,6 +2257,56 @@
 									"minLength": 1,
 									"type": "string"
 								}
+							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
 							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -1779,8 +2337,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -1809,6 +2367,56 @@
 											"minLength": 1,
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
 									},
 									"is_part_of": {
 										"@id": "http://purl.org/dc/terms/isPartOf",
@@ -1843,8 +2451,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -1856,8 +2464,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -1914,8 +2522,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -1927,8 +2535,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2030,6 +2638,56 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -2059,8 +2717,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -2089,6 +2747,56 @@
 											"minLength": 1,
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
 									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -2119,8 +2827,8 @@
 											},
 											"name": {
 												"@id": "http://xmlns.com/foaf/0.1/name",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Name",
+												"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -2150,6 +2858,64 @@
 													"type": "string"
 												}
 											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Homepage",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"minProperties": 1,
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"minLength": 1,
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
+											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 												"title": "Contributor type",
@@ -2175,8 +2941,8 @@
 														},
 														"pref_label": {
 															"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Preferred label",
+															"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -2188,8 +2954,8 @@
 														},
 														"definition": {
 															"@id": "http://www.w3.org/2004/02/skos/core#definition",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Definition",
+															"description": "A statement or formal explanation of the meaning of a concept.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -2246,8 +3012,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -2259,8 +3025,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -2317,8 +3083,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2330,8 +3096,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2382,8 +3148,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2395,8 +3161,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2458,8 +3224,8 @@
 							},
 							"name": {
 								"@id": "http://xmlns.com/foaf/0.1/name",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Name",
+								"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -2488,6 +3254,56 @@
 									"minLength": 1,
 									"type": "string"
 								}
+							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
 							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -2518,8 +3334,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -2549,6 +3365,64 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
+									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 										"title": "Contributor type",
@@ -2574,8 +3448,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -2587,8 +3461,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -2645,8 +3519,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2658,8 +3532,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2711,8 +3585,8 @@
 				"properties": {
 					"name": {
 						"@id": "http://xmlns.com/foaf/0.1/name",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Name",
+						"description": "Name of the project",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -2737,6 +3611,56 @@
 						"@type": "http://www.w3.org/2001/XMLSchema#string",
 						"minLength": 1,
 						"type": "string"
+					},
+					"homepage": {
+						"@id": "http://xmlns.com/foaf/0.1/Document",
+						"title": "Homepage",
+						"@type": "@id",
+						"type": "object",
+						"$deref": "#/definitions/Document",
+						"minProperties": 1,
+						"description": "A documented link to a document in the Web.",
+						"properties": {
+							"identifier": {
+								"@id": "http://purl.org/dc/terms/identifier",
+								"title": "URL",
+								"description": "URL of the homepage",
+								"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+								"minLength": 1,
+								"type": "string",
+								"format": "uri"
+							},
+							"title": {
+								"@id": "http://purl.org/dc/terms/title",
+								"title": "Title",
+								"description": "A name given to the document",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"minProperties": 1,
+								"additionalProperties": {
+									"minLength": 1,
+									"type": "string"
+								}
+							},
+							"description": {
+								"@id": "http://purl.org/dc/terms/description",
+								"title": "Description",
+								"description": "Description of the link. For example to be used as hover text.",
+								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+								"type": "object",
+								"$deref": "#/definitions/langString",
+								"minProperties": 1,
+								"additionalProperties": {
+									"minLength": 1,
+									"type": "string"
+								}
+							}
+						},
+						"required": [
+							"identifier"
+						],
+						"additionalProperties": false
 					},
 					"has_funding_agency": {
 						"@id": "http://purl.org/cerif/frapo/hasFundingAgency",
@@ -2771,8 +3695,8 @@
 								},
 								"name": {
 									"@id": "http://xmlns.com/foaf/0.1/name",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Name",
+									"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -2801,6 +3725,56 @@
 										"minLength": 1,
 										"type": "string"
 									}
+								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Homepage",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"minProperties": 1,
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"minLength": 1,
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
 								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -2831,8 +3805,8 @@
 										},
 										"name": {
 											"@id": "http://xmlns.com/foaf/0.1/name",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Name",
+											"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -2862,6 +3836,64 @@
 												"type": "string"
 											}
 										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Homepage",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"minProperties": 1,
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"minLength": 1,
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
+										"is_part_of": {
+											"@id": "http://purl.org/dc/terms/isPartOf",
+											"title": "Is Part Of",
+											"description": "A related resource in which the described resource is physically or logically included.",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Organization"
+										},
 										"contributor_type": {
 											"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 											"title": "Contributor type",
@@ -2887,8 +3919,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -2900,8 +3932,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -2958,8 +3990,8 @@
 											},
 											"pref_label": {
 												"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Preferred label",
+												"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -2971,8 +4003,8 @@
 											},
 											"definition": {
 												"@id": "http://www.w3.org/2004/02/skos/core#definition",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Definition",
+												"description": "A statement or formal explanation of the meaning of a concept.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -3007,8 +4039,8 @@
 					},
 					"funder_type": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Funder type",
+						"description": "Project funder type from reference data",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -3025,8 +4057,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -3038,8 +4070,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -3099,8 +4131,8 @@
 								},
 								"name": {
 									"@id": "http://xmlns.com/foaf/0.1/name",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Name",
+									"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -3129,6 +4161,56 @@
 										"minLength": 1,
 										"type": "string"
 									}
+								},
+								"homepage": {
+									"@id": "http://xmlns.com/foaf/0.1/Document",
+									"title": "Homepage",
+									"@type": "@id",
+									"type": "object",
+									"$deref": "#/definitions/Document",
+									"minProperties": 1,
+									"description": "A documented link to a document in the Web.",
+									"properties": {
+										"identifier": {
+											"@id": "http://purl.org/dc/terms/identifier",
+											"title": "URL",
+											"description": "URL of the homepage",
+											"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+											"minLength": 1,
+											"type": "string",
+											"format": "uri"
+										},
+										"title": {
+											"@id": "http://purl.org/dc/terms/title",
+											"title": "Title",
+											"description": "A name given to the document",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										},
+										"description": {
+											"@id": "http://purl.org/dc/terms/description",
+											"title": "Description",
+											"description": "Description of the link. For example to be used as hover text.",
+											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+											"type": "object",
+											"$deref": "#/definitions/langString",
+											"minProperties": 1,
+											"additionalProperties": {
+												"minLength": 1,
+												"type": "string"
+											}
+										}
+									},
+									"required": [
+										"identifier"
+									],
+									"additionalProperties": false
 								},
 								"is_part_of": {
 									"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -3159,8 +4241,8 @@
 										},
 										"name": {
 											"@id": "http://xmlns.com/foaf/0.1/name",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Name",
+											"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -3190,6 +4272,64 @@
 												"type": "string"
 											}
 										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Homepage",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"minProperties": 1,
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"minLength": 1,
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
+										"is_part_of": {
+											"@id": "http://purl.org/dc/terms/isPartOf",
+											"title": "Is Part Of",
+											"description": "A related resource in which the described resource is physically or logically included.",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Organization"
+										},
 										"contributor_type": {
 											"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 											"title": "Contributor type",
@@ -3215,8 +4355,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -3228,8 +4368,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -3286,8 +4426,8 @@
 											},
 											"pref_label": {
 												"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Preferred label",
+												"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -3299,8 +4439,8 @@
 											},
 											"definition": {
 												"@id": "http://www.w3.org/2004/02/skos/core#definition",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Definition",
+												"description": "A statement or formal explanation of the meaning of a concept.",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -3408,6 +4548,56 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -3437,8 +4627,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -3467,6 +4657,56 @@
 											"minLength": 1,
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
 									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -3497,8 +4737,8 @@
 											},
 											"name": {
 												"@id": "http://xmlns.com/foaf/0.1/name",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Name",
+												"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -3528,6 +4768,64 @@
 													"type": "string"
 												}
 											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Homepage",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"minProperties": 1,
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"minLength": 1,
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
+											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 												"title": "Contributor type",
@@ -3553,8 +4851,8 @@
 														},
 														"pref_label": {
 															"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Preferred label",
+															"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -3566,8 +4864,8 @@
 														},
 														"definition": {
 															"@id": "http://www.w3.org/2004/02/skos/core#definition",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Definition",
+															"description": "A statement or formal explanation of the meaning of a concept.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -3624,8 +4922,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -3637,8 +4935,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -3695,8 +4993,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -3708,8 +5006,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -3760,8 +5058,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -3773,8 +5071,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -3836,8 +5134,8 @@
 							},
 							"name": {
 								"@id": "http://xmlns.com/foaf/0.1/name",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Name",
+								"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -3866,6 +5164,56 @@
 									"minLength": 1,
 									"type": "string"
 								}
+							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
 							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -3896,8 +5244,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -3927,6 +5275,64 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
+									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 										"title": "Contributor type",
@@ -3952,8 +5358,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -3965,8 +5371,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -4023,8 +5429,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -4036,8 +5442,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -4098,8 +5504,8 @@
 					},
 					"pref_label": {
 						"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Preferred label",
+						"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4111,8 +5517,8 @@
 					},
 					"definition": {
 						"@id": "http://www.w3.org/2004/02/skos/core#definition",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Definition",
+						"description": "A statement or formal explanation of the meaning of a concept.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4155,8 +5561,8 @@
 				"properties": {
 					"title": {
 						"@id": "http://purl.org/dc/terms/title",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Title",
+						"description": "A name of the Linguistic System. Name is given as localized text from IETF language codes. In case text cannot be localixed \"zxx\" or \"und\" language codes must be used.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4233,8 +5639,8 @@
 					},
 					"place_uri": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Place uri",
+						"description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -4251,8 +5657,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4264,8 +5670,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4291,9 +5697,6 @@
 						"additionalProperties": false
 					}
 				},
-				"required": [
-					"place_uri"
-				],
 				"additionalProperties": false
 			}
 		},
@@ -4364,8 +5767,8 @@
 						"properties": {
 							"title": {
 								"@id": "http://purl.org/dc/terms/title",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Title",
+								"description": "A name given to the resource.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4377,8 +5780,8 @@
 							},
 							"description": {
 								"@id": "http://purl.org/dc/terms/description",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Description",
+								"description": "An account of the resource.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4399,8 +5802,8 @@
 							},
 							"type": {
 								"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-								"title": "Concept",
-								"description": "An idea or notion; a unit of thought.",
+								"title": "Type",
+								"description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
 								"@type": "@id",
 								"type": "object",
 								"$deref": "#/definitions/Concept",
@@ -4417,8 +5820,8 @@
 									},
 									"pref_label": {
 										"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Preferred label",
+										"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -4430,8 +5833,8 @@
 									},
 									"definition": {
 										"@id": "http://www.w3.org/2004/02/skos/core#definition",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Definition",
+										"description": "A statement or formal explanation of the meaning of a concept.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -4461,8 +5864,8 @@
 					},
 					"relation_type": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Relation type",
+						"description": "Role of the influence. This property is considered same as rdf:isSingletonPropertyOf.",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -4479,8 +5882,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4492,8 +5895,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4551,8 +5954,8 @@
 					},
 					"pref_label": {
 						"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Preferred label",
+						"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4564,8 +5967,8 @@
 					},
 					"definition": {
 						"@id": "http://www.w3.org/2004/02/skos/core#definition",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Definition",
+						"description": "A statement or formal explanation of the meaning of a concept.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4602,8 +6005,8 @@
 			"properties": {
 				"description": {
 					"@id": "http://purl.org/dc/terms/description",
-					"title": "Multilingual string",
-					"description": "Object type for localized strings",
+					"title": "Description",
+					"description": "Free account of the rights",
 					"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 					"type": "object",
 					"$deref": "#/definitions/langString",
@@ -4624,8 +6027,8 @@
 				},
 				"access_type": {
 					"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-					"title": "Concept",
-					"description": "An idea or notion; a unit of thought.",
+					"title": "Access type",
+					"description": "The nature or genre of the resource.",
 					"@type": "@id",
 					"type": "object",
 					"$deref": "#/definitions/Concept",
@@ -4642,8 +6045,8 @@
 						},
 						"pref_label": {
 							"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-							"title": "Multilingual string",
-							"description": "Object type for localized strings",
+							"title": "Preferred label",
+							"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 							"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 							"type": "object",
 							"$deref": "#/definitions/langString",
@@ -4655,8 +6058,8 @@
 						},
 						"definition": {
 							"@id": "http://www.w3.org/2004/02/skos/core#definition",
-							"title": "Multilingual string",
-							"description": "Object type for localized strings",
+							"title": "Definition",
+							"description": "A statement or formal explanation of the meaning of a concept.",
 							"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 							"type": "object",
 							"$deref": "#/definitions/langString",
@@ -4706,8 +6109,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4719,8 +6122,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4771,8 +6174,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4784,8 +6187,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4837,8 +6240,8 @@
 							},
 							"title": {
 								"@id": "http://purl.org/dc/terms/title",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Title",
+								"description": "A name given to the resource.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4850,8 +6253,8 @@
 							},
 							"description": {
 								"@id": "http://purl.org/dc/terms/description",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Description",
+								"description": "Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource. An account of the resource.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -4879,8 +6282,8 @@
 				},
 				"access_url": {
 					"@id": "http://xmlns.com/foaf/0.1/Document",
-					"title": "Documented link",
-					"description": "A documented link to a document in the Web.",
+					"title": "Access url",
+					"description": "Access url for the dataset",
 					"@type": "@id",
 					"type": "object",
 					"$deref": "#/definitions/Document",
@@ -4897,8 +6300,8 @@
 						},
 						"title": {
 							"@id": "http://purl.org/dc/terms/title",
-							"title": "Multilingual string",
-							"description": "Object type for localized strings",
+							"title": "Title",
+							"description": "A name given to the document",
 							"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 							"type": "object",
 							"$deref": "#/definitions/langString",
@@ -4910,8 +6313,8 @@
 						},
 						"description": {
 							"@id": "http://purl.org/dc/terms/description",
-							"title": "Multilingual string",
-							"description": "Object type for localized strings",
+							"title": "Description",
+							"description": "Description of the link. For example to be used as hover text.",
 							"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 							"type": "object",
 							"$deref": "#/definitions/langString",
@@ -4949,8 +6352,8 @@
 				"properties": {
 					"title": {
 						"@id": "http://purl.org/dc/terms/title",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Title",
+						"description": "A name given to the activity.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4962,8 +6365,8 @@
 					},
 					"description": {
 						"@id": "http://purl.org/dc/terms/description",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Description",
+						"description": "The description of the activity",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -4975,8 +6378,8 @@
 					},
 					"outcome_description": {
 						"@id": "http://uri.suomi.fi/datamodel/ns/mrd#outcomeDescription",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Outcome description",
+						"description": "Description of the event outcome",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -5071,8 +6474,8 @@
 							},
 							"place_uri": {
 								"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-								"title": "Concept",
-								"description": "An idea or notion; a unit of thought.",
+								"title": "Place uri",
+								"description": "URI for the place. Use reference data from: https://metax-test.csc.fi/es/reference_data/location/_search?pretty=true",
 								"@type": "@id",
 								"type": "object",
 								"$deref": "#/definitions/Concept",
@@ -5089,8 +6492,8 @@
 									},
 									"pref_label": {
 										"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Preferred label",
+										"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -5102,8 +6505,8 @@
 									},
 									"definition": {
 										"@id": "http://www.w3.org/2004/02/skos/core#definition",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Definition",
+										"description": "A statement or formal explanation of the meaning of a concept.",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -5133,8 +6536,8 @@
 					},
 					"preservation_event": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Preservation Event",
+						"description": "Preservation event",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -5151,8 +6554,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -5164,8 +6567,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -5192,8 +6595,8 @@
 					},
 					"event_outcome": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Event outcome",
+						"description": "Outcome of the event",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -5210,8 +6613,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -5223,8 +6626,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -5265,8 +6668,8 @@
 							"properties": {
 								"title": {
 									"@id": "http://purl.org/dc/terms/title",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Title",
+									"description": "A name given to the resource.",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -5278,8 +6681,8 @@
 								},
 								"description": {
 									"@id": "http://purl.org/dc/terms/description",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Description",
+									"description": "An account of the resource.",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -5300,8 +6703,8 @@
 								},
 								"type": {
 									"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-									"title": "Concept",
-									"description": "An idea or notion; a unit of thought.",
+									"title": "Type",
+									"description": "Type of the entity, for example: API, Application, News article, paper, post or visualization.",
 									"@type": "@id",
 									"type": "object",
 									"$deref": "#/definitions/Concept",
@@ -5318,8 +6721,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -5331,8 +6734,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -5427,6 +6830,56 @@
 												"type": "string"
 											}
 										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Homepage",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"minProperties": 1,
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"minLength": 1,
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
+										},
 										"member_of": {
 											"@id": "http://xmlns.com/foaf/0.1/Organization",
 											"title": "Organization",
@@ -5456,8 +6909,8 @@
 												},
 												"name": {
 													"@id": "http://xmlns.com/foaf/0.1/name",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Name",
+													"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -5486,6 +6939,56 @@
 														"minLength": 1,
 														"type": "string"
 													}
+												},
+												"homepage": {
+													"@id": "http://xmlns.com/foaf/0.1/Document",
+													"title": "Homepage",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Document",
+													"minProperties": 1,
+													"description": "A documented link to a document in the Web.",
+													"properties": {
+														"identifier": {
+															"@id": "http://purl.org/dc/terms/identifier",
+															"title": "URL",
+															"description": "URL of the homepage",
+															"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+															"minLength": 1,
+															"type": "string",
+															"format": "uri"
+														},
+														"title": {
+															"@id": "http://purl.org/dc/terms/title",
+															"title": "Title",
+															"description": "A name given to the document",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"minProperties": 1,
+															"additionalProperties": {
+																"minLength": 1,
+																"type": "string"
+															}
+														},
+														"description": {
+															"@id": "http://purl.org/dc/terms/description",
+															"title": "Description",
+															"description": "Description of the link. For example to be used as hover text.",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"minProperties": 1,
+															"additionalProperties": {
+																"minLength": 1,
+																"type": "string"
+															}
+														}
+													},
+													"required": [
+														"identifier"
+													],
+													"additionalProperties": false
 												},
 												"is_part_of": {
 													"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -5516,8 +7019,8 @@
 														},
 														"name": {
 															"@id": "http://xmlns.com/foaf/0.1/name",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Name",
+															"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -5547,6 +7050,64 @@
 																"type": "string"
 															}
 														},
+														"homepage": {
+															"@id": "http://xmlns.com/foaf/0.1/Document",
+															"title": "Homepage",
+															"@type": "@id",
+															"type": "object",
+															"$deref": "#/definitions/Document",
+															"minProperties": 1,
+															"description": "A documented link to a document in the Web.",
+															"properties": {
+																"identifier": {
+																	"@id": "http://purl.org/dc/terms/identifier",
+																	"title": "URL",
+																	"description": "URL of the homepage",
+																	"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+																	"minLength": 1,
+																	"type": "string",
+																	"format": "uri"
+																},
+																"title": {
+																	"@id": "http://purl.org/dc/terms/title",
+																	"title": "Title",
+																	"description": "A name given to the document",
+																	"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+																	"type": "object",
+																	"$deref": "#/definitions/langString",
+																	"minProperties": 1,
+																	"additionalProperties": {
+																		"minLength": 1,
+																		"type": "string"
+																	}
+																},
+																"description": {
+																	"@id": "http://purl.org/dc/terms/description",
+																	"title": "Description",
+																	"description": "Description of the link. For example to be used as hover text.",
+																	"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+																	"type": "object",
+																	"$deref": "#/definitions/langString",
+																	"minProperties": 1,
+																	"additionalProperties": {
+																		"minLength": 1,
+																		"type": "string"
+																	}
+																}
+															},
+															"required": [
+																"identifier"
+															],
+															"additionalProperties": false
+														},
+														"is_part_of": {
+															"@id": "http://purl.org/dc/terms/isPartOf",
+															"title": "Is Part Of",
+															"description": "A related resource in which the described resource is physically or logically included.",
+															"@type": "@id",
+															"type": "object",
+															"$deref": "#/definitions/Organization"
+														},
 														"contributor_type": {
 															"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 															"title": "Contributor type",
@@ -5572,8 +7133,8 @@
 																	},
 																	"pref_label": {
 																		"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-																		"title": "Multilingual string",
-																		"description": "Object type for localized strings",
+																		"title": "Preferred label",
+																		"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 																		"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																		"type": "object",
 																		"$deref": "#/definitions/langString",
@@ -5585,8 +7146,8 @@
 																	},
 																	"definition": {
 																		"@id": "http://www.w3.org/2004/02/skos/core#definition",
-																		"title": "Multilingual string",
-																		"description": "Object type for localized strings",
+																		"title": "Definition",
+																		"description": "A statement or formal explanation of the meaning of a concept.",
 																		"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																		"type": "object",
 																		"$deref": "#/definitions/langString",
@@ -5643,8 +7204,8 @@
 															},
 															"pref_label": {
 																"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-																"title": "Multilingual string",
-																"description": "Object type for localized strings",
+																"title": "Preferred label",
+																"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 																"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																"type": "object",
 																"$deref": "#/definitions/langString",
@@ -5656,8 +7217,8 @@
 															},
 															"definition": {
 																"@id": "http://www.w3.org/2004/02/skos/core#definition",
-																"title": "Multilingual string",
-																"description": "Object type for localized strings",
+																"title": "Definition",
+																"description": "A statement or formal explanation of the meaning of a concept.",
 																"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																"type": "object",
 																"$deref": "#/definitions/langString",
@@ -5714,8 +7275,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -5727,8 +7288,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -5779,8 +7340,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -5792,8 +7353,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -5855,8 +7416,8 @@
 										},
 										"name": {
 											"@id": "http://xmlns.com/foaf/0.1/name",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Name",
+											"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -5885,6 +7446,56 @@
 												"minLength": 1,
 												"type": "string"
 											}
+										},
+										"homepage": {
+											"@id": "http://xmlns.com/foaf/0.1/Document",
+											"title": "Homepage",
+											"@type": "@id",
+											"type": "object",
+											"$deref": "#/definitions/Document",
+											"minProperties": 1,
+											"description": "A documented link to a document in the Web.",
+											"properties": {
+												"identifier": {
+													"@id": "http://purl.org/dc/terms/identifier",
+													"title": "URL",
+													"description": "URL of the homepage",
+													"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+													"minLength": 1,
+													"type": "string",
+													"format": "uri"
+												},
+												"title": {
+													"@id": "http://purl.org/dc/terms/title",
+													"title": "Title",
+													"description": "A name given to the document",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												},
+												"description": {
+													"@id": "http://purl.org/dc/terms/description",
+													"title": "Description",
+													"description": "Description of the link. For example to be used as hover text.",
+													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+													"type": "object",
+													"$deref": "#/definitions/langString",
+													"minProperties": 1,
+													"additionalProperties": {
+														"minLength": 1,
+														"type": "string"
+													}
+												}
+											},
+											"required": [
+												"identifier"
+											],
+											"additionalProperties": false
 										},
 										"is_part_of": {
 											"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -5915,8 +7526,8 @@
 												},
 												"name": {
 													"@id": "http://xmlns.com/foaf/0.1/name",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Name",
+													"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -5946,6 +7557,64 @@
 														"type": "string"
 													}
 												},
+												"homepage": {
+													"@id": "http://xmlns.com/foaf/0.1/Document",
+													"title": "Homepage",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Document",
+													"minProperties": 1,
+													"description": "A documented link to a document in the Web.",
+													"properties": {
+														"identifier": {
+															"@id": "http://purl.org/dc/terms/identifier",
+															"title": "URL",
+															"description": "URL of the homepage",
+															"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+															"minLength": 1,
+															"type": "string",
+															"format": "uri"
+														},
+														"title": {
+															"@id": "http://purl.org/dc/terms/title",
+															"title": "Title",
+															"description": "A name given to the document",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"minProperties": 1,
+															"additionalProperties": {
+																"minLength": 1,
+																"type": "string"
+															}
+														},
+														"description": {
+															"@id": "http://purl.org/dc/terms/description",
+															"title": "Description",
+															"description": "Description of the link. For example to be used as hover text.",
+															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+															"type": "object",
+															"$deref": "#/definitions/langString",
+															"minProperties": 1,
+															"additionalProperties": {
+																"minLength": 1,
+																"type": "string"
+															}
+														}
+													},
+													"required": [
+														"identifier"
+													],
+													"additionalProperties": false
+												},
+												"is_part_of": {
+													"@id": "http://purl.org/dc/terms/isPartOf",
+													"title": "Is Part Of",
+													"description": "A related resource in which the described resource is physically or logically included.",
+													"@type": "@id",
+													"type": "object",
+													"$deref": "#/definitions/Organization"
+												},
 												"contributor_type": {
 													"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 													"title": "Contributor type",
@@ -5971,8 +7640,8 @@
 															},
 															"pref_label": {
 																"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-																"title": "Multilingual string",
-																"description": "Object type for localized strings",
+																"title": "Preferred label",
+																"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 																"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																"type": "object",
 																"$deref": "#/definitions/langString",
@@ -5984,8 +7653,8 @@
 															},
 															"definition": {
 																"@id": "http://www.w3.org/2004/02/skos/core#definition",
-																"title": "Multilingual string",
-																"description": "Object type for localized strings",
+																"title": "Definition",
+																"description": "A statement or formal explanation of the meaning of a concept.",
 																"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 																"type": "object",
 																"$deref": "#/definitions/langString",
@@ -6042,8 +7711,8 @@
 													},
 													"pref_label": {
 														"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Preferred label",
+														"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -6055,8 +7724,8 @@
 													},
 													"definition": {
 														"@id": "http://www.w3.org/2004/02/skos/core#definition",
-														"title": "Multilingual string",
-														"description": "Object type for localized strings",
+														"title": "Definition",
+														"description": "A statement or formal explanation of the meaning of a concept.",
 														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 														"type": "object",
 														"$deref": "#/definitions/langString",
@@ -6108,8 +7777,8 @@
 							"properties": {
 								"pref_label": {
 									"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Preferred label",
+									"description": "Preferred label for the variable",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -6121,8 +7790,8 @@
 								},
 								"description": {
 									"@id": "http://purl.org/dc/terms/description",
-									"title": "Multilingual string",
-									"description": "Object type for localized strings",
+									"title": "Description",
+									"description": "An account of the resource.",
 									"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 									"type": "object",
 									"$deref": "#/definitions/langString",
@@ -6135,7 +7804,7 @@
 								"concept": {
 									"@id": "http://www.w3.org/2004/02/skos/core#Concept",
 									"title": "Concept",
-									"description": "An idea or notion; a unit of thought.",
+									"description": "Describes the concept of the variable",
 									"@type": "@id",
 									"type": "object",
 									"$deref": "#/definitions/Concept",
@@ -6152,8 +7821,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6165,8 +7834,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6193,8 +7862,8 @@
 								},
 								"universe": {
 									"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-									"title": "Concept",
-									"description": "An idea or notion; a unit of thought.",
+									"title": "Universe",
+									"description": "Indicates the Universe(s) of represented variable",
 									"@type": "@id",
 									"type": "object",
 									"$deref": "#/definitions/Concept",
@@ -6211,8 +7880,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6224,8 +7893,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6268,7 +7937,7 @@
 					},
 					"lifecycle_event": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
+						"title": "Lifecycle Event",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -6286,8 +7955,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6299,8 +7968,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6380,8 +8049,8 @@
 					},
 					"file_type": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "File type",
+						"description": "File type from reference data",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -6398,8 +8067,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6411,8 +8080,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6439,8 +8108,8 @@
 					},
 					"use_category": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Use category",
+						"description": "Use type of the resource",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -6457,8 +8126,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6470,8 +8139,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -6571,6 +8240,56 @@
 									"type": "string"
 								}
 							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
+							},
 							"member_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
 								"title": "Organization",
@@ -6600,8 +8319,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -6630,6 +8349,56 @@
 											"minLength": 1,
 											"type": "string"
 										}
+									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
 									},
 									"is_part_of": {
 										"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -6660,8 +8429,8 @@
 											},
 											"name": {
 												"@id": "http://xmlns.com/foaf/0.1/name",
-												"title": "Multilingual string",
-												"description": "Object type for localized strings",
+												"title": "Name",
+												"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 												"type": "object",
 												"$deref": "#/definitions/langString",
@@ -6691,6 +8460,64 @@
 													"type": "string"
 												}
 											},
+											"homepage": {
+												"@id": "http://xmlns.com/foaf/0.1/Document",
+												"title": "Homepage",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Document",
+												"minProperties": 1,
+												"description": "A documented link to a document in the Web.",
+												"properties": {
+													"identifier": {
+														"@id": "http://purl.org/dc/terms/identifier",
+														"title": "URL",
+														"description": "URL of the homepage",
+														"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+														"minLength": 1,
+														"type": "string",
+														"format": "uri"
+													},
+													"title": {
+														"@id": "http://purl.org/dc/terms/title",
+														"title": "Title",
+														"description": "A name given to the document",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													},
+													"description": {
+														"@id": "http://purl.org/dc/terms/description",
+														"title": "Description",
+														"description": "Description of the link. For example to be used as hover text.",
+														"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+														"type": "object",
+														"$deref": "#/definitions/langString",
+														"minProperties": 1,
+														"additionalProperties": {
+															"minLength": 1,
+															"type": "string"
+														}
+													}
+												},
+												"required": [
+													"identifier"
+												],
+												"additionalProperties": false
+											},
+											"is_part_of": {
+												"@id": "http://purl.org/dc/terms/isPartOf",
+												"title": "Is Part Of",
+												"description": "A related resource in which the described resource is physically or logically included.",
+												"@type": "@id",
+												"type": "object",
+												"$deref": "#/definitions/Organization"
+											},
 											"contributor_type": {
 												"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 												"title": "Contributor type",
@@ -6716,8 +8543,8 @@
 														},
 														"pref_label": {
 															"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Preferred label",
+															"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -6729,8 +8556,8 @@
 														},
 														"definition": {
 															"@id": "http://www.w3.org/2004/02/skos/core#definition",
-															"title": "Multilingual string",
-															"description": "Object type for localized strings",
+															"title": "Definition",
+															"description": "A statement or formal explanation of the meaning of a concept.",
 															"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 															"type": "object",
 															"$deref": "#/definitions/langString",
@@ -6787,8 +8614,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -6800,8 +8627,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -6858,8 +8685,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6871,8 +8698,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6923,8 +8750,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6936,8 +8763,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -6999,8 +8826,8 @@
 							},
 							"name": {
 								"@id": "http://xmlns.com/foaf/0.1/name",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Name",
+								"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -7029,6 +8856,56 @@
 									"minLength": 1,
 									"type": "string"
 								}
+							},
+							"homepage": {
+								"@id": "http://xmlns.com/foaf/0.1/Document",
+								"title": "Homepage",
+								"@type": "@id",
+								"type": "object",
+								"$deref": "#/definitions/Document",
+								"minProperties": 1,
+								"description": "A documented link to a document in the Web.",
+								"properties": {
+									"identifier": {
+										"@id": "http://purl.org/dc/terms/identifier",
+										"title": "URL",
+										"description": "URL of the homepage",
+										"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+										"minLength": 1,
+										"type": "string",
+										"format": "uri"
+									},
+									"title": {
+										"@id": "http://purl.org/dc/terms/title",
+										"title": "Title",
+										"description": "A name given to the document",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									},
+									"description": {
+										"@id": "http://purl.org/dc/terms/description",
+										"title": "Description",
+										"description": "Description of the link. For example to be used as hover text.",
+										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+										"type": "object",
+										"$deref": "#/definitions/langString",
+										"minProperties": 1,
+										"additionalProperties": {
+											"minLength": 1,
+											"type": "string"
+										}
+									}
+								},
+								"required": [
+									"identifier"
+								],
+								"additionalProperties": false
 							},
 							"is_part_of": {
 								"@id": "http://xmlns.com/foaf/0.1/Organization",
@@ -7059,8 +8936,8 @@
 									},
 									"name": {
 										"@id": "http://xmlns.com/foaf/0.1/name",
-										"title": "Multilingual string",
-										"description": "Object type for localized strings",
+										"title": "Name",
+										"description": "This property contains a name of the agent. This property can be repeated for different versions of the name (e.g. the name in different languages)",
 										"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 										"type": "object",
 										"$deref": "#/definitions/langString",
@@ -7090,6 +8967,64 @@
 											"type": "string"
 										}
 									},
+									"homepage": {
+										"@id": "http://xmlns.com/foaf/0.1/Document",
+										"title": "Homepage",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Document",
+										"minProperties": 1,
+										"description": "A documented link to a document in the Web.",
+										"properties": {
+											"identifier": {
+												"@id": "http://purl.org/dc/terms/identifier",
+												"title": "URL",
+												"description": "URL of the homepage",
+												"@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+												"minLength": 1,
+												"type": "string",
+												"format": "uri"
+											},
+											"title": {
+												"@id": "http://purl.org/dc/terms/title",
+												"title": "Title",
+												"description": "A name given to the document",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											},
+											"description": {
+												"@id": "http://purl.org/dc/terms/description",
+												"title": "Description",
+												"description": "Description of the link. For example to be used as hover text.",
+												"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+												"type": "object",
+												"$deref": "#/definitions/langString",
+												"minProperties": 1,
+												"additionalProperties": {
+													"minLength": 1,
+													"type": "string"
+												}
+											}
+										},
+										"required": [
+											"identifier"
+										],
+										"additionalProperties": false
+									},
+									"is_part_of": {
+										"@id": "http://purl.org/dc/terms/isPartOf",
+										"title": "Is Part Of",
+										"description": "A related resource in which the described resource is physically or logically included.",
+										"@type": "@id",
+										"type": "object",
+										"$deref": "#/definitions/Organization"
+									},
 									"contributor_type": {
 										"@id": "http://uri.suomi.fi/datamodel/ns/mrd#contributorType",
 										"title": "Contributor type",
@@ -7115,8 +9050,8 @@
 												},
 												"pref_label": {
 													"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Preferred label",
+													"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -7128,8 +9063,8 @@
 												},
 												"definition": {
 													"@id": "http://www.w3.org/2004/02/skos/core#definition",
-													"title": "Multilingual string",
-													"description": "Object type for localized strings",
+													"title": "Definition",
+													"description": "A statement or formal explanation of the meaning of a concept.",
 													"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 													"type": "object",
 													"$deref": "#/definitions/langString",
@@ -7186,8 +9121,8 @@
 										},
 										"pref_label": {
 											"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Preferred label",
+											"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -7199,8 +9134,8 @@
 										},
 										"definition": {
 											"@id": "http://www.w3.org/2004/02/skos/core#definition",
-											"title": "Multilingual string",
-											"description": "Object type for localized strings",
+											"title": "Definition",
+											"description": "A statement or formal explanation of the meaning of a concept.",
 											"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 											"type": "object",
 											"$deref": "#/definitions/langString",
@@ -7280,8 +9215,8 @@
 					},
 					"use_category": {
 						"@id": "http://www.w3.org/2004/02/skos/core#Concept",
-						"title": "Concept",
-						"description": "An idea or notion; a unit of thought.",
+						"title": "Use Category",
+						"description": "Use category from reference data",
 						"@type": "@id",
 						"type": "object",
 						"$deref": "#/definitions/Concept",
@@ -7298,8 +9233,8 @@
 							},
 							"pref_label": {
 								"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Preferred label",
+								"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -7311,8 +9246,8 @@
 							},
 							"definition": {
 								"@id": "http://www.w3.org/2004/02/skos/core#definition",
-								"title": "Multilingual string",
-								"description": "Object type for localized strings",
+								"title": "Definition",
+								"description": "A statement or formal explanation of the meaning of a concept.",
 								"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 								"type": "object",
 								"$deref": "#/definitions/langString",
@@ -7371,8 +9306,8 @@
 					},
 					"pref_label": {
 						"@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Preferred label",
+						"description": "The preferred lexical label for a resource, in a given language. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise\n      disjoint properties.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",
@@ -7384,8 +9319,8 @@
 					},
 					"definition": {
 						"@id": "http://www.w3.org/2004/02/skos/core#definition",
-						"title": "Multilingual string",
-						"description": "Object type for localized strings",
+						"title": "Definition",
+						"description": "A statement or formal explanation of the meaning of a concept.",
 						"@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
 						"type": "object",
 						"$deref": "#/definitions/langString",

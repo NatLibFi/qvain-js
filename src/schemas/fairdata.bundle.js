@@ -5,7 +5,24 @@ import FairdataIdaUi from './fairdata-ida.ui.js'
 import fairdataAttUiDiff from './fairdata-att.ui.diff.js'
 import jsonPointer from 'json-pointer'
 
+
+// Homepage objects cause too much clutter with the current UI
+function removeObjects(obj, key) {
+	if (typeof(obj) !== "object") {
+		return
+	}
+	if (key in obj) {
+		delete obj[key]
+	}
+	for (let item in obj) {
+		removeObjects(obj[item], key)
+	}
+}
+removeObjects(FairdataIdaSchema, 'homepage')
+removeObjects(FairdataAttSchema, 'homepage')
+
 const FairdataAttUi = fairdataAttUiDiff(FairdataIdaUi)
+
 
 // Qvain backend knows these schemas as:
 //
