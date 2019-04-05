@@ -17,9 +17,11 @@
 			<b-collapse is-nav id="nav_collapse">
 
 				<b-navbar-nav>
-					<b-nav-item href="mailto:servicedesk@csc.fi?subject=Fairdata%2FQvain%3A%20support%20request">Support</b-nav-item>
-					<b-nav-item href="https://www.fairdata.fi/en/qvain/qvain-user-guide/">Docs</b-nav-item>
-					<b-nav-item>Contact Us</b-nav-item>
+					<b-nav-item title="CSC customer support
+servicedesk (at) csc.fi
++358 9 457 2821
+Weekdays from 8:30 AM to 4 PM" href="mailto:servicedesk@csc.fi?subject=Fairdata%2FQvain%3A%20support%20request">Contact Us</b-nav-item>
+					<b-nav-item target="_blank" rel="noopener noreferrer" href="https://www.fairdata.fi/en/qvain/qvain-user-guide/">Docs</b-nav-item>
 				</b-navbar-nav>
 
 

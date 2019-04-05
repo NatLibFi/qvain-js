@@ -10,9 +10,9 @@
 				</b-button-group>
 
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
-					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None">
+					<b-form-select value="fairdata" v-model="selectedSchema" placeholder="None" :disabled="!!selectedSchema" @change="selectSchema">
 						<optgroup :label="bundle" v-for="(bundle, index) in bundles" :key="index">
-							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ val.name }}</option>
+							<option :value="val" v-for="(val, id) in getSchemas(bundle)" :key="id">{{ !selectedSchema ? val.name : val.shortName }}</option>
 						</optgroup>
 						<option v-if="selectedSchema === null" :value="null">None</option>
 					</b-form-select>
@@ -23,8 +23,8 @@
 				</b-input-group>
 
 				<b-button-group size="sm" class="mx-1">
-					<b-btn v-b-tooltip.hover title="Save this dataset" @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
-					<b-btn v-b-tooltip.hover title="Ready to publish" @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
+					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
 				</b-button-group>
 
 				<b-button-group size="sm" class="mx-1" v-if="!inDev">
@@ -79,7 +79,12 @@
 			<div class="container-fluid no-padding my-3">
 				<router-view></router-view>
 			</div>
-
+			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse'}">
+				<b-button-group size="sm" class="mx-1">
+					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
+					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
+				</b-button-group>
+			</div>
 		</div>
 		<div v-else>
 			<font-awesome-icon icon="circle-notch" spin />
@@ -198,7 +203,7 @@ export default {
 				// check if we got an api error for the modal, else show a generic error message
 				console.log("publish error:", e, Object.keys(e))
 				if (e.response && e.response.data) {
-					this.publishError = e.data
+					this.publishError = e.response.data
 					this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
 				} else {
 					this.$root.showAlert("Publish failed!", "danger")
@@ -213,7 +218,7 @@ export default {
 			try {
 				const currentId = this.$store.state.metadata.id
 				const dataset = this.$store.getters.prunedDataset
-				const payload = { dataset, type: 2, schema: "metax-ida" }
+				const payload = { dataset, type: 2, schema: this.selectedSchema.id }
 
 				const isExisting = (currentId && currentId !== 'new')
 				if (isExisting) {
@@ -239,6 +244,8 @@ export default {
 				this.clearRecord()
 				this.initDataset()
 				this.loading = false
+				this.selectedSchema = null
+				this.$store.commit('loadSchema', {})
 			})
 		},
 		createCloneRecord() {
@@ -251,8 +258,10 @@ export default {
 		},
 		initDataset() {
 			// this.selectedSchema = Bundle['fairdata']['ida']
-			this.$store.commit('loadSchema', this.selectedSchema.schema)
-			this.$store.commit('loadHints', this.selectedSchema.ui)
+			if (this.selectedSchema !== null) {
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+			}
 
 			// start validator
 			this.subscribeValidator()
@@ -271,13 +280,23 @@ export default {
 			try {
 				this.loading = true
 
-				const { data: { dataset } } = await apiClient.get(`/datasets/${id}`)
+				const { data } = await apiClient.get(`/datasets/${id}`)
 				const schemas = this.getSchemas('fairdata')
 				this.selectedSchema = data.schema === 'metax-ida' ? schemas.ida : schemas.att
-				this.$store.commit('loadData', Object(dataset))
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+				this.$store.commit('loadData', Object(data.dataset))
 				this.$store.commit('setMetadata', { id })
 			} finally {
 				this.loading = false
+			}
+		},
+		selectSchema() {
+			if (this.selectedSchema !== null) {
+				this.$store.commit('loadSchema', this.selectedSchema.schema)
+				this.$store.commit('loadHints', this.selectedSchema.ui)
+			} else {
+				this.$store.commit('loadSchema', {})
 			}
 		},
 	},
@@ -304,9 +323,6 @@ export default {
 			} else {
 				this.clearRecord()
 			}
-		},
-		selectedSchema() {
-			this.createNewRecord()
 		},
 	},
 	async created() {

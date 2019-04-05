@@ -2,7 +2,9 @@ import FairdataIdaSchema from './fairdata-ida.schema.json'
 import FairdataIdaOldSchema from './fairdata-ida-old.schema.json'
 import FairdataAttSchema from './fairdata-att.schema.json'
 import FairdataIdaUi from './fairdata-ida.ui.js'
+import fairdataAttUiDiff from './fairdata-att.ui.diff.js'
 import jsonPointer from 'json-pointer'
+
 
 // Homepage objects cause too much clutter with the current UI
 function removeObjects(obj, key) {
@@ -18,6 +20,9 @@ function removeObjects(obj, key) {
 }
 removeObjects(FairdataIdaSchema, 'homepage')
 removeObjects(FairdataAttSchema, 'homepage')
+
+const FairdataAttUi = fairdataAttUiDiff(FairdataIdaUi)
+
 
 // Qvain backend knows these schemas as:
 //
@@ -51,6 +56,7 @@ export default {
 		schema: FairdataIdaSchema,
 		ui: FairdataIdaUi,
 		name: "I want to select IDA files", // "Fairdata (IDA)",
+		shortName: "IDA",
 		id: "metax-ida",
 		family: 2,
 		cloneFunc: clone,
@@ -65,8 +71,9 @@ export default {
 	},*/
 	att: {
 		schema: FairdataAttSchema,
-		ui: FairdataIdaUi,
+		ui: FairdataAttUi,
 		name: "I want to link Remote resources", // "Fairdata (ATT)",
+		shortName: "Remote resource",
 		id: "metax-att",
 		family: 2,
 		cloneFunc: clone,
