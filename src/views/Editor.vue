@@ -203,7 +203,7 @@ export default {
 				// check if we got an api error for the modal, else show a generic error message
 				console.log("publish error:", e, Object.keys(e))
 				if (e.response && e.response.data) {
-					this.publishError = e.data
+					this.publishError = e.response.data
 					this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
 				} else {
 					this.$root.showAlert("Publish failed!", "danger")
