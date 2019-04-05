@@ -202,8 +202,8 @@ export default {
 			},
 			isBusy: false,
 			error: null,
-			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development',
 			//highlighted: "0582f51d-86c3-2bc1-eb11-296b533b9731",
+			devWarning: process.env.VUE_APP_ENVIRONMENT === 'development' && !process.env.VUE_APP_QVAIN_API_URL,
 			datasetList: [],
 		}
 	},
@@ -218,8 +218,8 @@ export default {
 		async fetchDataset() {
 			try {
 				this.error = null
-				const { data } = await (process.env.VUE_APP_ENVIRONMENT !== 'development' ?
-					apiClient.get("/datasets/") : fakeFetch(testList, 500))
+				const { data } = await (process.env.VUE_APP_ENVIRONMENT === 'development' && !process.env.VUE_APP_QVAIN_API_URL ?
+					fakeFetch(testList, 500) : apiClient.get("/datasets/"))
 
 				console.log("api count:", data.length)
 				this.datasetList = data
