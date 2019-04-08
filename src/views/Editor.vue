@@ -54,7 +54,7 @@
 			<div class="float-right">
 				<b-button variant="outline-light" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="times" fixed-width /> cancel</b-button>
 				<b-button variant="danger" class="ml-3" @click="showPublishConfirmation = false" v-if="false"><font-awesome-icon icon="info" fixed-width /> help</b-button>
-				<b-button variant="success" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
+				<b-button variant="success" :disabled="saving" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
 			</div>
 		</b-card>
 
@@ -137,6 +137,7 @@ export default {
 			rateLimited: false,
 			showPublishConfirmation: false,
 			inDev: true,
+			saving: false,
 		}
 	},
 	methods: {
@@ -175,6 +176,9 @@ export default {
 			this.showPublishConfirmation = true
 		},
 		publish: debounce(async function() {
+			if (this.saving) {
+				return
+			}
 			// xxx
 			/*
 			this.publishError = {
@@ -196,6 +200,7 @@ export default {
 					//const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					const response = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					this.$root.showAlert("Dataset successfully published", "primary")
+					this.$router.replace({ path: '/datasets'}) // redirect to datasets page
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger")
 				}
@@ -215,6 +220,10 @@ export default {
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {
+			if (this.saving) {
+				return
+			}
+			this.saving = true
 			try {
 				const currentId = this.$store.state.metadata.id
 				const dataset = this.$store.getters.prunedDataset
@@ -236,6 +245,8 @@ export default {
 				}
 			} catch(error) {
 				this.$root.showAlert("Save failed!", "danger")
+			} finally {
+				this.saving = false
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		createNewRecord() {
