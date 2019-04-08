@@ -184,11 +184,6 @@ function apiProvider() {
 
 export default {
 	name: "dataset-list",
-	components: {
-		PreservationState,
-		BusyButton,
-		DatasetVersionsModal,
-	},
 	data() {
 		return {
 			activeInModal: null,
@@ -210,11 +205,9 @@ export default {
 	methods: {
 		// apiProvider fills the table with datasets from an (real or fake) API response.
 		// Function is passed (ctx, callback).
-		/*
 		apiProvider(ctx) {
 			return apiProvider.bind(this)(ctx)
 		},
-		*/
 		async fetchDataset() {
 			try {
 				this.error = null
@@ -247,9 +240,6 @@ export default {
 		view(extid) {
 			console.log("opening:", `{process.env.VUE_APP_ETSIN_API_URL}/{extid}`)
 			window.open(`${process.env.VUE_APP_ETSIN_API_URL}/${extid}`, '_blank')
-		},
-		apiProvider(ctx) {
-			return apiProvider.bind(this)(ctx)
 		},
 		friendlyDate: function(iso) {
 			return distanceInWordsToNow(iso)
