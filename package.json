@@ -1,7 +1,7 @@
 {
   "name": "qvain-js",
   "description": "Qvain metadata editor",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "author": "Wouter Van Hemel",
   "license": "GPL-3.0",
   "private": true,
