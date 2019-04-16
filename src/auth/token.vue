@@ -59,6 +59,10 @@ export default {
 		},
 	},
 	created: function() {
+		if (this.$route.query.missingcsc) {
+			this.$router.replace({name: 'home', params: {missingCsc: true}})
+		}
+
 		// logged in already; but don't redirect: token might be invalid, so read new token
 		/*
 		if (this.$auth.loggedIn) {

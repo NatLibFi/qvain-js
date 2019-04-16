@@ -20,7 +20,7 @@ Vue.use(VueRouter)
 
 // routes
 const routes = [
-	{ path: '/', name: "home", component: Welcome, props: false },
+	{ path: '/', name: "home", component: Welcome, props: true },
 	{ path: '/token', component: Token, props: false },
 	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
 	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
