@@ -47,7 +47,7 @@ Weekdays from 8:30 AM to 4 PM" href="mailto:servicedesk@csc.fi?subject=Fairdata%
 						</b-dropdown-header>
 						<b-dropdown-divider></b-dropdown-divider>
 						<b-dropdown-item to="/userinfo">about me</b-dropdown-item>
-						<b-dropdown-item @click="$auth.logout()">sign out</b-dropdown-item>
+						<b-dropdown-item @click="logout()">sign out</b-dropdown-item>
 					</b-nav-item-dropdown>
 					<b-nav-item v-else :href="$auth.loginUrl">login</b-nav-item>
 
@@ -137,6 +137,13 @@ export default {
 	data: function() {
 		return {
 		}
+	},
+	methods: {
+		logout() {
+			this.$auth.logout()
+			this.$root.showAlert("User signed out.", "primary")
+			this.$router.push("/")
+		},
 	},
 }
 </script>
