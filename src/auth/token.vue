@@ -75,9 +75,7 @@ export default {
 			//console.log("token was valid!")
 			this.error = null
 			let vm = this
-			setTimeout(function() {
-				vm.$router.push('/')
-			}, 3000)
+			vm.$router.replace('/')
 		} else {
 			this.error = this.token ? "invalid login token" : "no token received"
 		}
