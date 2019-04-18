@@ -193,10 +193,10 @@ export default {
 		open(id) { // should maybe later be changed to link so that accessability is better
 			this.$router.push({ name: 'tab', params: { id: id, tab: 'description' }})
 		},
-		async del(id) {
+		async del() {
 			this.error = null
 			try {
-				await apiClient.delete("/datasets/" + id)
+				await apiClient.delete("/datasets/" + this.itemToBeDeleted)
 				this.$root.showAlert("successfully deleted dataset", "success")
 
 				await this.fetchDataset()
