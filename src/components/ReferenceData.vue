@@ -176,7 +176,7 @@ export default {
 			return this.optionItems
 		},
 		sortedOptions() {
-			return this.options.sort((a, b) => {
+			return this.options.slice().sort((a, b) => {
 				const aLabel = a.label[this.currentLanguage] || a.label['und']
 				const bLabel = b.label[this.currentLanguage] || b.label['und']
 				return aLabel.localeCompare(bLabel)
