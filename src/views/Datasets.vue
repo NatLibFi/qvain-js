@@ -21,7 +21,6 @@
 
 		<!-- alerts -->
 		<b-alert variant="danger" :show="!!error" dismissible @dismissed="error = null">{{ error }}</b-alert>
-		<b-alert variant="warning" :show="!!devWarning" dismissible @dismissed="devWarning = false"><strong>Development environment</strong> – you are viewing fake API data.</b-alert>
 
 		<!-- table -->
 		<b-table id="dataset-list" ref="datasetTable" :items="datasetList" :fields="fields" select-mode="single" striped hover show-empty selectable :tbody-tr-class="rowClass" filter="truthy value" :filter-function="filter" no-provider-filtering no-provider-sorting :busy.sync="isBusy" primary-key="id" :tbody-transition-props="{'name': 'datasets-flip'}">
@@ -133,7 +132,6 @@ const fields = [
 
 function getApiError(error) {
 	let apiError = "API Error"
-	//console.log("api error:", error)
 	if (error.response) {
 		apiError += " [" + error.response.status + "]"
 		if (error.response.data && error.response.data.msg) {
@@ -143,19 +141,6 @@ function getApiError(error) {
 		apiError += ": " + error.message.toLowerCase()
 	}
 	return apiError
-}
-
-// fakeFetch returns a promise that fakes an Axios response.
-const fakeFetch = (data, delay = 0) => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve({
-				data: data,
-				status: 200,
-				statusText: 'OK',
-			})
-		}, delay)
-	})
 }
 
 export default {
@@ -182,8 +167,7 @@ export default {
 		async fetchDataset() {
 			try {
 				this.error = null
-				const { data } = await (process.env.VUE_APP_ENVIRONMENT !== 'development' && !process.env.VUE_APP_QVAIN_API_URL ?
-					fakeFetch(testList, 500) : apiClient.get("/datasets/"))
+				const { data } = await apiClient.get("/datasets/")
 				this.datasetList = data
 			} catch (e) {
 				this.error = getApiError(e)
@@ -229,7 +213,7 @@ export default {
 				(this.showDatasetState === 'published' && item.published) ||
 				(this.showDatasetState === 'draft' && !item.published)
 		},
-		filterTitles: function(item) {
+		filterTitles(item) {
 			if (!this.filterString) return true // don't filter null.toString()
 
 			// use reactivity to cache regex
