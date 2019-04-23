@@ -6,7 +6,9 @@
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
+					<!-- hidden due to need of redesign in editor to support this
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
+					-->
 				</b-button-group>
 
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
@@ -79,7 +81,7 @@
 			<div class="container-fluid no-padding my-3">
 				<router-view></router-view>
 			</div>
-			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse'}">
+			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse', 'margin-bottom': '10px'}">
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
 					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
@@ -90,13 +92,30 @@
 			<font-awesome-icon icon="circle-notch" spin />
 		</div>
 
+		<b-card variant="dark" bg-variant="dark" text-variant="white" v-if="showPublishConfirmation">
+			<h3 slot="title">
+				<font-awesome-icon icon="info" fixed-width />
+				Publishing
+			</h3>
+			<p class="card-text">I understand that publishing this dataset...</p>
+				<ul class="list-unstyled">
+					<li class="font-italic">... will make it available publicly</li>
+					<li class="font-italic">... marks it as ready and enables editing restrictions</li>
+				</ul>
+			<p></p>
+			<div class="float-right">
+				<b-button variant="outline-light" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="times" fixed-width /> cancel</b-button>
+				<b-button variant="danger" class="ml-3" @click="showPublishConfirmation = false" v-if="false"><font-awesome-icon icon="info" fixed-width /> help</b-button>
+				<b-button variant="success" :disabled="saving" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
+			</div>
+		</b-card>
+
 	</div>
 </template>
 
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-//import api from '@/api/api.js'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import PublishModal from '@/components/PublishModal.vue'
