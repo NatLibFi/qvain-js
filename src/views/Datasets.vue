@@ -168,6 +168,13 @@ export default {
 			try {
 				this.error = null
 				const { data } = await apiClient.get("/datasets/")
+				data.sort((a,b) => {
+					const cmp = this.preferredLanguage(a.title).localeCompare(this.preferredLanguage(b.title))
+					if (cmp == 0) {
+						return new Date(a.created) - new Date(b.created)
+					}
+					return cmp
+				})
 				this.datasetList = data
 			} catch (e) {
 				this.error = getApiError(e)
