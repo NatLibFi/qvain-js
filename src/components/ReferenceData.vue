@@ -122,7 +122,7 @@ export default {
 				{ id: 'en', language: 'English' },
 				{ id: 'sv', language: 'Swedish' },
 			],
-			selectedLang: { id: 'fi', language: 'Finnish' },
+			selectedLang: null,
 			isLoading: false,
 		}
 	},
