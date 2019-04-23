@@ -71,7 +71,7 @@
 				</p>
 			</div>
 			<div v-if="!isMultiselect && !Array.isArray(selectedOptions)" class="tag__list">
-				<p class="tag">
+				<p class="tag" :style="{visibility: selectedOptions === null ? 'hidden' : 'visible'}">
 					{{customLabel(selectedOptions)}}
 					<span class="remove-button">
 						<DeleteButton @click="removeValue(-1)" />
