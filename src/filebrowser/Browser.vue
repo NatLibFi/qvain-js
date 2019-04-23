@@ -13,7 +13,7 @@
 		</b-button-toolbar>
 
 		<!-- TABLE -->
-		<b-table :fields="fields" :items="filesAndDirectoriesForCWD" show-empty empty-text="no files in this directory" striped hover class="mb-0"> <!-- :tbody-tr-class="rowClass" @row-clicked="toggleSelection" -->
+		<b-table :fields="fields" :items="filesAndDirectoriesForCWD" show-empty empty-text="No files in this directory" striped hover class="mb-0"> <!-- :tbody-tr-class="rowClass" @row-clicked="toggleSelection" -->
 
 			<template slot="selection" slot-scope="data">
 				<b-form-checkbox v-if="!disabled" class="m-0" :checked="selected.includes(data.item.identifier)" @change="e => togglePick(e, data)" />
@@ -181,7 +181,7 @@ export default {
 				this.directory = data
 			} catch (error) {
 				console.log(error)
-				this.error = 'Qvain was not able to open the requested directory. Please retry or naviagte to another directory. Refreshing page will forfeit your data.'
+				this.error = 'Qvain was not able to open the requested directory. Please retry or navigate to another directory. Refreshing the page will forfeit your data.'
 			}
 		},
 		togglePick(state, data) {
