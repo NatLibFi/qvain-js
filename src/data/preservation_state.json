@@ -1,6 +1,6 @@
 {
 	"0": {
-		"name": "Initialized",
+		"name": "-",
 		"short": { "en": "Waits for validation", "fi": "Odottaa tarkastusta" },
 		"type": "wait",
 		"who": "other"
