@@ -13,7 +13,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 
 import router from './router.js'
 import store from './store.js'
-import AuthStore from './vuex/auth.js'
 import FilesStore from './vuex/files.js'
 import AuthPlugin from './auth/plugin.js'
 
@@ -29,7 +28,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 //library.add(faUser, faInfo, faMinus, faPlus, faTimes, faAngleRight, faQuoteLeft, faExclamationTriangle, faSync, faQuestionCircle, faDatabase, faPen, faTrash, faHistory, faClock, faCloudUploadAlt, faCircleNotch, faList, faListAlt, faUndo, faExternalLinkAlt, faEllipsisV)
 library.add(fas)
 
-store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
 
 // get configuration from environment
