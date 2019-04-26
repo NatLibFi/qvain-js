@@ -216,10 +216,12 @@ export default {
 				this.showPublishConfirmation = false
 				const isExisting = !!this.$store.state.metadata.id
 				if (isExisting) {
-					//const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					const response = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					this.$root.showAlert("Dataset successfully published", "primary")
-					this.$router.replace({ path: '/datasets'}) // redirect to datasets page
+					this.createNewRecord() // clear editor dataset
+					this.$nextTick(()=>{
+						this.$router.replace({ path: '/datasets'}) // redirect to datasets page
+					})
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger")
 				}
