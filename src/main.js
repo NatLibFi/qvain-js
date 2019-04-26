@@ -105,4 +105,29 @@ const app = new Vue({
 		this.$config = getConfig()
 		console.log("login attempt with cached token:", this.$auth.localLogin())
 	},
+	
+	mounted() {
+		console.log("Qvain: inside mounted() method for matomo: ")
+		// if (process.env['NODE_ENV'] === "production" &&
+		// process.env['VUE_APP_ENVIRONMENT'] === "stable") {
+		var _paq = _paq || [];
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u= "http://matomo.rahtiapp.fi/";
+			console.log("Qvain: value of u is :"+u);
+			console.log("Qvain process.env['NODE_ENV']= "+process.env['NODE_ENV']);
+			console.log("Qvain process.env['VUE_APP_ENVIRONMENT']="+process.env['VUE_APP_ENVIRONMENT']);
+			_paq.push(['setTrackerUrl', u +'piwik.php']);
+			_paq.push(['setSiteId', '5']);
+			var d=document, 
+			g=d.createElement('script'), 
+			s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; 
+			g.async=true; 
+			g.defer=true; 
+			g.src= u+'piwik.js'; 
+			s.parentNode.insertBefore(g,s);
+		})();
+	}
 }).$mount('#app')
