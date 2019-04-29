@@ -114,7 +114,7 @@ const app = new Vue({
 		_paq.push(['trackPageView']);
 		_paq.push(['enableLinkTracking']);
 		(function() {
-			var u= "http://matomo.rahtiapp.fi/";
+			var u= "//matomo.rahtiapp.fi/";
 			console.log("Qvain: value of u is :"+u);
 			console.log("Qvain process.env['NODE_ENV']= "+process.env['NODE_ENV']);
 			console.log("Qvain process.env['VUE_APP_ENVIRONMENT']="+process.env['VUE_APP_ENVIRONMENT']);
