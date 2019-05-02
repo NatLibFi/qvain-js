@@ -66,7 +66,6 @@ function parseJwt(token) {
 	try {
 		let payload = token.split('.')[1]
 		let decoded = decode_base64_url(payload)
-		console.warn("decoded:", decoded)
 		return JSON.parse(decoded)
 	} catch(error) {
 		console.error("parseJwt():", error)

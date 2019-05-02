@@ -101,6 +101,5 @@ const app = new Vue({
 
 		// set configuration on root component
 		this.$config = getConfig()
-		console.log("login attempt with cached token:", this.$auth.localLogin())
 	},
 }).$mount('#app')
