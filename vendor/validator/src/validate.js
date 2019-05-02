@@ -25,11 +25,8 @@ function Validator(schema, data, options) {
 	this.schemaFail = 0
 
 	this.origSchema = deepcopy(schema)
-	//this.schema = schema
 	vue.set(this, 'schema', schema)
 	this.data = data
-	//vue.set(this, 'data', data)
-	//this.v = {}
 	vue.set(this, 'v', {})
 
 	if (options.createFunc) {
@@ -92,8 +89,6 @@ Validator.prototype.validateOneOf = validateOneOf
 Validator.prototype.validateNot = validateNot
 
 Validator.prototype.validate = function() {
-	//console.log("schema:", this.schema)
-	//console.log("data:", this.data)
 	return this.validateSchema(this.schema, this.data, "", this, 'data')
 }
 
