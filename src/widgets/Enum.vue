@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<!-- (enum widget) -->
-		<b-form-group :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="schemaState">
+		<b-form-group :label-cols="2" :description="uiDescription" :label="makeLabel" :feedback="feedback" :state="isValid">
 			<b-form-select :placeholder="uiPlaceholder" :value="value" @input.native="updateValue" :options="toOptions" />
-			<div slot="invalid-feedback">{{ schemaErrors.join(';') }}</div>
+			<div slot="invalid-feedback">{{ errors.join(';') }}</div>
 		</b-form-group>
 	</div>
 </template>
