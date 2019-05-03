@@ -120,7 +120,6 @@ import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import PublishModal from '@/components/PublishModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
-
 import debounce from 'lodash.debounce'
 
 const RATE_LIMIT_MSECS = 3000
@@ -136,8 +135,6 @@ export default {
 		id: {
 			type: String,
 			default: 'new',
-			//default: "056bffbc-c41e-dad4-853b-ea9100000001",
-			//default: "05766a68-0519-65ba-885f-e1d375283063",
 		},
 		isClone: {
 			type: Boolean,
@@ -160,29 +157,6 @@ export default {
 		}
 	},
 	methods: {
-		subscribeValidator: function() {
-			let vm = this
-			this.validator = new Validator(
-				this.$store.state.schema,
-				this.$store.state.record,
-				{
-					'allowUndefined': true,
-				},
-			)
-			this.validator.v = this.$store.state.vState
-			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
-				if (mutation.type !== 'initValue') {
-					vm.validator.validateData(vm.$store.state.record)
-				}
-			})
-		},
-		unsubscribeValidator: function() {
-			this.unsubscribeFunc()
-			this.unsubscribeFunc = null
-		},
-		toggleValidator: function() {
-			this.unsubscribeFunc === null ? this.subscribeValidator() : this.unsubscribeValidator()
-		},
 		getSchemas(bundle) {
 			return Bundle[bundle]
 		},
@@ -198,20 +172,6 @@ export default {
 			if (this.saving) {
 				return
 			}
-			// xxx
-			/*
-			this.publishError = {
-				status: 400,
-				msg: "publish error",
-				origin: "metax",
-				more: {"research_dataset":["blah de blah blah"],"error_identifier":"2019-03-08T12:08:09-7dc7ab7a"},
-			}
-			if (this.publishError) {
-				this.showPublishConfirmation = false
-				this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
-			}
-			return
-			*/
 			try {
 				this.showPublishConfirmation = false
 				const isExisting = !!this.$store.state.metadata.id
@@ -280,6 +240,7 @@ export default {
 				this.$store.commit('loadSchema', {})
 			})
 		},
+		/* not used atm due to not working
 		createCloneRecord() {
 			this.loading = true
 			this.$nextTick(() => {
@@ -288,15 +249,12 @@ export default {
 				this.loading = false
 			})
 		},
+		*/
 		initDataset() {
-			// this.selectedSchema = Bundle['fairdata']['ida']
 			if (this.selectedSchema !== null) {
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
 			}
-
-			// start validator
-			this.subscribeValidator()
 		},
 
 		clearRecord() {
@@ -327,10 +285,26 @@ export default {
 			if (this.selectedSchema !== null) {
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
+				console.log('selectSchema starts validator');
+				this.startValidator()
 			} else {
 				this.$store.commit('loadSchema', {})
 			}
 		},
+		startValidator() {
+			this.unsubscribeFunc && this.unsubscribeFunc();
+			this.validator = new Validator(
+				this.$store.state.schema,
+				this.$store.state.record,
+				{'allowUndefined': true},
+			)
+			this.validator.v = this.$store.state.vState
+			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
+				if (mutation.type !== 'initValue') {
+					this.validator.validateData(this.$store.state.record)
+				}
+			})
+		}
 	},
 	computed: {
 		tabs() {
@@ -357,20 +331,17 @@ export default {
 			}
 		},
 	},
-	async created() {
+	async mounted() {
 		if (this.id !== 'new') {
 			await this.openRecord(this.id)
-		} /*
-		// on later date add possibility to clear on clear=true route param
-		// and by default load stored data from localStorage
-		else if(this.clear) {
-			this.clearRecord();
-		} else {
-			this.loadFromStorage();
-		}*/
+		}
+		if (this.selectedSchema) {
+			console.warn('start validation from create because we have selected schema')
+			this.startValidator()
+		}
 
-		//this.initDataset()
-	},
+		//this.initDataset() // should this be called
+	}
 }
 </script>
 

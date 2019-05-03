@@ -513,7 +513,8 @@
 							}
 						},
 						"required": [
-							"@type"
+							"@type",
+							"name"
 						],
 						"additionalProperties": false
 					},
@@ -1061,7 +1062,8 @@
 								}
 							},
 							"required": [
-								"@type"
+								"@type",
+								"name"
 							],
 							"additionalProperties": false
 						},
@@ -1308,7 +1310,8 @@
 								}
 							},
 							"required": [
-								"identifier"
+								"identifier",
+								"name"
 							],
 							"additionalProperties": false
 						},
@@ -1568,7 +1571,8 @@
 						}
 					},
 					"required": [
-						"@type"
+						"@type",
+						"name"
 					],
 					"additionalProperties": false
 				}
@@ -2057,7 +2061,8 @@
 									}
 								},
 								"required": [
-									"@type"
+									"@type",
+									"name"
 								],
 								"additionalProperties": false
 							},
@@ -2564,7 +2569,8 @@
 							}
 						},
 						"required": [
-							"@type"
+							"@type",
+							"name"
 						],
 						"additionalProperties": false
 					}
@@ -3054,7 +3060,8 @@
 									}
 								},
 								"required": [
-									"@type"
+									"@type",
+									"name"
 								],
 								"additionalProperties": false
 							},
@@ -3561,7 +3568,8 @@
 							}
 						},
 						"required": [
-							"@type"
+							"@type",
+							"name"
 						],
 						"additionalProperties": false
 					}
@@ -4032,7 +4040,8 @@
 								}
 							},
 							"required": [
-								"@type"
+								"@type",
+								"name"
 							],
 							"additionalProperties": false
 						}
@@ -4468,7 +4477,8 @@
 								}
 							},
 							"required": [
-								"@type"
+								"@type",
+								"name"
 							],
 							"additionalProperties": false
 						}
@@ -4964,7 +4974,8 @@
 									}
 								},
 								"required": [
-									"@type"
+									"@type",
+									"name"
 								],
 								"additionalProperties": false
 							},
@@ -5471,7 +5482,8 @@
 							}
 						},
 						"required": [
-							"@type"
+							"@type",
+							"name"
 						],
 						"additionalProperties": false
 					}
@@ -7752,7 +7764,8 @@
 												}
 											},
 											"required": [
-												"@type"
+												"@type",
+												"name"
 											],
 											"additionalProperties": false
 										},
@@ -8259,7 +8272,8 @@
 										}
 									},
 									"required": [
-										"@type"
+										"@type",
+										"name"
 									],
 									"additionalProperties": false
 								}
@@ -8993,7 +9007,8 @@
 									}
 								},
 								"required": [
-									"@type"
+									"@type",
+									"name"
 								],
 								"additionalProperties": false
 							},
@@ -9500,7 +9515,8 @@
 							}
 						},
 						"required": [
-							"@type"
+							"@type",
+							"name"
 						],
 						"additionalProperties": false
 					}
