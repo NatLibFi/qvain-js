@@ -16,6 +16,8 @@
 			Please register a CSC account in <a href="https://sui.csc.fi">https://sui.csc.fi</a>. You can register with or without a Haka account.
 		</b-alert>
 
+		<b-alert :show="missingToken" variant="danger">You are currently not logged in. Please login to access Qvain.</b-alert>
+
 		<div v-if="!$auth.loggedIn">
 			<p>In order to use Qvain, you need to log in using Haka credentials.</p>
 			<p><a :href="$auth.loginUrl" class="btn btn-info btn-lg" role="button">Login now!</a></p>
@@ -29,6 +31,7 @@
 export default {
 	props: {
 		missingCsc: Boolean,
+		missingToken: Boolean,
 	},
 }
 </script>

@@ -61,6 +61,7 @@ export default {
 	created: function() {
 		if (this.$route.query.missingcsc) {
 			this.$router.replace({name: 'home', params: {missingCsc: true}})
+			return
 		}
 
 		// logged in already; but don't redirect: token might be invalid, so read new token
@@ -78,6 +79,8 @@ export default {
 			vm.$router.push('/')
 		} else {
 			this.error = this.token ? "invalid login token" : "no token received"
+			this.$router.replace({name: 'home', params: {missingToken: true}})
+			return
 		}
 	},
 }
