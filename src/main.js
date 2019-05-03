@@ -107,27 +107,28 @@ const app = new Vue({
 	},
 	
 	mounted() {
-		 console.log("Qvain: inside mounted() method for matomo: ")
-	        // if (process.env['NODE_ENV'] === "production" &&
-	        // process.env['VUE_APP_ENVIRONMENT'] === "stable") {
-	        window._paq = [];
-	        _paq.push(['trackPageView']);
-	        _paq.push(['enableLinkTracking']);
-	        (function() {
-	            var u= "//matomo.rahtiapp.fi/";
-	            console.log("Qvain: value of u is :"+u);
-	            console.log("Qvain process.env['NODE_ENV']= "+process.env['NODE_ENV']);
-	            console.log("Qvain process.env['VUE_APP_ENVIRONMENT']="+process.env['VUE_APP_ENVIRONMENT']);
-	            _paq.push(['setTrackerUrl', u +'piwik.php']);
-	            _paq.push(['setSiteId', '5']);
-	            var d=document, 
-	            g=d.createElement('script'), 
-	            s=d.getElementsByTagName('script')[0];
-	            g.type='text/javascript'; 
-	            g.async=true; 
-	            g.defer=true; 
-	            g.src= u+'piwik.js'; 
-	            s.parentNode.insertBefore(g,s);
-	        })();
+		console.log("Qvain: inside mounted() method for matomo: ")
+		if (process.env['NODE_ENV'] === "production" &&
+				process.env['VUE_APP_ENVIRONMENT'] === "production") {
+			window._paq = [];
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u= "//matomo.rahtiapp.fi/";
+				console.log("Qvain process.env['NODE_ENV']= "+process.env['NODE_ENV']);
+				console.log("Qvain process.env['VUE_APP_ENVIRONMENT']="+process.env['VUE_APP_ENVIRONMENT']);
+				_paq.push(['setTrackerUrl', u +'piwik.php']);
+				console.log("process.env['VUE_APP_MATOMO_SITE_ID']="+process.env['VUE_APP_MATOMO_SITE_ID']);
+				_paq.push(['setSiteId', process.env['VUE_APP_MATOMO_SITE_ID']]);
+				var d=document, 
+				g=d.createElement('script'), 
+				s=d.getElementsByTagName('script')[0];
+				g.type='text/javascript'; 
+				g.async=true; 
+				g.defer=true; 
+				g.src= u+'piwik.js'; 
+				s.parentNode.insertBefore(g,s);
+			})();
+		}
 	}
 }).$mount('#app')
