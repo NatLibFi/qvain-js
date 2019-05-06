@@ -11,7 +11,7 @@
 				<Multiselect v-if="showLang"
 					v-model="selectedLang"
 					:options="languages"
-					:placeholder="placeholder"
+					placeholder="Select language"
 					label="language"
 					class="lang-select"/>
 
