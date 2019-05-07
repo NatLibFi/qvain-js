@@ -43,5 +43,6 @@ const routes = [
 export default new VueRouter({
 	mode: 'history',
 	fallback: true,
+	base: process.env.VUE_APP_PUBLIC_PATH,
 	routes,
 })

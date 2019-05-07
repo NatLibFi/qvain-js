@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+	publicPath: process.env.VUE_APP_PUBLIC_PATH,
 	lintOnSave: false,
 	assetsDir: "static",
 	chainWebpack: config => {
