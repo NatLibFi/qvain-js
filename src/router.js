@@ -37,6 +37,7 @@ const routes = [
 		{ path: ':tab', name: "tab", component: SingleTab },
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab }, // what is this for?
 	]},
+	{ path: '*', redirect: { name: 'home' } }
 ]
 
 // mode: history or hash

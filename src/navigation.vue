@@ -144,7 +144,7 @@ export default {
 		logout() {
 			this.$auth.logout()
 			this.$root.showAlert("User signed out.", "primary")
-			this.$router.push("/")
+			this.$router.push({ name: 'home' })
 		},
 	},
 }
