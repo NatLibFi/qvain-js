@@ -97,7 +97,7 @@ export default {
 	},
 	*/
 	created() {
-		console.log(this.dataset)
+		//console.log(this.dataset)
 		//this.fetch()
 	},
 }
