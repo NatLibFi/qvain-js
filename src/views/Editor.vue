@@ -336,7 +336,6 @@ export default {
 			await this.openRecord(this.id)
 		}
 		if (this.selectedSchema) {
-			console.warn('start validation from create because we have selected schema')
 			this.startValidator()
 		}
 

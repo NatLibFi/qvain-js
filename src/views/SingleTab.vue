@@ -65,7 +65,6 @@ export default {
 	created() {
 	},
 	mounted() {
-		console.warn("mounted():", this.$store.state.schema)
 	},
 }
 </script>
