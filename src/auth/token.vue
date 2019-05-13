@@ -44,7 +44,7 @@ export default {
 	methods: {
 		login() {
 			this.$auth.login(this.tokenInput)
-			this.$router.push(this.$route.query.redirect || "/")
+			this.$router.push(this.$route.query.redirect || { name: 'home' })
 		},
 	},
 	computed: {
@@ -55,10 +55,15 @@ export default {
 		redirTo() {
 			// TODO: read query for redirect-to location
 			//return this.$route
-			return "/"
+			return { name: 'home' }
 		},
 	},
 	created: function() {
+		if (this.$route.query.missingcsc) {
+			this.$router.replace({name: 'home', params: {missingCsc: true}})
+			return
+		}
+
 		// logged in already; but don't redirect: token might be invalid, so read new token
 		/*
 		if (this.$auth.loggedIn) {
@@ -71,11 +76,11 @@ export default {
 			//console.log("token was valid!")
 			this.error = null
 			let vm = this
-			setTimeout(function() {
-				vm.$router.push('/')
-			}, 3000)
+			vm.$router.push({ name: 'home' })
 		} else {
 			this.error = this.token ? "invalid login token" : "no token received"
+			this.$router.replace({name: 'home', params: {missingToken: true}})
+			return
 		}
 	},
 }

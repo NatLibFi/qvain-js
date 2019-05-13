@@ -1,8 +1,8 @@
 <template>
-	<record-field :required="required" :wrapped="true" :error="!schemaState">
+	<record-field :required="required" :wrapped="true" :error="!isValid">
 		<title-component slot="title" :title="uiLabel" />
 		<div slot="header-right">
-			<p :key="error" v-for="error in schemaErrors" class="error-message">{{ error }}</p>
+			<p :key="error" v-for="error in errors" class="error-message">{{ error }}</p>
 			<ValidationStatus :status="validationStatus" />
 			<InfoIcon :description="uiDescription"/>
 		</div>
@@ -121,10 +121,9 @@ export default {
 			return Object.values(this.state).some(v => v.length == 0)
 		},
 		validationStatus() {
-			if (this.schemaState && this.hasEmptyValues) return 'uncertain'
-			if (this.schemaState) return 'valid'
-			if (this.schemaState !== null && !this.schemaState) return 'invalid'
-			return null
+			if (this.isValid && this.hasEmptyValues) return 'uncertain'
+			if (this.isValid) return 'valid'
+			return 'invalid'
 		},
 	},
 	watch: {

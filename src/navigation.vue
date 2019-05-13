@@ -29,27 +29,29 @@ Weekdays from 8:30 AM to 4 PM" href="mailto:servicedesk@csc.fi?subject=Fairdata%
 				<b-navbar-nav class="ml-auto">
 
 					<!-- language dropdown -->
+					<!--
 					<b-nav-item-dropdown text="lang" right>
 						<b-dropdown-item to="#" @click="$root.language = 'en'">EN</b-dropdown-item>
 						<b-dropdown-item to="#" @click="$root.language = 'fi'" disabled>FI</b-dropdown-item>
 						<b-dropdown-item to="#" @click="$root.language = 'se'" disabled>SE</b-dropdown-item>
 					</b-nav-item-dropdown>
+					-->
 
 					<!-- login dropdown -->
 					<b-nav-item-dropdown v-if="$auth.loggedIn" right>
 
 						<template slot="text">
-							<span style="font-weight: bold;">user</span>
+							<span style="font-weight: bold;">User</span>
 						</template>
 
 						<b-dropdown-header>
 							<font-awesome-icon icon="user" class="text-primary mr-2" fixed-width /> <a>{{ $auth.user.name }}</a>
 						</b-dropdown-header>
 						<b-dropdown-divider></b-dropdown-divider>
-						<b-dropdown-item to="/userinfo">about me</b-dropdown-item>
-						<b-dropdown-item @click="$auth.logout()">sign out</b-dropdown-item>
+						<b-dropdown-item to="/userinfo">About me</b-dropdown-item>
+						<b-dropdown-item @click="logout()">Sign out</b-dropdown-item>
 					</b-nav-item-dropdown>
-					<b-nav-item v-else :href="$auth.loginUrl">login</b-nav-item>
+					<b-nav-item v-else :href="$auth.loginUrl">Login</b-nav-item>
 
 				</b-navbar-nav>
 			</b-collapse>
@@ -137,6 +139,13 @@ export default {
 	data: function() {
 		return {
 		}
+	},
+	methods: {
+		logout() {
+			this.$auth.logout()
+			this.$root.showAlert("User signed out.", "primary")
+			this.$router.push({ name: 'home' })
+		},
 	},
 }
 </script>

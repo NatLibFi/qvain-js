@@ -1,6 +1,6 @@
 <template>
 	<wrapper :wrapped="wrapped">
-		<b-form-group class="qwidget" :label-cols="2" :description="uiDescription" :label="uiLabel" :state="schemaState">
+		<b-form-group class="qwidget" :label-cols="2" :description="uiDescription" :label="uiLabel" :state="isValid">
 			<b-list-group flush>
 				<b-list-group-item v-for="(child, index) in value" :key="index" @remove="remove(index)">
 					<TabSelector :schema="schemaForChild(index)" :path="newPath(index)" :value="value[index]" :parent="parent[property]" :property="index" :tab="myTab" :activeTab="activeTab" :depth="depth" @delete="deleteElement"></TabSelector>

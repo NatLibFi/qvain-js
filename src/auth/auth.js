@@ -19,13 +19,28 @@ function UserFromToken(token) {
 
 	if (jwt && jwt['sub']) {
 		let user = new User()
-		user.id = jwt['sub']
-		user.name = jwt['name'] || ""
+
+		// Join given_name and family_name if available
+		const nameParts = []
+		if (jwt['given_name']) {
+			nameParts.push(jwt['given_name']);
+		}
+		if (jwt['family_name']) {
+			nameParts.push(jwt['family_name']);
+		}
+		user.name = nameParts.join(" ") || jwt['name'] || ""
+		user.id = jwt['CSCUserName'] || jwt['sub']
 		user.email = jwt['email'] || ""
 		user.expires = jwt['exp'] ? parseUnixTime(jwt.exp) : null
 
-		// FairData specific
-		user.projects = jwt['group_names'] ? filterGroups("fairdata:IDA", jwt['group_names']) : []
+		// Get IDA projects
+		if (jwt['group_names']) {
+			user.projects =
+				filterGroups("fairdata:IDA01:", jwt['group_names']) // old prefix
+				.concat(filterGroups("IDA01:", jwt['group_names'])) // new prefix
+		} else {
+			user.projects = []
+		}
 
 		// SAML/HAKA
 		user.eppn = jwt['eppn'] || null
@@ -48,8 +63,8 @@ function filterGroups(prefix, groups) {
 	// strip until last dot
 	//return groups.filter(grp => grp.startsWith(prefix).map(grp => grp.substring(grp.indexOf(":")+1))
 
-	// split third colon and accept numbers only
-	return groups.filter(grp => grp.startsWith(prefix)).map(grp => grp.split(":", 3)[2]).filter(grp => !isNaN(grp))
+	// remove prefix and accept numbers only
+	return groups.filter(grp => grp.startsWith(prefix)).map(grp => grp.substring(prefix.length)).filter(grp => !isNaN(grp))
 }
 
 function Auth(url) {

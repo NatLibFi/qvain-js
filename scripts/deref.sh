@@ -6,7 +6,7 @@
 set -ex
 
 node deref.js
-for fn in _ida.json _att.json; do
-	jq --tab '.allOf[0]' < ${fn} > ${fn:1}
+for fn in _ida.schema.json _att.schema.json; do
+	jq --tab '.allOf[0]' < ${fn} > fairdata-${fn:1}
 	rm ${fn}
 done

@@ -7,17 +7,12 @@
 		</div>
 
 		<div slot="input" class="input">
-			<!-- validation test
-			schemaState {{ schemaState }}
-			schemaError {{ schemaErrors }}
-			minItems {{ schema.minItems }}
-			-->
 			<p v-if="inArray" class="input__number">#{{property}}</p>
 			<b-form-input
 				:type="inputType"
 				:placeholder="uiPlaceholder"
 				:value="value"
-				:state="schemaState"
+				:state="isValid"
 				@input.native="updateValue">
 			</b-form-input>
 			<span class="input__delete">
@@ -75,15 +70,6 @@ import RecordField from '@/composites/RecordField.vue'
 import TitleComponent from '@/partials/Title.vue'
 import InfoIcon from '@/partials/InfoIcon.vue'
 import DeleteButton from '@/partials/DeleteButton.vue'
-
-/**
- *
- * "type": "object",
-	"minProperties": 1,
-	"additionalProperties": {
-		"type": "string"
-	}
- */
 
 export default {
 	extends: vSchemaBase,
@@ -159,8 +145,6 @@ export default {
 				el.focus()
 			},
 		},
-	},
-	created() {
 	},
 }
 </script>

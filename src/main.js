@@ -13,7 +13,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 
 import router from './router.js'
 import store from './store.js'
-import AuthStore from './vuex/auth.js'
 import FilesStore from './vuex/files.js'
 import AuthPlugin from './auth/plugin.js'
 
@@ -29,7 +28,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 //library.add(faUser, faInfo, faMinus, faPlus, faTimes, faAngleRight, faQuoteLeft, faExclamationTriangle, faSync, faQuestionCircle, faDatabase, faPen, faTrash, faHistory, faClock, faCloudUploadAlt, faCircleNotch, faList, faListAlt, faUndo, faExternalLinkAlt, faEllipsisV)
 library.add(fas)
 
-store.registerModule('auth', AuthStore)
 store.registerModule('files', FilesStore)
 
 // get configuration from environment
@@ -103,6 +101,27 @@ const app = new Vue({
 
 		// set configuration on root component
 		this.$config = getConfig()
-		console.log("login attempt with cached token:", this.$auth.localLogin())
 	},
+
+	mounted() {
+		// load Matomo script, add a PageView
+		if (process.env['VUE_APP_MATOMO_SITE_ID']) {
+			window._paq = []
+			_paq.push(['trackPageView'])
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u= "//matomo.rahtiapp.fi/"
+				_paq.push(['setTrackerUrl', u +'piwik.php'])
+				_paq.push(['setSiteId', process.env['VUE_APP_MATOMO_SITE_ID']])
+				var d=document,
+					g=d.createElement('script'),
+					s=d.getElementsByTagName('script')[0]
+				g.type='text/javascript'
+				g.async=true
+				g.defer=true
+				g.src= u+'piwik.js'
+				s.parentNode.insertBefore(g,s)
+			})()
+		}
+	}
 }).$mount('#app')

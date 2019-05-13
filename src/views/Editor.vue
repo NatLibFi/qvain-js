@@ -6,7 +6,9 @@
 			<b-button-toolbar class="tool-bar" aria-label="Dataset toolbar">
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Create new empty dataset" @click="createNewRecord()">New dataset</b-btn>
+					<!-- hidden due to need of redesign in editor to support this
 					<b-btn v-b-tooltip.hover title="Clone this dataset as new dataset" @click="createCloneRecord()">Clone current dataset</b-btn>
+					-->
 				</b-button-group>
 
 				<b-input-group size="sm" class="w-25 mx-1" prepend="Where are my files">
@@ -54,7 +56,7 @@
 			<div class="float-right">
 				<b-button variant="outline-light" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="times" fixed-width /> cancel</b-button>
 				<b-button variant="danger" class="ml-3" @click="showPublishConfirmation = false" v-if="false"><font-awesome-icon icon="info" fixed-width /> help</b-button>
-				<b-button variant="success" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
+				<b-button variant="success" :disabled="saving" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
 			</div>
 		</b-card>
 
@@ -79,7 +81,7 @@
 			<div class="container-fluid no-padding my-3">
 				<router-view></router-view>
 			</div>
-			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse'}">
+			<div v-if="selectedSchema" :style="{'display': 'flex', 'flex-flow': 'row-reverse', 'margin-bottom': '10px'}">
 				<b-button-group size="sm" class="mx-1">
 					<b-btn v-b-tooltip.hover title="Save as a draft. Saving does not make your dataset public nor visible to anyone. You can save as many times as you want before publishing." @click="save" :disabled="rateLimited" ref="dataset-save-button">Save</b-btn>
 					<b-btn v-b-tooltip.hover title="Publish makes the saved dataset public. Remember to always save the datset before publishing (only the latest saved version gets published)." @click="confirmPublish" :disabled="rateLimited" ref="dataset-publish-button">Publish</b-btn>
@@ -90,18 +92,34 @@
 			<font-awesome-icon icon="circle-notch" spin />
 		</div>
 
+		<b-card variant="dark" bg-variant="dark" text-variant="white" v-if="showPublishConfirmation">
+			<h3 slot="title">
+				<font-awesome-icon icon="info" fixed-width />
+				Publishing
+			</h3>
+			<p class="card-text">I understand that publishing this dataset...</p>
+				<ul class="list-unstyled">
+					<li class="font-italic">... will make it available publicly</li>
+					<li class="font-italic">... marks it as ready and enables editing restrictions</li>
+				</ul>
+			<p></p>
+			<div class="float-right">
+				<b-button variant="outline-light" class="ml-3" @click="showPublishConfirmation = false"><font-awesome-icon icon="times" fixed-width /> cancel</b-button>
+				<b-button variant="danger" class="ml-3" @click="showPublishConfirmation = false" v-if="false"><font-awesome-icon icon="info" fixed-width /> help</b-button>
+				<b-button variant="success" :disabled="saving" class="ml-3" @click="publish()"><font-awesome-icon icon="cloud-upload-alt" fixed-width /> publish</b-button>
+			</div>
+		</b-card>
+
 	</div>
 </template>
 
 <script>
 import Bundle from '@/schemas/bundle.js'
 import apiClient from '@/api/client.js'
-//import api from '@/api/api.js'
 import DatasetJsonModal from '@/components/DatasetJsonModal.vue'
 import DatasetOverviewModal from '@/components/DatasetOverviewModal.vue'
 import PublishModal from '@/components/PublishModal.vue'
 import Validator from '../../vendor/validator/src/validate.js'
-
 import debounce from 'lodash.debounce'
 
 const RATE_LIMIT_MSECS = 3000
@@ -117,8 +135,6 @@ export default {
 		id: {
 			type: String,
 			default: 'new',
-			//default: "056bffbc-c41e-dad4-853b-ea9100000001",
-			//default: "05766a68-0519-65ba-885f-e1d375283063",
 		},
 		isClone: {
 			type: Boolean,
@@ -137,32 +153,10 @@ export default {
 			rateLimited: false,
 			showPublishConfirmation: false,
 			inDev: true,
+			saving: false,
 		}
 	},
 	methods: {
-		subscribeValidator: function() {
-			let vm = this
-			this.validator = new Validator(
-				this.$store.state.schema,
-				this.$store.state.record,
-				{
-					'allowUndefined': true,
-				},
-			)
-			this.validator.v = this.$store.state.vState
-			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
-				if (mutation.type !== 'initValue') {
-					vm.validator.validateData(vm.$store.state.record)
-				}
-			})
-		},
-		unsubscribeValidator: function() {
-			this.unsubscribeFunc()
-			this.unsubscribeFunc = null
-		},
-		toggleValidator: function() {
-			this.unsubscribeFunc === null ? this.subscribeValidator() : this.unsubscribeValidator()
-		},
 		getSchemas(bundle) {
 			return Bundle[bundle]
 		},
@@ -175,27 +169,19 @@ export default {
 			this.showPublishConfirmation = true
 		},
 		publish: debounce(async function() {
-			// xxx
-			/*
-			this.publishError = {
-				status: 400,
-				msg: "publish error",
-				origin: "metax",
-				more: {"research_dataset":["blah de blah blah"],"error_identifier":"2019-03-08T12:08:09-7dc7ab7a"},
+			if (this.saving) {
+				return
 			}
-			if (this.publishError) {
-				this.showPublishConfirmation = false
-				this.$root.$emit('bv::show::modal', 'publish-modal', this.$refs['dataset-publish-button'])
-			}
-			return
-			*/
 			try {
 				this.showPublishConfirmation = false
 				const isExisting = !!this.$store.state.metadata.id
 				if (isExisting) {
-					//const { data: { id }} = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					const response = await apiClient.post("/datasets/" + this.$store.state.metadata.id + "/publish", {})
 					this.$root.showAlert("Dataset successfully published", "primary")
+					this.createNewRecord() // clear editor dataset
+					this.$nextTick(()=>{
+						this.$router.replace({ path: '/datasets'}) // redirect to datasets page
+					})
 				} else {
 					this.$root.showAlert("Please save your dataset first", "danger")
 				}
@@ -215,6 +201,10 @@ export default {
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		save: debounce(async function() {
+			if (this.saving) {
+				return
+			}
+			this.saving = true
 			try {
 				const currentId = this.$store.state.metadata.id
 				const dataset = this.$store.getters.prunedDataset
@@ -236,6 +226,8 @@ export default {
 				}
 			} catch(error) {
 				this.$root.showAlert("Save failed!", "danger")
+			} finally {
+				this.saving = false
 			}
 		}, RATE_LIMIT_MSECS, { leading: true, trailing: false }),
 		createNewRecord() {
@@ -248,6 +240,7 @@ export default {
 				this.$store.commit('loadSchema', {})
 			})
 		},
+		/* not used atm due to not working
 		createCloneRecord() {
 			this.loading = true
 			this.$nextTick(() => {
@@ -256,15 +249,12 @@ export default {
 				this.loading = false
 			})
 		},
+		*/
 		initDataset() {
-			// this.selectedSchema = Bundle['fairdata']['ida']
 			if (this.selectedSchema !== null) {
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
 			}
-
-			// start validator
-			this.subscribeValidator()
 		},
 
 		clearRecord() {
@@ -295,10 +285,26 @@ export default {
 			if (this.selectedSchema !== null) {
 				this.$store.commit('loadSchema', this.selectedSchema.schema)
 				this.$store.commit('loadHints', this.selectedSchema.ui)
+				console.log('selectSchema starts validator');
+				this.startValidator()
 			} else {
 				this.$store.commit('loadSchema', {})
 			}
 		},
+		startValidator() {
+			this.unsubscribeFunc && this.unsubscribeFunc();
+			this.validator = new Validator(
+				this.$store.state.schema,
+				this.$store.state.record,
+				{'allowUndefined': true},
+			)
+			this.validator.v = this.$store.state.vState
+			this.unsubscribeFunc = this.$store.subscribe((mutation) => {
+				if (mutation.type !== 'initValue') {
+					this.validator.validateData(this.$store.state.record)
+				}
+			})
+		}
 	},
 	computed: {
 		tabs() {
@@ -325,20 +331,16 @@ export default {
 			}
 		},
 	},
-	async created() {
+	async mounted() {
 		if (this.id !== 'new') {
 			await this.openRecord(this.id)
-		} /*
-		// on later date add possibility to clear on clear=true route param
-		// and by default load stored data from localStorage
-		else if(this.clear) {
-			this.clearRecord();
-		} else {
-			this.loadFromStorage();
-		}*/
+		}
+		if (this.selectedSchema) {
+			this.startValidator()
+		}
 
-		//this.initDataset()
-	},
+		//this.initDataset() // should this be called
+	}
 }
 </script>
 

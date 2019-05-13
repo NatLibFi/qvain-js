@@ -20,7 +20,7 @@ Vue.use(VueRouter)
 
 // routes
 const routes = [
-	{ path: '/', name: "home", component: Welcome, props: false },
+	{ path: '/', name: "home", component: Welcome, props: true },
 	{ path: '/token', component: Token, props: false },
 	{ path: '/records', component: RecordList, props: false, meta: { auth: true } },
 	{ path: '/datasets', component: Datasets, props: false, meta: { auth: true } },
@@ -37,11 +37,13 @@ const routes = [
 		{ path: ':tab', name: "tab", component: SingleTab },
 		{ path: ':tab/:project?/:relpath*', name: 'files', component: SingleTab }, // what is this for?
 	]},
+	{ path: '*', redirect: { name: 'home' } }
 ]
 
 // mode: history or hash
 export default new VueRouter({
 	mode: 'history',
 	fallback: true,
+	base: process.env.VUE_APP_PUBLIC_PATH,
 	routes,
 })

@@ -1,7 +1,7 @@
 <template>
 	<wrapper :wrapped="!inArray">
 		<div v-if="chosen === null" class="conditional-wrapper">
-			<b-dropdown class="m-2" text="choose type" variant="primary">
+			<b-dropdown class="m-2" text="Choose type" variant="primary">
 				<b-dropdown-item v-for="(sub, i) in schema['oneOf']"
 					:key="'oneOfSel' + i"
 					@click="setChosen(i)">

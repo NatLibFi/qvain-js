@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+	publicPath: process.env.VUE_APP_PUBLIC_PATH,
 	lintOnSave: false,
 	assetsDir: "static",
 	chainWebpack: config => {
@@ -45,6 +46,24 @@ module.exports = {
 					},
 				})])
 		}
+
+		// configure public address for dev server so hot reloading can work with a proxy
+		if (process.env.APP_HOSTNAME) {
+			config.devServer.public(process.env.APP_HOSTNAME)
+		}
+
+		// watch needs to be in poll mode for it to work properly in Vagrant
+		// set watch options for dev server mode (e.g. npm run serve)
+		config.devServer.watchOptions({
+			poll: 1500,
+			ignored: [/node_modules/],
+		})
+
+		// set watch options for build mode with watch enabled (e.g. npm run watch)
+		config.watchOptions({
+			poll: 1500,
+			ignored: [/node_modules/],
+		})
 	},
 	css: {
 		loaderOptions: {

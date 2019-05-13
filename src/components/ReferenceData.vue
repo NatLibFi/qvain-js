@@ -11,7 +11,7 @@
 				<Multiselect v-if="showLang"
 					v-model="selectedLang"
 					:options="languages"
-					:placeholder="placeholder"
+					placeholder="Select language"
 					label="language"
 					class="lang-select"/>
 
@@ -71,7 +71,7 @@
 				</p>
 			</div>
 			<div v-if="!isMultiselect && !Array.isArray(selectedOptions)" class="tag__list">
-				<p class="tag">
+				<p class="tag" :style="{visibility: selectedOptions === null ? 'hidden' : 'visible'}">
 					{{customLabel(selectedOptions)}}
 					<span class="remove-button">
 						<DeleteButton @click="removeValue(-1)" />
@@ -122,7 +122,7 @@ export default {
 				{ id: 'en', language: 'English' },
 				{ id: 'sv', language: 'Swedish' },
 			],
-			selectedLang: { id: 'fi', language: 'Finnish' },
+			selectedLang: null,
 			isLoading: false,
 		}
 	},
@@ -176,7 +176,7 @@ export default {
 			return this.optionItems
 		},
 		sortedOptions() {
-			return this.options.sort((a, b) => {
+			return this.options.slice().sort((a, b) => {
 				const aLabel = a.label[this.currentLanguage] || a.label['und']
 				const bLabel = b.label[this.currentLanguage] || b.label['und']
 				return aLabel.localeCompare(bLabel)

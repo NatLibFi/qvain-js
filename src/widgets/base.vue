@@ -5,8 +5,6 @@
 
 <script>
 import genid from '@/lib/genid.js'
-//import EmptyNote from '@/components/EmptyNote.vue'
-//import {pathToData} from '../schematodata.js'
 
 /* This creates cyclic dependencies because the components are nested: A creates a B which creates an A.
  *
@@ -34,6 +32,29 @@ export default {
 		},
 	},
 	computed: {
+		isValid() {
+			const statefromStore = this.$store.state.vState[this.path].v
+			return statefromStore !== null ? statefromStore : true;
+
+
+			//return (this.$store.state.vState[this.path].e || []).length === 0
+		},
+		errors() {
+			const errorsFromStore = this.$store.state.vState[this.path].e
+			const incorrectElements = errorsFromStore
+				.filter(e => e.slice(0, 31) === 'list validation failed for item')
+				.map(e => Number(e.slice(32)) +1)
+				.join(', #')
+
+			const otherErrors = errorsFromStore
+				.filter(e => e.slice(0, 31) !== 'list validation failed for item')
+
+			if (incorrectElements.length > 0) {
+				otherErrors.push('Check element(s) #' + incorrectElements)
+			}
+
+			return otherErrors
+		},
 		showPath: function() {
 			return this.path.length > 0 ? this.path : "root"
 		},
@@ -51,7 +72,6 @@ export default {
 			return this.$store.getters.uiForPath(this.path)
 		},
 		uiTab: function() {
-			//return this.$store.state.hints[this.path] && this.$store.state.hints[this.path]['tab']
 			return this.ui['tab']
 		},
 		myTab: function() {
@@ -82,106 +102,14 @@ export default {
 		toplevel: function() {
 			return this.$store.state.hints.tabs ? 'tab' in this.ui : true
 		},
-		/*
-		schemaValidation: {
-			cache: false,
-			get: function() {
-				return '.q' in this.schema ? this.schema['.q'] : null
-			},
-		},
-		*/
-		/*
-		schemaState: {
-			cache: false,
-			get: function() {
-				return '.q' in this.schema ? this.schema['.q'].v : null
-			},
-		},
-		*/
-		/*
-		schemaState: {
-			cache: true,
-			get: function() {
-				var v = (this.$store.state.vState[this.path] || {}).v
-				console.log("schemaState triggered")
-				if (v) {
-					this.$root.$emit('bv::hide::popover', 'jack');
-					console.log("emitting hide")
-					//this.$root.$emit('bv::disable::popover', 'jack');
-				} else {
-					//this.$root.$emit('bv::enable::popover', 'jack');
-					console.log("emitting show")
-					this.$root.$emit('bv::show::popover', 'jack');
-				}
-				return (this.$store.state.vState[this.path] || {}).v
-			},
-		},
-		*/
-		schemaState: function() {
-			return this.$store.state.vState[this.path].v
-		},
-		/*
-		showErrors: function() {
-			var state = this.$store.getters.getState(this.path)
-			return state ? !state.v : undefined
-		},
-		*/
-		/*
-		schemaErrors: {
-			cache: false,
-			get: function() {
-				return (this.$store.state.vState[this.path] || {}).e || []
-			},
-		},
-		*/
-		schemaErrors: function() {
-			return this.$store.state.vState[this.path].e
-		},
-		/*
-		validity: {
-			cache: false,
-			get: function() {
-				//console.error(this.path)
-				return this.$store.getters.getState(this.path) || "not set"
-			},
-		},
-		*/
 	},
-	/*
-	watch: {
-		'validity': function(v) {
-			console.warn("schemaState watcher:", v)
-			console.log("schemaState watcher:")
-			if (v) {
-				this.$root.$emit('bv::hide::popover', 'jack');
-				this.$root.$emit('bv::disable::popover', 'jack');
-			} else {
-				this.$root.$emit('bv::enable::popover', 'jack');
-				this.$root.$emit('bv::show::popover', 'jack');
-			}
-		},
-	},
-	*/
 	beforeCreate: function () {
-		//console.log("c1:", this.$options.components)
-
-		//this.$options.components = require('./mapping.js').default
 		for (let component in require('./mapping.js').default) {
 			this.$options.components[component] = require('./mapping.js').default[component]
 		}
 	},
-	components: {
-		//EmptyNote,
-	},
 	created() {
 		this.$store.commit('initStateFor', this.path)
 	},
-	/*
-	destroyed() {
-		console.log("destroyed(): will destroy vState", this.path in this.$store.state.vState)
-		this.$store.commit('cleanStateFor', this.path)
-		console.log("destroyed(): destroyed vState", this.path in this.$store.state.vState)
-	},
-	*/
 }
 </script>
