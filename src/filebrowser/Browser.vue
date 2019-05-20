@@ -13,8 +13,7 @@
 		</b-button-toolbar>
 
 		<!-- TABLE -->
-		<b-table :fields="fields" :items="filesAndDirectoriesForCWD" show-empty empty-text="No files in this directory" striped hover class="mb-0"> <!-- :tbody-tr-class="rowClass" @row-clicked="toggleSelection" -->
-
+		<b-table :fields="fields" :items="filesAndDirectoriesForCWD" show-empty empty-text="No files in this directory" striped hover class="mb-0">
 			<template slot="selection" slot-scope="data">
 				<b-form-checkbox v-if="!disabled" class="m-0" :checked="selected.includes(data.item.identifier)" @change="e => togglePick(e, data)" />
 			</template>
@@ -31,43 +30,12 @@
 			</template>
 
 			<template slot="actions" slot-scope="data">
-				<div v-if="data.item.type === 'files'">
-					<b-btn size="sm" @click.stop="data.toggleDetails" class="mr-2">{{ data.detailsShowing ? 'Hide' : 'Show'}} Details</b-btn>
-				</div>
+				<b-btn variant="primary" v-if="data.item.type === 'files'" size="sm" @click.stop="data.toggleDetails" class="mr-2">{{ data.detailsShowing ? 'Hide' : 'Show'}} PAS metadata</b-btn>
 			</template>
 
 			<template slot="row-details" slot-scope="data">
-				<b-card class="cursor-reset bg-light">
-					<h4>Details</h4>
-					<table class="table-sm table-borderless w-100 mb-3">
-						<thead class="">
-							<th>title</th>
-							<th>encoding</th>
-							<th>format</th>
-							<th>application name</th>
-						</thead>
-
-						<tr class="bg-transparent">
-							<td>{{ data.item.file.file_characteristics['title'] }}</td>
-							<td>{{ data.item.file.file_characteristics['encoding'] }}</td>
-							<td>{{ data.item.file.file_format }}</td>
-							<td>{{ data.item.file.file_characteristics['application_name'] }}</td>
-						</tr>
-					</table>
-
-					<div class="d-flex justify-content-between">
-						<div>
-							<p class="mt-2 mb-2"><b>description</b></p>
-							<p>{{ data.item.file.file_characteristics['description'] }}</p>
-						</div>
-						<b-btn-group class="align-self-end">
-							<b-button @click.stop="data.toggleDetails " :pressed.sync="data.detailsShowing "
-								variant="secondary" class="w-100 h-100">hide</b-button>
-							<b-button @click.stop="()=> modalOpen(data.item.identifier, data.item.path, project)"
-								variant="primary" class="w-100 h-100">json</b-button>
-						</b-btn-group>
-					</div>
-				</b-card>
+				<PASMetadata v-if="data.item.type === 'files'" :identifier="data.item.identifier" :file="data.item.file" />
+				<!--<PASMetadata v-else :identifier="data.item.identifier" :folder="data.item" />-->
 			</template>
 		</b-table>
 	</div>
@@ -79,6 +47,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
 
 import Breadcrumbs from './breadcrumbs.vue'
+import PASMetadata from './PasMetadata.vue'
 import dateFormat from 'date-fns/format'
 
 const fileAPI = axios.create({
@@ -102,6 +71,7 @@ export default {
 	components: {
 		Breadcrumbs,
 		FontAwesomeIcon,
+		PASMetadata
 	},
 	data() {
 		return {
@@ -109,9 +79,9 @@ export default {
 				{
 					key: 'selection',
 					label: '',
-					class: 'pl-3 pr-0 mx-0',
-					thStyle: { width: '0em' },
+					class: '',
 					tdClass: 'align-middle',
+					thStyle: { width: '50px' }
 				},
 				{
 					key: 'type',
