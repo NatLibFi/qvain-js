@@ -11,11 +11,11 @@
 			</thead>
 			<tbody>
 				<td>
-					{{file.file_characteristics['title']}}
+					{{file.file_characteristics['title'] || '-' }}
 				</td>
-				<td>{{ file.file_format }}</td>
+				<td>{{ file.file_format || '-' }}</td>
 				<td style="width: 50%;">
-					{{ file.file_characteristics['description'] }}
+					{{ file.file_characteristics['description'] || '-' }}
 				</td>
 			</tbody>
 		</table>
