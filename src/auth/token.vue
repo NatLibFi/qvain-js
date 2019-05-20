@@ -63,6 +63,12 @@ export default {
 			this.$router.replace({name: 'home', params: {missingCsc: true}})
 			return
 		}
+		
+		// User should have home organization
+		if (this.$route.query.missingorg) {
+			this.$router.replace({name: 'home', params: {missingOrg: true}})
+			return
+		}
 
 		// logged in already; but don't redirect: token might be invalid, so read new token
 		/*

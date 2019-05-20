@@ -15,7 +15,11 @@
 			If you tried to log in with an external account (for example Haka) you might get this error if your account is not associated with a CSC account.
 			Please register a CSC account in <a href="https://sui.csc.fi">https://sui.csc.fi</a>. You can register with or without a Haka account.
 		</b-alert>
-
+		
+		<b-alert :show="missingOrg" variant="danger">
+			Login unsuccessful. You currently do not have a home organization set. Please contact CSC Helpdesk to get your home organization sorted out and then come back to log in again.
+		</b-alert>
+		
 		<b-alert :show="missingToken" variant="danger">You are currently not logged in. Please login to access Qvain.</b-alert>
 
 		<div v-if="!$auth.loggedIn">
@@ -39,6 +43,7 @@ export default {
 	props: {
 		missingCsc: Boolean,
 		missingToken: Boolean,
+		missingOrg: Boolean,
 	},
 }
 </script>
