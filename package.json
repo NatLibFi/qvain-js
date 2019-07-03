@@ -1,9 +1,15 @@
 {
   "name": "qvain-js",
-  "description": "Qvain metadata editor",
+  "description": "Qvain metadata editor (frontend) for the Fairdata project",
   "version": "0.9.0",
-  "author": "Wouter Van Hemel",
   "license": "GPL-3.0",
+  "homepage": "https://qvain.fairdata.fi/",
+  "author": "The National Library of Finland",
+  "contributors": [
+  	"Wouter Van Hemel",
+  	"Eemeli Kouhia",
+  	"Aaron Hakala"
+  ],
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

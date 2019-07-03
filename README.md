@@ -97,8 +97,12 @@ Qvain is a modern [SPA](https://en.wikipedia.org/wiki/Single-page_application) w
 Note that because Qvain depends on [Vue](https://vuejs.org/v2/guide/installation.html#Compatibility-Note) and [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/browsers-devices/#supported-browsers), it is very unlikely to work on versions of Internet Explorer older than IE10. In short, run Qvain in an [evergreen browser](https://www.w3.org/2001/tag/doc/evergreen-web/).
 
 
-## License
+# License
 
-Qvain metadata description tool
-Copyright (c) 2016–2019 National Library of Finland
-Licensed under the GPL 3.0
+Copyright (c) 2016-2018 The National Library of Finland
+Copyright (c) 2019 The Ministry of Education and Culture of Finland
+
+Licensed under the GNU GPL 3.0.
+
+This repository contains third party software.
+Individual package dependencies remain the property of their respective owners and under their own respective licenses.

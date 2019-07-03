@@ -10,7 +10,7 @@
     "clean": "rm -rf build/"
   },
   "author": "Wouter Van Hemel",
-  "license": "ISC",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "deep-equal": "^1.0.1",
